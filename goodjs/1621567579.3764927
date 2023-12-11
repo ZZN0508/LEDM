@@ -1,0 +1,42 @@
+function secureMessage (a)
+{
+    var url = "https://" + location.host + "/cgi-bin/BillDesk.bill?" + a;
+    window.open (url);
+    return;
+}
+
+function securePage (a)
+{
+    var url = "https://" + location.host + "/" + a;
+    window.open (url);
+    return;
+}
+
+function secureWindow (a, b, c)
+{
+    var url = "https://" + location.host + "/" + a;
+    window.open (url, b, c);
+    return;
+}
+
+function secureSwap (a)
+{
+  
+    var url = "https://" + location.host + "/" + a;
+    document.location.replace (url);
+    return;
+}
+
+function normalWindow (a, b, c)
+{
+    var url = "http://" + location.host + "/" + a;
+    window.open (url, b, c);
+    return;
+}
+
+function normalPage (a)
+{
+    var url = "http://" + location.host + "/" + a;
+    window.open (url);
+    return;
+}

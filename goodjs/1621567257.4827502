@@ -1,0 +1,241 @@
+/**
+ CN鍩熷悕锛坖czy-cnym.html锛�
+*/
+
+//妫€绱n鍩熷悕
+function searchCnInfo(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ewhois.cnnic.cn/validatecode/validate.jsp?value="+inputhy+"&entity=domain&service=%2Fwhois&inputfield=value";
+   window.open(hyurl,"_blank");
+}   
+
+//妫€绱㈣仈绯讳汉
+function searchContactInfo(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ewhois.cnnic.cn/validatecode/validate.jsp?value="+inputhy+"&entity=contact&service=%2Fwhois&inputfield=value";
+   window.open(hyurl,"_blank");
+}  
+//妫€绱富鏈�
+function searchHostInfo(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ewhois.cnnic.cn/validatecode/validate.jsp?value="+inputhy+"&entity=host&service=%2Fwhois&inputfield=value";
+   window.open(hyurl,"_blank");
+} 
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+
+
+/**
+ 涓枃鍩熷悕锛坖czy-zwym.html锛�
+*/
+function searchZwInfo(id,id2){//id涓烘枃鏈鐨刬d锛宨d2涓簊elect鏍囩閲岀殑id
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var input2 = ec_GBK(document.getElementById(""+id2).options[document.getElementById(""+id2).selectedIndex].text);
+   var hyurl = "http://cwhois.cnnic.cn/validatecode/validate.jsp?queryinfoA="+inputhy+"&value="+inputhy+input2+"&entity=domain&service=%2Fwhois&inputfield=value&abc="+input2;
+   window.open(hyurl,"_blank");
+}   
+
+//妫€绱㈣仈绯讳汉
+function searchZwContactInfo(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://cwhois.cnnic.cn/validatecode/validate.jsp?value="+inputhy+"&entity=contact&service=%2Fwhois&inputfield=value";
+   window.open(hyurl,"_blank");
+}  
+//妫€绱富鏈�
+function searchZwHostInfo(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ewhois.cnnic.cn/validatecode/validate.jsp?value="+inputhy+"&entity=host&service=%2Fwhois&inputfield=value";
+   window.open(hyurl,"_blank");
+} 
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/**
+ IP/AS鍒嗛厤(jczy-ipas.html)
+*/
+//IPv4鍦板潃
+function searchIPv4(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ipwhois.cnnic.net.cn/bns/query/Query/ipwhoisQuery.do?txtquery="+inputhy+"&queryOption=ipv4&CSRT=13716581114779199258";               
+   window.open(hyurl,"_blank");
+} 
+//鑱旂郴浜�
+function searchIPv4Contact(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ipwhois.cnnic.net.cn/bns/query/Query/ipwhoisQuery.do?txtquery="+inputhy+"&queryOption=person&CSRT=13716581114779199258";
+   window.open(hyurl,"_blank");
+} 
+//IPv6鍦板潃
+function searchIPv6(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ipwhois.cnnic.net.cn/bns/query/Query/ipwhoisQuery.do?txtquery="+inputhy+"&queryOption=ipv6&CSRT=13716581114779199258";
+   window.open(hyurl,"_blank");
+} 
+//AS鍙风爜
+function searchAS(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ipwhois.cnnic.net.cn/bns/query/Query/ipwhoisQuery.do?txtquery="+inputhy+"&queryOption=asn&CSRT=13716581114779199258";
+   window.open(hyurl,"_blank");
+} 
+//璺敱缁存姢鑰�
+function searchRoute(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://ipwhois.cnnic.net.cn/bns/query/Query/ipwhoisQuery.do?txtquery="+inputhy+"&queryOption=route&CSRT=13716581114779199258";
+   window.open(hyurl,"_blank");
+}
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/**
+ 鏈嶅姟鍣ㄨ瘉涔�(jczy-fwqzs.html)
+*/
+//璇佷功
+function searchRawhois(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "https://rawhois.cnnic.cn/pages/rawhois.ftl?name="+inputhy;
+   window.open(hyurl,"_blank");
+}
+//绛剧珷
+function searchQianzhang(id){
+   var inputhy = ec_GBK(document.getElementById(""+id).value);
+   var hyurl = "http://tns-fswhois.cnnic.cn/validatecode/validate.jsp?queryValue="+inputhy+"&queryType=domainName&service=%2Fqueryserver&inputfield=queryValue";
+   window.open(hyurl,"_blank");
+}
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/**
+ 棣栭〉IP鍦板潃鏌ヨ
+*/
+function searchIndexIP(id){//姝d鏄疘P鍦板潃鏌ヨ瀵瑰簲鐨勬枃鏈鐨刬d
+ var ipv4_1Reg =/^[ ]*(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[ ]*$/;
+ var ipv4_2Reg =/^[ ]*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])) - ((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))[ ]*$/;
+ var ipv4_3Reg =/^[ ]*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\/([12]?[0-9]|3[012])[ ]*$/;
+ var inputhy = document.getElementById(""+id).value;
+ if(ipv4_1Reg.test(inputhy) || ipv4_2Reg.test(inputhy) || ipv4_3Reg.test(inputhy))
+           {
+             window.location.href="http://ipwhois.cnnic.net.cn/ipwhoisresult.php?query_option=ipv4&txtquery="+inputhy+"";
+             } else {
+              if (inputhy.indexOf(":")!=-1)
+                {
+                 window.location.href="http://ipwhois.cnnic.net.cn/ipwhoisresult.php?query_option=ipv6&txtquery="+inputhy+"";
+                 } else {
+                  alert("璇疯緭鍏ユ墍瑕佹煡璇㈢殑IP鍦板潃");
+                 }
+             }
+
+}
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/**
+ 棣栭〉鍙俊锛岄€氱敤锛屾棤闄愬湴鍧€鏌ヨ
+*/
+function searchWhois(id1,id2,id3,id4)//id1锛宨d2锛宨d3鍒嗗埆鏄彲淇＄綉鍧€锛岄€氱敤缃戝潃锛屾棤绾跨綉鍧€瀵瑰簲鐨勫崟閫夋鐨刬d;id4鏄枃鏈鐨刬d
+ {
+  var strName; 
+  var c;
+  var i;
+  strName = document.getElementById(""+id4).value;
+  var isEnglish = "1" ;
+  //byte[] buf = strName.getBytes();
+  for(i=0; i<strName.length; i++)
+  {
+    c = strName.charCodeAt(i);
+   if(c>127)
+   {
+    isEnglish = "0";
+    break;
+   }
+  }
+
+  var ipv4_1Reg =/^[ ]*(([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([1-9]?[0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])[ ]*$/;
+  var ipv4_2Reg =/^[ ]*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])) - ((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))[ ]*$/;
+  var ipv4_3Reg =/^[ ]*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\/([12]?[0-9]|3[012])[ ]*$/;
+     if (document.getElementById(""+id1).checked)
+   {
+   if (((strName .indexOf(".")!=-1) || (strName .indexOf("銆�")!=-1)) && (!ipv4_1Reg.test(strName) && !ipv4_2Reg.test(strName) && !ipv4_3Reg.test(strName)))
+   {
+    if(isEnglish != "0")
+    {
+     if((strName.substring(strName.length-3,strName.length)!=".cn") && (strName.substring(strName.length-3,strName.length)!=".CN"))
+     {
+      strName = strName ;
+     }
+     
+     //window.location.href="http://tns-sswhois.cnnic.cn/validatecode/validate.jsp?name="+strName+"&entity=domain&service=/whois&inputfield=name";
+     window.open("http://tns-sswhois.cnnic.cn/validatecode/validate.jsp?queryValue="+strName+"&queryType=domainName&service=%2Fqueryserver&inputfield=queryValue");
+    } else {
+     alert("璇疯緭鍏ユ墍瑕佹煡璇㈢殑绔欑偣鍗＋");
+     document.getElementById(""+id4).focus();
+    }
+    }
+    else {
+    if(isEnglish != "0")
+    {
+     if((strName.substring(strName.length-3,strName.length)!=".cn") && (strName.substring(strName.length-3,strName.length)!=".CN"))
+     {
+      strName = strName ;
+     }
+     
+     //window.location.href="http://tns-sswhois.cnnic.cn/validatecode/validate.jsp?name="+strName+"&entity=domain&service=/whois&inputfield=name";
+     window.open("http://tns-sswhois.cnnic.cn/validatecode/validate.jsp?queryValue="+strName+"&queryType=domainName&service=%2Fqueryserver&inputfield=queryValue");
+       } else {
+     alert("璇疯緭鍏ユ墍瑕佹煡璇㈢殑绔欑偣鍗＋");
+     document.getElementById(""+id4).focus();
+       }
+    }
+  }else if (document.getElementById(""+id2).checked)
+  {
+   
+   if ((strName .indexOf(".")!=-1) || (strName .indexOf("銆�")!=-1) && (!ipv4_1Reg.test(strName) && !ipv4_2Reg.test(strName) && !ipv4_3Reg.test(strName))) 
+   {
+    alert("璇疯緭鍏ユ墍瑕佹煡璇㈢殑閫氱敤缃戝潃");
+    document.getElementById(""+id4).focus();
+   } else {
+    document.tywz_wxwz_form.nameInfo.value = strName;
+    document.tywz_wxwz_form.action = "http://seal.cnnic.cn/validatecode/validate.jsp?entityName=keyword&service=/queryserver&inputfield=nameInfo";
+    document.charset="gb2312";
+    document.tywz_wxwz_form.submit();
+   }
+  }else if (document.getElementById(""+id3).checked)
+  {   if ((strName .indexOf(".")!=-1) || (strName .indexOf("銆�")!=-1) && (!ipv4_1Reg.test(strName) && !ipv4_2Reg.test(strName) && !ipv4_3Reg.test(strName))) 
+   {
+    alert("璇疯緭鍏ユ墍瑕佹煡璇㈢殑鏃犵嚎缃戝潃");
+    document.getElementById(""+id4).focus();
+   } else {
+    document.tywz_wxwz_form.name.value = strName;
+    document.tywz_wxwz_form.action = "http://whois.wkey.cn/validatecode/validate.jsp?entity=keyword&service=/queryserver&inputfield=name";
+    document.charset="gb2312";
+    document.tywz_wxwz_form.submit();
+   }
+  }
+ 
+ }
+ /*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/**
+ 鍦ㄧ嚎杞爜
+*/
+function changeCode(id1,id2,id3){//id1涓烘枃鏈鐨刬d锛宨d2鍜宨d3涓哄崟閫夋鐨処d.娉ㄦ剰鎵€浼爄d閮借鐢ㄥ崟寮曞彿寮曚竴涓嬨€�
+ var inputValue = ec_GBK(document.getElementById(""+id1).value);
+ var code = "GBK";
+ if(document.getElementById(""+id2).checked){
+  code = "GBK";
+ }else if(document.getElementById(""+id3).checked){
+  code = "puny";
+ }
+ $(document.body).append("<form id='PL_CODE_CONVERT_FORM' action='http://www1.cnnic.cn/cgi-bin/conv.cgi' target='_blank' method='post' accept-charset=\"gb2312\" onsubmit=\"document.charset='gb2312';\"><input type='hidden' name='name' value='"+inputValue+"'/><input type='hidden' name='code' value='"+code+"'/></form>");
+ $("#PL_CODE_CONVERT_FORM").submit();
+}

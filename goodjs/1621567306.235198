@@ -1,0 +1,501 @@
+
+          window._rrCodeStHP = 0;
+          window._rrCodeHP = window._rrCodeHP || [];
+function script(url) {
+            try { var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url; var x = document.getElementsByTagName('head')[0]; x.appendChild(s); } catch (e) { }} function styleCSS(url) {try { var giftofspeed = document.createElement('link'); giftofspeed.rel = 'stylesheet'; giftofspeed.href = url; giftofspeed.type = 'text/css'; var godefer = document.getElementsByTagName('link')[0]; godefer.parentNode.insertBefore(giftofspeed, godefer); } catch (e) { }}
+
+        var HS_Array = {};
+        HS_Array.functionArray = [];
+        var base_url = 'https://www.ndtv.com/';
+        document.domain = "ndtv.com";
+    
+
+        (function (w, d) {
+            var s = d.createElement('script');
+            s.src = '//delivery.adrecover.com/27265/adRecover.js';
+            s.type = 'text/javascript'; s.async = true;
+            (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s);
+        })(window, document);
+
+    HS_Array.functionArray.push(function () {
+        (function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-2598638-50', 'auto', { 'name': 'site' });
+        ga('site.require', 'GTM-P368PVH');
+        ga('site.send', 'pageview');
+        ga('create', 'UA-2598638-73', 'auto', { 'name': 'combined' });
+        ga('combined.send', 'pageview');
+    });
+
+
+        HS_Array.functionArray.push(function () {
+            var _comscore = _comscore || [];
+            _comscore.push({ c1: "2", c2: "9548033" });
+            (function () {
+                var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+                s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+                el.parentNode.insertBefore(s, el);
+            })();
+        });
+    
+
+{
+   "@context": "https://schema.org",
+   "@type": "WebSite",
+   "url": "https://www.ndtv.com/",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://www.ndtv.com/search?q={search_term}",
+     "query-input": "required name=search_term"
+   }
+}
+
+
+        var PWT = {};
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        var gptRan = false;
+        PWT.jsLoaded = function () {
+            loadGpt();
+        };
+        (function () {
+            var purl = window.location.href;
+            var url = '//ads.pubmatic.com/AdServer/js/pwt/158451/3766';
+            var profileVersionId = '';
+            if (purl.indexOf('pwtv=') > 0) {
+                var regexp = /pwtv=(.*?)(&|$)/g;
+                var matches = regexp.exec(purl);
+                if (matches.length >= 2 && matches[1].length > 0) {
+                    profileVersionId = '/' + matches[1];
+                }
+            }
+            var wtads = document.createElement('script');
+            wtads.async = true;
+            wtads.type = 'text/javascript';
+            wtads.src = url + profileVersionId + '/pwt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(wtads, node);
+        })();
+        var loadGpt = function () {
+            // Check the gptRan flag
+            if (!gptRan) {
+                gptRan = true;
+                var gads = document.createElement('script');
+                var useSSL = 'https:' == document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            }
+        }
+        // Failsafe to call gpt
+        setTimeout(loadGpt, 500);
+    
+
+        // this function will act as a lock and will call the GPT API
+        function initAdserver(forced) {
+            if ((forced === true && window.initAdserverFlag !== true) || (PWT.a9_BidsReceived && PWT.ow_BidsReceived)) {
+                window.initAdserverFlag = true;
+                PWT.a9_BidsReceived = PWT.ow_BidsReceived = false;
+                googletag.pubads().refresh();
+            }
+        }
+    
+
+        !function (a9, a, p, s, t, A, g) { if (a[a9]) return; function q(c, r) { a[a9]._Q.push([c, r]) } a[a9] = { init: function () { q("i", arguments) }, fetchBids: function () { q("f", arguments) }, setDisplayBids: function () { }, targetingKeys: function () { return [] }, _Q: [] }; A = p.createElement(s); A.async = !0; A.src = t; g = p.getElementsByTagName(s)[0]; g.parentNode.insertBefore(A, g) }("apstag", window, document, "script", "//c.amazon-adsystem.com/aax2/apstag.js");
+
+
+        apstag.init({
+            pubID: '5d5467fe-bc8c-4335-993a-e0314547592e', //enter your pub ID here as shown above, it must within quotes
+            adServer: 'googletag'
+        });
+
+        // APS request
+        apstag.fetchBids({
+                slots: [{
+                    slotID: 'adslot728x90ATF',
+                    slotName: '/1068322/NDTV_Homepage_728x90_ATF',
+                    sizes: [[728, 90], [970, 90]],
+                },
+
+                {
+                    slotID: 'adslot300x250ATF',
+                    slotName: '1068322/NDTV_Homepage_300x250_ATF',
+                    sizes: [300, 250],
+                },
+
+                {
+                    slotID: 'adslot728x90BTF',
+                    slotName: '/1068322/NDTV_News_Homepage_728x90_BTF',
+                    sizes: [[728, 90], [970, 90], [970, 250]],
+                },
+
+                {
+                    slotID: 'adslot300x250BTF',
+                    slotName: '/1068322/NDTV_News_Homepage_300x250_BTF',
+                    sizes: [300, 250],
+                }],
+
+
+
+            timeout: 1000 // Make Sure this timeout is less than or equal to OpenWrap TimeOut
+        }, function (bids) {
+            googletag.cmd.push(function () {
+                apstag.setDisplayBids();
+                PWT.a9_BidsReceived = true;
+                initAdserver(false);
+            });
+        });
+    
+
+/* DFP */
+    function setCookie(cname, cvalue, exdays, domain) { var d = new Date(); d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); var domain = "domain=" + domain + ";"; if (domain == '') { domain = ''; } var expires = "expires=" + d.toUTCString() + ";"; if (exdays == '0') { expires = ''; } document.cookie = cname + "=" + cvalue + "; " + expires + domain + " path=/"; }
+    function getCookie(cname) { var name = cname + "="; var ca = document.cookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i]; while (c.charAt(0) == ' ') c = c.substring(1); if (c.indexOf(name) == 0) return c.substring(name.length, c.length); } return ""; }
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+    var utm_campaign = getParameterByName('utm_campaign');
+/* DFP */
+
+
+    googletag.cmd.push(function () {
+
+
+        window.slot_1 = googletag.defineSlot('/1068322/NDTV_Homepage_728x90_ATF', [[970, 90], [728, 90], 'fluid'], 'adslot728x90ATF').addService(googletag.pubads());
+
+        window.slot_2 = googletag.defineSlot('/1068322/NDTV_Homepage_300x250_ATF', [[300, 250], 'fluid'], 'adslot300x250ATF').addService(googletag.pubads());
+
+        window.slot_3 = googletag.defineSlot('/1068322/NDTV_News_Homepage_728x90_BTF', [[970, 90], [728, 90], [970, 250], 'fluid'], 'adslot728x90BTF').addService(googletag.pubads());
+
+        window.slot_4 = googletag.defineSlot('/1068322/NDTV_News_Homepage_300x250_BTF', [[300, 250], 'fluid'], 'adslot300x250BTF').addService(googletag.pubads());
+
+
+
+        // C) Enable lazy loading with...
+        googletag.pubads().enableLazyLoad({
+            fetchMarginPercent: 0,  // Fetch slots within 5 viewports.
+            renderMarginPercent: 200,  // Render slots within 2 viewports.
+            mobileScaling: 0  // Double the above values on mobile.
+        });
+        googletag.pubads().setTargeting('Test', ['refresh']);
+        googletag.enableServices();
+
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().disableInitialLoad();
+        /* DFP */
+        var trTagVal = getCookie('__ngutmtags');
+        if (utm_campaign != '' && utm_campaign != null) {
+            setCookie('__ngutmtags', utm_campaign, '0', '.ndtv.com');
+            googletag.pubads().setTargeting('UTM', [utm_campaign]);
+        } else if (trTagVal != '') {
+            googletag.pubads().setTargeting('UTM', [trTagVal]);
+        }
+        /* DFP */
+
+        var __gdpr = getCookie('__usrloc'); if (__gdpr == 'EU') { googletag.pubads().setRequestNonPersonalizedAds(1); }
+        googletag.enableServices();
+
+        // OpenWrap code START here
+        if (typeof PWT.requestBids === 'function') {
+            PWT.requestBids(
+                    PWT.generateConfForGPT(googletag.pubads().getSlots()),
+                    function (adUnitsArray) {
+                        console.log("AdUnitsArray", adUnitsArray);
+                        if (adUnitsArray[0].bidData.kvp.pwtplt == "video") {
+                            var videoUrl = window.PWT.generateDFPURL(adUnitsArray[0], {
+                                section: 'blog',
+                                anotherKey: 'anotherValue'
+                            });
+                            invokeVideoPlayer(videoUrl);
+
+                        } else {
+                            PWT.addKeyValuePairsToGPTSlots(adUnitsArray);
+                            PWT.ow_BidsReceived = true;
+                            initAdserver(false);
+                        }
+                    });
+        }
+        // No need to handle "else" part as we have A9 wrapper on page
+        // OpenWrap code END here
+
+        var FAILSAFE_TIMEOUT = 1000; // this timeout should be more than OpenWrap and A9 timeout
+        setTimeout(function () {
+            initAdserver(true); // calling this function with forced mode set to true so that GPT API is always executed
+        }, FAILSAFE_TIMEOUT);
+
+    });
+
+    
+
+ /* function forCanada() {} */
+ 
+
+        if ((navigator.userAgent).toLowerCase().indexOf('iphone') >= 0) {
+            document.write('<meta name="apple-itunes-app" content="app-id=377869410" />');
+        }
+        else if ((navigator.userAgent).toLowerCase().indexOf('ipad') >= 0) {
+            document.write('<meta name="apple-itunes-app" content="app-id=390847563" />');
+        }
+    
+
+
+        var useragent = navigator.userAgent;
+        var useragent = navigator.userAgent; var issmartphone = false;
+        if (useragent.toLowerCase().indexOf("pixel") >= 0 && useragent.toLowerCase().indexOf("android") >= 0)
+        { issmartphone = true; }
+
+        if (issmartphone) {
+
+            window.location.href = 'https://www.ndtv.com';
+        }
+    
+
+        window._newsroom = window._newsroom || [];
+        window._newsroom.push({ pageTemplate: 'news-home' });
+        window._newsroom.push({ pageDashboard: 'news-home' });
+        window._newsroom.push('auditClicks');
+        window._newsroom.push('trackPage');
+        !function (e, f, u) {
+            e.async = 1;
+            e.src = u;
+            f.parentNode.insertBefore(e, f);
+        }(document.createElement('script'),
+            document.getElementsByTagName('script')[0],
+            'https://c2.taboola.com/nr/ndtv/newsroom.js');
+    
+
+        window._taboola = window._taboola || [];
+        _taboola.push({ home: 'auto' });
+        !function (e, f, u) {
+            e.async = 1;
+            e.src = u;
+            f.parentNode.insertBefore(e, f);
+        }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/ndtv/loader.js');
+    
+
+        var isTaboolaBlocked = 'no';
+        var disableTaboolaCountries = ['FI', 'NO', 'PE', 'CO', 'AR'];
+        var __usrCntry = getCookie("__usrCntry") || '_NA_';
+        isTaboolaBlocked = (disableTaboolaCountries.indexOf(__usrCntry) !== -1) ? 'yes' : 'no';
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'block_toobla': isTaboolaBlocked });
+    
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'SiteName': 'www.ndtv.com', 'PageType': 'home', "Platform": "desktop", 'language': 'english' });
+        HS_Array.functionArray.push(function () {
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-N2R2KQQ');
+        });
+    
+
+window.onload = function() {
+var electment = window.location.href.split('?')[0];
+
+if(electment =="https://khabar.ndtv.com/")
+{
+ document.getElementById("gavtab-3").className="select";
+  
+}
+if(electment =="https://www.ndtv.com/")
+{
+ document.getElementById("gavtab-1").className="select";
+  
+  }
+if(electment =="https://www.ndtv.com/bengali")
+{
+document.getElementById("gavtab-12").className="select";
+ 
+}
+if(electment =="https://www.ndtv.com/tamil")
+{
+document.getElementById("gavtab-13").className="select";
+}
+};
+
+
+                 /* searchAutoComplete();  */                  
+
+window._pricee = window._pricee || []; _pricee.push({container : '_pcwgtadbd'});
+ window._taboola = window._taboola || []; _taboola.push({ mode: 'thumbnails-q', container: 'taboola-below-article-thumbnails 1', placement: 'Below Article Thumbnails 1', target_type: 'mix' }); 
+
+googletag.cmd.push(function () { googletag.display('adslot300x250ATF'); });
+                  
+window._taboola = window._taboola || [];_taboola.push({mode: 'thumbnails-d',container: 'taboola-right-rail-ad-spot', placement: 'Right Rail Ad Spot',target_type: 'mix'});
+ 
+        var currentDate = new Date();
+        var currentTime = new Date(currentDate.valueOf() + currentDate.getTimezoneOffset() * 60000);
+        var pwVersion = currentTime.getFullYear().toString() + (currentTime.getMonth() + 1) + currentTime.getDate();
+        !function (e, f, u) {
+            e.async = 1;
+            e.src = u;
+            f.parentNode.insertBefore(e, f);
+        }(document.createElement('script'), document.getElementsByTagName('script')[0],
+            '//cdn.gadgets360.com/pricee/assets/affiliate/js/convergence.min.js?ver=' + pwVersion);
+        
+ window._taboola = window._taboola || []; _taboola.push({ mode: 'thumbnails-g', container: 'taboola-below-article-thumbnails 2', placement: 'Below Article Thumbnails 2', target_type: 'mix' }); 
+     
+    googletag.cmd.push(function () { googletag.display('adslot300x250BTF'); }); 
+
+
+    googletag.cmd.push(function () { googletag.display('adslot728x90BTF'); });
+
+
+         $(document).ready(function () { 
+    setTimeout(function(){
+    var t = $(".gallery_cont").position(), o = $(window).height(), s = t.top - parseInt(o) + parseInt($(".gallery_cont").height()); $(window).scroll(function () { var t = $(".ft-sticky").outerHeight() + 15; $(window).scrollTop() > s ? $(".ft-sticky:visible").length > 0 && ($(".ft-sticky").css({ transform: "translateY(0%)" }), $(".goto-top").css("bottom", t + "px")) : $(".ft-sticky").is(":visible") && ($(".ft-sticky").css({ transform: "translateY(120%)" }), $(".goto-top").css("bottom", "5%")) }), $(window).scroll(function () { $(this).scrollTop() ? $(".goto-top").fadeIn().css("transform", "scale(1,1)") : $(".goto-top").fadeOut().css("transform", "scale(0,0)") }), $(".goto-top").click(function () { $("html, body").animate({ scrollTop: 0 }, 1e3) })
+}, 500);
+     });
+
+
+
+    _rrCodeHP.push(function () {
+        window._taboola = window._taboola || [];
+        _taboola.push({
+            mode: 'thumbs-feed-01',
+            container: 'taboola-feed-below-home-thumbnails',
+            placement: 'Feed below home thumbnails',
+            target_type: 'mix'
+        });
+    });
+                
+
+        function forTN() {
+        }
+    
+
+        var __page = 'hp';
+
+             _rrCodeHP.push(function () {
+                 script('//edata.ndtv.com/cube/cube.js');
+                
+             });
+        
+
+            _rrCodeHP.push(function () {
+                window._taboola = window._taboola || [];
+                _taboola.push({ flush: true });
+            });
+        
+
+            styleCSS('https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Noto+Sans:400,700|Lato:300,400,700,900|Roboto:300,400,500,700,900&display=swap');
+            styleCSS('https://drop.ndtv.com/homepage/css/btfcss2020-20-8.css');
+            styleCSS('https://drop.ndtv.com/homepage/css/homecss/shotonsamsungflexslider4.min.css');
+            script('https://drop.ndtv.com/homepage/js/allcomjs4june_2020-3.js');
+            script('https://cdn.ndtv.com/static/js/main.js?ver-20102020.2');
+            //script('//www.gstatic.com/firebasejs/6.0.4/firebase-app.js');
+            //script('//www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js');
+            //setTimeout(function () {script('//edata.ndtv.com/js/breaking_pushalert_revised.js');}, 500);
+        
+
+              var isPagescrolled = false;
+              var isAdsCreatedFF = false;
+              HS_Array.functionArray.push(function () {
+                  setTimeout(function () {
+                      $(window).scroll(function () {
+                          if (!_rrCodeStHP) {
+                              _rrCodeStHP = 1;
+                              setTimeout(function () {
+                                  _rrCodeRunNdtvHP(_rrCodeHP);
+                              }, 500);
+
+                          }
+                      });
+                  }, 200);
+              });
+              function _rrCodeRunNdtvHP(arr) {
+                  while (arr.length) {
+                      var fnc = arr.splice(0, 1)[0]; fnc();
+                  }
+              }
+        
+
+                 HS_Array.functionArray.push(function () {
+                     $(".pce_mic").click(function () {
+                         $('.pce_mic').toggleClass('bdr-animt');
+                     });
+                 });
+                 HS_Array.functionArray.push(function () {
+                     var defaultLi = $('.gdg_tab-li').first().attr('data-tab');
+                     $('.gdg_tab-cnt').css("display", "none");
+                     $('#' + defaultLi).addClass('active').css("display", "block");
+
+                     $('.gdg_tab-li').click(function () {
+
+                         if ($(this).attr('id') != "last") {
+                             var tab_id = $(this).attr('data-tab');
+
+
+                             $('.gdg_tab-li').removeClass('active');
+                             $('.gdg_tab-cnt').removeClass('active').hide();
+
+                             $(this).addClass('active');
+                             $("#" + tab_id).fadeIn(1500);
+                             window.scrollBy(0, 1);
+                             window.scrollBy(0, -1);
+                         }
+                     });
+                     var count = -1;
+                     HS_Array.functionArray.push(function () {
+                         function AddRedClass() {
+                             var boxes = $('.rgt_lst-li');
+                             var boxLength = boxes.length - 1;
+                             count < boxLength ? count++ : count = 0;
+                             boxes.removeClass('rgt_itm-act').eq(count).addClass('rgt_itm-act');
+                         }
+                         setInterval(AddRedClass, 2000);
+                     });
+                     HS_Array.functionArray.push(function () {
+                         $(".rgt_lst-li").mouseover(function () {
+                             $(this).removeClass("rgt_itm-act");
+                         });
+                     });
+                 });
+        
+
+    function ajax_get(url, callback) { var xmlhttp = new XMLHttpRequest(); xmlhttp.onreadystatechange = function () { if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { try { var data = JSON.parse(xmlhttp.responseText); } catch (err) { return; } callback(data); } }; xmlhttp.open("GET", url, true); xmlhttp.send(); }
+    if (__usrCntry == '_NA_') { ajax_get('https://wapi.ndtv.com/geo.json', function (data) { if (data['country']) { setCookie("__usrCntry", data['country'], '1', ''); } }); }
+
+
+              (function jqIsReady() {
+                  if (typeof $ === "undefined") {
+                      setTimeout(jqIsReady, 10);
+                      return;
+                  }
+                  for (var i = 0; i < HS_Array.functionArray.length; i++) {
+                      try {
+                          HS_Array.functionArray[i]();
+                      } catch (e) { }
+                  }
+              })();
+
+        
+
+            var __echImprssCount = true, __siteid = '1', __sitename = 'ndtv.com';
+        
+if("undefined"!==typeof $&&null!=$)try{var tvc_AdBlockEnabled=function(){var a=document.createElement("ins");a.className="AdSense";a.style.display="block";a.style.position="absolute";a.style.top="-1px";a.style.height="1px";document.body.appendChild(a);var b=!a.clientHeight;document.body.removeChild(a);return b},tvc_getRatio=function(){if(!tvc_AdBlockEnabled()){var a=0;document.getElementsByTagName("html");document.getElementsByTagName("html");$("iframe").each(function(){if(void 0!==$(this).attr("id"))var b=
+$(this).attr("id").replace(/\//g,"\\\\/");tvc_height=$(this).attr("height");tvc_width=$(this).attr("width");var c=$($(this),window.parent.document).is(":visible");void 0!==b&&-1!=b.indexOf("google")&&0<tvc_height&&0<tvc_width&&c&&(a+=tvc_height*tvc_width)})}return a};google_tag_manager["GTM-N2R2KQQ"].macro(42)("tvc_adBlocker_check")&&google_tag_manager["GTM-N2R2KQQ"].macro(43)("tvc_adBlocker_check");google_tag_manager["GTM-N2R2KQQ"].macro(56)(window,"load",function(){var a=tvc_getRatio(),b=0<=google_tag_manager["GTM-N2R2KQQ"].macro(57).indexOf("ndtv")?".ndtv.com":google_tag_manager["GTM-N2R2KQQ"].macro(58);
+a=0<parseInt(a)?0:1;google_tag_manager["GTM-N2R2KQQ"].macro(59)("tvc_adBlocker_check")!=a&&(0==a?dataLayer.push({event:"adBlocker",eventAction:"ad_unblocked",adblocker_status:"disabled"}):dataLayer.push({event:"adBlocker",eventAction:"ad_blocked",adblocker_status:"enabled"}),google_tag_manager["GTM-N2R2KQQ"].macro(60)("tvc_adBlocker_check",a,b,{minutes:30}))},"tvc_adBlocker_inject")}catch(a){google_tag_manager["GTM-N2R2KQQ"].macro(64)(a.name,a.message,"tvc_adBlocker_tracking_inject")};
+var d=new Date,expires="",calc_duration;calc_duration=63072E6;d.setTime(d.getTime()+calc_duration);expires="expires\x3d"+d.toUTCString()+";";var cookie=document.cookie;
+if(cookie.match("tvc_sourceMedium")){var match=document.cookie.match(/(^| )tvc_sourceMedium=([^;]+)/);if(match){var value=match[2];if("TWA/android"==value)try{ga("create","UA-97665797-2","auto"),ga("set","appName","NDTV Lite"),ga("send","screenview",{screenName:document.location.pathname,appId:"com.in.ndtvlite",appVersion:"1.1"})}catch(a){console.log(a.message)}else if("TWA/Hindi"==value)try{ga("create","UA-97665797-2","auto"),ga("set","appName","NDTV India Lite - Khabar"),ga("send","screenview",
+{screenName:document.location.pathname,appId:"com.in.ndtvindialite",appVersion:"1.1"})}catch(a){console.log(a.message)}}}else if("TWA"==google_tag_manager["GTM-N2R2KQQ"].macro(65)&&("android"==google_tag_manager["GTM-N2R2KQQ"].macro(66)||"Hindi"==google_tag_manager["GTM-N2R2KQQ"].macro(67)))if(document.cookie="tvc_sourceMedium\x3d"+google_tag_manager["GTM-N2R2KQQ"].macro(68)+"/"+google_tag_manager["GTM-N2R2KQQ"].macro(69)+";"+expires+";path\x3d/;","android"==google_tag_manager["GTM-N2R2KQQ"].macro(70))try{ga("create","UA-97665797-2","auto"),ga("set","appName","NDTV Lite"),ga("send","screenview",{screenName:document.location.pathname,
+appId:"com.in.ndtvlite",appVersion:"1.1"})}catch(a){console.log(a.message)}else if("Hindi"==google_tag_manager["GTM-N2R2KQQ"].macro(71))try{ga("create","UA-97665797-2","auto"),ga("set","appName","NDTV India Lite - Khabar"),ga("send","screenview",{screenName:document.location.pathname,appId:"com.in.ndtvindialite",appVersion:"1.1"})}catch(a){console.log(a.message)};
+try{var tvc_datLayer_push=function(tvc_action){var clientId=google_tag_manager["GTM-N2R2KQQ"].macro(81).split(".")[2]+"."+google_tag_manager["GTM-N2R2KQQ"].macro(82).split(".")[3];dataLayer.push({"event":"tvc_social_share_tracking","eventCategory":"tvc_article_share","eventAction":tvc_action,"eventLabel":clientId})}}catch(e){google_tag_manager["GTM-N2R2KQQ"].macro(86)(e.name,e.message,"tvc_social_share_tracking_inject_push_function")}
+try{var tvc_social_link=document.querySelectorAll(".st_sharebar_left a,.n_email a,.story_share a,.social-share a,.social-widget2 a,.twitter a,.facebook a,.gplus a,.share_wrp a,.story_social_share a,a.sharelink,a.sharelink-fb");if(tvc_social_link.length>0){var tvc_eventAction;google_tag_manager["GTM-N2R2KQQ"].macro(99)(tvc_social_link,"click",function(e){if(this.className.match("gp")||this.href.match("plus.google.com")||this.id.match("gshare")){tvc_eventAction="Google+";tvc_datLayer_push(tvc_eventAction)}else if(this.className.match("tw")||
+this.href.match("twitter")||this.id.match("tweet")){tvc_eventAction="Twitter";tvc_datLayer_push(tvc_eventAction)}else if(this.className.match("fb")||this.href.match("facebook")||this.id.match("facebook")||this.id.match("fshare")){tvc_eventAction="Facebook";tvc_datLayer_push(tvc_eventAction)}else if(this.className.match("rd")||this.href.match("reddit")||this.className.match("redit")){tvc_eventAction="Reddit";tvc_datLayer_push(tvc_eventAction)}else if(google_tag_manager["GTM-N2R2KQQ"].macro(101)(e.target,".n_email")||this.href.match("mailto")||
+e.target.className.match("email")){tvc_eventAction="Email";tvc_datLayer_push(tvc_eventAction)}else if(this.className.match("whatsapp")||this.href.match("whatsapp")||this.className.match("applink")){tvc_eventAction="WhatsApp";tvc_datLayer_push(tvc_eventAction)}else if(this.className.match("li")||this.href.match("linkedin")){tvc_eventAction="Linkedin";tvc_datLayer_push(tvc_eventAction)}else if(this.className.match("sms")||this.href.match("sms")){tvc_eventAction="SMS";tvc_datLayer_push(tvc_eventAction)}else if(this.className.match("pinterest")||
+this.href.match("pinterest")){tvc_eventAction="Pinterest";tvc_datLayer_push(tvc_eventAction)}},"tvc_social_share_tracking_a_inject")}}catch(e){google_tag_manager["GTM-N2R2KQQ"].macro(105)(e.name,e.message,"tvc_social_share_tracking_inject")};
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date);gtag("config","G-3X0HPFNQW2");

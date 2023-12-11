@@ -1,0 +1,273 @@
+
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://www.dotdash.com",
+  "brand": "Dotdash",
+  "name": "Dotdash",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1500 Broadway, 6th Floor",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10036",
+    "addressCountry": "USA"
+  },
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.dotdash.com/assets/img/dot-dash-menu-logo.png",
+    "width": 500,
+    "height": 164
+  },
+  "sameAs": [
+    "https://en.wikipedia.org/wiki/Dotdash",
+    "https://www.instagram.com/dotdashco/",
+    "https://www.linkedin.com/company/dotdashco/",
+    "https://www.facebook.com/dotdashco/"
+  ],
+  "subOrganization": [{
+      "@type": "Organization",
+      "url": "https://www.verywellhealth.com",
+      "name": "Verywell Health",
+      "brand": "Verywell Health",
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Verywell",
+        "https://www.linkedin.com/company/verywell/",
+        "https://www.instagram.com/verywell/",
+        "https://twitter.com/verywell",
+        "https://www.facebook.com/verywell/",
+        "https://www.pinterest.com/verywell/",
+        "https://flipboard.com/@verywell"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.verywellfit.com",
+      "name": "Verywell Fit",
+      "brand": "Verywell Fit",
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Verywell",
+        "https://www.linkedin.com/company/verywell/",
+        "https://www.instagram.com/verywell/",
+        "https://twitter.com/verywell",
+        "https://www.facebook.com/verywell/",
+        "https://www.pinterest.com/verywell/",
+        "https://flipboard.com/@verywell"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.verywellmind.com",
+      "name": "Verywell Mind",
+      "brand": "Verywell Mind",
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Verywell",
+        "https://www.linkedin.com/company/verywell/",
+        "https://www.instagram.com/verywell/",
+        "https://twitter.com/verywell",
+        "https://www.facebook.com/verywell/",
+        "https://www.pinterest.com/verywell/",
+        "https://flipboard.com/@verywell"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.verywellfamily.com",
+      "name": "Verywell Family",
+      "brand": "Verywell Family",
+      "sameAs": [
+        "https://en.wikipedia.org/wiki/Verywell",
+        "https://www.linkedin.com/company/verywell/",
+        "https://www.instagram.com/verywell/",
+        "https://twitter.com/verywell",
+        "https://www.facebook.com/verywell/",
+        "https://www.pinterest.com/verywell/",
+        "https://flipboard.com/@verywell"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "url": "https://www.lifewire.com",
+      "name": "Lifewire",
+      "brand": "Lifewire",
+      "sameAs": [
+        "https://flipboard.com/@lifewiretech",
+        "https://en.wikipedia.org/wiki/Lifewire",
+        "https://twitter.com/lifewiretech",
+        "https://www.facebook.com/lifewire/"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thoughtco.com",
+      "name": "ThoughtCo",
+      "brand": "ThoughtCo",
+      "sameAs": [
+        "https://www.facebook.com/thoughtcodotcom",
+        "https://flipboard.com/@thoughtco"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thespruce.com",
+      "name": "The Spruce",
+      "brand": "The Spruce",
+      "sameAs": [
+        "https://www.facebook.com/thespruceofficial",
+        "https://www.instagram.com/thesprucemakes/",
+        "https://www.pinterest.com/thesprucemakes/",
+        "https://flipboard.com/@TheSpruceMakes"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thespruceeats.com",
+      "name": "The Spruce Eats",
+      "brand": "The Spruce Eats",
+      "sameAs": [
+        "https://www.facebook.com/thespruceofficial",
+        "https://www.instagram.com/thesprucemakes/",
+        "https://www.pinterest.com/thesprucemakes/",
+        "https://flipboard.com/@TheSpruceMakes"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thesprucecrafts.com",
+      "name": "The Spruce Crafts",
+      "brand": "The Spruce Crafts",
+      "sameAs": [
+        "https://www.facebook.com/thespruceofficial",
+        "https://www.instagram.com/thesprucemakes/",
+        "https://www.pinterest.com/thesprucemakes/",
+        "https://flipboard.com/@TheSpruceMakes"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thesprucepets.com",
+      "name": "The Spruce Pets",
+      "brand": "The Spruce Pets",
+      "sameAs": [
+        "https://www.facebook.com/thespruceofficial",
+        "https://www.instagram.com/thesprucemakes/",
+        "https://www.pinterest.com/thesprucemakes/",
+        "https://flipboard.com/@TheSpruceMakes"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.mydomaine.com",
+      "name": "MyDomaine",
+      "brand": "MyDomaine",
+      "sameAs": [
+        "https://twitter.com/mydomaine",
+        "https://www.facebook.com/MyDomaine/",
+        "https://www.instagram.com/MyDomaine/",
+        "https://www.pinterest.com/mydomaine/",
+        "https://flipboard.com/@mydomaine"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.byrdie.com",
+      "name": "Byrdie",
+      "brand": "Byrdie",
+      "sameAs": [
+        "https://twitter.com/byrdiebeauty",
+        "https://www.facebook.com/ByrdieBeauty/",
+        "https://www.instagram.com/ByrdieBeauty/",
+        "https://www.pinterest.com/byrdiebeauty/",
+        "https://flipboard.com/@byrdiebeauty"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.investopedia.com",
+      "name": "Investopedia",
+      "brand": "Investopedia",
+      "sameAs": [
+        "https://twitter.com/investopedia",
+        "https://www.facebook.com/Investopedia/",
+        "https://www.youtube.com/user/investopediacom",
+        "https://www.linkedin.com/company/investopedia-ulc",
+        "https://www.instagram.com/investopedia/"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thebalance.com",
+      "name": "The Balance",
+      "brand": "The Balance",
+      "sameAs": [
+        "https://twitter.com/thebalance/",
+        "https://www.facebook.com/thebalancecom/",
+        "https://www.pinterest.com/thebalance/",
+        "https://flipboard.com/@thebalance",
+        "https://www.linkedin.com/company/the-balance.com"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thebalancecareers.com",
+      "name": "The Balance Careers",
+      "brand": "The Balance Careers",
+      "sameAs": [
+        "https://twitter.com/thebalance/",
+        "https://www.facebook.com/thebalancecom/",
+        "https://www.pinterest.com/thebalance/",
+        "https://flipboard.com/@thebalance",
+        "https://www.linkedin.com/company/the-balance.com"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thebalancesmb.com",
+      "name": "The Balance SMB",
+      "brand": "The Balance SMB",
+      "sameAs": [
+        "https://twitter.com/thebalance/",
+        "https://www.facebook.com/thebalancecom/",
+        "https://www.pinterest.com/thebalance/",
+        "https://flipboard.com/@thebalance",
+        "https://www.linkedin.com/company/the-balance.com"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.thebalanceeveryday.com",
+      "name": "The Balance Everyday",
+      "brand": "The Balance Everyday",
+      "sameAs": [
+        "https://twitter.com/thebalance/",
+        "https://www.facebook.com/thebalancecom/",
+        "https://www.pinterest.com/thebalance/",
+        "https://flipboard.com/@thebalance",
+        "https://www.linkedin.com/company/the-balance.com"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.tripsavvy.com",
+      "name": "TripSavvy",
+      "brand": "TripSavvy",
+      "sameAs": [
+        "https://twitter.com/tripsavvy",
+        "https://www.facebook.com/tripsavvytips",
+        "https://www.instagram.com/tripsavvy/",
+        "https://www.pinterest.com/tripsavvy/",
+        "https://flipboard.com/@TripSavvy"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.learnreligions.com",
+      "name": "LearnReligions",
+      "brand": "LearnReligions",
+      "sameAs": [
+        "https://www.facebook.com/learn.religions",
+        "https://www.pinterest.com/learnreligions/",
+        "https://flipboard.com/@LearnReligions"
+      ]
+    }, {
+      "@type": "Organization",
+      "url": "https://www.liveabout.com",
+      "name": "LiveAbout",
+      "brand": "LiveAbout",
+      "sameAs": []
+    }
+  ]
+}
+
+var dataLayer=window.dataLayer||[];dataLayer.push({event:"unifiedPageview",fullUrl:google_tag_manager["GTM-5QL7ZM7"].macro(3),title:google_tag_manager["GTM-5QL7ZM7"].macro(7),pageviewType:"standard",excludeFromComscore:!1});
+(function(b){for(var c=window.dataLayer=window.dataLayer||[],a=0;a<b.length;a++)"99"!==b[a].bucketTrackingId&&c.push({event:"proctorBucket",proctorTestName:b[a].testName||"none",proctorBucketID:b[a].bucketTrackingId||"none",proctorBucketName:b[a].bucketName||"none",proctorBucketDesc:b[a].bucketDescription||"none",proctorBucketValue:b[a].bucketValue||"none"})})(google_tag_manager["GTM-5QL7ZM7"].macro(84)||[]);
+window.dataLayer=window.dataLayer||[];
+(function(e,a){function t(b){for(var c=0;c<b.length;c++)e.addEventListener?e.addEventListener(b[c],f):e.attachEvent&&e.attachEvent("on"+b[c],f);window.onbeforeunload=function(){a.events.push("pageunload");n()}}function f(b){b=b.type;var c=Date.now();a.start&&(a.firstTime=c,a.start=!1);a.events[a.events.length-1]!==b&&a.events.push(b);a.lastTime=c}function h(){return{start:!0,firstTime:0,lastTime:0,events:[]}}function n(){if(0<a.events.length)if(gapMilliseconds=a.firstTime-k.lastTime,engagedTime=gapMilliseconds<
+g?a.lastTime-k.lastTime:a.lastTime-a.firstTime,events=a.events.join(", "),0<engagedTime&&engagedTime<=2*g){var b=events,c=engagedTime;var d=Date.now();d-=a.lastTime;l("timeEngaged",b,c,m+" Second Interval",d)}else 1>engagedTime||(b=events,c=engagedTime,d=Date.now(),d-=a.lastTime,l("timeEngagedError",b,c,m+" Second Interval",d));k=a;a=h()}function u(){a=h();t(v);f({type:"pageload"});setInterval(function(){n()},g)}function l(a,c,d,e,g){var b=window.dataLayer||[],f=google_tag_manager["GTM-5QL7ZM7"].macro(88),k=google_tag_manager["GTM-5QL7ZM7"].macro(89),
+n="timeEngagedGAEvent",p=!0;if("timeEngaged"==a){var h="Time";var l="Time Engaged";var m=e;var q="";var r={"Actions Taken":c,"Technical Trigger":"GTM Data Layer Push",Interactive:f((!p).toString())}}else"timeEngagedError"==a&&(h="Error",l="Time Engaged",m=e,d=q="",r={"Actions Taken":c,"Error Milliseconds Engaged":d,"Technical Trigger":"GTM Data Layer Push",Interactive:f((!p).toString())});b.push({event:n,eventCategory:h,eventAction:l,eventLabel:m,eventValue:q,eventOther:k(r),nonInteraction:p,millisecondsEngaged:d,
+hitTimeOffset:g})}var g=3E4,m=Math.round(g/1E3),v=["mouseover","touchstart","keydown"],k={lastTime:0};u()})(window.document);
+var axel=Math.random()+"",a=1E13*axel;document.write('\x3ciframe src\x3d"https://6926959.fls.doubleclick.net/activityi;src\x3d6926959;type\x3ddotda0;cat\x3ddotda0;dc_lat\x3d;dc_rdid\x3d;tag_for_child_directed_treatment\x3d;ord\x3d'+a+'?" width\x3d"1" height\x3d"1" frameborder\x3d"0" style\x3d"display:none"\x3e\x3c/iframe\x3e');
+_linkedin_data_partner_id="52094";

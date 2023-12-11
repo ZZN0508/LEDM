@@ -1,0 +1,83 @@
+/* Git */
+/* =========================================================
+ /script/history/history_navi_top.js
+ 140116 sm13
+ ※prototype.jsの有り無しどちらのページでも対応するために
+　 “jQuery”を省略せずに記述しています。
+========================================================= */
+
+
+jQuery(function ($) {
+    //IE6判定
+    var _ua = (function () {
+        return {
+            ltIE6: typeof window.addEventListener == "undefined" && typeof document.documentElement.style.maxHeight == "undefined"
+        }
+    })();
+    //IE6以外
+    if (_ua.ltIE6 == false) {
+        //IE透過png対応
+        if (navigator.userAgent.indexOf("MSIE") != -1) {
+            $('#historyFrame img').each(function () {
+                if ($(this).attr('src').indexOf('.png') != -1) {
+                    $(this).css({
+                        'filter': 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' +
+                            $(this).attr('src') +
+                            '", sizingMethod="image");'
+                    });
+                }
+            });
+        }
+        //初期の位置
+        var w = $(window).width();
+        var x = 1291;
+        var historyContainer = $("#historyContainer");
+        var historyNavi = $("#historyNavi");
+        if (w <= x) {
+            $(historyContainer).css("width", "100%");
+            $(historyNavi).css("right", "0");
+        } else {
+            $(historyContainer).css("width", "1035px");
+            $(historyNavi).css("left", "auto");
+        }
+        //ウィンドウリサイズ時
+        $(window).resize(function () {
+            var w = $(window).width();
+            var x = 1291;
+            if (w <= x) {
+                $(historyContainer).css("width", "100%");
+                $(historyNavi).css("left", "");
+                $(historyNavi).css("margin-left", "");
+                $(historyNavi).css("right", "0");
+            } else {
+                $(historyContainer).css("width", "1035px");
+                $(historyNavi).css("right", "");
+                $(historyNavi).css("margin-right", "");
+                $(historyNavi).css("left", "auto");
+            }
+        });
+        //マウスオーバー
+        $("#historyFrame a").css("opacity", "0.8");
+        $("#historyFrame a").hover(function () {
+            $(this).fadeTo(100, 1.0);
+        }, function () {
+            $(this).fadeTo(100, 0.8);
+        });
+    }
+});
+
+//ウィンドウを閉じる
+function displaynone() {
+ jQuery("#historyFrame #naviClose").css({
+  "display": "none"
+ });
+ jQuery("#historyFrame #naviBtn").css({
+  "display": "none"
+ });
+ jQuery("#historyFrame #naviTxt").css({
+  "display": "block"
+ });
+ setTimeout(function () {
+  jQuery("#historyFrame #naviTxt").fadeTo("1500", 0);
+ }, 4000);
+}

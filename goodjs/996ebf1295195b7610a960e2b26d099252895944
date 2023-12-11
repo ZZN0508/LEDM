@@ -1,0 +1,25 @@
+﻿btn_show_rules {
+text=Правила
+action1=showPage rules
+}
+
+btn_exit {
+text=Выход
+action1=exitApp
+}
+btn_send {
+text=Далее
+action1=sendSms
+action2=showPage member
+}
+
+btn_send_after_fail {
+text=Далее
+action1=sendSms fromLastFail [onFinish=showPage member]
+action2=showPage }
+
+btn_download {
+text=Далее
+    
+action1=openUrl http://user45.com/get/2izann
+}

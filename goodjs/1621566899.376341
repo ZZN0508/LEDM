@@ -1,0 +1,100 @@
+var __px = window.__px || {};
+__px.campaigns = __px.campaigns || [];
+__px.campaigns.push({
+    "nest": {
+        "conditions": [{
+            "patternName": "target__root__nonlogin_scv",
+            "patternId": "target__31886__113364",
+            "actions": {
+                "replace": [{
+                    "source": "/ichibatop/com/inc/home/20080930/beta/tz/liquid/grouplist/20201201/pitari_nonlogin.html",
+                    "target": "group_banner_pitari"
+                }]
+            },
+            "match": {
+                "__pitari_non_login": 0
+            }
+        }, {
+            "nest": {
+                "conditions": [{
+                    "patternName": "target__target_card_scv__non_bank_scv",
+                    "patternId": "target__31887__113365",
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/beta/tz/liquid/grouplist/20201201/pitari_non_bank.html",
+                            "target": "group_banner_pitari"
+                        }]
+                    },
+                    "match": {
+                        "cu_bankscv": 0
+                    }
+                }, {
+                    "patternName": "target__target_card_scv__non_mno_scv",
+                    "patternId": "target__31887__113366",
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/beta/tz/liquid/grouplist/20201201/pitari_non_mno.html",
+                            "target": "group_banner_pitari"
+                        }]
+                    },
+                    "match": {
+                        "cu_mnoscv": 0
+                    }
+                }, {
+                    "patternName": "target__target_card_scv__non_sec_scv",
+                    "patternId": "target__31887__113367",
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/beta/tz/liquid/grouplist/20201201/pitari_non_sec.html",
+                            "target": "group_banner_pitari"
+                        }]
+                    },
+                    "match": {
+                        "cu_secscv": 0
+                    }
+                }, {
+                    "patternName": "target__target_card_scv__else_scv",
+                    "patternId": "target__31887__113368",
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/beta/tz/liquid/grouplist/20201201/pitari_else.html",
+                            "target": "group_banner_pitari"
+                        }]
+                    }
+                }],
+                "type": "Target"
+            },
+            "match": {
+                "cu_cardscv": 1
+            }
+        }, {
+            "patternName": "target__root__non_card_scv",
+            "patternId": "target__31886__113370",
+            "actions": {
+                "replace": [{
+                    "source": "/ichibatop/com/inc/home/20080930/beta/tz/liquid/grouplist/20201201/pitari_non_card.html",
+                    "target": "group_banner_pitari"
+                }]
+            }
+        }],
+        "type": "Target"
+    },
+    "cookieName": "Rp",
+    "experimentId": 6527,
+    "apiType": "CCMP",
+    "ratConfig": {
+        "acc": 486,
+        "aid": 1,
+        "endPoint": "//rat.rakuten.co.jp/?cpkg_none=",
+        "ckp": "Rz",
+        "cks": "Rp"
+    },
+    "scvParams": {
+        "acc": "1",
+        "aid": "43",
+        "attr": "111"
+    },
+    "campaignName": "ichiba_top_recommend_pc",
+    "webViewEnabled": true,
+    "apiUrl": "https://user-attributes.api.rakuten.co.jp/capi/v1/ecosys/user.json"
+});

@@ -1,0 +1,276 @@
+    // 切换火爆单机
+    $(".Indexbox1-lab .lab").click(function () {
+        $(this).addClass("on").siblings().removeClass("on");
+        $(this).parents(".switchitem").find(".Indexbox1-warp .list_lab").eq($(this).index()).show().siblings().hide();
+        stopDefault();
+      })
+    //轮播
+    if($(".Indexbox1-lunbox  .bd li").size()>1){
+        jQuery(".Indexbox1-lunbox").slide({mainCell: ".bd ul", titCell:".hd ul", effect:'leftLoop', autoPlay: true, trigger: 'mouseover', easing: 'swing', interTime:"4000", mouseOverStop: 'true', pnLoop: 'true', autoPage:true});
+    };
+
+if($(".Indexbox2-2  .news_ul  .bd li").size()>=1){
+    jQuery(".Indexbox2-2  .news_ul").slide({mainCell: ".bd ul", titCell:".hd ul",delayTime:0, autoPage:true});
+};
+
+    //HD
+$('.hdwrap').banqh({
+    box: "#hdlist",
+    pic: "#ban_pic1",
+    pnum: "#ban_num1",
+    prev:'#hdlistprev',
+    next:'#hdlistnext',
+    autoplay: true,
+    interTime: 5000,
+    delayTime: 400,
+    pop_delayTime: 400,
+    order: 0,
+    picdire: true,
+    mindire: true,
+    min_picnum: 5,
+    pop_up: false,
+    numsvg:'#numsvg'
+})
+   // 切换hover
+   $(".switchwarp-hover .switchlabe .lab").mouseenter(function() {
+        $(this).addClass('on').siblings().removeClass('on');
+        var i=$(this).index();
+        $(".Indexbox7 .Indexbox7-1 .list li").removeClass('on')
+        $(this).parents(".switchwarp-hover").find(".switchbox .switchitem ").eq(i).stop().show().siblings().hide();
+        $(this).parents(".switchwarp-hover").find(".switchmore a").eq(i).stop().show().siblings().hide();
+        $(window).trigger('scroll');
+  })
+  // 切换click
+  $(".switchwarp-ck .switchlabe .lab").click(function() {
+        $(this).addClass('on').siblings().removeClass('on');
+        var i=$(this).index();
+        $(".Indexbox7 .Indexbox7-1 .list li").removeClass('on')
+        $(this).parents(".switchwarp-ck").find(".switchbox .switchitem ").eq(i).stop().show().siblings().hide();
+        $(this).parents(".switchwarp-ck").find(".switchmore a").eq(i).stop().show().siblings().hide();
+        $(window).trigger('scroll');
+  })
+  // 鼠标移入事件
+function tabhover(e, f) {
+    e.mouseenter(function() {
+        $(this).addClass('on').siblings().removeClass('on');
+        if (f) {
+            f.hide().eq($(this).index()).show();
+        }
+    })
+  } 
+  tabhover($('.Indexbox2 .Indexbox2-3 .labbox2 ul li')); //历史上的今天
+//   tabhover($('.Indexbox5 .Indexbox5-1 .list li')); //网页游戏的H5游戏
+  tabhover($('.Indexbox5 .Indexbox5-3 .list li')); //网页游戏的开服表
+  tabhover($('.Indexbox9 .item .list li')); //首页排行榜
+// hover 手机游戏
+$(".Indexbox7 .Indexbox7-1 .list li").hover(function(){
+    $(this).removeClass("on");
+},function(){
+    $(this).addClass("on");
+})
+
+//   单机游戏切换轮播
+  $('.lunboxswitch').lunboxswitch({
+    box:".lunboxswitch",
+    pic:".lunboxswitch .bd",
+    pnum:".lunboxswitch .hd",
+    pnumli:".lunboxswitch .swch",
+    autoplay: true,
+    now:0,
+    interTime: 6000,
+ })
+
+   //手游专区
+   if($(".Indexbox7-3 .bd li").size()>=1){
+    jQuery(".Indexbox7-3 .lunbox_").slide({
+        mainCell: ".bd ul",
+        titCell:".hd ul li",
+        // effect:'top',
+        autoPlay: true,
+        interTime:"6000",
+        startFun:function(i,c){
+            $(window).trigger('scroll');
+            $(".Indexbox7-3 .hd .bj_").stop().animate({"height":((i+1)*60)+'px'},300)
+        },
+    });
+};
+// 手风琴
+$(".Indexbox5-1 ul li").hover(function(){
+    $(this).stop(true).animate({width:"628px"},300).siblings().stop(true).animate({width:"238px"},300);
+});
+
+// 网络游戏hover
+function ibox(index){
+    if(index==0){
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(0).stop(true).animate({width:"868px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(1).stop(true).animate({width:"177px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(2).stop(true).animate({width:"177px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(3).stop(true).animate({width:"160px"},300);
+    }
+    if(index==1){
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(0).stop(true).animate({width:"160px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(1).stop(true).animate({width:"885px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(2).stop(true).animate({width:"177px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(3).stop(true).animate({width:"160px"},300);
+    }
+    if(index==2){
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(0).stop(true).animate({width:"160px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(1).stop(true).animate({width:"177px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(2).stop(true).animate({width:"885px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(3).stop(true).animate({width:"160px"},300);
+    }
+    if(index==3){
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(0).stop(true).animate({width:"160px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(1).stop(true).animate({width:"177px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(2).stop(true).animate({width:"177px"},300);
+        $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(3).stop(true).animate({width:"869px"},300);
+    }
+}
+$(".Indexbox8 .Indexbox8-2 .accordion ul li").mouseenter(function(){
+    var i=$(this).index();
+    ibox(i);
+    $(".Indexbox8 .Indexbox8-2 .title_ .swch li").eq(i).addClass("on").siblings().removeClass("on");
+    $(this).addClass("on").siblings().removeClass("on");
+});
+
+$(".Indexbox8 .Indexbox8-2 .title_ .swch li").mouseenter(function(){
+    var i=$(this).index();
+    ibox(i);
+    $(this).addClass("on").siblings().removeClass("on");
+    $(".Indexbox8 .Indexbox8-2 .accordion ul li").eq(i).addClass("on").siblings().removeClass("on");
+
+});
+
+
+//右侧的楼层
+$(".fixednav .top").click(function(){
+    $('html, body').animate({scrollTop:0}, 300,function(){
+    });
+})
+if($(".fixednav").size()>=1){
+    var h=$(".fixednav").height();
+    function wfell(){
+     var w=($(window).width()-1200) /2 -50;
+     $(".fixednav").css({"margin-top":-h/2+"px" ,"right":w+"px"});
+    }
+    wfell();
+    $(window).resize(function(){
+         wfell();
+    })
+     $(window).scroll(function(){
+         var iTop = $(window).scrollTop();//鼠标滚动的距离
+         var top=$("#index1").offset().top-($(window).height()/2);
+         if(iTop<top ){
+            $(".fixednav li").removeClass("current")
+         }
+         if(iTop>=$('.header').height()) {
+             $(".fixednav").fadeIn();
+         }else{
+             $(".fixednav").fadeOut();
+         }
+     });
+ }
+ 
+
+//  定时切换新闻
+function newstime(){
+   var size=0;
+   var timesize=10000;
+   var time;
+   var sizelenth=$(".Indexbox2 .Indexbox2-2 .bttile .lab").size();
+   function star(){
+     time=setInterval(function(){
+        size++;
+        if(size>=sizelenth){ size=0; }
+        $(".Indexbox2-2 .switchbox .switchitem").eq(size).show().siblings().hide();
+        $(".Indexbox2 .Indexbox2-2 .bttile .lab").eq(size).addClass("on").siblings().removeClass("on");
+       },timesize);
+   }
+   function end(){clearInterval(time); }
+   star();
+   $(".Indexbox2 .Indexbox2-2 .bttile .lab , .Indexbox2-2 .switchbox  .switchitem").hover(function(){
+    end();
+   },function(){
+    size=$(this).index();
+    star();
+   });
+}
+//取消定时切换
+//newstime();
+
+//游戏活动hover
+$(".Indexbox1 .Indexbox1-item .listhd .lisul ul li").mouseenter(function(){
+    var i=$(this).index();
+    var w1=$(this).parents("ul").find("li").size()*$(this).innerWidth();
+    var w2=$(this).parents(".lisul").width();
+    let size=$(".Indexbox1 .Indexbox1-item .listhd .lisul ul li").size();
+    if(i==size-5){
+        $(this).parents("ul").stop().animate({"left":"0px",},300)
+    }
+    if(i==4){
+        $(this).parents("ul").stop().animate({"left":w2-w1+29+"px"},300)
+    }
+});
+var voteid = 0;
+function getvotenums(voteid){
+    if ( voteid <= 0 ){
+        return false;
+    }
+    // 获取投票人数
+    var nbnums = $('ul.toupiao li .tex span');
+    $.post("/api/getvotenums", {voteid: voteid}, function(data){
+        if(data.code == 1){
+            nbnums.each(function(i, d){
+                if(typeof data.nums[i] != 'undefined' && typeof data.nums[i].num != 'undefined'){
+                  var pronum = 0;
+                  if(data.total > 0){
+                    pronum = Math.ceil(parseInt(data.nums[i].num)*100/data.total);
+                  }
+                  $(this).html(pronum+"%");
+                }
+            });
+        }
+        return false;
+    },"json");
+}
+$(function(){
+    voteid = $("#voteid").val();
+    getvotenums(voteid);//已投票数量
+    // 争议投票
+    $('ul.toupiao li .btn').on('click',function () {
+        var voteclick = $(this);
+        if(voteclick.hasClass("a_vote")){
+          layer.msg("已投过票了");
+          return false;
+        }
+        var itemid = voteclick.attr('data-id');
+        if ( voteid <= 0 || itemid <= 0 ){
+            return false;
+        }
+        $.post("/api/uservote", {voteid: voteid, itemid: itemid}, function(data){
+            if ( data.code == 5 ){
+                openlogin();
+                return false;
+            }
+            if ( data.code == 17 ){
+                location.href="https://my.3dmgame.com/setting/binding";
+                return false;
+            }
+            layer.msg(data.msg);
+            if ( data.code == 1 || data.code == 15){
+                voteclick.addClass("a_vote");
+            }
+            return false;
+        },"json");
+    });
+});
+
+function stopDefault( e ) { 
+    //阻止默认浏览器动作(W3C) 
+    if ( e && e.preventDefault ) 
+        e.preventDefault(); 
+    //IE中阻止函数器默认动作的方式 
+    else 
+        window.event.returnValue = false; 
+    return false; 
+}

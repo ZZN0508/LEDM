@@ -1,0 +1,174 @@
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+window.isDev = false;
+
+window.oio = JSON.parse(decodeURI("%7B%22version%22:%228.14.328%22,%22assetbase%22:%22/asset-8774d5521adc8b26bc892c928e6a5f77%22,%22assetpath%22:%22//assets.onedio.com/asset-8774d5521adc8b26bc892c928e6a5f77%22,%22imgbase%22:%22/asset-8774d5521adc8b26bc892c928e6a5f77/images%22,%22cdn%22:%22https://img.onedio.com%22,%22cdns%22:%5B%22https://img-0.onedio.com%22,%22https://img-1.onedio.com%22,%22https://img-2.onedio.com%22,%22https://img-3.onedio.com%22%5D,%22baseurl%22:%22https://onedio.com%22,%22baseurlssl%22:%22https://onedio.com%22,%22shorturl%22:%22https://oned.io%22,%22apps%22:%7B%22facebook%22:%22182553655160563%22,%22twitter%22:%22vOOSTgExVU8yRQurRlSqQ%22%7D,%22devel%22:false,%22baseampurl%22:%22https://amp.onedio.com%22%7D"));
+window.category_info = JSON.parse(decodeURI("null"));
+window.sponsoredAdUnits = false;
+window.categories = JSON.parse(decodeURI("null"));
+window.category_names = JSON.parse(decodeURI("null"));
+
+window.oio.init = function() { (this.initializers = this.initializers || []); this.initializers.push([].slice.call(arguments)); }
+
+window.oio.user = { "_id": "000000000000000000000000" };
+
+window.oio.filteredCats = JSON.parse(decodeURI("%5B%5D"));
+
+var OneSignal = window.OneSignal || [];
+OneSignal.push(function () {
+    OneSignal.init({
+        appId: "72dd35f5-1470-4395-bd0e-898a00b1476a",
+    });
+});
+
+window.googletag = window.googletag || {cmd: []};
+
+window.Criteo = window.Criteo || {};
+window.Criteo.events = window.Criteo.events || [];
+
+function CriteoAdblock(containerid, zoneid) {
+  var abp_slot = document.getElementById(containerid);
+  Criteo.events.push(function() {
+    Criteo.DisplayAcceptableAdIfAdblocked({
+      "zoneid": zoneid,
+      "containerid": containerid,
+      "overrideZoneFloor": false
+    });
+    
+    abp_slot.style.width = abp_slot.getAttribute("size").split("x")[0]+"px";
+    abp_slot.style.height = abp_slot.getAttribute("size").split("x")[1]+"px";
+    window.addEventListener("message", function (e) {
+      if (e.data && e.data == "criteo-adblock-passback-"+zoneid)
+        document.getElementById(containerid).style.display = "none";
+      else return;
+    }, false);
+  });
+}
+(function () {
+  window.aax = window.aax || {};
+  var aax = window.aax;aax.initTime = new Date().getTime();
+  aax.pubId = "AAX7JHYEJ";
+  aax.ver = "1.2";
+  aax.hst = window.location.hostname;
+  var aaxEndpoint = "https://c.aaxads.com/aax.js?pub=" + aax.pubId + "&hst=" + aax.hst + "&ver=" + aax.ver;
+  function loadScript(endpoint) {
+    var scriptTag = document.createElement("script"), placeTag = document.getElementsByTagName("script")[0];
+    scriptTag.type = "text/javascript";
+    scriptTag.async = true;
+    scriptTag.src = endpoint;
+    placeTag.parentNode.insertBefore(scriptTag, placeTag);
+  }
+  loadScript(aaxEndpoint);
+})();
+
+
+{
+ "@context" : "http://schema.org",
+ "@type" : "WebSite",
+ "name" : "Onedio",
+ "alternateName" : "Onedio - Sosyal İçerik Platformu",
+ "url" : "https://onedio.com"
+}
+
+dataLayer.push({
+  'event': 'PageView', // Sabit olarak bu değer gelmelidir.
+  'page': {
+    'name': document.title, // Sayfanın adı gelmelidir. H1 kullanılabilir
+    'type': 'Anasayfa' // Sayfa tipine göre bu değer gelmelidir.
+  },
+});
+
+window._taboola = window._taboola || [];
+_taboola.push({
+  'article': 'auto'
+});
+!function (e, f, u, i) {
+  if (!document.getElementById(i)){
+    e.async = 1;
+    e.src = u;
+    e.id = i;
+    f.parentNode.insertBefore(e, f);
+  }
+}(document.createElement('script'),
+document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/onedio/loader.js',
+  'tb_loader_script');
+if(window.performance && typeof window.performance.mark == 'function')
+{ window.performance.mark('tbl_ic'); }
+
+
+
+
+var menuClickEvent = function() {
+  gtag('event', 'Open', {
+    'event_category': 'Desktop Header Panel'
+  });
+}
+var menuCategoryClickEvent = function(name) {
+  gtag('event', 'Click', {
+    'event_category': 'Desktop Menu Categories',
+      'event_label': name
+  });
+}
+window._taboola = window._taboola || [];
+_taboola.push({
+mode: 'rbox-tracking',
+container: 'taboola-newsroom',
+placement: 'Newsroom',
+});
+
+oio.init(function (){var mySwiper=new Swiper(".headline-1 .swiper-container",{loop: true,navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev'},pagination:{el: ".headline-1 .swiper-pagination",clickable: true, renderBullet: function (index, className){return "<span class=" + className + ">" + (index + 1) + "</span>";},},});var paginationLeft=document.querySelectorAll(".headline-1 .swiper-pagination-bullet"); paginationLeft.forEach((e)=>{e.addEventListener("mouseover", (c)=>{e.click();});});});
+oio.init(function(){
+  $("li.headline-3").on("click", function(){ ga('send', 'event', 'Homepage', 'Click', 'Headline-3'); });
+});
+
+window._taboola = window._taboola || [];
+_taboola.push({flush: true});
+
+var filterClickEvent = function(label) {
+  gtag('event', 'Filter', {
+    'event_category': 'Desktop Header Panel',
+    'event_label': label
+  });
+}
+var categoryClickEvent = function(label) {
+  gtag('event', 'Category', {
+    'event_category': 'Desktop Header Panel',
+    'event_label': label
+  });
+}
+var badgeClickEvent = function(label) {
+  gtag('event', 'Badge', {
+    'event_category': 'Desktop Header Panel',
+    'event_label': label
+  });
+}
+var bottomClickEvent = function(label) {
+  gtag('event', 'Bottom', {
+    'event_category': 'Desktop Header Panel',
+    'event_label': label
+  });
+}
+var pp_gemius_identifier = 'AkI6saeP0zqj.QyOJpF7gKPM.MiGM7Cf8Pd9RArURPb.i7';
+window.bk_async = function () {
+      bk_allow_multiple_calls = true;
+      bk_use_multiple_iframes = true;
+      bk_addPageCtx('page_type', 'onedio.com_homepage')
+      ;BKTAG.doTag(61423, 4);
+}; (function () {
+      var scripts = document.getElementsByTagName('script')[0];
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = "https://tags.bkrtx.com/js/bk-coretag.js";
+      scripts.parentNode.insertBefore(s, scripts);
+}());
+(function(){
+ $(".editor-collapsed").on("click", function (e) {
+   $(".hidden.reactions-wrapper-editor").toggle();
+ });
+})()
+
+var AdformAT=AdformAT||(function(q,fn){fn=function(){q.push([].slice.call(arguments));return fn};fn.q=q;return fn})([]);
+
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date);gtag("config","UA-26809107-1",{send_page_view:!1});

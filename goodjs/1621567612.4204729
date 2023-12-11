@@ -1,0 +1,95 @@
+// When DOM is ready
+jQuery(function($){
+
+  var compositeCmd = '0.5|*:1/12xh;left[0.02xw],bottom[0.02xh]|4oEah7Ip9tZ94vnW7L6W3LPnGxd0B7DL';    
+
+  var config = {
+    breakpoints: [
+      // Mobile phones
+      {
+        minWidth: 1,
+        commands: {
+          //'composite': compositeCmd,
+          //'interpolation': 'lanczos-normal',
+          //'downsize': '0.75xw:*',
+          //'output-format':'progressive-jpeg',
+          //'output-quality':'70',
+          'filter': 'ds75'
+        }
+      },
+      // Tablets
+      {
+        minWidth: 481,
+        commands: {
+          //'composite': compositeCmd,
+          // 'interpolation': 'lanczos-normal',
+          //'downsize': '0.85xw:*'
+          'filter': 'ds85'
+        }
+      },
+      // Desktops
+      {
+        minWidth: 769,
+        commands: {
+          //'composite': compositeCmd,
+        }
+      }
+    ],
+    defer: {
+      mode: 'invisible',
+      threshold: Riloadr.isOrientationAwareBrowser() ? 400 : 600
+    },
+    watchViewport: 'wider'
+  };
+
+  // Image groups:
+  // Specific first, generic last.
+ 
+  // Sliders pequeÃ±os Home 
+  $('[data-highlights-slider-wrapper]').each(function(idx, elem){
+   new Riloadr({
+    container: elem,
+    contentOverflowsContainer: true,
+  breakpoints: config.breakpoints,
+     defer: {
+   mode: 'invisible',
+   threshold: 300
+     },
+     watchViewport: config.watchViewport
+   });
+  });
+  
+if(location.pathname.indexOf('tags/peinados')>=0 || location.pathname.indexOf('tags/rihanna')>=0 ){
+   $('body.tags #flow-news article').each(function(idx, elem){
+  new Riloadr({
+   container: elem,
+   contentOverflowsContainer: true,
+   breakpoints: [{
+    minWidth: 769,
+    commands: {
+     'interpolation': 'lanczos-normal',
+     'downsize': '0.75xw:*',
+     'output-format':'progressive-jpeg',
+     'output-quality':'70',
+     'resize':'348:*',
+    }
+   }],
+   defer: {
+    mode: 'invisible',
+    threshold: 300
+   },
+   watchViewport: config.watchViewport
+    });
+   });
+  }
+  // Add groups before the generic one
+  'addRiloadrGroups' in window && addRiloadrGroups(config);
+  
+  // Resto de imagenes  
+  var all = new Riloadr({
+    breakpoints: config.breakpoints,
+    defer: config.defer,
+    watchViewport: config.watchViewport
+  });
+
+});

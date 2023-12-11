@@ -1,0 +1,170 @@
+var forum_id = __forum_id;
+let showcase_param = [];
+
+if (typeof card_style !== "undefined") {
+ showcase_param['card_style'] = card_style
+}
+
+if (typeof nightmode !== "undefined") {
+ showcase_param['nightmode'] = nightmode
+}
+
+if (typeof listType !== "undefined") {
+ showcase_param['type'] = listType
+}
+
+showcase_param = Object.assign({}, showcase_param);
+
+var micrositeAssetLoader = (function() {
+ function _load(tag) {
+  return function(url) {
+   return new Promise(function(resolve, reject) {
+    var element = document.createElement(tag);
+    var parent = 'head';
+
+    element.onload = function() {
+     resolve(url);
+    };
+    element.onerror = function() {
+     reject(url);
+    };
+
+    switch(tag) {
+     case 'script':
+      attr = 'src';
+      element.type='text/javascript';
+      element.async = false;
+      break;
+     case 'link':
+      element.type = 'text/css';
+      element.rel = 'stylesheet';
+      attr = 'href';
+    }
+
+    element[attr] = url;
+    document[parent].appendChild(element);
+   });
+  };
+ }
+
+ return {
+  css: _load('link'),
+  js: _load('script')
+ }
+})();
+
+$(document).ready(function(){
+ $.ajax({
+  url: __showcase.domain + '/showcase/index/' + forum_id + '/web/?' + $.param(showcase_param),
+  type: 'GET',
+  success: generate_widget
+ })
+});
+
+function generate_widget(data)
+{
+ var isAnalyticDivLoaded = false;
+ $.each(data, function(i, value){
+  if(typeof value.src == "undefined")
+   return;
+  var source = value.src;
+  $.each(source, function(i, val){
+   if (val.widget_type == "type_render_div")
+   {
+    if (isAnalyticDivLoaded == false && data.analytic.html.length)
+    {
+     $('head').append(data.analytic.html);
+     isAnalyticDivLoaded = true;
+    }
+    render_div(i, val);
+    return;
+   }
+   else
+   {
+    render_iframe(i, val);
+   }
+  });
+ });
+
+ window.addEventListener('message', function(e) {
+  try{
+   var origin = e.origin || e.originalEvent.origin;
+
+   for(var i in __showcase.domainOrigin)
+   {
+    if(__showcase.domainOrigin[i] === origin)
+    {
+     var json = JSON.parse(e.data);
+     var div_id = $('#' + json.div_id);
+     var iframe_el = div_id.find('iframe');
+     iframe_el.each(function(){
+      if ($(this).hasClass(json.class))
+      {
+       $(this).attr('height', json.height);
+      }
+     });
+     break;
+    }
+   }
+  }
+  catch(err)
+  {
+  }
+ }, false);
+}
+
+function render_iframe(index, data)
+{
+ var url = (data instanceof Array) ? data[0] : data;
+ var optionalAttr = (data instanceof Array) ? data[1] : 'default';
+ var iframe_id = 'iframe_' + index;
+ $('<iframe>', {
+  src: url,
+  scrolling: 'no',
+  frameborder: 0,
+  width: '100%',
+  class: optionalAttr,
+  id: iframe_id
+ }).appendTo($('#' + index));
+}
+
+function render_div(source, data)
+{
+ if (source == 'jadwal_imsak_widget') {
+  for (var i = 0; i < data.div_id_web.length; i++) {
+   var element = document.getElementById(data.div_id_web[i]);
+   if (element !== null) {
+    element.style.display = 'none';
+    element.style.padding = '0px 0px';
+    element.innerHTML = data.widget_html;
+    document.body.appendChild(document.getElementById('jsModalBedug'));
+    document.body.appendChild(document.getElementById('jsModalImsak'));
+
+    set_jadwal_imsak_widget_assets(source, data, element);
+    break;
+   }
+  }
+ }
+}
+
+function set_jadwal_imsak_widget_assets(source, data, widget_element)
+{
+ CITY_LIST_NAME_URL = __showcase.domain + '/ramadan21/showcase/get_cities_list_name/';
+ CHANGE_CITY_URL = __showcase.domain + '/ramadan21/showcase/change_city/';
+ NEAREST_LOCATION_URL = __showcase.domain + '/ramadan21/showcase/get_nearest_location/';
+ WIDGET_PLATFORM = 'web';
+
+ var assets = [];
+ for (var index in data.additional_js) {
+  assets.push(micrositeAssetLoader.js(data.additional_js[index]));
+ }
+ assets.push(micrositeAssetLoader.css(data.widget_css));
+
+ var promise = null;
+ for (var i = 0, promise = Promise.resolve(); i < assets.length; i++) {
+  promise = promise.then(_ => assets[i]);
+ }
+ promise.then(function(){
+  widget_element.style.display = 'block';
+ })
+}

@@ -1,0 +1,2 @@
+/*publish date:2020-01-11 15:17:43*/
+if(parseInt(keyid)&&stype){var img_obj=new Image();img_obj.src="//statlog.58che.com/hitCar.php?keyid="+keyid+"&stype="+stype};

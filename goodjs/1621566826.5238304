@@ -1,0 +1,256 @@
+(function (window, $) {
+ // 瀵艰埅涓嬫媺鑿滃崟
+ $('.topNav .last').on('mouseenter', function () {
+  $(this).find('ul').show();
+ }).on('mouseleave', function () {
+  $(this).find('ul').hide();
+ });
+
+ //鏄剧ず鏃ユ湡
+ var myDate = new Date(),
+  day = myDate.getDay(),
+  week = new Array("鏄熸湡鏃�", "鏄熸湡涓€", "鏄熸湡浜�", "鏄熸湡涓�", "鏄熸湡鍥�", "鏄熸湡浜�", "鏄熸湡鍏�"),
+  str = myDate.getFullYear() + '骞�' + (myDate.getMonth() + 1) + '鏈�' + myDate.getDate() + '鏃� ' + ' ' + week[day];
+ $('#time').html(str);
+
+ //棰戦亾瀵艰埅
+ $('.subNav li').each(function () {
+  $(this).find('a:first').css({
+   'font-weight': 'bold'
+  });
+ });
+
+ //缃戜笂鐩存挱
+ var liveSum = $('.live li').size(),
+  liveW = 0,
+  liveCur = 0,
+  liveAuto = null,
+  liveArr = [];
+
+ $('.live li').each(function (idx, el) {
+  var l = $(el).position().left;
+  var w = $(el).width
+  liveArr[idx] = l;
+  liveW += w;
+ });
+ $('.live2').css('width', liveW * 2);
+ $('.live ul').append($('.live li:lt(2)').clone());
+
+ function liveRoll() {
+  liveCur += 1;
+  $('.live2 ul').stop(true, true).animate({
+   'margin-left': -liveArr[liveCur]
+  }, 1000, function () {
+   if (liveCur == liveSum - 1) {
+    $('.live2 ul').css('margin-left', '0px');
+    liveCur = 0;
+   }
+  });
+ }
+
+ liveAuto = window.setInterval(liveRoll, 5000);
+ $('.live2').on('mouseenter', function () {
+  window.clearInterval(liveAuto);
+ }).on('mouseleave', function () {
+  liveAuto = window.setInterval(liveRoll, 5000);
+ });
+
+ // 瑕侀椈鍖�
+ $('.leftNews div:lt(2)').addClass('pb11');
+ $('.leftNews p:first-child').addClass('keyNew');
+ $('.sedNews div:lt(3)').addClass('pb15');
+ $('.sedPic ul').first().addClass('pb25');
+ $('.sedPic p').fadeTo(0, 0.6);
+
+ // 瑕侀椈鍥剧墖
+ var npSum = $('.rightPic li').size(),
+  npCur = 0,
+  npAuto = null;
+
+ $('.rightPic li').first().show();
+ $('.rightPic p').fadeTo(0, 0.7);
+ $('.plr img').fadeTo(0, 0.4).on('mouseenter', function () {
+  $(this).fadeTo(100, 1);
+ }).on('mouseleave', function () {
+  $(this).fadeTo(100, 0.4);
+ });
+ $('.pmenu').html('<span>' + (npCur + 1) + '</span>' + ' / ' + npSum);
+ $('#npl').on('click', function () {
+  npCur -= 1;
+  if( npCur < 0 ) {
+   npCur = npSum - 1;
+  }
+  
+  newpicAdd();
+ });
+ $('#npr').on('click', function () {
+  npCur = (npCur + 1) % npSum;
+  newpicAdd();
+ });
+
+ function newpicAuto() {
+  npCur = (npCur + 1) % npSum;
+  newpicAdd();
+ }
+
+ function newpicAdd() {
+  $('.rightPic li').hide();
+  $('.rightPic li').eq(npCur).fadeTo(200, 1);
+  $('.pmenu span').text(npCur + 1);
+ }
+
+ npAuto = window.setInterval(newpicAuto, 5000);
+ $('.rightPic').on('mouseenter', function () {
+  window.clearInterval(npAuto);
+ }).on('mouseleave', function () {
+  npAuto = window.setInterval(newpicAuto, 5000);
+ });
+
+ // 鎺ㄨ崘鐐瑰嚮
+ $('.cmp span').fadeTo(0, 0.3).on('mouseenter', function () {
+  $(this).fadeTo(0, 0.7);
+ }).on('mouseleave', function () {
+  $(this).fadeTo(0, 0.3);
+ });
+
+ var cmSum = $('.commend1 li').size() + 1,
+  cmCur = 0,
+  cmAuto = null;
+
+ $('.commend1 ul').css('width', 490 * cmSum).append($('.commend1 li').first().clone());
+
+ $('.cmr').on('click', function () {
+  cmCur += 1;
+  cmRoll();
+ });
+
+ $('.cml').on('click', function () {
+  cmCur -= cmCur > 0 ? 1 : 0;
+  cmRoll();
+ });
+
+ function cmRoll() {
+  $('.commend1 ul').stop(true, true).animate({
+   'margin-left': -490 * cmCur
+  }, function () {
+   if (cmCur >= cmSum - 1) {
+    $('.commend1 ul').css('margin-left', '0px');
+    cmCur = 0;
+   }
+  });
+ }
+
+ // 鍥芥儏and瑙傜偣鏍忕洰
+ $('.gd1 .pic p').fadeTo(0, 0.6);
+ $('.gd2 .pic p').fadeTo(0, 0.6);
+ $('.gd3 .pic p').fadeTo(0, 0.6);
+ $('.gdadv1 p').fadeTo(0, 0.6);
+ $('#gqlm1 span').on('mouseenter',function(){
+  $(this).addClass('gdblue'); 
+ }).on('mouseleave',function(){
+  $(this).removeClass('gdblue'); 
+ });
+ $('#gdlm1 .pic').first().show();
+ $('#gdlm1 .list').first().show();
+ $('#gdlm1 .gdmenu span').on('mouseenter',function(){
+  $('#gdlm1 .gdmenu span').removeClass('gdblue');
+  $(this).addClass('gdblue');
+  var gdCur = $(this).index();
+  $('#gdlm1 .pic,#gdlm1 .list').hide();
+  $('#gdlm1 .pic').eq(gdCur).fadeTo(200,1);
+  $('#gdlm1 .list').eq(gdCur).fadeTo(200,1);
+ });
+ $('.gd3 .gdkey span').on('mouseenter',function(){
+   var hdCur = $(this).index();
+   if( hdCur < 5 ){
+    $('.gd3 .gdkey span').removeClass('kfirst');
+    $(this).addClass('kfirst');
+   }
+ }).on('mouseleave',function(){
+   $('.gd3 .gdkey span').removeClass('kfirst');
+ });
+
+ // 涓浗鏀垮姟
+ $('.gdblk li').each(function (idx, el) {
+  idx += 1;
+  $(el).addClass('blk' + idx);
+ });
+ 
+ // 璐㈢粡涓績鏉垮潡
+ $('#r-btn li').mouseover(function(){
+  $('#r-btn li').removeClass("on");
+  $('div.r-data p').css('display','none');
+  $(this).addClass('on');
+  $('div.r-data p').eq($(this).index()).css('display','block')
+ });
+ 
+ //浜掑姩涓浗 璁簱
+ $('#hdyk .fr p:first,#hdyk .hdyk:first').show();
+ $('#hdyk .fl span').on('mouseenter', function(){
+   $('#hdyk .fl span').removeClass('blue');
+   $(this).addClass('blue');
+   var hk = $(this).index();
+   $('#hdyk .fr p').hide();
+   $('#hdyk .fr p').eq(hk).show();
+   $('#hdyk .hdyk').hide();
+   $('#hdyk .hdyk').eq(hk).show();
+ });
+ 
+ // 涓嬮儴N涓澘鍧�
+ $('.boxma1 h1 span:last-child a').css('margin','0 4px');
+
+
+
+}(window, window.jQuery));
+
+
+(function($) {
+ //瑙ｅ喅BIG5涓嬪鑸拰骞垮憡闂
+ var navStr = $('#china').attr('href');
+ var navTxt = navStr.match('big5.china.com.cn/gate/big5/big5.china.com.cn/');
+ if(navTxt) {
+  $('#china').attr('href','http' + '://www.china.com.cn').html('涓枃绠€浣�');
+ }
+ 
+ $('iframe').each(function() {
+  var str = $(this).attr('src');
+  var t = str.match('big5.china.com.cn/2016ads');
+  if(t) {
+   $(this).attr('src',str.replace(/big5/, "www"));
+  }
+ });
+})(jQuery);
+
+
+//璁剧疆涓轰富椤� 
+function setHome(obj, vrl) {
+ try {
+  obj.style.behavior = 'url(#default#homepage)';
+  obj.setHomePage(vrl);
+ } catch (e) {
+  if (window.netscape) {
+   try {
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+   } catch (e) {
+    alert("姝ゆ搷浣滆娴忚鍣ㄦ嫆缁濓紒\n璇峰湪娴忚鍣ㄥ湴鍧€鏍忚緭鍏モ€渁bout:config鈥濆苟鍥炶溅\n鐒跺悗灏� [signed.applets.codebase_principal_support]鐨勫€艰缃负'true',鍙屽嚮鍗冲彲銆�");
+   }
+   var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+   prefs.setCharPref('browser.startup.homepage', vrl);
+  } else {
+   alert("鎮ㄧ殑娴忚鍣ㄤ笉鏀寔锛岃鎸夌収涓嬮潰姝ラ鎿嶄綔锛�1.鎵撳紑娴忚鍣ㄨ缃€�2.鐐瑰嚮璁剧疆缃戦〉銆�3.杈撳叆锛�" + vrl + "鐐瑰嚮纭畾銆�");
+  }
+ }
+}
+
+// 鍔犲叆鏀惰棌 鍏煎360鍜孖E6 
+function shoucang(sTitle, sURL) {
+ try {
+  window.external.addFavorite(sURL, sTitle);
+ } catch (e) {
+  try {
+   window.sidebar.addPanel(sTitle, sURL, "");
+  } catch (e) {
+   alert("鍔犲叆鏀惰棌澶辫触锛岃浣跨敤Ctrl+D杩涜娣诲姞");
+  }
+ }
+}

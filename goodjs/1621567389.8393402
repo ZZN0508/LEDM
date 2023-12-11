@@ -1,0 +1,51 @@
+/**
+ * Models
+ * @module models
+ */
+define(function(require, exports) {
+
+    'use strict';
+    var ENDPOINTS = {
+        UploadImageURL: '{contextRoot}/services/proxy/current/profile'
+    };
+    /**
+     * @constructor
+     * @ngInject
+     */
+    function setProfileService(lpWidget, $q, lpPortal,NetworkService) {
+        this.lpWidget = lpWidget;
+        this.NetworkService = NetworkService;
+        this.data = [];
+        this.$q = $q;
+        this.lpPortal = lpPortal;
+        this.profilePicture = { setPic: '' };
+        this.profileAction;
+        ENDPOINTS.UploadImageURL = ENDPOINTS.UploadImageURL.replace('{contextRoot}', lpPortal.root);
+        }
+        setProfileService.prototype.setProfile = function() {
+        var request = {
+            url: ENDPOINTS.UploadImageURL,
+            method: 'GET',
+        }
+        return this.NetworkService.makeCall(request).then(function(response) {
+            var res = response.data;
+            if (!!res.rc && !!res.rc.returncode && res.rc.returncode !== '0') {
+                var err = {
+                    code: res.rc.returncode,
+                    message: res.rc.message
+                };
+                throw err;
+            }
+            return res;
+
+        }).catch(function(error) {
+            throw error;
+        })
+
+    };
+    /**
+     * Export Models
+     */
+    exports.setProfileService = setProfileService;
+
+});

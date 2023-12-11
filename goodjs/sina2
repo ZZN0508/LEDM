@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error>
+  <Code>NoSuchKey</Code>
+  <Message>key not found</Message>
+  <Resource>/litong/zhitou/sinaads/src/sinaadToolkit.Box.js</Resource>
+  <RequestId>3c040701-2311-0114-3746-0894eff95fc8</RequestId>
+</Error>

@@ -1,0 +1,350 @@
+ 
+  //comment them out so that the innity script doesn't run on its own
+  // var innity_adZoneAsync = innity_adZoneAsync || {}; 
+  // innity_adZoneAsync.q = innity_adZoneAsync.q || [];
+  
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-1801883-33');
+  
+var sas = sas || {};sas.cmd = sas.cmd || [];sas.cmd.push(function () {sas.call({ siteId: 392059, pageId: 1344889, formatId: 88025, tagId: "sas_88025" },{ networkId: 2060, domain: "https://adnetwork.adasiaholdings.com" /*, onNoad: function() {} */ });});
+
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+  
+
+  googletag.cmd.push(function() {
+
+  var fn_pageskin = "false"; if (screen.width >= 1380) { fn_pageskin = "true"; } googletag.pubads().setTargeting("inskin_yes",fn_pageskin);
+  var fn_pageskin = "false"; if (screen.width >= 375) { fn_pageskin = "true"; } googletag.pubads().setTargeting("inskin1_yes",fn_pageskin);
+
+  googletag.defineOutOfPageSlot('/47355084/OutOfPage', 'div-gpt-ad-1441011402890-0').addService(googletag.pubads());
+  googletag.defineOutOfPageSlot('/47355084/OutofPage2', 'div-gpt-ad-1501495242935-0-oop').addService(googletag.pubads());
+
+  googletag.pubads().enableSingleRequest();
+  googletag.enableServices();
+  });
+  
+
+    var _comscore = _comscore || [];
+    _comscore.push({ c1: "2", c2: "19015724" });
+    (function() {
+      var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+      s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+      el.parentNode.insertBefore(s, el);
+    })();
+  
+{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"http://staging.teepr.com/#website","url":"http://staging.teepr.com/","name":"TEEPR \u4eae\u65b0\u805e","description":"\u6700\u71b1\u9580\u6709\u8da3\u7684\u65b0\u805e","potentialAction":[{"@type":"SearchAction","target":"http://staging.teepr.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"CollectionPage","@id":"http://staging.teepr.com/#webpage","url":"http://staging.teepr.com/","name":"TEEPR \u4eae\u65b0\u805e - \u6700\u71b1\u9580\u6709\u8da3\u7684\u65b0\u805e","isPartOf":{"@id":"http://staging.teepr.com/#website"},"description":"\u6700\u71b1\u9580\u6709\u8da3\u7684\u65b0\u805e","breadcrumb":{"@id":"http://staging.teepr.com/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["http://staging.teepr.com/"]}]},{"@type":"BreadcrumbList","@id":"http://staging.teepr.com/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"http://staging.teepr.com/#webpage"}}]}]}
+
+/* <![CDATA[ */
+var pw_script_vars = {"permalink":"https:\/\/www.teepr.com\/1527814\/chloeyang\/%e4%b8%ad%e5%9c%8b%e5%a4%a7%e6%a8%93%e6%90%96%e6%99%83\/"};
+/* ]]> */
+
+document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');
+
+    // var uaParser = new UAParser();
+    // function adBlockNotDetected() {}
+    // function adBlockDetected() {
+    //   var uaResult = uaParser.getResult();
+    //   ga('send', 'event', 'ADB', uaResult.os.name +' - '+ uaResult.browser.name);
+    // }
+    // if(typeof blockAdBlock === 'undefined') {
+    //   adBlockDetected();
+    // } else {
+    //   blockAdBlock.on(true, adBlockDetected).onNotDetected(adBlockNotDetected);
+    // }
+    // blockAdBlock.setOption({
+    //   debug: false,
+    //   checkOnLoad: true,
+    //   resetOnEnd: false
+    // });
+  
+ var vitag = vitag || {}; vitag.outStreamConfig = { enableMobile: false }; 
+vitag.smartBannerConfig = {enableMobile: false};
+ vitag.outStreamConfig = { version: "v1"} 
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1612170172377312',
+        cookie     : true,  // enable cookies to allow the server to access
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v10.0' // use graph api version 10.0
+      });
+      FB.AppEvents.logPageView();
+      /*
+            if (!Cookies.get("teepr-fblogin")) {
+        FB.getLoginStatus(function(response) {
+          fbLoginInit(response);
+        });
+      }
+            */
+    };
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/zh_TW/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  
+
+  //new innity_adZone("9c9f1366edbae758a3bb56eca4388b64", "83067", {}); 
+  
+
+        if (isMobile.phone || isMobile.tablet) {
+            console.log("is Mobile! In-Page");
+            console.log("New Ad2 Script");
+            var sc = document.createElement("script");
+            sc.setAttribute("src", "https://content.ad2iction.com/mediascroll/ad2-scroll.js");
+            sc.setAttribute("type", "text/javascript");
+            sc.setAttribute("id", "MediaScroll-AD2");
+            sc.setAttribute("key", "7220684f-8d17-11e5-8d2a-f23c9173ed43");
+            document.head.appendChild(sc);
+            window.callbackAD2 = function() {
+                console.log("Ad2iction Callback");
+                adLoad2('x1527142180248Fe', '198', 'MADdpzone', true, 0, twmcallback);
+                function twmcallback(status) {
+                    console.log("TW Mobile callback status : " + status);
+                    if (status == "20") {
+                        var $div = $('<vmfive-ad-unit placement-id="597ffdcd098e61b339cc7edd" type="web_interstitial"></vmfive-ad-unit>').appendTo('body');
+                        var vmsc = document.createElement("script");
+                        vmsc.setAttribute("src", "//man.vm5apis.com/dist/VM5AdLite.js");
+                        vmsc.setAttribute("type", "text/javascript");
+                        document.body.appendChild(vmsc);
+                    }
+                }
+            }
+        } 
+
+
+var custom_call_IP = function (params) {
+
+    if ( params === null || params.hasAd === false ) {
+        // 客製化 passback
+        window.TEEPR_ONEAD_noAds = true;
+    }
+
+}
+var _ONEAD = {};
+_ONEAD.pub = {};
+_ONEAD.pub.slotobj = document.getElementById("oneadIPDFPTag"); 
+_ONEAD.pub.slots = ["div-onead-ad"];
+_ONEAD.pub.uid = "1000069";
+_ONEAD.pub.external_url = "//onead.onevision.com.tw/";
+_ONEAD.pub.scopes = ["spotbuy", "speed"];
+_ONEAD.pub.player_mode_div = "div-onead-ad";
+_ONEAD.pub.player_mode = "instream";
+_ONEAD.pub.queryAdCallback = custom_call_IP;
+var ONEAD_pubs = ONEAD_pubs || [];
+ONEAD_pubs.push(_ONEAD);
+
+
+    if (isMobile.any) {
+			
+      	window.onVM5AdLiteReady = function() {
+      		VM5AdLite.init({ appKey:'597fe5bc098e61b339cc7eca' }); //if mobile
+				};
+    		console.log("vm mobile");
+	  	
+    } else {
+      window.onVM5AdLiteReady = function() {
+      VM5AdLite.init({ appKey:'5c74ba9f5fd37b700911090b' }); //if desktop
+    };
+    console.log("vm desktop");
+    }
+  
+
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  
+ vitag.outStreamConfig = { type: "slider", position: "right" }; 
+
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1441011402890-0'); });
+    
+
+    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1501495242935-0-oop'); });
+    
+
+    setTimeout(function() {
+      (function(window, document, undefined) {
+          var script_tag = document.createElement('script');
+          script_tag.src = 'https://ad.mox.tv/mox/mwayss_invocation.min.js?pzoneid=1328&height=288&width=512&tld=teepr.com&ctype=div';
+          var container = document.querySelectorAll('[data-id=_mwayss-3e2bcf101a1272c4109169c2a8407afe]')[0];    
+          container.setAttribute('id', (container.getAttribute('data-id')+(new Date()).getTime()));
+          container.removeAttribute('data-id');
+          container.parentNode.insertBefore(script_tag, container);
+      })(window, document);
+    }, 65000);
+  
+
+    // setTimeout(function() {
+    //   var sc = document.createElement("script");
+    //   sc.setAttribute("src", "//ads.vidoomy.com/teepr_1232.js"); //我們的候補廣告
+    //   sc.setAttribute("type", "text/javascript");
+    //   document.body.appendChild(sc);
+    // }, 150000);
+  
+
+    setTimeout(function() {
+    //underdog edge ad
+      var sc = document.createElement("script");
+      sc.setAttribute("src", "https://udmserve.net/udm/img.fetch?sid=15010;tid=1;dt=6;");
+      sc.setAttribute("type", "text/javascript");
+      sc.setAttribute("data-cfasync", "false");
+      sc.setAttribute("language", "javascript");
+      document.head.appendChild(sc);
+    }, 75000);
+  
+
+    setTimeout(function() {
+      (function(){var s=document.querySelector('script[data-playerPro="current"]');s.removeAttribute("data-playerPro");(playerPro=window.playerPro||[]).push({id:"g3WMJV9xJNTW2BU3NC2dPoGL2oN1jn_4p3bXbd6j__1XTkhNWDDA",after:s});})();
+    }, 95000);
+  
+
+    setTimeout(function() {
+
+    //streamlyn ad
+    if (isMobile.any) {
+      var sc2 = document.createElement("script");
+      sc2.setAttribute("src", "https://tg1.bidsxplayer.com/api/adserver/spt?AV_TAGID=608ff24b6038a80eae7bab95&AV_PUBLISHERID=5eb7be27791eec2a0f7f2d49");
+      sc2.setAttribute("type", "text/javascript");
+      sc2.setAttribute("id", "AV608ff24b6038a80eae7bab95");
+      document.head.appendChild(sc2);
+    } else {
+      var sc2 = document.createElement("script");
+      sc2.setAttribute("src", "https://tg1.bidsxplayer.com/api/adserver/spt?AV_TAGID=605dd95da06513473f4c7324&AV_PUBLISHERID=5eb7be27791eec2a0f7f2d49");
+      sc2.setAttribute("type", "text/javascript");
+      sc2.setAttribute("id", "AV605dd95da06513473f4c7324");
+      document.head.appendChild(sc2);
+    }
+
+    }, 115000);
+  
+
+    setTimeout(function() {
+    //absolut
+      var sc3 = document.createElement("script");
+      sc3.setAttribute("src", "https://tg1.playstream.media/api/adserver/spt?AV_TAGID=608fdf9149fe74257c38f4c6&AV_PUBLISHERID=608fdd781d760929ba78a2d4");
+      sc3.setAttribute("type", "text/javascript");
+      sc3.setAttribute("id", "AV608fdf9149fe74257c38f4c6");
+      document.head.appendChild(sc3);
+    }, 135000);
+  
+
+    // setTimeout(function() { //PurpleAds
+    //   var sc = document.createElement("script");
+    //   sc.setAttribute("src", "//cdn.purpleads.io/load.js?publisherId=835c25580975aebc07423a3a0b87e00e:6d6a4dc708cac5d1fa96c6cfca11d2630787c1647e5e6008bcfa5d1f7184d2a9c96500139f266ce715d53b66c9d929df6bdc126166ac2df4dd584fa4716d9fc2");
+    //   sc.setAttribute("id", "purpleads-client");
+    //   sc.setAttribute("type", "text/javascript");
+    //   document.body.appendChild(sc);
+    // }, 750000);
+  
+
+/* <![CDATA[ */
+var infinite_scroll = "{\"loading\":{\"msgText\":\"<em>Loading...<\\\/em>\",\"finishedMsg\":\"<em>No additional posts.<\\\/em>\",\"img\":\"https:\\\/\\\/www.teepr.com\\\/wp-content\\\/plugins\\\/infinite-scroll\\\/img\\\/ajax-loader.gif\"},\"nextSelector\":\"#nav-below a:first\",\"navSelector\":\"#nav-below\",\"itemSelector\":\".post\",\"contentSelector\":\"#content\",\"debug\":false,\"behavior\":\"\"}";
+/* ]]> */
+
+
+/* <![CDATA[ */
+var cwv3_params = {"opacity":"0.5","cookie_path":"\/","cookie_name":"","cookie_time":"1","denial_enabled":"","denial_method":"","redirect_url":"http:\/\/www.teepr.com\/category\/%e5%8b%95%e7%89%a9\/"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var pum_vars = {"version":"1.7.24","ajaxurl":"https:\/\/www.teepr.com\/wp-admin\/admin-ajax.php","restapi":"https:\/\/www.teepr.com\/8nI78r3AjFP0Y890ZDg3a8m5426qYN3K\/pum\/v1","rest_nonce":null,"default_theme":"645847","debug_mode":"","popups":{"pum-977505":{"disable_form_reopen":false,"disable_on_mobile":false,"disable_on_tablet":false,"custom_height_auto":false,"scrollable_content":false,"position_from_trigger":true,"position_fixed":true,"overlay_disabled":false,"stackable":false,"disable_reposition":true,"close_on_overlay_click":true,"close_on_esc_press":false,"close_on_f4_press":false,"theme_id":"977507","size":"auto","responsive_min_width":"0%","responsive_max_width":"100%","custom_width":"320px","custom_height":"380px","animation_type":"fade","animation_speed":"350","animation_origin":"center top","location":"center top","position_top":"100","position_bottom":"0","position_left":"0","position_right":"0","zindex":"1999999999","close_button_delay":"0","triggers":[],"cookies":[],"id":977505,"slug":"rubicon-popup"}},"disable_tracking":"","home_url":"\/","message_position":"top","core_sub_forms_enabled":"1"};
+var ajaxurl = "https:\/\/www.teepr.com\/wp-admin\/admin-ajax.php";
+var pum_debug_vars = {"debug_mode_enabled":"Popup Maker: Debug Mode Enabled","debug_started_at":"Debug started at:","debug_more_info":"For more information on how to use this information visit https:\/\/docs.wppopupmaker.com\/?utm_medium=js-debug-info&utm_campaign=ContextualHelp&utm_source=browser-console&utm_content=more-info","global_info":"Global Information","localized_vars":"Localized variables","popups_initializing":"Popups Initializing","popups_initialized":"Popups Initialized","single_popup_label":"Popup: #","theme_id":"Theme ID: ","label_method_call":"Method Call:","label_method_args":"Method Arguments:","label_popup_settings":"Settings","label_triggers":"Triggers","label_cookies":"Cookies","label_delay":"Delay:","label_conditions":"Conditions","label_cookie":"Cookie:","label_settings":"Settings:","label_selector":"Selector:","label_mobile_disabled":"Mobile Disabled:","label_tablet_disabled":"Tablet Disabled:","label_event":"Event: %s","triggers":{"click_open":"Click Open","auto_open":"Time Delay \/ Auto Open"},"cookies":{"on_popup_close":"On Popup Close","on_popup_open":"On Popup Open","pum_sub_form_success":"Subscription Form: Successful","pum_sub_form_already_subscribed":"Subscription Form: Already Subscribed","manual":"Manual JavaScript"}};
+var pum_sub_vars = {"ajaxurl":"https:\/\/www.teepr.com\/wp-admin\/admin-ajax.php","message_position":"top"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var alm_localize = {"ajaxurl":"https:\/\/www.teepr.com\/wp-admin\/admin-ajax.php","alm_nonce":"f3a07777b4","rest_api":"https:\/\/www.teepr.com\/8nI78r3AjFP0Y890ZDg3a8m5426qYN3K\/","rest_nonce":"11037a6f37","pluginurl":"https:\/\/www.teepr.com\/wp-content\/plugins\/ajax-load-more","speed":"200","ga_debug":"false","results_text":"Viewing {post_count} of {total_posts} results.","no_results_text":"No results found.","alm_debug":"","a11y_focus":"1","site_title":"TEEPR \u4eae\u65b0\u805e","site_tagline":"\u6700\u71b1\u9580\u6709\u8da3\u7684\u65b0\u805e"};
+var ajax_load_more_9909995918_vars = {"total_posts":"0","post_count":"0","id":"9909995918"};
+var ajax_load_more_4866182730_vars = {"total_posts":"0","post_count":"0","id":"4866182730"};
+var ajax_load_more_6151538885_vars = {"total_posts":"10923","post_count":"4","id":"6151538885"};
+var ajax_load_more_1646283587_vars = {"total_posts":"3585","post_count":"4","id":"1646283587"};
+var ajax_load_more_8705783763_vars = {"total_posts":"100","post_count":"4","id":"8705783763"};
+var ajax_load_more_8705783763_vars = {"total_posts":"101","post_count":"4","id":"8705783763"};
+var ajax_load_more_8705783763_vars = {"total_posts":"440","post_count":"4","id":"8705783763"};
+var ajax_load_more_alm_main_vars = {"total_posts":"70448","post_count":"12","id":"alm_main"};
+var ajax_load_more_9_vars = {"total_posts":"182","post_count":"5","id":"ajax-load-more-9"};
+var ajax_load_more_alm_sidebar_vars = {"total_posts":"11637","post_count":"12","id":"alm_sidebar"};
+/* ]]> */
+
+jQuery(document).ready(function($) { RESPONSIVEUI.responsiveTabs(); })
+
+// Because the `wp_localize_script` method makes everything a string
+infinite_scroll = jQuery.parseJSON(infinite_scroll);
+
+jQuery( infinite_scroll.contentSelector ).infinitescroll( infinite_scroll, function(newElements, data, url) { eval(infinite_scroll.callback); });
+
+
+
+  // var delayInMilliseconds = 200000; //10 seconds
+
+  // setTimeout(function() {   
+  //   // var $div = $('<vmfive-ad-unit placement-id="5c750f515fd37b70091109c5" type="web_slider"></vmfive-ad-unit>').appendTo('body');
+  //   console.log("VMFive Sticky Bottom Ad Start");
+  //   var $div = $('<vmfive-ad-unit style="flex: 1 1 auto; display: block; max-width: 100vw;" placement-id="5d36a7cde2c241d9697f4f85" type="web_slider"></vmfive-ad-unit>').appendTo('body');
+  //   var vmsc = document.createElement("script");
+  //   vmsc.setAttribute("src", "//man.vm5apis.com/dist/VM5AdLite.js");
+  //   vmsc.setAttribute("type", "text/javascript");
+  //   document.body.appendChild(vmsc);  
+  // }, delayInMilliseconds);
+
+  
+
+
+  function tryPopmake(elem){ //need to turn this on if using popmake
+      if (typeof jQuery.fn.popmake!=='function' && jQuery(elem).length < 1) {
+        console.log(jQuery(elem).html());
+        console.log('no popmake');
+         setTimeout( tryPopmake, 100);
+         return;
+      }
+      popmakeLoaded(elem);
+    }
+  function popmakeLoaded(elem){
+      console.log('Popmake Loaded!');
+      jQuery(elem).popmake('open');
+  }
+
+
+innity_pub = "9c9f1366edbae758a3bb56eca4388b64";
+innity_zone = "56675";
+
+
+  // function teepr_idle(){
+  //   var modal = new Custombox.modal({
+  //     content: {
+  //       effect: 'fadein',
+  //       target: '#idle-box'
+  //     }
+  //   });
+
+  //   // Open
+  //   modal.open();
+  // }
+
+  $(window).scroll(function(){
+    if ($(window).scrollTop() >= 90) {
+        $('#mobile-scroll').addClass('fixed-header');
+        // $('nav div').addClass('visible-title');
+    }
+    else {
+        $('#mobile-scroll').removeClass('fixed-header');
+        // $('nav div').removeClass('visible-title');
+    }
+});
+
+
+ //homepage layout code
+$(document).ready(function(){
+  $('.floating-share').remove();
+  // $('.bot-sticky-share').remove();
+  // $('.bot-sticky-ad').remove();
+  $('aside.sidebar').remove();
+});

@@ -1,0 +1,86 @@
+window.scriptsLoaded++;
+(function(w, d) {
+    try {
+
+        var getCookie = function (name)
+        {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        };
+
+        var url = w.location.pathname;
+        if (!(url.indexOf("/co-thankyou") > -1)) {
+            w.ci_vid = 12033;
+            w.ci_cookieDomain = ".target.com";
+            w.ci_refDomain = ".target.com";
+            w.ci_imgs = [];
+            w.ci_RQV = function (name, dValue) {
+                var qArg = new RegExp('[\\?&]' + name + '=?([^&#]*)', 'i').exec(w.document.location);
+                if (qArg === null) {
+                    return dValue === undefined ? null : dValue;
+                } else if (qArg.length < 2) {
+                    return '';
+                } else {
+                    return qArg[1];
+                }
+            };
+            w.ci_CC = function (name, value, daysTillExpire) {
+                if (daysTillExpire > 0) {
+                    var exDate = new Date();
+                    exDate.setTime(exDate.getTime() + (daysTillExpire * 24 * 60 * 60 * 1000));
+                    d.cookie = name + '=' + encodeURI(value) + '; expires=' + exDate.toUTCString() + '; domain=' + w.ci_cookieDomain + '; path=/';
+                }
+            };
+            w.ci_UID = function (value) {
+                var today, UID;
+                today = new Date();
+                UID = w.ci_vid + "-" + value + "-" + Math.floor(Math.random() * 9999999999) + today.getFullYear().toString() +
+                    today.getMonth().toString() + today.getDay().toString() + today.getHours().toString() +
+                    today.getMinutes().toString() + today.getSeconds().toString() + today.getMilliseconds().toString();
+                return UID;
+            };
+            //default ci_pixmgr cookie to 'other'
+            if (getCookie('ci_pixmgr') === undefined) {
+                w.ci_CC('ci_pixmgr', 'other', 30);
+            }
+            //Doubleclick Search
+            w.ci_gclsrc = w.ci_RQV('gclsrc');
+            if (w.ci_gclsrc !== null) {
+                w.ci_CC('ci_pixmgr', 'dcs', 30);
+                w.ci_CC('ci_clkid', '', 1);
+            }
+            //Affiliate Networks
+            w.ci_ref = w.ci_RQV('ref');
+            if (w.ci_ref !== null) {
+                w.ci_ref = w.ci_ref.toLowerCase();
+                w.ci_CC('ci_ref', w.ci_ref, 7);
+
+                if(w.ci_ref === 'tgt_adv_xasd0002') {
+                    w.ci_CC('ci_pixmgr', 'imprad', 7);
+                }
+            }
+            // store cpng cookie
+            w.ci_cpng = w.ci_RQV('cpng');
+            if (w.ci_cpng !== null) {
+                w.ci_CC('ci_cpng', w.ci_cpng, 7);
+            }
+            //differentiate Google from Bing from other
+            w.ci_afid = w.ci_RQV('afid');
+            if (w.ci_afid !== null) {
+                if (/^(google|froogle)/i.test(w.ci_afid)) {
+                    w.ci_engine = 'google';
+                    w.ci_CC('ci_engine', w.ci_engine, 30);
+                }
+                w.ci_CC('ci_afid', w.ci_afid, 30);
+            }
+            //capture clkid param if present and store
+            w.ci_clkid = w.ci_RQV('clkid');
+            if (w.ci_clkid !== null) {
+                w.ci_CC('ci_clkid', w.ci_clkid, 7);
+            }
+        }
+    }catch(e){
+        console.log(e.message);
+    }
+})(window, document);

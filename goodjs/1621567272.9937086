@@ -1,0 +1,38 @@
+/* Set the default files */
+
+var elq_global = 'elqCfg.min.js'
+
+/* Set the default path for files */
+var elq_path = '/i/';
+
+/* Create the Eloqua tracking array if it doesn't exist */
+var _elqQ = _elqQ || [];
+
+/* Eloqua server (root) */
+var elq_root = '//img03.en25.com';                  // Eloqua ONLY has production
+var elq_prodID = '1973398186';                      // Eloqua PROD instance
+var elq_devID  = '30554202';                        // Eloqua DEV instance
+
+/*! Eloqua Tag */
+// Set up and send the Eloqua ping to Eloqua PROD and Eloqua DEV instances, but only send web site PRODUCTION data...
+/* Set the Elquoa site ID based upon first PRODUCTION then DEV */
+_elqQ.push(['elqSetSiteId', elq_prodID]);
+_elqQ.push(['elqUseFirstPartyCookie', 'go.oracle.com']);              //For PROD
+_elqQ.push(['elqTrackPageView']);
+
+/* The fucntion to insert the asyncronous JavaScript into the page once the DOM has loaded */
+(function () {
+    function async_load() {
+        var s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = elq_root + elq_path + elq_global;
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    }
+    if (document.readyState == 'complete') {
+        async_load();
+    } else {
+        if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+        else if (window.attachEvent) window.attachEvent('onload', async_load);
+    }
+})();

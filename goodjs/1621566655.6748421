@@ -1,0 +1,88 @@
+export function initialise(player) {
+    var videoForAudioPiP;
+    var canvasForAudioPiP;
+    var imageForAudioPiP;
+
+    function artwork() {
+        try {
+            var artwork=navigator.mediaSession.metadata.artwork[0];
+            var url = artwork.src;
+        } catch(e) {
+            // XXX this should be a cool BBC branding, possibly
+            // suppliable so it can be a sounds branding if on a
+            // sounds page etc.
+            url=null;
+        }
+
+        return url;
+    }
+
+    async function redraw(immediate) {
+        try {
+            if (imageForAudioPiP && (document.pictureInPictureElement || immediate)) {
+                var url=artwork();
+                var pauseAgain=false;
+                if (videoForAudioPiP.paused) {
+                    pauseAgain=true;
+                    await videoForAudioPiP.play();
+                }
+                if (url) {
+                    imageForAudioPiP.src=artwork();
+                    await imageForAudioPiP.decode();
+                    await canvasForAudioPiP.getContext('2d').drawImage(imageForAudioPiP,0,0,canvasForAudioPiP.width,canvasForAudioPiP.height);
+                    if (pauseAgain) {
+                        videoForAudioPiP.pause();
+                    }
+                } else {
+                    /* should we do this, it clears out all images if ones not set? generates a black flash with the addPiPButton
+                    await canvasForAudioPiP.getContext('2d').fillRect(0,0,canvasForAudioPiP.width,canvasForAudioPiP.height);
+                    if (pauseAgain) {
+                        videoForAudioPiP.pause();
+                    }*/
+                }
+            } 
+        } catch (e) {
+            if (DEBUG_FULL) { console.log("ERROR",e); }
+        }
+    }
+
+    PictureInPicture.prototype.audioPiP = async function() {
+        var pIp = this;
+        // if first time through get set up.
+        if (!videoForAudioPiP) { 
+            videoForAudioPiP = document.createElement('video');
+            videoForAudioPiP.muted=true;
+            imageForAudioPiP = new Image();
+            imageForAudioPiP.crossOrigin = true;
+        
+            canvasForAudioPiP=document.createElement('canvas');
+            videoForAudioPiP.srcObject=canvasForAudioPiP.captureStream();
+
+            publicApi.pushMediaEventFunctions({
+               "setMediaSessionAPIdata":function() {
+                   redraw();
+               },
+               "playing": function() {
+                   if (document.pictureInPictureElement) {
+                       videoForAudioPiP.play();
+                   }
+               },
+               "pause": function() {
+                   if (document.pictureInPictureElement) {
+                       videoForAudioPiP.pause();
+                   }
+               },
+            });
+        }
+        canvasForAudioPiP.width=512;
+        canvasForAudioPiP.height=512;
+        imageForAudioPiP.height=canvasForAudioPiP.height;
+        imageForAudioPiP.width=canvasForAudioPiP.width;
+        canvasForAudioPiP.getContext('2d').fillRect(0,0,canvasForAudioPiP.width,canvasForAudioPiP.height);
+
+        await redraw(true);
+        
+        await videoForAudioPiP.play();
+        await videoForAudioPiP.requestPictureInPicture();
+    }
+}

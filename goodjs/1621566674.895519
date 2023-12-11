@@ -1,0 +1,106 @@
+
+(function () {
+	'use strict';
+
+	function getWindowWidth() {
+		return window.innerWidth
+			|| document.documentElement.clientWidth
+			|| document.body.clientWidth;
+	}
+
+	window.upstream = {"env":"production","siteUrl":"https:\/\/www.fandom.com","wikiBridge":{"wikiId":1452001,"database":"fandomstories"},"pageType":"explore","post":{"verticals":[],"topics":[],"events":[],"tags":[],"id":null,"title":null,"primaryVertical":null},"contentLanguage":"en","user":{"loggedIn":false},"ads":{"adStack":[]},"translations":{"enter-email-prompt":"\u8bf7\u8f93\u5165\u4f60\u7684\u7535\u5b50\u90ae\u4ef6\u5730\u5740\u3002","invalid-email-error":"\u65e0\u6548\u7684\u7535\u5b50\u90ae\u4ef6\u5730\u5740\u683c\u5f0f\u3002\u8bf7\u518d\u8bd5\u4e00\u6b21 \uff01","generic-email-error":"\u51fa\u73b0\u9519\u8bef\u3002\u8bf7\u518d\u8bd5\u4e00\u6b21 \uff01","content-is-restricted":"\u6b64\u5185\u5bb9\u53d7\u5230\u9650\u5236\u3002","birth-year-prompt":"\u8bf7\u5728\u4e0b\u9762\u8f93\u5165\u60a8\u51fa\u751f\u7684\u5e74\u4efd\u548c\u6708\u4efd\u3002","continue":"\u7ee7\u7eed","error-msg-sorry":"\u5f88\u62b1\u6b49\uff01\u60a8\u5fc5\u987b\u81f3\u5c11","error-msg-years-old":"\u5c81\u624d\u80fd\u89c2\u770b\u5185\u5bb9\u3002"},"shouldLoadParsely":false,"comscorePartnerId":6177433,"comscoreKeyword":"fandom","comscoreC7":"https%3A%2F%2Fwww.fandom.com%2F%2Fexplore%3Fcomscorekw%3Dfandom"};
+
+	window.upstream.isMobileScreenSize = getWindowWidth() < 840;
+	window.upstream.isTouchDevice = 'ontouchstart' in document.documentElement;
+	window.upstream.mobileBreakpoint = 840;
+})();
+
+
+	var googletag = window.googletag || {};
+	googletag.cmd = googletag.cmd || [];
+
+	(function() {
+		var gads = document.createElement('script'),
+			useSSL = 'https:' == document.location.protocol,
+			node = document.getElementsByTagName('script')[0];
+
+		gads.async = true;
+		gads.type = 'text/javascript';
+		gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+		node.parentNode.insertBefore(gads, node);
+	})();
+
+{"@context":"https:\/\/schema.org","@type":"Organization","url":"https:\/\/www.fandom.com\/","sameAs":["https:\/\/www.facebook.com\/getfandom","https:\/\/www.instagram.com\/getfandom","https:\/\/www.linkedin.com\/company\/157252","https:\/\/plus.google.com\/+wikia\/about","https:\/\/www.youtube.com\/channel\/UC988qTQImTjO7lUdPfYabgQ","https:\/\/www.pinterest.com\/getfandom","https:\/\/twitter.com\/getfandom"],"@id":"https:\/\/www.fandom.com\/#organization","name":"FANDOM","logo":""}
+
+			!function(t){var e={};function n(o){if(e[o])return e[o].exports;var r=e[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,n),r.l=!0,r.exports}n.m=t,n.c=e,n.d=function(t,e,o){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var o=Object.create(null);if(n.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var r in t)n.d(o,r,function(e){return t[e]}.bind(null,r));return o},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=0)}([function(t,e,n){"use strict";n.r(e);n(1),n(2);window.upstream.initHeaderScripts=function(){}},function(t,e){!function(t){"use strict";t.classList.remove("no-js"),t.classList.add("js"),window.upstream.isTouchDevice?t.classList.add("touch-device"):t.classList.add("non-touch-device")}(document.documentElement)},function(t,e,n){"use strict";!function(){function t(t,e){e=e||{bubbles:!0,cancelable:!0,detail:void 0};var n=document.createEvent("CustomEvent");return n.initCustomEvent(t,e.bubbles,e.cancelable,e.detail),n}"function"!=typeof window.CustomEvent&&(t.prototype=window.Event.prototype,window.CustomEvent=t)}(),String.prototype.includes||(String.prototype.includes=function(t,e){return"number"!=typeof e&&(e=0),!(e+t.length>this.length)&&-1!==this.indexOf(t,e)})}]);			window.upstream.initHeaderScripts();
+		
+var _comscore = _comscore || [];_comscore.push({ c1: "2", c2: "6177433",options: { url_append: "comscorekw=fandom" }});(function() {var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";el.parentNode.insertBefore(s, el);})();
+var _qevents = _qevents || [];(function() {  var elem = document.createElement("script");  elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";  elem.async = true;  elem.type = "text/javascript";  var scpt = document.getElementsByTagName("script")[0];  scpt.parentNode.insertBefore(elem, scpt);})();_qevents.push({  qacct:"p-8bG6eLqkH6Avk"});
+window.twttr = (function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0],
+		t = window.twttr || {};
+	if (d.getElementById(id)) return t;
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "https://platform.twitter.com/widgets.js";
+	fjs.parentNode.insertBefore(js, fjs);
+
+	t._e = [];
+	t.ready = function(f) {
+		t._e.push(f);
+	};
+
+	return t;
+}(document, "script", "twitter-wjs"));
+
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId: 112328095453510,
+			xfbml: true,
+			version: 'v2.5'
+		});
+		window.dispatchEvent(new CustomEvent('facebookInit'));
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+
+		window.upstream.initFooterScripts();
+	
+sessionStorage.setItem("last_know_wiki_in_session","https:\/\/www.fandom.com\/explore");
+var DATALAYER_OBJECT_NAME="dataLayer",referrerOverride=function(a){var c=window[DATALAYER_OBJECT_NAME]||[];c.push({event:"optimizely-referrer-override","optimizely-referrer":a})},sendCampaignData=function(a,c){if(a=optimizely.get("data")&&optimizely.get("data").campaigns[a]&&optimizely.get("data").campaigns[a].integrationSettings&&optimizely.get("data").campaigns[a].integrationSettings.google_universal_analytics&&optimizely.get("data").campaigns[a].integrationSettings.google_universal_analytics.universal_analytics_slot){var e=
+window[DATALAYER_OBJECT_NAME]||[];e.push({event:"campaign-decided","optimizely-dimension-value":c,"optimizely-dimension-number":a})}},initNewOptimizelyIntegration=function(a,c){var e=!1,g=function(b){var d=window.optimizely.get&&window.optimizely.get("state"),f=d.getRedirectInfo()&&d.getRedirectInfo().referrer;!e&&f&&(a(f),e=!0);d=d.getDecisionString({campaignId:b});c(b,d)},h=function(){window.optimizely=window.optimizely||[];window.optimizely.push({type:"addListener",filter:{type:"lifecycle",name:"campaignDecided"},
+handler:function(b){b=b.data.campaign.id;g(b)}})},k=function(){var b=window.optimizely&&window.optimizely.get&&window.optimizely.get("state");if(b){b=b.getCampaignStates({isActive:!0});for(var d in b)g(d)}};k();h()},initOptimizelyIntegration=function(a,c){initNewOptimizelyIntegration(a,c)};initOptimizelyIntegration(referrerOverride,sendCampaignData);
+var affiliate_overrides={},now=new Date,hbomax_start_date_1=new Date("May 27, 2020 00:00:00"),hbomax_end_date=new Date("Dec 31, 2020 11:59:59");now=new Date;
+if(0<location.href.indexOf("showhbomax\x3dtrue")||now.getTime()>=hbomax_start_date_1.getTime()&&now.getTime()<hbomax_end_date.getTime())affiliate_overrides.by_wik={147:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},130814:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},984:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},74:{article:{179836:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}}}},
+125:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},159:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},1228:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},2237:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},621556:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},
+881799:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},24357:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}},1024023:{US:{tracking_pixel:"https://pubads.g.doubleclick.net/gampad/clk?id\x3d5378625813\x26iu\x3d/5441"}}};console.log("Aff Overrides",affiliate_overrides);affiliate_overrides.ddb={ddb:{US:{heading:"Get everything you need to play D\x26D today",subheading:"BEGIN YOUR ADVENTURE",image:"https://static.wikia.nocookie.net/f5b6c309-5ab5-44d7-bcec-d585f3816946"}}};
+affiliate_overrides.disneyplus={disney:{PT:{heading:"Apenas 6,99\u20ac/m\u00eas ou 69,99\u20ac/ano",subheading:"Subscreva j\u00e1",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_PT\x26subId2\x3dnordic_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/5f9070fd-35af-488c-9f4b-7f168fd606af"},BE:{heading:"Du divertissement en continu pour seulement \u20ac6,99 par mois",subheading:"Inscrivez-vous",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_BE\x26subId2\x3dnordic_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",
+image:"https://static.wikia.nocookie.net/8e08763f-6ae8-4996-924a-80ac71a96b95"},SE:{heading:"69 kr per m\u00e5nad eller 689 kr f\u00f6r ett helt \u00e5r",subheading:"Registrera dig nu",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_SE\x26subId2\x3dnordic_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/8e08763f-6ae8-4996-924a-80ac71a96b95"},DK:{heading:"59kr. om m\u00e5neden eller 589 kr. om \u00e5ret",subheading:"Tilmeld dig nu",
+link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_DK\x26subId2\x3dnordic_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/8e08763f-6ae8-4996-924a-80ac71a96b95"},FI:{heading:"6,99 \u20ac kuukaudessa tai 69,99 \u20ac vuodessa",subheading:"Rekister\u00f6idy nyt",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_FI\x26subId2\x3dnordic_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/8e08763f-6ae8-4996-924a-80ac71a96b95"},
+NO:{heading:"69 kr per m\u00e5ned eller 689 kr per \u00e5r",subheading:"Registrer deg n\u00e5",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_NO\x26subId2\x3dnordic_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/8e08763f-6ae8-4996-924a-80ac71a96b95"},AR:{heading:"Todo en un mismo lugar. Solo $385/mes",subheading:"sugerido para ti",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_AR\x26subId2\x3dlatam_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",
+image:"https://static.wikia.nocookie.net/fbb9a6c9-2318-49c0-8e4f-709cddbac8df"},BR:{heading:"Tudo em um s\u00f3 lugar. Apena R$ 27,90/m\u00e9s",subheading:"Sugest\u00f5es para voc\u00ea",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_BR\x26subId2\x3dlatam_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/fbb9a6c9-2318-49c0-8e4f-709cddbac8df"},CL:{heading:"Todo en un mismo lugar. Solo CLP 6.500/mes",subheading:"sugerido para ti",
+link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_CL\x26subId2\x3dlatam_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/fbb9a6c9-2318-49c0-8e4f-709cddbac8df"},MX:{heading:"Todo en un mismo lugar. Solo MXN 159/mes",subheading:"sugerido para ti",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_MX\x26subId2\x3dlatam_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/fbb9a6c9-2318-49c0-8e4f-709cddbac8df"},
+CO:{heading:"Todo en un mismo lugar. Solo COP 23.900/mes",subheading:"sugerido para ti",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_CO\x26subId2\x3dlatam_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",image:"https://static.wikia.nocookie.net/fbb9a6c9-2318-49c0-8e4f-709cddbac8df"},PE:{heading:"Todo en un mismo lugar. Solo Pen 25.90/mes",subheading:"sugerido para ti",link:"https://disneyplus.bn5x.net/c/1947570/871867/9358?subId1\x3dgeneric_PE\x26subId2\x3dlatam_sale\x26subId3\x3dbanner-fandom\x26sharedId\x3dwiki_desktop",
+image:"https://static.wikia.nocookie.net/fbb9a6c9-2318-49c0-8e4f-709cddbac8df"}}};console.log("Aff Overrides 2",affiliate_overrides);
+var affiliate_overrides={},now=new Date;affiliate_overrides.ddb={ddb:{US:{heading:"Get everything you need to play D\x26D today",subheading:"BEGIN YOUR ADVENTURE",image:"https://static.wikia.nocookie.net/f5b6c309-5ab5-44d7-bcec-d585f3816946"}}};var fanatical_override_arr=[];
+fanatical_override_arr.push({fanatical:{US:{heading:"Get this 20 PC game bundle for just $2.99",subheading:"Buy at Fanatical",image:"https://static.wikia.nocookie.net/fandom-ads/images/a/ae/Fandom-InWiki-MEGABUNDLE-4-222x100.jpg",link:"https://www.fanatical.com/en/bundle/mega-bundle-4?utm_source\x3dfandom\x26utm_medium\x3dpartner\x26utm_campaign\x3dwiki_unit\x26utm_content\x3dmega_bundle_4"}}});
+fanatical_override_arr.push({fanatical:{US:{heading:"7 PC games for just $3.99. Save 97%",subheading:"Buy at Fanatical",image:"https://static.wikia.nocookie.net/fandom-ads/images/0/03/Fandom-InWiki-Killerbundle16-222x100.jpg",link:"https://www.fanatical.com/en/bundle/killer-bundle-16?utm_source\x3dfandom\x26utm_medium\x3dpartner\x26utm_campaign\x3dwiki_unit\x26utm_content\x3dkiller_bundle_16"}}});
+var ad_tags=google_tag_manager["GTM-5HQXBHF"].macro(48),genres=google_tag_manager["GTM-5HQXBHF"].macro(49),cc="JP",inwiki_campaign_overrides=window.inwiki_campaign_overrides||[],i=1;
+for(override_idx in inwiki_campaign_overrides)if(override=inwiki_campaign_overrides[override_idx],"fanatical"===override.campaign&&"fanatical"===override.category){var proceed=!0,c_vertical="undefined";if(proceed&&(proceed=!1,console.debug("genres",override.genres&&0<override.genres.length,override.genres),override.genres&&0<override.genres.length)){var c_genres=override.genres.map(function(a){return a.toLowerCase()}),intersections=c_genres.filter(function(a){return 0<=genres.indexOf(a)});
+0<intersections.length&&(proceed=!0)}if(proceed){proceed=!1;var countries=override.countries;if(countries&&0!==countries.length)for(country_idx in countries){var country=countries[country_idx];country===cc&&(proceed=!0)}else proceed=!0}if(proceed){var obj={};obj[cc]=override;fanatical_override_arr.push({fanatical:obj})}}
+4<fanatical_override_arr.length&&(window.dataLayer.push({event:"incontent-affiliate-overrides",action:"randoms",label:fanatical_override_arr.length+" | "+google_tag_manager["GTM-5HQXBHF"].macro(52)}),window.dataLayer.push({event:"incontent-affiliate-overrides",action:"randoms",label:fanatical_override_arr.length}));affiliate_overrides.fanatical=fanatical_override_arr[Math.floor(Math.random()*fanatical_override_arr.length)];window.dataLayer.push({event:"fanatical-overrides",list:fanatical_override_arr,"chosen-one":affiliate_overrides.fanatical});
+affiliate_overrides.by_wiki={26903:{US:{heading:"Yakuza 6: The Song of Life. Buy Now, Save 20%",subheading:"Buy at Fanatical",image:"https://static.wikia.nocookie.net/e3c45820-36d4-44ea-824c-054c528bf55e",link:"https://www.fanatical.com/en/game/yakuza-6-the-song-of-life?utm_source\x3dfandom\x26utm_medium\x3dpartner\x26utm_campaign\x3dwiki_unit\x26utm_content\x3dyakuza_6"}},20229:{US:{heading:"Evil Genius 2: World Domination. Save 21% Now",subheading:"Buy at Fanatical",image:"https://static.wikia.nocookie.net/96761f51-4416-4df3-bda9-861e62a320e1",
+link:"https://www.fanatical.com/en/game/evil-genius-2-world-domination?utm_source\x3dfandom\x26utm_medium\x3dpartner\x26utm_campaign\x3dwiki_unit\x26utm_content\x3devil_genius_2"}}};
+function swap_out_affiliate(a,d,b,f,e){window.dataLayer.push({event:"affilate-override",heading:a,subheading:d,link:b,image:f,tracking_pixel:e});if(a){var c=".aff-unit__header";if(c=document.querySelector(c))c.innerHTML=a}d&&(a="button.aff-unit__cta",a=document.querySelector(a))&&(a.innerHTML=d);if(b){d="a.aff-unit__link";a=b;if(c=document.querySelector(d))link_existing_href=c.href,!e&&link_existing_href&&link_existing_href.startsWith("https://services.fandom.com/affiliate/redirect")&&(parsed_url=
+link_existing_href.split("?",1))&&1==parsed_url.length&&(a=parsed_url[0]+"?r\x3d"+encodeURIComponent(b));if(c=document.querySelector(d))c.addEventListener("click",function(g){window.dataLayer.push({event:"affiliate_incontent_recommend",action:"click",url:link_existing_href})}),c.href=a,e&&c.addEventListener("click",function(g){location.href=e;g.preventDefault()},!1)}f&&(b="div.aff-unit__image-wrapper",(b=document.querySelector(b))&&b&&(b.style.backgroundImage="url('"+f+"')"))}
+var affiliate_overrides=affiliate_overrides||{},aff_unit_selector="div.aff-unit__wrapper",aff_unit_area=document.querySelector(aff_unit_selector);
+if(aff_unit_area&&0<Object.keys(affiliate_overrides).length){var aff_campaign=aff_unit_area.attributes.getNamedItem("data-campaign"),aff_category=aff_unit_area.attributes.getNamedItem("data-category"),country_code=google_tag_manager["GTM-5HQXBHF"].macro(56),by_wiki=affiliate_overrides.by_wiki,wikiId=wgCityId,articleId=wgArticleId;if(by_wiki&&wikiId&&by_wiki[wikiId]){var aod=by_wiki[wikiId].article;(aod=aod?by_wiki[wikiId].article[articleId]:by_wiki[wikiId])&&aod[country_code]&&(aff_override_data=aod[country_code],aff_heading=
+aff_override_data.heading,aff_subheading=aff_override_data.subheading,aff_link=aff_override_data.link,aff_image=aff_override_data.image,aff_tracking_pixel=aff_override_data.tracking_pixel,swap_out_affiliate(aff_heading,aff_subheading,aff_link,aff_image,aff_tracking_pixel))}else if(aff_campaign&&aff_category&&country_code){var aff_campaign_overrides=affiliate_overrides[aff_campaign.nodeValue];if(aff_campaign_overrides){var aff_category_overrides=aff_campaign_overrides[aff_category.nodeValue];if(aff_category_overrides){var aff_override_data=
+aff_category_overrides[country_code];aff_override_data&&(aff_heading=aff_override_data.heading,aff_subheading=aff_override_data.subheading,aff_link=aff_override_data.link,aff_image=aff_override_data.image,aff_tracking_pixel=aff_override_data.tracking_pixel,swap_out_affiliate(aff_heading,aff_subheading,aff_link,aff_image,aff_tracking_pixel))}}}};

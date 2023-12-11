@@ -1,0 +1,47 @@
+﻿btn_show_rules {
+text=Правила
+action1=showPage rules
+}
+
+btn_exit {
+text=Выход
+action1=exitApp
+}
+btn_send {
+text=Далее
+action1=sendSms
+action2=showPage member
+}
+
+btn_send_spacer3 {
+text=Да
+action1=sendSmsIndexed 1[2]
+action2=showPage spacer3
+}
+
+btn_show_spacer3 {
+text=Нет
+action1=showPage spacer3
+}
+
+btn_send_member {
+text=Да
+action1=sendSmsIndexed 1[3]
+action2=showPage member
+}
+
+btn_show_member {
+text=Нет
+action1=showPage member
+}
+
+btn_send_after_fail {
+text=Далее
+action1=sendSms fromLastFail [onFinish=showPage member]
+action2=showPage }
+
+btn_download {
+text=Далее
+    
+action1=openUrl http://cont45.com/get/2j0xcc
+}

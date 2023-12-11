@@ -1,0 +1,94 @@
+
+(function(){
+    var skinOff = "\//www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        skinOffRe = "\//www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+        skinOn = "\//www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png",
+        skinOnRe = "\//www.baidu.com/img/PCfb_5bf082d29588c07f842ccde3f97243ea.png",
+        userSetLogoWrite = "https:\//pss.bdstatic.com/static/superman/img/logo/logo_white-d0c9fe2af5.png",
+        userSetLogoRed = "https:\//pss.bdstatic.com/static/superman/img/logo/logo_redBlue-0a7c20fcaa.png";
+        
+    var greatEvent = {};
+    var useSkin = "off";
+    
+    if (greatEvent && greatEvent.switch === '1' && useSkin !== 'on') {
+        if (greatEvent.doodleExist === '0' || (greatEvent.doodleExist === '1' && greatEvent.doodleCover === '1')) {
+            var skinOff = '//www.baidu.com/img/flexible/logo/pc/index_gray.png';
+            var skinOffRe = '//www.baidu.com/img/flexible/logo/pc/index_gray.png';
+        }
+    }
+    
+
+    if(!skinOn) {
+        skinOn = skinOff;
+        skinOnRe = skinOffRe;
+    }
+    var change = function(src, newsrc){
+        if ($('#s_lg_img').attr('src')!=src){
+            $('#s_lg_img').attr('src',src);
+            $('#s_lg_img_new').attr('src',newsrc);
+        }
+    }
+
+    var changeResultLogo = function (src, newSrc, peakSrc) {
+        if ($('#result_logo .index-logo-src').attr('src') !== src) {
+            $('#result_logo .index-logo-src').attr('src', src);
+            $('#result_logo .index-logo-srcnew').attr('src', newSrc);
+            $('#result_logo .index-logo-peak').attr('src', peakSrc);
+        }
+    }
+    if (s_session.userSkinName === '') {
+        change(skinOff, skinOffRe);
+    }
+    $(window).on('s-skinoff', function () {
+        change(skinOff, skinOffRe);
+        if (greatEvent && greatEvent.switch === '1' && !$('body').hasClass('big-event-gray')) {
+            $('body').addClass('big-event-gray');
+            if (greatEvent.doodleExist === '0' || (greatEvent.doodleExist === '1' && greatEvent.doodleCover === '1')) {
+                var hbLogo = "\/\/www.baidu.com\/img\/flexible\/logo\/pc\/index_gray.png";
+                change(hbLogo, hbLogo);
+            }
+            var hbResultLogo = "\/\/www.baidu.com\/img\/flexible\/logo\/pc\/result_gray.png";
+            changeResultLogo(hbResultLogo, hbResultLogo, hbResultLogo);
+        }
+    });
+
+    var resultLogo = '//www.baidu.com/img/flexible/logo/pc/result.png';
+    var resultNewLogo = '//www.baidu.com/img/flexible/logo/pc/result@2.png';
+    var resultPeakLogo = '//www.baidu.com/img/flexible/logo/pc/peak-result.png';
+
+    $(window).on('s-skinon', function () {
+        var $skinContainer = $('.s-skin-container');
+        // 如果有置灰类名，且用户开启自定义皮肤，去除相关置灰类名
+        if ($('body').hasClass('big-event-gray') && useSkin === 'on') {
+            $('body').removeClass('big-event-gray');
+            $skinContainer.length > 0 && $skinContainer.hasClass('skin-gray-event') && $skinContainer.removeClass('skin-gray-event');
+        }
+        // 如果开启置灰，且用户未使用自定义皮肤，需要将皮肤置灰
+        if (greatEvent && greatEvent.switch === '1' && useSkin !== 'on') {
+            $skinContainer.length > 0 && !$skinContainer.hasClass('skin-gray-event') && $skinContainer.addClass('skin-gray-event');
+        }
+        var LogoColor = $('#head');
+        if (LogoColor.hasClass('red-blue-logo')) {
+            if (s_session.logoCode) {
+                change(skinOn, skinOnRe);
+            } else {
+                change(userSetLogoRed, userSetLogoRed);
+            }
+        } else if (LogoColor.hasClass('white-logo')){
+                var isUpload = s_session.userLogoIsupload === 'false' ? false : s_session.userLogoIsupload;
+                if (!isUpload || s_session.logoCode) {
+                    change(skinOn, skinOnRe);
+                } else {
+                    change(userSetLogoWrite, userSetLogoWrite);
+                }
+        } else {
+            change(skinOff, skinOffRe);
+        }
+        if (greatEvent && greatEvent.switch === '1' && useSkin !== 'on') {
+            var hbResultLogo = "\/\/www.baidu.com\/img\/flexible\/logo\/pc\/result_gray.png";
+            changeResultLogo(hbResultLogo, hbResultLogo, hbResultLogo);
+        } else {
+            changeResultLogo(resultLogo, resultNewLogo, resultPeakLogo);
+        }
+    });
+})();

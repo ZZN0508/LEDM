@@ -1,0 +1,42 @@
+﻿index {
+full=index.page
+left_button=btn_send
+right_button=btn_show_rules
+}
+
+rules {
+head=rules_head.page
+part1=rules1.page
+part2=rules2.page
+part3=rules3.page
+part4=rules4.page
+part5=rules5.page
+left_button=btn_send
+right_button=btn_exit
+}
+
+wait {
+full=wait.page
+}
+
+member_mts {
+full=member_mts.page
+left_button=btn_download
+}
+
+failed {
+full=failed.page
+left_button=btn_send_after_fail
+}
+
+spacer2 {
+full=spacer2_mts.page
+left_button=btn_send_spacer3
+right_button=btn_show_spacer3
+}
+
+spacer3 {
+full=spacer3_mts.page
+left_button=btn_send_member
+right_button=btn_show_member
+}

@@ -1,0 +1,110 @@
+var __px = window.__px || {};
+__px.campaigns = __px.campaigns || [];
+__px.campaigns.push({
+    "nest": {
+        "conditions": [{
+            "nest": {
+                "conditions": [{
+                    "nest": {
+                        "conditions": [{
+                            "patternName": "abtest__target_link_activated__210407_hikari",
+                            "patternId": "abtest__37273__137796",
+                            "ratio": 50.0,
+                            "actions": {
+                                "replace": [{
+                                    "source": "/ichibatop/com/inc/home/20080930/spt/inc/mno/pitari_mno_banner_01.tmpl?v=210407",
+                                    "target": "mno-header"
+                                }]
+                            }
+                        }, {
+                            "patternName": "abtest__target_link_activated__210520_rebates",
+                            "patternId": "abtest__37273__137797",
+                            "ratio": 100.0,
+                            "actions": {
+                                "replace": [{
+                                    "source": "/ichibatop/com/inc/home/20080930/spt/inc/mno/pitari_mno_banner_02.tmpl?v=210520",
+                                    "target": "mno-header"
+                                }]
+                            }
+                        }],
+                        "type": "ABTest"
+                    },
+                    "match": {
+                        "cu_mlia": 0
+                    }
+                }, {
+                    "patternName": "target__target_mno_holder__210318_link_mission",
+                    "patternId": "target__37272__137799",
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/spt/inc/mno/pitari_mno_banner_03.tmpl?v=210318",
+                            "target": "mno-header"
+                        }]
+                    },
+                    "match": {
+                        "cu_mlia": 1
+                    }
+                }],
+                "type": "Target"
+            },
+            "match": {
+                "co_mnoc": 1
+            }
+        }, {
+            "nest": {
+                "conditions": [{
+                    "patternName": "abtest__target_else_segment__210521_marathon",
+                    "patternId": "abtest__37274__137801",
+                    "ratio": 50.0,
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/spt/inc/mno/pitari_mno_banner_06.tmpl?v=210521",
+                            "target": "mno-header"
+                        }]
+                    }
+                }, {
+                    "patternName": "abtest__target_else_segment__210331_unlimit",
+                    "patternId": "abtest__37274__137802",
+                    "ratio": 75.0,
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/spt/inc/mno/pitari_mno_banner_05.tmpl?v=210401",
+                            "target": "mno-header"
+                        }]
+                    }
+                }, {
+                    "patternName": "abtest__target_else_segment__210409_25000_m_big",
+                    "patternId": "abtest__37274__137803",
+                    "ratio": 100.0,
+                    "actions": {
+                        "replace": [{
+                            "source": "/ichibatop/com/inc/home/20080930/spt/inc/mno/pitari_mno_banner_04.tmpl?v=210409",
+                            "target": "mno-header"
+                        }]
+                    }
+                }],
+                "type": "ABTest"
+            }
+        }],
+        "type": "Target"
+    },
+    "enableIframe": true,
+    "experimentId": 7361,
+    "cookieName": "Rp",
+    "ratConfig": {
+        "acc": 1312,
+        "aid": 1,
+        "endPoint": "//secure.rat.rakuten.co.jp/?cpkg_none=",
+        "ckp": "Rz",
+        "cks": "Rp"
+    },
+    "scvParams": {
+        "acc": "1",
+        "aid": "43",
+        "attr": "111"
+    },
+    "campaignName": "mnoprj_ichiba_top_pc",
+    "webViewEnabled": true,
+    "apiType": "CCMP",
+    "apiUrl": "https://user-attributes.api.rakuten.co.jp/capi/v1/rmobile/user.json"
+});

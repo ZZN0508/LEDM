@@ -1,0 +1,1721 @@
+'use strict';
+
+function _iterableToArrayLimit(arr, i) {
+  var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"];
+  if (null != _i) {
+    var _s,
+      _e,
+      _x,
+      _r,
+      _arr = [],
+      _n = !0,
+      _d = !1;
+    try {
+      if (_x = (_i = _i.call(arr)).next, 0 === i) {
+        if (Object(_i) !== _i) return;
+        _n = !1;
+      } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0);
+    } catch (err) {
+      _d = !0, _e = err;
+    } finally {
+      try {
+        if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return;
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+}
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    enumerableOnly && (symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    })), keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = null != arguments[i] ? arguments[i] : {};
+    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+  return target;
+}
+function _regeneratorRuntime() {
+  _regeneratorRuntime = function () {
+    return exports;
+  };
+  var exports = {},
+    Op = Object.prototype,
+    hasOwn = Op.hasOwnProperty,
+    defineProperty = Object.defineProperty || function (obj, key, desc) {
+      obj[key] = desc.value;
+    },
+    $Symbol = "function" == typeof Symbol ? Symbol : {},
+    iteratorSymbol = $Symbol.iterator || "@@iterator",
+    asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator",
+    toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+  function define(obj, key, value) {
+    return Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }), obj[key];
+  }
+  try {
+    define({}, "");
+  } catch (err) {
+    define = function (obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator,
+      generator = Object.create(protoGenerator.prototype),
+      context = new Context(tryLocsList || []);
+    return defineProperty(generator, "_invoke", {
+      value: makeInvokeMethod(innerFn, self, context)
+    }), generator;
+  }
+  function tryCatch(fn, obj, arg) {
+    try {
+      return {
+        type: "normal",
+        arg: fn.call(obj, arg)
+      };
+    } catch (err) {
+      return {
+        type: "throw",
+        arg: err
+      };
+    }
+  }
+  exports.wrap = wrap;
+  var ContinueSentinel = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var IteratorPrototype = {};
+  define(IteratorPrototype, iteratorSymbol, function () {
+    return this;
+  });
+  var getProto = Object.getPrototypeOf,
+    NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype);
+  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function (method) {
+      define(prototype, method, function (arg) {
+        return this._invoke(method, arg);
+      });
+    });
+  }
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if ("throw" !== record.type) {
+        var result = record.arg,
+          value = result.value;
+        return value && "object" == typeof value && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) {
+          invoke("next", value, resolve, reject);
+        }, function (err) {
+          invoke("throw", err, resolve, reject);
+        }) : PromiseImpl.resolve(value).then(function (unwrapped) {
+          result.value = unwrapped, resolve(result);
+        }, function (error) {
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+      reject(record.arg);
+    }
+    var previousPromise;
+    defineProperty(this, "_invoke", {
+      value: function (method, arg) {
+        function callInvokeWithMethodAndArg() {
+          return new PromiseImpl(function (resolve, reject) {
+            invoke(method, arg, resolve, reject);
+          });
+        }
+        return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+    });
+  }
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = "suspendedStart";
+    return function (method, arg) {
+      if ("executing" === state) throw new Error("Generator is already running");
+      if ("completed" === state) {
+        if ("throw" === method) throw arg;
+        return {
+          value: void 0,
+          done: !0
+        };
+      }
+      for (context.method = method, context.arg = arg;;) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+        if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) {
+          if ("suspendedStart" === state) throw state = "completed", context.arg;
+          context.dispatchException(context.arg);
+        } else "return" === context.method && context.abrupt("return", context.arg);
+        state = "executing";
+        var record = tryCatch(innerFn, self, context);
+        if ("normal" === record.type) {
+          if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue;
+          return {
+            value: record.arg,
+            done: context.done
+          };
+        }
+        "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg);
+      }
+    };
+  }
+  function maybeInvokeDelegate(delegate, context) {
+    var methodName = context.method,
+      method = delegate.iterator[methodName];
+    if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator.return && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel;
+    var record = tryCatch(method, delegate.iterator, context.arg);
+    if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel;
+    var info = record.arg;
+    return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel);
+  }
+  function pushTryEntry(locs) {
+    var entry = {
+      tryLoc: locs[0]
+    };
+    1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry);
+  }
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal", delete record.arg, entry.completion = record;
+  }
+  function Context(tryLocsList) {
+    this.tryEntries = [{
+      tryLoc: "root"
+    }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0);
+  }
+  function values(iterable) {
+    if (iterable || "" === iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) return iteratorMethod.call(iterable);
+      if ("function" == typeof iterable.next) return iterable;
+      if (!isNaN(iterable.length)) {
+        var i = -1,
+          next = function next() {
+            for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next;
+            return next.value = undefined, next.done = !0, next;
+          };
+        return next.next = next;
+      }
+    }
+    throw new TypeError(typeof iterable + " is not iterable");
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", {
+    value: GeneratorFunctionPrototype,
+    configurable: !0
+  }), defineProperty(GeneratorFunctionPrototype, "constructor", {
+    value: GeneratorFunction,
+    configurable: !0
+  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) {
+    var ctor = "function" == typeof genFun && genFun.constructor;
+    return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name));
+  }, exports.mark = function (genFun) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun;
+  }, exports.awrap = function (arg) {
+    return {
+      __await: arg
+    };
+  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
+    return this;
+  }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    void 0 === PromiseImpl && (PromiseImpl = Promise);
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+    return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
+      return result.done ? result.value : iter.next();
+    });
+  }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () {
+    return this;
+  }), define(Gp, "toString", function () {
+    return "[object Generator]";
+  }), exports.keys = function (val) {
+    var object = Object(val),
+      keys = [];
+    for (var key in object) keys.push(key);
+    return keys.reverse(), function next() {
+      for (; keys.length;) {
+        var key = keys.pop();
+        if (key in object) return next.value = key, next.done = !1, next;
+      }
+      return next.done = !0, next;
+    };
+  }, exports.values = values, Context.prototype = {
+    constructor: Context,
+    reset: function (skipTempReset) {
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined);
+    },
+    stop: function () {
+      this.done = !0;
+      var rootRecord = this.tryEntries[0].completion;
+      if ("throw" === rootRecord.type) throw rootRecord.arg;
+      return this.rval;
+    },
+    dispatchException: function (exception) {
+      if (this.done) throw exception;
+      var context = this;
+      function handle(loc, caught) {
+        return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught;
+      }
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i],
+          record = entry.completion;
+        if ("root" === entry.tryLoc) return handle("end");
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc"),
+            hasFinally = hasOwn.call(entry, "finallyLoc");
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+          } else {
+            if (!hasFinally) throw new Error("try statement without catch or finally");
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          }
+        }
+      }
+    },
+    abrupt: function (type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+      finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null);
+      var record = finallyEntry ? finallyEntry.completion : {};
+      return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record);
+    },
+    complete: function (record, afterLoc) {
+      if ("throw" === record.type) throw record.arg;
+      return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel;
+    },
+    finish: function (finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel;
+      }
+    },
+    catch: function (tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if ("throw" === record.type) {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+      throw new Error("illegal catch attempt");
+    },
+    delegateYield: function (iterable, resultName, nextLoc) {
+      return this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      }, "next" === this.method && (this.arg = undefined), ContinueSentinel;
+    }
+  }, exports;
+}
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+      _next(undefined);
+    });
+  };
+}
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
+  }
+}
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  Object.defineProperty(Constructor, "prototype", {
+    writable: false
+  });
+  return Constructor;
+}
+function _defineProperty(obj, key, value) {
+  key = _toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  Object.defineProperty(subClass, "prototype", {
+    writable: false
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+  return _setPrototypeOf(o, p);
+}
+function _isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+  try {
+    Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+function _construct(Parent, args, Class) {
+  if (_isNativeReflectConstruct()) {
+    _construct = Reflect.construct.bind();
+  } else {
+    _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) _setPrototypeOf(instance, Class.prototype);
+      return instance;
+    };
+  }
+  return _construct.apply(null, arguments);
+}
+function _isNativeFunction(fn) {
+  return Function.toString.call(fn).indexOf("[native code]") !== -1;
+}
+function _wrapNativeSuper(Class) {
+  var _cache = typeof Map === "function" ? new Map() : undefined;
+  _wrapNativeSuper = function _wrapNativeSuper(Class) {
+    if (Class === null || !_isNativeFunction(Class)) return Class;
+    if (typeof Class !== "function") {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+    if (typeof _cache !== "undefined") {
+      if (_cache.has(Class)) return _cache.get(Class);
+      _cache.set(Class, Wrapper);
+    }
+    function Wrapper() {
+      return _construct(Class, arguments, _getPrototypeOf(this).constructor);
+    }
+    Wrapper.prototype = Object.create(Class.prototype, {
+      constructor: {
+        value: Wrapper,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    return _setPrototypeOf(Wrapper, Class);
+  };
+  return _wrapNativeSuper(Class);
+}
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return _assertThisInitialized(self);
+}
+function _createSuper(Derived) {
+  var hasNativeReflectConstruct = _isNativeReflectConstruct();
+  return function _createSuperInternal() {
+    var Super = _getPrototypeOf(Derived),
+      result;
+    if (hasNativeReflectConstruct) {
+      var NewTarget = _getPrototypeOf(this).constructor;
+      result = Reflect.construct(Super, arguments, NewTarget);
+    } else {
+      result = Super.apply(this, arguments);
+    }
+    return _possibleConstructorReturn(this, result);
+  };
+}
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _toPrimitive(input, hint) {
+  if (typeof input !== "object" || input === null) return input;
+  var prim = input[Symbol.toPrimitive];
+  if (prim !== undefined) {
+    var res = prim.call(input, hint || "default");
+    if (typeof res !== "object") return res;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return (hint === "string" ? String : Number)(input);
+}
+function _toPropertyKey(arg) {
+  var key = _toPrimitive(arg, "string");
+  return typeof key === "symbol" ? key : String(key);
+}
+
+/*! js-cookie v3.0.5 | MIT */
+function assign(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+    for (var key in source) {
+      target[key] = source[key];
+    }
+  }
+  return target;
+}
+var defaultConverter = {
+  read: function read(value) {
+    if (value[0] === '"') {
+      value = value.slice(1, -1);
+    }
+    return value.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
+  },
+  write: function write(value) {
+    return encodeURIComponent(value).replace(/%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g, decodeURIComponent);
+  }
+};
+function init(converter, defaultAttributes) {
+  function set(name, value, attributes) {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    attributes = assign({}, defaultAttributes, attributes);
+    if (typeof attributes.expires === 'number') {
+      attributes.expires = new Date(Date.now() + attributes.expires * 864e5);
+    }
+    if (attributes.expires) {
+      attributes.expires = attributes.expires.toUTCString();
+    }
+    name = encodeURIComponent(name).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
+    var stringifiedAttributes = '';
+    for (var attributeName in attributes) {
+      if (!attributes[attributeName]) {
+        continue;
+      }
+      stringifiedAttributes += '; ' + attributeName;
+      if (attributes[attributeName] === true) {
+        continue;
+      }
+      stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
+    }
+    return document.cookie = name + '=' + converter.write(value, name) + stringifiedAttributes;
+  }
+  function get(name) {
+    if (typeof document === 'undefined' || arguments.length && !name) {
+      return;
+    }
+    var cookies = document.cookie ? document.cookie.split('; ') : [];
+    var jar = {};
+    for (var i = 0; i < cookies.length; i++) {
+      var parts = cookies[i].split('=');
+      var value = parts.slice(1).join('=');
+      try {
+        var found = decodeURIComponent(parts[0]);
+        jar[found] = converter.read(value, found);
+        if (name === found) {
+          break;
+        }
+      } catch (e) {}
+    }
+    return name ? jar[name] : jar;
+  }
+  return Object.create({
+    set: set,
+    get: get,
+    remove: function remove(name, attributes) {
+      set(name, '', assign({}, attributes, {
+        expires: -1
+      }));
+    },
+    withAttributes: function withAttributes(attributes) {
+      return init(this.converter, assign({}, this.attributes, attributes));
+    },
+    withConverter: function withConverter(converter) {
+      return init(assign({}, this.converter, converter), this.attributes);
+    }
+  }, {
+    attributes: {
+      value: Object.freeze(defaultAttributes)
+    },
+    converter: {
+      value: Object.freeze(converter)
+    }
+  });
+}
+var api = init(defaultConverter, {
+  path: '/'
+});
+
+var getMtop = function () {
+  var _ref = _asyncToGenerator( _regeneratorRuntime().mark(function _callee() {
+    var _window;
+    var _window2, script;
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          if (!((_window = window) !== null && _window !== void 0 && (_window = _window.lib) !== null && _window !== void 0 && _window.mtop)) {
+            _context.next = 2;
+            break;
+          }
+          return _context.abrupt("return", (_window2 = window) === null || _window2 === void 0 || (_window2 = _window2.lib) === null || _window2 === void 0 ? void 0 : _window2.mtop);
+        case 2:
+          console.error('mwb: mtop is undefined, loading self mtop');
+          script = document.createElement('script');
+          script.src = '//g.alicdn.com/mtb/lib-mtop/2.3.14/mtop.js';
+          document.body.appendChild(script);
+          return _context.abrupt("return", new Promise(function (reslove) {
+            script.onload = function () {
+              var _window3;
+              var mtop = (_window3 = window) === null || _window3 === void 0 || (_window3 = _window3.lib) === null || _window3 === void 0 ? void 0 : _window3.mtop;
+              try {
+                mtop.config.mainDomain = '1688.com';
+                mtop.config.prefix = 'h5api';
+                mtop.config.subDomain = 'm';
+              } catch (e) {
+                console.error(e);
+              }
+              reslove(mtop);
+            };
+          }));
+        case 7:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return function getMtop() {
+    return _ref.apply(this, arguments);
+  };
+}();
+var getMwb = function () {
+  var _ref2 = _asyncToGenerator( _regeneratorRuntime().mark(function _callee2() {
+    var mtop;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return getMtop();
+        case 2:
+          mtop = _context2.sent;
+          return _context2.abrupt("return", mtop.request({
+            api: 'mtop.fc.cbuTradeFe.common2',
+            v: '1.0',
+            data: {
+              "fcGroup": "cbu-fe",
+              "fcName": "multiple-workbench-type"
+            }
+          }));
+        case 4:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function getMwb() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
+var SecurityUtil$2 = {};
+
+var URLChecker$1 = {};
+
+Object.defineProperty(URLChecker$1, "__esModule", {
+  value: true
+});
+URLChecker$1.URLChecker = void 0;
+var URLChecker = function () {
+  function URLChecker() {
+    this.urlWhitelist = [];
+    this.protocolWhitelist = ["http:", "https:"];
+  }
+  URLChecker.prototype.addProtocolToWhitelist = function (protocol) {
+    this.protocolWhitelist.push(protocol.endsWith(":") ? protocol : protocol + ":");
+  };
+  URLChecker.prototype.addURLWhitelist = function (whiteList) {
+    var cnt = 0;
+    for (var _i = 0, whiteList_1 = whiteList; _i < whiteList_1.length; _i++) {
+      var item = whiteList_1[_i];
+      var url = item[0];
+      var matchType = item[1];
+      if (this.addSingleURLToWhitelist(url, matchType)) {
+        cnt += 1;
+      }
+    }
+    return cnt;
+  };
+  URLChecker.prototype.addSingleURLToWhitelist = function (url, matchType) {
+    if (matchType === void 0) {
+      matchType = "matches";
+    }
+    if (matchType !== "matches" && matchType !== "precise") {
+      return false;
+    }
+    this.urlWhitelist.push([url, matchType]);
+    return true;
+  };
+  URLChecker.prototype.getSafeURL = function (url, whitelist) {
+    var urlList = whitelist ? whitelist : this.urlWhitelist;
+    var inputURLObject;
+    try {
+      inputURLObject = new URL(url);
+    } catch (e) {
+      return null;
+    }
+    if (!this.protocolWhitelist.includes(inputURLObject.protocol)) {
+      return null;
+    }
+    for (var _i = 0, urlList_1 = urlList; _i < urlList_1.length; _i++) {
+      var item = urlList_1[_i];
+      if (item.length !== 2) {
+        continue;
+      }
+      var whiteUrl = item[0];
+      var matchType = item[1];
+      if (matchType === "precise") {
+        if (whiteUrl === inputURLObject.hostname) {
+          return url;
+        }
+      } else if (matchType === "matches") {
+        if (inputURLObject.hostname.endsWith("." + whiteUrl) || inputURLObject.hostname === whiteUrl) {
+          return url;
+        }
+      }
+    }
+    return null;
+  };
+  return URLChecker;
+}();
+URLChecker$1.URLChecker = URLChecker;
+
+Object.defineProperty(SecurityUtil$2, "__esModule", {
+  value: true
+});
+SecurityUtil$2.SecurityUtil = void 0;
+var URLChecker_1 = URLChecker$1;
+var SecurityUtil$1 = function () {
+  function SecurityUtil() {}
+  SecurityUtil.escapeHtml = function (str) {
+    return str.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  };
+  SecurityUtil.getSafeURL = function (url, whitelist) {
+    return SecurityUtil.urlChecker.getSafeURL(url, whitelist);
+  };
+  SecurityUtil.addSingleURLToWhitelist = function (domain, matchType) {
+    if (matchType === void 0) {
+      matchType = "matches";
+    }
+    return SecurityUtil.urlChecker.addSingleURLToWhitelist(domain, matchType);
+  };
+  SecurityUtil.addURLWhitelist = function (whitelist) {
+    return SecurityUtil.urlChecker.addURLWhitelist(whitelist);
+  };
+  SecurityUtil.addProtocolToWhitelist = function (protocol) {
+    return SecurityUtil.urlChecker.addProtocolToWhitelist(protocol);
+  };
+  SecurityUtil.urlChecker = new URLChecker_1.URLChecker();
+  return SecurityUtil;
+}();
+SecurityUtil$2.SecurityUtil = SecurityUtil$1;
+
+var SecurityUtil_1 = SecurityUtil$2;
+var dist = SecurityUtil_1.SecurityUtil;
+var SecurityUtil = getDefaultExportFromCjs(dist);
+
+var whiteDomianList = ['alipay.com', 'alipay.cn', 'alipay.net', 'alipay.com.cn', 'alipay.hk', 'alipayplus.com', 'alipay-eco.com', 'alipay-cloud.com', 'ant-financial.com', 'ant-open.com', 'ant-biz.com', 'antfortune.com', 'antgroup.com', 'antfin.com', 'antfin-inc.com', 'ebuckler.com', 'mayiyunbao.com', 'fund123.com', 'sinopayment.com.cn', 'alipay-inc.com', 'aliyun.com', 'taobao.com', 'taobao.cn', 'taobao.net', 'taobao.com.cn', 'alibaba.com', 'alibaba.cn', 'alibaba.net', 'alibaba.com.cn', 'alibaba-inc.com', 'alibaba-inc.cn', 'alibaba-inc.net', 'alibaba-inc.com.cn', 'aliloan.com', 'aliloan.cn', 'aliloan.net', 'aliloan.com.cn', 'koubei.com', 'koubei.cn', 'koubei.net', 'koubei.com.cn',
+'alimama.com', 'alimama.cn', 'alimama.com.cn', 'iconfont.cn', 'tanx.com', 'alimama.net', 'etao.com', '1688.com', '1688.cn', '1688.com.cn', 'alibado.com', 'alibado.cn', 'alibado.com.cn', 'alisoft.com', 'alisoft.cn', 'alisoft.com.cn', 'yahoo.cn', 'yahoo.com.cn', 'aliexpress.com', 'atpanel.com', 'taobaocdn.com', 'taojianghu.com', 'taojapan.com', 'hitao.com', 'taohua.com', 'tao123.com', 'tmall.com', 'tmall.net', 'tmall.hk',
+'alitrip.com',
+'ban-ma.cn', 'tmshare123.com', 'tbshare123.com', 'xiami.com',
+'dongting.com',
+'taobao.org', 'koubei.org', 'aliimg.com', 'aliimg.net', 'alibank.net', 'mayibank.net', 'mybank.cn',
+'alipaydev.com', 'alipayobjects.com', 'tbcdn.cn',
+'zhimaxy.net',
+'zmxy.com.cn',
+'antsdaq.net', 'antsdaq.com',
+'aliyuncs.com', 'aliyun-inc.com',
+'alicdn.com', 'aliyun.test',
+'uc.cn', 'ucweb.com',
+'uodoo.com',
+'9gametest.local',
+'25pp.com', 'pp.cn', 'wandoujia.com',
+'9game.cn', 'rantu.com', 'rantutu.com', 'aligames.com', 'jiaoyimao.com',
+'sm.cn',
+'shuqiapi.com', 'shuqireader.com', 'shuqi.com',
+'ucweb.local',
+'tebon.com.cn',
+'dingtalk.com',
+'yunos.com',
+'alitrip.com',
+'taopiaopiao.com', 'taopiaopiao.cn',
+'alibabaplanet.com',
+'fliggy.com', 'feizhu.com', 'feizhu.cn',
+'mei.com',
+'liangxinyao.com',
+'lazada.sg', 'lazada.co.id', 'lazada.com.my', 'lazada.com.ph', 'lazada.vn', 'lazada.co.th',
+'daraz.pk', 'daraz.com.bd', 'daraz.com.np', 'daraz.lk',
+'shop.com.mm',
+'amap.com',
+'youku.com',
+'cainiao.com',
+'cainiao-inc.com',
+'damai.cn',
+'yuque.com', 'nlark.com'];
+
+window.addEventListener('message', function (e) {
+  var _e$data;
+  var key = e === null || e === void 0 || (_e$data = e.data) === null || _e$data === void 0 ? void 0 : _e$data.key;
+  if (!key) {
+    return false;
+  }
+  var callbacks = window._mwb_message_listen[key];
+  if (!callbacks || !callbacks.length) {
+    return false;
+  }
+  for (var i = 0; i < callbacks.length; i++) {
+    try {
+      var callback = callbacks[i];
+      callback((e === null || e === void 0 ? void 0 : e.data) || {}, e);
+    } catch (e) {}
+  }
+}, false);
+var eventListener = function eventListener(eventName, callback) {
+  if (!window._mwb_message_listen) {
+    window._mwb_message_listen = {};
+  }
+  if (window._mwb_message_listen[eventName]) {
+    window._mwb_message_listen[eventName].push(callback);
+  } else {
+    window._mwb_message_listen[eventName] = [callback];
+  }
+};
+
+var MEB_SITE_TYPE = {
+  OTHER: 'otherSite',
+  MAIN: 'mainSite',
+  IFRAME: 'iframeSite'
+};
+var HOME_HOST_NAME = 'www.1688.com';
+var HOME_URL = 'https://www.1688.com';
+
+SecurityUtil.addURLWhitelist(whiteDomianList.map(function (domain) {
+  return [domain, "matches"];
+}));
+var insertScript = function insertScript(src, callback) {
+  var scri = document.createElement("script");
+  scri.setAttribute('crossorigin', 'anonymous');
+  scri.src = src;
+  document.body.appendChild(scri);
+  scri.onload = callback;
+};
+var isHomePage = function isHomePage() {
+  var location = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.location;
+  return location.hostname === HOME_HOST_NAME && (location.pathname === '/mwb/buyerPro/home' || location.pathname === '/');
+};
+var toggleMwb = function toggleMwb(mwb) {
+  var _window;
+  if (mwb === 'normal') {
+    mwb = 'ng';
+  }
+  if (window.$mwb_type === MEB_SITE_TYPE.IFRAME) {
+    return window.parent.postMessage({
+      key: 'toggleMwb',
+      value: mwb
+    }, HOME_URL);
+  }
+  api.set('mwb', mwb, {
+    domain: '.1688.com',
+    expires: 365
+  });
+  sendLog("toggle-mwb-to-".concat(mwb));
+  var location = ((_window = window) === null || _window === void 0 || (_window = _window.top) === null || _window === void 0 ? void 0 : _window.location) || window.location;
+  if (location.pathname.startsWith('/mwb')) {
+    if (isHomePage(location)) {
+      return location.href = HOME_URL;
+    }
+    try {
+      var iframe = document.querySelector('.content-iframe');
+      if (iframe && iframe.getAttribute('src')) {
+        var src = iframe.getAttribute('src');
+        var srcObject = new URL(src);
+        srcObject.searchParams["delete"]('_mwb_alibar_');
+        srcObject.searchParams["delete"]('_mwb_scene_');
+        srcObject.searchParams.forEach(function (_value, key) {
+          if (/_mwb_b_/i.test(key)) {
+            srcObject.searchParams["delete"](key);
+          }
+        });
+        setTimeout(function () {
+          location.href = srcObject.toString();
+        }, 100);
+        return false;
+      }
+    } catch (e) {
+      console.error(e);
+      setTimeout(function () {
+        location.href = HOME_URL;
+      }, 100);
+    }
+  } else {
+    setTimeout(function () {
+      location.reload();
+    }, 100);
+  }
+};
+var documentReady = function documentReady(callback) {
+  var call = function call() {
+    document.removeEventListener('DOMContentLoaded', call);
+    callback();
+  };
+  if (document.readyState != 'loading') {
+    call();
+  } else {
+    document.addEventListener('DOMContentLoaded', call);
+  }
+};
+var getLocalMwb = function getLocalMwb() {
+  var mwb = api.get('mwb');
+  if (['g', 'ng', 'tm'].includes(mwb)) {
+    return mwb;
+  }
+  return 'ng';
+};
+var initAlibar = function initAlibar(mwb) {
+  if (!mwb) {
+    mwb = getLocalMwb();
+  }
+  if (!['tm', 'kj'].includes(mwb) && location.hostname !== HOME_HOST_NAME && location.pathname.indexOf("/mwb") === -1) {
+    return false;
+  }
+  documentReady(function () {
+    insertScript('https://o.alicdn.com/ce/ali-bar/index.js');
+  });
+};
+var isMwbIframe = function () {
+  var _ref = _asyncToGenerator( _regeneratorRuntime().mark(function _callee() {
+    return _regeneratorRuntime().wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          if (!(location.search.indexOf('_mwb_scene_') > -1)) {
+            _context.next = 2;
+            break;
+          }
+          return _context.abrupt("return", true);
+        case 2:
+          return _context.abrupt("return", new Promise(function (reslove) {
+            eventListener('getMwbInfo', function (e) {
+              reslove(true);
+            });
+            setTimeout(function () {
+              reslove(false);
+            }, 50);
+            window.parent.postMessage({
+              key: 'getMwbInfo'
+            }, HOME_URL);
+          }));
+        case 3:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee);
+  }));
+  return function isMwbIframe() {
+    return _ref.apply(this, arguments);
+  };
+}();
+var getMwbInfo = function getMwbInfo(url) {
+  var mwbInfo = {
+    isMwb: false,
+    mwbString: '',
+    framework: '',
+    pathType: '',
+    realUrl: '',
+    mwbScene: '',
+    mwbFullString: '',
+    diorCode: 'buyerPro'
+  };
+  var urlObject = new URL(url);
+  var pathname = urlObject.pathname;
+  var mwb = api.get("mwb");
+  if (isHomePage()) {
+    mwbInfo.isMwb = true;
+    mwbInfo.mwbString = 'mwb';
+    mwbInfo.framework = 'f';
+    mwbInfo.pathType = 'url';
+    mwbInfo.mwbScene = mwb;
+    return mwbInfo;
+  }
+  if (!pathname.startsWith('/mwb')) {
+    return mwbInfo;
+  }
+  mwbInfo.isMwb = true;
+  var mwbString = pathname.split('/')[1];
+  mwbInfo.mwbString = mwbString;
+  var sceneList = mwbString.split("_").slice(1);
+  var _sceneList = _slicedToArray(sceneList, 2),
+    _sceneList$ = _sceneList[0],
+    framework = _sceneList$ === void 0 ? 'i' : _sceneList$,
+    _sceneList$2 = _sceneList[1],
+    mwbScene = _sceneList$2 === void 0 ? mwb : _sceneList$2;
+  mwbInfo.framework = framework;
+  mwbInfo.mwbScene = mwbScene;
+  var realPathList = pathname.split('/').slice(2);
+  if (realPathList[0].indexOf('.1688.com') > -1) {
+    mwbInfo.pathType = 'url';
+    mwbInfo.realUrl = 'https://' + realPathList.join('/') + urlObject.search;
+  } else {
+    mwbInfo.pathType = 'dior';
+    mwbInfo.realUrl = realPathList.join('/');
+  }
+  mwbInfo.mwbFullString = "mwb_".concat(framework, "_").concat(mwb);
+  return mwbInfo;
+};
+var initCommonPagePromise;
+var initCommonPage = function () {
+  var _ref2 = _asyncToGenerator( _regeneratorRuntime().mark(function _callee2() {
+    var pageId, iframe;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          pageId = 'mwb-common-page';
+          if (!initCommonPagePromise) {
+            _context2.next = 3;
+            break;
+          }
+          return _context2.abrupt("return", initCommonPagePromise);
+        case 3:
+          iframe = document.createElement('iframe');
+          iframe.setAttribute('id', pageId);
+          iframe.setAttribute('src', 'https://systemjs.1688.com/krump/schema/2065.html');
+          iframe.style.display = 'none';
+          initCommonPagePromise = new Promise(function (reslove) {
+            var timeout = setTimeout(function () {
+              reslove(iframe);
+            }, 3000);
+            iframe.onload = function () {
+              clearInterval(timeout);
+              reslove(iframe);
+            };
+            document.body.appendChild(iframe);
+          });
+          return _context2.abrupt("return", initCommonPagePromise);
+        case 9:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function initCommonPage() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+var getRandomId = function getRandomId() {
+  return "".concat(new Date().getTime()).concat(Math.floor(Math.random() * 1000000));
+};
+var sendMessageToCommonPage = function () {
+  var _ref3 = _asyncToGenerator( _regeneratorRuntime().mark(function _callee3(key) {
+    var params,
+      iframe,
+      randomId,
+      _args3 = arguments;
+    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+      while (1) switch (_context3.prev = _context3.next) {
+        case 0:
+          params = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : {};
+          if (key) {
+            _context3.next = 3;
+            break;
+          }
+          return _context3.abrupt("return", false);
+        case 3:
+          _context3.next = 5;
+          return initCommonPage();
+        case 5:
+          iframe = _context3.sent;
+          randomId = getRandomId();
+          return _context3.abrupt("return", new Promise(function (reslove) {
+            var callback = function callback(e) {
+              var data = e.data || {};
+              if (data.id === randomId) {
+                reslove(data.params);
+                window.removeEventListener('message', callback);
+              }
+            };
+            window.addEventListener('message', callback);
+            iframe.contentWindow.postMessage({
+              id: randomId,
+              key: key,
+              params: params
+            }, '*');
+          }));
+        case 8:
+        case "end":
+          return _context3.stop();
+      }
+    }, _callee3);
+  }));
+  return function sendMessageToCommonPage(_x) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+var mwbLocalStorage = {
+  getItem: function () {
+    var _getItem = _asyncToGenerator( _regeneratorRuntime().mark(function _callee4(key) {
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            return _context4.abrupt("return", sendMessageToCommonPage('mwb.localStorage.getItem', [key]));
+          case 1:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4);
+    }));
+    function getItem(_x2) {
+      return _getItem.apply(this, arguments);
+    }
+    return getItem;
+  }(),
+  setItem: function () {
+    var _setItem = _asyncToGenerator( _regeneratorRuntime().mark(function _callee5(key, value) {
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
+          case 0:
+            return _context5.abrupt("return", sendMessageToCommonPage('mwb.localStorage.setItem', [key, value]));
+          case 1:
+          case "end":
+            return _context5.stop();
+        }
+      }, _callee5);
+    }));
+    function setItem(_x3, _x4) {
+      return _setItem.apply(this, arguments);
+    }
+    return setItem;
+  }()
+};
+var sendLog = function sendLog(event) {
+  try {
+    goldlog.record('/seller-work-pro.common.click', 'CLK', "event=".concat(event), 'GET');
+  } catch (e) {}
+};
+var sendSlsLog = function sendSlsLog(action) {
+  var logon = api.get("__cn_logon_id__");
+  var mwb = getLocalMwb();
+  if (['ng'].includes(mwb) && location.href.indexOf('/mwb') === -1) {
+    return false;
+  }
+  var img = new Image();
+  img.src = "//mwb.cn-shanghai.log.aliyuncs.com/logstores/common/track.gif?APIVersion=0.6.0&mwb=".concat(mwb, "&type=").concat(window.$mwb_type, "&loginId=").concat(logon, "&url=").concat(encodeURIComponent(location.href), "&action=").concat(action);
+};
+var isFetchIframe = function isFetchIframe() {
+  try {
+    return window !== window.parent && location.href === window.parent.location.href;
+  } catch (e) {}
+  return false;
+};
+
+var WHITE_LIST_REG = [/www\.1688\.com\/$/, /detail\.1688\.com\/offer\/\d+\.html/];
+var WHITE_LIST_SPM = ['a260k.dacugeneral', 'a2615.2177701'];
+function isInWhiteList() {
+  for (var i = 0; i < WHITE_LIST_REG.length; i++) {
+    if (WHITE_LIST_REG[i].test(location.href)) {
+      return true;
+    }
+  }
+  try {
+    var spma = document.head.querySelector('meta[name=data-spm]').content;
+    var spmb = document.body.dataset.spm;
+    var spmab = "".concat(spma, ".").concat(spmb);
+    for (var _i = 0; _i < WHITE_LIST_SPM.length; _i++) {
+      if (WHITE_LIST_SPM[_i] === spmab) {
+        return true;
+      }
+    }
+  } catch (err) {}
+  return false;
+}
+var lead = (function () {
+  var logon = decodeURIComponent(api.get("__cn_logon_id__") || '');
+  if (!logon) {
+    return false;
+  }
+  if (!isInWhiteList()) {
+    return false;
+  }
+  sendSlsLog('showLead');
+  documentReady(function () {
+    var tips = document.createElement('img');
+    tips.setAttribute('class', 'mwb-lead-tips');
+    tips.setAttribute('src', 'https://img.alicdn.com/imgextra/i4/O1CN01aPD4rF1F0h8V4VC0e_!!6000000000425-2-tps-304-304.png');
+    document.body.appendChild(tips);
+    var leadPanel = document.createElement('div');
+    leadPanel.setAttribute("class", 'mwb-lead-panel');
+    leadPanel.style.display = 'none';
+    document.body.appendChild(leadPanel);
+    leadPanel.innerHTML = "\n    <div class=\"mwb-lead-panel-content\">\n      <div class=\"mwb-lead-panel-close\"></div>\n      <div class=\"mwb-lead-panel-bg\"></div>\n      <a class=\"mwb-tm-btn\"></a>\n      <a class=\"kj-tm-btn\"></a>\n    </div>\n  ";
+    tips.onclick = function () {
+      leadPanel.style.display = 'flex';
+      sendLog('showLeadPanel');
+    };
+    leadPanel.querySelector('.mwb-lead-panel-close').onclick = function () {
+      leadPanel.style.display = 'none';
+      tips.style.display = 'block';
+      localStorage.setItem('mwbHasShowLead', 1);
+      sendLog('closeLeadPanel');
+    };
+    leadPanel.querySelector('.mwb-tm-btn').onclick = function () {
+      sendLog('accept');
+      localStorage.setItem('first-toggle-new-home', 1);
+      toggleMwb('tm');
+    };
+    function triggerBigDialog() {
+      lib.mtop.request({
+        api: 'mtop.1688.trade.MtopFatigueControlService',
+        v: '1.0',
+        data: {
+          scene: "pcGuideBigDialog",
+          isRead: true
+        }
+      }).then(function (d) {
+        var _d$data;
+        if ((d === null || d === void 0 || (_d$data = d.data) === null || _d$data === void 0 ? void 0 : _d$data.inFatigue) === 'true') ; else {
+          sendLog('autoaccept');
+          hasTriggerBigDialog().then(function () {
+            toggleMwb('tm');
+          });
+        }
+      })["catch"](function (e) {});
+    }
+    function hasTriggerBigDialog() {
+      return lib.mtop.request({
+        api: 'mtop.1688.trade.MtopFatigueControlService',
+        v: '1.0',
+        data: {
+          scene: "pcGuideBigDialog",
+          isRead: false
+        }
+      });
+    }
+    triggerBigDialog();
+  });
+});
+
+var mainSite = (function () {
+  eventListener('getMwbInfo', function () {
+    return document.querySelector('.content-iframe').contentWindow.postMessage({
+      key: 'getMwbInfo'
+    }, '*');
+  });
+  try {
+    var logon = decodeURIComponent(api.get("__cn_logon_id__") || '');
+    var lastLogon = decodeURIComponent(api.get("__mwb_logon_id__") || '');
+    var currentmwb = getLocalMwb();
+    if (logon === lastLogon && currentmwb !== 'ng') {
+      if (!['tm', 'kj'].includes(currentmwb) && location.pathname.indexOf('/mwb') !== 0) {
+        lead();
+      }
+      return false;
+    }
+    if (logon) {
+      api.set('__mwb_logon_id__', encodeURIComponent(logon), {
+        domain: '.1688.com',
+        expires: 365
+      });
+    }
+    if (['g', 'tm'].includes(currentmwb)) {
+      return false;
+    }
+    getMwb().then(function (result) {
+      var _result$data, _result$data2;
+      if ((result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.model) === null || _result$data === void 0 ? void 0 : _result$data.login) !== 'true') {
+        return false;
+      }
+      var mwb = (result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 || (_result$data2 = _result$data2.model) === null || _result$data2 === void 0 ? void 0 : _result$data2.mwb) || 'ng';
+      api.set('mwb', mwb, {
+        domain: '.1688.com',
+        expires: 365
+      });
+      if (mwb === 'g' && currentmwb === 'ng') {
+        setTimeout(function () {
+          location.reload();
+        }, 100);
+      }
+    })["catch"](function (e) {
+      console.error(e);
+    });
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+var otherSite = (function () {
+  if (location.hostname === HOME_HOST_NAME) {
+    return false;
+  }
+  try {
+    var logon = decodeURIComponent(api.get("__cn_logon_id__") || '');
+    var lastLogon = decodeURIComponent(api.get("__mwb_logon_id__") || '');
+    var currentmwb = getLocalMwb();
+    if (!logon) {
+      return false;
+    }
+    if (logon === lastLogon && currentmwb !== 'ng') {
+      initMenu(currentmwb);
+      initAlibar(currentmwb);
+      initLead(currentmwb);
+    } else {
+      api.set('__mwb_logon_id__', encodeURIComponent(logon), {
+        domain: '.1688.com',
+        expires: 365
+      });
+      getMwb().then(function (result) {
+        var _result$data, _result$data2;
+        if ((result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.model) === null || _result$data === void 0 ? void 0 : _result$data.login) !== 'true') {
+          return false;
+        }
+        var mwb = (result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 || (_result$data2 = _result$data2.model) === null || _result$data2 === void 0 ? void 0 : _result$data2.mwb) || 'ng';
+        api.set('mwb', mwb, {
+          domain: '.1688.com',
+          expires: 365
+        });
+        if (mwb === 'g' && currentmwb === 'ng') {
+          setTimeout(function () {
+            location.reload();
+          }, 100);
+          return false;
+        }
+        initMenu(mwb);
+        initAlibar(mwb);
+        initLead(currentmwb);
+      });
+    }
+  } catch (e) {
+    console.error(e);
+  }
+});
+function initMenu(mwb) {
+  if (!['tm', 'kj'].includes(mwb)) {
+    return false;
+  }
+  if (['work.1688.com', 'tmc.1688.com', 'pre-tmc.1688.com', 'mindx.1688.com'].includes(location.host)) {
+    return false;
+  }
+  if ('/app/channel-fe/search/index.html' === location.pathname && ['air.1688.com', 'pre-air.1688.com'].includes(location.host)) {
+    return false;
+  }
+  var menu = document.createElement('work-menu');
+  menu.setAttribute('sceneCode', mwb === 'tm' ? 'buyerPro' : 'kj');
+  documentReady(function () {
+    insertScript('https://o.alicdn.com/mwb/work-menu/workMenu.js');
+    document.body.appendChild(menu);
+  });
+}
+function initLead(mwb) {
+  if (!['tm', 'kj'].includes(mwb)) {
+    lead();
+  }
+}
+
+var DOCUMENT_NODE_TYPE = 9;
+if (typeof Element !== 'undefined' && !Element.prototype.matches) {
+  var proto = Element.prototype;
+  proto.matches = proto.matchesSelector || proto.mozMatchesSelector || proto.msMatchesSelector || proto.oMatchesSelector || proto.webkitMatchesSelector;
+}
+function closest(element, selector) {
+  while (element && element.nodeType !== DOCUMENT_NODE_TYPE) {
+    if (typeof element.matches === 'function' && element.matches(selector)) {
+      return element;
+    }
+    element = element.parentNode;
+  }
+}
+
+function _delegate(element, selector, type, callback, useCapture) {
+  var listenerFn = listener.apply(this, arguments);
+  element.addEventListener(type, listenerFn, useCapture);
+  return {
+    destroy: function destroy() {
+      element.removeEventListener(type, listenerFn, useCapture);
+    }
+  };
+}
+function delegate(elements, selector, type, callback, useCapture) {
+  if (typeof elements.addEventListener === 'function') {
+    return _delegate.apply(null, arguments);
+  }
+  if (typeof type === 'function') {
+    return _delegate.bind(null, document).apply(null, arguments);
+  }
+  if (typeof elements === 'string') {
+    elements = document.querySelectorAll(elements);
+  }
+  return Array.prototype.map.call(elements, function (element) {
+    return _delegate(element, selector, type, callback, useCapture);
+  });
+}
+function listener(element, selector, type, callback) {
+  return function (e) {
+    e.delegateTarget = closest(e.target, selector);
+    if (e.delegateTarget) {
+      callback.call(element, e);
+    }
+  };
+}
+
+var UrlChangeEvent = function (_Event, _Symbol$toStringTag) {
+  _inherits(UrlChangeEvent, _Event);
+  var _super = _createSuper(UrlChangeEvent);
+  function UrlChangeEvent() {
+    var _this;
+    var option = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    _classCallCheck(this, UrlChangeEvent);
+    _this = _super.call(this, 'urlchangeevent', _objectSpread2({
+      cancelable: true
+    }, option));
+    _this.newURL = option.newURL;
+    _this.oldURL = option.oldURL;
+    _this.action = option.action;
+    return _this;
+  }
+  _createClass(UrlChangeEvent, [{
+    key: _Symbol$toStringTag,
+    get: function get() {
+      return 'UrlChangeEvent';
+    }
+  }]);
+  return UrlChangeEvent;
+}( _wrapNativeSuper(Event), Symbol.toStringTag);
+var urlchange = (function (_window, eventFn) {
+  if (_window.$urlchanged) {
+    return false;
+  }
+  _window.addEventListener('urlchangeevent', eventFn);
+  _window.$urlchanged = true;
+  var originPushState = _window.history.pushState.bind(_window.history);
+  _window.history.pushState = function (state, title, url) {
+    var nowURL = new URL(url || '', _window.location.href);
+    var notCanceled = _window.dispatchEvent(new UrlChangeEvent({
+      newURL: nowURL,
+      oldURL: cacheURL,
+      action: 'pushState'
+    }));
+    if (notCanceled) {
+      originPushState(_objectSpread2({
+        _index: cacheIndex + 1
+      }, state), title, url);
+      updateCacheState();
+    }
+  };
+  var originReplaceState = _window.history.replaceState.bind(_window.history);
+  _window.history.replaceState = function (state, title, url) {
+    var nowURL = new URL(url || '', _window.location.href);
+    var notCanceled = _window.dispatchEvent(new UrlChangeEvent({
+      newURL: nowURL,
+      oldURL: cacheURL,
+      action: 'replaceState'
+    }));
+    if (notCanceled) {
+      originReplaceState(_objectSpread2({
+        _index: cacheIndex
+      }, state), title, url);
+      updateCacheState();
+    }
+  };
+  var cacheURL;
+  var cacheIndex;
+  function initState() {
+    var state = _window.history.state;
+    if (!state || typeof state._index !== 'number') {
+      originReplaceState(_objectSpread2({
+        _index: _window.history.length
+      }, state), null, null);
+    }
+  }
+  function updateCacheState() {
+    cacheURL = new URL(_window.location.href);
+    cacheIndex = _window.history.state._index;
+  }
+  initState();
+  updateCacheState();
+  _window.addEventListener('popstate', function (e) {
+    initState();
+    var nowIndex = _window.history.state._index;
+    var nowURL = new URL(_window.location);
+    if (nowIndex === cacheIndex) {
+      e.stopImmediatePropagation();
+      return;
+    }
+    var notCanceled = _window.dispatchEvent(new UrlChangeEvent({
+      oldURL: cacheURL,
+      newURL: nowURL,
+      action: 'popstate'
+    }));
+    if (!notCanceled) {
+      e.stopImmediatePropagation();
+      _window.history.go(cacheIndex - nowIndex);
+      return;
+    }
+    updateCacheState();
+  });
+  _window.addEventListener('beforeunload', function (e) {
+    var notCanceled = _window.dispatchEvent(new UrlChangeEvent({
+      oldURL: cacheURL,
+      newURL: null,
+      action: 'beforeunload'
+    }));
+    if (!notCanceled) {
+      e.preventDefault();
+      var confirmationMessage = 'o/';
+      e.returnValue = confirmationMessage;
+      return confirmationMessage;
+    }
+  });
+});
+
+var iframeSite = _asyncToGenerator( _regeneratorRuntime().mark(function _callee() {
+  var flag;
+  return _regeneratorRuntime().wrap(function _callee$(_context) {
+    while (1) switch (_context.prev = _context.next) {
+      case 0:
+        _context.next = 2;
+        return isMwbIframe();
+      case 2:
+        flag = _context.sent;
+        if (flag) {
+          _context.next = 5;
+          break;
+        }
+        return _context.abrupt("return", false);
+      case 5:
+        initAlibar();
+        documentReady(function () {
+          window.parent.postMessage({
+            key: 'urlchange',
+            params: {
+              href: window.location.href
+            }
+          }, HOME_URL);
+          urlchange(window, function (e) {
+            console.info('urlchange');
+            setTimeout(function () {
+              window.parent.postMessage({
+                key: 'urlchange',
+                params: {
+                  href: window.location.href
+                }
+              }, HOME_URL);
+            }, 100);
+          });
+          if (isHomePage() || isFetchIframe()) {
+            return false;
+          }
+          if (/gb/i.test(document.characterSet)) {
+            return false;
+          }
+        });
+      case 7:
+      case "end":
+        return _context.stop();
+    }
+  }, _callee);
+}));
+
+var alibarPlugn = (function () {
+  eventListener('click-wz', function () {
+    return document.querySelector('#cniil_wza').click();
+  });
+  documentReady(function () {
+    if (window.$mwb_type === MEB_SITE_TYPE.IFRAME) {
+      delegate('#cniil_wza', 'click', function (e) {
+        window.parent.postMessage({
+          key: 'click-wza'
+        }, HOME_URL);
+      });
+    }
+  });
+});
+
+var e = [],
+  t = [];
+function n(n, r) {
+  if (n && "undefined" != typeof document) {
+    var a,
+      s = !0 === r.prepend ? "prepend" : "append",
+      d = !0 === r.singleTag,
+      i = "string" == typeof r.container ? document.querySelector(r.container) : document.getElementsByTagName("head")[0];
+    if (d) {
+      var u = e.indexOf(i);
+      -1 === u && (u = e.push(i) - 1, t[u] = {}), a = t[u] && t[u][s] ? t[u][s] : t[u][s] = c();
+    } else a = c();
+    65279 === n.charCodeAt(0) && (n = n.substring(1)), a.styleSheet ? a.styleSheet.cssText += n : a.appendChild(document.createTextNode(n));
+  }
+  function c() {
+    var e = document.createElement("style");
+    if (e.setAttribute("type", "text/css"), r.attributes) for (var t = Object.keys(r.attributes), n = 0; n < t.length; n++) e.setAttribute(t[n], r.attributes[t[n]]);
+    var a = "prepend" === s ? "afterbegin" : "beforeend";
+    return i.insertAdjacentElement(a, e), e;
+  }
+}
+
+var css = ".mwb-lead-tips {\n  position: fixed;\n  right: calc(50% - 665px);\n  bottom: 100px;\n  z-index: 10;\n  width: 60px;\n  height: 60px;\n  cursor: pointer; }\n\n.mwb-lead-panel {\n  position: fixed;\n  left: 0;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.15);\n  z-index: 2001;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center; }\n  .mwb-lead-panel .mwb-lead-panel-content {\n    width: 480px;\n    display: flex;\n    flex-direction: column;\n    position: relative; }\n    .mwb-lead-panel .mwb-lead-panel-content .mwb-lead-panel-close {\n      background-image: url(\"https://gw.alicdn.com/imgextra/i1/O1CN01iXDiqf1q5OzJTOTkD_!!6000000005444-2-tps-40-40.png\");\n      background-position: center;\n      background-size: 20px;\n      background-repeat: no-repeat;\n      width: 20px;\n      display: inline-block;\n      height: 36px;\n      align-self: flex-end;\n      cursor: pointer; }\n    .mwb-lead-panel .mwb-lead-panel-content .mwb-lead-panel-bg {\n      width: 100%;\n      height: 370px;\n      background-image: url(\"https://img.alicdn.com/imgextra/i4/O1CN01aHyIjA1MtNkLbZdyn_!!6000000001492-2-tps-960-740.png\");\n      background-size: contain;\n      background-position: center;\n      background-repeat: no-repeat; }\n    .mwb-lead-panel .mwb-lead-panel-content .kj-tm-btn,\n    .mwb-lead-panel .mwb-lead-panel-content .mwb-tm-btn {\n      display: inline-block;\n      position: absolute;\n      width: 180px;\n      height: 55px;\n      bottom: 37px;\n      cursor: pointer; }\n    .mwb-lead-panel .mwb-lead-panel-content .mwb-tm-btn {\n      left: 150px; }\n";
+n(css,{});
+
+var type = '';
+if (window.__DISABLRF_MWB__ !== true && !window.$mwb_type) {
+  window.$mwbFn = {
+    toggleMwb: toggleMwb,
+    commonStorage: mwbLocalStorage,
+    getMwbInfo: getMwbInfo
+  };
+  eventListener('toggleMwb', function (data) {
+    window.$mwbFn.toggleMwb((data === null || data === void 0 ? void 0 : data.value) || 'ng');
+  });
+  if (self === top) {
+    if (window.location.host === HOME_HOST_NAME) {
+      type = MEB_SITE_TYPE.MAIN;
+      mainSite();
+    } else {
+      type = MEB_SITE_TYPE.OTHER;
+      otherSite();
+    }
+  } else {
+    type = MEB_SITE_TYPE.IFRAME;
+    iframeSite();
+  }
+  window.$mwb_type = type;
+  alibarPlugn();
+  documentReady(function () {
+    sendSlsLog('init');
+    setTimeout( _asyncToGenerator( _regeneratorRuntime().mark(function _callee() {
+      var mwb;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            mwb = getLocalMwb();
+            goldlog.record('/seller-work-pro.common.pv', 'EXP', "type=".concat(window.$mwb_type, "&mwb=").concat(mwb), 'GET');
+            _context.next = 9;
+            break;
+          case 5:
+            _context.prev = 5;
+            _context.t0 = _context["catch"](0);
+            console.error(_context.t0);
+            throw Error('page entry goldlog record error');
+          case 9:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 5]]);
+    })), 500);
+  });
+}

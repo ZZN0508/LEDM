@@ -1,0 +1,75 @@
+//首頁專用 ======================
+
+//text_ticker_1 快訊======================
+(function (){
+ 
+ if($(".text_ticker_1 .run .inner a").length > 0){ //有快訊
+  // 預設 有快訊 無變天
+  if($(".text_ticker_1 .run .inner a").length > 1){ //1則以上才輪播
+   var text_ticker_1 = $(".text_ticker_1 .run .inner").bxSlider({  
+    // slideWidth:800,
+    auto:true,
+    mode: 'fade',
+    speed:100,
+    pause:3000,
+    controls:false, 
+    pager:false,
+    autoHover:true,
+    onSliderLoad:function(){
+     $(".text_ticker_1 .run .inner .piece a").show();
+    }
+   });
+  }
+  
+  
+ }else{
+  $(".text_ticker_1").hide(); //無快訊 隱藏
+ }
+ 
+})();
+
+
+/*首頁圖集區========================
+兩邊同時會抓第6筆資料
+area_2 有廣告：
+area_1的第6筆顯示，area_2的第6筆隱藏
+area_2 無有廣告：
+area_1的第6筆隱藏，area_2的第6筆顯示
+*/
+(function(){
+ if($('.hot_zone_3 .area_2 .part_thumb_3').find(".ad_pictxt_1").length === 0){
+  $('.hot_zone_3 .area_1 .gallery_1 .piece:not(.bx-clone):nth-last-of-type(1)').remove();
+  $('.hot_zone_3 .area_2 .part_thumb_3 .piece:nth-of-type(1)').show();
+ }else{
+  $('.hot_zone_3 .area_2 .part_thumb_3 .piece:nth-of-type(1)').hide();
+ }
+})();
+
+//gallery_1======================
+(function (){
+ 
+ $(".gallery_1").find(".piece:not(:has(img))").remove();
+ var gallery_1 = $(".gallery_1 .run .inner").bxSlider({  
+  auto:true,
+  captions: true,
+  speed:100,
+  pause : 5000,
+  controls:false, 
+  autoHover:true,
+  onSliderLoad:function(){
+   $(".gallery_1 .run .inner .piece img").show();
+  }
+ });
+ 
+ 
+ $(".gallery_1").on("mouseover","a.bx-pager-link",function(){
+  gallery_1.stopAuto();
+  var iNo = $(this).attr("data-slide-index");
+  gallery_1.goToSlide(iNo);
+ });
+ 
+ $(".gallery_1").on("mouseout","a.bx-pager-link",function(){
+  gallery_1.startAuto();
+ });
+ 
+})();

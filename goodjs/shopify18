@@ -1,0 +1,1 @@
+import{a as r}from"https://cdn.shopify.com/shopifycloud/brochure-iii/production/_shared/chunk-3JBLRAUT.js";import{e as p}from"https://cdn.shopify.com/shopifycloud/brochure-iii/production/_shared/chunk-G4JDLQHK.js";var a=p(r());function W({children:e,tag:t="p",...o}){return(0,a.jsx)(t,{...o,children:e})}export{W as a};

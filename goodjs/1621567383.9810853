@@ -1,0 +1,129 @@
+function getStyleSheet(e) {
+    var t = document.createElement("link");
+    t.type = "text/css", t.rel = "stylesheet", t.href = e, $("head").append(t)
+}
+
+
+function initSenseforthChatSDK(botID,baseURL,chatURL,version) 
+{ 
+    if(jsFile1 &&  window.location.href.indexOf('userid') >= 0 && window.location.hostname.indexOf('portal')>=0){
+    var senseforthSDKconfig = {
+                botID : botID,
+                isInsideAware  : false,
+                SF_BASE_URL : baseURL,
+                SF_CHAT_URL : chatURL,
+                userid:window['mobileNumber']
+        };
+    }
+    else
+    {
+        var senseforthSDKconfig = {
+            botID : botID,
+            isInsideAware  : false,
+            SF_BASE_URL : baseURL,
+            SF_CHAT_URL : chatURL,
+            version: version
+        }; 
+    }
+   var sdk = new SenseforthChatSDK(senseforthSDKconfig);
+   sdk.init();
+}
+
+
+function getTranscriptionScript(e) {
+    var t = document.createElement("script");
+    t.type = "text/javascript"; 
+    t.src = baseLoaderURL + jsFile2;
+    if(jsFile2!=null) {
+        t.onload = startTransliteration;
+        document.getElementsByTagName("head")[0].appendChild(t);
+    }
+}
+function callTranscriptionScript(){
+    var t = document.createElement("script");
+    t.type = "text/javascript";
+    t.src = baseLoaderURL + jsFile1;
+    t.onload = function(){
+        if(jsFile1 &&  window.location.href.indexOf('userid') >= 0 && window.location.hostname.indexOf('portal')>=0){
+            initSenseforthChatSDK("IQi0ZD0y4MQKmOfMSI90Lw==","//aware.senseforth.com","//aware.senseforth.com","")
+        }
+             if(jsFile1 && window.location.href.indexOf('documentUpload') >= 0){
+            initSenseforthChatSDK("KQ+PFj4dkWo0HfWmwO6CSw==","//aware.senseforth.com","//aware.senseforth.com","uat")
+        }
+        getTranscriptionScript();
+    }
+    document.getElementsByTagName("head")[0].appendChild(t);
+}
+function getScript(e) {
+    var t = document.createElement("script");
+    t.type = "text/javascript"; 
+    t.src = baseLoaderURL + e;
+         if(jsFile1 &&  window.location.href.indexOf('userid') >= 0){
+            callTranscriptionScript()
+        }
+       if(jsFile1 && window.location.href.indexOf('documentUpload') >= 0){
+        callTranscriptionScript()
+        }
+    //if(window.location.hostname.indexOf('hdfcbank.com') >0 )
+    //    t.onload = callTranscriptionScript;
+        
+    document.getElementsByTagName("head")[0].appendChild(t);
+}
+ 
+
+
+var baseLoaderURL = ((window.location.hostname.indexOf('hdfcbank.com')>=0)&&window.location.hostname.indexOf('portal')<0)?"hbchat.senseforth.com/HDFC_Chat/":"hbankuat.senseforth.com/CustomChat/HDFC_Chat/";
+    if(window.location.href.indexOf('pcId') > 0 && window.location.href.indexOf('Racing') > 0){
+    
+        if(window.location.hostname.indexOf('portal')>=0) 
+          baseLoaderURL='hbankuat.senseforth.com/CustomChat/'
+        
+        else
+            baseLoaderURL='hbchat.senseforth.com/'
+        if(window.location.href.indexOf('leadsut.hdfcbank.com') >= 0)
+        {
+            baseLoaderURL='hbankuat.senseforth.com/CustomChat/' 
+        }    
+        
+        
+        jsFile = 'programConsent/chat_new-V1.4.0.js',
+        cssfile = 'programConsent/chat_new-V1.4.0.css',
+        jsFile1 = "HDFC_Chat/jsapi.js",
+        jsFile2 = "HDFC_Chat/transliteration-loader.js",
+        cssfile1 = "HDFC_Chat/OwlCarousel_custom.min.css";
+    } /*
+    else if( (window.location.href == "https://www.hdfcbank.com/personal/borrow/popular-loans/personal-loan") ){
+        baseLoaderURL='hbhybrid.senseforth.com/'
+        jsFile  =   'Hybrid_Chat/chat_new-V1.js',
+        cssfile = 'Hybrid_Chat/chat_new-V1.css',
+        jsFile1 = "HDFC_Chat/jsapi.js",
+        jsFile2 = "HDFC_Chat/transliteration-loader.js",
+        cssfile1 = "HDFC_Chat/OwlCarousel_custom.min.css";
+    } */
+   else if(window.location.href.indexOf('userid') >= 0 && window.location.hostname.indexOf('portal')>=0){
+        baseLoaderURL='hbankuat.senseforth.com/CustomChatEngine/'
+        jsFile  =   'CCCollection/bundle.js',
+        jsFile1  =   'CCCollection/bundle.js',
+        jsFile2 = null,
+        cssfile = 'CCCollection/css/main.css',
+        cssfile1 = 'CCCollection/css/main.css';
+    }
+    else if( window.location.href.indexOf('documentUpload') >= 0 ){
+        baseLoaderURL='aware-commons.s3.ap-south-1.amazonaws.com/static-files/HDFC-EVA/DocumentUpload/'
+        jsFile  =   'bundle.js',
+        jsFile1  =   'bundle.js',
+        jsFile2 = null,
+        cssfile = 'css/main.css',
+        cssfile1 = 'css/main.css';
+    }
+    else{ 
+        
+            jsFile = 'chat_new-V1.5.8.min.js',
+            cssfile = 'chat_new-V1.2.8.css',
+            jsFile1 = "jsapi.js",
+            jsFile2 = "transliteration-loader.js",
+            cssfile1 = "OwlCarousel_custom.min.css";
+    }
+baseLoaderURL = "https:" == window.location.protocol ? "https://" + baseLoaderURL : "http://" + baseLoaderURL;
+var jQueryAjaxSettingsCache = jQuery.ajaxSettings.cache;
+jQuery.ajaxSettings.cache = !0, getStyleSheet(baseLoaderURL + cssfile1), getStyleSheet(baseLoaderURL + cssfile), getScript(jsFile),jQuery.ajaxSettings.cache = jQueryAjaxSettingsCache;

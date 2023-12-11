@@ -1,0 +1,216 @@
+/* Git */
+;(function( w, d, $ ){
+ 
+ 'use strict';
+ 
+ // name space
+ w.kkkns || (w.kkkns = {});
+ w.kkkns.des || (w.kkkns.des = {});
+ 
+ 
+ // public
+ w.kkkns.des.headerTopicsAdd = {};
+ 
+ 
+ // private
+ var
+  constructor,
+  _isNaN,
+  frameFix,
+  headerTopics
+  ;
+
+ //iPad
+ var ua = navigator.userAgent.toLowerCase();
+ if ( -1 < ua.indexOf('ipad')){
+  $('body').addClass('is-iPad');
+ }
+ 
+ _isNaN = function(num){
+  
+  if(typeof num === 'number'){
+   
+   if(Number.isNaN) {
+    
+    return Number.isNaN(num);
+    
+   }else{
+    
+    return isNaN(num);
+    
+   }
+   
+  }
+  
+  return false;
+  
+ };
+ 
+ frameFix = function(){
+  
+  var contentsHeight;
+  
+  try{
+   
+   contentsHeight = this.contentWindow.document.body.scrollHeight;
+   
+  }catch(e){}
+  
+  if(!_isNaN(contentsHeight) && !contentsHeight == 0){
+   
+   this.height = contentsHeight;
+   
+  }else{
+   
+   this.height = 120;
+   this.scrolling = "auto";
+   
+  }
+  
+ };
+ 
+ headerTopics = function(){
+  
+  var
+   target = $('.s-keywords')[0],
+   data = headerTopics.data,
+   wrap = d.createElement('ul'),
+   itemList = [],
+   escapeHtml,
+   createItem,
+   carousel
+   ;
+   
+  escapeHtml = function(content) {
+   
+   return content.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+   
+  };
+  
+  createItem = function(itemData){
+   
+   var
+    obj = d.createElement('li'),
+    hlink = d.createElement('a')
+    ;
+   
+   obj.className = 'p-keywords_item';
+   
+   hlink.className = 'p-keywords_item_link';
+   hlink.innerText = hlink.textContent = itemData.text;
+   hlink.href = escapeHtml(itemData.href);
+   hlink.target = ( itemData.blank === 'blank' ) ? '_blank' : '_self';
+   
+   return { 'hlink':hlink, 'obj':obj };
+   
+  };
+  
+  wrap.className = 'p-keywords_list';
+  
+  for(var i=0; i<data.length; i++){
+   
+   itemList[itemList.length] = createItem(data[i]);
+   
+  }
+  
+  for(var i=0; i<itemList.length; i++){
+   
+   itemList[i].obj.appendChild(itemList[i].hlink);
+   wrap.appendChild(itemList[i].obj);
+   
+  }
+  
+  target.appendChild(wrap);
+  
+  // carousel
+  $(wrap).on('initialized.owl.carousel', function(event) {
+   $(wrap).trigger('stop.owl.autoplay');
+  })
+  .owlCarousel({
+   'autoplay' : true,
+   'autoplayTimeout' : 2500,
+   'autoplaySpeed' : 1800,
+   'autoplayHoverPause' : true,
+   'mouseDrag' : false,
+   'items' : data.length,
+   'loop' : true,
+   'autoWidth' : true,
+   'nav' : true,
+   'dots' : false,
+   'navText' : [ '', '' ],
+   'fallbackEasing' : 'swing',
+   'navHoverClass' : 'is-hover'
+  });
+  setTimeout(function(){
+   $(wrap).trigger('play.owl.autoplay');
+  }, 5000);
+  
+ };
+ 
+ headerTopics.data = [];
+ 
+ headerTopics.add = function(obj){
+  
+  headerTopics.data[headerTopics.data.length] = obj;
+  
+ };
+ 
+ constructor = function(){
+  
+  // frameFix
+  
+  $('.s-misetoku').load(frameFix);
+  
+  
+  // headerTopics
+  
+  headerTopics();
+  
+ };
+ 
+ 
+ // Import
+ 
+ $.ajaxSetup({
+  
+  cache:true
+  
+ });
+ $.when(
+  
+  $.getScript('https://script1.kakaku.k-img.com/script/no/libs/jquery/plugins/jquery.biggerlink-2.0.1-custom.js'),
+  $.getScript('https://script1.kakaku.k-img.com/script/libs/jquery/plugins/jquery.lazyload-.1.9.5.js'),
+  $.getScript('https://script1.kakaku.k-img.com/script/libs/jquery/plugins/owl.carousel.min-2.0.0.js'),
+  $.getScript('https://script1.kakaku.k-img.com/script/libs/kkkns.des/heightFit.js')
+  
+ ).done(function(){
+  
+  $.when(
+   
+   $.getScript('https://script1.kakaku.k-img.com/script/libs/jquery/plugins/owl.carousel.2.0.0-navHoverClass.js'),
+   $.getScript('https://script1.kakaku.k-img.com/script/libs/kkkns.des/feed.js')
+   
+  ).done(function(){
+   
+   constructor();
+   
+  }).fail(function(jqXHR, textStatus){
+   
+   throw 'Request failed : ' + textStatus;
+   
+  });
+  
+ }).fail(function(jqXHR, textStatus){
+  
+  throw 'Request failed : ' + textStatus;
+  
+ });
+ 
+ 
+ // Export
+ 
+ // headerTopics
+ w.kkkns.des.headerTopicsAdd = headerTopics.add;
+ 
+ 
+}( window, document, window.jQuery||window.j$ ));

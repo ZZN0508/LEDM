@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/master_style.css" rel="stylesheet" type="text/css" />
+<script type="text/JavaScript" src="js/rounded_corners.inc.js"></script>
+
+<script type="text/JavaScript">
+
+var marketing_frame;
+  
+  function SetupMarketing()
+  {
+    // determine which marketing iframe to show
+    var size = external.GetMarketingSize();
+    marketing_frame = "marketing_medium";
+    if (size & 8)
+    {
+      marketing_frame = "marketing_large";
+    }
+    else if (size & 4)
+    {
+      marketing_frame = "marketing_medium";
+    }
+    else if (size & 2)
+    {
+      marketing_frame = "marketing_small";
+    }
+    document.getElementById(marketing_frame).style.display = 'block';
+    
+    
+    var marketing_url = external.GetMarketingURL();
+    if (marketing_url.length > 0)
+    {
+      document.getElementById(marketing_frame).src = marketing_url;
+    }
+  }
+
+  function SetupStrings()
+  {
+    document.getElementById('title').innerText = external.GetString(35);
+    document.getElementById('heading').innerText = external.GetString(19);
+    document.getElementById('copytext').innerHTML = external.GetString(20);
+  }
+
+
+  window.onload = function(event)
+  {
+    settings = {
+      tl: { radius: 5 },
+      tr: { radius: 5 },
+      bl: { radius: 5 },
+      br: { radius: 5 },
+      antiAlias: true,
+      validTags: ["div"]
+    }
+  
+    var content = new curvyCorners(settings, "content");
+    content.applyCornersToAll();	
+	  
+    var infoblock = new curvyCorners(settings, "info_block");
+    infoblock.applyCornersToAll();  
+
+    SetupMarketing();
+    SetupStrings();
+  }
+
+</script>
+</head>
+
+<body scroll="no">
+
+<div class="banner"></div>
+<div class="banner_left_gfx"></div>
+<div class="banner_right_gfx"></div>
+
+<div class="app_title" id="title"></div>
+
+<div class="page_title" id="heading">&nbsp</div>
+
+<div class="swoosh"></div>
+
+<div class="content_no_panel">
+<div class="content_padding">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="form">
+    
+    <tr>
+      <td>
+        <div align="center">
+          <iframe id="marketing_small" src="images/marketing.jpg" width="425" height="196" frameborder="0" marginheight="0" marginwidth="0" style="display:none"></iframe>
+          <iframe id="marketing_medium" src="images/marketing.jpg" width="572" height="210" frameborder="0" marginheight="0" marginwidth="0" style="display:none"></iframe>
+          <iframe id="marketing_large" src="images/marketing.jpg" width="750" height="275" frameborder="0" marginheight="0" marginwidth="0" style="display:none"></iframe>
+	  <br />
+	  <br />
+          <span id="copytext" class="emphasis color2"></span>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+</div>
+</div>
+
+
+</body>
+</html>

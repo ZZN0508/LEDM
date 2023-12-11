@@ -1,0 +1,511 @@
+// This file was automatically generated from template-portal-hero-banner-section.soy.
+// Please don't edit this file by hand.
+
+if (typeof templates_templatePortalHeroBannerSection == 'undefined') { var templates_templatePortalHeroBannerSection = {}; }
+
+
+templates_templatePortalHeroBannerSection.templatePortalHeroBannerSection = function(opt_data, opt_ignored) {
+  var output = '<div class="bp-container c-template-portal-hero-banner-section c-hero-banner" data-pid="' + soy.$$escapeHtml(opt_data.item.name) + '"><div class="container"><div class="row"><div class="bp-area c-template-portal-hero-banner-section--area col-lg-9 col-sm-8 first-section col-xs-12 large-side-scroll-fix">';
+  var childList6 = opt_data.item.children;
+  var childListLen6 = childList6.length;
+  for (var childIndex6 = 0; childIndex6 < childListLen6; childIndex6++) {
+    var childData6 = childList6[childIndex6];
+    output += (parseInt(childData6.preferences.area.value,10) == 0) ? soy.$$filterNoAutoescape("") : '';
+  }
+  output += '</div><div class="bp-area c-template-portal-hero-banner-section--area col-lg-3 col-sm-4 second-section col-xs-12 right-side-scroll-fix">';
+  var childList13 = opt_data.item.children;
+  var childListLen13 = childList13.length;
+  for (var childIndex13 = 0; childIndex13 < childListLen13; childIndex13++) {
+    var childData13 = childList13[childIndex13];
+    output += (parseInt(childData13.preferences.area.value,10) == 1) ? soy.$$filterNoAutoescape("") : '';
+  }
+  output += '</div></div></div></div>';
+  return output;
+};pe(v) },
+    pageY: function (element) { return element.offsetParent ? (element.offsetTop + this.pageY(element.offsetParent)) : element.offsetTop; },
+    loadjs: function (url, callback, charset, id, reset, params) {
+        if (reset && this._$(id)) { var jsnode = this._$(id); try { jsnode.parentNode.removeChild(jsnode); } catch (err) { } }
+        var s = document.createElement("script"); s.type = "text/javascript";
+        if (id) s.id = id; if (charset) s.charset = charset;
+        if (s.readyState) {
+            s.onreadystatechange = function () {
+                if (s.readyState == "loaded" || s.readyState == "complete") {
+                    s.onreadystatechange = null;
+                    if (callback && typeof callback == 'function') {
+                        eval('callback(' + params.varName + ', params)');
+                    }
+                }
+            };
+        }
+        else {
+            s.onload = function () {
+                if (callback && typeof callback == 'function') {
+                    eval('callback(' + params.varName + ', params)');
+                }
+            };
+        }
+        s.src = url; document.getElementsByTagName("head")[0].appendChild(s);
+    },
+    setCookie: function (name, value, hour) {
+        var exp = new Date(); //new   Date( "December 31, 9998 "); 
+        if (typeof hour == 'undefined' || hour == null) hour = 24 * 1; //é»˜è®¤ä¿å­˜ä¸€å¤©
+        exp.setTime(exp.getTime() + hour * 60 * 60 * 1000);
+        document.cookie = name + "= " + escape(value) + ";expires= " + exp.toGMTString() + ";path=/" + (this.cookie.cookieDomain ? ";domain=" + this.cookie.cookieDomain : "");
+        return this.getCookie(name) ? true : false;
+    },
+    getCookie: function (objName) {
+        var arrStr = document.cookie.split("; ");
+        for (var i = 0; i < arrStr.length; i++) {
+            var temp = arrStr[i].split("=");
+            if (temp[0] == objName) return unescape(temp[1]);
+        }
+        return '';
+    },
+    newGuid: function () {
+        var guid = "";
+        for (var i = 1; i <= 32; i++) {
+            var n = Math.floor(Math.random() * 16.0).toString(16);
+            guid += n;
+            if ((i == 8) || (i == 12) || (i == 16) || (i == 20))
+                guid += "-";
+        }
+        return guid;
+    },
+    sys: function () {
+        var Sys = {};
+        var ua = navigator.userAgent.toLowerCase();
+        var s;
+        (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+            (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+                (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+                    (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+                        (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+        return Sys;
+    },
+    detectOS: function () {
+        var sUserAgent = navigator.userAgent;
+        var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+        var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
+        if (isMac) return "Mac";
+        var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
+        if (isUnix) return "Unix";
+        var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
+        if (isLinux) return "Linux";
+        if (isWin) {
+            var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
+            if (isWin2K) return "Win2000";
+            var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 || sUserAgent.indexOf("Windows XP") > -1;
+            if (isWinXP) return "WinXP";
+            var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
+            if (isWin2003) return "Win2003";
+            var isWin2003 = sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
+            if (isWin2003) return "WinVista";
+            var isWin2003 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
+            if (isWin2003) return "Win7";
+        } return "None";
+    },
+    client: function () {
+        var url = document.location; //å½“å‰åœ°å€
+        var refer = document.referrer; //æ¥æºåœ°å€
+        var browser = ''; //æµè§ˆå™¨ç±»åž‹
+        var screenWidth = window.screen.width; //åˆ†è¾¨çŽ‡ å®½åº¦
+        var screenHeight = window.screen.height; //åˆ†è¾¨çŽ‡ é«˜åº¦
+        var Sys = this.sys();
+        var language = '';
+
+        if (Sys.ie) { browser = 'IE' + (Sys.ie ? ' ' + Sys.ie : ''); }
+        else if (Sys.firefox) { browser = 'Firefox'; }
+        else if (Sys.chrome) { browser = 'Chrome'; }
+        else if (Sys.opera) { browser = 'Opera'; }
+        else if (Sys.safari) { browser = 'Safari'; }
+
+        if (navigator.language) { language = navigator.language; }
+        else { language = navigator.browserLanguage; }
+
+        return {
+            url: url
+            , refer: refer
+            , browser: browser
+            , screenWidth: screenWidth
+            , screenHeight: screenHeight
+            , language: language
+            , os: this.detectOS()
+        };
+    },
+    html: function (id, _html) {
+        var obj = this._$(id);
+        if (!obj) return '';
+        if (!_html) {
+            return obj.innerHTML;
+        }
+        else {
+            var reg = /<script>.*?<\/script>/ig;
+            var exejs = _html.match(reg) + "";
+            if (exejs && exejs != "") {
+                obj.innerHTML = _html.replace(exejs, "");
+                exejs = exejs.replace(/<script>/g, "").replace(/<\/script>/g, "");
+                if (exejs != "") {
+                    eval(exejs);
+                }
+            }
+            else {
+                obj.innerHTML = _html;
+            }
+            return '';
+        }
+    },
+    css: function (id, _csslink) {
+  return;
+        var objHead = document.getElementsByTagName('head')[0];
+        var obj = objHead; //this._$(id);
+        if (!obj || !_csslink) return;
+        var link = document.createElement('link');
+        link.href = _csslink;
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        obj.appendChild(link);
+    },
+    iff: function (value, defaultValue) {
+        if (value == null || value == '' || value == 'null' || value == 'undefined') return defaultValue;
+        return value;
+    },
+    objAttr: function (id, extParams) {
+        var obj = this._$(id);
+        var attr = {};
+        if (!extParams) {
+            extParams = 'blockid,partner,type,city_type,city_id,city_name,car_type,brandid,serialid,carid,isupdate,generateid,charset,version,rowcount,ver,loadcss';
+        }
+        var arr = extParams.split(',');
+        for (var i = 0; i < arr.length; i++) {
+            var key = arr[i];
+            attr[key] = '';
+        }
+        attr['blockid'] = '';
+        attr['loadcss'] = '1';
+        if (!id) return attr;
+
+        for (var i = 0; i < arr.length; i++) {
+            var key = arr[i];
+            attr[key] = this.iff(obj.getAttribute(key), '');
+        }
+        attr['blockid'] = id.replace('ep_union_', ''); //é‡æ–°è®¾ç½®
+        attr['loadcss'] = this.iff(obj.getAttribute('loadcss'), '1');
+        return attr;
+    },
+    setObjAttr: function (id, key, value) {
+        if (typeof key == 'undefined' || key == null) return;
+        var obj = this._$(id);
+        value = this.iff(value, '');
+        obj.setAttribute(key, value);
+    },
+    getSn: function () {
+        var _temp_sn = '0';
+        var _random = Math.random();
+        var _sn = this.getCookie(this.cookie.sn);
+        if (_sn && _sn != '') {
+            _temp_sn = _sn;
+        } else if (this.setCookie(this.cookie.sn, _random, 24)) {
+            _temp_sn = _random;
+        }
+        return _temp_sn;
+    }
+
+};
+
+function EPMonitor(monitorId, _generateId) {
+    if (!monitorId) return;
+    var monitoring = true; //ç›‘å¬æ ‡è¯†ä½
+    var pageLoadTime = new Date(); //é¡µé¢è½½å…¥æ—¶é—´
+    var adLoadTime; //å¹¿å‘Šè½½å…¥æ—¶é—´
+    var handlerId; //å¥æŸ„æ ‡è¯†
+    var Sys = EPLib.sys();
+    var showStatus = 0; //å‘ˆçŽ°çŠ¶æ€:1 å‘é€å‘ˆçŽ°æ—¥å¿—ï¼Œ0 ä¸å‘é€å‘ˆçŽ°æ—¥å¿—
+
+    (function () {
+        if (!_generateId) _generateId = newGuid();
+        handlerId = 'EP-UNION-' + _generateId; //å½“å‰å®žä¾‹Id
+    })();
+
+    var offset = function () {
+        var pageHeight = document.body.clientHeight; //èŽ·å–æ•´ä¸ªé¡µé¢çš„é«˜åº¦
+        var screenHeight = document.documentElement.clientHeight; //èŽ·å–å½“å‰æµè§ˆå™¨çš„å¯è§†åŒºåŸŸé«˜åº¦
+        var scrollHeight = document.body.scrollHeight; //èŽ·å–æ»šåŠ¨æ¡çš„é«˜åº¦
+        var dom = EPLib._$(monitorId); //èŽ·å–è¦ç›‘æµ‹åŒºåŸŸå…ƒç´ 
+        //è®¡ç®—å½“å‰æµè§ˆå™¨å·¨é¡¶çš„é«˜åº¦
+        var scrollTop = 0;
+        var setTop = EPLib.pageY(dom);
+        //IEã€ç«ç‹ç­‰å…¶ä»–æµè§ˆå™¨çš„æ»šåŠ¨æ¡æ»šåŠ¨çš„é«˜åº¦
+        if (Sys.ie || Sys.firefox) {
+            scrollTop = document.documentElement.scrollTop;
+        } else {
+            scrollTop = document.body.scrollTop;
+        }
+        var domHeight = dom.clientHeight; //å¹¿å‘Šä½“å†…å®¹é«˜åº¦
+        var offsettingTop = 10; //é¡¶éƒ¨ä½ç§»é‡,å³æ˜¾éœ²70pxçš„å¹¿å‘Š
+        var offsettingBottom = 10;  //åº•éƒ¨ä½ç§»é‡,å³æ˜¾éœ²70pxçš„å¹¿å‘Š
+
+        var y = screenHeight + scrollTop; //æ»šåŠ¨é«˜åº¦
+        var minY = setTop + offsettingTop; //æœ€å°æœ‰æ•ˆé«˜åº¦
+        var maxY = setTop + domHeight + screenHeight - offsettingBottom; //æœ€å¤§æœ‰æ•ˆé«˜åº¦
+        var adViewingHeight = setTop + domHeight + screenHeight; //å¹¿å‘Šå¯è§†é«˜åº¦
+
+        return {
+            pageHeight: pageHeight
+            , scrollTop: scrollTop
+            , screenHeight: screenHeight
+            , setTop: setTop
+            , domHeight: domHeight
+            , y: y
+            , minY: minY
+            , maxY: maxY
+            , adViewingHeight: adViewingHeight //å¹¿å‘Šå¯è§†é«˜åº¦
+        };
+    };
+
+    var actionFlagType = { BlockLoadLog: 1, BlockShowLog: 2, BlockClickLog: 3 };
+
+    var hasViewAd = function () {
+        var os = offset();
+        var minY = os.minY;
+        var maxY = os.maxY;
+        var y = os.y;
+        var setTop = os.setTop;
+        var domHeight = os.domHeight;
+        var screenHeight = os.screenHeight;
+        var scrollTop = os.scrollTop;
+
+        if (minY <= y && y <= maxY && showStatus == 1) {
+            if (monitoring) {  //ç¬¬ä¸€æ¬¡å‘ˆçŽ°å¹¿å‘Šçš„æ—¶é—´
+                monitoring = false;
+                adLoadTime = new Date();
+                //alert(adLoadTime);
+                sendmsg(actionFlagType.BlockShowLog, 0);
+            }
+            return true;
+        } else {
+            return false;
+        }
+
+    };
+
+    var sendmsg = function (actionFlag, isClose) {
+        if (!actionFlag) return;
+        var objAttr = EPLib.objAttr(monitorId);
+        var client = EPLib.client();
+        var qs = [];
+        var s = '__'; //å‚æ•°åå‰ç¼€
+        qs.push('action=Log'); //!important
+        qs.push('ActionFlag=' + actionFlag);
+        qs.push(s + 'BlockClientID=' + _generateId);
+        qs.push(s + 'BlockID=' + objAttr['blockid']);
+        qs.push(s + 'BlockTypeID=' + objAttr['type']);
+        qs.push(s + 'MediaID=' + objAttr['partner']);
+        qs.push(s + 'LoadTime=' + pageLoadTime.formatDateTime());
+        qs.push(s + 'LocationID=' + EPLib.getCookie(EPLib.cookie.locationId));
+        qs.push(s + 'Sn=' + EPLib.getSn());
+        if (adLoadTime) {
+            qs.push(s + 'ShowTime=' + adLoadTime.formatDateTime());
+        }
+        if (actionFlag == 1) {
+            qs.push(s + 'Browser=' + EPLib.enc(client.browser));
+            qs.push(s + 'Os=' + EPLib.enc(client.os));
+            qs.push(s + 'Language=' + EPLib.enc(client.language));
+            qs.push(s + 'Screen=' + (client.screenWidth + 'x' + client.screenHeight));
+            qs.push(s + 'Referer=' + EPLib.enc(client.refer));
+            qs.push(s + 'LocationURL=' + EPLib.enc(client.url));
+        }
+        if (actionFlag == 2) {
+            qs.push(s + 'Version=' + objAttr['ver']);
+            qs.push(s + 'DataRowCount=' + objAttr['rowcount']);
+        }
+        qs.push('city_type=' + objAttr['city_type']);
+        qs.push('city_id=' + objAttr['city_id']);
+        qs.push('tmp=' + Math.round((new Date).getTime() / 1000));
+        //alert(qs.join('&'));
+
+        var varName = 'ep_jsondata_' + monitorId.replace('-', '_');
+        var jsid = 'ep-jsid-' + monitorId;
+        var params = { monitorId: monitorId, varName: varName };
+        EPLib.loadjs(EPLib.ajaxUrl + '?' + qs.join('&'), function (data, params) { }, 'utf-8', jsid, 1, params);
+    };
+
+    this.setHandler = function (_handler) {
+        window[handlerId] = _handler;
+        sendmsg(actionFlagType.BlockLoadLog, 0); //ç¬¬ä¸€æ¬¡å‘é€
+        hasViewAd();
+    };
+
+    this.setShowStatus = function (_status) {
+        showStatus = _status;
+        if (showStatus == 1) {
+            hasViewAd();
+        }
+    };
+
+    this.attachEvent = function () {
+        var obj = window[handlerId];
+        if (Sys.ie) {
+            //window.attachEvent("onscroll", obj.scroll);
+            //window.attachEvent("onload", obj.drawing);
+        } else {
+            //window.addEventListener("scroll", obj.scroll, true);
+        }
+    };
+
+    this.scroll = function () {
+        hasViewAd();
+    };
+
+    this.drawing = function () {
+        //var b = document.body;
+        //b.style.zoom = b.style.zoom == "1" ? "100%" : "1";
+        //trigger re-rendering 
+        document.body.style.zoom = 1.1;
+        //restore it 
+        document.body.style.zoom = '';
+
+    };
+
+};
+var EPUnion = {
+    init: function () {
+        var objs = document.getElementsByTagName('ins')
+        for (var i = 0; i < objs.length; i++) {
+            var obj = objs[i];
+            var monitorId = obj.getAttribute('id');
+
+            if (monitorId && monitorId.substring(0, 9) == 'ep_union_') {
+                var objAttr = EPLib.objAttr(monitorId); //keyä¸€å¾‹å°å†™
+                var blockId = monitorId.replace('ep_union_', ''); //obj.getAttribute('blockId');
+                var version = objAttr['version'];
+                var partner = objAttr['partner'];
+                var type = objAttr['type'];
+                var city_type = objAttr['city_type'];
+                var city_id = objAttr['city_id'];
+                var city_name = objAttr['city_name'];
+                var car_type = objAttr['car_type'];
+                var brandid = objAttr['brandid'];
+                var serialid = objAttr['serialid'];
+                var carid = objAttr['carid'];
+                var isUpdate = objAttr['isupdate'];
+                var charset = objAttr['charset'];
+                var loadcss = objAttr['loadcss'];
+
+                var varName = 'ep_jsondata_' + monitorId.replace('-', '_');
+
+                var generateId = EPLib.newGuid();
+                obj.setAttribute('generateId', generateId); //è®¾ç½®å½“å‰GenerateId
+                var monitor = new EPMonitor(monitorId, generateId);
+
+                var qs = [], qs2 = [];
+                var csslink = EPLib.cssUrl.replace('{0}', blockId);
+
+                qs2.push('varName=' + varName);
+                qs2.push('monitorId=' + monitorId);
+                qs2.push('blockId=' + blockId);
+                qs2.push('version=' + EPLib.iff(version, ''));
+                qs2.push('partner=' + EPLib.iff(partner, ''));
+                qs2.push('type=' + EPLib.iff(type, ''));
+                qs2.push('city_type=' + EPLib.iff(city_type, ''));
+                qs2.push('city_id=' + EPLib.iff(city_id, ''));
+                qs2.push('city_name=' + EPLib.enc(city_name ? city_name : ''));
+                qs2.push('car_type=' + EPLib.iff(car_type, ''));
+                qs2.push('brandid=' + EPLib.iff(brandid, ''));
+                qs2.push('serialid=' + EPLib.iff(serialid, ''));
+                qs2.push('carid=' + EPLib.iff(carid, ''));
+                qs2.push('charset=' + EPLib.iff(charset, 'utf-8'));
+                qs2.push('tmp=' + Math.round((new Date).getTime() / 1000));
+
+                isUpdate = 1;
+                if (isUpdate) {
+                    var jsid = 'ep-jsid-' + monitorId;
+                    var params = { monitor: monitor, monitorId: monitorId, blockId: blockId, csslink: csslink, varName: varName, qs2: qs2 };
+                    //url, callback, charset, id, reset, params
+                    if (loadcss == "1" || loadcss == true)
+                        EPLib.css(params.monitorId, params.csslink);
+                    EPLib.loadjs(EPLib.host + 'block/?' + qs2.join('&'), function (data, params) {
+                        if (data.status == 1 && data.html) {
+                            monitor = params.monitor;
+                            monitorId = params.monitorId;
+                            if (data['version'] && data['version'] != '') {
+                                EPLib.setObjAttr(params.monitorId, 'ver', data['version']);
+                            }
+                            if (data['rowcount'] && data['rowcount'] != '') {
+                                EPLib.setObjAttr(params.monitorId, 'rowcount', data['rowcount']);
+                            }
+                            EPLib.html(params.monitorId, data.html);
+                            monitor.setHandler(monitor);
+                            monitor.attachEvent();
+                            if (data['reload'] && data['reload'] == 1) { //é‡æ–°å‘èµ·è¯·æ±‚
+                                window.setTimeout(EPUnion.reloadContent, 1000, params);
+                            } else {
+                                monitor.setShowStatus(1);
+                            }
+                        }
+                    }, 'utf-8', jsid, 1, params);
+
+                } else {
+                    monitor.setHandler(monitor);
+                    monitor.attachEvent();
+                }
+
+            }
+        }
+    },
+    log: function (monitorId, params) {
+        if (!monitorId) return;
+        var objAttr = EPLib.objAttr(monitorId);
+        var generateId = objAttr['generateid']; //BlockClientID
+        var MediaID = objAttr['partner']; //MediaID
+        var blockId = monitorId.replace('ep_union_', '');
+        var ClickRowRefID = params['ClickRowRefID'];
+        var ClickElement = params['ClickElement'];
+        var BlockTypeID = params['BlockTypeID'];
+        if (!generateId || !blockId || !ClickRowRefID || !ClickElement) return;
+        var locationId = EPLib.getCookie(EPLib.cookie.locationId);
+        var sn = EPLib.getSn();
+
+        var s = '__'; //å‚æ•°åå‰ç¼€
+        var qs = [];
+        qs.push('action=Log');
+        qs.push('actionFlag=3'); //ç‚¹å‡»æ—¥å¿—
+        qs.push(s + 'monitorId=' + monitorId);
+        qs.push(s + 'BlockClientID=' + generateId);
+        qs.push(s + 'BlockID=' + blockId);
+        qs.push(s + 'ClickRowRefID=' + ClickRowRefID);
+        qs.push(s + 'ClickElement=' + EPLib.enc(ClickElement)); //EPLib.enc(ClickElement)
+        qs.push(s + 'LocationID=' + locationId);
+        qs.push(s + 'Sn=' + sn);
+        qs.push(s + 'BlockTypeID=' + BlockTypeID);
+        qs.push(s + 'MediaID=' + MediaID);
+        qs.push('city_type=' + objAttr['city_type']);
+        qs.push('city_id=' + objAttr['city_id']);
+        //alert(qs.join('&'));
+        var varName = 'ep_jsondata_' + monitorId.replace('-', '_');
+        var jsid = 'ep-jsid-' + monitorId;
+        var params = { monitorId: monitorId, varName: varName };
+        EPLib.loadjs(EPLib.ajaxUrl + '?' + qs.join('&'), function (data, params) { }, 'utf-8', jsid, 1, params);
+    },
+    reloadContent: function (params) {
+        var jsid = 'ep-jsid-' + params.monitorId;
+        var qs2 = params.qs2;
+        qs2.push('tmp2=' + Math.round((new Date).getTime() / 1000));
+        //EPLib.css(params.monitorId, params.csslink);
+        EPLib.loadjs(EPLib.host + 'block/?' + qs2.join('&'), function (data, params) {
+            if (data['version'] && data['version'] != '') {
+                EPLib.setObjAttr(params.monitorId, 'ver', data['version']);
+            }
+            if (data['rowcount'] && data['rowcount'] != '') {
+                EPLib.setObjAttr(params.monitorId, 'rowcount', data['rowcount']);
+            }
+            if (data.status == 1 && data.html) {
+                EPLib.html(params.monitorId, data.html);
+            }
+            monitor = params.monitor;
+            monitor.setShowStatus(1);
+        }, 'utf-8', jsid, 1, params);
+    }
+};
+try {
+    EPUnion.init();
+} catch (err) { };

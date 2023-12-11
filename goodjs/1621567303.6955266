@@ -1,0 +1,294 @@
+$(document).ready(function () {
+    var categoryId, divId, cityname;
+    var localLat, localLong, sorteds;
+    var resultJSON = [];
+    var date = new Date();
+    var currentDate = date.getDate() + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+    function process(date) {
+        var parts = date.split("/");
+        return new Date(parts[2], parts[1] - 1, parts[0]);
+    }
+    var nearbyOffers = $("#cityJson").val();
+    var citiesJson;
+    var citiesJson;
+    $.ajax({
+        type: "GET",
+        url: nearbyOffers,
+        datatype: "json",
+        async: !1,
+        success: function (data) {
+            citiesJson = data;
+        },
+    });
+    var currcityval = $("#nearbyoffers div span").find(".ui-selectmenu-text").text();
+    var citySelectedDropdown;
+    var defaultCity = "Mumbai";
+ getCityData(citiesJson, defaultCity);
+    var spanList = $("#nearbyoffers div .ui-selectmenu-button").find(".ui-selectmenu-text");
+    $("#nearbyoffers div span").on("DOMSubtreeModified", function () {
+        var changedcityval = $(this).find(".ui-selectmenu-text").text();
+        if (typeof changedcityval != "undefined") {
+            if (changedcityval != "") {
+                citySelectedDropdown = changedcityval;
+                console.log("citySelectedDropdown::: " + citySelectedDropdown);
+                getCityData(citiesJson, citySelectedDropdown);
+                blockLength = $(".myOffers." + citySelectedDropdown).length;
+                if (blockLength > 0) {
+                    $(".myOffers." + citySelectedDropdown).attr("style", "display:block;");
+                } else {
+                    citySelectedDropdown = defaultCity.replace(/\s+/g, "-").toLowerCase();
+                    $(".myOffers." + citySelectedDropdown).attr("style", "display:block;");
+                }
+            }
+        }
+    });
+    initBlocks();
+    function initBlocks() {
+        var geoOffers = [];
+        var incrementoffers = 12;
+        var pageStart = 0;
+        var pageEnd = 0;
+        var maxCount = 0;
+        var selected;
+        var citySelected;
+        var defaultCity = "Mumbai";
+        var citynameval;
+        $("#nearbyoffers div span").find(".ui-selectmenu-text").text();
+        var geocoder = new google.maps.Geocoder();
+        var chkUrl = window.location.href;
+        if (chkUrl.indexOf("lat=") >= 0 && chkUrl.indexOf("long=") >= 0) {
+            var prefixLat = chkUrl.substring(0, chkUrl.indexOf("lat="));
+            suffixLat = chkUrl.substring(chkUrl.indexOf("lat="));
+            suffixLat = suffixLat.substring(suffixLat.indexOf("=") + 1);
+            suffixLat = parseFloat(suffixLat.substring(0, suffixLat.indexOf("&")));
+            console.log("suffixLat...." + suffixLat);
+            var prefixLong = chkUrl.substring(0, chkUrl.indexOf("long="));
+            suffixLong = chkUrl.substring(chkUrl.indexOf("long="));
+            suffixLong = parseFloat(suffixLong.substring(suffixLong.indexOf("=") + 1));
+            console.log("suffixLong...." + suffixLong);
+            pos1 = { lat: suffixLat, lng: suffixLong };
+            showPosition(pos1);
+        } else {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+        function showPosition(position) {
+            if (typeof position.lat != "undefined" && typeof position.lng != "undefined") {
+                var lat = position.lat;
+                var lng = position.lng;
+            } else {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+            }
+            cityLatLng(lat, lng);
+            console.log("Latitude: " + lat);
+            console.log("Longitude: " + lng);
+        }
+        function cityLatLng(lat, lng) {
+            var latlng = new google.maps.LatLng(lat, lng);
+            geocoder.geocode({ latLng: latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        for (var i = 0; i < results[0].address_components.length; i++) {
+                            for (var b = 0; b < results[0].address_components[i].types.length; b++) {
+                                if (results[0].address_components[i].types[b] == "locality") {
+                                    city = results[0].address_components[i];
+                                    break;
+                                }
+                            }
+                        }
+                        cityname = city.short_name.replace(/\s+/g, "-").toLowerCase();
+                        console.log("cityname:: " + cityname + " cityShortName:: " + city.short_name);
+                        if (typeof cityname != "undefined") {
+                            if (cityname != null && cityname != "") {
+                                $("#nearbyoffers div span").find(".ui-selectmenu-text").text(city.short_name);
+                                $(".citySelect option[value=" + cityname + "]")
+                                    .attr("selected", "selected")
+                                    .change();
+                                citySelected = $("#nearbyoffers div span").find(".ui-selectmenu-text").text();
+                                citynameval = city.short_name;
+                                console.log("citynameval after location is fetched: " + citynameval);
+                                var blockLength = $(".myOffers." + citynameval.replace(/\s+/g, "-").toLowerCase()).length;
+                                if (blockLength > 0) {
+                                    $(".myOffers." + cityname.replace(/\s+/g, "-").toLowerCase()).attr("style", "display:block;");
+                                } else {
+                                    $("#nearbyoffers div span").find(".ui-selectmenu-text").text(defaultCity);
+                                    cityname = defaultCity.replace(/\s+/g, "-").toLowerCase();
+                                    $(".myOffers." + cityname).attr("style", "display:block;");
+                                }
+                            }
+                        }
+                    } else {
+                    }
+                } else {
+                }
+            });
+        }
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    console.log("PERMISSION_DENIED : User denied the request for Geolocation.");
+                    $("#nearbyoffers div span").find(".ui-selectmenu-text").text("Mumbai");
+                    citySelected = $("#nearbyoffers div span").find(".ui-selectmenu-text").text();
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    console.log("POSITION_UNAVAILABLE : Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    console.log("TIMEOUT : The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    console.log("UNKNOWN_ERROR : An unknown error occurred.");
+                    break;
+            }
+        }
+    }
+    function getCityData(citiesnameJson, citydatavalue) {
+        console.log("citydatavalue: " + citydatavalue);
+        $("#offerblock").empty();
+        var ShopNamearr = new Array(citiesnameJson.length);
+        var Addressarr = new Array(citiesnameJson.length);
+        var Localityarr = new Array(citiesnameJson.length);
+        var Cityarr = new Array(citiesnameJson.length);
+        var OfferDescriptionarr1 = new Array(citiesnameJson.length);
+        var OfferDescriptionarr2 = new Array(citiesnameJson.length);
+        var StartDatearr = new Array(citiesnameJson.length);
+        var EndDatearr = new Array(citiesnameJson.length);
+        var Latitudearr = new Array(citiesnameJson.length);
+        var Longitudearr = new Array(citiesnameJson.length);
+        var TandCLinkarr = new Array(citiesnameJson.length);
+        var ThumbnailUrlarr = new Array(citiesnameJson.length);
+        var Categoryarr = new Array(citiesnameJson.length);
+        var GetDirectionUrlarr = new Array(citiesnameJson.length);
+        var CityFilterarr = new Array(citiesnameJson.length);
+        var cityvaldata = JSON.parse(citiesnameJson);
+        citiesnameJson;
+        var getcityData = $.grep(cityvaldata.mapDetails, function (element, index) {
+            return element.City == citydatavalue;
+        });
+        var slider_div = "<div class='trending-deals-slider extra-offer-text'>";
+        for (var i = 0; i < getcityData.length; i++) {
+            ShopNamearr[i] = getcityData[i].ShopName;
+            Addressarr[i] = getcityData[i].Address;
+            Localityarr[i] = getcityData[i].Locality;
+            Cityarr[i] = getcityData[i].City;
+            OfferDescriptionarr1[i] = getcityData[i].OfferDescription1;
+            OfferDescriptionarr2[i] = getcityData[i].OfferDescription2;
+            StartDatearr[i] = getcityData[i].StartDate;
+            EndDatearr[i] = getcityData[i].EndDate;
+            Latitudearr[i] = getcityData[i].Latitude;
+            Longitudearr[i] = getcityData[i].Longitude;
+            TandCLinkarr[i] = getcityData[i].TandCLink;
+            ThumbnailUrlarr[i] = getcityData[i].ThumbnaiUrl;
+            Categoryarr[i] = getcityData[i].Category;
+            GetDirectionUrlarr[i] = getcityData[i].GetDirectionUrl;
+            CityFilterarr[i] = getcityData[i].City;
+            if (typeof ShopNamearr[i] != "undefined") {
+                if (ShopNamearr[i] != "") {
+                    ShopNamearr[i] = ShopNamearr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof Addressarr[i] != "undefined") {
+                if (Addressarr[i] != "") {
+                    Addressarr[i] = Addressarr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof Localityarr[i] != "undefined") {
+                if (Localityarr[i] != "") {
+                    Localityarr[i] = Localityarr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof Cityarr[i] != "undefined") {
+                if (Cityarr[i] != "") {
+                    Cityarr[i] = Cityarr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof OfferDescriptionarr1[i] != "undefined") {
+                if (OfferDescriptionarr1[i] != "") {
+                    OfferDescriptionarr1[i] = OfferDescriptionarr1[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof OfferDescriptionarr2[i] != "undefined") {
+                if (OfferDescriptionarr2[i] != "") {
+                    OfferDescriptionarr2[i] = OfferDescriptionarr2[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof StartDatearr[i] != "undefined") {
+                if (StartDatearr[i] != "") {
+                    StartDatearr[i] = StartDatearr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof EndDatearr[i] != "undefined") {
+                if (EndDatearr[i] != "") {
+                    EndDatearr[i] = EndDatearr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof Latitudearr[i] != "undefined") {
+                if (Latitudearr[i] != "") {
+                    Latitudearr[i] = Latitudearr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof Longitudearr[i] != "undefined") {
+                if (Longitudearr[i] != "") {
+                    Longitudearr[i] = Longitudearr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof TandCLinkarr[i] != "undefined") {
+                if (TandCLinkarr[i] != "") {
+                    TandCLinkarr[i] = TandCLinkarr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof ThumbnailUrlarr[i] != "undefined") {
+                if (ThumbnailUrlarr[i] != "") {
+                    ThumbnailUrlarr[i] = ThumbnailUrlarr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof Categoryarr[i] != "undefined") {
+                if (Categoryarr[i] != "") {
+                    Categoryarr[i] = Categoryarr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (typeof GetDirectionUrlarr[i] != "undefined") {
+                if (GetDirectionUrlarr[i] != "") {
+                    GetDirectionUrlarr[i] = GetDirectionUrlarr[i].replace(/\s+/g, "-").toLowerCase();
+                }
+            }
+            if (process(getcityData[i].EndDate) >= process(currentDate) && process(getcityData[i].StartDate) <= process(currentDate)) {
+                if (i < 12) {
+                    slider_div +=
+                        "<div class='deal-card myOffers " +
+                        Cityarr[i] +
+                        "'><div class='deal-inner'><div class='image'><a href='" + getcityData[i].GetDirectionUrl + "'><img src='" +
+                        getcityData[i].ThumbnaiUrl +
+                        "'></a></div><div class='offer'><a href='" + getcityData[i].GetDirectionUrl + "'>" +
+                        getcityData[i].OfferDescription1 +
+                        "</a><p class='offer-red'>" +
+                        getcityData[i].OfferDescription2 +
+                        "</p></div><div class='description'>" +
+                        getcityData[i].Address +
+                        "</div><div class='buttons'><a href='" +
+                        getcityData[i].GetDirectionUrl +
+                        "' class='ic-btn'>Get Directions</a></div></div></div>";
+                }
+            }
+        }
+        slider_div = slider_div + "</div>";
+        $("#offerblock").append(slider_div);
+        $("#nearbyoffers .trending-deals-slider").slick({
+            dots: !0,
+            infinite: !0,
+            autoplay: !0,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+                { breakpoint: 1025, settings: { slidesToShow: 2 } },
+                { breakpoint: 767, settings: { slidesToShow: 1, arrows: !1, dots: !0 } },
+                { breakpoint: 640, settings: { slidesToShow: 1, arrows: !1, dots: !0, centerMode: !0, centerPadding: "15px", infinite: !0 } },
+            ],
+        });
+    }
+});

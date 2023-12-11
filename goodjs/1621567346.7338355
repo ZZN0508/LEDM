@@ -1,0 +1,839 @@
+
+        !function () { var e = window.location.hostname, t = document.createElement("script"), a = document.getElementsByTagName("script")[0], i = "https://quantcast.mgr.consensu.org".concat("/choice/", "gGpYeVwuEvd4w", "/", e, "/choice.js"), o = 0; function s() { var e, t = "__tcfapiLocator", a = [], n = window; for (; n;) { try { if (n.frames[t]) { e = n; break } } catch (e) { } if (n === window.top) break; n = n.parent } e || (!function e() { var a = n.document, i = !!n.frames[t]; if (!i) if (a.body) { var o = a.createElement("iframe"); o.style.cssText = "display:none", o.name = t, a.body.appendChild(o) } else setTimeout(e, 5); return !i }(), n.__tcfapi = function () { var e, t = arguments; if (!t.length) return a; if ("setGdprApplies" === t[0]) t.length > 3 && 2 === t[2] && "boolean" == typeof t[3] && (e = t[3], "function" == typeof t[2] && t[2]("set", !0)); else if ("ping" === t[0]) { var n = { gdprApplies: e, cmpLoaded: !1, cmpStatus: "stub" }; "function" == typeof t[2] && t[2](n) } else a.push(t) }, n.addEventListener("message", function (e) { var t = "string" == typeof e.data, a = {}; try { a = t ? JSON.parse(e.data) : e.data } catch (e) { } var n = a.__tcfapiCall; n && window.__tcfapi(n.command, n.version, function (a, i) { var o = { __tcfapiReturn: { returnValue: a, success: i, callId: n.callId } }; t && (o = JSON.stringify(o)), e.source.postMessage(o, "*") }, n.parameter) }, !1)) } t.async = !0, t.type = "text/javascript", t.src = i, a.parentNode.insertBefore(t, a), "undefined" != typeof module ? module.exports = s : s(); var c = function () { var e = arguments; typeof window.__uspapi !== c && setTimeout(function () { void 0 !== window.__uspapi && window._uspapi.apply(window._uspapi, e) }, 500) }; if (void 0 === window.__uspapi) { window.__uspapi = c; var r = setInterval(function () { o++, window.__uspapi === c && o < 3 ? console.warn("USP is not accessible") : clearInterval(r) }, 6e3) } }();
+      
+
+  // Picture element HTML5 shiv
+  document.createElement("picture");
+  window.baseUrl = "https://www.nfl.com";
+  window.fbappid = "404205130228139";
+  window.marketoHostName = "";
+  window.gigyaUrl = 'https://cdns.us1.gigya.com/js/gigya.js?apikey=3_Qa8TkWpIB8ESCBT8tY2TukbVKgO5F6BJVc7N1oComdwFzI7H2L9NOWdm11i_BY9f';
+  window.gigyaApiKey = '3_Qa8TkWpIB8ESCBT8tY2TukbVKgO5F6BJVc7N1oComdwFzI7H2L9NOWdm11i_BY9f';
+
+
+  window.gptconfig = {};
+  var googletag = window.googletag || {};
+  googletag.cmd = window.googletag.cmd || [];
+  window.gptSlots = [];
+  var advPageInfo = {"Sections":["home","landing"],"AdUnitName":"home/landing","IsCustom":false};
+  var adUnitName = advPageInfo.AdUnitName;
+  var clubAdvId = '/4595/nfl.';
+  var leagueAdvId = '/4595/nfl.';
+  var testParameter = '';
+window.adUnit = leagueAdvId + adUnitName;
+  googletag.cmd.push(function () {
+    gptconfig.responsiveMappings = {};
+    gptconfig.responsiveMappings['leaderboard'] = googletag.sizeMapping().
+    addSize([1024, 1], [
+    [728, 90],
+    [970, 90]
+    ]).
+    addSize([760, 1], [
+    [728, 90]
+    ]).
+    addSize([100, 1], [
+    [320, 50]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['inpage_1'] = googletag.sizeMapping().
+    addSize([1024, 1], [
+      [728, 90],
+      [970, 90]
+    ]).
+    addSize([760, 1], [
+      [728, 90]
+    ]).
+    addSize([100, 1], [
+      [320, 50]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['inpage_2'] = googletag.sizeMapping().
+    addSize([1024, 1], [
+      [728, 90],
+      [970, 90]
+    ]).
+    addSize([760, 1], [
+      [728, 90]
+    ]).
+    addSize([100, 1], [
+      [320, 50]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['mrec'] = googletag.sizeMapping().
+    addSize([100,1],[
+    [300, 250]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['mrec-photogallery'] = googletag.sizeMapping().
+    addSize([1024,1],[
+    [300, 600],
+    [300, 250]
+    ]).
+    addSize([100,1],[
+    [300, 250]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['mrec-photogallery-list'] = googletag.sizeMapping().
+    addSize([1024, 1], [
+    [728, 90],
+    [970, 250],
+    [970, 90]
+    ]).
+    addSize([100, 1], [
+    [300, 250],
+    [320, 50]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['package-c'] = googletag.sizeMapping().
+    addSize([1024,1],[
+    [300, 600]
+    ]).
+    addSize([100,1],[
+    [300, 250]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['package-b'] = googletag.sizeMapping().
+    addSize([1024,1],[
+    [160, 600]
+    ]).
+    addSize([100,1],[
+    [300, 250]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['presented-by'] = googletag.sizeMapping().
+    addSize([1024,1],[
+    [100, 30]
+    ]).
+    addSize([100,1],[
+    [100, 30],
+    [30, 30]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['companion'] = googletag.sizeMapping().
+    addSize([1024,1],[
+    [300, 60]
+    ]).
+    addSize([100,1],[
+    [300, 60]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['interstitials'] = googletag.sizeMapping().
+    addSize([1024,1],[
+    [1, 4]
+    ]).
+    addSize([760,1],[
+    [3, 4]
+    ]).
+    addSize([100,1],[
+    [3, 4]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['game_sched_inline'] = googletag.sizeMapping().
+    addSize([1024, 1], [
+    [728, 90],
+    [970, 90]
+    ]).
+    addSize([760, 1], [
+    [728, 90]
+    ]).
+    addSize([100, 1], [
+    [320, 50]
+    ]).
+    addSize([0, 0], []).
+    build();
+
+    gptconfig.responsiveMappings['teaminfo'] = googletag.sizeMapping().
+    addSize([1024, 1], [
+      [300, 250]
+    ]).
+    addSize([760, 1], [
+      [300, 250]
+    ]).
+    addSize([100, 1], [
+      [300, 250]
+    ]).
+    addSize([0, 0], []).
+      build();
+
+    gptconfig.responsiveMappings['billboard'] = googletag.sizeMapping().
+    addSize([1024, 1], [
+      [970, 415]
+    ]).
+    addSize([760, 1], [
+      [640, 415]
+    ]).
+    addSize([100, 1], [
+      [300, 300]
+    ]).
+    addSize([0, 0], []).
+      build();
+
+
+    gptconfig.responsiveMappings["rightrail"] = googletag.sizeMapping()
+      .addSize([992, 0], [
+          [300, 250],
+      ])
+      .addSize(
+        [768, 0], [
+          [300, 250],
+      ])
+      .build();
+
+    gptconfig.responsiveMappings["picks-rightrail"] = googletag.sizeMapping()
+      .addSize([0, 0], [
+        [300, 250],
+    ]).build();
+
+    gptconfig.responsiveMappings["prospects-rightrail"] = googletag.sizeMapping()
+      .addSize([992, 0], [
+          [300, 600]
+      ])
+      .addSize([768, 0], [
+          [728, 90]
+      ])
+      .addSize([0, 0], [
+          [320, 50]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings["teams-rightrail"] = googletag.sizeMapping()
+      .addSize([992, 0], [
+          [300, 250]
+      ])
+      .addSize([768, 0], [
+          [728, 90]
+      ])
+      .addSize([0, 0], [
+          [320, 50]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['bottom'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [300, 250]
+      ])
+      .addSize([768, 0], [
+          [728, 90]
+      ])
+      .addSize([1024, 0], [
+          [300, 250]
+      ])
+      .addSize([1200, 0], [
+          [728, 90]
+      ])
+      .build();
+
+    // bigPlay, "drivechartBlings / spon2"
+    gptconfig.responsiveMappings['spon2'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [110, 16]
+      ])
+      .addSize([768, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    // pressByBlingWatchPlay
+    gptconfig.responsiveMappings['spon9'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['spon1'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [100, 45]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['spon3'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['spon4'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['spon5'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['spon6'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['spon7'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings['spon8'] = googletag.sizeMapping()
+      .addSize([0, 0], [
+          [220, 32]
+      ])
+      .build();
+
+    gptconfig.responsiveMappings["draft-strip"] = googletag.sizeMapping()
+      .addSize([0, 0], [
+        [220, 32]
+      ]).build();
+
+    gptconfig.responsiveMappings['backgroundSkin'] = googletag.sizeMapping()
+      .addSize([1500,1],[
+        [1, 1]
+      ])
+      .addSize([0, 0], [])
+      .build();
+
+    gptconfig.responsiveMappings['videoSkin'] = googletag.sizeMapping()
+      .addSize([1024, 1], [
+        [1, 1]
+      ])
+      .addSize([0, 0], [])
+      .build();
+
+    gptconfig.responsiveMappings['gc_spon'] = googletag.sizeMapping()
+      .addSize([0, 0], [[220, 30]])
+      .build();
+
+    gptconfig.adSizes = [
+    [728, 90],
+    [970, 250],
+    [970, 90],
+    [300, 250],
+    [320, 50],
+    [300, 600],
+    [160, 600],
+    [300, 60],
+    [300, 100],
+    [1, 4],
+    [3, 4]
+    ];
+  });
+  
+
+  function preventAdrequest() {
+    var europeanIsoCountryCodes = [
+        'at', 'be', 'bg', 'cy', 'cz', 'de', 'dk', 'ee', 'es', 'fi', 'fr',
+        'gb', 'gr', 'hr', 'hu', 'ie', 'is', 'it', 'li', 'lt', 'lu', 'lv',
+        'mt', 'nl', 'no', 'pl', 'pt', 'ro', 'se', 'si', 'sk'
+      ];
+    var userCountryCode = 'JP';
+    var isEuropeanUser = (userCountryCode.length && europeanIsoCountryCodes.indexOf(userCountryCode.toLowerCase()) !== -1);
+    var tcpAccepted = localStorage.getItem('user.tcpAccepted');
+    var hasQuantcastScript = typeof (window.__tcfapi) !== 'undefined';
+    return isEuropeanUser && hasQuantcastScript && (tcpAccepted == null || !tcpAccepted);
+  }
+  function showAds() {
+    localStorage.setItem('user.tcpAccepted', true);
+    localStorage.setItem('user.setRequestNonPersonalizedAds', 0);
+    location.reload();
+  }
+
+  function showNonTargetedAds() {
+    localStorage.setItem('user.tcpAccepted', true);
+    localStorage.setItem('user.setRequestNonPersonalizedAds', 1);
+    location.reload();
+  };
+
+  if (window.preventAdrequest()) {
+    window.__tcfapi('addEventListener', 2, function (tcData, success) {
+      if (success && tcData.gdprApplies) {
+        if (tcData.cmpStatus === 'loaded' && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
+          if (tcData.addtlConsent === null || !tcData.addtlConsent.length) {
+            showNonTargetedAds();
+          } else {
+            showAds();
+          }
+        }
+      }
+    });
+  }
+
+
+  var templateAdSlots = [];
+
+  var googletag = window.googletag || {};
+  googletag.cmd = window.googletag.cmd || [];
+  
+  googletag.cmd.push(function() {
+    if (document.getElementById('adv_league')) {
+      gptSlots.push(
+        googletag
+            .defineSlot(adUnit, gptconfig.adSizes, 'adv_league')
+            .setTargeting('slot', 'top')
+            .setTargeting('s1', adUnitName === 'home' ? 'home' : undefined)
+            .setTargeting('s2', adUnitName === 'home' ? 'landing' : undefined)
+            .defineSizeMapping(gptconfig.responsiveMappings['leaderboard'])
+            .addService(googletag.pubads())
+      );
+      templateAdSlots.push(gptSlots[gptSlots.length - 1]);
+    }
+
+    if (document.getElementById('adv_inpage_1')) {
+      gptSlots.push(
+        googletag
+          .defineSlot(adUnit, gptconfig.adSizes, 'adv_inpage_1')
+          .setTargeting('slot', 'inpage_1')
+          .defineSizeMapping(gptconfig.responsiveMappings['inpage_1'])
+          .addService(googletag.pubads())
+      );
+      templateAdSlots.push(gptSlots[gptSlots.length - 1]);
+    }
+
+    if (document.getElementById('adv_inpage_2')) {
+      gptSlots.push(
+        googletag
+          .defineSlot(adUnit, gptconfig.adSizes, 'adv_inpage_2')
+          .setTargeting('slot', 'inpage_2')
+          .defineSizeMapping(gptconfig.responsiveMappings['inpage_2'])
+          .addService(googletag.pubads())
+      );
+      templateAdSlots.push(gptSlots[gptSlots.length - 1]);
+    }
+
+    if (document.getElementById('adv_billboard')) {
+      gptSlots.push(
+        googletag
+          .defineSlot(adUnit, gptconfig.adSizes, 'adv_billboard')
+          .setTargeting('slot', 'billboard')
+          .defineSizeMapping(gptconfig.responsiveMappings['billboard'])
+          .addService(googletag.pubads())
+      );
+      templateAdSlots.push(gptSlots[gptSlots.length - 1]);
+    }
+
+    var sectionsLength;
+    if (adUnitName === 'home') {
+      googletag.pubads().setTargeting('s1', 'home');
+    } else if (sectionsLength = advPageInfo.Sections.length) {
+      for (var i = 0; i < sectionsLength; i++) {
+        googletag.pubads().setTargeting('s' + (i + 1), advPageInfo.Sections[i]);
+      }
+    }
+
+    if (testParameter) {
+      googletag.pubads().setTargeting('test', testParameter);
+    }
+
+    var disableOOP = false;
+    if (!disableOOP) {
+      gptSlots.push(
+        googletag
+          .defineSlot(adUnit, gptconfig.adSizes, 'background_skin')
+          .setTargeting('slot', 'background')
+          .defineSizeMapping(gptconfig.responsiveMappings['backgroundSkin'])
+          .addService(googletag.pubads())
+      );
+      templateAdSlots.push(gptSlots[gptSlots.length - 1]);
+    }
+
+    var modulePartnerCampaignID = '';
+    if (modulePartnerCampaignID) {
+      googletag.pubads().setTargeting('partner', modulePartnerCampaignID);
+    }
+
+    var pagePartnerCampaignID = window.partnerCampaignID;
+    if (pagePartnerCampaignID && pagePartnerCampaignID.length) {
+      googletag.pubads().setTargeting('partner', pagePartnerCampaignID);
+    }
+
+    var seriesName = '';
+    if (seriesName && advPageInfo.Sections.length) {
+      googletag.pubads().setTargeting('s' + (advPageInfo.Sections.length + 1), seriesName);
+    }
+
+  });
+
+
+  googletag.cmd.push(function () {
+    googletag.pubads().enableLazyLoad({
+      fetchMarginPercent: 100,
+      renderMarginPercent: 25,
+      mobileScaling: 2.0
+    });
+    googletag.pubads().enableAsyncRendering();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.pubads().disableInitialLoad();
+    googletag.pubads().setRequestNonPersonalizedAds(localStorage.getItem('user.setRequestNonPersonalizedAds') || 0);
+    if (!window.preventAdrequest()) {
+      googletag.enableServices();
+    }
+  });
+
+  function requestAds() {
+    if (typeof (__iasPET) !== 'undefined') {
+      return;
+    }
+
+    var gt = window.googletag || {};
+    gt.cmd = window.googletag.cmd || [];
+    if (gt && gt.pubadsReady) {
+      gt.pubads().refresh(null, { changeCorrelator: false });
+      window.console.error('__iasPET cannot be loaded and all the slots have been refreshed');
+
+      if (window.animationFrameIdAllAD) {
+        window.cancelAnimationFrame(animationFrameIdAllAD);
+      }
+    } else {
+      window.animationFrameIdAllAD = window.requestAnimationFrame(requestAds);
+    }
+  }
+
+  function requestTemplateAds() {
+    var gt = window.googletag || {};
+    gt.cmd = window.googletag.cmd || [];
+    if (gt && gt.pubadsReady) {
+      gt.pubads().refresh(templateAdSlots, { changeCorrelator: false });
+      if (window.animationFrameIdAD) {
+        window.cancelAnimationFrame(animationFrameIdAD);
+      }
+    } else {
+      window.animationFrameIdAD = window.requestAnimationFrame(requestTemplateAds);
+    }
+  }
+
+  function requestSingleAd(slotId) {
+    if (!slotId || !slotId.length) {
+      return;
+    }
+    var gt = window.googletag || {};
+    gt.cmd = window.googletag.cmd || [];
+    if (!gt || !gt.pubadsReady) {
+      return;
+    }
+    var gptSlots = gt.pubads().getSlots();
+    if (!gptSlots || !gptSlots.length) {
+      return;
+    }
+
+    var filteredArray = gptSlots.filter(function (slot) {
+      return slot.getSlotElementId() === slotId;
+    });
+      
+    if (filteredArray.length) {
+      gt.pubads().refresh(filteredArray, { changeCorrelator: false });
+    }
+  }
+
+
+    var iasDataHandler, __iasPET = __iasPET || {};
+    __iasPET.queue = __iasPET.queue || [];
+    __iasPET.pubId = '929781';
+
+    var IASPET_TIMEOUT = 3000;
+    var __iasPETTimeoutRequestAds = setTimeout(requestAds, IASPET_TIMEOUT);
+
+    var iasDataHandler = function (adSlotData) {
+      clearTimeout(__iasPETTimeoutRequestAds);
+      __iasPET.setTargetingForGPT();
+
+      if (typeof (requestTemplateAds) !== 'undefined') {
+        requestTemplateAds();
+      }
+    };
+
+    var iasSingleSlotDataHandler = function (slotId) {
+      return function (adSlotData) {
+        clearTimeout(__iasPETTimeoutRequestAds);
+        __iasPET.setTargetingForGPT();
+
+        if (typeof (requestSingleAd) !== 'undefined') {
+          requestSingleAd(slotId);
+        }
+      }
+    };
+
+    googletag.cmd.push(function () {
+      var gptSlots = googletag.pubads().getSlots();
+      var iasPETSlots = [];
+      for (var i = 0; i < gptSlots.length; i++) {
+        var sizes = gptSlots[i].getSizes().map(function (size) {
+          if (size.getWidth && size.getHeight)
+            return [size.getWidth(), size.getHeight()];
+          else
+            return [1, 1];
+        });
+        iasPETSlots.push({
+          adSlotId: gptSlots[i].getSlotElementId(),
+          size: sizes,
+          adUnitPath: gptSlots[i].getAdUnitPath()
+        });
+      }
+
+      __iasPET.queue.push({
+        adSlots: iasPETSlots,
+        dataHandler: iasDataHandler
+      });
+    });
+
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.getRegistrations().then(function (registeredSevices) {
+          for (var i = 0; i < registeredSevices.length; i++) {
+            var sW = registeredSevices[i];
+            var scriptUrl = sW && sW.active && sW.active.scriptURL;
+
+            if (scriptUrl && scriptUrl.indexOf("OneSignal") !== -1) {
+              continue;
+            }
+
+            sW.unregister().then(function (unregistered) {
+              console.debug('ServiceWorker unregistration: ', unregistered);
+            });            
+          }
+        });
+      });
+    }
+  
+
+    window._taboola = window._taboola || [];
+    var trackingPageInfo = {"SiteSection":"home","SiteSubsection":"home","PageDetail":"landing","PageDetailSuffix":null};
+    var utag_data = {
+      page_type:'landing',
+      siteName: 'nfl.com',
+      teamAbbr: 'not-available',
+      optimizedFor: 'desktop',
+      responsiveState: window.innerWidth < 1024 ? 'mobile' : 'desktop',
+      siteLanguage: 'English',
+      partner: 'Deltatre',
+      siteSection: trackingPageInfo.SiteSection,
+      siteSubsection: trackingPageInfo.SiteSubsection,
+      pageDetail: trackingPageInfo.PageDetail,
+      pageState: 'no cp',
+      adBlock: 'false',
+      adPlacement:'na',
+      buildNumber: '2.0.0.0'
+    };
+    var identityProvider = localStorage.getItem('identityProvider');
+    if (identityProvider && identityProvider.length) {
+      utag_data['identityProvider'] = JSON.parse(identityProvider);
+    }
+  
+
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+          OneSignal.init({
+            appId: "7560e681-7d8b-4f3e-9f10-5da1638f2afa",
+          });
+        });
+      
+
+    window.nflLibHostName = "p.nfltags.com";
+    window.environment = "league";
+  
+
+    var adBlockEnabled = false;
+    try {
+      var testAd = document.createElement('div');
+      testAd.innerHTML = '&nbsp;';
+      testAd.className = 'adsbox';
+      document.body.appendChild(testAd);
+      if (testAd.offsetHeight === 0) {
+        adBlockEnabled = true;
+      }
+      testAd.remove();
+    }
+    catch (e) { }
+    if (utag_data) {
+      utag_data.adBlock = '' + adBlockEnabled;
+    }
+  
+
+    utag_data.pageDetail = trackingPageInfo.PageDetailSuffix ? (utag_data.pageDetail + ':' + trackingPageInfo.PageDetailSuffix) : utag_data.pageDetail;
+    var utag_data = window.utag_data || {};
+    var utagParts = [utag_data.siteName, utag_data.siteSection, utag_data.siteSubsection, utag_data.pageDetail];
+    var pageName = [];
+    for (var i = 0; i < utagParts.length; i++) {
+      var part = utagParts[i];
+      if (part != undefined) {
+        pageName.push(part);
+      }
+    }
+    utag_data.pageName = pageName.join(':');
+  
+(function(win, doc, style, timeout) { var STYLE_ID = 'at-body-style'; function getParent() { return doc.getElementsByTagName('head')[0]; } function addStyle(parent, id, def) { if (!parent) {return;} var style = doc.createElement('style'); style.id = id; style.innerHTML = def; parent.appendChild(style); } function removeStyle(parent, id) { if (!parent) {return;} var style = doc.getElementById(id); if (!style) {return;} parent.removeChild(style); } addStyle(getParent(), STYLE_ID, style); setTimeout(function() { removeStyle(getParent(), STYLE_ID); }, timeout); }(window, document, "body {}", 3000));
+
+    if (localStorage.getItem('user.countryCode') === null) {
+      localStorage.setItem('user.countryCode', 'JP');
+    }
+  
+
+        var googletag = window.googletag || {};
+        googletag.cmd = window.googletag.cmd || [];
+        googletag.cmd.push(function () {
+          googletag.display('oop');
+        });
+      
+
+        var googletag = window.googletag || {};
+        googletag.cmd = window.googletag.cmd || [];
+        googletag.cmd.push(function () {
+          googletag.display('background_skin');
+        });
+      
+
+          window._DMAMenuItems = window._DMAMenuItems || [];
+          window._DMAMenuItems = window._DMAMenuItems.concat([]);
+        
+
+          window._DMAMenuItems = window._DMAMenuItems || [];
+          window._DMAMenuItems = window._DMAMenuItems.concat([]);
+        
+
+          window._DMAMenuItems = window._DMAMenuItems || [];
+          window._DMAMenuItems = window._DMAMenuItems.concat([]);
+        
+
+        var googletag = window.googletag || {};
+        googletag.cmd = window.googletag.cmd || [];
+        googletag.cmd.push(function () {
+          googletag.display('adv_inpage_1');
+        });
+
+    utag_data.pageState = 'cp promo';
+  
+
+            var googletag = window.googletag || {};
+            googletag.cmd = window.googletag.cmd || [];
+            var slot = slot || {}; //some modules call this more than once so we check if slot is already set.
+            googletag.cmd.push(function () {
+              gptSlots.push(
+                slot['563eb4bf-0f41-461d-bfc2-78b0b4b87401'] = googletag
+                  .defineSlot(adUnit, gptconfig.adSizes, '563eb4bf-0f41-461d-bfc2-78b0b4b87401')
+                  .setTargeting('slot', 'centerpiece')
+                  .defineSizeMapping(gptconfig.responsiveMappings['mrec'])
+.addService(googletag.pubads())
+              );});
+        if (typeof(__iasPET) !== 'undefined') {
+          googletag.cmd.push(function() {
+            var newSlot = window.slot['563eb4bf-0f41-461d-bfc2-78b0b4b87401'];
+            if(typeof(newSlot) === 'undefined'){
+              return;
+            }
+
+            var iasPETSlots = [];
+            var newSlotSizes = newSlot.getSizes().map(function(size) {
+              if (size.getWidth && size.getHeight)
+                return [size.getWidth(), size.getHeight()];
+              else
+                return [1, 1];
+            });
+ 
+            iasPETSlots.push({
+              adSlotId: newSlot.getSlotElementId(),
+              size: newSlotSizes,
+              adUnitPath: newSlot.getAdUnitPath()
+            });
+ 
+            __iasPET.queue.push({
+              adSlots: iasPETSlots,
+              dataHandler: iasSingleSlotDataHandler('563eb4bf-0f41-461d-bfc2-78b0b4b87401')
+            });
+          });
+        }
+      
+
+        var googletag = window.googletag || {};
+        googletag.cmd = window.googletag.cmd || [];
+        googletag.cmd.push(function () {
+          googletag.display('563eb4bf-0f41-461d-bfc2-78b0b4b87401');
+        });
+
+        var googletag = window.googletag || {};
+        googletag.cmd = window.googletag.cmd || [];
+        googletag.cmd.push(function () {
+          googletag.display('adv_inpage_2');
+        });
+
+            var googletag = window.googletag || {};
+            googletag.cmd = window.googletag.cmd || [];
+            var slot = slot || {}; //some modules call this more than once so we check if slot is already set.
+            googletag.cmd.push(function () {
+              gptSlots.push(
+                slot['a56ef5e5-de82-43eb-b6e6-e8024b71660e'] = googletag
+                  .defineSlot(adUnit, gptconfig.adSizes, 'a56ef5e5-de82-43eb-b6e6-e8024b71660e')
+                  .setTargeting('partner', 'homepage')
+                  .setTargeting('slot', 'logo')
+                  .defineSizeMapping(gptconfig.responsiveMappings['presented-by']).addService(googletag.pubads())
+              );
+            });
+          
+              window['a56ef5e5-de82-43eb-b6e6-e8024b71660e_refreshAdv'] = function() {
+                googletag.pubads().refresh([slot['a56ef5e5-de82-43eb-b6e6-e8024b71660e']],{changeCorrelator: false});
+              };
+        if (typeof(__iasPET) !== 'undefined') {
+          googletag.cmd.push(function() {
+            var newSlot = window.slot['a56ef5e5-de82-43eb-b6e6-e8024b71660e'];
+            if(typeof(newSlot) === 'undefined'){
+              return;
+            }
+
+            var iasPETSlots = [];
+            var newSlotSizes = newSlot.getSizes().map(function(size) {
+              if (size.getWidth && size.getHeight)
+                return [size.getWidth(), size.getHeight()];
+              else
+                return [1, 1];
+            });
+ 
+            iasPETSlots.push({
+              adSlotId: newSlot.getSlotElementId(),
+              size: newSlotSizes,
+              adUnitPath: newSlot.getAdUnitPath()
+            });
+ 
+            __iasPET.queue.push({
+              adSlots: iasPETSlots,
+              dataHandler: iasSingleSlotDataHandler('a56ef5e5-de82-43eb-b6e6-e8024b71660e')
+            });
+          });
+        }
+      
+
+        var googletag = window.googletag || {};
+        googletag.cmd = window.googletag.cmd || [];
+        googletag.cmd.push(function () {
+          googletag.display('a56ef5e5-de82-43eb-b6e6-e8024b71660e');
+        });
+
+    window._taboola = window._taboola || [];
+    _taboola.push({ flush: true });
+  
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-921490182');

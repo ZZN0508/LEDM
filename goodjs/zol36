@@ -1,0 +1,147 @@
+!(function () {
+    
+    var authorWrap = $('.author-wrap');
+    isLock = 0;
+    if (userid != '' || userid != 'undefined') {
+        $.ajax({
+            url: '//m.zol.com.cn/Mbase/index.php?c=Author_Spread&a=MainPageSubscribe&callback=editor',
+            type: "get",
+            dataType:'jsonp',
+            jsonp: 'callback',
+            success: function (data) {
+                var str = "";
+                if (data.status == 2) {
+                    authorWrap.html(strHtml('ds-picList'))
+                    authorWrap.find('.ds-head').html('<h2>Ƽע</h2>')
+                    $.each(data.data, function (i, e) {
+                        str += '<li class="ds-item">'+
+                        '<a href="'+e.pcUrl+'">'+
+                        '<span class="head">'+
+                        '<img width="68" height="68" src="'+e.img+'" alt="'+e.title+'">'+
+                        '<i class="v"></i>'+
+                        '</span>'+
+                        '<span class="name">'+e.title+'</span>'+
+                        '<span class="tag">'+e.desc+'</span>'+
+                        '</a>'+
+                        '<p class="text"><a href="'+e.docUrl+'">£'+e.docTitle+'</a></p>'+
+                        '<span rel="'+e.userToken+'" class="subscribe btn-add"><em></em>ע</span>'+
+                        '</li>'
+                        
+                    })
+                    authorWrap.find('.ds-picList').html(str)
+                    jQuery(".edit-section").slide({ titCell: ".hd ul", mainCell: ".bd ul", autoPage: true, effect: "left", autoPlay: false, scroll: 4, vis: 4 });
+                } else {
+                    authorWrap.html(strHtml('edit-section my-attention'))
+                    authorWrap.find('.ds-head').html('<h2>ҵĹע</h2><a href="https://my.zol.com.cn/subscribe/" class="more">鿴&gt;</a>')
+                    $.each(data.data, function (i, e) {
+                        var commentAndTimeNum= e.docComment==0?'<span class="commit">'+e.date+'</span>':'<a href="'+e.docComUrl+'" class="commit"><em>'+e.docComment+'</em></a>'
+                        str += '<li class="attention-item">'+
+                        '<a href="'+e.docUrl+'">'+
+                            '<img width="233" height="174" src="'+e.docPic+'" alt="'+e.title+'">'+
+                            '<span class="title">'+e.docTitle+'</span>'+
+                        '</a>'+
+                        '<div class="ma-foot">'+
+                            '<a href="'+e.pcUrl+'" class="tag">'+e.title+'</a>'+
+                            commentAndTimeNum+
+                        '</div>'+
+                    '</li>'
+                        
+                    })
+                    authorWrap.find('.my-attention').html(str)
+                    jQuery(".edit-section").slide({ titCell: ".hd ul", mainCell: ".bd ul", autoPage: true, effect: "left", autoPlay: false, scroll: 4, vis: 4 });
+                }
+                
+            }
+        })
+    }
+    authorWrap.delegate('.subscribe', 'click', function () {
+        if(userid == '' || userid == 'undefined'){
+            // $('#z_cms_login').click();
+            location.href = '//service.zol.com.cn/user/login.php?backUrl=https://www.zol.com.cn'
+            return false;
+        }
+        // жǷס
+        if(isLock == 1 || i>10 ){
+            return false;
+        }
+        var SELF = $(this);
+        var refreshFlag = SELF.attr('id') == 'editorSubscribe';
+
+        subscribe.config.token = SELF.attr('rel');      
+        subscribe.config.selector = SELF;       
+        subscribe.config.refresh = refreshFlag;
+        console.log(subscribe.config.token)
+        if( $(this).hasClass('btn-add') ){
+            // Ӷ
+            subscribe.add();
+        }else if( $(this).hasClass('btn-has') ){
+            // ȡ
+            subscribe.del();
+        }
+        i++;
+    })
+    var subscribe = {
+        config :{
+            selector : '',  // ѡ
+            token    : ''  // token
+        },
+        add: function (e) {
+            var _subscribe_btn = $('.subscribe');
+            $.ajax({
+                url : "//author.zol.com.cn/api/subscribe.php?op=1&platform=1&pos=1&token="+subscribe.config.token,
+                type : "get",
+                cache : false,
+                dataType : "jsonp",
+                success: function (data) {
+                    console.log(data)
+                    if (data.status == 'ok') {
+                        subscribe.config.selector.removeClass('btn-add').addClass('btn-has').html('ѹע');
+                        if (subscribe.config.refresh) {
+                            var subscribeNum = _subscribe_btn.find('em').html() - (-1);
+                            _subscribe_btn.find('em').html(subscribeNum);
+                        }
+                    } else {
+                        // ʧܼ
+                        isLock = 1;
+                    }
+                }
+            });
+        },
+        del: function (e) {
+            var _subscribe_btn = $('.subscribe');
+            $.ajax({
+                url : "//author.zol.com.cn/api/subscribe.php?op=2&platform=1&pos=101&token="+subscribe.config.token,
+                type : "get",
+                cache : false,
+                dataType : "jsonp",
+                success: function (data) {
+                    if (data.status == 'ok') {
+                        subscribe.config.selector.removeClass('btn-has').addClass('btn-add').html('<em></em>ע');
+                        if (subscribe.config.refresh) {
+                            var subscribeNum = _subscribe_btn.find('em').html() - 1;
+                            _subscribe_btn.find('em').html(subscribeNum);
+                        }
+                    } else {
+                        isLock = 1;
+                    }
+                }
+            });
+        }
+    }
+})()
+
+function strHtml(classaName) {
+    return '<div class="edit-section" id="editSection">'+
+    '<div class="ds-head">'+
+    '</div > '+
+    '<div class="edit-scroll">' +
+        '<div class="hd">'+
+            '<span class="next btnOpacity"><i></i></span>'+
+            '<span class="prev btnOpacity"><i></i></span>'+
+        '</div>'+
+        '<div class="bd"><ul class="'+classaName+' clearfix">'+
+            '</ul></div>'+
+        '</div>'+
+    '</div>'+
+'</div>'
+}

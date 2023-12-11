@@ -1,0 +1,64 @@
+/**/
+
+function isSupportLocalStorage() {
+    return window && (window['localStorage'] || window.hasOwnProperty('localStorage'));
+}
+
+function taboolaHandleUpdateUserId(userJson) {
+    var id = userJson && userJson.user && userJson.user.id;
+    if (id) {
+        if (isSupportLocalStorage()) {
+            try {
+                window.localStorage.setItem(window.taboolaLocalStorageItemName, id);
+            }
+            catch(e) {
+            }
+        }
+        return TaboolaCookieSyncObject.userId = id;
+    } 
+    else {
+        return undefined;
+    }
+}
+
+try{
+ window.TaboolaCookieSyncObject = window.TaboolaCookieSyncObject || {
+     userId: null,
+     getPartnerIdentifier: function() {
+             var apiConfig = [],
+             request_url = "",
+             taboolaHandleUpdateUserIdScript = document.createElement('script'),
+             taboolaLocalStorage;
+    apiConfig["API_URL"] = "https://api.taboola.com/1.2/json/";
+    apiConfig["publisher"] = "taboola-usersync";
+    apiConfig["TYPE_PREFIX"] = '/user.sync?app.type=';
+    apiConfig["type"] = "desktop";
+    apiConfig["KEY_PREFIX"] = "&app.apikey=";
+    apiConfig["api_key"] = 'e60e3b54fc66bae12e060a4a66536126f26e6cf8';
+    apiConfig["CALLBACK_PREFIX"] = "&response.callback=";
+    apiConfig["callback"] = "taboolaHandleUpdateUserId";
+    for ( var index in apiConfig) {
+      if (apiConfig.hasOwnProperty(index)) {
+        request_url+= apiConfig[index];
+      }
+    }
+             window.taboolaLocalStorageItemName = 'taboola global:user-id';
+             if(isSupportLocalStorage()){
+                taboolaLocalStorage = window.localStorage.getItem(window.taboolaLocalStorageItemName);
+             }
+         if (!taboolaLocalStorage) {
+             taboolaHandleUpdateUserIdScript.setAttribute('src', request_url);
+             document.head.appendChild(taboolaHandleUpdateUserIdScript);
+         } else {
+             TaboolaCookieSyncObject.userId = taboolaLocalStorage;
+         }
+     }
+ };
+}catch(e){
+ console.log("cookie sync error: " + e)
+}
+
+define('TaboolaSync', [], function() {
+    window.TaboolaCookieSyncObject.getPartnerIdentifier();
+    return window.TaboolaCookieSyncObject;
+});

@@ -1,0 +1,900 @@
+//------------------------------------------------------------------------------------------------
+//首页-东方图闻
+var index_photo = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "3068969",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgurls_hd[0];
+    if (list && list.length > 0) {
+     $("#gallery .swiper-wrapper").append("<li class=\"swiper-slide\"><div class=\"img\"><a target=\"_blank\" href=\""+ linkUrl +"\"><img src=\""+ imgUrl +"\"></a></div><div class=\"title\"><a target=\"_blank\" href=\""+ linkUrl +"\" class=\"blueb16 lh28\">"+ title +"</a></div></li>");
+     $("#thumbs .swiper-wrapper").append("<div class=\"swiper-slide\"><a>"+ title +"</a></div>");
+    }
+   });   
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  },
+  complete: function(XMLHttpRequest,status){ //请求完成后最终执行参数
+ 　　　　if(status=="success"){
+     //大图滚动
+    var thumbsSwiper = new Swiper('#thumbs',{
+      spaceBetween: 0,
+      slidesPerView: 3,
+      direction : 'vertical',
+      watchSlidesVisibility: true,/*避免出现bug*/
+    })
+    var gallerySwiper = new Swiper('#gallery',{
+      spaceBetween: 0,
+      autoplay:true,
+      pagination: {
+     el: '.swiper-pagination',
+     clickable: true,
+      },
+      thumbs: {
+     swiper: thumbsSwiper,
+      }
+    });
+   }
+ 　　}
+ });
+}
+index_photo();
+//------------------------------------------------------------------------------------------------
+//首页-要闻
+var index_yw = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "3068968",// 
+      "skipCount": 0, 
+      "limitCount": 16
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    if (list && list.length > 0) {
+     if(i%4==0){
+      $("#ywwrap").append("<li class=\"Fontbold\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greyc18\" title=\""+ title +"\"><b>"+ title +"</b></a></li>");
+     }else{
+      $("#ywwrap").append("<li><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"grey16\" title=\""+ title +"\">"+ title +"</a></li>");
+     }
+     if(i%4==3){
+      $("#ywwrap").append("<div class=\"blank20\"></div>");
+     }
+    }
+   });
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_yw();
+//------------------------------------------------------------------------------------------------
+//首页-上海
+var index_shanghai = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "946164",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $("#shwrap").append("<li><div><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\"></a><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ title +"</a></p></div></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_shanghai();
+//------------------------------------------------------------------------------------------------
+//首页-区情
+var index_quq = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "2568156",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $("#qqwrap").append("<li><div><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\"></a><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ title +"</a></p></div></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_quq();
+//------------------------------------------------------------------------------------------------
+//首页-中国
+var index_china = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "940338",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $("#chinawrap").append("<li><div><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\"></a><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ title +"</a></p></div></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_china();
+//------------------------------------------------------------------------------------------------
+//首页-国际
+var index_world = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "946155",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $("#worldwrap").append("<li><div><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\"></a><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ title +"</a></p></div></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_world();
+//------------------------------------------------------------------------------------------------
+//首页-财经
+var index_finance = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "946162",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $("#financewrap").append("<li><div><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\"></a><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ title +"</a></p></div></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_finance();
+//------------------------------------------------------------------------------------------------
+//首页-社会
+var index_society = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "946151",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $("#societywrap").append("<li><div><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\"></a><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ title +"</a></p></div></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_society();
+//------------------------------------------------------------------------------------------------
+//首页-娱乐
+var index_enjoy = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "619356",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $("#enjoywrap").append("<li><div><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\"></a><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ title +"</a></p></div></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_enjoy();
+//------------------------------------------------------------------------------------------------
+//首页-导报
+var index_dbnews = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "3069175",// 
+      "skipCount": 0, 
+      "limitCount": 1
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgurls_hd[0];
+     $("#dbnews").append("<a target=\"_blank\" href=\""+ linkUrl +"\"><img border=\"0\" width=\"200\" height=\"296\" src=\""+ imgUrl +"\" alt=\""+ title +"\"></a>");
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_dbnews();
+//------------------------------------------------------------------------------------------------
+//首页-军事
+var index_mil = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "946163",// 
+      "skipCount": 0, 
+      "limitCount": 1
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    var zy = list[i].abstracts;
+    if (list && list.length > 0) {
+     $("#milwrap").append("<div class=\"lh24\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"blueb14\" title=\""+ title +"\">"+ title +"</a></div><div class=\"blank10\"></div><div class=\"fl\"><a target=\"_blank\" href=\""+ linkUrl +"\"><img width=\"147\" height=\"110\" src=\""+ imgUrl +"\" alt=\""+ title +"\"></a></div><div class=\"tx2 grey12 lh22 fl\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"grey12\" title=\""+ title +"\">"+ zy +"</a></div>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_mil();
+//------------------------------------------------------------------------------------------------
+//首页-图片左侧滚动
+var index_tp = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "2217721",// 
+      "skipCount": 0, 
+      "limitCount": 5
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   if(data.specialImgUrlsPCMax){
+    $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = data.specialImgUrlsPCMax[i];
+    var zy = list[i].abstracts;
+    if (list && list.length > 0) {
+     $(".swiper-container2 .swiper-wrapper").append("<div class=\"swiper-slide\"><img src=\""+ imgUrl +"\" /><div><h1><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"white16\">"+ title +"</a></h1><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"white14\">"+ zy +"</a></p></div></div>");
+    }
+   });     
+   }     
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  },
+  complete: function(XMLHttpRequest,status){ //请求完成后最终执行参数
+ 　　　　if(status=="success"){
+     //图片频道图片滚动
+    var photoSwiper = new Swiper('.swiper-container2',{
+      scrollbar: {
+     el: '.swiper-scrollbar',
+      },
+      navigation: {
+     nextEl: '.swiper-button-next',
+     prevEl: '.swiper-button-prev',
+      },
+    }); 
+    photoSwiper.scrollbar.$dragEl.css('background','#b90602');  
+    $(".swiper-container2 .swiper-slide").hover(function(){
+     $(this).find("div").show();    
+    },function(){
+     $(this).find("div").hide();  
+    });
+   }
+ 　　}
+ });
+
+}
+index_tp();
+//------------------------------------------------------------------------------------------------
+//首页-图片右侧
+var index_tpright = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "2217686",// 
+      "skipCount": 0, 
+      "limitCount": 2
+     }), 
+
+
+  success: function (data) {
+   var list = data.list;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    if (list && list.length > 0) {
+     $(".photoright").append("<li><img src=\""+ imgUrl +"\" /><h1><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"grey14\">"+ title +"</a></h1></li>");
+    }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_tpright();
+//------------------------------------------------------------------------------------------------
+//首页-声音图片
+var index_sypic = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "1689272",// 
+      "skipCount": 0, 
+      "limitCount": 1
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    var zhaiyao = list[i].abstracts;
+     $("#syIndex_img").append("<div class=\"lh24\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"blueb14\">"+ title +"</a></div><div class=\"blank10\"></div><div class=\"fl\"><a href=\""+ linkUrl +"\" target=\"_blank\"><img width=\"147\" height=\"110\" src=\""+ imgUrl +"\"></a></div><div class=\"tx2 grey12 lh22 fl\" style=\"height:110px\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"grey12\">"+ zhaiyao +"</a></div><div class=\"blank15\"></div>");
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_sypic();
+//------------------------------------------------------------------------------------------------
+//首页-声音列表
+var index_sylist = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "1689310",// 
+      "skipCount": 0, 
+      "limitCount": 6
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    var zhaiyao = list[i].abstracts;
+     $("#syIndex_list ul").append("<li><a target=\"_blank\"  class=\"grey12\" href=\"" + linkUrl + "\">" + title + "</a></li>");
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_sylist();
+//------------------------------------------------------------------------------------------------
+//首页-政务
+var index_zw = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "3068939",// 
+      "skipCount": 0, 
+      "limitCount": 3
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $("#zwIndex_list").append("<ul  class=\"newslist4\"></ul>")
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgurls_hd[0];
+    var zhaiyao = list[i].abstracts;
+    if(i==0){
+     $("#zwIndex_img").append("<div class=\"lh24\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"blueb14\">"+ title +"</a></div><div class=\"blank10\"></div><div class=\"fl\"><a href=\""+ linkUrl +"\" target=\"_blank\"><img width=\"147\" height=\"110\" src=\""+ imgUrl +"\"></a></div><div class=\"tx2 grey12 lh22 fl\" style=\"height:110px\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"grey12\">"+ zhaiyao +"</a></div><div class=\"blank15\"></div>");
+    }
+    else if(i>=1 && i<3){
+    $("#zwIndex_list ul").append("<li><a target=\"_blank\"  class=\"grey12\" href=\"" + linkUrl + "\">" + title + "</a></li>");
+    }
+
+
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_zw();
+//------------------------------------------------------------------------------------------------
+//首页-视频-新闻
+var index_spnews = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "1380197",// 
+      "skipCount": 0, 
+      "limitCount": 7
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    var zhaiyao = list[i].abstracts;
+    if(i==0){
+     $("#ts_con_0 .sp").append("<p><a target=\"_blank\" href=\""+ linkUrl +"\"><img border=\"0\" width=\"258\" height=\"146\" src=\""+ imgUrl +"\" alt=\""+ title +"\"></a></p><p class=\"play1\"><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\"http://news.eastday.com/images/201306gj/play.png\" border=\"0\" alt=\""+ title +"\"></a></p><div class=\"blank5\"></div><div class=\"lh24\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"blueb14\" title=\""+ title +"\">"+ title +"</a></div><div class=\"clear\"></div>");
+    }
+    else if(i>=1 && i<7){
+    $("#ts_con_0 ul").append("<li><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"grey12\" title=\""+ title +"\">"+ title +"</a></li>");
+    }
+
+
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_spnews();
+//------------------------------------------------------------------------------------------------
+//首页-视频-独家
+var index_spexc = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "1380499",// 
+      "skipCount": 0, 
+      "limitCount": 7
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgUrls[0];
+    var zhaiyao = list[i].abstracts;
+    if(i==0){
+     $("#ts_con_1 .sp").append("<p><a target=\"_blank\" href=\""+ linkUrl +"\"><img border=\"0\" width=\"258\" height=\"146\" src=\""+ imgUrl +"\" alt=\""+ title +"\"></a></p><p class=\"play1\"><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\"http://news.eastday.com/images/201306gj/play.png\" border=\"0\" alt=\""+ title +"\"></a></p><div class=\"blank5\"></div><div class=\"lh24\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"blueb14\" title=\""+ title +"\">"+ title +"</a></div><div class=\"clear\"></div>");
+    }
+    else if(i>=1 && i<7){
+    $("#ts_con_1 ul").append("<li><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"grey12\" title=\""+ title +"\">"+ title +"</a></li>");
+    }
+
+
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_spexc();
+//------------------------------------------------------------------------------------------------
+//首页-头条
+var index_title = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "3068966",// 
+      "skipCount": 0, 
+      "limitCount": 1
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    var imgUrl = list[i].imgurls_hd[0];
+    var zhaiyao = list[i].abstracts;
+     if(imgUrl){
+      $(".indextt").append("<h1><a href=\""+ linkUrl +"\" target=\"_blank\"><img src=\""+ imgUrl +"\" /></a></h1><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ zhaiyao +"</a></p>");
+     }
+     else{
+      $(".indextt").append("<h1><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"blue24\">"+ title +"</a></h1><p><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greya14 lh28\">"+ zhaiyao +"</a></p>");
+     }
+   });
+
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  }
+ });
+
+}
+index_title();
+//------------------------------------------------------------------------------------------------
+//首页-换一换
+var index_hyh = function () {
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsList',
+    dataType:'json',
+    crossDomain: true,
+    contentType: 'application/json',
+    data: JSON.stringify({
+      "specialId": "3068996",// 
+      "skipCount": 0, 
+      "limitCount": 15
+     }), 
+
+
+
+   success: function (data) {
+   var list = data.list;
+   var imgUrl;
+   $.each(list, function (i, value) {
+    var title = list[i].title;
+    var linkUrl = list[i].url.replace("/news/","/pnews/");
+    if(i<2){
+     $(".swiper-container3 .swiper-wrapper").append("<li class=\"swiper-slide\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greyc18\"><b>"+ title +"</b></a></li>");
+    }else{
+     $(".swiper-container3 .swiper-wrapper").append("<li class=\"swiper-slide\"><a href=\""+ linkUrl +"\" target=\"_blank\" class=\"greyc18\">"+ title +"</a></li>");
+    }    
+   });   
+  },
+  error: function () {
+   console.error("获取上海数据失败!");
+  },
+  complete: function(XMLHttpRequest,status){ //请求完成后最终执行参数
+ 　　　　if(status=="success"){
+     //换一换
+    var wySwiper = new Swiper('.swiper-container3',{
+     slidesPerView: 'auto',
+     spaceBetween :30,
+     autoplay:{
+      delay: 5000,
+       },
+    });
+   }
+ 　　}
+ });
+
+}
+index_hyh();
+
+//直播上海滚动
+var scrollDiv = function (id) {
+ id.niceScroll({
+  cursorcolor: "#000",
+  //background:bgcolor,
+  cursoropacitymax: "0.1", //滚动条的透明度值
+  touchbehavior: false,
+  cursorwidth: "0px", //滚动条width
+  cursorborder: "0px",
+  cursorborderradius: "0",
+  autohidemode: false
+ });
+}
+
+function showdate(n) {
+var uom = new Date(new Date()-0+n*86400000);
+uom = uom.getFullYear() + "-" + (uom.getMonth()+1) + "-" + uom.getDate();
+return uom;
+}
+var startTime = showdate(-1)+" "+"00:00:00";
+var endTime = showdate(0)+" "+"23:59:59";
+
+//直播上海列表
+var zbsh = function () {
+ infoAvailable = true;
+ $.ajax({
+  type: 'POST',
+  url: 'https://apin.eastday.com/api/Special/SpecialNewsListByRemark',
+  dataType: 'json',
+  crossDomain: true,
+  contentType: 'application/json',
+  data: JSON.stringify({
+   "remarkIds":"1848",
+            "skipCount": 0,
+            "limitCount": 30,
+   "startTime":startTime,
+   "endTime":endTime,
+   "isRemarkControl":"1",
+  }),
+
+  success: function (data) {
+   var list = data.list
+    $.each(list, function (i, value) {
+     var title = list[i].title;
+     var zhaiyao = list[i].abstracts;
+     var imgUrl1 = list[i].imgUrls[0];
+     if(list[i].imgurls_hd!=null&&list[i].imgurls_hd.length>0){
+      var imgUrl2 = list[i].imgurls_hd[0];
+     }
+     var date = list[i].time.substr(list[i].time.indexOf("-")+1,list[i].time.lastIndexOf(":")-5);
+     var linkUrl = list[i].url.replace("/news/","/pnews/");
+     
+     if (imgUrl2) {
+      $("#zbsh").append("<div class=\"gdbb\"><div class=\"date\">"+date+"</div><div class=\"title\">"+title+"</div><div class=\"img\"><img src=\""+imgUrl2+"\"></div><div class=\"zy\"><a href=\""+linkUrl+"\" target=\"_blank\">"+zhaiyao+"</a></div><div class=\"line\"></div></div>");
+     }else if (imgUrl1) {
+      $("#zbsh").append("<div class=\"gdbb\"><div class=\"date\">"+date+"</div><div class=\"title\">"+title+"</div><div class=\"img\"><img src=\""+imgUrl1+"\"></div><div class=\"zy\"><a href=\""+linkUrl+"\" target=\"_blank\">"+zhaiyao+"</a></div><div class=\"line\"></div></div>");
+     }else{
+      $("#zbsh").append("<div class=\"gdbb\"><div class=\"date\">"+date+"</div><div class=\"title\">"+title+"</div><div class=\"zy\"><a href=\""+linkUrl+"\" target=\"_blank\">"+zhaiyao+"</a></div><div class=\"line\"></div></div>");
+     }
+
+    });
+
+  },
+  error: function () {
+   console.error("获取直播上海失败!");
+  }
+ });
+
+}
+
+$(document).ready(function () {
+scrollDiv($("#zbsh"));
+zbsh();
+setInterval("zbsh()",600000);
+
+
+$(document).on("click",".gdbb .img img",function(){console.log("img");
+  $(".pimg").remove();
+  var imgsrc=this.src;
+  var $inner;
+  $inner="<img src=\""+imgsrc+"\" \/>";
+  $(".tanc").append("<p class=\"pimg\">"+$inner+"<\/p>");
+  $(".tanc").show();
+});
+  $("#closetan").click(function(){
+    $(".tanc").hide();
+    $(".pimg").remove();
+  });
+    $(window).scroll(function(){
+if($(document).scrollTop()>1100){
+$(".tanc").hide();
+$(".pimg").remove();}
+    }); 
+ $("#shrefresh").click(function(){
+ $("#zbsh").html('');
+    setTimeout("zbsh()",100);
+ $("#zbsh").getNiceScroll(0).doScrollTop(0);
+ });
+if($(window).width()>1500){
+    $(".tanc").css({"left":"20%","top":"100px"});  
+  }
+});  
+//========================================================================

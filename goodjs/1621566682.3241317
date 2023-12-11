@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "type": "pageConfig",
+    "namespace": "h4pnk4yk9o4",
+    "id": "tminpcsaexn",
+    "version": "2.1.0"
+  },
+  "template": {
+    "parseAssets": true,
+    "cacheFirst": true,
+    "type": "html",
+    "url": "https://www.alibaba.com/toprankedsellers/index.html"
+  },
+  "apis": [],
+  "assets": []
+}

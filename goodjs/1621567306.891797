@@ -1,0 +1,67 @@
+$(window).on("load", function () {
+    handleOnTabChange();
+    resetTabs();
+});
+
+function resetTabs() {
+    handleChangeLifestyleIncome();
+    handleChangeTravelIncome();
+    handleChangeSportsIncome();
+}
+
+function handleOnTabChange() {
+    // resetTabs();
+    setTimeout(function() {
+        $(".product-tabs li").each(function (i) {
+            $('.' + $(this).attr('id') + '-leftpanel').hide()
+        });
+        const activetab = $(".product-tabs li.active").attr('id');
+        $('.' + activetab + '-leftpanel').show()
+        if (activetab === 'lifestyle-tab') {
+            handleChangeLifestyleIncome()
+        } else if (activetab === 'travel-tab') {
+            handleChangeTravelIncome()
+        } else if (activetab === 'sports-tab') {
+            handleChangeSportsIncome()
+        }
+    }, 150)
+}
+
+function handleChangeLifestyleIncome() {
+    $('.lifestyle-2-5').hide();
+    $('.lifestyle-5').hide();
+    $('.lifestyle-10').hide();
+    $('.lifestyle-15').hide();
+    const activetab = $(".product-tabs li.active").attr('id');
+    if (activetab == "lifestyle-tab") {
+        const income = document.querySelector('input[name="lifestyle_income"]:checked').value
+        $('.lifestyle-' + income.replace('.', '-')).parent().show();
+        $('.lifestyle-' + income.replace('.', '-')).show();
+    }
+}
+
+function handleChangeTravelIncome() {
+    $('.travel-2-5').hide();
+    $('.travel-5').hide();
+    $('.travel-10').hide();
+    $('.travel-15').hide();
+    const activetab = $(".product-tabs li.active").attr('id');
+    if (activetab == "travel-tab") {
+        const income = document.querySelector('input[name="travel_income"]:checked').value
+        $('.travel-' + income.replace('.', '-')).parent().show();
+        $('.travel-' + income.replace('.', '-')).show();
+    }
+}
+
+function handleChangeSportsIncome() {
+    $('.sports-2-5').hide();
+    $('.sports-4-8').hide();
+    $('.sports-5').hide();
+    $('.sports-10').hide();
+    const activetab = $(".product-tabs li.active").attr('id');
+    if (activetab == "sports-tab") {
+        const income = document.querySelector('input[name="sports_income"]:checked').value
+        $('.sports-' + income.replace('.', '-')).parent().show();
+        $('.sports-' + income.replace('.', '-')).show();
+    }
+}

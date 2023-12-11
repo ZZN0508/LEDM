@@ -1,0 +1,34 @@
+{"@context": "http://schema.org/","@type": "Organization","url": "https://www.paypal.com/","logo": "https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png"}
+if (self === top || /paypal.com$/.test(window.parent.location.hostname)) {var antiClickjack = document.getElementById('antiClickjack');if (antiClickjack) {antiClickjack.parentNode.removeChild(antiClickjack);}} else {top.location = self.location;}
+
+(function(){
+    function loadScript(src, cb) {
+      var s, r, t;
+      r = false;
+      s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = src;
+      s.onload = s.onreadystatechange = function() {
+        if (!r && (!this.readyState || this.readyState == "complete")) {
+          r = true;
+          cb();
+        }
+      };
+      t = document.getElementsByTagName("body")[0];
+      t.appendChild(s);
+    }
+    function mountCode() {
+        if (typeof window !== "undefined" && window.document && window.document.createElement) {
+            var appElement = React.createElement(window.PageBundle.default,   {modelData: window.modelData});
+            ReactDOM.hydrate(appElement, window.document.getElementById("app-element-mountpoint"));
+        }
+    }
+    window.addEventListener('load', function() {
+        loadScript("https://www.paypalobjects.com/marketing-resources/js/1c/9d841b31c010d3c93e83e617bf0c6d94cae4f9.js", mountCode);
+    });
+})();
+
+var dataLayer = {"contentCountry":"JP","contentLanguage":"ja","localTimeZone":"","localTime":"Thu May 20 2021 20:10:18 GMT-0700 (Pacific Daylight Time)"};
+ (function() { 'use strict'; var callFpti = function(fptiDataString) { PAYPAL.core['pta'] = PAYPAL.analytics.setup({ data: fptiDataString, trackCPL:true, url: 'https://t.paypal.com/ts' }); }; if(typeof PAYPAL.analytics !== 'undefined'){ PAYPAL.core = PAYPAL.core || {}; var fptiDataString = 'pgrp=main%3Amktg%3Apersonal%3A%3Ahome&page=main%3Amktg%3Apersonal%3A%3Ahome%3A%3A%3A&pgst=Unknown&calc=6dfebecda8e20&nsid=GUTcg1puuhJd_bXLT4MbkwmUhQ-iQH42&rsta=ja_JP&pgtf=Nodejs&env=live&s=ci&ccpg=jp&csci=b4f66171efa7425580a813d64f9fb4a2&comp=mppnodeweb&tsrce=mppnodeweb&cu=0&pgld=Unknown&bzsr=main&bchn=mktg&pgsf=personal&lgin=out&shir=main_mktg_personal_&pros=1&lgcook=0'; if (typeof ga !== 'undefined' && ga !== null) { ga(function(tracker) { var gaClientId = tracker.get('clientId'); if (gaClientId) { fptiDataString += '&gacook=' + gaClientId; } callFpti(fptiDataString); }); } else { callFpti(fptiDataString); } } })();
+ if (window.console || 'console' in window) { setTimeout(console.log.bind(console,'%c WARNING!!!', 'color:#FF8F1C; font-size:40px;')); setTimeout(console.log.bind(console,'%c This browser feature is for developers only. Please do not copy-paste any code or run any scripts here. It may cause your PayPal account to be compromised.', 'color:#003087; font-size:16px; font-weight: bold;')); setTimeout(console.log.bind(console,'%c For more information, http://en.wikipedia.org/wiki/Self-XSS', 'color:#003087; font-size:16px; font-weight: bold;')); } document.querySelector('html').classList.remove('no-js');
+ (function (){ var classname = document.getElementsByClassName("print-button"); var print = function() { window.print(); }; for (var i = 0; i < classname.length; i++) { classname[i].addEventListener('click', print, false); } })(); 

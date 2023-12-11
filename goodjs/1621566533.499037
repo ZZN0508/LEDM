@@ -1,0 +1,181 @@
+
+	var date = {
+		isDuringDate: function (beginDateStr, endDateStr) {
+			var curDate = new Date(),
+				beginDate = new Date(beginDateStr),
+				endDate = new Date(endDateStr);
+			if (curDate >= beginDate && curDate <= endDate) {
+				return true;
+			}
+			return false;
+		}
+	}; 
+	var _flag=date.isDuringDate('2020/10/30 00:00:00', '2020/12/15 23:59:59');
+	$(document).ready(function(){
+		if(_flag){
+			//$("#yw3").hide();
+			$("#yw4").hide();
+			$("#zhuanQu").show();
+		}
+	});
+	
+	function isMob() {
+		return /AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))
+	}
+
+
+		$(document).ready(function() {
+			$.ajax({
+				url: "https://html5app.gmw.cn/api/?m=getime&jsoncallback=?",
+				dataType: "json",
+				success: function(date) {
+					var _myDate = new Date(date * 1000);
+					var _day = _myDate.getDate();
+					var _month = _myDate.getMonth() + 1;
+					var _year = _myDate.getFullYear();
+					//飘红
+					//if(_month == 3) {
+					//	if(_day >= 3 && _day <= 20) {
+					//		$('.g_bdw').addClass('g_lh');
+					//		$(".m_linkIndex_box,.g-lianghuiZQ").show();
+					//		$('.g_links').hide();						
+					//	}else{
+					//		$('.g_bdw').removeClass('g_lh');
+					//		$('.g_links').show();
+					//	}	
+					//}
+					//飘红
+					if(_year == 2021){
+						//浮层
+						if(_month == 6) {
+							if(_day == 1) {
+								$(".ad_full_screen_b").show();						
+							}
+							if(_day >= 1 && _day <= 16) {
+								$('.m_specia').show();
+							}	
+						}
+						//弹窗
+						if(_month == 5) {
+							if(_day >= 17 && _day <= 21) {
+								$(".ad_pc").show();						
+							}
+							if(_day >= 17 && _day <= 31) {
+								$('.m_specia').show();
+							}	
+						}
+						if(_month == 6) {
+							if(_day == 2) {
+								$(".ad_pc").show();						
+							}	
+						}
+					}
+					
+					
+				}
+			});
+		});
+		//关闭大浮层
+		$(".ad_popWin_b_close").click(function() {
+			ad_popWin_b_hide();
+		});
+		//关闭小浮层
+		$(".ad_popWin_s_close").click(function() {
+			ad_popWin_s_hide();
+		});
+
+		function ad_popWin_b_hide() { //隐藏
+			$(".ad_popWin_b").fadeOut(200, function() {
+				$(".ad_popWin_s").fadeIn(200);
+			});
+		}
+
+		function ad_popWin_s_hide() { //隐藏
+			$(".ad_popWin_s").hide();
+		}
+		//浮层广告  悬浮在页面底部  关闭大浮层
+		$(document).ready(function(){
+			//显示5秒关闭
+			setTimeout(function(){
+				ad_full_screen_b_hide();
+			},3000);
+			//底部弹窗
+			setTimeout(function(){
+				ad_popWin_b_hide();
+			},5000);
+		});
+		$(".ad_full_screen_b_close").click(function(){
+			ad_full_screen_b_hide();
+		});
+		function ad_full_screen_b_hide() {  //隐藏
+			$(".ad_full_screen_b").fadeOut(200);
+		}
+	
+
+		/*$(function(){
+            $.ajax({
+                url:"https://html5app.gmw.cn/api/?m=getime&jsoncallback=?",
+                dataType:"json",
+                success:function(date){
+                    var myDate = new Date(date*1000);
+                    var day = myDate.getDate();
+					//设置左右对联广告
+					switch (day){
+						case 4:
+							$(".m_dlAds").show();
+							$(".m_dlAd").eq(0).show();
+							//弹窗
+							$(".ad_pc").eq(0).show();
+							break;
+						case 5:
+							$(".m_dlAds").show();
+							$(".m_dlAd").eq(1).show();
+							//弹窗
+							$(".ad_pc").eq(1).show();
+							break;
+						case 8:
+							$(".m_dlAds").show();
+							$(".m_dlAd").eq(2).show();
+							//弹窗
+							$(".ad_pc").eq(2).show();
+							break;
+						case 9:
+							$(".m_dlAds").show();
+							$(".m_dlAd").eq(3).show();
+							//弹窗
+							$(".ad_pc").eq(3).show();
+							break;
+						case 10:
+							$(".m_dlAds").show();
+							$(".m_dlAd").eq(4).show();
+							//弹窗
+							$(".ad_pc").eq(4).show();
+							break;
+						case 11:
+							$(".m_dlAds").show();
+							$(".m_dlAd").eq(5).show();
+							//弹窗
+							$(".ad_pc").eq(5).show();
+							break;	
+						case 12:
+							//弹窗
+							$(".ad_pc").eq(6).show();
+							break;
+							
+						default:
+						$(".m_dlAds").hide();
+					}
+                }
+            });
+        })*/
+	
+
+_atrk_opts = { atrk_acct:"4+gli1aUCm00OA", domain:"gmw.cn",dynamic: true};
+(function() {
+        var as = document.createElement("script");
+        as.type = "text/javascript";
+        as.async = true;
+        as.src = "https://certify-js.alexametrics.com/atrk.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(as, s);
+})();

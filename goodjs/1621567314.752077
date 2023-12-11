@@ -1,0 +1,115 @@
+/* Git */
+/**
+ * navHoverClass
+ * @since 2.0.0
+ * @author sm19
+ */
+;(function ( $, window, document, undefined ) {
+ 
+ // private
+ var
+  constructor,
+  importErrorCount = 0,
+  init
+  ;
+ 
+ init = function(){
+  
+  navHoverClass = function(scope){
+   
+   this.owl = scope;
+   this.owl._options = $.extend(navHoverClass.Defaults, this.owl.options);
+   
+   //link callback events with owl carousel here
+   this.owl.$element.on(
+    {
+     'initialized.owl.carousel' : $.proxy(function(e) {
+      this.initialize(e);
+     }, this),
+     'changed.owl.carousel' : $.proxy(function(e) {
+      this.update(e);
+     }, this)
+    }
+    
+   );
+   
+  }
+  
+  navHoverClass.Defaults = {
+   navHoverClass : false
+  }
+  
+  $.fn.owlCarousel.Constructor.Plugins['navHoverClass'] = navHoverClass;
+  
+  //mehtods:
+  navHoverClass.prototype.initialize = function(e){
+   
+   if(!this.owl._options.navHoverClass) return;
+   
+   var _controls = this.owl._plugins.navigation._controls;
+   
+   _controls.$previous
+    .on('mouseenter', {'className':this.owl._options.navHoverClass}, this.mouseenter)
+    .on('mouseleave', {'className':this.owl._options.navHoverClass}, this.mouseleave);
+   _controls.$next
+    .on('mouseenter', {'className':this.owl._options.navHoverClass}, this.mouseenter)
+    .on('mouseleave', {'className':this.owl._options.navHoverClass}, this.mouseleave);
+   
+  };
+  navHoverClass.prototype.mouseenter = function(e) {
+   
+   $(this).addClass(e.data.className);
+   
+  };
+  navHoverClass.prototype.mouseleave = function(e) {
+   
+   $(this).removeClass(e.data.className);
+   
+  };
+  navHoverClass.prototype.update = function(e){
+   
+   if(!this.owl._options.navHoverClass) return;
+   if(!this.owl._plugins.navigation._controls.$previous) return;
+   
+   var _controls = this.owl._plugins.navigation._controls;
+   
+   _controls.$previous.trigger('mouseleave');
+   _controls.$next.trigger('mouseleave');
+   
+  };
+  
+  //destroy:
+  navHoverClass.prototype.destroy = function(){
+   //events here
+  };
+  
+ };
+ 
+ constructor = function(){
+  
+  // import
+  if($.fn.owlCarousel){
+   
+   init();
+   
+  }else{
+   
+   importErrorCount++;
+   
+   if(importErrorCount<20) {
+    
+    setTimeout(constructor,10);
+    
+   }else{
+    
+    throw 'import error : owl.carousel.2.0.0-navHoverClass.js';
+    
+   }
+   
+  }
+  
+ };
+ 
+ constructor();
+ 
+})( window.Zepto || window.jQuery, window,  document );

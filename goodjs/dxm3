@@ -1,0 +1,861 @@
+//返回顶部
+$(window).scroll(function () {
+    var $return = $('.return');
+    if ($(this).scrollTop() > 500) {
+        $return.show();
+    } else {
+        $return.hide();
+        $('.sty1').hide();
+    }
+});
+$(document).off('click', '.return').on('click', '.return', function () {
+    $('body,html').animate({'scrollTop': 0}, 350);
+});
+$(document).off('mouseover', '.return').on('mouseover', '.return', function () {
+    $('.sty1').show();
+    $('.return .back-modal').css('opacity','.6');
+});
+$(document).off('mouseout', '.return').on('mouseout', '.return', function () {
+    $('.sty1').hide();
+    $('.return .back-modal').css('opacity','.3');
+});
+$(document).off('mouseover', '.QR').on('mouseover', '.QR', function () {
+    $('.sty3').show();
+    $('.QR .back-modal').css('opacity','.6');
+});
+$(document).off('mouseout', '.QR').on('mouseout', '.QR', function () {
+    $('.sty3').hide();
+    $('.QR .back-modal').css('opacity','.3');
+});
+$(document).off('mouseover', '.qqshow').on('mouseover', '.qqshow', function () {
+    $('.sty2').show();
+    $('.qqshow .back-modal').css('opacity','.6');
+});
+$(document).off('mouseout', '.qqshow').on('mouseout', '.qqshow', function () {
+    $('.sty2').hide();
+    $('.qqshow .back-modal').css('opacity','.3');
+});
+$(document).off('mouseover', '.sty2').on('mouseover', '.sty2', function () {
+    $(this).show();
+});
+$(document).off('mouseout', '.sty2').on('mouseout', '.sty2', function () {
+    $(this).hide();
+});
+$(document).off('blur', '#exampleInputName').on('blur', '#exampleInputName', function () {
+    var $that = $(this),
+        exampleInputName = $.trim($that.val()),
+        $userNameBox = $that.closest('.parentPosition'),
+        $userVerify = $('#loginForm .userVerify');
+
+    if (exampleInputName) {
+        if (exampleInputName.indexOf('@') !== -1) {
+            $userVerify.html('暂不支持邮箱登录，请使用用户名登录！');
+            if ($userNameBox.length) $userNameBox.find('input').css('borderColor', '#ec4339');
+            return;
+        }
+    }
+    $userVerify.empty();
+    if ($userNameBox.length) $userNameBox.find('input').css('borderColor', '');
+});
+
+/*登录扫描提示文案*/
+$(document).off('mouseenter', '#wayScanSwitchBtnId').on('mouseenter', '#wayScanSwitchBtnId', function () {
+    var dataSwitch = $(this).attr('data-switch');
+    $(this).find('.scanMoveState').removeClass('hide').find('#scanTipWrite').text(+dataSwitch === 1 ? '扫码登录' : '账号登录');
+})
+$(document).off('mouseleave', '#wayScanSwitchBtnId').on('mouseleave', '#wayScanSwitchBtnId', function () {
+    $(this).find('.scanMoveState').addClass('hide');
+});
+
+//二维码
+var refreshTid, //5分钟定时器
+    loseQrTime, //2分钟失效定时器
+    shuffleStatus = false, //显示刷新标签
+    statusRecodeId; //请求轮询状态
+
+//登陆验证
+var login = function(type){
+    var $exampleInputName = $('#exampleInputName'),
+        $userNameBox = $exampleInputName.closest('.parentPosition'),
+        exampleInputName = $.trim($exampleInputName.val()),
+        $landing = $('.landing');
+
+    if(!exampleInputName){
+        $landing.html('请输入您的用户名！');
+        $exampleInputName.focus();
+        if($userNameBox.length) $userNameBox.find('input').css('borderColor','#ec4339');
+        return false;
+    } else {
+        var $userVerify = $('#loginForm .userVerify');
+        //判断是否输入了邮箱
+        if (exampleInputName.indexOf('@') !== -1) {
+            $exampleInputName.focus();
+            $userVerify.html('暂不支持邮箱登录，请使用用户名登录！');
+            if($userNameBox.length) $userNameBox.find('input').css('borderColor','#ec4339');
+            return false;
+        }
+        $userVerify.empty();
+        if($userNameBox.length) $userNameBox.find('input').css('borderColor','');
+
+    }
+    var $exampleInputPassword = $('#exampleInputPassword'),
+        $passwordBox = $exampleInputPassword.closest('.parentPosition'),
+        exampleInputPassword = $.trim($exampleInputPassword.val());
+    if (!exampleInputPassword) {
+        $landing.html('请填写有效的密码！');
+        $exampleInputPassword.focus();
+        if ($passwordBox.length) $passwordBox.find('input').css('borderColor', '#ec4339');
+        return false;
+    } else {
+        if ($passwordBox.length) $passwordBox.find('input').css('borderColor', '');
+    }
+    var $loginVerifyCode = $('#loginVerifyCode'),
+        $codeBox = $loginVerifyCode.closest('.parentPosition'),
+        loginVerifyCode = $.trim($loginVerifyCode.val());
+    if (!loginVerifyCode) {
+        $landing.html('请填写有效的验证码！');
+        $loginVerifyCode.focus();
+        if ($codeBox.length) $codeBox.find('input').css('borderColor', '#ec4339');
+        return false;
+    } else {
+        if ($codeBox.length) $codeBox.find('input').css('borderColor', '');
+    }
+    var url = $.trim($('#redirectUrl').val()),
+        $loginBtn = $('#loginBtn');
+
+    $loginBtn.prop('disabled', true); //请求登录先把登录按钮禁用，防止用户重复点击
+
+    var loginObj = {
+        account: exampleInputName, //用户名称
+        password: exampleInputPassword, //密码
+        dxmVerify: loginVerifyCode, //验证码
+        loginVerifyCode: null, //不知道是什么验证码，原来的传值是个null
+        remeber: $('[name="remeber"]').is(':checked') ? 'remeber' : null, //是否记住密码，勾选了则传值，不勾选传null
+        loginRedUrl: url,
+        url: url //url,之前跳转的地址，如果用户没登陆跳转到某个页面，会拦截跳到登录页，这个时候这个url会保存之前要跳转的地址，登录成功后自动跳到这个地址
+    }
+
+    //绑定账号uuid
+    if (type === 'bind') {
+        loginObj.uuid = $.trim($('#uuidBindDataId').val());
+    }
+
+    //清空之前校验数据
+    $landing.empty();
+    //清空二维码轮询接口
+    shuffleStatus = true; //显示刷新标签
+    if (refreshTid) window.clearTimeout(refreshTid);
+    if (loseQrTime) window.clearTimeout(loseQrTime);
+    if (statusRecodeId) window.clearTimeout(statusRecodeId);
+
+    $.ajax({
+        type: 'POST',
+        url: 'user/userLoginNew2.json',
+        data: loginObj,
+        dataType: 'json',
+        success: function (data) {
+            var sto = setTimeout(function () {
+                $loginBtn.prop('disabled', false); //请求登录完之后去掉禁用
+                clearTimeout(sto);
+                sto = null;
+            }, 1000);
+            if(!+data.code){
+                if (data.url){
+                    window.location.href = data.url;
+                }else {
+                    window.location.href = gitWinLocHref() + 'home.htm';
+                }
+            }else{
+                if (+data.code === -2 && type === 'bind') {
+                    $.fn.message({type: 'error', msg: data.error});
+                } else {
+                    $landing.html(data.error);
+                }
+                document.getElementById('loginImgVcode').src = gitWinLocHref() + 'verify/code.htm?t='+(new Date()).getTime();
+                if (data.error === '验证码填写错误') {
+                    $loginVerifyCode.focus();
+                    if ($codeBox.length) $codeBox.find('input').css('borderColor', '#ec4339');
+                } else {
+                    if ($codeBox.length) $codeBox.find('input').css('borderColor', '');
+                }
+            }
+        },
+        error: function () {
+            $loginBtn.prop('disabled', false); //请求登录失败去掉禁用
+            $.fn.message({type:'error',msg:'网络异常，请稍后重试！'});
+        }
+    });
+};
+
+$(document).off('keyup', '#userPassword1').on('keyup', '#userPassword1', function () {
+    $('.verificode').html('');
+});
+$(document).off('keyup', '#userEmall').on('keyup', '#userEmall', function () {
+    $('.verificode').html('');
+});
+$(document).off('keyup', '#userQQ').on('keyup', '#userQQ', function () {
+    $('.verificode').html('');
+});
+$(document).off('keyup', '#verificode').on('keyup', '#verificode', function () {
+    $('.verificode').html('');
+});
+
+//图片轮播时间
+$('.carousel').carousel({
+    interval: 4000
+});
+$(window).resize(function() {
+    $('body').css({'width':'100%','height':'100%'});
+});
+
+//刷新验证码
+var updateVerifyCode = function(domId){
+    var times = new Date().getTime();
+    $(domId).attr({
+        'src': gitWinLocHref() + 'verify/code.htm?t=' + times,
+        'data-time': times
+    });
+};
+var DXM_LOGIN = (function($, W, D) {
+    //注册弹层阅读并接受选择框选中取消时，禁用或取消禁用注册按钮
+    $(D).off('click', '[name="ReadAndAccept"]').on('click', '[name="ReadAndAccept"]', function () {
+        $('.registerBtn').prop('disabled', !$(this).is(':checked'));
+    });
+
+    //注册弹层输入框聚焦显示气泡
+    $(D).off('focus', '.registerIpt').on('focus', '.registerIpt', function () {
+        $('.registerFocusShowBubble').addClass('hide');
+        $(this).closest('.registerBox').find('.registerFocusShowBubble').removeClass('hide');
+    });
+    //注册弹层输入框失去焦点隐藏气泡，验证输入信息是否正确
+    $(D).off('blur', '.registerIpt').on('blur', '.registerIpt', function (e) {
+        $('.registerFocusShowBubble').addClass('hide');
+        DXM_LOGIN.registerVerify('blur', $(this).attr('name'));
+    });
+
+    //登录页面的验证码输入框聚焦时，验证一下当前验证码是否已经超过50秒，是则刷新获取下最新验证码
+    $(D).off('focus', '#loginVerifyCode').on('focus', '#loginVerifyCode', function(){
+        var newTiem = new Date().getTime(),
+            $loginImgVcode = $('#loginImgVcode'),
+            oldTime = $loginImgVcode.attr('data-time');
+
+        if(!oldTime || (newTiem - +oldTime >= 50000)){
+            updateVerifyCode('#loginImgVcode');
+        }
+    });
+
+    //注册账号弹层的验证码输入框聚焦时，验证一下当前验证码是否已经超过50秒，是则刷新获取下最新验证码
+    $(D).off('focus', '#verificode').on('focus', '#verificode', function(){
+        var newTiem = new Date().getTime(),
+            $imgVcode = $('#imgVcode'),
+            oldTime = $imgVcode.attr('data-time');
+
+        if(!oldTime || (newTiem - +oldTime >= 50000)){
+            updateVerifyCode('#imgVcode');
+        }
+    });
+
+    return {
+        //立即登录
+        openLoginMethod: function () {
+            W.location.href = gitWinLocHref() + 'index.htm';
+        },
+
+        //注册弹层显示
+        showSignInModal: function () {
+            $('#registerUserName').val('');
+            $('#userPassword1').val('');
+            $('#confirmUserPassword1').val('');
+            $('#countryCodeSel').val('86');
+            $('#userMobileNumber').val('');
+            $('#userEmall').val('');
+            $('#userQQ').val('');
+            $('#verificode').val('');
+            $('.registerMsg').empty();
+            $(':checkbox[name="ReadAndAccept"]').prop('checked', false);
+            $('.registerBtn').prop('disabled', true);
+            $('#registerModal').modal('show');
+            //重新刷新二维码
+            updateVerifyCode('#imgVcode');
+        },
+
+        //完成注册，立即使用
+        finishRegister: function () {
+            var dataObj = this.registerVerify('register');
+            if(!dataObj) return;
+            var $verificode = $('#verificode'),
+                $verificodeMsg = $('.verificode'),
+                $registerBtn = $('.registerBtn'),
+                $inputCodeBox = $('.verCodePerPositin');
+
+            $registerBtn.prop('disabled', true); //请求注册先禁用按钮，防止重复点击
+            $.ajax({
+                type: 'POST',
+                url: 'user/registerNew1.json',
+                data: dataObj,
+                dataType: 'json',
+                success: function (data) {
+                    var registerBtnProp = setTimeout(function () {
+                        $registerBtn.prop('disabled', false); //请求注册完之后去掉禁用
+                        clearTimeout(registerBtnProp);
+                        registerBtnProp = null;
+                    }, 3000);
+                    if(!+data.code){
+                        $.fn.message({type: 'success', msg: data.msg});
+                        var sto = setTimeout(function () {
+                            window.location.href = gitWinLocHref() + 'home.htm';
+                            clearTimeout(sto);
+                        }, 2000);
+                    }else{
+                        $verificodeMsg.html(data.error);
+                        if(data.error === '验证码填写错误'){
+                            document.getElementById('imgVcode').src = gitWinLocHref() + 'verify/code.htm?t='+(new Date()).getTime();
+                            $verificode.focus();
+                            if($inputCodeBox.length) $inputCodeBox.css('borderColor','#ec4339');
+                        }else {
+                            if($inputCodeBox.length) $inputCodeBox.css('borderColor','#c8c7c6');
+                        }
+                        $registerBtn.prop('disabled', false); //请求注册完之后去掉禁用
+                    }
+                },
+                error: function () {
+                    $registerBtn.prop('disabled', false); //请求注册失败去掉禁用
+                    $.fn.message({type:'error',msg:'网络异常，请稍后重试！'});
+                }
+            });
+        },
+
+        registerVerify: function (type, name) {
+            //用户名
+            var $userName = $('#registerUserName'),
+                userName = $.trim($userName.val()),
+                $userNameErrMsg = $('.userNameErrMsg');
+
+            // $('.registerMsg').empty(); //先把所有的报错信息清空
+            if(type !== 'blur' || name === 'registerName'){
+                var $inputUserBox = $userNameErrMsg.siblings('.parentPosition');
+                if(!userName){
+                    $userNameErrMsg.text('请输入您的用户名！').addClass('m-bottom12');
+                    if(type !== 'blur') $userName.focus();
+                    if($inputUserBox.length) $inputUserBox.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else if(!userName.match(/^[a-zA-Z0-9][a-zA-Z0-9_-]{3,29}$/)){
+                    $userNameErrMsg.text('只能输入字母数字下划线，字符长度在4到30之间！').addClass('m-bottom12');
+                    if(type !== 'blur') $userName.focus();
+                    if($inputUserBox.length) $inputUserBox.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else{
+                    $userNameErrMsg.empty().removeClass('m-bottom12');
+                    if($inputUserBox.length) $inputUserBox.find('input').css('borderColor','');
+                }
+            }
+
+            //密码
+            var $userPassword1 = $('#userPassword1'),
+                password = $.trim($userPassword1.val()),
+                $userPasswordErrMsg = $('.userPasswordErrMsg');
+
+            if(type !== 'blur' || name === 'registerPwd'){
+                var $inputPass1Box = $userPasswordErrMsg.siblings('.parentPosition');
+                if(!password){
+                    $userPasswordErrMsg.text('密码不能为空！').addClass('m-bottom12');
+                    if(type !== 'blur') $userPassword1.focus();
+                    if($inputPass1Box.length) $inputPass1Box.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/) || password.indexOf(' ') !== -1 || /.*[\u4e00-\u9fa5]+.*$/.test(password)){//新增密码限制中文的验证
+                    $userPasswordErrMsg.text('密码格式不正确！不能含有空格,必须包含大小写字母、数字,支持特殊字符,长度为8-20个字符！').addClass('m-bottom12');
+                    if(type !== 'blur') $userPassword1.focus();
+                    if($inputPass1Box.length) $inputPass1Box.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else{
+                    $userPasswordErrMsg.empty().removeClass('m-bottom12');
+                    if($inputPass1Box.length) $inputPass1Box.find('input').css('borderColor','');
+                }
+            }
+
+            //确认密码
+            var $confirmUserPassword1 = $('#confirmUserPassword1'),
+                confirmPwd = $.trim($confirmUserPassword1.val()),
+                $userConfirmPasswordErrMsg = $('.userConfirmPasswordErrMsg');
+
+            if(type !== 'blur' || name === 'registerConfirmPwd'){
+                var $inputpass2Box = $userConfirmPasswordErrMsg.siblings('.parentPosition');
+                if(!confirmPwd){
+                    $userConfirmPasswordErrMsg.text('确认密码不能为空！').addClass('m-bottom12');
+                    if(type !== 'blur') $confirmUserPassword1.focus();
+                    if($inputpass2Box.length) $inputpass2Box.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,20}$/)){
+                    $userConfirmPasswordErrMsg.text('确认密码格式不正确！不能含有空格,必须包含大小写字母、数字,支持特殊字符,长度为8-20个字符！').addClass('m-bottom12');
+                    if(type !== 'blur') $confirmUserPassword1.focus();
+                    if($inputpass2Box.length) $inputpass2Box.find('input').css('borderColor','#ec4339');
+                    return false;
+                }
+                if($.trim($confirmUserPassword1.val()) !== $.trim($userPassword1.val())){
+                    $userConfirmPasswordErrMsg.text('两次密码填写不一致').addClass('m-bottom12');
+                    if(type !== 'blur') $confirmUserPassword1.focus();
+                    if($inputpass2Box.length) $inputpass2Box.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else{
+                    $userConfirmPasswordErrMsg.empty().removeClass('m-bottom12');
+                    if($inputpass2Box.length) $inputpass2Box.find('input').css('borderColor','');
+                }
+            }
+            //手机号码
+            var $userMobileNumber = $('#userMobileNumber'),
+                mobile = $.trim($userMobileNumber.val()),
+                $userMobileErrMsg = $('.userMobileErrMsg');
+
+            if(type !== 'blur' || name === 'mobileNumber'){
+                var $inputPhoneBox = $userMobileNumber.closest('.user');
+                if(!mobile){
+                    $userMobileErrMsg.text('手机号码不能为空').addClass('m-bottom12');
+                    if(type !== 'blur') $userMobileNumber.focus();
+                    if($inputPhoneBox.length) $inputPhoneBox.find('input').css('borderColor','#ec4339');
+                    return false;
+                }
+                var validateMobile = /^((\+\d{2}-)?(\d{2,3}-)?([1][3,4,5,6,7,8,9][0-9]\d{8}))$/,
+                    countryCode = $('#countryCodeSel').val();
+                if (+countryCode === 86 && !('+' + countryCode + '-' + mobile).match(validateMobile)) { //只验证国内手机号，国外手机号只限制输入框输入数字即可
+                    $userMobileErrMsg.text('请填写正确的手机信息').addClass('m-bottom12');
+                    if(type !== 'blur') $userMobileNumber.focus();
+                    if($inputPhoneBox.length) $inputPhoneBox.find('input').css('borderColor','#ec4339');
+                    return;
+                }else{
+                    $userMobileErrMsg.empty().removeClass('m-bottom12');
+                    if($inputPhoneBox.length) $inputPhoneBox.find('input').css('borderColor','');
+                }
+            }
+
+            //邮箱
+            var $userEmall = $('#userEmall'),
+                email = $.trim($userEmall.val()),
+                $userEmailErrMsg = $('.userEmailErrMsg');
+
+            if(type !== 'blur' || name === 'email'){
+                var $inputEmailBox = $userEmailErrMsg.siblings('.parentPosition');
+                if(!email){
+                    $userEmailErrMsg.text('邮箱不能为空！').addClass('m-bottom12');
+                    if(type !== 'blur') $userEmall.focus();
+                    if($inputEmailBox.length) $inputEmailBox.find('input').css('borderColor','#ec4339');
+                    return false;
+                    // /^([a-zA-Z0-9]|[\_|\.|\-])+@([a-zA-Z0-9]|[\_|\.|\-])*\.[a-zA-Z0-9]+$/
+                }else if(!email.match(/^([a-zA-Z0-9]|[\_|\.|\-])+@([a-zA-Z0-9]|[\_|\.|\-])*\.[a-zA-Z0-9]+$/)){
+                    $userEmailErrMsg.text('请填写正确的邮箱信息！').addClass('m-bottom12');
+                    if(type !== 'blur') $userEmall.focus();
+                    if($inputEmailBox.length) $inputEmailBox.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else{
+                    $userEmailErrMsg.empty().removeClass('m-bottom12');
+                    if($inputEmailBox.length) $inputEmailBox.find('input').css('borderColor','');
+                }
+            }
+
+            //验证码
+            var $verificode = $('#verificode'),
+                verificode = $.trim($verificode.val()),
+                $verificodeMsg = $('.verificode');
+
+            $verificodeMsg.text('');
+            if(type !== 'blur' || name === 'verificode'){
+                var $inputCodeBox = $('.verCodePerPositin');
+                if (!verificode) {
+                    $verificodeMsg.text('图片验证码不能为空').addClass('m-bottom12');
+                    if(type !== 'blur') $verificode.focus();
+                    if($inputCodeBox.length) $inputCodeBox.find('input').css('borderColor','#ec4339');
+                    return false;
+                }else{
+                    $verificodeMsg.empty().removeClass('m-bottom12');
+                    if($inputCodeBox.length) $inputCodeBox.find('input').css('borderColor','');
+                }
+            }
+            if(!$('[name="ReadAndAccept"]').is(':checked')) return; //如果没有勾选阅读并接受选择框，则不让注册
+
+            if(+countryCode === 86){ //如果是国内86，则不拼区号，如果不是国内86，则拼上区号,如：1-123456
+                countryCode = '';
+            }else{
+                countryCode = countryCode + '-';
+            }
+
+            return {
+                account: $.trim($userName.val()), //用户名
+                password: $.trim($userPassword1.val()), //密码
+                email: $.trim($userEmall.val()), //邮箱
+                mobile: (countryCode + mobile), //手机号,如果是国内86，则不拼区号，如果不是国内86，则拼上区号,如：1-123456
+                qq: $.trim($('#userQQ').val()), //qq
+                verificode: verificode, //验证码
+                code: $.trim($('#code').val()),
+                unionCode: $.trim($('#unionCode').val())
+            };
+        },
+
+        //点击切换登录和扫描
+        switchToScanMethod: function (obj) {
+            var switchType = Number($(obj).attr('data-switch')),
+                $loginForm = $('#loginForm'),
+                $scanLoginId = $('#scanLoginId');
+
+            $(obj).attr('data-switch', +switchType === 1 ? 2 : 1);
+
+            if (switchType === 1) {
+                $loginForm.addClass('hide');
+                $scanLoginId.removeClass('hide');
+                $(obj).addClass('way-account').removeClass('way-scan');
+                $(obj).find('#scanTipWrite').text('账号登录');
+                DXM_LOGIN.getWechatRecodeMethod();
+            } else {
+                $loginForm.removeClass('hide');
+                $scanLoginId.addClass('hide');
+                $(obj).addClass('way-scan').removeClass('way-account');
+                $(obj).find('#scanTipWrite').text('扫码登录');
+            }
+        },
+
+        //获取二维码图片
+        getWechatRecodeMethod: function () {
+           var  $resetShuffleRecodeID = $('#resetShuffleRecodeID'),
+                $wechatUUid = $('#wechatUUid');
+
+            //初始状态
+            shuffleStatus = false;
+            $resetShuffleRecodeID.addClass('hide');
+            MYJ.ajax({
+                url: 'api/wxOfficial/getTicket.json',
+                type: 'get',
+                loading: false,
+                success: function (res) {
+                    if(refreshTid)W.clearTimeout(refreshTid);
+                    if(loseQrTime)W.clearTimeout(loseQrTime);
+                    if (!+res.code) {
+                        var dataUrl  = gitWinLocHref() + '/static/img/loading2.gif';
+                        if (res.data.ticket) {
+                            dataUrl = 'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=' + res.data.ticket;
+                        }
+
+                        $('#recodeScanImgId').attr('src', dataUrl);
+                        //设置2分钟过期显示二维码
+                        loseQrTime = setTimeout(function () {
+                            $resetShuffleRecodeID.removeClass('hide');
+                            W.clearTimeout(loseQrTime); //清空校验二维码校验
+                        },  2 * 60 * 1000);
+
+                        //设置5分钟轮询过期，来处理用户扫后不关注
+                        refreshTid = setTimeout(function () {
+                            W.clearTimeout(statusRecodeId); //清空校验二维码校验
+                            W.clearTimeout(refreshTid)
+                            shuffleStatus = true;
+                        }, 5 * 60 * 1000);
+
+                        //记录uuid
+                        $wechatUUid.val(res.data.uuid);
+                        //定时器检查二维码是否绑定成功
+                        DXM_LOGIN.checkWechatBindStatusMethod();
+                    } else {
+                        shuffleStatus = true;
+                        $.fn.message({type: 'error', msg: res.msg});
+                    }
+                }
+            })
+        },
+
+
+        //请求轮询
+        checkWechatBindStatusMethod: function () {
+            if (statusRecodeId) {
+                W.clearTimeout(statusRecodeId)
+            }
+
+            statusRecodeId = W.setTimeout(function () {
+                var uuid = $.trim($('#wechatUUid').val());
+
+                  MYJ.ajax({
+                          url: 'api/wxOfficial/getStatus.json',
+                          type: 'get',
+                          data: {
+                              uuid:uuid
+                          },
+                          loading: false,
+                          success: function (data) {
+                              if(!+data.code) {
+                                  var dataStatus = data.data.status;
+                                  if (!+dataStatus && shuffleStatus === false) {
+                                      DXM_LOGIN.checkWechatBindStatusMethod();
+                                  } else if(+dataStatus === 1){
+                                      var dataUrl = data.data.url;
+                                      if (dataUrl === 'home.htm') {
+                                          $.fn.message({type: 'success', msg: '登录成功'});
+
+                                          var sto = setTimeout(function () {
+                                              window.location.href = gitWinLocHref() + 'home.htm';
+                                              clearTimeout(sto);
+                                          }, 2000);
+                                      } else if (dataUrl === 'index.htm') {
+                                          window.location.href = gitWinLocHref() + 'api/wxOfficial/bindLogin.htm?uuid=' + uuid;
+                                      }
+                                  }
+                              }else {
+                                  $.fn.message({type: 'error', msg: data.msg});
+                              }
+                          },
+                          error: function () {}
+                       });
+            }, 1000);
+        }
+    };
+})(jQuery, window, document);
+
+$(function () {
+    var $countryCodeSel = $('#countryCodeSel');
+
+    if ($countryCodeSel.length) {
+        var siteObj = {
+                '美国(加拿大)': '1',
+                '安圭拉岛': '1264',
+                '安提瓜和巴布达': '1268',
+                '巴哈马': '1242',
+                '巴巴多斯': '1246',
+                '百慕大': '1441',
+                '英属维京群岛': '1284',
+                '开曼群岛': '1345',
+                '美属萨摩亚': '1684',
+                '多米尼克': '1767',
+                '多米尼加共和国': '1809',
+                '格林纳达': '1473',
+                '牙买加': '1876',
+                '蒙特塞拉特': '1664',
+                '波多黎各': '1939',
+                '圣基茨和尼维斯': '1869',
+                '圣卢西亚': '1758',
+                '圣文森特和格林纳丁斯': '1784',
+                '特立尼达和多巴哥': '1868',
+                '特克斯和凯科斯群岛': '1649',
+                '美属维京群岛': '1340',
+                '关岛': '1671',
+                '北马里亚纳群岛': '1670',
+                '埃及': '20',
+                '南苏丹': '211',
+                '摩洛哥': '212',
+                '阿尔及利亚': '213',
+                '突尼斯': '216',
+                '利比亚': '218',
+                '冈比亚': '220',
+                '塞内加尔': '221',
+                '毛里塔尼亚': '222',
+                '马里': '223',
+                '几内亚': '224',
+                '科特迪瓦': '225',
+                '布基纳法索': '226',
+                '尼日尔': '227',
+                '多哥': '228',
+                '贝宁': '229',
+                '毛里求斯': '230',
+                '利比里亚': '231',
+                '塞拉利昂': '232',
+                '加纳': '233',
+                '尼日利亚': '234',
+                '乍得': '235',
+                '中非共和国': '236',
+                '喀麦隆': '237',
+                '佛得角': '238',
+                '圣多美和普林西比': '239',
+                '赤道几内亚': '240',
+                '加蓬': '241',
+                '刚果共和国（布）': '242',
+                '刚果民主共和国（金）': '243',
+                '安哥拉': '244',
+                '几内亚比绍': '245',
+                '迪戈加西亚': '246',
+                '阿森松岛': '247',
+                '塞舌尔': '248',
+                '苏丹': '249',
+                '卢旺达': '250',
+                '埃塞俄比亚': '251',
+                '索马里': '252',
+                '吉布提': '253',
+                '肯尼亚': '254',
+                '坦桑尼亚': '255',
+                '乌干达': '256',
+                '布隆迪': '257',
+                '莫桑比克': '258',
+                '桑给巴尔': '259',
+                '赞比亚': '260',
+                '马达加斯加': '261',
+                '留尼汪': '262',
+                '津巴布韦': '263',
+                '纳米比亚': '264',
+                '马拉维': '265',
+                '莱索托': '266',
+                '博茨瓦纳': '267',
+                '斯威士兰': '268',
+                '科摩罗和马纳特': '269',
+                '南非': '27',
+                '圣赫勒拿': '290',
+                '厄立特里亚': '291',
+                '阿鲁巴': '297',
+                '法罗群岛': '298',
+                '格陵兰': '299',
+                '希腊': '30',
+                '荷兰': '31',
+                '比利时': '32',
+                '法国': '33',
+                '西班牙': '34',
+                '直布罗陀': '350',
+                '葡萄牙': '351',
+                '卢森堡': '352',
+                '爱尔兰': '353',
+                '冰岛': '354',
+                '阿尔巴尼亚': '355',
+                '马耳他': '356',
+                '塞浦路斯': '357',
+                '芬兰': '358',
+                '保加利亚': '359',
+                '匈牙利': '36',
+                '东德': '37',
+                '立陶宛': '370',
+                '拉脱维亚': '371',
+                '爱沙尼亚': '372',
+                '摩尔多瓦': '373',
+                '亚美尼亚': '374',
+                '白俄罗斯': '375',
+                '安道尔': '376',
+                '摩纳哥': '377',
+                '圣马力诺': '378',
+                '梵蒂冈': '379',
+                '南斯拉夫': '38',
+                '乌克兰': '380',
+                '塞尔维亚': '381',
+                '黑山': '382',
+                '克罗地亚': '385',
+                '斯洛文尼亚': '386',
+                '波黑': '387',
+                '欧洲电话号码空间--环欧洲服务': '388',
+                '马其顿': '389',
+                '意大利': '39',
+                '罗马尼亚': '40',
+                '瑞士': '41',
+                '捷克斯洛伐克': '42',
+                '捷克共和国': '420',
+                '斯洛伐克': '421',
+                '列支敦士登': '423',
+                '奥地利': '43',
+                '英国': '44',
+                '丹麦': '45',
+                '瑞典': '46',
+                '挪威': '47',
+                '波兰': '48',
+                '德国': '49',
+                '福克兰群岛': '500',
+                '伯利兹': '501',
+                '危地马拉': '502',
+                '萨尔瓦多': '503',
+                '洪都拉斯': '504',
+                '尼加拉瓜': '505',
+                '哥斯达黎加': '506',
+                '巴拿马': '507',
+                '圣皮埃尔和密克隆群岛': '508',
+                '海地': '509',
+                '秘鲁': '51',
+                '墨西哥': '52',
+                '古巴': '53',
+                '阿根廷': '54',
+                '巴西': '55',
+                '智利': '56',
+                '哥伦比亚': '57',
+                '委内瑞拉': '58',
+                '瓜德罗普(含法属圣马丁和圣巴泰勒米岛)': '590',
+                '玻利维亚': '591',
+                '圭亚那': '592',
+                '厄瓜多尔': '593',
+                '法属圭亚那': '594',
+                '巴拉圭': '595',
+                '马提尼克': '596',
+                '苏里南': '597',
+                '乌拉圭': '598',
+                '荷属安的列斯': '599',
+                '库拉索': '599',
+                '马来西亚': '60',
+                '澳大利亚、圣诞岛、科科斯群岛': '61',
+                '印度尼西亚': '62',
+                '菲律宾': '63',
+                '新西兰': '64',
+                '新加坡': '65',
+                '泰国': '66',
+                '东帝汶': '670',
+                '诺福克岛(澳)': '672',
+                '文莱': '673',
+                '瑙鲁': '674',
+                '巴布亚新几内亚': '675',
+                '汤加': '676',
+                '所罗门群岛': '677',
+                '瓦努阿图': '678',
+                '斐济': '679',
+                '帕劳': '680',
+                '瓦利斯和富图纳群岛': '681',
+                '库克群岛': '682',
+                '纽埃': '683',
+                '萨摩亚': '685',
+                '基里巴斯，吉尔伯特群岛': '686',
+                '新喀里多尼亚': '687',
+                '图瓦卢，埃利斯群岛': '688',
+                '法属波利尼西亚': '689',
+                '托克劳群岛': '690',
+                '密克罗尼西亚联邦': '691',
+                '马绍尔群岛': '692',
+                '俄罗斯、哈萨克斯坦': '7',
+                '日本': '81',
+                '韩国': '82',
+                '越南': '84',
+                '朝鲜': '850',
+                '中国香港': '852',
+                '中国澳门': '853',
+                '柬埔寨': '855',
+                '老挝': '856',
+                '中国': '86',
+                '国际海事卫星组织“SNAC”卫星电话': '870',
+                '环球个人通讯服务': '878',
+                '孟加拉国': '880',
+                '移动卫星系统': '881',
+                '国际网络': '882',
+                '中国台湾': '886',
+                '土耳其': '90',
+                '印度': '91',
+                '巴基斯坦': '92',
+                '阿富汗': '93',
+                '斯里兰卡': '94',
+                '缅甸': '95',
+                '马尔代夫': '960',
+                '黎巴嫩': '961',
+                '约旦': '962',
+                '叙利亚': '963',
+                '伊拉克': '964',
+                '科威特': '965',
+                '沙特阿拉伯': '966',
+                '也门': '967',
+                '阿曼': '968',
+                '也门民主共和国': '969',
+                '巴勒斯坦': '970',
+                '阿拉伯联合酋长国': '971',
+                '以色列': '972',
+                '巴林': '973',
+                '卡塔尔': '974',
+                '不丹': '975',
+                '蒙古': '976',
+                '尼泊尔': '977',
+                '国际费率服务': '979',
+                '伊朗': '98',
+                '国际电信公众通信服务试验': '991',
+                '塔吉克斯坦': '992',
+                '土库曼斯坦': '993',
+                '阿塞拜疆': '994',
+                '格鲁吉亚': '995',
+                '吉尔吉斯斯坦': '996',
+                '乌兹别克斯坦': '998'
+            },
+            options = '';
+
+        for(var key in siteObj){
+            options += '<option value="' + siteObj[key] + '" data-name="' + key + '">+' + siteObj[key] + '</option>';
+        }
+        $countryCodeSel.html(options).val('86');
+    }
+});

@@ -1,0 +1,271 @@
+'use strict';
+
+var config = {
+    apiKey: "AIzaSyBkfPBCetXX8HixFO8K6MSOvOCMmKYCzN0",
+    projectId: "web-push-notification-25bae",
+    messagingSenderId: "653095001445"
+  };
+    
+firebase.initializeApp(config);
+const messaging = firebase.messaging();
+var registration;
+
+function createCookie(name,value,days) {
+    var expires = "";
+ if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; domain=.icicibank.com ; path=/";
+}
+
+if (Modernizr.localstorage) {
+ if (localStorage["endPoint"]) {
+  var endPoint = localStorage.getItem("endPoint");
+  createCookie('END_POINT',endPoint,30);
+ }      
+}
+
+// Remove Popup if Permission Granted or Blocked
+ //consoleLog('Start :: Permission : ',Notification.permission);
+ if (Notification.permission === 'denied') {
+  if (localStorage) {
+  var blockStatus = localStorage.getItem("blockStatus");
+   var endPoint = localStorage.getItem("endPoint");
+   if (blockStatus == null && endPoint != '') {
+    disAllowNotification();
+   }
+  }
+ }
+ if (Notification.permission === 'granted') {
+  var fedId = localStorage.getItem("fedId");
+  var endPoint = localStorage.getItem("endPoint");
+  var userToken = localStorage.getItem("userToken");
+  //if(endPoint != null && userToken == null){
+  if(userToken == null){
+   allowNotification();
+  }
+  if (typeof FedID != 'undefined') {
+   if (fedId != null) {
+    if (fedId != FedID) {
+     allowNotification(); 
+    } else {
+     console.log(fedId," Matched with ",FedID);
+    }
+   } else {
+    localStorage.setItem("fedId",FedID);
+   }
+  }
+  
+ }
+ if (Notification.permission === 'granted' || Notification.permission === 'denied') {
+  $(".push-popup").remove();
+ } else {
+  
+  $("#push-modal-background, #push-modal-content").addClass("active");
+ }
+ 
+ var popupCount = localStorage.getItem("NotNowCount");
+ //consoleLog("mod val: "+parseInt(popupCount) % 5);
+ //consoleLog("count: "+popupCount);
+ if (popupCount != null) {
+  if (parseInt(popupCount) % 5 !== 0) {
+   $(".push-popup").remove(); 
+   popupCount = parseInt(popupCount)+1;
+   //consoleLog("popupCount :",popupCount);
+   localStorage.setItem("NotNowCount",popupCount); 
+  }
+ }
+ $('.desktop-only #push-modal-close,.mobile-only #push-modal-close').click(function() { 
+  //consoleLog("Not Now Clicked");
+  if (Notification.permission === 'default' || Notification.permission === '') {
+   //consoleLog("Not Now Clicked :: permission : ",Notification.permission);
+   //if (Modernizr.localstorage) {
+   if (localStorage) {
+    var count = localStorage.getItem("NotNowCount");
+    //consoleLog("count val :",count);
+    if (count != null) {
+     count = parseInt(count)+1;
+     //consoleLog("count if not null :",count);
+     localStorage.setItem("NotNowCount",count);
+    } else {
+     //consoleLog("count value is null");
+     localStorage.setItem("NotNowCount",'1');       
+    }
+   }
+   //} 
+  }
+ });
+
+function allowNotification(){//function start 
+
+
+var endPoint,userToken,endPointUrl;
+if ('serviceWorker' in navigator) {
+  //console.log('Service Worker is supported '); 
+  navigator.serviceWorker.register('service-worker.js').then(function() {
+    return navigator.serviceWorker.ready;
+  }).then(function(reg) {
+  //  console.log('Service Worker is ready :^)', reg);
+    reg.pushManager.subscribe({userVisibleOnly: true}).then(function(sub) {
+     //console.log('endpoint start:', sub.endpoint);
+   endPointUrl = sub.endpoint;
+  
+   
+ messaging.requestPermission().then(function() {
+ console.log('Notification permission granted.');
+ 
+ return messaging.getToken();
+ })
+ .then(function(token) {
+   //console.log(token); // Display user token
+   userToken = token;
+   
+  if(endPointUrl!=null && userToken!=null){ 
+   
+   //console.log("userToken : ",userToken);
+    //localStorage.setItem("userToken",userToken);
+   endPoint = endPointUrl.split("send/");
+   //navigator.storage.endPoint=endPoint[1];
+   //console.log("endPoint : ",endPoint[1]);
+    //localStorage.setItem("endPoint",endPoint[1]);
+   var browserType = getBrowserType();
+   var fedId = "";
+   if (typeof FedID != 'undefined') {
+    fedId = FedID;
+   }
+   //console.log('fedId:', fedId);
+   //console.log('browserType:', browserType);
+   if (endPoint !='' && userToken !='') {
+    $.ajax({
+     url : "https://www.icicibank.com/notification/ajax-push-notification.page?browserType="+browserType+"&unsubscribeFlag=''&endPoint="+endPoint[1]+"&fedId="+fedId+"&userToken="+userToken,
+     success : function (data){
+      if (localStorage) {
+       if (fedId != '') {
+        localStorage.setItem("fedId",fedId);
+       }
+        localStorage.setItem("userToken",userToken);
+       localStorage.setItem("endPoint",endPoint[1]);
+       localStorage.removeItem("blockStatus");
+       createCookie('END_POINT',endPoint[1],30);
+      }
+      if($(data).filter('#result').html() !='') {
+       //consoleLog("End Point status:",$(data).filter('#result').html());
+      }
+     },
+     error : function (jqXHR, statusText, errorThrown){
+     //consoleLog(errorThrown);
+     }
+    });
+   }
+  }
+ })
+ .catch(function(err) { // Happen if user deney permission
+   console.log('Unable to get permission to notify.', err);
+ });
+
+ });
+  }).catch(function(error) {
+    console.log('Service Worker error :^(', error);
+  });
+}
+ 
+ /**Modal close : start **/
+  $("#push-modal-content,#push-modal-background").remove(); 
+  
+  $("#push-modal-close").click(function (){
+  $("#push-modal-background").fadeOut("600");
+  $("#push-modal-content").fadeOut("400");
+  $("#push-modal-content,#push-modal-background").toggleClass("active");
+ });
+  
+ /**Modal close : end **/
+ 
+}//function end
+//disallow function start
+function disAllowNotification(){
+  //consoleLog("disAllowNotification :: permission for denied : ",Notification.permission);
+  if (Notification.permission === 'denied') {
+   if (localStorage) {
+    var endPoint = localStorage.getItem("endPoint"); 
+    var browserType = getBrowserType();
+    //consoleLog('disAllowNotification :: unsubscrib: endPoint:', endPoint);
+    //consoleLog('disAllowNotification :: unsubscrib: browserType:', browserType);
+    
+    if (endPoint !='' && browserType !='') {
+     $.ajax({
+      url : "https://www.icicibank.com/notification/ajax-push-notification.page?browserType="+browserType+"&endPoint="+endPoint+"&unsubscribeFlag=yes&fedId=''",
+      success : function (data){
+       if (localStorage) {
+        localStorage.setItem("endPoint","");
+        localStorage.setItem("fedId","");
+        localStorage.setItem("userToken","");
+        localStorage.setItem("blockStatus","yes");
+        createCookie('END_POINT','',-1);
+       }
+       if($(data).filter('#result').html() !='') {
+        //consoleLog("disAllowNotification :: Push messages are blocked status:",$(data).filter('#result').html());
+       }
+      },
+      error : function (jqXHR, statusText, errorThrown){
+      //consoleLog(errorThrown);
+      }
+     });
+    }   
+   }
+   //consoleLog('disAllowNotification :: Push messages are blocked.');
+  }
+}
+// Check the Browser Type
+function getBrowserType() { 
+ var browserType;
+ if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+  browserType = "Opera";
+  //consoleLog('Opera');
+ } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+  browserType = "Chrome";
+  //consoleLog('Chrome');
+ } else if(navigator.userAgent.indexOf("Safari") != -1) {
+  browserType = "Safari";
+  //consoleLog('Safari');
+ } else if(navigator.userAgent.indexOf("Firefox") != -1 ) {
+  browserType = "Firefox";
+  //consoleLog('Firefox');
+ } else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) {
+  //IF IE > 10 
+  browserType = "IE";
+  //consoleLog('IE'); 
+ } else {
+  browserType = "";
+  //consoleLog('unknown');
+ }
+ return browserType;
+}
+
+ messaging.onMessage(function(payload){
+  const notificationTitle = payload.data.title;
+  const notificationOptions = {
+     body:payload.data.body,
+                    icon:payload.data.icon,
+     image:payload.data.image,
+     tag:payload.data.tag,
+     requireInteraction:payload.data.requireInteraction,
+     badge:payload.data.badge
+};
+
+         if (!("Notification" in window)) {
+            console.log("This browser does not support system notifications");
+        }else if (Notification.permission === "granted") {
+   // If it's okay let's create a notification
+            var notification = new Notification(notificationTitle,notificationOptions);
+   //return self.registration.showNotification(notificationTitle,notificationOptions);
+             notification.onclick = function(event) {
+                event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                // console.log("Action link :"+notificationOptions.badge);
+    window.open( notificationOptions.badge , '_blank');
+                notification.close();
+            }
+        }
+
+ })

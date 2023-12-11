@@ -1,0 +1,58 @@
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-35860610-36');
+    
+
+        if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) {
+            var evt = document.createEvent('UIEvents');
+            evt.initUIEvent('resize', true, false, window, 0);
+            window.dispatchEvent(evt);
+        } else {
+            window.dispatchEvent(new Event('resize'));
+        }
+    
+
+
+                        (function() {
+                            const script = document.createElement("script");
+                            script.src = "https://coccoc.com/search-static/searchbar.js?ver=pc1.0";
+                            script.onload = function() {
+                                window.__renderSearchBar(".js-search", { s: 'main' });
+                            }
+
+                            document.head.appendChild(script);
+                        })();
+                    
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            xfbml            : true,
+            version          : 'v3.3'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    window.onload = function() {
+        //run js code here
+    }
+
+(function(c){function d(a){if(!(this instanceof d))return new d(a);a=a||{};var b=a.context||"body";"string"===typeof b&&(b=g.querySelector(b));if(!b)throw Error("Unable to find context "+b);this._context=b;this.minHeight=a.minHeight||0;this._marks={};this._tracked={};this._config={percentages:{each:{},every:{}},pixels:{each:{},every:{}},elements:{each:{},every:{}}};a=n(this._checkDepth.bind(this),500);b=this._update.bind(this);var h=n(b,500);c.addEventListener("scroll",a,!0);c.addEventListener("resize",
+h);this._artifacts={timer:q(b),resize:h,scroll:a}}function r(a){return a.handlers.map(function(b){return b.bind(this,{data:{depth:a.depth,label:a.label}})})}function p(a){var b=Math.floor(a.numerator/a.n),h;for(h=1;h<=b;h++)a.callback(h*a.n)}function q(a){var b=m();return setInterval(function(){m()!==b&&(a(),b=m())},500)}function m(){var a=g.body,b=g.documentElement;return Math.max(a.scrollHeight,a.offsetHeight,b.clientHeight,b.scrollHeight,b.offsetHeight)}function t(a){a=a.getBoundingClientRect().top-
+(a.scrollHeight-a.clientHeight)/2;var b=void 0!==c.pageYOffset?c.pageYOffset:(g.documentElement||g.body.parentNode||g.body).scrollTop;return a+b}function u(){}function n(a,b){var h,e,d,l=null,c=0,f=function(){c=new Date;l=null;d=a.apply(h,e)};return function(){var k=new Date;c||(c=k);var g=b-(k-c);h=this;e=arguments;0>=g?(clearTimeout(l),l=null,c=k,d=a.apply(h,e)):l||(l=setTimeout(f,g));return d}}function v(){var a={},b;for(b in d)a[b]=u;c.ScrollTracker=a}if(c.navigator.userAgent.match(/MSIE [678]/gi))return v();
+var g=c.document;d.prototype.destroy=function(){clearInterval(this._artifacts._timer);c.removeEventListener("resize",this._artifacts.resize);c.removeEventListener("scroll",this._artifacts.scroll,!0)};d.prototype.on=function(a,b){var h=this._config;["percentages","pixels","elements"].forEach(function(e){a[e]&&["each","every"].forEach(function(c){a[e][c]&&a[e][c].forEach(function(a){h[e][c][a]=h[e][c][a]||[];h[e][c][a].push(b)})})});this._update()};d.prototype._update=function(){this._calculateMarks();
+this._checkDepth()};d.prototype._calculateMarks=function(){function a(a,b){return function(b,c){b=b.getBoundingClientRect().top-g._context.getBoundingClientRect().top;d({label:a+"["+c+"]",depth:b,handlers:e.elements.every[a]})}}function b(a){return function(a){var b=Math.floor(a*c/100);d({label:String(a)+"%",depth:b,handlers:e.percentages.every[f]})}}function h(a){return function(b){d({label:String(b)+"px",depth:b,handlers:a})}}delete this._marks;this._fromTop=t(this._context);this._marks={};var e=
+this._config,c=this._contextHeight(),d=this._addMark.bind(this),g=this,f;if(!(c<this.minHeight)){for(f in e.percentages.every)p({n:Number(f),numerator:100,callback:b(e.percentages.every[f])});for(f in e.pixels.every)p({n:Number(f),numerator:c,callback:h(e.pixels.every[f])});for(f in e.percentages.each){var k=Math.floor(c*Number(f)/100);d({label:f+"%",depth:k,handlers:e.percentages.each[f]})}for(f in e.pixels.each)k=Number(f),d({label:f+"px",depth:k,handlers:e.pixels.each[f]});for(f in e.elements.every)k=
+[].slice.call(this._context.querySelectorAll(f)),k.length&&k.forEach(a(f,e.elements.every[f]));for(f in e.elements.each)if(k=this._context.querySelector(f))k=k.getBoundingClientRect().top-g._context.getBoundingClientRect().top,d({label:f,depth:k,handlers:e.elements.each[f]})}};d.prototype._checkDepth=function(){var a=this._marks,b=this._currentDepth(),c;for(c in a)b>=c&&!this._tracked[c]&&(a[c].forEach(function(a){a()}),this._tracked[c]=!0)};d.prototype.reset=function(){this._tracked={};this._marks=
+{};this._update()};d.prototype._contextHeight=function(){return this._context!==g.body?this._context.scrollHeight-5:this._context.clientHeight-5};d.prototype._currentDepth=function(){var a=this._context;var b=a.offsetHeight;var d="CSS1Compat"===g.compatMode?g.documentElement:g.body;d=d.clientHeight;a=a.getBoundingClientRect();b=Math.max(0,0<a.top?Math.min(b,d-a.top):a.bottom<d?a.bottom:d);this._context.scrollTop?a=this._context.scrollTop+b:(this._context.scrollTop=1,this._context.scrollTop?(this._context.scrollTop=
+0,a=this._context.scrollTop+b):a=(c.pageYOffset||g.documentElement.scrollTop||g.body.scrollTop||0)-this._fromTop);return b?a+b:a>=this._fromTop?a:-1};d.prototype._addMark=function(a){var b=a.depth;this._marks[b]=(this._marks[b]||[]).concat(r(a))};c.ScrollTracker=d})(this);
+(function(c){function d(){var d=c.ScrollTracker();d.on({percentages:{each:[10,90],every:[25]}},function(c){dataLayer.push({event:"scrollTracking",attributes:{pixels:c.data.depth,distance:c.data.label,label:google_tag_manager["GTM-KKML7SR"].macro(9)}})});delete c.ScrollTracker}"loading"!==document.readyState?d():document.addEventListener("DOMContentLoaded",d)})(window);

@@ -1,0 +1,805 @@
+
+        function isJqueryInit(callback) {
+            if (window.$) {
+                callback();
+            } else {
+                setTimeout(function() {
+                    isJqueryInit(callback)
+                }, 500);
+            }
+        }
+
+        function LoadProp(obj, prop, callback) {
+            if (obj[prop] !== undefined) {
+                callback();
+            } else {
+                setTimeout(function(){
+                    LoadProp(obj, prop, callback);
+                }, 500);
+            }
+        }
+    
+
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        googletag.createAds = function() {
+            setTimeout(function () {
+                var s = document.getElementsByTagName('script')[0]
+                    , p = document.createElement('script');
+                p.async = 'async';
+                p.src = 'https://www.googletagservices.com/tag/js/gpt.js';
+                s.parentNode.insertBefore(p, s);
+            }, 3500);
+        };
+    
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-07ZGQT7GK0');
+    
+
+        var slots = {
+            ['main_banner']: {},
+        };
+
+        googletag.cmd.push(function() {
+            var mappingLeaderboard = googletag.sizeMapping().
+                addSize([1000, 0], [[728, 90], [970, 90], [970, 250], [1228, 90], [1228, 200]]).
+                addSize([768, 0], [[468, 60], [728, 90]]).
+                addSize([0, 0], [[300, 50], [320, 50]]).
+                build();
+            var mappingBox = googletag.sizeMapping().
+                addSize([1000, 0], [[250, 250], [300, 250], [375, 180], [375, 250], [376, 252]]).
+                addSize([768, 0], [[250, 250], [300, 250]]).
+                addSize([0, 0], [300, 250]).
+                build();
+            var mappingSkyscraper = googletag.sizeMapping().
+                addSize([1000, 0], [[160, 600], [300, 250], [300, 600]]).
+                addSize([768, 0], [[160, 600], [300, 250], [300, 600]]).
+                addSize([0, 0], [300, 250]).
+                build();
+
+            slots['main_banner'][0] = googletag.defineSlot('/144751494/EN_RT_Homepage', [[300, 50], [320, 50], [468, 60], [728, 90], [970, 90], [970,250], [1228, 90], [1228, 200]], 'div-gpt-ad-1432640570396-0').defineSizeMapping(mappingLeaderboard).addService(googletag.pubads());
+            slots['main_banner'][1] = googletag.defineSlot('/144751494/EN_RT_Homepage', [[300, 50], [320, 50], [468, 60], [728, 90], [970, 90], [970,250], [1228, 90], [1228, 200]], 'div-gpt-ad-1432640570396-1').defineSizeMapping(mappingLeaderboard).addService(googletag.pubads());
+            slots['main_banner'][2] = googletag.defineSlot('/144751494/EN_RT_Homepage', [[250, 250], [300, 250], [375, 180], [375, 250]], 'div-gpt-ad-1432640570396-2').defineSizeMapping(mappingBox).addService(googletag.pubads());
+            slots['main_banner'][3] = googletag.defineSlot('/144751494/EN_RT_Homepage', [1, 1], 'div-gpt-ad-1432640570396-3').addService(googletag.pubads());
+            // googletag.pubads().enableSingleRequest();
+            googletag.pubads().collapseEmptyDivs();
+            googletag.pubads().disableInitialLoad();
+            googletag.enableServices();
+        });
+    
+
+        document.createElement("picture");
+        (function(){
+            var docElem = document.documentElement;
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.init = false;
+            window.lazySizesConfig.loadMode = 1;
+            window.lazySizesConfig.expand = Math.max(Math.min(docElem.clientWidth, docElem.clientHeight, 1222) - 1, 359);
+            window.lazySizesConfig.expFactor = lazySizesConfig.expand < 380 ? 3 : 1;
+        })();
+    
+
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      a.onload = function(){
+        ga('create', 'UA-5773642-2', 'auto');
+
+                        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
+      };
+      m.parentNode.insertBefore(a, m);
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+
+  
+
+    var slots = {};
+
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    var hrefParams = window.location.href.split('/');
+    var isMainpage = hrefParams.length === 4 && hrefParams[3] === "";
+    var deviceKey = 'desktop';
+    
+    var billboardDesktopSizes = [[1, 1], [970, 90], [970, 200], [970, 250], [728, 90], [1228, 90], [1228, 200], [1228, 250], [1240, 90], [1240, 200], [1240, 250], [1488, 90], [1488, 200], [1488, 250]];
+    var billboardMobileSizes = [[1, 1], [320, 50], [320, 90]];
+    var sidebannerDesktopSizes = [[1, 1], [300, 250], [300, 600]];
+    var sidebannerMobileSizes = [[1, 1], [300, 250]];
+
+    // 768 mobile
+    if (window.innerWidth <= 768) {
+        deviceKey = 'mobile';
+    }
+
+    var dynamicSlotConfig = {
+        'EN_BILLBOARD': {
+            'news': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/NEWS',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/NEWS',
+                    'sizes': billboardMobileSizes,
+                },
+
+            },
+            'usa': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/USA',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/USA',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'uk': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/UK',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/UK',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'sport': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/SPORT',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/SPORT',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'russia': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/RUSSIA',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/RUSSIA',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'business': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/BUSINESS',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/BUSINESS',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'op-ed': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/OPED',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/OPED',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            '360': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/360',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/360',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'shows': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/SHOWS',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/SHOWS',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'projects': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/PROJECTS',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/PROJECTS',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'podcasts': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/PODCASTS',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/PODCASTS',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+            'default': {
+                'desktop': {
+                    'name': 'RT_EN/EN_BILLBOARD/NEWS',
+                    'sizes': billboardDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BILLBOARD_MOB/NEWS',
+                    'sizes': billboardMobileSizes,
+                },
+            },
+        },
+        'EN_SIDEBANNER_1': {
+            'news': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/NEWS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/NEWS',
+                    'sizes': sidebannerMobileSizes,
+                },
+
+            },
+            'usa': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/USA',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/USA',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'uk': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/UK',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/UK',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'sport': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/SPORT',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/SPORT',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'russia': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/RUSSIA',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/RUSSIA',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'business': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/BUSINESS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/BUSINESS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'op-ed': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/OPED',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/OPED',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            '360': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/360',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/360',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'shows': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/SHOWS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/SHOWS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'projects': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/PROJECTS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/PROJECTS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'podcasts': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/PODCASTS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/PODCASTS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'default': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_1/NEWS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_1/NEWS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+        },
+        'EN_SIDEBANNER_2': {
+            'news': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/NEWS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/NEWS',
+                    'sizes': sidebannerMobileSizes,
+                },
+
+            },
+            'usa': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/USA',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/USA',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'uk': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/UK',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/UK',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'sport': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/SPORT',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/SPORT',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'russia': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/RUSSIA',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/RUSSIA',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'business': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/BUSINESS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/BUSINESS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'op-ed': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/OPED',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/OPED',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            '360': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/360',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/360',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'shows': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/SHOWS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/SHOWS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'projects': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/PROJECTS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/PROJECTS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'podcasts': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/PODCASTS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/PODCASTS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+            'default': {
+                'desktop': {
+                    'name': 'RT_EN/EN_SIDEBANNER_2/NEWS',
+                    'sizes': sidebannerDesktopSizes
+                },
+                'mobile': {
+                    'name': 'RT_EN/EN_BANNER_MOB_2/NEWS',
+                    'sizes': sidebannerMobileSizes,
+                },
+            },
+        },
+    };
+
+    googletag.cmd.push(function () {
+        if (!isMainpage) {
+            var EN_BILLBOARD_CONFIG = dynamicSlotConfig['EN_BILLBOARD'][hrefParams[3]] || dynamicSlotConfig['EN_BILLBOARD']['default'];
+            var EN_SIDEBANNER_1_CONFIG = dynamicSlotConfig['EN_SIDEBANNER_1'][hrefParams[3]] || dynamicSlotConfig['EN_SIDEBANNER_1']['default'];
+            var EN_SIDEBANNER_2_CONFIG = dynamicSlotConfig['EN_SIDEBANNER_2'][hrefParams[3]] || dynamicSlotConfig['EN_SIDEBANNER_2']['default'];
+
+            if (EN_BILLBOARD_CONFIG && EN_BILLBOARD_CONFIG[deviceKey]) {
+                console.log('EN_BILLBOARD_CONFIG');
+                var EN_BILLBOARD = EN_BILLBOARD_CONFIG[deviceKey];
+                slots['EN_BILLBOARD'] = googletag.defineSlot('/144751494/' + EN_BILLBOARD.name, EN_BILLBOARD.sizes, 'EN_BILLBOARD').addService(googletag.pubads());
+            }
+
+            if (EN_SIDEBANNER_1_CONFIG && EN_SIDEBANNER_1_CONFIG[deviceKey]) {
+                console.log('EN_SIDEBANNER_1_CONFIG');
+                var EN_SIDEBANNER_1 = EN_SIDEBANNER_1_CONFIG[deviceKey];
+                slots['EN_SIDEBANNER_1'] = googletag.defineSlot('/144751494/' + EN_SIDEBANNER_1.name, EN_SIDEBANNER_1.sizes, 'EN_SIDEBANNER_1').addService(googletag.pubads());
+            }
+            
+            if (EN_SIDEBANNER_2_CONFIG && EN_SIDEBANNER_2_CONFIG[deviceKey]) {
+                console.log('EN_SIDEBANNER_2_CONFIG');
+                var EN_SIDEBANNER_2 = EN_SIDEBANNER_2_CONFIG[deviceKey];
+                slots['EN_SIDEBANNER_2'] = googletag.defineSlot('/144751494/' + EN_SIDEBANNER_2.name, EN_SIDEBANNER_2.sizes, 'EN_SIDEBANNER_2').addService(googletag.pubads());
+            }
+        }
+
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().setTargeting('Section', ['main']).setTargeting('subsection', ['']).setTargeting('Page_type', ['']);
+        googletag.pubads().disableInitialLoad();
+        googletag.enableServices();
+    });
+
+
+            {
+                "@context": "http://schema.org",
+                "@type": "Organization",
+                "url": "https://www.rt.com",
+                "logo": "https://www.rt.com/static/img/logo112x112.png",
+                "name": "RT",
+                "legalName": "Autonomous non-profit organization (ANO) \"TV-Novosti\"",
+                "sameAs": [
+                    "https://www.facebook.com/RTnews/",
+                    "https://twitter.com/RT_com",
+                    "https://www.youtube.com/user/RussiaToday",
+                    "https://instagram.com/rt"
+                ],
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://www.rt.com/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        
+
+    var RT = RT || {};
+    RT.player = RT.player || {};
+    RT.player.time = Date.parse('03:19 GMT, May 21, 2021')
+
+
+            var myStreamingTag = new ns_.StreamingTag({customerC2: '17935924', C3: 'english'});
+                                    
+            var metadata = {
+                ns_st_ci: "60a6741a85f5400870670a83", // идентификатор контента (видео)
+                c3: "english",
+                c4: "*null",
+                c6: "*null"
+            };
+        
+
+    if (!!window.jwplayer === false) {
+        var VideoPlayer = document.createElement('video');
+        VideoPlayer.className = "media__video_noscript";
+        VideoPlayer.controls = true;
+        //
+        // var sourceMP4 = document.createElement("source");
+        // sourceMP4.type = "video/mp4";
+        VideoPlayer.src = "https://cdnv.rt.com/files/2021.05/60a6741a85f5400870670a83.mp4";
+        VideoPlayer.poster = "https://cdni.rt.com/files/2021.05/article/60a673c585f54008070815ce.png";
+        // VideoPlayer.appendChild(sourceMP4);
+
+        document.getElementById('nojwp').appendChild(VideoPlayer);
+    }
+
+
+    jwplayer.key = "kESrsgULvYO7r2MfUelqj3vs+2i8JdQBqjGNmA==";
+    
+    var recomedationBlock60a6741a85f5400870670a83 = document.getElementById('recomendation-60a6741a85f5400870670a83');
+    var mediaplayerContainer60a6741a85f5400870670a83 = document.getElementById('mediaplayer-container60a6741a85f5400870670a83');
+    var mediaMute = true;
+
+    if (mediaMute) {
+        window.PROMOBOX_NO_FIXED = true;
+    }
+
+    jwplayer("js-mediaplayer-60a6741a85f5400870670a83").setup({
+                // Кавер видео устанавливается в prepareMedia
+                file: "https://cdnv.rt.com/files/2021.05/60a6741a85f5400870670a83.mp4",
+        // title:       "GIF\u0020arc",
+        aspectratio: "16:9",
+        skin: {
+            name: "five",
+            active: "#77bd1e",
+            background: "rgba(0, 0, 0, 0.5)",
+            inactive: "#FFFFFF"
+        },
+        width: "100%",
+        autostart: true,
+        mute: true,
+        startparam: "start",
+        ga: {},
+                        events: {
+            onReady: function () {
+
+                if(ga && mediaMute === false) {
+                    ga('send', 'event', 'JWPLAYER-GA', 'CLICK PLAY', location.href);
+                    ga('send', 'event', 'JW Player Article', 'Ready', location.href); // Временно эти дублирующие счетчики остаются
+                }
+            },
+            onPlay: function () {
+
+                                myStreamingTag.playVideoContentPart(metadata);
+                if (ga) {
+                    if (mediaMute === false) {
+                        ga('send', 'event', 'JWPLAYER-GA', 'CLICK PLAY', location.href);
+                        ga('send', 'event', 'JW Player Article', 'Play', location.href);
+                    }
+                }
+                var playingVideoId = 'js-mediaplayer-60a6741a85f5400870670a83'; // id текущего плеера
+                pauseMedia(playingVideoId); //запускаем функцию остановки всех играющих плееров кроме этого Код функции ниже по коду
+                
+                if (recomedationBlock60a6741a85f5400870670a83) {
+                    recomedationBlock60a6741a85f5400870670a83.classList.remove('recomendation_active');
+                }
+
+                if (mediaplayerContainer60a6741a85f5400870670a83) {
+                    mediaplayerContainer60a6741a85f5400870670a83.classList.add('mediaplayer_played');
+                }
+                localStorage.setItem('canfixed', true);
+            },
+            onPause: function () {
+                myStreamingTag.stop();
+                if (mediaMute === false) {
+                    if (ga) ga('send', 'event', 'JWPLAYER-GA', 'CLICK PAUSE', location.href);
+                }
+
+                if (recomedationBlock60a6741a85f5400870670a83) {
+                    recomedationBlock60a6741a85f5400870670a83.classList.add('recomendation_active');
+                }
+            },
+            onComplete: function () {
+                myStreamingTag.stop();
+                if (ga && mediaMute === false) {
+                    ga('send', 'event', 'JWPLAYER-GA', 'COMPLETE', location.href);
+                    ga('send', 'event', 'JW Player Article', 'Complete', location.href);
+                }
+
+                                    var $video = $('#js-mediaplayer-60a6741a85f5400870670a83 video');
+                    $video[0].loop = true;
+                    // $video[0].currentTime = 0;
+                    $video[0].play();
+                
+                if (recomedationBlock60a6741a85f5400870670a83) {
+                    recomedationBlock60a6741a85f5400870670a83.classList.add('recomendation_active');
+                }
+            }
+        }
+    });
+
+    
+
+    
+    function pauseMedia(playingMediaId) {
+        var players = document.querySelectorAll('.jwplayer, object');
+        var fixPlayer = document.querySelector('.mediaplayer_fixed');
+        let shadowDiv = document.querySelector('.div_shadow');
+        var plId = playingMediaId.split('-')[2];
+
+        for (var i = 0, max = players.length; i < max; i++) {
+            var currentMediaId = players[i].id;
+
+            if(currentMediaId !== playingMediaId){
+                jwplayer(players[i]).play(false);
+                players[i].parentElement.classList.remove('mediaplayer_played');
+                if(fixPlayer && shadowDiv){
+                    if(fixPlayer.id !== 'mediaplayer-container' + plId){
+                        if (shadowDiv.parentElement) {
+                            shadowDiv.parentElement.removeChild(shadowDiv);
+                        }
+                        fixPlayer.classList.remove('mediaplayer_fixed');
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+                                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1432640570396-0'); });
+                                
+
+                                    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1432640570396-1'); });
+                                
+
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1432640570396-3'); });
+
+            googletag.cmd.push(function() {
+                googletag.pubads().refresh([slots['main_banner'][3]]);
+            });
+        
+
+             window.CounterEye = {};
+                      
+
+        document.addEventListener('lazybeforeunveil', function(e) {
+            if (e.target.getAttribute('id') === 'div-gpt-ad-1432640570396-0') {
+                googletag.cmd.push(function() {
+                    googletag.pubads().refresh([slots['main_banner'][0]]);
+                });
+            }
+
+            if (e.target.getAttribute('id') === 'div-gpt-ad-1432640570396-1') {
+                googletag.cmd.push(function() {
+                    googletag.pubads().refresh([slots['main_banner'][1]]);
+                });
+            }
+        });
+    
+
+
+    // Register service worker to control making site work offline
+
+    if('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('/homescreen-sw.js')
+            .then(function() { console. log('Service Worker Registered'); });
+    }
+
+    // Code to handle install prompt on desktop
+
+    let deferredPrompt;
+    const addBtn = document.querySelector('.add-button');
+    addBtn.style.display = 'none';
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI to notify the user they can add to home screen
+        addBtn.style.display = 'block';
+
+        addBtn.addEventListener('click', (e) => {
+            // hide our user interface that shows our A2HS button
+            addBtn.style.display = 'none';
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+            ga('send', 'event', 'homescreen', 'installed', location.href);
+        });
+    });
+
+    if (location.href.indexOf('?utm_source=homescreen_android&utm_medium=tap&utm_campaign=Homescreen') > -1) {
+        onclick= ga('send', 'event', 'homescreen', 'open', 'not set');
+    }
+
+
+    window._taboola = window._taboola || [];
+    _taboola.push({flush: true});
+
+
+        window._newsroom = window._newsroom || [];
+        window._newsroom.push({pageTemplate: 'home'});
+        window._newsroom.push({pageDashboard: 'home'});
+        window._newsroom.push('auditClicks');
+        window._newsroom.push('trackPage');
+    
+
+        window._newsroom = window._newsroom || [];
+
+        !function (e, f, u) {
+            e.async = 1;
+            e.src = u;
+            f.parentNode.insertBefore(e, f);
+        }(document.createElement('script'),
+            document.getElementsByTagName('script')[0], '//c2.taboola.com/nr/rt-rtcom/newsroom.js');
+    
+
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+
+(function() {
+    setTimeout(function() {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') + '//securepubads.g.doubleclick.net/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    }, 3500);
+})();

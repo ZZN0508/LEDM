@@ -1,0 +1,48 @@
+
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.thefreedictionary.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.thefreedictionary.com/_/search.aspx?tab=1&TFDBy=0&Word={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+
+window.loginBlockHtml=ById('loginBlock').innerHTML;if(info.isLogin){waiting('loginBlock');ById('header').className='auth'}
+document.write(bm)
+if(document.cookie)ById('h1tagline').style.display='none'
+
+//<![CDATA[
+var theForm = document.forms['fHP'];
+if (!theForm) {
+    theForm = document.fHP;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+
+if (localStorage["menuState"]&1){document.getElementById('addContentPlus').innerHTML = '&ndash;';document.getElementById('addContentBlock').style.display=''}
+function opMenu(i, t, c) { if (localStorage["menuState"] & i) {t.className = 'dvGroupTitle open';c.style.display=''}};
+top.opMenu(2, document.getElementById('Content_CA_CP_ctl00_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl00_dvChild'));
+top.opMenu(16, document.getElementById('Content_CA_CP_ctl01_ctl00_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl00_dvChild'));
+top.opMenu(32, document.getElementById('Content_CA_CP_ctl01_ctl01_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl01_dvChild'));
+top.opMenu(64, document.getElementById('Content_CA_CP_ctl01_ctl02_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl02_dvChild'));
+top.opMenu(128, document.getElementById('Content_CA_CP_ctl01_ctl03_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl03_dvChild'));
+top.opMenu(256, document.getElementById('Content_CA_CP_ctl01_ctl04_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl04_dvChild'));
+top.opMenu(512, document.getElementById('Content_CA_CP_ctl01_ctl05_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl05_dvChild'));
+top.opMenu(1024, document.getElementById('Content_CA_CP_ctl01_ctl06_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl06_dvChild'));
+top.opMenu(2048, document.getElementById('Content_CA_CP_ctl01_ctl07_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_ctl07_dvChild'));
+top.opMenu(4, document.getElementById('Content_CA_CP_ctl01_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl01_dvChild'));
+top.opMenu(8, document.getElementById('Content_CA_CP_ctl02_dvGroupTitle'),document.getElementById('Content_CA_CP_ctl02_dvChild'));
+document.write(bm.replace('<li>','').replace('</li>','<br>'))
+adsbygoogle=window.adsbygoogle||[]
+if (info.isLogin) { ById('flashcardLogin').style.display = 'none'; ById('flashcardContent').style.display = ''; waiting('flashcardCont') }
+if (info.isLogin) { document.getElementById('wordlist-login').style.display = 'none'; document.getElementById('wordlist-content').style.display = ''; waiting('word_list') }
+document.write(bm)

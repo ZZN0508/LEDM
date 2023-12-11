@@ -1,0 +1,30 @@
+
+//<![CDATA[
+document.domain = 'daum.net';
+var gvConfGen = 'g0';
+var DT = DT || {};
+DT.SystemTime = 1621566807447;
+
+TiaraTracker.getInstance()
+.setSvcDomain('www.daum.net')
+.setSection('HOME')
+.setPage('default')
+.trackPage('다음_PC탑')
+.setAutoClick(true)
+.track();
+DT.endTime = new Date().getTime();
+DT.startTime = new Date().getTime();
+(function () {
+if (document.location.toString().indexOf('debug') === -1) {
+window.onerror = function (errorMsg, url, lineNumber) {
+return true;
+};
+}
+})();
+document.onkeydown = function () {
+DT.userAction = true;
+};
+document.onclick = function () {
+DT.userAction = true;
+};
+//]]>

@@ -1,0 +1,38 @@
+
+{
+"@context": "https://schema.org",
+"@type": "Organization",
+"name": "Uptodown",
+"url": "https://www.uptodown.com",
+"logo": "https://stc.utdstc.com/img/imagelogo.png",
+"sameAs": [
+"https://www.facebook.com/Uptodown",
+"https://twitter.com/Uptodown",
+"https://www.youtube.com/user/UptodownVideos",
+"https://uptodown.io",
+"https://www.wikidata.org/wiki/Q6157280"
+]
+}
+
+
+{
+"@context": "https://schema.org",
+"@type": "WebPage",
+"url" : "https://cn.uptodown.com/windows",
+"isPartOf" : {
+"@type" : "WebSite",
+"url" : "https://cn.uptodown.com",
+"publisher" : {"@id" : "https://cn.uptodown.com/#organization"},
+"potentialAction": {
+"@type": "SearchAction",
+"target": "https://cn.uptodown.com/windows/search/{search_term_string}",
+"query-input": "required name=search_term_string"
+}
+}
+}
+
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-313498-1');

@@ -1,0 +1,68 @@
+//<![CDATA[
+	var gtm4wp_datalayer_name = "dataLayer";
+	var dataLayer = dataLayer || [];
+//]]>
+
+{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.state.gov/#website","url":"https://www.state.gov/","name":"United States Department of State","description":"","potentialAction":[{"@type":"SearchAction","target":"https://www.state.gov/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"WebPage","@id":"https://www.state.gov/#webpage","url":"https://www.state.gov/","name":"U.S. Department of State - United States Department of State","isPartOf":{"@id":"https://www.state.gov/#website"},"datePublished":"2018-08-16T14:49:28+00:00","dateModified":"2021-05-20T17:47:57+00:00","description":"Leading America\u2019s foreign policy to advance the interests and security of the American people.","breadcrumb":{"@id":"https://www.state.gov/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.state.gov/"]}]},{"@type":"BreadcrumbList","@id":"https://www.state.gov/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://www.state.gov/","url":"https://www.state.gov/","name":"Home"}}]}]}
+//<![CDATA[
+	var dataLayer_content = {"pagePostType":"frontpage","pagePostType2":"single-page","pagePostAuthor":"Maureen Thaivalappil"};
+	dataLayer.push( dataLayer_content );//]]>
+
+
+;(function (g) {
+var d = document, am = d.createElement("script"), h = d.head || d.getElementsByTagName("head")[0], fsr = "fsReady",
+aex = {
+"src": "/wp-content/themes/state/foresee_assets/js/gateway.min.js",
+"type": "text/javascript",
+"async": "true",
+"data-vendor": "fs",
+"data-mode": "selfhost",
+"data-environment": "production",
+"data-hasssl": "true",
+"data-client": "state-gov",
+"data-codelocation": "/wp-content/themes/state/foresee_assets/code/19.11.1/",
+"data-isselfhosted": "true",
+"data-product-assets": "/wp-content/themes/state/foresee_assets/product_assets/",
+"data-role": "gateway"
+};
+for (var attr in aex){am.setAttribute(attr, aex[attr]);}h.appendChild(am); g[fsr] || (g[fsr] = function () {var aT = "__" + fsr + "_stk__";g[aT] = g[aT] || [];g[aT].push(arguments);});})(window);
+
+
+	// Code to load the navigation without the temporarily blank navigation and page jumpiness -- mainly for desktop.
+	if ( jQuery(window).width() >= 975 ) {
+		jQuery('.nav__utility').show();
+		jQuery('.site-nav--primary').appendTo('.nav__second-nav');
+		jQuery('.nav__primary-nav').appendTo('.nav__second-nav');
+	}
+	if ( jQuery(window).width() < 975 ) {	
+		jQuery('.nav__utility').hide();
+	}
+
+
+	// Code to load the navigation without the temporarily blank navigation and page jumpiness -- mainly for desktop.
+	if ( jQuery(window).width() >= 975 ) {
+		jQuery('.nav__utility').show();
+		jQuery('.site-nav--primary').appendTo('.nav__second-nav');
+		jQuery('.nav__primary-nav').appendTo('.nav__second-nav');
+	}
+	if ( jQuery(window).width() < 975 ) {	
+		jQuery('.nav__utility').hide();
+	}
+
+
+var sbiajaxurl = "https://www.state.gov/wp-admin/admin-ajax.php";
+
+
+/* <![CDATA[ */
+var wpApiSettings = {"root":"https:\/\/www.state.gov\/wp-json\/","nonce":"54e9cab973","versionString":"wp\/v2\/"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var Wmpci_Popup = {"enable":"0","delay":"0","exp_time":"1","close_on_esc":"1","hide_time":"0"};
+/* ]]> */

@@ -1,0 +1,35 @@
+// 鏂板鐨刬e鐗堟湰鍒ゆ柇
+function IEVersion() {
+    var userAgent = navigator.userAgent; //鍙栧緱娴忚鍣ㄧ殑userAgent瀛楃涓�  
+    var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //鍒ゆ柇鏄惁IE<11娴忚鍣�  
+    var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //鍒ゆ柇鏄惁IE鐨凟dge娴忚鍣�  
+    var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+    if (isIE) {
+      var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+      reIE.test(userAgent);
+      var fIEVersion = parseFloat(RegExp["$1"]);
+      if (fIEVersion == 7) {
+        return 7;
+      } else if (fIEVersion == 8) {
+        return 8;
+      } else if (fIEVersion == 9) {
+        return 9;
+      } else if (fIEVersion == 10) {
+        return 10;
+      } else {
+        return 6; //IE鐗堟湰<=7
+      }
+    } else if (isEdge) {
+      return 'edge'; //edge
+    } else if (isIE11) {
+      return 11; //IE11  
+    } else {
+      return -1; //涓嶆槸ie娴忚鍣�
+    }
+}
+window.ieVersion = IEVersion()
+if (window.ieVersion >= 6 && window.ieVersion <= 8) {
+    //window.ie67890 = true;
+    //$('body').addClass('ie67890')
+    alert("鎮ㄧ殑娴忚鍣ㄧ増鏈繃浣庯紝涓轰簡杈惧埌鏈€浣崇殑娴忚鏁堟灉锛岃涓嬭浇鏂扮増娴忚鍣ㄦ垨鍒囨崲鍒版瀬閫熸ā寮忥紒")
+}

@@ -1,0 +1,157 @@
+(function webpackUniversalModuleDefinition(root, factory) {
+ if(typeof exports === 'object' && typeof module === 'object')
+  module.exports = factory(require("base"), require("core"), require("ui"));
+ else if(typeof define === 'function' && define.amd)
+  define("widget-hdfc-cookie-notification", ["base", "core", "ui"], factory);
+ else if(typeof exports === 'object')
+  exports["widget-hdfc-cookie-notification"] = factory(require("base"), require("core"), require("ui"));
+ else
+  root["widget-hdfc-cookie-notification"] = factory(root["base"], root["core"], root["ui"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/  // The module cache
+/******/  var installedModules = {};
+/******/
+/******/  // The require function
+/******/  function __webpack_require__(moduleId) {
+/******/
+/******/   // Check if module is in cache
+/******/   if(installedModules[moduleId])
+/******/    return installedModules[moduleId].exports;
+/******/
+/******/   // Create a new module (and put it into the cache)
+/******/   var module = installedModules[moduleId] = {
+/******/    exports: {},
+/******/    id: moduleId,
+/******/    loaded: false
+/******/   };
+/******/
+/******/   // Execute the module function
+/******/   modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/   // Flag the module as loaded
+/******/   module.loaded = true;
+/******/
+/******/   // Return the exports of the module
+/******/   return module.exports;
+/******/  }
+/******/
+/******/
+/******/  // expose the modules object (__webpack_modules__)
+/******/  __webpack_require__.m = modules;
+/******/
+/******/  // expose the module cache
+/******/  __webpack_require__.c = installedModules;
+/******/
+/******/  // __webpack_public_path__
+/******/  __webpack_require__.p = "";
+/******/
+/******/  // Load entry module and return exports
+/******/  return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+ module.exports = __webpack_require__(73);
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+ module.exports = function(module) {
+  if(!module.webpackPolyfill) {
+   module.deprecate = function() {};
+   module.paths = [];
+   // module.parent = undefined by default
+   module.children = [];
+   module.webpackPolyfill = 1;
+  }
+  return module;
+ }
+
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+ module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+ module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+ module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
+
+/***/ 73:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {"use strict";
+ 
+ !(__WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports, module) {
+   "use strict";
+   module.name = "widget-hdfc-cookie-notification";var base = __webpack_require__(3),
+       core = __webpack_require__(4),
+       ui = __webpack_require__(5),
+       deps = [core.name, ui.name];module.exports = base.createModule(module.name, deps).constant("WIDGET_NAME", module.name).controller(__webpack_require__(74)).run(function () {});
+ }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+ /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
+
+/***/ }),
+
+/***/ 74:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+ 
+ !(__WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
+   "use strict";
+   exports.MainCtrl = function (lpWidget, lpCoreUtils, lpCoreError, $scope, lpPortal) {
+     this.utils = lpCoreUtils, this.error = lpCoreError, this.widget = lpWidget;var loggedInCheck = lpPortal.userId,
+         ctrl = this,
+         isNotification = getCookie("cookieNot"),
+         loggedInStatus = "" != loggedInCheck && void 0 !== loggedInCheck;if ("" != isNotification) ctrl.isGdpr = !1;else {
+       var headerToBe = lpWidget.getPreference("headerName"),
+           countryList = lpWidget.getPreference("headerValues"),
+           xhr = new XMLHttpRequest(),
+           url = window.location.href;xhr.open("HEAD", url, !0), xhr.onreadystatechange = function () {
+         if (2 === xhr.readyState || 4 === xhr.readyState) {
+           var headerValue = xhr.getResponseHeader(headerToBe);countryList.indexOf(headerValue) < 0 ? (function () {
+             "" != (isNotification = getCookie("cookieNot")) ? ctrl.isGdpr = !1 : (ctrl.boldText = lpWidget.getPreference("boldText"), ctrl.normalText = lpWidget.getPreference("normalText"), ctrl.linkName = lpWidget.getPreference("linkName"), ctrl.linkUrl = lpWidget.getPreference("linkUrl"), ctrl.buttonName = lpWidget.getPreference("buttonName"), ctrl.isGdpr = !0);$scope.$apply();
+           }(), 0 == $(".sticky-footer").length && $(".cookie-container").css({ bottom: "0px" })) : ctrl.isGdpr = !1;
+         }
+       }, xhr.send(null);
+     }function getCookie(cname) {
+       for (var name = cname + "=", ca = decodeURIComponent(document.cookie).split(";"), i = 0; i < ca.length; i++) {
+         for (var c = ca[i]; " " == c.charAt(0);) {
+           c = c.substring(1);
+         }if (0 == c.indexOf(name)) return c.substring(name.length, c.length);
+       }return "";
+     }ctrl.hideNotification = function () {
+       !function (cname, cvalue, exdays) {
+         var d = new Date();d.setTime(d.getTime() + 24 * exdays * 60 * 60 * 1e3);var expires = "expires=" + d.toGMTString();document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+       }("cookieNot", !(ctrl.isGdpr = !1), 7);
+     }, loggedInStatus && ctrl.hideNotification();
+   };
+ }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ })
+
+/******/ })
+});
+;
+//# sourceMappingURL=widget-hdfc-cookie-notification.js.map

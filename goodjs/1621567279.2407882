@@ -1,0 +1,42 @@
+
+  dataLayer = [{
+  'elogin': '0',
+  'esubdom': 'eksisozluk',
+  'etitle': '',
+  'ecat1': 'spor',
+  'econtentid': '',
+  'epagetype': 'main',
+  'epublishdate': '',
+  'epublishtime': '',
+  'econtenttype': '',
+  'efiltre': '',
+  'adu': '',
+  }];
+
+
+    var NativeAdPub = window.NativeAdPub || [];
+
+(function (w, d) { var s = d.createElement("script"); s.src = "https://delivery.adrecover.com/41209/adRecover.js"; s.type = "text/javascript"; s.async = true; (d.getElementsByTagName("head")[0] || d.getElementsByTagName("body")[0]).appendChild(s); })(window, document);
+
+var pp_gemius_identifier = 'bJub8NwkyDhwR5K9_vQ5U7PpLTCyoIOWs9yGN3kl4cz.d7';
+
+NativeAdPub.push({ target: '10924' , id: 'nativespot-unit-10924'});
+NativeAdPub.push({ domain: 'eksisozluk.nativespot.com', target: '10901' , id: 'nativespot-unit-10901'});
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v3.0&appId=151735074873255";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');
+
+var google_conversion_id = 878852058;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+
+window.Criteo = window.Criteo || {}; window.Criteo.events = window.Criteo.events || [];
+function tmpRender3874885(json) {}
+function parseCriteoBids3874885(json) {var runBidOnce = 0;if(json.length == 0) {window.top.networkAds.async3874885.doneScript();} else {for(var i in json) {json[i].nativePayload.response_status = 0;json[i].nativePayload.zoneid = json[i].zoneId;json[i].nativePayload.runcode = json[i].zoneId;json[i].nativePayload.sprice = json[i].cpm;if("1" == "1" && runBidOnce == 0) {runBidOnce = 1;window.top.networkAds.async3874885.actionScript(json[i].nativePayload, json[i].zoneId);}}}}
+Criteo.events.push(function() {var adUnit = {"placements": [{"slotid": "uni4", "zoneid": 1225136, "nativeCallback": tmpRender3874885}]}; Criteo.RequestBids(adUnit, parseCriteoBids3874885, 1500);})

@@ -1,0 +1,74 @@
+<!--
+    function C(k){return(document.cookie.match('(^|; )'+k+'=([^;]*)')||0)[2]}
+    var pagetype, pagemode;
+    (function(){
+        var h = document.documentElement;
+        h.className = h.className.replace('no-js', 'js');
+        var b = document.body;
+        var bodyClassList = b.className.split(/\s+/);;
+        pagetype = bodyClassList[0]; // dangerous assumption
+        var fmt = C('cl_fmt');
+        if ( fmt === 'regular' || fmt === 'mobile' ) {
+            pagemode = fmt;
+        } else if (screen.width <= 480) {
+            pagemode = 'mobile';
+        } else {
+            pagemode = 'regular';
+        }
+        pagemode = pagemode === 'mobile' ? 'mobile' : 'desktop';
+        bodyClassList.push(pagemode);
+        if (C('hidesearch') === '1' && pagemode !== 'mobile') {
+            bodyClassList.push('hide-search');
+        }
+        var width = window.innerWidth || document.documentElement.clientWidth;
+        if (width > 1000) { bodyClassList.push('w1024'); }
+        if (typeof window.sectionBase !== 'undefined') {
+            var mode = (decodeURIComponent(C('cl_tocmode') || '').match(new RegExp(window.sectionBase + ':([^,]+)', 'i')) || {})[1] || window.defaultView;
+            if (mode) {
+                bodyClassList.push(mode);
+            }
+        }
+        b.className = bodyClassList.join(' ');
+    }());
+-->
+
+    if (pagemode == 'mobile') {
+        var s = document.getElementById('search');
+        var c = document.getElementById('center');
+        c.insertBefore(s, c.children[0]);
+    }
+
+<!--
+var allText = "\u3059\u3079\u3066";
+var areaCountry = "JP";
+var areaID = "88";
+var categoryNames = {"rrr":"\u5c65\u6b74\u66f8","eee":"\u30a4\u30d9\u30f3\u30c8","hhh":"\u4f4f\u5b85","ggg":"\u30ae\u30b0","jjj":"\u30b8\u30e7\u30d6 ","bbb":"\u30b5\u30fc\u30d3\u30b9","sss":"\u58f2\u5374","ccc":"\u30b3\u30df\u30e5\u30cb\u30c6\u30a3"};
+var noResults = "\u691c\u7d22\u7d50\u679c\u306f\u3042\u308a\u307e\u305b\u3093";
+-->
+
+                (function(){
+                    var cl = window.CL = window.cl = window.cl || window.CL || {};
+                    cl.sandbox = "";
+                })();
+                try {
+                    if (
+                        !/\/\/.+\.craigslist\.org\/about\//.test(window.location.href) &&
+                        window.location.pathname.length > 1 &&
+                        (!window.addEventListener || JSON.parse(JSON.stringify('x')) !== 'x' || document.createElement("p").style.flex!=='')
+                    ) {
+                        throw "unsupported browser";
+                    }
+                } catch (e) {
+                    function cleanup() {
+                        document.body.innerHTML = '<div id="cl-unsupported-browser" style="margin:1em;font-size:150%;text-align:center;">We have detected you are using a browser that is missing critical features.<br><br>Please visit craigslist from a modern browser.</div>';
+                        document.body.style = "display:block";
+                    }
+
+                    try {
+                        document.body.style = "display:none";
+                    } catch (e) {
+                    }
+                    window.onload = cleanup;
+                    window.clUnsupportedBrowser = true;
+                }
+                

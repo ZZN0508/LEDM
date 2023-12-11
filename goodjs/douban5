@@ -1,0 +1,242 @@
+window.Douban = window.Douban || {};
+//必须放在head的前面，执行时间~3ms可以忽略
+//配合它，do.js放在最后
+
+var Do = function() { 
+  Do.actions.push([].slice.call(arguments));
+};
+
+Do.ready = function() {
+  Do.actions.push([].slice.call(arguments));
+};
+
+Do.add = Do.define = function(name, opts) {
+  Do.mods[name] = opts;
+};
+
+Do.global = function() {
+  Do.global.mods = Array.prototype.concat(Do.global.mods, [].slice.call(arguments));
+};
+
+Do.global.mods = [];
+Do.mods = {};
+Do.actions = [];
+
+function set_cookie(dict, days, domain, path){
+    var date = new Date(), expires, i;
+    date.setTime(date.getTime()+((days || 30)*24*60*60*1000));
+    expires = "; expires="+date.toGMTString();
+    for (i in dict){
+        document.cookie = i+"="+dict[i]+expires+"; domain=" + (domain || "douban.com") + "; path=" + (path || "/");
+    }
+}
+
+function get_cookie(name) {
+    var nameEQ = name + "=",
+    ca = document.cookie.split(';'), i, c;
+    for(i=0;i < ca.length;i++) {
+        c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) === 0) {
+            return c.substring(nameEQ.length,c.length).replace(/\"/g,'');
+        }
+    }
+    return null;
+}
+;
+Douban.init_show_login = (o) => {
+  let extractAppNameFromDomain = function() {
+    let appName = ''
+    let matches = location.hostname.match(/(.*)\.douban\.com/)
+    if (matches) {
+      appName = matches[1]
+    }
+    const REG_DOMAINS = [{
+      name: 'fm',
+      reg: /douban\.fm/
+    }, {
+      name: 'sns',
+      reg: /www\.douban\.com/
+    }, {
+      name: 'group',
+      reg: /douban\.com\/group/
+    }]
+    for(var i = 0, l = REG_DOMAINS.length; i++; i < l) {
+      let REG_DOMAIN = REG_DOMAINS[i]
+      if (location.href.match(REG_DOMAIN.reg)) {
+        appName = REG_DOMAIN.name
+      }
+    }
+    return appName || 'sns'
+  }
+  
+  let source = extractAppNameFromDomain()
+  const redir = `&redir=${encodeURIComponent(window.location.href)}`
+  const LOGIN_URL = `https://accounts.douban.com/passport/login_popup?source=${ source }${ redir }`
+  const POPUP_CSS = 'https://s.doubanio.com/dae/cdnlib/libs/components/accounts/popup.min.css'
+  const OVERLAY_JS = 'https://s.doubanio.com/dae/cdnlib/libs/jquery-overlay/overlay.min.js'
+  const FRAME_NAME = `${location.protocol}//${location.hostname}`
+  const TEMPLATE_IFRAME = `
+<iframe src="javascript:;" frameborder="0" scrolling="no" width="340" height="448" name="${ FRAME_NAME }">
+</iframe>`
+
+  let handleClick = function() {
+    $.overlay.open(TEMPLATE_IFRAME, function() {
+      $.overlay.body.find('iframe').attr('src', LOGIN_URL)
+    })
+  }
+
+  let node = $(o)
+  node.click((e) => {
+    e.preventDefault()
+    if (!$.overlay) {
+      Douban.loader.batch([POPUP_CSS, OVERLAY_JS]).done(handleClick)
+    } else {
+      handleClick()
+    }
+  })
+  $(window).bind('message', function(e) {
+    if (e.originalEvent.origin === 'https://accounts.douban.com') {
+      $.overlay.body.find('iframe').css('height', e.originalEvent.data)
+    }
+  })
+}
+;
+Do(function(){
+;(function() {
+if ('localStorage' in window) return;
+ 
+window.localStorage = function() {
+  var doc = document;
+  if (!doc.documentElement.addBehavior) {
+    throw 'don\'t support localstorage or userdata.';
+    return;
+  }
+  var storeName = '_localstorage_ie';
+  var node = doc.createElement('input');
+  node.type = 'hidden';
+  
+  var _wrap = function(fn) {
+    return function(){
+      doc.body.appendChild(node);
+      node.addBehavior('#default#userData');
+      var expires = new Date();
+      expires.setDate(expires.getDate() + 365);
+      node.expires = expires.toUTCString();
+      node.load(storeName);
+      var result = fn.apply(node, arguments);
+      doc.body.removeChild(node);
+      return result;
+    };
+  };
+  
+  return {
+    getItem: _wrap(function(key) {
+      return this.getAttribute(key);
+    }),
+    setItem: _wrap(function(key, val) {
+      this.setAttribute(key, val);
+      this.save(storeName);
+    }),
+    removeItem: _wrap(function(key) {
+      this.removeAttribute(key);
+      this.save(storeName);
+    }),
+    clear: _wrap(function() {
+      var attrs = this.XMLDocument.documentElement.attributes;
+      for (var i=0, attr; attr=attrs[i]; i++) {
+          this.removeAttribute(attr.name)
+      }
+    this.save(storeName);
+    })
+  }
+}();
+ 
+})();
+
+$(window).one('load', function() {
+  var queue = localStorage.getItem('report');
+  if (!queue) return;
+  queue = queue.split('_moreurl_separator_');
+  var send = function(param) {
+    if (param == '') {
+      send(queue.shift());
+      return;
+    }
+    $.get(typeof _MOREURL_REQ == 'undefined'? '/stat.html?' + param : _MOREURL_REQ + '?' + param,
+      function() {
+        if (queue.length) {
+          send(queue.shift());
+          localStorage.setItem('report', queue.join('_moreurl_separator_'));
+          return;
+        }
+        localStorage.removeItem('report');
+      });
+  };
+
+  send(queue.shift());
+});
+
+function _moreurl(self, dict) {
+  var more = ['ref='+encodeURIComponent(location.pathname)];
+  for (var i in dict) {
+    if (dict.hasOwnProperty(i)) {
+      more.push(i + '=' + dict[i]);
+    }
+  }
+  if (window._SPLITTEST) {
+    more.push('splittest=' + window._SPLITTEST);
+  }
+  localStorage.setItem('report', (localStorage.getItem('report') || '') + '_moreurl_separator_' + more.join('&'));
+}
+
+window.moreurl = _moreurl;
+
+$(document).click(function(evt) {
+  var target = evt.target,
+      moreurlDict = $(target).data('moreurl-dict');
+  if (moreurlDict) {
+    _moreurl(target, moreurlDict);
+  }
+});
+
+$.ajax_withck = function(options){
+    if(options.type=='POST')
+        options.data=$.extend(options.data||{},{ck:get_cookie('ck')});
+    return $.ajax(options)
+}
+$.postJSON_withck = function(url, data, callback){
+    return $.post_withck(url, data, callback, 'json');
+}
+$.post_withck = function( url, data, callback, type ) {
+    if ($.isFunction(data)) {
+        type = callback;
+        callback = data;
+        data = {};
+    }
+    return $.ajax({
+        type: 'POST',
+        url: url,
+        data: $.extend(data,{ck:get_cookie('ck')}),
+        success: callback,
+        dataType: type || 'text'
+    });
+};
+
+  //link actions事件绑定
+  $('html').click(function(e){
+    var el = $(e.target), 
+    classname = el.attr('class');
+    if (!classname) {
+      return;
+    }
+    $(classname.match(/a_(\w+)/gi)).each($.proxy(function(i, n){
+      var fn = Douban[n.replace(/^a_/, 'init_')];
+      if (typeof fn === 'function') {
+          e.preventDefault();
+          fn.call(this, e);
+      }
+    }, el[0]));
+  });
+});
+

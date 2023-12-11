@@ -1,0 +1,40 @@
+
+    	
+    if(navigator.userAgent.indexOf("Windows NT 5")!=-1) {
+    	var browser11 = navigator.appName;
+		var b_version11 = navigator.appVersion;
+		var version11 = b_version11.split(";");
+		if (version11[1] != undefined){
+			var trim_Version = version11[1].replace(/[ ]/g, "");
+			if (browser11 == "Microsoft Internet Explorer") {
+			document.getElementById('bpopup').style.display = "block";
+			document.body.style.overflow='hidden';
+			document.body.style.height='100%';
+			document.documentElement.style.overflow='hidden';
+			document.documentElement.style.height='100%';
+			} 
+			}
+		}
+//document.getElementById("popupc").onclick = function(){
+//　　 	document.getElementById('bpopup').style.display = "none";
+//document.body.removeAttribute("style");
+//document.documentElement.removeAttribute("style");
+//} 
+
+
+Echo.init({
+	offset: 0,		//离可视区域多少像素的图片可以被加载
+	throttle:10 	//图片延时多少毫秒加载
+});
+function get_cntv_whereis(cntv_whereis){
+	var chunwan_areaInfo = eval('(' + cntv_whereis.replace(/(^\s*)|(\s*$)/g, "") + ')');
+	country_code = chunwan_areaInfo.country_code;
+	//video_player_box();
+	setCookie_tvzhibo("country_code",country_code);
+	}
+function setCookie_tvzhibo(name, value) {
+		var Days = 0.25;
+		var exp = new Date();
+		exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+		document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString()
+	}

@@ -1,0 +1,35 @@
+
+$(function(){	
+	$(".Leader_switch_con ul.list4 li img").on("click",function(){
+		$(".ldewm").show();
+	});
+	$(".ldewm i.close").on("click",function(){
+		$(".ldewm").hide();
+	});
+}); 
+
+
+$(document).ready(function() {
+	$(document).scroll(function(){
+		var bkTop=$(this).scrollTop();
+		if(bkTop > 200){
+			$(".topb").show()
+		}
+		else{
+			$(".topb").hide()	
+		}			
+	})	
+	$(".topb").click(function(){
+        $('html , body').animate({scrollTop: 0},500);
+    });	
+});
+
+
+$(document).ready(function() {    
+	$(".ggtl").each(function(index, element) {
+	   if($(this).find('img').length > 0){
+		   var index1=$(".ggtl").index(this);
+		   $(".ggtl").eq(index1).css("height","135px");
+		}
+    });
+});

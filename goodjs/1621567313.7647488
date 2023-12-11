@@ -1,0 +1,67 @@
+
+window.BB = {
+	cur_domain: location.hostname.replace(/.*?(([a-z0-9-]+\.){1,2}[a-z0-9-]+)$/, '$1'),
+	form_token: '',
+	opt_js: {},
+
+	IS_GUEST: !!'1',
+	IMG_URL: 'https://static.t-ru.org/templates/v1/images',
+	SMILES_URL: 'https://static.t-ru.org/smiles',
+	catId: 0,
+	FORUM_ID: 0,
+	parentForumId: 0,
+		COOKIE_MARK: 'bb_mark_read',
+	};
+BB.cookie_defaults = {
+	domain: '.' + BB.cur_domain,
+	path: "/forum/",
+};
+
+
+	if (top != self && !self.location.hostname.match(BB.allowed_translator_hosts)) {
+		$(function () {
+			$('body').html('<h1 style="text-align: center;"><br><br>Похоже, вас пытаются обмануть<br>frame\'s hostname: ' + self.location.hostname + '</h1>');
+			throw new Error('in frame');
+		});
+	}
+		
+
+						//$(function(){
+						//	$('#news-t-5115937').addClass('new');
+						//});
+						
+
+$(function () {
+	$('#f-566 a').attr({ target: '_blank', href: 'http://rutracker.wiki/' });
+});
+
+
+	$(function () {
+		var cat_id = BB.getUrlParam('c');
+		if (cat_id) {
+			$('table.forums').not('#cf-' + cat_id).hide();
+		}
+	});
+	
+
+					(function (d, w, c) {
+						(w[c] = w[c] || []).push(function () {
+							try {
+																w.yaCounter55725919 = new window.Ya.Metrika({ id: 55725919, clickmap: false, trackLinks: true, accurateTrackBounce: true });
+															} catch(e) { }
+						});
+						var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); };
+						s.type = "text/javascript";
+						s.async = true;
+						s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
+						if (w.opera == "[object Opera]") {
+							d.addEventListener("DOMContentLoaded", f, false);
+						} else { f(); }
+					})(document, window, "yandex_metrika_callbacks");
+					
+
+$(function () {
+	if (!BB.hasET() && BB.getUrlParam('view') !== 'print') {
+		BB.navbar.init();
+	}
+});

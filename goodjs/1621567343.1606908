@@ -1,0 +1,556 @@
+
+            (function(w, d, n) {
+                w[n] = w[n] || [];
+                [["trackClick", "click"], ["trackImpression", "impression"]].forEach(function(m) {
+                    w[n][m[0]] = w[n][m[0]] || function(d) {
+                        this.push(Object.assign(d, { eventType: m[1] }));
+                    };
+                });
+            })(window, document, "bbeep");
+        
+
+            (function(w) {
+                var data = {"adcode":"business/home","contentType":"homepage-asia","pageType":"homepage","parselySite":"","vertical":"business","brand":"business","title":"Bloomberg.com","transporter":"false","refresh":"false"};
+                if (/(^|(; ))is-auto-refresh=Y($|;)/.test(document.cookie)) {
+                    data.refresh = "true";
+                    document.cookie = "is-auto-refresh=;domain=" + window.location.hostname + ";path=/;expires=" + (new Date()).toUTCString();
+                }
+                w.dataLayer = w.dataLayer || [];
+                w.dataLayer.push(data);
+            })(window);
+        
+
+        /* GDPR Stub file */
+        !function () { var e = function () { var e, t = "__tcfapiLocator", a = [], n = window; for (; n;) { try { if (n.frames[t]) { e = n; break } } catch (e) { } if (n === window.top) break; n = n.parent } e || (!function e() { var a = n.document, r = !!n.frames[t]; if (!r) if (a.body) { var i = a.createElement("iframe"); i.style.cssText = "display:none", i.name = t, a.body.appendChild(i) } else setTimeout(e, 5); return !r }(), n.__tcfapi = function () { for (var e, t = arguments.length, n = new Array(t), r = 0; r < t; r++)n[r] = arguments[r]; if (!n.length) return a; if ("setGdprApplies" === n[0]) n.length > 3 && 2 === parseInt(n[1], 10) && "boolean" == typeof n[3] && (e = n[3], "function" == typeof n[2] && n[2]("set", !0)); else if ("ping" === n[0]) { var i = { gdprApplies: e, cmpLoaded: !1, cmpStatus: "stub" }; "function" == typeof n[2] && n[2](i) } else a.push(n) }, n.addEventListener("message", (function (e) { var t = "string" == typeof e.data, a = {}; try { a = t ? JSON.parse(e.data) : e.data } catch (e) { } var n = a.__tcfapiCall; n && window.__tcfapi(n.command, n.version, (function (a, r) { var i = { __tcfapiReturn: { returnValue: a, success: r, callId: n.callId } }; t && (i = JSON.stringify(i)), e.source.postMessage(i, "*") }), n.parameter) }), !1)) }; "undefined" != typeof module ? module.exports = e : e() }();
+    
+
+        /* CCPA Stub file */
+        (function () { var e = false; var c = window; var t = document; function r() { if (!c.frames["__uspapiLocator"]) { if (t.body) { var a = t.body; var e = t.createElement("iframe"); e.style.cssText = "display:none"; e.name = "__uspapiLocator"; a.appendChild(e) } else { setTimeout(r, 5) } } } r(); function p() { var a = arguments; __uspapi.a = __uspapi.a || []; if (!a.length) { return __uspapi.a } else if (a[0] === "ping") { a[2]({ gdprAppliesGlobally: e, cmpLoaded: false }, true) } else { __uspapi.a.push([].slice.apply(a)) } } function l(t) { var r = typeof t.data === "string"; try { var a = r ? JSON.parse(t.data) : t.data; if (a.__cmpCall) { var n = a.__cmpCall; c.__uspapi(n.command, n.parameter, function (a, e) { var c = { __cmpReturn: { returnValue: a, success: e, callId: n.callId } }; t.source.postMessage(r ? JSON.stringify(c) : c, "*") }) } } catch (a) { } } if (typeof __uspapi !== "function") { c.__uspapi = p; __uspapi.msgHandler = l; c.addEventListener("message", l, false) } })();
+    
+
+        window._sp_ = {
+            config: {
+                accountId: 1425,
+                baseEndpoint: "https://sourcepointcmp.bloomberg.com",
+                targetingParams: {
+                    type: "GDPR",
+                    view: window.isTerminal ? "terminal" : "web"
+                }
+            }
+        };
+        window._sp_ccpa = {
+            config: {
+                accountId: 1425,
+                baseEndpoint: "https://sourcepointcmp.bloomberg.com",
+                getDnsMsgMms: true,
+                alwaysDisplayDns: false,
+                targetingParams: {
+                    type: "CCPA",
+                    view: window.isTerminal ? "terminal" : "web"
+                }
+            }
+        };
+    
+
+        window.__bloomberg__ = window.__bloomberg__ || {};
+        window.__bloomberg__.cmp = {
+            init: function initCMP() {
+    var CCPA_FOOTER_LABELS = {
+        ja: "私の個人情報を販売しない(カリフォルニア州消費者プライバシー法)",
+        en: "Do Not Sell My Info (California)"
+    };
+    var GDPR_FOOTER_LABELS = {
+        ja: "クッキーを管理する",
+        en: "Manage Cookies"
+    };
+    if (!window.__tcfapi) {
+        console.warn("[navi/cmp] CMP required stub missing, exiting `initCMP`");
+        return;
+    }
+    var bbgConsentReadyFlag = false;
+    var sourcepointCMPLoaded = false;
+    var SOURCEPOINT_GDPR_PRIVACY_MANAGER_ID = 192913;
+    var SOURCEPOINT_CCPA_PRIVACY_MANAGER_ID = "5f07906b43304a114d911db3";
+    var trackerTimeStart = Date.now();
+    /* https://support.google.com/analytics/answer/10022331?hl=en */
+    window["gtag_enable_tcf_support"] = true;
+    /* Listens for GDPR/CCPA consent events, converts it to bbg consent string, and stores it in a cookie */
+    waitForConsent({
+        onGDPR: function (tcData) {
+            if (tcData.eventStatus !== "tcloaded" && tcData.eventStatus !== "useractioncomplete") {
+                console.warn("[navi/cmp] CMP UI is shown, waiting for user consent");
+                return;
+            }
+            window.__tcfapi("getCustomVendorConsents", 2, function (customConsents, success) {
+                if (!success) {
+                    console.error("[navi/cmp] Failed to `getCustomVendorConsents` with __tcfapi");
+                    return;
+                }
+                var bbgConsentString = convertFromGDPRData(customConsents);
+                setCookie("bbgconsentstring", bbgConsentString, 365);
+                fireBBGConsentReadyGTMEventOnce();
+                console.log("[navi/cmp] GDPR applies, custom consent string", bbgConsentString);
+            });
+        },
+        onCCPA: function (uspData) {
+            var bbgConsentString = convertFromCCPAData(uspData);
+            setCookie("bbgconsentstring", bbgConsentString, 365);
+            fireBBGConsentReadyGTMEventOnce();
+            console.log("[navi/cmp] CCPA applies, custom consent string", bbgConsentString);
+        },
+        onError: function (error) {
+            console.warn("[navi/cmp]", error);
+            if (!navigator.sendBeacon)
+                return;
+            navigator.sendBeacon("/javelin/api/cmp_tracker", new Blob([JSON.stringify({
+                    url: window.location.href,
+                    event: "sourcepoint_cmp_error",
+                    message: error.message,
+                    userAgent: navigator.userAgent,
+                    timeElapsed: (Date.now() - trackerTimeStart) / 1000
+                })], { type: "application/json" }));
+        }
+    });
+    /* Listens for GDPR/CCPA consent events and injects proper footer link */
+    waitForConsent({
+        onGDPR: function () {
+            waitForDOM(function () {
+                injectCmpLink(GDPR_FOOTER_LABELS, function () {
+                    window._sp_.loadPrivacyManagerModal(SOURCEPOINT_GDPR_PRIVACY_MANAGER_ID);
+                });
+            });
+        },
+        onCCPA: function () {
+            waitForDOM(function () {
+                injectCmpLink(CCPA_FOOTER_LABELS, function () {
+                    window._sp_ccpa.loadPrivacyManagerModal(null, SOURCEPOINT_CCPA_PRIVACY_MANAGER_ID);
+                });
+            });
+        },
+        once: true
+    });
+    window.addEventListener("beforeunload", function () {
+        if (!navigator.sendBeacon)
+            return;
+        if (!sourcepointCMPLoaded || !wasGtmDomEventPushed() || !didGoogletagLoadStart()) {
+            navigator.sendBeacon("/javelin/api/cmp_tracker", new Blob([JSON.stringify({
+                    url: window.location.href,
+                    event: "integration_load_anomaly",
+                    userAgent: navigator.userAgent,
+                    sourcepointCMPLoaded: sourcepointCMPLoaded,
+                    gtmDom: wasGtmDomEventPushed(),
+                    gtmLoad: wasGtmLoadEventPushed(),
+                    googletagLoadStart: didGoogletagLoadStart(),
+                    message: "See attached metadata",
+                    timeElapsed: (Date.now() - trackerTimeStart) / 1000
+                })], { type: "application/json" }));
+        }
+        if (sourcepointCMPLoaded && !bbgConsentReadyFlag) {
+            navigator.sendBeacon("/javelin/api/cmp_tracker", new Blob([JSON.stringify({
+                    url: window.location.href,
+                    event: "bbg_consent_ready",
+                    userAgent: navigator.userAgent,
+                    message: "User left the page before CMP was submitted",
+                    timeElapsed: (Date.now() - trackerTimeStart) / 1000
+                })], { type: "application/json" }));
+        }
+    });
+    function waitForConsent(options) {
+        window.__tcfapi("addEventListener", 2, function (tcData, success) {
+            options.onError = options.onError || function () { };
+            if (!success) {
+                options.onError(new Error("[navi/cmp] Failure received from __tcfapi `addEventListener`"));
+                return;
+            }
+            /* https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#what-does-the-gdprapplies-value-mean */
+            if (tcData.gdprApplies === undefined) {
+                options.onError(new Error("[navi/cmp] Received `gdprApplies` as undefined"));
+                return;
+            }
+            sourcepointCMPLoaded = true;
+            if (tcData.gdprApplies) {
+                options.onGDPR(tcData);
+            }
+            else {
+                window.__uspapi("getUSPData", 1, function (uspData, success) {
+                    if (!success) {
+                        options.onError(new Error("[navi/cmp] Failed to `getUSPData` with __uspapi"));
+                        return;
+                    }
+                    options.onCCPA(uspData);
+                });
+            }
+            if (options.once) {
+                window.__tcfapi("removeEventListener", 2, function (success) {
+                    if (!success) {
+                        options.onError(new Error("[navi/cmp] Failed to remove __tcfapi event listener with id: " + tcData.listenerId));
+                    }
+                }, tcData.listenerId);
+            }
+        });
+    }
+    function waitForDOM(fn) {
+        document.readyState === "loading"
+            ? document.addEventListener("DOMContentLoaded", fn)
+            : fn();
+        window.addEventListener("load", fn);
+    }
+    function injectCmpLink(labels, triggerCmpModal) {
+        var cmpLink = document.querySelector("#cmp-footer-link");
+        if (cmpLink && cmpLink.getAttribute("data-status") !== "injected") {
+            cmpLink.textContent = labels[cmpLink.getAttribute("data-lang") || "en"];
+            cmpLink.addEventListener("click", triggerCmpModal);
+            cmpLink.setAttribute("data-status", "injected");
+            console.log("[navi/cmp] Successfully injected footer link", cmpLink);
+            return;
+        }
+        console.warn("[navi/cmp] Footer link was not found or was already injected", cmpLink);
+    }
+    function convertFromCCPAData(uspData) {
+        return uspData.uspString.charAt(2) === "N" ? "req1fun1pad1" : "req1fun0pad0";
+    }
+    function convertFromGDPRData(consents) {
+        var funId = "5f29641df70e58290010d5aa";
+        var padId = "5f2c366203c8584077858803";
+        var grantedConsents = consents.consentedPurposes.concat(consents.legIntPurposes);
+        var reqFlag = "req1", funFlag = "fun0", padFlag = "pad0";
+        grantedConsents.forEach(function (purpose) {
+            if (purpose._id === funId) {
+                funFlag = "fun1";
+                Object.keys(consents.grants).forEach(function (vendorId) {
+                    var grant = consents.grants[vendorId].purposeGrants;
+                    if (funId in grant && !grant[funId]) {
+                        funFlag = "fun0";
+                    }
+                });
+            }
+            if (purpose._id === padId) {
+                padFlag = "pad1";
+                Object.keys(consents.grants).forEach(function (vendorId) {
+                    var grant = consents.grants[vendorId].purposeGrants;
+                    if (padId in grant && !grant[padId]) {
+                        padFlag = "pad0";
+                    }
+                });
+            }
+        });
+        return [reqFlag, funFlag, padFlag].join("");
+    }
+    function setCookie(name, value, days) {
+        var d = new Date;
+        d.setTime(d.getTime() + 24 * 60 * 60 * 1000 * days);
+        document.cookie = name + "=" + value + ";path=/;expires=" + d.toUTCString();
+    }
+    function fireBBGConsentReadyGTMEventOnce() {
+        if (!bbgConsentReadyFlag) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: "bbg_consent_ready" });
+            // add support for liveblog-frontend, which uses a different data layer array
+            if (/^\/?news\/live-blog/.test(window.location.pathname)) {
+                window.dataLayerMNTH5N = window.dataLayerMNTH5N || [];
+                window.dataLayerMNTH5N.push({ event: "bbg_consent_ready" });
+            }
+            /* Needed to guarantee that we fire GTM `bbg_consent_ready` event only once */
+            bbgConsentReadyFlag = true;
+        }
+    }
+    function wasGtmDomEventPushed() {
+        try {
+            return Boolean(window.dataLayer.find(function (command) {
+                return command.event === "gtm.dom";
+            }));
+        }
+        catch (e) {
+            return null;
+        }
+    }
+    function wasGtmLoadEventPushed() {
+        try {
+            return Boolean(window.dataLayer.find(function (command) {
+                return command.event === "gtm.load";
+            }));
+        }
+        catch (e) {
+            return null;
+        }
+    }
+    function didGoogletagLoadStart() {
+        try {
+            return Boolean(window.googletag._loadStarted_);
+        }
+        catch (e) {
+            return null;
+        }
+    }
+}
+        };
+        window.__bloomberg__.cmp.init();
+    
+
+        (function(w, n) {
+            w[n] = w[n] || {};
+            w[n].cmd = w[n].cmd || [];
+        })(window, "Spritz");
+    
+
+        (function(w, n) {
+            w[n] = w[n] || {};
+            w[n].cmd = w[n].cmd || [];
+        })(window, "Sparkle");
+    
+
+            window.__bloomberg__ = window.__bloomberg__ || {};
+            const bridge = new window.bridgeWebModule();
+            window.__bloomberg__.byzantium = new window.msByzantiumCoreModule.ByzantiumCore(bridge);
+            window.__bloomberg__.byzantium.refreshUserInfo();
+        
+
+            window._fence = (function(d, s, l, id, cdn, v) {
+                var fs, st, lt, pf, ft, f = window._fence || {};
+                if (d.getElementById(id)) return f;
+                fs = d.scripts[0];
+                st = d.createElement(s);
+                lt = d.createElement(l);
+                pf = d.createElement(l);
+                ft = d.createElement(l);
+                pf.rel = "dns-prefetch"; pf.href = cdn;
+                st.id = id; st.async = true; st.src = cdn + "/s3/fence/" + v + "/app.bundle.js";
+                lt.rel = "stylesheet"; lt.href = cdn + "/s3/fence/" + v + "/styles.css";
+                ft.rel = "stylesheet"; ft.href = "https://assets.bwbx.io/font-service/css/BWHaasGrotesk-55Roman-Web,BWHaasGrotesk-75Bold-Web,Bloomberg/font-face.css";
+                f.q = f.q || [];
+                f.nq = f.nq || [];
+                f.ready = function(cb) {
+                    f.q.push(cb);
+                };
+                f.notReady = function(cb) {
+                    f.nq.push(cb);
+                };
+                d.head.appendChild(pf);
+                d.head.appendChild(lt);
+                d.head.appendChild(ft);
+                fs.parentNode.insertBefore(st, fs);
+                return f;
+            }(document, "script", "link", "fence-snippet", "//assets.bwbx.io", "v4"));
+
+            window._fence.ready(function() {
+               window._fence.enableRender({}).addContent("HUB_PAGE", "premium-asia", false);
+           });
+        
+window.__bloomberg__=window.__bloomberg__||{};window.__bloomberg__.environment={"playlistPlayerEnabled":true,"psznTrackingUrl":"https://tracking.bloomberg.com/psz/pixel.gif","psznRecommendationUrl":"https://personalization.bloomberg.com","registrationUrl":"https://login.bloomberg.com","tickerToutEnabled":true,"tickerToutUrl":"https://www.bloomberg.com/markets/modules/datastrip","videoPlayerUrl":"https://cdn.gotraffic.net/projector/latest/bplayer.js","__fnEnabled":true,"__pvcEnabled":true,"latestPreferencesEnabled":true,"registrationEnv":"production"};
+window.__bloomberg__.abba=[{"targetId":"tllfj","priority":-1,"condition":"{\"or\":[{\"and\":[{\"value\":\"chrome\",\"comparator\":\"eq\",\"id\":\"userAgent\",\"type\":\"enumeration\",\"store\":\"userAgent\"}]},{\"and\":[{\"value\":\"firefox\",\"comparator\":\"eq\",\"id\":\"userAgent\",\"type\":\"enumeration\",\"store\":\"userAgent\"}]},{\"and\":[{\"value\":\"opera\",\"comparator\":\"eq\",\"id\":\"userAgent\",\"type\":\"enumeration\",\"store\":\"userAgent\"}]},{\"and\":[{\"value\":\"samsung\",\"comparator\":\"eq\",\"id\":\"userAgent\",\"type\":\"enumeration\",\"store\":\"userAgent\"}]}]}","config":"{\"webpushprompt\":{\"title\":\"Cut through the chaos with real time updates on the news affecting the global economy.\",\"titleBold\":\"Enable Notifications.\",\"variation\":\"wide\",\"turnonText\":\"Enable\",\"nothanksText\":\"Later\",\"shouldDisplay\":true,\"deferMinAfterClose\":60,\"showAfterPageViews\":0,\"deferMinAfterIgnore\":20}}","experiments":[{"experimentId":"eibp5","population":1,"startTime":"2020-12-11T18:00:00.000Z","endTime":"2021-06-11T17:00:00.000Z","locked":false,"buckets":[{"bucketId":"bile0","config":"{}"},{"bucketId":"buhln","config":"{}"},{"bucketId":"bg35g","config":"{\"webpushprompt\":{\"title\":\"Never miss an opportunity. Get alerts to help you stay in the know.\",\"titleBold\":\"Enable Notifications.\",\"variation\":\"wide\",\"turnonText\":\"Allow\",\"nothanksText\":\"Later\",\"shouldDisplay\":true,\"deferMinAfterClose\":60,\"showAfterPageViews\":0,\"deferMinAfterIgnore\":20}}"},{"bucketId":"bkhfj","config":"{\"webpushprompt\":{\"title\":\"Get notifications and never miss a beat on news moving markets.\",\"titleBold\":\"Enable Notifications.\",\"variation\":\"wide\",\"turnonText\":\"Allow\",\"nothanksText\":\"Later\",\"shouldDisplay\":true,\"deferMinAfterClose\":60,\"showAfterPageViews\":0,\"deferMinAfterIgnore\":20}}"}]}]},{"targetId":"t8m8w","priority":-1,"condition":"{\"and\":[{\"or\":[{\"value\":\"US\",\"comparator\":\"eq\",\"id\":\"geoIp\",\"type\":\"string\",\"store\":\"geo\"},{\"value\":\"US\",\"comparator\":\"not\",\"id\":\"geoIp\",\"type\":\"string\",\"store\":\"geo\"}]}]}","config":"{\"premium\":{\"hfs_zone_0_row_1_column_0\":\"hfs\",\"trending_zone_1_row_1_column_0\":\"trending\",\"stories_for_you_zone_2_row_5_column_0\":\"stories_for_you\",\"stories_for_you_zone_4_row_1_column_0\":\"stories_for_you\"}}","experiments":[{"experimentId":"er0oe","population":0.3,"startTime":"2021-05-03T20:00:00.000Z","endTime":"2021-05-31T20:00:00.000Z","locked":false,"buckets":[{"bucketId":"brexw","config":"{\"premium\":{\"flex_story_package_zone_2_row_4_column_0\":\"flex_story_package\"}}"},{"bucketId":"b2fmu","config":"{\"premium\":{\"flex_story_package_zone_2_row_4_column_0\":\"flex_story_package\"}}"},{"bucketId":"bsr8p","config":"{\"premium\":{\"flex_story_package_zone_2_row_4_column_0\":\"flex_story_package_variant_1\"}}"}]},{"experimentId":"eaw4f","population":0.5,"startTime":"2021-05-10T17:15:00.000Z","endTime":"2021-06-07T17:15:00.000Z","locked":false,"buckets":[{"bucketId":"bsei3","config":"{\"premium\":{\"latest_zone_1_row_0_column_0\":\"latest\"}}"},{"bucketId":"b7ric","config":"{\"premium\":{\"latest_zone_1_row_0_column_0\":\"latest\"}}"},{"bucketId":"b2c2s","config":"{\"premium\":{\"latest_zone_1_row_0_column_0\":\"latest_variant_1\"}}"},{"bucketId":"bjh1d","config":"{\"premium\":{\"latest_zone_1_row_0_column_0\":\"latest_variant_2\"}}"},{"bucketId":"bmy68","config":"{\"premium\":{\"latest_zone_1_row_0_column_0\":\"latest_variant_3\"}}"}]}]},{"targetId":"tp41a","priority":-1,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"technology\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"technology\",\"comparator\":\"eq\",\"id\":\"brand\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"brand\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"technology\",\"comparator\":\"ct\",\"id\":\"preferredClassification\",\"type\":\"enumeration\",\"store\":\"tagsInfo\",\"path\":\"preferredClassification\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"/news/newsletters/\",\"comparator\":\"nct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Get exclusive insights from Bloomberg's technology reporters from around the world.\",\"subheader\":\"Sign up for the Fully Charged technology newsletter.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"technology\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":2}}","experiments":[]},{"targetId":"t5s7b","priority":-1,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"Opinion Today\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"view\",\"comparator\":\"eq\",\"id\":\"brand\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"brand\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"/news/newsletters/\",\"comparator\":\"nct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Opinions. Analysis. Data.\",\"subheader\":\"Get the most important Bloomberg Opinion pieces on economics, tech, politics, and more rounded up in one email.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Opinion Today\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":2}}","experiments":[]},{"targetId":"t2wer","priority":-1,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"hyperdrive\",\"comparator\":\"ct\",\"id\":\"franchise\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"franchise\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"Hyperdrive\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Your guide to the future of cars, from reporters around the world.\",\"subheader\":\"Sign up for the Hyperdrive newsletter. \",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Hyperdrive\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":3}}","experiments":[]},{"targetId":"tao4m","priority":-1,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"cvs-walgreens-wba-walmart-wmt-need-to-nail-covid-vaccinations-in-2021\",\"comparator\":\"ct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"Prognosis\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Sign up for the latest Covid updates\",\"subheader\":\"Make sense of the headlines and the outbreak's global response with the Coronavirus Daily.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Prognosis\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":3}}","experiments":[]},{"targetId":"tt5qb","priority":1,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"Green\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"green\",\"comparator\":\"eq\",\"id\":\"brand\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"brand\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"/news/newsletters/\",\"comparator\":\"nct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Sign up for the Bloomberg Green newsletter.\",\"subheader\":\"A digest of climate news and insights on the latest in science, environmental impacts, zero-emission tech and green finance.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Green\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":3}}","experiments":[]},{"targetId":"tlcxx","priority":2,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"screentime\",\"comparator\":\"eq\",\"id\":\"franchise\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"franchise\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"Screentime\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"/news/newsletters/\",\"comparator\":\"nct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Hollywood Meets Silicon Valley\",\"subheader\":\"Get a front-row seat to the collision of these two worlds in the Screentime newsletter, hitting your inbox on Sundays.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Screentime\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":2}}","experiments":[]},{"targetId":"t3oau","priority":5,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"CityLab Daily\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"citylab\",\"comparator\":\"eq\",\"id\":\"brand\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"brand\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"mobile\",\"comparator\":\"nct\",\"id\":\"device\",\"type\":\"enumeration\",\"store\":\"device\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"/news/newsletters/\",\"comparator\":\"nct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Sign up for the CityLab Daily newsletter.\",\"subheader\":\"Get the story of the world's cities delivered to your inbox each day.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"CityLab Daily\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":3}}","experiments":[]},{"targetId":"tflf6","priority":11,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"Wealth\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"wealth\",\"comparator\":\"eq\",\"id\":\"brand\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"brand\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"/news/newsletters/\",\"comparator\":\"nct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]}]}","config":"{\"inlinenltoutsd\":{\"outlet\":\"middle-of-content\",\"templateId\":9,\"Title_content\":\"Your guide to a life well spent\",\"EmailForm_listId\":\"Wealth\",\"Subtitle_content\":\"Sign up for the Wealth weekly newsletter. \",\"EmailForm_buttonText\":\"Sign Up\",\"EmailForm_sourcePage\":\"inlineMiddleSD_wealth\"},\"newsletter-modal\":{\"header\":\"Sign up for the Bloomberg Wealth newsletter.\",\"subheader\":\"Your guide to a life well spent.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Wealth\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":3}}","experiments":[]},{"targetId":"tb0dp","priority":11,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"equality\",\"comparator\":\"eq\",\"id\":\"brand\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"brand\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"Equality\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"\",\"value\":\"/news/newsletters/\",\"comparator\":\"nct\",\"id\":\"url\",\"type\":\"string\",\"store\":\"url\",\"path\":\"url\"}]}]}","config":"{\"inlinenltoutsd\":{\"outlet\":\"middle-of-content\",\"templateId\":9,\"Title_content\":\"Tracking the forces driving change\",\"EmailForm_listId\":\"Equality\",\"Subtitle_content\":\"Sign up for the Bloomberg Equality newsletter. \",\"EmailForm_buttonText\":\"Sign Up\",\"EmailForm_sourcePage\":\"inlineMiddleSD_equality\"},\"newsletter-modal\":{\"header\":\"Sign up for the Bloomberg Equality newsletter\",\"subheader\":\"The latest on how companies and institutions are confronting gender, race and class.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Equality\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":3}}","experiments":[]},{"targetId":"t3t0a","priority":20,"condition":"{\"and\":[{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":false,\"comparator\":\"eq\",\"id\":\"subscriber\",\"type\":\"boolean\",\"store\":\"userInfo\",\"path\":\"subscriber\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"business\",\"comparator\":\"eq\",\"id\":\"brand\",\"type\":\"string\",\"store\":\"contentMetadata\",\"path\":\"brand\"}]},{\"or\":[{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"Markets Daily\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"},{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"Business Daily\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"},{\"indicator_value\":\"\",\"indicator_comparator\":\"=\",\"value\":\"technology\",\"comparator\":\"nct\",\"id\":\"newsletters\",\"type\":\"enumeration\",\"store\":\"userInfo\",\"path\":\"newsletters\"}]}]}","config":"{\"newsletter-modal\":{\"header\":\"Get the latest updates on global trade and markets straight to your inbox.\",\"subheader\":\"Sign up for The Evening Briefing newsletter.\",\"buttonCopy\":\"Sign Up\",\"newsletterId\":\"Business Daily\",\"frequencyDays\":7,\"frequencySession\":1,\"frequencySpacing\":2}}","experiments":[]},{"targetId":"t4gjc","priority":1000,"condition":"{\"or\":[{\"and\":[{\"value\":true,\"comparator\":\"eq\",\"id\":\"subscriber\",\"type\":\"boolean\",\"store\":\"userInfo\",\"path\":\"subscriber\"}]}]}","config":"{\"referrals-opt-in\":{\"variation\":\"none\",\"ratePlanId\":\"\"}}","experiments":[]}];
+
+            window.__bloomberg__.ads = {};
+            window.__bloomberg__.ads.queue = [];
+
+            window.__bloomberg__.ads.enqueue = function(id) {
+                window.__bloomberg__.ads.queue.push(id);
+            };
+        
+{"adCode":"business/home","targeting":{"page":"premium-asia","edition":"asia"}}
+
+                    window.__bloomberg__.ads.enqueue("overlay-KBete5w");
+                
+{"pageId":"premium-asia","contentId":"premium-asia","position":"overlay","dimensions":{"all":[[1,12]]},"strategy":"parameters","type":"Overlay Pixel","targeting":{"position":"overlay","url":"/asia"},"containerId":"overlay-KBete5w"}
+{"pageId":"premium-asia","position":"canopy","dimensions":{"all":[[5,16],[1,1],"fluid"],"large_desktop":[[970,250]],"small_desktop":[[970,250]]},"strategy":"viewable","type":"Canopy","targeting":{"position":"canopy","page":"premium-asia","edition":"asia"},"containerId":"canopy-premium-asia"}
+(function(){var md="                    <li class=\"bb-that__col bb-that__col--md\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--bloomberg--1\" class=\"bb-that-category__title\">Bloomberg</h3><div class=\"bb-that-category__content\"><p class=\"bb-that-category__text\">Connecting decision makers to a dynamic network of information, people and ideas, Bloomberg quickly and accurately delivers business and financial information, news and insight around the world.</p></div></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--for_customers--2\" class=\"bb-that-category__title\">For Customers</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--for_customers--2\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://bba.bloomberg.net/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Anywhere Remote Login\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Anywhere Remote Login</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/professional/downloads/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Software Updates\" data-label=\"bcom\" tabindex=\"0\">Software Updates</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://service.bloomberg.com/portal/sessions/new?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Manage Products and Account Information\" data-label=\"bcom\" tabindex=\"0\">Manage Products and Account Information</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--support--3\" class=\"bb-that-category__title\">Support</h3><div class=\"bb-that-category__content\"><p class=\"bb-that-category__text\"><span>Americas</span>+1 212 318 2000</p><p class=\"bb-that-category__text\"><span>EMEA</span>+44 20 7330 7500</p><p class=\"bb-that-category__text\"><span>Asia Pacific</span>+65 6212 1000</p></div></section>    </li>                    <li class=\"bb-that__col bb-that__col--md\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--company--4\" class=\"bb-that-category__title\">Company</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--company--4\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"About\" data-label=\"bcom\" tabindex=\"0\">About</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/what-we-do/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Careers\" data-label=\"bcom\" tabindex=\"0\">Careers</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/diversity-inclusion/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Diversity and Inclusion\" data-label=\"bcom\" tabindex=\"0\">Diversity and Inclusion</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/innovation/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Innovation\" data-label=\"bcom\" tabindex=\"0\">Innovation</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/philanthropy/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Philanthropy\" data-label=\"bcom\" tabindex=\"0\">Philanthropy</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/sustainability/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Sustainability\" data-label=\"bcom\" tabindex=\"0\">Sustainability</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/london/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg London\" data-label=\"bcom\" tabindex=\"0\">Bloomberg London</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/beta/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Beta\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Beta</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/gei?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Gender-Equality Index\" data-label=\"bcom\" tabindex=\"0\">Gender-Equality Index</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--communications--5\" class=\"bb-that-category__title\">Communications</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--communications--5\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/company/announcements/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Press Announcements\" data-label=\"bcom\" tabindex=\"0\">Press Announcements</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/company/press-contacts/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Press Contacts\" data-label=\"bcom\" tabindex=\"0\">Press Contacts</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--follow--6\" class=\"bb-that-category__title\">Follow</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--follow--6\"><li class=\"bb-that-category__item\"><a href=\"http://www.facebook.com/Bloomberglp\" class=\"bb-that-category__social-link bb-that--icon-facebook\" data-element=\"tophat-link\" data-description=\"Facebook\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">Facebook</a></li><li class=\"bb-that-category__item\"><a href=\"https://twitter.com/bloomberg\" class=\"bb-that-category__social-link bb-that--icon-twitter\" data-element=\"tophat-link\" data-description=\"Twitter\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">Twitter</a></li><li class=\"bb-that-category__item\"><a href=\"https://www.linkedin.com/company/2494\" class=\"bb-that-category__social-link bb-that--icon-linkedin\" data-element=\"tophat-link\" data-description=\"LinkedIn\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">LinkedIn</a></li><li class=\"bb-that-category__item\"><a href=\"https://www.instagram.com/bloomberg/\" class=\"bb-that-category__social-link bb-that--icon-instagram\" data-element=\"tophat-link\" data-description=\"Instagram\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">Instagram</a></li></ul></section>    </li>                    <li class=\"bb-that__col bb-that__col--md\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--products--7\" class=\"bb-that-category__title\">Products</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--products--7\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/professional/solution/bloomberg-terminal/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-TERMINAL-bbgmenu\" data-element=\"tophat-link\" data-description=\"Bloomberg Terminal\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Terminal</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/execution-order-management/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-EXORDMGMT-bbgmenu\" data-element=\"tophat-link\" data-description=\"Execution and Order Management\" data-label=\"bcom\" tabindex=\"0\">Execution and Order Management</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/data-and-content/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-DATACONT-bbgmenu\" data-element=\"tophat-link\" data-description=\"Content and Data\" data-label=\"bcom\" tabindex=\"0\">Content and Data</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/financial-data-management/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-FINDATA-bbgmenu\" data-element=\"tophat-link\" data-description=\"Financial Data Management\" data-label=\"bcom\" tabindex=\"0\">Financial Data Management</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/integration-and-distribution/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-INTEGDIST-bbgmenu\" data-element=\"tophat-link\" data-description=\"Integration and Distribution\" data-label=\"bcom\" tabindex=\"0\">Integration and Distribution</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/tradebook/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-TBOOK-bbgmenu\" data-element=\"tophat-link\" data-description=\"Bloomberg Tradebook\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Tradebook</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--industry_products--8\" class=\"bb-that-category__title\">Industry Products</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--industry_products--8\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://pro.bloomberglaw.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Law\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Law</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://pro.bloombergtax.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Tax\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Tax</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://about.bgov.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Government\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Government</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://about.bnef.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"BloombergNEF\" data-label=\"bcom\" tabindex=\"0\">BloombergNEF</a></li></ul></section>    </li>                    <li class=\"bb-that__col bb-that__col--md\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--media--9\" class=\"bb-that-category__title\">Media</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--media--9\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/markets/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Markets\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Markets</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/technology/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Technology\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Technology</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/pursuits/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Pursuits\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Pursuits</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/politics/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Politics\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Politics</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/opinion/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Opinion\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Opinion</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/businessweek/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Businessweek\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Businessweek</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberglive.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Live Conferences\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Live Conferences</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloombergapps.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Apps\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Apps</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloombergradio.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Radio\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Radio</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/live?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Television\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Television</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/company/news-bureaus/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"News Bureaus\" data-label=\"bcom\" tabindex=\"0\">News Bureaus</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--media_services--10\" class=\"bb-that-category__title\">Media Services</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--media_services--10\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/distribution?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Media Distribution\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Media Distribution</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloombergmedia.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Advertising\" data-label=\"bcom\" tabindex=\"0\">Advertising</a></li></ul></section>    </li>            ";var sm="                    <li class=\"bb-that__col bb-that__col--sm\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--company--11\" class=\"bb-that-category__title\">Company</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--company--11\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"About\" data-label=\"bcom\" tabindex=\"0\">About</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/what-we-do/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Careers\" data-label=\"bcom\" tabindex=\"0\">Careers</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/diversity-inclusion/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Diversity and Inclusion\" data-label=\"bcom\" tabindex=\"0\">Diversity and Inclusion</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/innovation/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Innovation\" data-label=\"bcom\" tabindex=\"0\">Innovation</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/philanthropy/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Philanthropy\" data-label=\"bcom\" tabindex=\"0\">Philanthropy</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/sustainability/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Sustainability\" data-label=\"bcom\" tabindex=\"0\">Sustainability</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/london/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg London\" data-label=\"bcom\" tabindex=\"0\">Bloomberg London</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/company/beta/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Beta\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Beta</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/gei?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Gender-Equality Index\" data-label=\"bcom\" tabindex=\"0\">Gender-Equality Index</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--communications--12\" class=\"bb-that-category__title\">Communications</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--communications--12\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/company/announcements/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Press Announcements\" data-label=\"bcom\" tabindex=\"0\">Press Announcements</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/company/press-contacts/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Press Contacts\" data-label=\"bcom\" tabindex=\"0\">Press Contacts</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--follow--13\" class=\"bb-that-category__title\">Follow</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--follow--13\"><li class=\"bb-that-category__item\"><a href=\"http://www.facebook.com/Bloomberglp\" class=\"bb-that-category__social-link bb-that--icon-facebook\" data-element=\"tophat-link\" data-description=\"Facebook\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">Facebook</a></li><li class=\"bb-that-category__item\"><a href=\"https://twitter.com/bloomberg\" class=\"bb-that-category__social-link bb-that--icon-twitter\" data-element=\"tophat-link\" data-description=\"Twitter\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">Twitter</a></li><li class=\"bb-that-category__item\"><a href=\"https://www.linkedin.com/company/2494\" class=\"bb-that-category__social-link bb-that--icon-linkedin\" data-element=\"tophat-link\" data-description=\"LinkedIn\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">LinkedIn</a></li><li class=\"bb-that-category__item\"><a href=\"https://www.instagram.com/bloomberg/\" class=\"bb-that-category__social-link bb-that--icon-instagram\" data-element=\"tophat-link\" data-description=\"Instagram\" data-label=\"bcom\" target=\"_blank\" rel=\"noopener\" tabindex=\"0\">Instagram</a></li></ul></section>    </li>                    <li class=\"bb-that__col bb-that__col--sm\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--products--14\" class=\"bb-that-category__title\">Products</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--products--14\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/professional/solution/bloomberg-terminal/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-TERMINAL-bbgmenu\" data-element=\"tophat-link\" data-description=\"Bloomberg Terminal\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Terminal</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/execution-order-management/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-EXORDMGMT-bbgmenu\" data-element=\"tophat-link\" data-description=\"Execution and[br] Order Management\" data-label=\"bcom\" tabindex=\"0\">Execution and<br> Order Management</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/data-and-content/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-DATACONT-bbgmenu\" data-element=\"tophat-link\" data-description=\"Content and Data\" data-label=\"bcom\" tabindex=\"0\">Content and Data</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/financial-data-management/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-FINDATA-bbgmenu\" data-element=\"tophat-link\" data-description=\"Financial Data[br] Management\" data-label=\"bcom\" tabindex=\"0\">Financial Data<br> Management</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/integration-and-distribution/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-INTEGDIST-bbgmenu\" data-element=\"tophat-link\" data-description=\"Integration and[br] Distribution\" data-label=\"bcom\" tabindex=\"0\">Integration and<br> Distribution</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/professional/solution/tradebook/?utm_source=bloomberg-menu&amp;utm_medium=bcom&amp;bbgsum=DG-WS-PROF-SOLU-TBOOK-bbgmenu\" data-element=\"tophat-link\" data-description=\"Bloomberg[br] Tradebook\" data-label=\"bcom\" tabindex=\"0\">Bloomberg<br> Tradebook</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--industry_products--15\" class=\"bb-that-category__title\">Industry Products</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--industry_products--15\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://pro.bloomberglaw.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Law\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Law</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://pro.bloombergtax.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Tax\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Tax</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://about.bgov.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Government\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Government</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://pro.bloombergenvironment.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Environment\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Environment</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://about.bnef.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"BloombergNEF\" data-label=\"bcom\" tabindex=\"0\">BloombergNEF</a></li></ul></section>    </li>                    <li class=\"bb-that__col bb-that__col--sm\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--media--16\" class=\"bb-that-category__title\">Media</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--media--16\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/markets/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Markets\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Markets</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/technology/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg[br] Technology\" data-label=\"bcom\" tabindex=\"0\">Bloomberg<br> Technology</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/pursuits/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Pursuits\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Pursuits</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/politics/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Politics\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Politics</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/opinion/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Opinion\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Opinion</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloomberg.com/businessweek/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg[br] Businessweek\" data-label=\"bcom\" tabindex=\"0\">Bloomberg<br> Businessweek</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberglive.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Live Conferences\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Live Conferences</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloombergapps.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Apps\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Apps</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://www.bloombergradio.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Radio\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Radio</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/live?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Television\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Television</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/company/news-bureaus/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"News Bureaus\" data-label=\"bcom\" tabindex=\"0\">News Bureaus</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--media_services--17\" class=\"bb-that-category__title\">Media Services</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--media_services--17\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/distribution?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Media Distribution\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Media Distribution</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloombergmedia.com/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Advertising\" data-label=\"bcom\" tabindex=\"0\">Advertising</a></li></ul></section>    </li>                    <li class=\"bb-that__col bb-that__col--sm\">            <section class=\"bb-that-category\">    <h3 id=\"that-list--bloomberg--18\" class=\"bb-that-category__title\">Bloomberg</h3><div class=\"bb-that-category__content\"><p class=\"bb-that-category__text\">Connecting decision makers to a dynamic network of information, people and ideas, Bloomberg quickly and accurately delivers business and financial information, news and insight around the world.</p></div></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--for_customers--19\" class=\"bb-that-category__title\">For Customers</h3><ul class=\"bb-that-category__content\" aria-labelledby=\"that-list--for_customers--19\"><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"https://bba.bloomberg.net/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Bloomberg Anywhere Remote Login\" data-label=\"bcom\" tabindex=\"0\">Bloomberg Anywhere Remote Login</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://www.bloomberg.com/professional/downloads/?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Software Updates\" data-label=\"bcom\" tabindex=\"0\">Software Updates</a></li><li class=\"bb-that-category__item\"><a class=\"bb-that-category__link\" href=\"http://service.bloomberg.com/portal/sessions/new?utm_source=bloomberg-menu&amp;utm_medium=bcom\" data-element=\"tophat-link\" data-description=\"Manage Contracts and Orders\" data-label=\"bcom\" tabindex=\"0\">Manage Contracts and Orders</a></li></ul></section>            <section class=\"bb-that-category\">    <h3 id=\"that-list--support--20\" class=\"bb-that-category__title\">Support</h3><div class=\"bb-that-category__content\"><p class=\"bb-that-category__text\"><span>Americas</span>+1 212 318 2000</p><p class=\"bb-that-category__text\"><span>EMEA</span>+44 20 7330 7500</p><p class=\"bb-that-category__text\"><span>Asia Pacific</span>+65 6212 1000</p></div></section>    </li>            ";function fillTophat(){document.querySelector(".bb-that__sitemap-sections.bb-that--visible-md").innerHTML=md;document.querySelector(".bb-that__sitemap-sections.bb-that--visible-sm").innerHTML=sm;}document.querySelector(".bb-that-header--sitemap-trigger").addEventListener("keydown",function(){fillTophat();});document.querySelector(".bb-that-header--sitemap-trigger").addEventListener("click",function(){fillTophat();});})();
+{
+    "@context": "http://schema.org",
+    "@type": "NewsMediaOrganization",
+    "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "USA",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "postalCode": "10022",
+        "streetAddress": "731 Lexington Avenue"
+    },
+    "diversityPolicy": "https://www.bloomberg.com/diversity-inclusion",
+    "name": "Bloomberg",
+    "email": "inquiry1@bloomberg.net",
+    "legalName": "Bloomberg Finance L.P.",
+    "leiCode": "5493001KJTIIGC8Y1R12",
+    "telephone": "(212) 318-2000",
+    "url": "https://www.bloomberg.com",
+    "logo": "https://assets.bwbx.io/s3/navi/images/bloomberg_logo-2556aaa618.svg",
+    "brand": [
+        {
+            "@type": "Brand",
+            "name": "Bloomberg markets",
+            "url": "https://www.bloomberg.com/markets"
+        },
+        {
+            "@type": "Brand",
+            "name": "Bloomberg technology",
+            "url": "https://www.bloomberg.com/technology"
+        },
+        {
+            "@type": "Brand",
+            "name": "Bloomberg pursuits",
+            "url": "https://www.bloomberg.com/pursuits"
+        },
+        {
+            "@type": "Brand",
+            "name": "Bloomberg politics",
+            "url": "https://www.bloomberg.com/politics"
+        },
+        {
+            "@type": "Brand",
+            "name": "Bloomberg opinion",
+            "url": "https://www.bloomberg.com/opinion",
+            "logo": "https://assets.bwbx.io/s3/navi/images/bloomberg_opinion_logo-591d28994d.svg"
+        },
+        {
+            "@type": "Brand",
+            "name": "Bloomberg businessweek",
+            "url": "https://www.bloomberg.com/businessweek",
+            "logo": "https://assets.bwbx.io/s3/navi/images/bloomberg_businessweek_logo-5e920ae9c4.svg"
+        }
+    ]
+}
+{"id":"latest_1","type":"story_list","theme":"","title":"Latest","tracking":{"id":"f1d1562c-c0ea-49cf-bf48-59e456fccc05","title":"Latest"},"variation":"latest","autofillData":null,"duplicateOf":null}
+{"id":"trending","type":"story_list","theme":"","title":"Most Read","tracking":{"id":"bf630899-66f8-48f0-83c2-83cc622f9736","title":"Trending"},"variation":"trending","autofillData":{"type":"PERSONALIZED","args":{"limit":5,"algorithm":"meta","includedSites":"bbiz;pursuits;green;markets;businessweek;citylab;wealth;quicktake;bpol;technology","resourceTypes":"Story;Interactive;Quicktake;Storythread;Dataarticle;Slideshow;Feature","inactivePeriod":2592000000,"interactionsLimit":25,"maxAge":345600000,"filters.exclude.Ni":"GLOBEWRP;APACEVE;APACFIVE;FIVE;FIVEEU;USEVE;EURFIVE","thumbnailRequired":false}},"excludeArticles":"Story|QTFK49T1UM3X01;Story|QTFHUMT0G1L201;Story|QSPWLDT0AFB401;Story|QTCCC9T1UM0X01;Story|QTA3CRT0G1KW01;Story|QTF72WT0G1KW01;Story|QTFARYT0G1KW01;Story|QTEPPFT1UM1201;Story|QTE28KT0AFB701;Story|QTEO3ST0AFB701;Story|QT8OEVT0G1KY01;Feature|QTFBQLDWRGG101;Story|QTEB43T1UM1301;Story|QTEUPPT1UM0Z01;Story|QTDUEGDWLU6901;Story|QTFLA6T1UM5H01;Story|QTF9FXT0G1KW01;Story|QSZPFGDWX2PU01;Story|QTFLEODWX2PU01;Story|QTFFUPDWRGG501;Story|QTFEGODWRGG301;Story|QTFBOODWRGG601;Story|QTFA5YT0AFB401;Story|QTDFOGT1UM1201;Story|QTBLBAT0G1KW01;Story|QT9RF9T0G1KW01;Story|QTAISDT0G1KW01;Story|QTFBH6T0G1KW01;Story|QTESVPT0G1KY01;Story|QTEHZBT1UM0W01;Story|QTEJ7IDWRGG901;Story|QTE8ROT0AFB401;Story|QRY5TUT1UM1801;Story|QRY5VET0AFB601;Story|QSB4HTDWRGG001;Story|QSO36NDWX2PX01;Story|QTDVHVT0G1KY01;Story|QTERUTT1UM1301;Interactive|QSUTJ4DWX2PX01;Interactive|QR7NY3DWX2PS01;Interactive|Q4KVIX6JIJUO01;Interactive|QKT7SWT1UM0W01;Story|QTF1W1DWLU6S01;Story|QTAJGGDWRGGA01;Story|QTERJHDWX2PX01;Story|QTB3STT1UM0X01;Story|QTEZ8ST0G1L601;Story|QTEVFOT0AFB601;Story|QTEL67T1UM1501;Story|QTDEI4DWRGG001","duplicateOf":null}
+{"id":"hub_single_story","type":"single_story","theme":"","title":null,"tracking":{"id":"dec82e5f-8cc3-4793-89fe-00603a332d2d","title":"Lede"},"variation":"homepage_lede_with_dek","autofillData":null,"duplicateOf":null}
+{"id":"hub_story_package","type":"story_package","theme":"","title":null,"tracking":{"id":"ed63bc2d-3871-40c3-b9b4-ee3d8cce01d3","title":"Well 1 (4 up, heds & deks)"},"variation":"4_up_heds_only","autofillData":null,"duplicateOf":null}
+{"pageId":"premium-asia","position":"box1","dimensions":{"mobile":[[300,250],[3,3],[5,16],[5,5],[5,19],[1,1],"fluid"]},"type":"box","targeting":{"position":"box1","page":"premium-asia"},"containerId":"box-mobile-premium-asia-1"}
+{"id":"hub_story_package_2","type":"story_package","theme":"","title":null,"tracking":{"id":"13c77cf6-9292-4e1e-a19d-166c1ef458cf","title":"Well 2 (2 up w/live TV)"},"variation":"3_up_autoplay","autofillData":null,"duplicateOf":null}
+{"id":"opinion_right_rail_shadow","type":"story_package","theme":"homepage_rail_opinion","title":"Opinion","tracking":{"id":"47103f9a-a3ef-4a95-8af9-a65925e3ec81","title":"Opinion"},"variation":"new_opinion_homepage","autofillData":null,"duplicateOf":"hub_story_package_1"}
+{"pageId":"premium-asia","position":"box1","dimensions":{"large_desktop":[[300,250],[3,3],[5,4],[1,1],"fluid"],"small_desktop":[[300,250],[3,3],[5,4],[1,1],"fluid"]},"type":"box","targeting":{"position":"box1","page":"premium-asia"},"containerId":"box-desktop-standard-premium-asia-1"}
+
+                window._brandmetrics = window._brandmetrics || [];
+                window._brandmetrics.push({ cmd: "_loadsurvey" });
+            
+{"id":"hub_story_package_1","type":"story_package","theme":"homepage_rail_opinion","title":"Opinion","tracking":{"id":"47103f9a-a3ef-4a95-8af9-a65925e3ec81","title":"Opinion"},"variation":"new_opinion_homepage","autofillData":null,"duplicateOf":null}
+{"id":"newsletter","type":"newsletter","theme":"","title":"The best in-depth reporting from Asia and beyond.","tracking":{"id":"b1f615de-2b62-44de-8165-57e1617dbdd4","title":"Newsletter"},"variation":"","autofillData":null,"duplicateOf":null}
+{"pageId":"premium-asia","position":"custombox1","dimensions":{"all":[[1,1]],"large_desktop":[[5,4]],"small_desktop":[[5,4]],"tablet":[[5,11]],"mobile":[[5,19],[5,5],[5,16],[300,250],[3,3],"fluid"]},"type":"custombox","targeting":{"position":"custombox1","page":"premium-asia","edition":"asia"},"containerId":"custombox-premium-asia-1"}
+{"id":"hub_story_package3","type":"story_package","theme":"","title":null,"tracking":{"id":"d3d34cbf-9bc8-4b14-977b-d60284b2e253","title":"Well 3 (3 up w/sponsored content)"},"variation":"4_up_images","autofillData":null,"duplicateOf":null}
+{"pageId":"premium-asia","position":"immersive1","dimensions":{"tablet":[[728,90],[5,16],[5,5],[5,11],[1,1],"fluid"]},"type":"immersive","targeting":{"position":"immersive1","page":"premium-asia"},"containerId":"immersive-tablet-premium-asia-1"}
+{"id":"equality","type":"story_package","theme":"","title":"Equality","tracking":{"id":"736eb034-a017-40db-9c35-ba8239932f04","title":"Equality"},"variation":"4_up_images","autofillData":null,"duplicateOf":null}
+{"id":"foundering_1","type":"story_package","theme":"","title":"Podcast: Foundering","tracking":{"id":"b7a2ef14-3d74-4ead-80ad-6d139854b568","title":"Foundering"},"variation":"4_up_images","autofillData":null,"duplicateOf":null}
+{"id":"foundering_player","type":"embed","theme":"","title":"Binge the Podcast","tracking":{"id":"02ed499e-e068-4b7b-ac66-1ee15da01413","title":"Foundering Player"},"variation":"podcast_highlight","autofillData":null,"duplicateOf":null}
+{"id":"flex_story_package","type":"story_package","theme":"","title":"Latest on the Virus","tracking":{"id":"fc098e9e-afcf-485d-af83-b4f0b34eaede","title":"Flex Story Package"},"variation":"4_up_images","autofillData":null,"duplicateOf":null}
+{"id":"wealth_3_up_heds","type":"story_package","theme":"","title":"Bloomberg Wealth","tracking":{"id":"dd1efc7b-d7d3-44d6-9b24-6d85c7f60910","title":"Wealth"},"variation":"4_up_images","autofillData":null,"duplicateOf":null}
+{"id":"citylab","type":"story_package","theme":"","title":"CityLab","tracking":{"id":"88b91f78-94ff-4cd8-b6b9-ab133bd5b5f2","title":"CityLab"},"variation":"citylab_4_up_images","autofillData":null,"duplicateOf":null}
+{"QTFK49T1UM3X01":"Story","QTFHUMT0G1L201":"Story","QSPWLDT0AFB401":"Story","QTCCC9T1UM0X01":"Story","QTA3CRT0G1KW01":"Story","QTF72WT0G1KW01":"Story","QTFARYT0G1KW01":"Story","QTEPPFT1UM1201":"Story","QTE28KT0AFB701":"Story","QTEO3ST0AFB701":"Story","QT8OEVT0G1KY01":"Story","QTFBQLDWRGG101":"Feature","QTEB43T1UM1301":"Story","QTEUPPT1UM0Z01":"Story","QTDUEGDWLU6901":"Story","QTFLA6T1UM5H01":"Story","QTF9FXT0G1KW01":"Story","QSZPFGDWX2PU01":"Story","QTFLEODWX2PU01":"Story","QTFFUPDWRGG501":"Story","QTFEGODWRGG301":"Story","QTFBOODWRGG601":"Story","QTFA5YT0AFB401":"Story","QTDFOGT1UM1201":"Story","QTBLBAT0G1KW01":"Story","QT9RF9T0G1KW01":"Story","QTAISDT0G1KW01":"Story","QTFBH6T0G1KW01":"Story","QTESVPT0G1KY01":"Story","QTEHZBT1UM0W01":"Story","QTEJ7IDWRGG901":"Story","QTE8ROT0AFB401":"Story","QRY5TUT1UM1801":"Story","QRY5VET0AFB601":"Story","QSB4HTDWRGG001":"Story","QSO36NDWX2PX01":"Story","QTDVHVT0G1KY01":"Story","QTERUTT1UM1301":"Story","QSUTJ4DWX2PX01":"Interactive","QR7NY3DWX2PS01":"Interactive","Q4KVIX6JIJUO01":"Interactive","QKT7SWT1UM0W01":"Interactive","QTF1W1DWLU6S01":"Story","QTAJGGDWRGGA01":"Story","QTERJHDWX2PX01":"Story","QTB3STT1UM0X01":"Story","QTEZ8ST0G1L601":"Story","QTEVFOT0AFB601":"Story","QTEL67T1UM1501":"Story","QTDEI4DWRGG001":"Story"}
+{
+    "assetPrefix": "https://assets.bwbx.io/s3/javelin",
+    "js": [
+        "/public/hub/js/polyfills/polyfills-90f8694548.sync.js",
+        "/public/hub/js/event_bus/event_bus-e2d362ebc9.sync.js",
+        "/public/hub/js/latest_preferences/latest_preferences-66bab1fb49.js",
+        "/public/hub/js/latest_preferences/preferences-4868bab139.js",
+        "/public/hub/js/reg-ui-client/reg-ui-client-bb1c31745f.js",
+        "/public/hub/js/preact/preact-e3efe51abb.sync.js",
+        "/public/hub/js/abba/abba-2e713e4f8b.js",
+        "/public/hub/js/initialize_sparkle/initialize_sparkle-0e6aef1a26.js",
+        "/public/hub/js/overlay/overlay-9232a4ab0d.js",
+        "/public/hub/js/abba_variants/abba_variants-1e461a3fc8.js",
+        "/public/hub/js/dependencies/dependencies-99f568319d.js",
+        "/public/hub/js/geoip/geoip-b7f925d0a4.js",
+        "/public/hub/js/initialize_pianola/initialize_pianola-f52e322dc3.js",
+        "/public/hub/js/lazy_images/lazy_images-af2ee99e5d.js",
+        "/public/hub/js/continuous_client/prev_viewed-ff6ae040a4.js",
+        "/public/hub/js/auto_page_reload/auto_page_reload-8afa6d4b4c.js",
+        "/public/hub/js/lazyLoad/lazyLoad-66bcd4a13b.js",
+        "/public/hub/js/module/story_list/StoryListView-78e416038e.js",
+        "/public/hub/js/module/single_story/SingleStoryView-dee145e645.js",
+        "/public/hub/js/module/story_package/StoryPackageView-87e08c7ead.js",
+        "/public/hub/js/module/newsletter/NewsletterView-63257d547c.js",
+        "/public/hub/js/module/newsletter/newsletter_signup-484b2fba3b.js",
+        "/public/hub/js/module/embed/EmbedView-6cf4161c4e.js"
+    ],
+    "css": [
+        "/public/hub/js/latest_preferences/latest_preferences-jsx-ab0d460a27.css",
+        "/public/hub/css/latest_preferences/latest_preferences-d9448030cc.css",
+        "/public/hub/css/latest_preferences/preference_button-1b7fe8efe2.css",
+        "/public/hub/css/brand_metrics/brand_metrics-236c05446b.css",
+        "/public/hub/css/skiplink/skiplink-e70ad0e10c.css",
+        "/public/hub/css/overlay/overlay-ea1cc7a3be.css",
+        "/public/hub/css/canopy/canopy-c65aac20f1.css",
+        "/public/hub/css/abba_variants/abba_variants-e4521711d5.css",
+        "/public/hub/css/application/application-c8157b4591.css",
+        "/public/hub/css/layout/layout-f7caa16056.desktop.css",
+        "/public/hub/css/layout/layout-67a88c9054.large_desktop.css",
+        "/public/hub/css/layout/layout-95e1ac6362.mobile.css",
+        "/public/hub/css/layout/layout-07c386a831.small_desktop.css",
+        "/public/hub/css/layout/layout-f453862197.tablet.css",
+        "/public/hub/css/lazy_images/lazy_image-85e53e97a4.css",
+        "/public/hub/css/shadow_modules/shadow_modules-a79435d75b.css",
+        "/public/hub/css/theme/dark-a3cb5974d9.css",
+        "/public/hub/css/premium_homepage_behavior/premium-88034a8da2.mobile-tablet.css",
+        "/public/hub/css/module/story_list/_variation/latest-d94bcfd2d8.css",
+        "/public/hub/css/module/story_list/_variation/trending-5899a44d58.css",
+        "/public/hub/css/module/single_story/_variation/homepage_lede_with_dek-95a0991dbd.css",
+        "/public/hub/css/module/story_package/_theme/homepage-rail-c0750d2870.css",
+        "/public/hub/css/module/story_package/_variation/3_up_autoplay-923f4871a7.css",
+        "/public/hub/css/module/story_package/_variation/3_up_deks-4b7db1ddec.css",
+        "/public/hub/css/module/story_package/_variation/3_up_heds_only-6fadb565a0.css",
+        "/public/hub/css/module/story_package/_variation/3_up_heds_only_opinion-cf79545477.css",
+        "/public/hub/css/module/story_package/_variation/3_up_images-1acac7ab1e.css",
+        "/public/hub/css/module/story_package/_variation/3_up_images_opinion-439ac9aafa.css",
+        "/public/hub/css/module/story_package/_variation/4_up_condensed-35af85bc99.css",
+        "/public/hub/css/module/story_package/_variation/4_up_deks-a5f00e5129.css",
+        "/public/hub/css/module/story_package/_variation/4_up_deks_opinion-65c95f3966.css",
+        "/public/hub/css/module/story_package/_variation/4_up_heds_only-67982fe241.css",
+        "/public/hub/css/module/story_package/_variation/4_up_images-a4c96832af.css",
+        "/public/hub/css/module/story_package/_variation/citylab_4_up_images-0b8235a7a6.css",
+        "/public/hub/css/module/story_package/_variation/qt_3_up_autoplay-54015f3693.css",
+        "/public/hub/css/module/ad/ad-f0022f68dc.css",
+        "/public/hub/css/module/story_package/_variation/new_opinion_homepage-6d048df30f.css",
+        "/public/hub/css/module/newsletter/newsletter-10d1234281.desktop.css",
+        "/public/hub/css/module/newsletter/newsletter-b18f1b79a6.mobile-tablet.css",
+        "/public/hub/css/module/embed/_variation/podcast_highlight-71ded49a34.css",
+        "/public/hub/css/module/embed/embed-48485abba1.desktop.css"
+    ]
+}
+
+        window._fence = window._fence || {};
+        window._fence.q = window._fence.q || [];
+        window._fence.ready = window._fence.ready || function(cb) { window._fence.q.push(cb); };
+    
+
+        (function(){
+            window._pxAppId = 'PX8FCGYgk4';
+            var p = document.getElementsByTagName('script')[0],
+                s = document.createElement('script');
+            s.async = 1;
+            s.src = '/8FCGYgk4/init.js';
+            p.parentNode.insertBefore(s,p);
+        }());
+    
+window["jvln-dependencies"].injectScriptsForMedia("all", [
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/latest_preferences/latest_preferences-66bab1fb49.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/latest_preferences/preferences-4868bab139.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/reg-ui-client/reg-ui-client-bb1c31745f.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/abba/abba-2e713e4f8b.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/initialize_sparkle/initialize_sparkle-0e6aef1a26.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/overlay/overlay-9232a4ab0d.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/abba_variants/abba_variants-1e461a3fc8.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/dependencies/dependencies-99f568319d.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/geoip/geoip-b7f925d0a4.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/initialize_pianola/initialize_pianola-f52e322dc3.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/lazy_images/lazy_images-af2ee99e5d.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/continuous_client/prev_viewed-ff6ae040a4.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/auto_page_reload/auto_page_reload-8afa6d4b4c.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/lazyLoad/lazyLoad-66bcd4a13b.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/module/story_list/StoryListView-78e416038e.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/module/single_story/SingleStoryView-dee145e645.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/module/story_package/StoryPackageView-87e08c7ead.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/module/newsletter/NewsletterView-63257d547c.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/module/newsletter/newsletter_signup-484b2fba3b.js",
+    "https://assets.bwbx.io/s3/javelin/public/hub/js/module/embed/EmbedView-6cf4161c4e.js"
+]);
+(function(){var b=/US~US/.test(google_tag_manager["GTM-MNTH5N"].macro(22))?"https://cdn.brandmetrics.com/tag/002bd45403b64f0698cb2579a9094574/US.js":/US~CA/.test(google_tag_manager["GTM-MNTH5N"].macro(23))?"https://cdn.brandmetrics.com/tag/002bd45403b64f0698cb2579a9094574/CAN.js":/Asia~/.test(google_tag_manager["GTM-MNTH5N"].macro(24))?"https://cdn.brandmetrics.com/tag/002bd45403b64f0698cb2579a9094574/APAC.js":/(Europe|Africa|Middleeast)~/.test(google_tag_manager["GTM-MNTH5N"].macro(25))?"https://cdn.brandmetrics.com/tag/002bd45403b64f0698cb2579a9094574/EMEA.js":"https://cdn.brandmetrics.com/tag/002bd45403b64f0698cb2579a9094574/ROW.js";
+if(google_tag_manager["GTM-MNTH5N"].macro(26)){var a=document.createElement("script");a.async=1;a.setAttribute("src",b);document.head.appendChild(a)}})();
+_linkedin_data_partner_id="155577";
+(function(){var a="12098",d="ksg",c="lotame_"+a+"_auds";window.googletag=window.googletag||{};window.googletag.cmd=window.googletag.cmd||[];try{var e=window.localStorage.getItem(c)||"";e&&googletag.cmd.push(function(){window.googletag.pubads().setTargeting(d,e.split(","))})}catch(f){}var b=function(f){var g=f.getAudiences()||[];googletag.cmd.push(function(){window.googletag.pubads().setTargeting(d,g)})};b={clientId:Number(a),audienceLocalStorage:c,onProfileReady:b};c={behaviors:{"int":"dataLayer : brand : business;dataLayer : contentType : homepage-asia;dataLayer : pageType : homepage;dataLayer : refresh : false;dataLayer : topic : undefined;dataLayer : transporter : false".split(";")},
+thirdParty:{namespace:"BLPI",value:"undefined"}};b=b||{};a=window["lotame_"+a]={};a.config=b;a.data=c||{};a.cmd=a.cmd||[]})();
+var DATALAYER_OBJECT_NAME="dataLayer",referrerOverride=function(d){var c=window[DATALAYER_OBJECT_NAME]||[];c.push({event:"optimizely-referrer-override","optimizely-referrer":d})},sendCampaignData=function(d,c,f,h,g,k,b,a,e){optimizely&&"function"===typeof optimizely.get&&(h=optimizely.get("data")&&optimizely.get("data").campaigns[c]&&optimizely.get("data").campaigns[c].integrationSettings&&optimizely.get("data").campaigns[c].integrationSettings.google_universal_analytics&&optimizely.get("data").campaigns[c].integrationSettings.google_universal_analytics.universal_analytics_slot)&&
+(d=d?d+"("+c+")":c,f=f.join(","),g=g?g+"("+k+")":f+"("+k+")",b=b?b+"("+a+")":a,e=e?"holdback":"treatment",e=[d,g,b,e].join(":"),b=window[DATALAYER_OBJECT_NAME]||[],b.push({event:"campaign-decided","optimizely-dimension-value":e,"optimizely-dimension-number":h}))},initNewOptimizelyIntegration=function(d,c){var f=!1,h=function(b){var a=window.optimizely.get&&window.optimizely.get("state"),e=a.getRedirectInfo()&&a.getRedirectInfo().referrer;!f&&e&&(d(e),f=!0);a=a.getCampaignStates({isActive:!0});a=a[b];
+e=a.campaignName;if(0<a.audiences.length){var m=a.audiences.map(function(l){return l.name});var n=a.audiences.map(function(l){return l.id})}else m=["everyone_else"],n=[0];var p=a.experiment.name,q=a.experiment.id,r=a.variation.name,t=a.variation.id;c(e,b,m,n,p,q,r,t,a.isInCampaignHoldback)},g=function(){window.optimizely=window.optimizely||[];window.optimizely.push({type:"addListener",filter:{type:"lifecycle",name:"campaignDecided"},handler:function(b){b=b.data.campaign.id;h(b)}})},k=function(){var b=
+window.optimizely.get&&window.optimizely.get("state");if(b){b=b.getCampaignStates({isActive:!0});for(var a in b)h(a)}};k();g()},initOptimizelyIntegration=function(d,c){window.optimizely&&"function"===typeof window.optimizely.get&&initNewOptimizelyIntegration(d,c)};initOptimizelyIntegration(referrerOverride,sendCampaignData);
+_linkedin_partner_id="403593";window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+(function(b,a){b.cmd=b.cmd||[];if(a){a=a.split(":");a=atob(a[1]);a=JSON.parse(a);a=a.ipc_id;for(var e=1,f=73,c=!1,d=0;d<a.length&&!(c=+a[d],c=c>=e&&c<=f);d++);c&&b.cmd.push(function(){"pubads"in b&&b.pubads().setTargeting("ss","on")})}})(window.googletag||{},google_tag_manager["GTM-MNTH5N"].macro(90));
+function cb(a){dataLayer.push({"Private Browser":a})}function isChrome(){return!!("undefined"!==typeof window&&window.navigator&&window.navigator.userAgent&&/Chrome/.test(window.navigator.userAgent)&&window.navigator.vendor&&/Google Inc/.test(window.navigator.vendor))}function isSafari(){return!(!("undefined"!==typeof window&&window.navigator&&window.navigator.userAgent&&/Safari/i.test(window.navigator.userAgent))||/Chrome/i.test(window.navigator.userAgent))}
+function isIEorEdge(){return!("undefined"===typeof window||!window.PointerEvent&&!window.MSPointerEvent)}function isFirefox(){return!!("undefined"!==typeof document&&document.documentElement&&document.documentElement.style&&"MozAppearance"in document.documentElement.style)}function retry(a,c){var e=0,f=50,b=!1,d=window.setInterval(function(){a()&&(window.clearInterval(d),c(b));e++>f&&(window.clearInterval(d),b=!0,c(b))},10)}
+if(isChrome())navigator&&navigator.storage&&navigator.storage.estimate?navigator.storage.estimate().then(function(a){12E7>a.quota?cb(!0):cb(!1)}):cb(!1);else if(isSafari())try{window.openDatabase(null,null,null,null),cb(!1)}catch(a){cb(!0)}else if(isFirefox()){var db;try{db=window.indexedDB.open("test")}catch(a){is_private=!0}"undefined"===typeof is_private&&retry(function(){return"done"===db.readyState?cb(!0):cb(!1)},function(a){a||(is_private=db.result?cb(!1):cb(!0))})}else if(isIEorEdge()){try{if(!window.indexedDB)throw Error("private mode");
+}catch(a){cb(!0)}cb(!1)}cb(!1);

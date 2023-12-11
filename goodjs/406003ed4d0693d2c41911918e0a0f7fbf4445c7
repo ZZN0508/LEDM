@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Master Style Test Page</title>
+<link href="styles/master_style.css" rel="stylesheet" type="text/css" />
+<script type="text/JavaScript" src="js/rounded_corners.inc.js"></script>
+<script type="text/JavaScript">
+
+  function SetupStrings()
+  { 
+    document.getElementById('app_title').innerText = external.GetString(35);
+    document.getElementById('page_title').innerText = external.GetString(21);
+    document.getElementById('body_copy').innerText = external.GetString(22);
+    document.getElementById('continue_button').innerText = external.GetString(23);
+  }
+  
+  function SetCDKey()
+  {
+    var key = document.getElementById('cd_key').value;
+    external.SetCDKey(key);
+  }
+  
+  window.onload = function(event)
+  {
+	settings = {
+	  tl: { radius: 5 },
+	  tr: { radius: 5 },
+	  bl: { radius: 5 },
+	  br: { radius: 5 },
+	  antiAlias: true,
+	  validTags: ["div"]
+	}
+
+	var content = new curvyCorners(settings, "eula_content");
+	content.applyCornersToAll();	
+
+	var infoblock = new curvyCorners(settings, "info_block");
+	infoblock.applyCornersToAll();  
+	SetupStrings();
+	
+  }
+</script>
+</head>
+
+<body scroll=no>
+
+<div class="banner"></div>
+<div class="banner_left_gfx"></div>
+<div class="banner_right_gfx"></div>
+<div class="swoosh"></div>
+
+<div class="app_title" id="app_title">&nbsp</div>
+
+<div style="text-align:center">
+<div class="page_title" id="page_title">&nbsp</div>
+
+<div class="eula_content">
+<div class="content_padding">
+<span id="body_copy">&nbsp</span>
+<br />
+<br />
+<input name="" id="cd_key" type="text" />
+<hr />
+<table border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td align="center"><a href="javascript:SetCDKey();" class="button_color"><span id="continue_button">&nbsp</span></a></td>
+  </tr>
+</table>
+</div>
+</div>
+
+
+
+</div>
+
+</body>
+</html>

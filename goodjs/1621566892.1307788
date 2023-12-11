@@ -1,0 +1,430 @@
+{"@context":"http://schema.org","@type":"CollectionPage","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.washingtonpost.com/"},"headline":"The Washington Post: Breaking News, World, US, DC News and Analysis","description":"Breaking news and analysis on politics, business, world national news, entertainment more. In-depth DC, Virginia, Maryland news coverage including traffic, weather, crime, education, restaurant reviews and more.","image":["https://www.washingtonpost.com/pbox.php?url=https://www.washingtonpost.com/pb/resources/img/twp-social-share.png&amp;w=1484&amp;op=resize&amp;opt=1&amp;filter=antialias&amp;t=20170517"],"isAccessibleForFree":true,"hasPart":{"@type":"WebPageElement","isAccessibleForFree":true,"cssSelector":".paywall"},"publisher":{"@type":"NewsMediaOrganization","name":"The Washington Post","url":"https://www.washingtonpost.com/","ethicsPolicy":"https://www.washingtonpost.com/policies-and-standards/","masthead":"https://www.washingtonpost.com/policies-and-standards/masthead/","missionCoveragePrioritiesPolicy":"https://www.washingtonpost.com/policies-and-standards/","diversityPolicy":"https://www.washingtonpost.com/policies-and-standards/","correctionsPolicy":"https://www.washingtonpost.com/policies-and-standards/","verificationFactCheckingPolicy":"https://www.washingtonpost.com/policies-and-standards/","unnamedSourcesPolicy":"https://www.washingtonpost.com/policies-and-standards/","actionableFeedbackPolicy":"https://www.washingtonpost.com/policies-and-standards/","foundingDate":"1877-12-06","ownershipFundingGrants":"https://www.washingtonpost.com/policies-and-standards/","diversityStaffingReport":"http://asne.org/newsroom_diversitysurvey","refLocalNationalRequirements":null,"logo":{"@type":"ImageObject","url":"https://www.washingtonpost.com/pb/resources/img/thewashingtonpost-black-400x60.png"}}}
+var wpMetaData = {"ct_tags":"","sct_tags":"default","content_section":"","commercial_node":"","content_type":"","canonical_url":"","domain":"https://www.washingtonpost.com","subType":""};window.consumers=[];window.registerPwapiConsumer=function(callback){window.consumers.push(callback)}
+window.wpAdFusion = {"commercialNode":"washingtonpost.com","contentType":"homepage","keywords":"","isHomepage":true}
+window.dataLayer = window.dataLayer || [];
+window.renderingEnv = "fusion"
+
+        var deployment = window.Fusion && window.Fusion.deployment || "no release";
+        window.Sentry.forceLoad();
+        window.Sentry.onLoad(function sentryInit() {
+          window.Sentry.init({
+            release: deployment,
+            environment: "prod",
+            // sampleRate: 0.20,
+            // whitelistUrls: [
+            //   "washingtonpost.com",
+            //   "wapodev.com",
+            //   "wapostage.com",
+            //   "washpost.arcpublishing.com"
+            // ],
+            // blacklistUrls: [
+            //   "washingtonpost.com/wp-stat/",
+            //   "washingtonpost.com/scripts/",
+            //   "*/src/",
+            //   "*/verify.js",
+            //   "*/score.min.js",
+            //   "localhost"
+            // ],
+            beforeSend: function(event, hint) {
+              var error = hint && hint.originalException;
+              if (error && error.message && error.message.match(/WPFusionReactErrorElex/)) {
+                return event;
+              }
+              return null;
+            }
+        });
+      });
+  
+(function(){for(var e=window.dataLayer||[],b=document.cookie.split(";"),d=[],a=0;a<b.length;a++)if(b[a]&&(-1<b[a].indexOf("wp_ak_")||-1<b[a].indexOf("wp_gdpr")||-1<b[a].indexOf("wp_proactive-signin"))){var c=b[a].split("\x3d");2===c.length&&d.push((c[0]+":"+c[1]).trim())}e.push({wapoCookies:d.join(";")})})();
+(function(){var a=window.dataLayer||[],b=Math.floor(100*Math.random())+1;a.push({sampleThreshold:b})})();
+var qp=google_tag_manager["GTM-WHNNX8B"].macro(2);
+if(qp){var xURL=decodeURIComponent(qp);xURL=xURL+(xURL.includes("?")?"\x26":"?")+"src\x3dsite";var xmlhttp=new XMLHttpRequest;xmlhttp.onreadystatechange=function(){if(4==this.readyState&&200==this.status){var c=JSON.parse(this.responseText);if(c.cookies){var a=google_tag_manager["GTM-WHNNX8B"].macro(3);if(null!=a){a="wp_crtid";var b="",d="";document.cookie=a+"\x3d"+(b?"; path\x3d"+b:"")+(d?"; domain\x3d"+d:"")+";expires\x3dThu, 01 Jan 1970 00:00:01 GMT"}(a=c.cookies[0]["max-age"]/60/60/24)?(b=new Date,b.setTime(b.getTime()+
+864E5*a),a="; expires\x3d"+b.toGMTString()):a="";document.cookie="wp_crtid\x3d"+c.cookies[0].value+a+";domain\x3d.washingtonpost.com; path\x3d/"}}};xmlhttp.open("GET",xURL,!0);xmlhttp.send()};
+var data=provideGtmPlugin({gtmEventKey:"ipmeta_loaded",apiKey:"6aabf4e7dd64d588b58833008c66dde0b9fe943ba2ddebe77d64be8633003b05"});window.dataLayer=window.dataLayer||[];window.dataLayer.push(data);
+
+
+if (typeof (_hawk) != "function") {
+
+    (function (w, d, url, config) {
+
+        w._hawk = function () {
+
+            w._hawk.queue.push(arguments);
+
+        };
+
+        w._hawk.queue = [];
+
+        w._hawk.config = config;
+
+        if (!('browserid' in window._hawk)) {
+
+            var regex = new RegExp('(?:^|;)\\s?' + "_parrable_hawk".replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1') + '=(.*?)(?:;|$)', 'i')
+
+                , match = document.cookie.match(regex);
+
+            window._hawk.browserid = (match && decodeURIComponent(match[1])) ? match && decodeURIComponent(match[1]) : null;
+
+            var s = d.createElement("script");
+
+            s.async = 1;
+
+            s.src = url;
+
+            var node = d.getElementsByTagName("script")[0] || d.head;
+
+            node.parentNode.insertBefore(s, node);
+
+        }
+
+        _hawk("parrable", function (parrable) {
+
+            var prefix = window.location.protocol == 'https:' ? 'https:' : 'http:';
+
+            var url = prefix + '//beacon.krxd.net/usermatch.gif?partner=parrable_wapo&partner_uid=' + parrable.browserid;
+
+            (new Image()).src = url;
+
+        });
+
+        
+
+    })(window, document, "https://h.parrable.com/hawk.js", {
+
+        trackers: ["973935f0-8ee3-41bb-b8f7-aabd45d8b20b"]
+
+    });
+
+}
+
+
+
+
+(function () {
+
+    function getCookie(c_name) {
+
+        var c_value = document.cookie;
+
+        var c_start = c_value.indexOf(c_name + "=");
+
+        if (c_start == -1) {
+
+            c_start = c_value.indexOf(c_name + "=");
+
+        }
+
+        if (c_start == -1) {
+
+            c_value = null;
+
+        } else {
+
+            c_start = c_value.indexOf("=", c_start) + 1;
+
+            var c_end = c_value.indexOf(";", c_start);
+
+            if (c_end == -1) {
+
+                c_end = c_value.length;
+
+            }
+
+            c_value = unescape(c_value.substring(c_start, c_end));
+
+        }
+
+        return c_value;
+
+    }
+
+
+
+    var wpatc = getCookie("WPATC");
+
+    if (wpatc != null && wpatc != "") {
+
+        var n = wpatc.split(":");
+
+        for (i = 0; i < n.length; i++) {
+
+            // get attribute pairs
+
+            var attribute = n[i].toUpperCase();
+
+            var split_value = attribute.split("=");
+
+
+
+            switch (split_value[0]) {
+
+                case "A":
+
+                    // set attribute of A
+
+                    var value = split_value[1];
+
+                    Krux('set', {
+
+                        'user_attr_A': value
+
+                    });
+
+                    break;
+
+                case "B":
+
+                    // set attribute of B AND KEEP reading
+
+                    var value = split_value[1];
+
+                    if (value < 25) {
+
+                        Krux('set', {
+
+                            'user_attr_B_Job': value
+
+                        });
+
+                    } else if (value >= 25 && value <= 59) {
+
+                        Krux('set', {
+
+                            'user_attr_B_Responsibility': value
+
+                        });
+
+                    } else if (value >= 60 && value <= 99) {
+
+                        Krux('set', {
+
+                            'user_attr_B_Industry': value
+
+                        });
+
+                    } else if (value >= 100 && value <= 110) {
+
+                        Krux('set', {
+
+                            'user_attr_B_Size': value
+
+                        });
+
+                    }
+
+                   case "D":
+
+                    value = split_value[1];
+
+                    if (value >= 1 && value <= 5) {
+
+                    Krux('set', {
+
+                        'user_attr_D': value
+
+                    });
+
+                    break;
+
+                    }
+
+            }
+
+        }
+
+    }
+
+})();
+
+
+
+
+// this tag is intentionally blank
+
+
+
+
+var store =  Krux('require:store');
+var local = store.local;
+var cookie = store.cookie;
+
+// Using Meta keywords to produce page attribute keywords
+Krux('scrape', { "page_attr_keywords": {meta_name: "keywords"}});
+// Using Omniture prop34 to produce page attribute omniture_prop34
+Krux('set', 'page_attr_omniture_prop34', typeof window.s =='object' && window.s['prop34']);
+// Using Globals wp_section to produce page attribute wp_section
+Krux('scrape', { "page_attr_wp_section": {js_global: "wp_section"}});
+// Using Globals wp_subsection to produce page attribute wp_subsection
+Krux('scrape', { "page_attr_wp_subsection": {js_global: "wp_subsection"}});
+// Using Globals wp_content_category to produce page attribute wp_content_category
+Krux('scrape', { "page_attr_wp_content_category": {js_global: "wp_content_category"}});
+// Using Globals wp_meta_data.wt to produce page attribute wp_meta_data.wt
+Krux('scrape', { "page_attr_wp_meta_data.wt": {js_global: "wp_meta_data.wt"}});
+// Using Cookie rplm to produce page attribute cookie_rplm
+Krux('scrape', { "page_attr_cookie_de": {cookie: "de"}});
+// Using Globals wp_blogname to produce page attribute wp_blogname
+Krux('scrape', { "page_attr_wp_blogname": {js_global: "wp_blogname"}});
+// Using Globals wp_author to produce page attribute wp_author
+Krux('scrape', { "page_attr_wp_author": {js_global: "wp_author"}});
+Krux('scrape', { "page_attr_wp_pvid": {js_global: "wp_pvid"}});
+
+
+// Set section/subsection
+  Krux('set', {
+    section: Krux('get', 'page_attr_wp_section'),
+    subsection: Krux('get', 'page_attr_wp_subsection')
+  });
+
+// Using Omniture eVar62 to produce user attribute omniture_evar62
+Krux('set', 'user_attr_omniture_evar62', typeof window.s =='object' && window.s['eVar62']);
+
+// Set user attribute for subscriber type
+(function() {
+    if (window.s && window.s['prop65'] && window.s.prop65 !== 'none') {
+        var subType = window.s.prop65.replace(/[0-9]/g,'').split(',');
+        Krux('set','user_attr_sub_types', (subType.filter(function(e) { return e !== ''})));
+    }
+})();
+
+// Set Topics
+(function() {
+  if (window.wp_meta_data && window.wp_meta_data.clavis) {
+    var topics = []; 
+    var i;
+    for(i = 0; i < wp_meta_data.clavis.topics.length; i++) {
+        topics[i] = wp_meta_data.clavis.topics[i].replace(/,/g,'');
+    }
+     
+    if (topics !=null && topics != "")  {
+    Krux('set', {'page_attr_topics': topics });
+    }
+  }
+})();
+
+
+// Set array of auxiliary values into context & keywords attr auxiliaries
+// 20141211 author mfisher
+(function() {
+
+    if (window.wp_meta_data && typeof window.wp_meta_data.clavis != 'undefined' && typeof window.wp_meta_data.clavis.auxiliary_names != 'undefined') {
+
+        var aux = [];
+        var q;
+
+        for (q = 0; q < wp_meta_data.clavis.auxiliary_names.length; q++) {
+            aux[q] = wp_meta_data.clavis.auxiliary_names[q].replace(/,/g, '');
+        }
+    }
+    if (aux != null && aux != "") {
+        Krux('set', {
+            'page_attr_aux': aux
+        });
+    }
+})();
+
+
+//Pull paywall info 
+// 2014 11 17 coluzzi check TWP object (was throwing errors on page) 
+// 2020 01 17 Added try catch statement to the below code to catch errors
+try {
+if (typeof TWP != 'undefined') {
+    (function () {
+       if (typeof TWP.Identity != 'undefined') {
+            if (TWP.Identity.paywall && TWP.Identity.paywall.pwresp) {
+                var mtfn = TWP.Identity.paywall.pwresp.mtfn;
+                var sub = TWP.Identity.paywall.pwresp.sub;
+                var mtr = TWP.Identity.paywall.pwresp.mtr;
+
+                if (mtfn != null) {
+                    Krux('set', {
+                      'page_attr_mtfn': mtfn
+                 });
+              }
+                if (sub != null) {
+                  Krux('set', {
+                       'page_attr_sub': sub
+                   });
+              }
+             if (mtr != null) {
+                   Krux('set', {
+                      'page_attr_mtr': mtr
+                   });
+               }
+            }   
+        }
+    })();
+}
+}catch(e){}
+  
+// INI-996: Audiences attribute
+(function(){
+    var map = {
+        '0668': 'Inactive',
+        '7204': 'Active: Low Interest',
+        '0862': 'Active: Medium Interest',
+        '2467': 'Active: High Interest',
+        '6136': 'Center',
+        '8936': 'Left',
+        '9868': 'Right',
+        '6362': 'Morning Mix',
+        '3552': 'Travel',
+        '3433': 'Afternoon Buzz',  
+        '7543': 'GOG',  
+        '202':  'Daily', 
+        '8636': 'Daily',   
+        '5723': 'Wonkbook',  
+        '2748': 'Five Minute Fix',   
+        '3522': 'Politics',  
+        '5263': 'Opinions' 
+    },
+    data = {};
+
+    data['page_attr_Audiences'] = [];
+
+    try{ //check for cookies turned off in Chrome - SPT 11248
+        if( window.localStorage && window.localStorage.getItem ) {
+            var lcl = window.localStorage;
+            for( var key in map )
+                if( lcl.getItem( key ) == '1' )
+                    data['page_attr_Audiences'].push( map[key]  );
+
+            data['page_attr_targeting_aux_map'] = lcl.getItem( 'targeting_aux_map' );
+        } else if( window.utils && window.utils.getCookie ) {
+            var utl = window.utils;
+            for( var key in map )
+                if( utl.getCookie( key ) )
+                    data['page_attr_Audiences'].push( map[key]  );
+
+            data['page_attr_targeting_aux_map'] = utl.getCookie( 'targeting_aux_map' );
+        }
+    }catch(e){}
+
+    Krux( 'set', data );
+})();
+
+
+// Using Globals commercialNode to produce page attribute commercialnode
+Krux('scrape', { "page_attr_commercialnode": {js_global: "commercialNode"}});
+
+try {
+  if (typeof TWP != 'undefined') {
+    (function() {
+      if (TWP && TWP.Identity && TWP.Identity.paywall && TWP.Identity.paywall.pwresp) {
+        var mtrct = TWP.Identity.paywall.pwresp.mtrct;
+        if (mtrct !=null)  {
+          Krux('set', {'page_attr_mtrct': mtrct });
+        }
+      }
+    })();
+  }
+}catch(e){}
+
+Krux('social.init');
+
+(function () {
+  var wapoCookie = Krux('scrape.cookie', 's_vi');
+  if(wapoCookie){ // Addd for SPT-11248
+    var wapoId = wapoCookie.match(/\|(.*)\[/)[1];
+    Krux ('set', 'user_attr_wapo', wapoId);
+  }
+})();

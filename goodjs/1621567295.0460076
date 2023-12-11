@@ -1,0 +1,58 @@
+
+    if (inIframe()) {
+      top.location = window.location;
+    }
+    function inIframe () {
+        try {
+            return window.self !== window.top;
+        } catch (e) {
+            return true;
+        }
+    }
+  
+window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"NRJS-12983461dbdd35fb671","applicationID":"987833922","transactionName":"YFFRZ0dVX0ICBxJfV1kbZkFcG2NeDBA=","queueTime":0,"applicationTime":9,"agent":"","atts":""}
+window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"NRJS-12983461dbdd35fb671","applicationID":"987833922","transactionName":"YFFRZ0dVX0ICBxJfV1kbcmBlG1JcEBQHUV1EG0NcR0BQXRcBC0ZUVkBWHVRHQUk=","queueTime":0,"applicationTime":5882,"agent":"","atts":""}
+(window.BOOMR_mq=window.BOOMR_mq||[]).push(["addVar",{"rua.upush":"false","rua.cpush":"false","rua.upre":"false","rua.cpre":"false","rua.uprl":"false","rua.cprl":"false","rua.cprf":"false","rua.trans":"","rua.cook":"false","rua.ims":"false","rua.ufprl":"false","rua.cfprl":"false","rua.isuxp":"","rua.texp":""}]);
+
+	//<![CDATA[
+
+function PM_Postback(param) { if (window.top.HideScreenLockWarningAndSync) { window.top.HideScreenLockWarningAndSync(780); } if(window.CMSContentManager) { CMSContentManager.allowSubmit = true; }; __doPostBack('m$am',param); }
+function PM_Callback(param, callback, ctx) { if (window.top.HideScreenLockWarningAndSync) { window.top.HideScreenLockWarningAndSync(780); }if (window.CMSContentManager) { CMSContentManager.storeContentChangedStatus(); };WebForm_DoCallback('m$am',param,callback,ctx,null,true); }
+//]]>
+
+
+	//<![CDATA[
+
+var CMS = CMS || {};
+CMS.Application = {
+  "language": "en",
+  "imagesUrl": "/CMSPages/GetResource.ashx?image=%5bImages.zip%5d%2f",
+  "isDebuggingEnabled": false,
+  "applicationUrl": "/",
+  "isDialog": false,
+  "isRTL": "false"
+};
+
+//]]>
+
+
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-OOP'); });
+
+
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-SLBtop'); });
+
+
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-SLBmid'); });
+
+
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-SLBbot'); });
+
+ 
+      //<![CDATA[
+      if (window.WebForm_InitCallback) { 
+        __theFormPostData = '';
+        __theFormPostCollection = new Array();
+        window.WebForm_InitCallback(); 
+      }
+      //]]>
+    

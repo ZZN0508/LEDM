@@ -1,0 +1,29 @@
+$(document).ready(function(){
+
+var ua = navigator.userAgent.toLowerCase();
+var body = document.body;
+
+var isAndroid = ua.indexOf("android") > -1;
+if(isAndroid){
+  $("body").addClass("android");  
+  $('a.deeplinkHref').each(function(){
+   var androidLink = $(this).attr("android-url");
+   $(this).attr("href", "");
+            $(this).attr("href", androidLink);
+   $(this).removeAttr("android-url ios-url");
+   $(this).removeClass("deeplinkHref");
+        });  
+}
+var isiOS = ua.indexOf("mac") > -1;
+if(isiOS) {
+ //document.body.classList.add("mac");
+ $("body").addClass("iOS");
+ $('a.deeplinkHref').each(function(){
+  var iosLink = $(this).attr("ios-url");
+  $(this).attr("href", "");
+  $(this).attr("href", iosLink);
+  $(this).removeAttr("android-url ios-url");
+  $(this).removeClass("deeplinkHref");
+ });
+}
+});

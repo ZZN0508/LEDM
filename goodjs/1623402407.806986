@@ -1,0 +1,4 @@
+mainInitRetinaVideos();
+mainInitTgStickers({"maxDeviceRatio":2,"cachingModulo":3,"unsupportedURL":"\/?notgs=1"});
+backToTopInit("Go up");
+removePreloadInit();

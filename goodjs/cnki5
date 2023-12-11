@@ -1,0 +1,618 @@
+﻿String.prototype.Trim = function () { return this.replace(/^\s+|\s+$/g, ""); }
+String.prototype.Ltrim = function () { return this.replace(/^\s+/g, ""); }
+String.prototype.Rtrim = function () { return this.replace(/\s+$/g, ""); }
+function Check(reg, str) { return reg.test(str) }
+
+var type;
+var userNameDic = {};
+
+function startRequest(isSubmit) {
+	Ecp_ShowMsg("", "Reg");
+	var errorId = "#ecp_login_input_username" + "_input";
+	$(errorId).removeClass("login-error-input");
+	type = "1";
+	var userName = document.getElementById("ecp_login_input_username").value.trim();
+	if (userName === "") {
+		$("#ecp_login_input_username").val("");
+		if (isSubmit) {
+			Ecp_ShowMsg("请输入用户名", "Reg");
+		}
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+
+	if ((Check(/^[0-9_a-zA-Z]{6,64}$/, userName) === false) &&
+		(Check(/^([a-zA-Z0-9])+([a-zA-Z0-9_\.\-])*@[A-Za-z0-9]+([-.][A-Za-z0-9]+)*\.[A-Za-z0-9]+([-.][A-Za-z0-9]+)*$/, userName) === false)) {
+		Ecp_ShowMsg("用户名格式不正确，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	if (Check(/^([+-]?)\d*\.?\d+$/, userName) === true) {
+		Ecp_ShowMsg("用户名不能为纯数字，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+
+	var t = userNameDic[userName];
+	if (!isNull(t)) {
+		if (t === "1")
+			return true;
+		Ecp_ShowMsg(t, "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+
+	var res = true;
+
+	$.ajax({
+		url: Ecp_topLoginUrl + "api/Register/Is_userame_exist",
+		data: { userName: userName },
+		async: false,
+		dataType: "jsonp",
+		success: function (result) {
+			if (!result.IsSuccess) {
+				Ecp_ShowMsg("该用户名已存在，请直接登录", "Reg");
+				$(errorId).addClass("login-error-input");
+				res = false;
+				userNameDic[userName] = "该用户名已存在，请直接登录";
+			}
+			else {
+				userNameDic[userName] = "1";
+				Ecp_ShowMsg("", "Reg");
+				res = true;
+
+			}
+		}
+	});
+
+	return res;
+}
+
+var mobiledic = {};
+
+function checkmobile(isSubmit) {
+	Ecp_ShowMsg("", "Reg2");
+	if (isMobileOrEmail()) {
+		var errorId = "#txtMobile" + "_input";
+		$(errorId).removeClass("login-error-input");
+		var txtMobileEmail = $("#txtMobile").val().trim();
+		if (txtMobileEmail === "") {
+			$("#txtMobile").val("");
+			if (isSubmit)
+				Ecp_ShowMsg("请输入手机号码", "Reg2");
+			$(errorId).addClass("login-error-input");
+			return false;
+		}
+		else {
+			if (Check(/^[1][3-9][0-9]{9}$/, txtMobileEmail) === false) {
+				//showPromptMsg("手机号码格式不正确，请重新输入");//, "span_mobile", "tr_mobile", "phoneNumber_Parent");
+				Ecp_ShowMsg("手机号码格式不正确，请重新输入", "Reg2");
+				$(errorId).addClass("login-error-input");
+				return false;
+			}
+		}
+
+		var t = mobiledic[txtMobileEmail];
+		if (!isNull(t)) {
+			if (t === "1")
+				return true;
+			Ecp_ShowMsg(t, "Reg2");
+			$(errorId).addClass("login-error-input");
+			return false;
+		}
+
+		var param = {
+			mobile: txtMobileEmail,
+		};
+		$.ajax({
+			url: Ecp_topLoginUrl + "api/Register/is_loginname_exist",
+			data: param,
+			async: false,
+			dataType: "jsonp",
+			success: function (result) {
+				//console.log("Top:Is_userame_exist," + result.IsSuccess + "|" + result.ErrorCode + "|" + result.ErrorMsg);
+				if (!result.IsSuccess) {
+					mobiledic[txtMobileEmail] = result.Msg;
+					//$("#span_mobile").text(result.Msg);
+					Ecp_ShowMsg(result.Msg, "Reg2");
+					$(errorId).addClass("login-error-input");
+				}
+				else {
+					mobiledic[txtMobileEmail] = "1";
+					//$("#span_mobile").text("");
+					Ecp_ShowMsg("", "Reg2");
+					//Ecp_RegCheckMobiled = true;
+					$("#mobilelinkshowinfo").show();
+
+				}
+			}
+		});
+	} else {
+		if (!checkEmail(isSubmit)) {
+			return false;
+		}
+	}
+}
+
+function CheckPsd(psdID, isSubmit, spanID, divID, psdFlag, psdParent, valueParent) {
+	Ecp_ShowMsg("", "Reg");
+
+	//$("#userPsd").attr("type", "password");
+	var userpsd = document.getElementById(psdID).value.trim();
+	var errorId = "#" + psdID + "_input";
+	$(errorId).removeClass("login-error-input");
+	if (userpsd === "") {
+		//$("#userPsd").attr("type", "text");
+		$("#" + psdID).val("");
+		if (isSubmit)
+			Ecp_ShowMsg("请输入密码", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	//\x00-\xff]+/g
+	if (Check(/^([A-Z]|[a-z]|[0-9]|[-`~!@#$%^&*()_+={}\[\]|\\:;"",.<>/?]){8,20}$/, userpsd) === false) {
+		Ecp_ShowMsg("密码格式不正确，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	if (userpsd === document.getElementById("ecp_login_input_username").value.trim()) {
+		Ecp_ShowMsg("密码不能与用户名相同，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	var s = "012345678901234";
+	for (var i = 0; i < 10; i++) {
+		if (userpsd.indexOf(s.substring(i, i + 5)) > 0) {
+			Ecp_ShowMsg("密码不能使用连续、重复的数字或字母，请重新输入", "Reg");
+			$(errorId).addClass("login-error-input");
+			return false;
+		}
+	}
+	if (Check(/(\w)\1{2}/, userpsd) === true) {
+		Ecp_ShowMsg("密码不能使用连续、重复的数字或字母，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+
+	return true;
+}
+
+
+function validateCodeNew(code, nextfunc) {
+	var vcode = Ecp_VerifyCodeRegister;
+	var result1 = false;
+	$.ajax({
+		url: Ecp_topLoginUrl + "api/loginapi/CheckRegisterCode",
+		data: { vcode: vcode, code: code },
+		async: false,
+		dataType: "jsonp",
+		success: function (result) {
+			//console.log("Top:GetNewUsers," + result.IsSuccess + "|" + result.ErrorCode + "|" + result.ErrorMsg);
+			if (result.IsSuccess) {
+				result1 = true;
+			}
+			else {
+				//showPromptMsg(result.Msg);//, "spanphone_code")
+				Ecp_ShowMsg(result.Msg, "Reg2");
+				//GetRegisterCheckImg();
+				result1 = false;
+			}
+
+			if (nextfunc !== null && "function" === typeof (nextfunc)) {
+				nextfunc(result1);
+			}
+		}
+	});
+	return result1;
+}
+
+function getcode(clickFlag) {
+	GetRegisterCheckImg();
+	if (clickFlag === "1") {
+		$("#isClickSmsBtn").val("0");
+	}
+}
+
+function oncheckcode_old(yzmID, spanID, divID, yzmParent) {
+	var yzm = document.getElementById(yzmID).value.trim();
+	var errorId = "#" + yzmID + "_input";
+	$(errorId).removeClass("login-error-input");
+	if (yzm === "" || yzm === "输入右边图片内容") {
+		$("#" + yzmID).val("");
+		Ecp_ShowMsg("请输入验证码", "Reg2");
+		$(errorId).addClass("login-error-input");
+		return;
+	}
+
+	//if (!validateCodeNew(yzm)) {
+	//	$("#" + yzmID).val("");
+	//	Ecp_ShowMsg("验证码不正确，请重新输入", "Reg2");
+	//	$(errorId).addClass("login-error-input");
+	//	return;
+	//}
+}
+
+var setGet;
+function getmobilecode() {
+	Ecp_ShowMsg("", "Reg2");
+	//$("#spanphone_code").html("");
+	//$("#mobileMsg").html("");
+	if (!checkmobile(true)) {
+		return false;
+	}
+	var errorId = "#phoneTxtCheckCode" + "_input";
+	$(errorId).removeClass("login-error-input");
+
+	var phoneCheckCode = document.getElementById("phoneTxtCheckCode").value.trim();
+	if (phoneCheckCode === "" || phoneCheckCode === "请输入验证码") {
+		Ecp_ShowMsg("请输入验证码", "Reg2");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+
+	validateCodeNew(phoneCheckCode, getmobilecode2);
+}
+function getmobilecode2(checkCode) {
+	var errorId = "#phoneTxtCheckCode" + "_input";
+	if (!checkCode) {
+		$("#phoneTxtCheckCode").val("");
+		Ecp_ShowMsg("验证码不正确，请重新输入", "Reg2");
+		$(errorId).addClass("login-error-input");
+		return;
+	}
+
+	GetRegisterCheckImg();
+
+	var lastsec = 120;
+	$("#smsbtn").unbind("click").css("cursor", "auto").html(120 + "秒后可重新获取");
+
+	setGet = setInterval(function () {
+		lastsec--;
+		if (lastsec === 0) {
+			clearInterval(setGet);
+			$("#smsbtn").bind("click", getmobilecode).css("cursor", "pointer").html("获取短信验证码");
+		} else {
+			$("#smsbtn").html(lastsec + "秒后可重新获取")
+		}
+	}, 1000);
+
+
+	var vcode = Ecp_VerifyCodeRegister;
+	var phoneCheckCode = document.getElementById("phoneTxtCheckCode").value.trim();
+	var mobile = document.getElementById("txtMobile").value.trim();
+	$.ajax({
+		url: Ecp_topLoginUrl + "api/Register/Send_verify_code",
+		data: { vcode: vcode, code: phoneCheckCode, to: mobile, platform: Ecp_platform },
+		async: false,
+		dataType: "jsonp",
+		success: function (result) {
+			if (result.IsSuccess) {
+				Ecp_VerifyCodePhone = result.r;
+				//var num = 3 - result.ErrorCode;
+				//if (num === 0) {
+				//	$("#mobilesendnuminfo").html("该手机号码当日不能接受验证码，请更换其他手机号再试").show();
+				//} else {
+				//	$("#mobilesendnuminfo").html("验证码已发送，请查收短信").show();
+				//}
+				Ecp_ShowMsg(result.Msg, "Reg2");
+			}
+			else {
+				Ecp_ShowMsg(result.Msg, "Reg2");
+				$(errorId).addClass("login-error-input");
+				//GetRegisterCheckImg();
+			}
+		}
+	});
+}
+
+function GetRandomNum(Min, Max) {
+	var Range = Max - Min;
+	var Rand = Math.random();
+	return (Min + Math.round(Rand * Range));
+}
+
+
+function changeRegister(flag) {
+	var target = document.getElementById("commonRe");
+	var temp = document.getElementById("mobileRe");
+
+	if (flag === 'common') {
+		if (target.style.display === 'none') {
+			temp.style.display = 'none';
+			target.style.display = 'block';
+			document.getElementById("registerType").value = 1;
+		}
+	} else {
+		if (temp.style.display === 'none') {
+			target.style.display = 'none';
+			temp.style.display = 'block';
+			document.getElementById("registerType").value = 2;
+		}
+	}
+}
+
+function changeBind() {
+	$("#checkBind").val(1);
+	$("#tr_mobileBind").css('display', 'none');
+	$("#phoneNumber_flag").removeClass().addClass("icon icon5");
+	$("#phoneNumber_Parent").removeClass("frame-border-error");
+}
+
+function checkboxChange() {
+	//if (!$("#protocolFlag").is(":checked")) {
+	//	$("#protocolInfo").css('display', '');
+	//}
+	//else {
+	//	$("#protocolInfo").css('display', 'none');
+	//}
+}
+
+function checkPsdInfo(psdID, spanID, divID, psdFlag, psdParent, userValueID) {
+	Ecp_ShowMsg("", "Reg");
+
+	var errorId = "#userPsd" + "_input";
+	$(errorId).removeClass("login-error-input");
+
+	var psd = document.getElementById(psdID).value;
+	if (psd === "") {
+		Ecp_ShowMsg("请输入密码", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	if (Check(/^([A-Z]|[a-z]|[0-9]|[-`~!@#$%^&*()_+={}\[\]|\\:;"",.<>/?]){8,20}$/, psd) === false) {
+		Ecp_ShowMsg("密码格式不正确，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false
+	}
+	if (psd === document.getElementById("ecp_login_input_username").value.trim()) {
+		Ecp_ShowMsg("密码不能与用户名相同，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	var s = "012345678901234";
+	for (var i = 0; i < 10; i++) {
+		if (psd.indexOf(s.substring(i, i + 5)) > 0) {
+			Ecp_ShowMsg("不能使用连续、重复的数字或字母，请重新输入", "Reg");
+			$(errorId).addClass("login-error-input");
+			return false;
+		}
+	}
+	if (Check(/(\w)\1{2}/, psd) === true) {
+		Ecp_ShowMsg("不能使用连续、重复的数字或字母，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	return true;
+}
+
+//function validateSmsCode(smsCode) {
+//	var vcode = Ecp_VerifyCodePhone;
+//	$.ajax({
+//		url: Ecp_topLoginUrl + "api/loginapi/CheckRegisterCode",
+//		data: { vcode: vcode, code: smsCode },
+//		async: false,
+//		dataType: "jsonp",
+//		success: function (result) {
+//			//console.log("Top:GetNewUsers," + result.IsSuccess + "|" + result.ErrorCode + "|" + result.ErrorMsg);
+//			if (result.IsSuccess) {
+//				return true;
+//			}
+//			else {
+//				Ecp_ShowMsg(result.Msg, "Reg2");
+//				return false;
+//			}
+//		}
+//	});
+//}
+
+function checkEmail(isSubmit) {
+	Ecp_ShowMsg("", "Reg2");
+	var email = $("#txtMobile").val().trim();
+	var errorId = "#txtMobile" + "_input";
+	$(errorId).removeClass("login-error-input");
+	if (isNull(email)) {
+		$("#txtMobile").val("");
+		if (isSubmit)
+			Ecp_ShowMsg("请输入邮箱", "Reg2");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	var r = Check(/^([a-zA-Z0-9])+([a-zA-Z0-9_\.\-])*@[A-Za-z0-9]+([-.][A-Za-z0-9]+)*\.[A-Za-z0-9]+([-.][A-Za-z0-9]+)*$/, document.getElementById("txtMobile").value);
+	if (!r) {
+		Ecp_ShowMsg("邮箱格式不正确，请重新输入", "Reg2");
+		$(errorId).addClass("login-error-input");
+	}
+	return r;
+}
+
+function beforeSubmit() {//提交前验证
+	Ecp_ShowMsg("", "Reg2");
+	var username = $("#ecp_login_input_username").val().trim();
+	var errorId = "#ecp_login_input_username" + "_input";
+	$(errorId).removeClass("login-error-input");
+	if (username === "" || username === "请输入用户名") {
+		$("#ecp_login_input_username").val("");
+		Ecp_ShowMsg("请输入用户名", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	if ((Check(/^[0-9_a-zA-Z]{6,64}$/, username) === false) &&
+		(Check(/^([a-zA-Z0-9])+([a-zA-Z0-9_\.\-])*@[A-Za-z0-9]+([-.][A-Za-z0-9]+)*\.[A-Za-z0-9]+([-.][A-Za-z0-9]+)*$/, username) === false)) {
+		Ecp_ShowMsg("用户名格式不正确，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+	if (Check(/^([+-]?)\d*\.?\d+$/, username) === true) {
+		Ecp_ShowMsg("用户名不能为纯数字，请重新输入", "Reg");
+		$(errorId).addClass("login-error-input");
+		return false;
+	}
+
+	if (!checkPsdInfo('userPsd')) {//, 'spanphone_psd', 'trphone_psd', 'psdphone_flag', 'psdphone_parent', 'txtMobile')) {
+		return false;
+	}
+
+	if (isMobileOrEmail()) {
+		if (!checkmobile(true)) {
+			return false;
+		}
+	}
+	else {
+		if (!checkEmail(true)) {
+			return false;
+		}
+	}
+	var yzmID = "phoneTxtCheckCode";
+	var yzm = document.getElementById(yzmID).value.trim();
+	if (yzm === "" || yzm === "输入右边图片内容") {
+		$("#" + yzmID).val("");
+		errorId = "#" + "yzmID" + "_input";
+		Ecp_ShowMsg("请输入验证码", "Reg2");
+		$(errorId).addClass("login-error-input");
+
+		return;
+	}
+	if (isMobileOrEmail()) {
+
+		errorId = "#" + "phoneValidateCode" + "_input";
+		if ($("#phoneValidateCode").val().trim() === "") {
+			$("#phoneValidateCode").val("");
+			Ecp_ShowMsg("请输入短信验证码", "Reg2");
+			$(errorId).addClass("login-error-input");
+			return false;
+		}
+
+		if (!Ecp_VerifyCodePhone) {
+			Ecp_ShowMsg("短信验证码已经过期，请重新获取", "Reg2");
+			$(errorId).addClass("login-error-input");
+			return false;
+		}
+	}
+
+	if (!$("#protocolFlag").is(":checked")) {
+		Ecp_ShowMsg("请确认阅读并同意注册协议", "Reg2");
+		return false;
+	}
+
+	return true;
+}
+
+function submitRegister() {
+	var cnkiValidate;
+
+	if (beforeSubmit()) {
+		$("#mobilelinkshowinfo").hide();
+		$("#mobilesendnuminfo").html("").hide();
+
+		var cnkiUserName = $("#ecp_login_input_username").val().trim();
+		var cnkiPsd = encodeURIComponent($("#userPsd").val().trim());
+		var cnkiMobile = encodeURIComponent($("#txtMobile").val().trim());
+		var mobileOrEmail = isMobileOrEmail() ? 1 : 0;
+		var param;
+		if (mobileOrEmail === 1) {
+			var cnkiSmsCode = $("#phoneValidateCode").val().trim();
+			param = { username: cnkiUserName, password: cnkiPsd, mobile: cnkiMobile, verifyCode: cnkiSmsCode, loginType: Ecp_LoginUsers, phoneCode: Ecp_VerifyCodePhone, mobileOrEmail: mobileOrEmail, platform: Ecp_platform };
+		} else {
+			var phoneCheckCode = document.getElementById("phoneTxtCheckCode").value.trim();
+			param = { username: cnkiUserName, password: cnkiPsd, mobile: cnkiMobile, verifyCode: phoneCheckCode, loginType: Ecp_LoginUsers, phoneCode: Ecp_VerifyCodeRegister, mobileOrEmail: mobileOrEmail, platform: Ecp_platform };
+		}
+
+		$.ajax({
+			url: Ecp_topLoginUrl + "api/Register/Create",
+			//type: 'post',
+			data: param,
+			async: false,
+			dataType: "jsonp",
+			success: function (result) {
+				//console.log("Top:GetNewUsers," + result.IsSuccess + "|" + result.ErrorCode + "|" + result.ErrorMsg);
+				if (result.IsSuccess) {
+					SuccessRegUserName = cnkiUserName;
+					submitSuccess();
+					return true;
+				}
+				else {
+					submitFaile(result);
+					return false;
+				}
+			}
+		});
+	}
+}
+
+function submitSuccess() {
+	Ecp_VerifyCodePhone = "";
+
+	//$('#login_box_main_container_right').hide();
+	$('#login_box_main_container_left_all').show();
+	$('#login_box_main_container_left2').hide();
+	$('#login_box_main_container_left1').hide();
+	$('#login_box_main_container_left3').show();
+
+	$("#ecp_login_input_username").val("");
+	$("#userPsd").val("");
+	$("#txtMobile").val("");
+	$("#phoneTxtCheckCode").val("");
+	$("#phoneValidateCode").val("");
+
+	Ecp_ShowMsg("", "Reg");
+	Ecp_ShowMsg("", "Reg2");
+
+	if (setGet !== null) {
+		clearInterval(setGet);
+	}
+	$("#smsbtn").unbind("click").bind("click", getmobilecode).css("cursor", "pointer").html("获取短信验证码");
+	setTimeout(Ecp_FlushLogin, "2000");
+
+}
+var SuccessRegUserName;
+function Ecp_RegSuccessShowMsg() {
+	var v = cookie(Ecp_LoginStuts);
+	if (v && v.length > 0) {
+		v = v.replace(/ShowName":"[%09|\+]+/g, 'ShowName":"');
+		var vj = JSON.parse(v);
+		if (!isNull(vj.UserName) && !isNull(SuccessRegUserName) && vj.UserName === SuccessRegUserName) {
+			$("#success_show_username").html(SuccessRegUserName);
+			$("#success_modal").show();
+			SuccessRegUserName = "";
+		}
+	}
+}
+
+function submitFaile(result) {
+	if (result.ErrorCode === 3)
+		Ecp_VerifyCodePhone = "";
+	GetRegisterCheckImg();
+
+//	$('#login_box_main_container_right').hide();
+	$('#login_box_main_container_left_all').show();
+	$('#login_box_main_container_left2').hide();
+	$('#login_box_main_container_left1').hide();
+	$('#Ecp_login_register_result').html(result.Msg);
+
+	$('#login_box_main_container_left4').show();
+}
+
+var showtime = function (end) {
+	if (isPayCancel) {
+		return "-1";
+	}
+	var nowtime = new Date(),
+		endtime = new Date(end);
+	if (nowtime > endtime) {
+		return "-1";
+	}
+	var lefttime = endtime.getTime() - nowtime.getTime(),
+		leftd = Math.floor(lefttime / (1000 * 60 * 60 * 24)),
+		lefth = Math.floor(lefttime / (1000 * 60 * 60) % 24),
+		leftm = Math.floor(lefttime / (1000 * 60) % 60)
+	lefts = Math.floor(lefttime / 1000 % 60);
+	lefth = ('0' + lefth).slice(-2);
+	leftm = ('0' + leftm).slice(-2);
+	lefts = ('0' + lefts).slice(-2);
+	if (leftd > 0)
+		return leftd + "天" + lefth + ":" + leftm + ":" + lefts;
+	//nowTime = nowtime;
+	if (lefth > 0)
+		return lefth + ":" + leftm + ":" + lefts;
+	return leftm + ":" + lefts;
+}

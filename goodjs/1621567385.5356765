@@ -1,0 +1,79 @@
+define(function(require, exports, module) {
+    'use strict';
+
+    function checkURL(url) {
+                     var youTube ;
+                        if (url != undefined || url != '') {
+                            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+                            var match = url.match(regExp);
+                            if (match && match[2].length == 11) {
+                                 youTube = true;
+                            } else {
+                                 youTube = false;
+                            }
+                        }
+                       return youTube;
+                    }
+
+     function convertURL(url) {
+         var convertedLink;
+         var newUrl;
+         if (url != undefined || url != '') {
+             var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+             var match = url.match(regExp);
+             if (match && match[2].length == 11) {
+                 if (match && match[1] == '?v=') {
+                     newUrl = url.replace('/watch?v=', '/embed/');
+                     convertedLink = newUrl;
+                 } else if (match && match[1] == 'youtu.be/') {
+                     newUrl = url.replace('youtu.be/', 'www.youtube.com/embed/');
+                     convertedLink = newUrl;
+                 } else {
+                     convertedLink = url;
+                 }
+             }
+         }
+         return convertedLink;
+     }
+
+    function createVideo($widget, videoURL, container) {
+        var self = this;
+        var $video = $('<iframe></iframe>').attr({
+            src: videoURL
+        });
+        container.append($video);
+        $('.right-side-scroll-fix').css('display', 'none');
+    }
+
+    function createAutoPlayVideo($widget, videoURL, container) {
+        var self = this;
+        var videoURL1 = videoURL + "?autoplay=1&mute=1&rel=0";
+        var $video = $('<iframe></iframe>').attr({
+            src: videoURL1
+        });
+        container.append($video);
+        $('.right-side-scroll-fix').css('display', 'none');
+    }
+
+    function playVideo($widget) {
+         $('body').addClass('no-scroll youtube');
+         $($widget.htmlNode).find('.cover-video').css('display','block');
+         $($widget.htmlNode).find('.popup-container-video').addClass('opened');
+    }
+
+    function closeVideo($widget) {
+        $('.video-player iframe').attr('src', $('.video-player iframe').attr('src'));
+        $('body').removeClass('no-scroll youtube');
+        $('body').removeClass('leaning-video-index');
+        $($widget.htmlNode).find('.cover-video').css('display', 'none');
+        $($widget.htmlNode).find('.popup-container-video').removeClass('opened');
+        $('.right-side-scroll-fix').css('display', 'block');
+    }
+
+    exports.checkURL = checkURL;
+    exports.convertURL = convertURL;
+    exports.createVideo = createVideo;
+    exports.createAutoPlayVideo = createAutoPlayVideo;
+    exports.playVideo = playVideo;
+    exports.closeVideo = closeVideo;
+});

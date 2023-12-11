@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "type": "pageConfig",
+    "namespace": "3i04lyjjt7i",
+    "id": "11s691x4j0s",
+    "version": "2.1.0"
+  },
+  "template": {
+    "parseAssets": true,
+    "cacheFirst": true,
+    "type": "html",
+    "url": "https://www.alibaba.com/bulk"
+  },
+  "apis": [],
+  "assets": []
+}

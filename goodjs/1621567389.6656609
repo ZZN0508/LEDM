@@ -1,0 +1,523 @@
+/*globals jQuery*/
+/**
+ * Controllers
+ * @module controllers
+ */
+define(function (require, exports) {
+    'use strict';
+
+     var ENDPOINTS = {
+        businessFlagServiceUrl: "{contextRoot}/services/proxy/current/businessLandingPageGetAccountRelationshipDetails"
+    }
+    var $ = require('jquery');
+
+    // @ngInject
+    exports.HeaderController = function(Utils, $scope, $timeout, lpWidget, lpPortal, lpCoreBus, lpCoreUtils, lpUsersPreference, lpUsersAuthentication, setProfileService, LogoutService,$window,$document, $q, NetworkService) {
+
+        Utils.addCustomJS();
+
+        var bus = lpCoreBus;
+        var util = lpCoreUtils;
+        var ctrl = this;
+
+        ENDPOINTS.businessFlagServiceUrl = ENDPOINTS.businessFlagServiceUrl.replace('{contextRoot}', lpPortal.root);
+
+     //confirmation-logout pop-up stert
+        var showPopup = localStorage.getItem('showMegaMenuOverlay');
+        localStorage.removeItem('showMegaMenuOverlay');
+            if(showPopup == 'true'){
+                gadgets.pubsub.publish("afterLogoutPopup");
+            }
+     //confirmation-logout pop-up end
+
+        ctrl.displayFlag = true;
+        if(b$.portal.isLogin==true) {
+        ctrl.profilePicture = setProfileService.profilePicture;
+            gadgets.pubsub.subscribe('userImage', function(data){
+                setProfileService.profilePicture.setPic = data.profileImage;
+                ctrl.profilePicture.setPic = setProfileService.profilePicture.setPic;
+                setProfileService.profilePicture.isDefaultImage = false;
+                if(ctrl.profilePicture.setPic === ""){
+                   setProfileService.profilePicture.isDefaultImage = true;
+                }
+                $scope.$apply();
+            })
+            ctrl.userId = sessionStorage.getItem('custId');
+            ctrl.appID = sessionStorage.getItem('AppId');
+            ctrl.shortName = sessionStorage.getItem('shortName');
+            if(ctrl.appID=='RS'){
+                if(ctrl.shortName != null){
+                    ctrl.shortNameLen = ctrl.shortName.length;
+                    if(ctrl.shortNameLen <= 29){
+                        ctrl.userShortName = ctrl.shortName;
+                    }
+                    else{
+                        var str = ctrl.shortName ;
+                        var res = str.substring(0, 27);
+                        ctrl.userShortName = res + "..";
+                    }
+                }
+            }
+            if(ctrl.appID=='LN' || ctrl.appID =='CC'){
+            ctrl.userShortName = sessionStorage.getItem("custId");
+            ctrl.shortNameLen = ctrl.userShortName.length;
+                if(ctrl.shortNameLen <= 29){
+                    ctrl.userShortName = ctrl.userShortName;
+                }
+                else{
+                    var str1 = ctrl.userShortName ;
+                    var res1 = str1.substring(0, 27);
+                    ctrl.userShortName = res1 + "..";
+                }
+            }
+        /************* ## NB Header for BNB-5202 (After Seamless changes)********************/
+
+            /**/
+        if(typeof window.headerProfileCall == "undefined"){
+            setProfileService.setProfile().then(onSuccess).catch(onError);
+            window.headerProfileCall = true;
+        }
+        function onSuccess(response) {
+            if (response.customerProfile.thumbnail) {
+            setProfileService.profilePicture.setPic = response.customerProfile.thumbnail;
+                setProfileService.profilePicture.isDefaultImage = false;
+            } else {
+                setProfileService.profilePicture.isDefaultImage = true;
+            }
+        }
+        function onError(err) {
+            setProfileService.profilePicture.isDefaultImage = true;
+        }
+        var url = $window.location.pathname;
+        var splitResult = url.split("/");
+        var resp1 = splitResult[splitResult.length-2];
+        var resp2= splitResult[splitResult.length-1];
+        if(resp1 == "my-profile") {
+            angular.element($document[0].getElementById("userProfile")).addClass("user-dtl2");
+        }
+        else if(resp2 == "my-mailbox"){
+            angular.element($document[0].getElementById("userProfile")).addClass("user-dtl2");
+        }
+        else{
+            angular.element($document[0].getElementById("userProfile")).addClass("user-dtl");
+        }
+        /* Code to reload page after orientation change in mobile*/
+//            window.onorientationchange = function() {
+//                window.location.reload();
+//            };
+        /*End*/
+       }
+        var initialize = function (currentScope) {
+
+            //set up widget preferences
+            //data sources
+            //general nav preferences
+
+            /*$scope.homeLogoUrl  =   lpWidget.getPreference('homeLogoUrl');
+            console.log($scope.homeLogoUrl);*/
+//            console.log('hello m here');
+
+            $scope.showPageTitle = false;
+            $scope.navSticky = lpWidget.getPreference('navSticky');
+            $scope.containerType = lpWidget.getPreference('containerType');
+            $scope.scrollSetting = 'lp-' + lpWidget.getPreference('scrollSetting') + '-scroll' || 'lp-normal-scroll';
+            $scope.showPageTitle = util.parseBoolean(lpWidget.getPreference('showPageTitle'));
+
+            /*new icon addition code*/
+                var myPortalContext = b$.portal.portalModel.serverURL;
+                var loggedInCheck = lpPortal.userId;
+                var loggedInStatus;
+                var link;
+                var iconClickable = lpWidget.getPreference('iconClickable');
+                var urlType = lpWidget.getPreference('urlType');
+                var logoImage = lpWidget.getPreference('miniLogoImage');
+                var miniLogoLink = lpWidget.getPreference('miniLogoLink');
+                var urlToBeOpenIn = lpWidget.getPreference('urlToBeOpenIn');
+                var overlayType = lpWidget.getPreference('overlayType');
+                var redirectUrl = b$.portal.urlRedirect;
+
+                /*condition to check user is logged in or not*/
+                loggedInStatus = (loggedInCheck == "" || loggedInCheck === undefined) ? false : true;
+                if(logoImage == "" || logoImage == 'undefined'){
+                    $(".navbar.navbar-inverse .navbar-header .secondaryLogo").css('display', 'none');
+                } else {
+                    $scope.miniLogoImage = myPortalContext + "/content/bbp/repositories/723fb80a-2dde-42a3-9793-7ae1be57c87f/?path=" + logoImage;
+                }
+
+                function checkString(data){
+                    var checkflg;
+                    if(data.indexOf('http') != -1){
+                       checkflg = false;
+                    }
+                    else{
+                     checkflg = true;
+                    }
+                    return checkflg;
+                }
+
+                if(iconClickable){
+                    if(urlType == "url"){
+                        if(checkString(miniLogoLink)){
+                            $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('href',redirectUrl + miniLogoLink);
+                            link = redirectUrl + miniLogoLink;
+                        } else {
+                            $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('href',miniLogoLink);
+                            link = miniLogoLink;
+                        }
+                    } else {
+                        switch(overlayType){
+                            case "tndc":
+                                $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('value','Terms and Conditions');
+                                break;
+                            case "htgs":
+                                $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('value','How To Get Started');
+                                break;
+                            case "fndc":
+                                $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('value','Fees and Charges');
+                                break;
+                            case "fdbk":
+                                $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('value','Feedback');
+                                break;
+                            case "dwnldapp":
+                                $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('value','Download App');
+                                break;
+                            default:
+                                 $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('value','Terms and Conditions');
+                                 break;
+                        }
+                    }
+                }
+                else {
+                    $(".navbar.navbar-inverse .navbar-header .secondaryLogo").css('pointer-events', 'none');
+                }
+
+                if(loggedInStatus){
+                    $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('target','_blank');
+                } else {
+                    switch(urlToBeOpenIn){
+                        case "sameTab":
+                            $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('target','_self');
+                            break;
+                        case "newTab":
+                            $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('target','_blank');
+                            break;
+                        case "newWindow":
+                            newWindow();
+                            break;
+                        default:
+                             $(".navbar.navbar-inverse .navbar-header .secondaryLogo").attr('target','_self');
+                             break;
+                    }
+                    function newWindow() {
+                        $(".navbar.navbar-inverse .navbar-header .secondaryLogo").click(function(){
+                            window.open(link,"","width=auto,height=auto");
+                            return false;
+                        });
+                    }
+                }
+            /*new icon addition code*/
+
+            //Logo redirection
+                    var logoUrl = lpWidget.getPreference("logoUrl");
+                    $(".navbar-brand.hidden-xs.cursor-pointer.first-ul-li-logo-url.exclude-me").attr("href",logoUrl);
+            //Logo redirection End
+
+            //logo preferences
+            $scope.logoUrl = util.resolvePortalPlaceholders(lpWidget.getPreference('logoURL')) || '';
+            $scope.mobileLogoUrl = util.resolvePortalPlaceholders(lpWidget.getPreference('mobileLogoURL')) || '';
+
+            $scope.launcherIcon = lpWidget.getPreference('launcherIcon') || 'arrow-left';
+
+            //nav and launcher icon preferences
+            $scope.animationHook = lpWidget.getPreference('navigationIconAnimationHook') || 'arrow';
+            $scope.showNotificationsBadge = util.parseBoolean(lpWidget.getPreference('showNotificationsBadge'));
+
+            // locales list for the switch
+            $scope.locales = lpWidget.getPreference('locales');
+
+//            disable click header in menu
+            $scope.slickRequired = lpWidget.getPreference('slickNeed');
+//            console.log($scope.slickRequired);
+            if($scope.slickRequired == 'required'){
+                angular.element('.web-portal').addClass('slick-header-active');
+            }
+
+
+            $scope.showMenu = true;
+            //the current active page
+            $scope.activePage = '';
+            //the current active context
+            $scope.activeContext = '';
+
+            $scope.elementHeight = 0;
+
+            //preset animation hooks
+            $scope.animationPrepend = 'animation-';
+            $scope.defaultAnimationClass = 'none';
+            $scope.animationClass = $scope.animationPrepend + $scope.defaultAnimationClass;
+
+
+
+            // Profile information
+            $scope.showProfileInfo = lpCoreUtils.parseBoolean(lpWidget.getPreference('showProfileInfo'));
+
+            if ($scope.showProfileInfo) {
+
+                $scope.profileTitle = lpWidget.getPreference('profileTitle');
+                $scope.profileTitleLink = b$.portal.urlRedirect+'/'+lpWidget.getPreference('profileTitleLink');
+
+                if (lpPortal.userId) {
+                    $scope.profileInfo = {preferredName: lpPortal.userId};
+                    $scope.profileInfo.profileImgBg = lpWidget.getPreference('profileImgBg') || '#CCC';
+
+                    lpUsersPreference.get().then(function(response) {
+                        var preferences = response.data;
+                        util.assign($scope.profileInfo, preferences);
+                        $scope.profileInfo.preferredName = preferences.preferredName || lpCoreUtils.capitalize(preferences.firstName || lpPortal.userId);
+                    });
+                }
+                else {
+                    $scope.signinLink = lpWidget.getPreference('signinLink');
+                }
+            }
+
+            $scope.logout = function() {
+                lpUsersAuthentication.logOut();
+            };
+
+//---------- start of business Landing tab changes ---------//
+
+            $scope.myProfileClick = function (reqLink, event) {
+                event.preventDefault();
+                sessionStorage.setItem('linkClicked', true);
+                ctrl.appID = sessionStorage.getItem('AppId');
+                 var decryptedValue = sessionStorage.getItem("decryptedValue");
+                 if(ctrl.appID=='RS'){
+                   getAccountList().then(function (businessFlagResponse) {
+                       if (businessFlagResponse.isSuccess) {
+                           var flagResponse = businessFlagResponse.relationshipCodeFlag ;
+                            localStorage.setItem('businessTabFlag', flagResponse);
+                            window.location.assign(reqLink);
+                           // setBusinessLandingKey(businessFlagResponse).then(function(flagResponse){
+                           //     localStorage.setItem('businessTabFlag', flagResponse);
+                           //     window.location.assign(reqLink);
+
+                           // });
+                       }
+                       else{
+                             localStorage.setItem('businessTabFlag', false);
+                             window.location.assign(reqLink);
+                       }
+                   })//getAccountList
+                }
+                else{
+                       localStorage.setItem('businessTabFlag', false);
+                       window.location.assign(reqLink);
+                }
+                var dataObj = {"count":0,"eventCategory":"headerMenu","eventAction":"linkClick","eventLabel":"profileName"};
+                gadgets.pubsub.publish("nbGap",dataObj);
+            };//myProfileClick
+
+            function setBusinessLandingKey(reqList) {
+               var deferred = $q.defer();
+                localStorage.removeItem('businessTabFlag');
+                var tempObj = reqList.grpByAccntTypeNdGroupCdMap;
+                var businessTab = false;
+                var tempList = [];
+                for (var key in tempObj) {
+                    for (var key1 in tempObj[key]) {
+                        tempList = tempList.concat(tempObj[key][key1]);
+                    }
+                }
+
+                if (checkIsRealtionshipExistBusiness(tempList)) {
+                    businessTab = true;
+                }
+                // localStorage.setItem('businessTabFlag', businessTab);
+                deferred.resolve(businessTab);
+                return deferred.promise;
+            }//setBusinessLandingKey
+
+            function checkIsRealtionshipExistBusiness(reqList) {
+                var tempFlag = false;
+
+                for (var i = 0; i < reqList.length; i++) {
+                    if (reqList[i].relationshipCode == "AUS" || reqList[i].relationshipCode == "TRU" || reqList[i].relationshipCode == "DEV" || reqList[i].relationshipCode == "VAL") {
+                        tempFlag = true;
+                        return tempFlag;
+                    }
+                }
+
+                return tempFlag;
+            }//checkIsRealtionshipExistBusiness
+
+
+            function getAccountList() {
+                var deferred = $q.defer();
+
+                var request = {
+                    url: ENDPOINTS.businessFlagServiceUrl,
+                    method: 'GET'
+
+                };
+                NetworkService.makeCall(request).then(onSuccessGetAccountList).catch(onErrorGetAccountList);
+
+                function onSuccessGetAccountList(response) {
+
+                    var resp = response.data.businessAccountRelationshipDetails;
+                    resp.isSuccess = true;
+
+                    if (resp && !!resp.rc && !!resp.rc.returncode && resp.rc.returncode !== '0') {
+
+                        resp.isSuccess = false;
+                        deferred.resolve(resp);
+                    }
+
+                    deferred.resolve(resp);
+
+                }//onSuccessCompanyList
+
+                function onErrorGetAccountList(err) {
+                    console.log(err);
+                    err.isSuccess = false;
+                    deferred.resolve(err);
+
+                }//onErrorCompanyList
+
+                return deferred.promise;
+
+            }//NetBankingLoginService.prototype.getAccountList
+
+//---------- end of business Landing tab changes ---------//
+
+   /* START - Hide top level menu for nb */
+   var windowLDWidth   = ($( window ).width() + 17 );
+   $scope.isReq        =  true;
+   if(b$.portal.isLogin==true) {
+    if(windowLDWidth < 767) {
+     $scope.isReq = false;
+    } 
+            }
+   /* FINISH - Hide top level menu for nb */
+
+            //button enum
+            $scope.buttons = {
+                logo: 'logo',
+                icon: 'icon'
+            };
+
+            //scroll settings
+            $scope.scrollSettingsEnum = {
+                'normal': 'lp-normal-scroll',
+                'transparency': 'lp-transparency-scroll',
+                'hide-show': 'lp-hide-show-scroll'
+            };
+
+            bus.subscribe('launchpad-retail.activeContextChanged', function(data) {
+                $timeout(function() {
+                    $scope.activeContext = data.newActiveContext.length > 0 ?
+                        data.newActiveContext : $scope.activePage;
+                }, 25);
+            });
+
+            if($scope.navSticky) {
+                //nav must be sticky1
+                bus.publish('launchpad-retail.stickyNavBar');
+            }
+
+        };
+
+        //toggle the menu open/closed by changing the $scope.animationClass variable
+        $scope.toggleMenu = function () {
+
+            $scope.showMenu = !$scope.showMenu;
+
+            if($scope.animationHook.length > 0) {
+                //apply animation
+                if(!$scope.showMenu) {
+                    //showing menu
+                    $scope.animationClass = $scope.animationPrepend + $scope.animationHook;
+                } else {
+                    //hiding menu
+                    $scope.animationClass = $scope.animationPrepend + $scope.defaultAnimationClass;
+                }
+            }
+        };
+
+        $scope.updateSize = function(data) {
+            if ($scope.navSticky && ($scope.elementHeight !== data.height)) {
+                $scope.elementHeight = data.height;
+
+                // wrap with setTimeout to take a right position value
+                setTimeout(function(){
+                    var isStatic = ['absolute', 'fixed'].indexOf($('.navbar', lpWidget.body).css('position')) < 0;
+
+                    bus.publish('launchpad-retail.offsetTopCorrection', {
+                        isStatic: isStatic,
+                        offsetTopCorrection: $scope.elementHeight
+                    });
+                }, 10);
+            }
+        };
+
+//Start - Check login status and redirect to dashboard
+        function isValid(value) {
+            return typeof value !== 'undefined';
+        }
+
+        var windowLDWidth   = ($( window ).width() + 17 );
+        $scope.isReq        =  true;
+        if(b$.portal.isLogin==true) {
+            if(windowLDWidth < 767) {
+                $(".logged-in header .main-header .header-menu .navbar-collapse").css("display", "none");
+                $scope.isReq = false;
+            }
+            var getCurrntHref = $("header .main-header .navbar .header-menu .navbar-collapse .nav.navbar-nav.lp-navbar-advanced-root.normal-main-header li:first-child a").attr("href");
+            if(isValid(getCurrntHref)) {
+                var lastParam = getCurrntHref.substring(getCurrntHref.lastIndexOf('/') + 1);
+                if(isValid(lastParam)) {
+                    if(lastParam!=="dashboard") {
+                        var updatedCurrntHref = getCurrntHref+"/"+"dashboard";
+                        $("header .main-header .navbar .header-menu .navbar-collapse .nav.navbar-nav.lp-navbar-advanced-root.normal-main-header li:first-child a").attr("href",updatedCurrntHref);
+                        $(".middle-menu-bar .navbar-collapse .nav.navbar-nav .level-1.sub-section-0 a").attr("href",updatedCurrntHref);
+                    }
+                }
+            }
+        }
+        //End - Check login status and redirect to dashboard
+
+                //Start -  Logout
+                bus.subscribe('logoutSession', function(data) {
+                    if(data.ckStatus==true) {
+                        LogoutService.goLogout(data.redirectUrl);
+                    } else {
+                        LogoutService.goLogout('#');
+                    }
+                });
+
+        //toggle the launcher menu open or closed
+        $scope.toggleLauncherMenu = function() {
+            bus.publish('launchpad-retail.toggleLauncherMenu');
+        };
+        // remove when MAINT-3378 is fixed
+        $(lpWidget.body).find('a[data-uuid="' + lpPortal.page.id + '"]').parents('li').addClass('active');
+
+/******************** CODE TO HANDLE POP-UPS IN MOBILE VIEW - START ************************/
+        //pop-up title change
+        gadgets.pubsub.subscribe("POPUP_TITLE", function(data){
+            if(window.innerWidth <= 500){
+                $('.popup-title-heading').text(data.popUpTitle);
+                $('.hdfc-logo-icon, .secondary-logo-image').addClass("hide");
+                $('.popup-title-heading').removeClass('hide').css({"color": "white", "font-size": "18px", "padding": "11px"});
+                gadgets.pubsub.publish("showPopupTitle", true);
+            }
+            else{
+                gadgets.pubsub.publish("showPopupTitle", false);
+            }
+        });
+/******************** CODE TO HANDLE POP-UPS IN MOBILE VIEW - END ************************/
+
+        /*initialize();*/
+        initialize(this);
+    };
+});

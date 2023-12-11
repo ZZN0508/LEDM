@@ -1,0 +1,282 @@
+(function () {
+  //背景广告
+  var bgImg,
+    bgUrl,
+    TongJi,
+    bgHtm,
+    leftimg,
+    rightimg = "";
+  var Isitinthestation = false; //是否是站内 1234
+  var CloseWidth = 77;
+
+  var bgClose = "https://image.gamersky.com/webimg15/Close4ft.png"; //关闭按钮
+  if (Isitinthestation) {
+    bgClose = "https://image.gamersky.com/webimg15/close54.png"; //关闭按钮
+    CloseWidth = 54;
+  }
+  var bgtop = "https://image.gamersky.com/webimg15/adtop.png"; //顶部图片阴影
+  var bgCookieName = "ADback20170903"; //Cookie名称
+  var bgmin = 1,
+    bgmax = 1; //1~2之间的循环
+  var bgCkie = cookie(bgCookieName);
+  var bgnum =
+    bgmin == bgmax || bgCkie == null
+      ? bgmin
+      : parseInt(bgCkie) == bgmin
+      ? bgmax
+      : bgmin;
+  var bgDate = new Date(),
+    NewTimeStamp = bgDate.getTime();
+  bgDate.setTime(NewTimeStamp + 60 * 1000 * 60 * 24); //cookie保存24小时
+  cookie(bgCookieName, bgnum, { path: "/", expires: bgDate });
+
+  //监测代码
+  var jcCode =
+    '<div style="display:none"><img src="https://image.gamersky.com/webimg13/zhuanti/common/blank.png"></div>';
+
+  switch (bgnum) {
+    case 1:
+      bgImg = "https://imgf.gamersky.com/img/tqbc2010/apex_1920x1080_1031.jpg"; //广告大图片
+      leftimg =
+        "";
+      rightimg =
+        "";
+      bgUrl = "https://imgf.gamersky.com/html/ApexLegends.html"; //连接地址
+      TongJi = "933138";
+      break;
+    case 2:
+      bgImg = "https://imgf.gamersky.com/img/tqbc2010/mfcw_1920x1080_1118.jpg"; //广告大图片
+      leftimg = "";
+      rightimg = "";
+      bgUrl =
+        "https://syc.qq.com/cp/a20230828/?e_code=535430"; //连接地址
+      TongJi = "1295289";
+      break;
+  }
+  //视频连接
+  var VideoSrc = "";
+  function isIE() {
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    if (msie > 0) {
+      // IE 10 or older
+      return true;
+    }
+    var trident = ua.indexOf("Trident/");
+    if (trident > 0) {
+      // IE 11
+      var rv = ua.indexOf("rv:");
+      return true;
+    }
+    return false;
+  }
+  //添加高级轮播
+  var SwiperList = [];
+  var SwiperData = {};
+  //切换间隔 单位毫秒 1000 = 1秒
+  SwiperData.interval = 7000;
+  //切换效果
+  SwiperData.animation = "fade";
+  //动画速度 区间 0 - 2.0
+  SwiperData.velocity = 0.2;
+  //当鼠标放在幻灯片上时是否停止动画
+  SwiperData.stopOver = false;
+
+  var SwiperDom = "";
+  if (SwiperList.length > 0 && !isIE()) {
+    var swl = "<ul>";
+    $.each(SwiperList, function (index, item) {
+      swl +=
+        '<li><img src="' + item + '"  /><div class="label_text"></div></li>';
+    });
+    SwiperDom +=
+      '<div class="SwiperDom" style="position: absolute;"><div class="box_skitter  skitter  box_skitter_large">' +
+      swl +
+      "</ul></div></div><style>#ADback .SwiperDom,#ADback .SwiperDom .skitter {width: 1920px !important;height: 1080px !important;max-height: 1080px !important;max-width: 1920px !important;position: absolute;left: 50%;margin-left: -960px}#ADback .SwiperDom .box_skitter,#ADback .SwiperDom .container_skitter {position: absolute;top: 0}</style>";
+    $("head").append(
+      '<link rel="stylesheet" type="text/css" href="//j.gamersky.com/g/skitter.css">'
+    );
+  }
+
+  var bgWW = $(window).width(),
+    bgWH = $(window).height(); //可见窗口高度
+  var bgTH = $(".bgAdWrap").offset().top;
+
+  //视频背景
+  var VideoDom = "";
+  if (VideoSrc) {
+    VideoDom +=
+      '<div class="Showvidow"><video class="backIndexVideo" muted autoplay loop>';
+    VideoDom += '<source src="' + VideoSrc + '" type="video/mp4">';
+    VideoDom += "</video></div>";
+    VideoDom +=
+      " <style> .Showvidow { overflow: hidden; width: 100%; display: block; position: relative; top: 214px; }";
+    VideoDom +=
+      " .backIndexVideo { position: relative; top: 0; left: 50%; margin-left: -960px; width: 1920px; height: 1080px; }    </style>";
+  }
+
+  //左侧小图背景
+  var leftDom = "";
+  if (leftimg) {
+    leftDom =
+      '<div class="BgYs BgYsL" style="background:url(' +
+      leftimg +
+      ') right center no-repeat;display:block;   position: absolute; top: 0px;width:411px;height:1080px;max-height:1080px "></div>';
+  }
+
+  //右侧小图背景
+  var rightDom = "";
+  if (rightimg) {
+    rightDom =
+      '<div class="BgYs BgYsR" style="background:url(' +
+      rightimg +
+      ') left  center no-repeat;display:block;   position: absolute;top: 0px;width:411px;height:1080px;max-height:1080px "></div>';
+  }
+  bgHtm = "";
+
+  $(".bgAdWrap")
+    .height(80)
+    .html(
+      '<a style="display:block;width:100%;height:100%;background:url(#);" target="_blank" href="' +
+        bgUrl +
+        '" data-itemid="' +
+        TongJi +
+        '" class="countHit countHitSql"></a>'
+    );
+
+  bgHtm +=
+    '<div id="ADback" style="margin-left:-' +
+    bgWW / 2 +
+    "px; width:" +
+    bgWW +
+    "px;height:" +
+    bgWH +
+    "px;position:fixed;_position:absolute;left:50%;top:0px;background:#262626 url(" +
+    bgImg +
+    ") center " +
+    bgTH +
+    'px no-repeat;">';
+  bgHtm +=
+    '<a style="display:block;width:100%;height:' +
+    bgWH +
+    "px;background:url(" +
+    bgtop +
+    ") left " +
+    bgTH +
+    'px repeat-x;" target="_blank" href="' +
+    bgUrl +
+    '" data-itemid="' +
+    TongJi +
+    '" class="countHit countHitSql">' +
+    SwiperDom +
+    VideoDom +
+    rightDom +
+    leftDom +
+    "</a>";
+  bgHtm +=
+    '<div class="Close" style="width:' +
+    CloseWidth +
+    "px;height:24px;cursor:pointer;position:absolute;right:0;top:" +
+    bgTH +
+    'px;z-index:102;"><i style="background: #000;    width: ' +
+    CloseWidth +
+    'px;    height: 24px;    display: block;    position: absolute;    z-index: 9;    opacity: 0.75;    filter: alpha(opacity=75);"></i><i style="background:url(' +
+    bgClose +
+    ") no-repeat center;display: block;width: " +
+    CloseWidth +
+    'px;height: 24px; position: absolute;    z-index: 10;   "></i></div>' +
+    jcCode;
+
+  bgHtm += "</div>";
+  //$("body").prepend(bgHtm);
+  $("#adscontainer_background_back_index1100_all").html(bgHtm);
+
+  if (SwiperList.length > 0 && !isIE()) {
+    $("#ADback a").on("click", function (event) {
+      event.preventDefault();
+      //   gsTg.gsCountSiteInner(TongJi); //统计
+      var a = document.createElement("a");
+      a.href = bgUrl;
+      a.target = "_blank";
+      a.click();
+    });
+    $.getScript("//j.gamersky.com/g/jquery.easing.1.3.js", function () {
+      $.getScript("//j.gamersky.com/g/jquery.skitter.min.js", function () {
+        $(".box_skitter_large").skitter({
+          dots: false,
+          interval: SwiperData.interval,
+          animation: SwiperData.animation,
+          velocity: SwiperData.velocity,
+          stop_over: SwiperData.stopOver,
+        });
+      });
+    });
+  }
+  var $ADback = $("#ADback"),
+    isIE6 = function () {
+      return !!window.ActiveXObject && !window.XMLHttpRequest;
+    }; //判断IE6;
+  $ADback.on("click", ".Close", function () {
+    $ADback.remove();
+    $(".bgAdWrap").removeAttr("style").html("");
+  });
+
+  var bgys = $(".BgYs");
+  function ADback() {
+    var wt = $(window).scrollTop(),
+      t = wt >= bgTH ? (isIE6() == true ? wt : 0) : bgTH - wt;
+    $ADback.css("background-position", "center " + t + "px");
+    $ADback.find("a").css("background-position", "left " + t + "px");
+    $ADback.find(".Close").css("top", t);
+
+    $(".Showvidow").css("top", t);
+    $(".SwiperDom").css("top", t);
+
+    bgys.css("top", t);
+    var Bw = (window.innerWidth - ($(".Mid").width() + 20)) / 2;
+    var Margins = (document.body.offsetWidth - 1920) / 2;
+    $(".BgYsL").css("left", 0 + Margins - 0);
+    $(".BgYsR").css("right", 0 + Margins - 1);
+    var YsBW = (1920 - ($(".Mid").width() + 20)) / 2;
+    var ZoomNum = (Bw / YsBW) * 100;
+    if (ZoomNum < 100) {
+      if (ZoomNum < 54) {
+        ZoomNum = 54;
+      }
+      bgys.css("background-size", ZoomNum + "%");
+    } else {
+      bgys.css("background-size", "100%");
+    }
+  }
+
+  $(window)
+    .resize(function () {
+      var winW = $(window).width(),
+        winH = $(window).height();
+      console.log(winH);
+      $ADback.css({
+        width: winW,
+        height: winH,
+        marginLeft: "-" + winW / 2 + "px",
+      });
+      
+      $ADback.find("a").css({
+        height: winH,
+      });
+    })
+    .scroll(ADback)
+    .trigger("scroll");
+
+  //有效量监测（统计ID）F
+
+  gsTg.gsCountSiteInner(1602082);
+  gsTg.IntermodalExposureStatistics(bgUrl);
+
+  $.cachedScript("//j.gamersky.com/g/gamersky.guop.cps.js").done(function () {
+    //GSYeYouAd.reportAdShow(1);
+    $("body").on("click", "#ADback a", function () {
+      GSYeYouAd.traceAdId(1, "点击广告");
+      //  GSYeYouAd.reportAdClick(1);
+    });
+  });
+})();

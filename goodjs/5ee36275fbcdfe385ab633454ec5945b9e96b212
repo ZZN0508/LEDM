@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Master Style Test Page</title>
+<link href="styles/master_style.css" rel="stylesheet" type="text/css" />
+<script type="text/JavaScript" src="js/rounded_corners.inc.js"></script>
+
+<script type="text/JavaScript">
+  var poker_offset = external.GetStringOffset();
+  function DoUninstall()
+  {
+    if( window.external.IsCasinoRunning() )
+    {
+      showDiv();
+    }
+    else
+    {
+      //showDiv();
+      window.external.StartUninstall();
+    }
+  }
+
+  function SetupStrings()
+  {
+    document.getElementById( 'title' ).innerText = external.GetString(32);
+    document.getElementById( 'heading' ).innerText = external.GetString(12);
+    document.getElementById( 'confirm_question' ).innerText = external.GetString(13);
+    document.getElementById( 'button_ok' ).innerText = external.GetString(12);
+    document.getElementById( 'button_cancel' ).innerText = external.GetString(33);
+    
+    document.getElementById('message').innerText = external.GetString(85 + poker_offset); //"Please close the casino";
+    document.getElementById('ok').innerText = external.GetString(84);//"Okay";
+    document.getElementById('cancel').innerText = external.GetString(87);//"Cancel";
+  }
+  
+  function showDiv()
+  {
+    document.getElementById('alphaLayer').style.visibility = 'visible';
+    document.getElementById('messageBox').style.visibility = 'visible';
+  }
+  function hideDiv()
+  {
+    document.getElementById('alphaLayer').style.visibility = 'hidden';
+    document.getElementById('messageBox').style.visibility = 'hidden';
+  }
+  
+  window.onload = function(event)
+  {
+      settings = {
+          tl: { radius: 5 },
+          tr: { radius: 5 },
+          bl: { radius: 5 },
+          br: { radius: 5 },
+          antiAlias: true,
+          validTags: ["div", "span"]
+      }
+
+    var infobox = new curvyCorners(settings, "infobox");
+		infobox.applyCornersToAll();
+		
+    var confirmation = new curvyCorners(settings, "confirmation");
+		confirmation.applyCornersToAll();
+    
+      
+      var content = new curvyCorners(settings, "content");
+      content.applyCornersToAll();
+      var infoblock = new curvyCorners(settings, "info_block");
+      infoblock.applyCornersToAll();
+      
+
+    SetupStrings();
+    hideDiv();
+  }
+</script>
+</head>
+
+<body scroll=no>
+
+<div class="alphaBG" id="alphaLayer" style="visibility:hidden;"></div>
+<div class="confirmation" id="messageBox" style="visibility:hidden;">
+  <div class="confirmationPad">
+    <div class="heading_underline"><span class="header" id="message"> &nbsp; </span></div>
+      <div class="confirmationTableHolder">
+        <table cellpadding="0" cellspacing="0" border="0" class="confirmationTable">
+          <tr>
+            <td><a href="javascript:hideDiv();" class="button_color"><span id="ok"> &nbsp; </span></a></td>
+            <td class="btn_Right"><a href="javascript:window.external.Quit();" class="button"><span id="cancel"> &nbsp; </span></a></td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</div>
+
+<div class="banner"></div>
+
+<div class="app_title" id="title" class="app_title"> &nbsp; </div>
+
+<div class="page_title" id="heading"> &nbsp; </div>
+
+<div class="swoosh"></div> 
+
+<div class="content">
+<div class="content_padding">
+<span id="confirm_question" class="overbig_text"> &nbsp; </span>
+    <br />
+    <hr />
+    <a href="javascript:DoUninstall();" class="button_color"><span id="button_ok"> &nbsp; </span></a>
+    <a href="javascript:window.external.Quit();" class="button"><span id="button_cancel"> &nbsp; </span></a>
+<br />
+</div>
+</div>
+
+</body>
+</html>

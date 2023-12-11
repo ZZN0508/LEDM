@@ -1,0 +1,1 @@
+define("lofty/util/template/2.0/tplhandler",["lofty/util/template/2.0/template","jquery"],function(t,e){var l={process:function(l){var i=this.get("extendTplData");if(i||l){var a=e.extend(!0,{},l,i),n=this.get("tpl"),p=t.compile(n),r=p(a);this.set("tpl",r)}}};return l});;

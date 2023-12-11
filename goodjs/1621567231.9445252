@@ -1,0 +1,29 @@
+// 缁熻浠ｇ爜
+var _report = _report || [];
+_report.push(['_setAccount', 'webGYj6Xe3q91jcs3']);
+
+(function() {
+    var report = document.createElement("script");
+    report.src = "https://analysis.huanqiu.com/report.js?id=858d45e1f01f24b9ae02e83792a3ce3c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(report, s);
+})();
+// 鐧惧害鎺ㄩ€�
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+// 鐧惧害缁熻 
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1fc983b4c305d209e7e05d96e713939f' type='text/javascript'%3E%3C/script%3E"));
+// cnzz 缁熻
+var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1000010102'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000010102' type='text/javascript'%3E%3C/script%3E"));

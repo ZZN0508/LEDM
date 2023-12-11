@@ -1,0 +1,25 @@
+var tbpic='//'+ym+'/Pics/2021/index_bj527_bg_1360c350_bg.png';
+var bgpic='//'+ym+'/Pics/2023/index_bj527_bg_1920c1080.jpg';
+var hdpic='//'+ym+'/Pics/2023/index_bj431_hd_525c75.png';
+var bgurl='//click.ali213.net/ALiClick-527.html';
+var hdurl='//click.ali213.net/ALiClick-431.html';
+//var ct=new Date().getTime();
+//var nt=new Date('2020-11-16 13:00:00').getTime();
+//var bt=new Date('2020-11-17').getTime();
+//if(parseInt(ct)>parseInt(nt) && parseInt(ct)<parseInt(bt)){
+	//$('.top-container').prepend('<a href="'+hdurl+'" class="to-other-game" target="_blank"><img src="https://g.cn.miaozhen.com/x/k=2272533&p=80i5r&dx=__IPDX__&rt=2&pro=s&ns=__IP__&ni=__IESID__&v=__LOC__&xa=__ADPLATFORM__&tr=__REQUESTID__&vg=__AUTOPLAY__&nh=__AUTOREFRESH__&mo=__OS__&m0=__OPENUDID__&m0a=__DUID__&m1=__ANDROIDID1__&m1a=__ANDROIDID__&m2=__IMEI__&m4=__AAID__&m5=__IDFA__&m6=__MAC1__&m6a=__MAC__&m11=__OAID__&m14=__CAID__&m5a=__IDFV__&mn=__ANAME__&o=" style="width:0;height:0;"><img src="'+hdpic+'"></a>');
+	//$('.top-container').prepend('<div class="ali-nav-bg" style="background-image:url('+tbpic+');"></div><a href="'+hdurl+'" class="to-other-game" target="_blank"><img src="'+hdpic+'"></a>');
+	$('.index-header').css({'background':'#ececec','border-radius':'10px'});
+	$('.go-top').after('<div class="ali-index-bg" style="background-image:url('+bgpic+');"><a href="'+bgurl+'" target="_blank"></a><span>关闭广告</span></div>');
+//}else{
+//	$('.top-container').prepend('<a href="http://gm.wy213.com/ahdts_alilt.html?comefrm=alidbj" class="to-other-game" target="_blank"><img src="//'+ym+'/Pics/2020/index_bj527_hd_wan_525c75.png"></a>');
+//	$('.go-top').after('<div class="ali-index-bg" style="background-image:url(//'+ym+'/Pics/2020/index_bj527_bg_wan_1920c1080.jpg);"><a href="http://gm.wy213.com/ahdts_alilt.html?comefrm=alidbj" target="_blank"></a><span></span></div>');
+//}
+
+//富媒体
+/*
+$('body').append('<div class="indexfmt" style="z-index:12;bottom:5px;right:5px;width:270px;height:250px;position:fixed;"><img class="fmtclosed" style="width:25px;height:13px;position:absolute;right:0;top:-13px;" src="//'+ym+'/Pics/close.gif"><a href="https://evt05.tiancity.com/fs2/51662/home/index.php" target="_blank"><img src="//'+ym+'/Pics/2022/index_fmt_270c250.jpg" width="270" height="250"></a><img style="width:21px;height:13px;position:absolute;right:0;bottom:0;" src="//'+ym+'/Pics/galig213icon.png"></div>');
+$('body').on('click','.fmtclosed',function(){
+	$('.indexfmt').remove();
+});
+*/

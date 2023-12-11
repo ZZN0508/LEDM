@@ -1,0 +1,71 @@
+
+    if (Math.floor(Math.random() * 3000) == 1000) {
+        var trackjs_script = document.createElement('script');
+        trackjs_script.onload = function () {
+          window.TrackJS && TrackJS.install({ 
+            token: "05ce83f61b344c7bbc64052fc3fadde3",
+            application: "sb-desktop"
+          });
+        };
+        trackjs_script.src = 'https://cdn.trackjs.com/agent/v3/latest/t.js';
+
+        document.head.appendChild(trackjs_script); //or something of the likes
+    }
+  
+
+
+    window.start_loading_page = new Date();
+
+    
+    var logged_in = 0;
+    
+
+    var site_user_id = 0;
+    var site_user_country = 'DK';
+    var site_user_edition = 'ww';
+    var site_ui_version = 'desktop';
+
+    var session_token = '';
+    var session_sakey = '';
+
+    var app_branch = 'master';
+	var ana_experiment_id = 'master';
+	
+	
+	var page_matadata = [];
+	
+
+
+	function analytics_track_event(category, label, value, method, branch){ return true;}
+	function analytics_track_pageview(source) { return true;}
+	function analytics_ping(method, branch) {return true;}
+
+	
+
+
+    // svg icons loader
+    var ajax_svg = new XMLHttpRequest();
+  	
+    ajax_svg.open("GET", "//assets.sb-cd.com/static/desktop/gen/universal.master.4.91.231a6211.svg", true);
+  	
+    ajax_svg.send();
+    ajax_svg.onload = function(e) {
+      var div = document.createElement("div");
+      div.id = 'svg_holder';
+      div.innerHTML = ajax_svg.responseText;
+      document.body.insertBefore(div, document.body.childNodes[0]);
+    }
+  
+
+{
+   "@context": "https://schema.org",
+   "@type": "WebSite",
+   "url": "https://spankbang.com/",
+   "potentialAction": {
+     "@type": "SearchAction",
+     "target": "https://spankbang.com/keyword?keyword={search_term}",
+     "query-input": "required name=search_term"
+   }
+}
+
+(function(){window['__CF$cv$params']={r:'652ab2fbf870ceec',m:'777a32a7d9bdb5ecc97482745a99a37bb119779c-1621567543-1800-AdxHoLvajtXlSS+zqGB1KXX1xfqaq3yZY3hEogMLKEHIQ7rIXUUNmhHMu4PAsgNm4hLxzHcidAkR5An5KRzFpYGPdYaWBj1nmwozkJfhHWx+mOVaSav6R+BI7M+AnIkLdw==',s:[0x77662f633e,0xcf0dbddf37],}})();

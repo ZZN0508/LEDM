@@ -1,0 +1,21 @@
+
+        function OptanonWrapper() { window.dataLayer.push( { event: 'OneTrustGroupsUpdated' } ) }
+      
+
+      var _elqQ = _elqQ || [];
+      _elqQ.push(['elqSetSiteId', '2376']);
+      _elqQ.push(['elqUseFirstPartyCookie', '<tracking.blackboard.com>']);
+      _elqQ.push(['elqTrackPageView']);
+
+      (function () {
+        function async_load() {
+          var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+          s.src = '//img.en25.com/i/elqCfg.min.js';
+          var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+        }
+        if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+        else if (window.attachEvent) window.attachEvent('onload', async_load);
+      })();
+    
+{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"group\/6","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"bb_group":{"current_country":"TW","region_map":{"US":6,"SA":121,"CA":6,"MX":131,"UK":111,"CO":131,"BR":96,"AU":136,"IN":136,"NL":156,"ES":71,"ZA":141,"PE":131,"SG":136,"CN":136,"MY":136,"IE":156,"TR":116,"PH":136,"AE":91,"KR":81,"FR":106,"RU":156,"JP":11,"HK":136,"DE":101,"PR":6,"CL":131,"NZ":136,"SE":156,"BE":156,"EC":131,"IT":76,"GT":131,"QA":91,"DK":156,"KE":141,"HN":131,"TH":136,"EG":141,"ID":136,"AR":131,"PT":71,"PK":141,"NO":156,"DR":131,"BW":141,"CY":156,"LB":91,"GR":156,"VN":136,"UA":156,"FI":156,"PL":86,"AT":101,"NE":141,"KW":121,"CH":106,"TW":136,"JO":91,"BH":91,"VI":6,"RO":156,"OM":91,"BG":156,"CR":131,"CZ":156,"IL":91,"YV":131,"KZ":156,"PA":131,"JM":6,"LK":136,"TT":6,"SN":141,"SI":76,"BD":136,"GH":141,"IR":91,"MA":141,"AZ":116,"IQ":91,"SV":131,"BO":131,"NP":136,"ET":141,"HR":141,"DZ":141,"CW":131,"HU":156,"BY":156,"KY":6,"GE":156,"TZ":141,"BS":6,"RS":156,"NI":131,"MP":136,"LS":141},"current_group":{"id":"6","label":"North America"},"recommended_group":{"id":"136","label":"Asia Pacific"}},"user":{"uid":0,"permissionsHash":"0576762e422050d66d3980309b6a6f4a6cf680b16c1d61a1dac58f8819ab0bc6"}}
+window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"752acdc9f5","applicationID":"288190740","transactionName":"YQcEYBEHWUIAABBeCVhNM0YKSV5fBQYcGRZeEg==","queueTime":0,"applicationTime":109,"atts":"TUAHFlkdSkw=","errorBeacon":"bam-cell.nr-data.net","agent":""}

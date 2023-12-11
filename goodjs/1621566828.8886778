@@ -1,0 +1,446 @@
+
+(function checkConsentParams(){
+  function __log(m) { return window.console && console.log('[BuzzFeed(CMP)] > ' + m); }
+  function getParameterByName(name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  var consentQueryParam = getParameterByName('display-consent') || '';
+  __log('display-consent param: ' + consentQueryParam);
+  if (['gdpr', 'ccpa'].indexOf(consentQueryParam) !== -1) {
+    window.__tcfapi('addEventListener', 2, function (tcData, success) {
+      if (success && tcData.eventStatus !== 'cmpuishown' && tcData.eventStatus !== 'useractioncomplete') {
+        __log('GDPR applies: ' + tcData.gdprApplies);
+        if (consentQueryParam === 'gdpr' && tcData.gdprApplies) {
+          __log('Calling displayConsentUi: ' + typeof window.__tcfapi);
+          window.__tcfapi('displayConsentUi', 2, function() {});
+        } else if (consentQueryParam === 'ccpa' && !tcData.gdprApplies) {
+          __log('Calling displayUspUi: ' + typeof window.__uspapi);
+          window.__uspapi('displayUspUi');
+        }
+      } else {
+        __log('Failed');
+      }
+    });
+  }
+  return;
+}());
+
+
+(function() {
+  var match = window.location.hash.match(/initial-font-size=(\d+)/);
+  if (match && match[1]) {
+    var fontSize = parseInt(match[1], 10);
+    var remBase = 16;
+    if (!isNaN(fontSize)) {
+      window.document.documentElement.style.fontSize = (fontSize / remBase) + 'rem';
+    }
+  }
+})();
+
+{"@context":"http://schema.org","@type":"WebPage","publisher":{"@type":"NewsMediaOrganization","logo":{"@type":"ImageObject","url":"https://cambria.assets.huffpost.com/images/hp-amp.hash-6c7239bcd81bd3a1fa7757c26b1d723a.gif","width":600,"height":60}},"headline":"HuffPost - Breaking News, U.S. and World News","description":"Read the latest headlines, news stories, and opinion from Politics, Entertainment, Life, Perspectives, and more.","inLanguage":"en-US","url":"https://www.huffpost.com/"}
+
+  window.HPGam = window.HPGam || {};
+  window.HPGam.cmd = window.HPGam.cmd || [];
+  window.googletag = window.googletag || {};
+  window.googletag.cmd = window.googletag.cmd || [];
+
+  HPGam.cmd.push(function(){
+    var units = [];
+    var brandPlatform = ['huffpost'];
+    
+    brandPlatform.push('desktop');
+    
+    
+    var category = 'unknown';
+    
+    category = 'home';
+    
+
+    units.push(
+      '6556',
+      brandPlatform.join('.'),
+      'en',
+      category
+    );
+
+    HPGam.env.setParams({
+      site: "us",
+      section: category,
+      subSections: [],
+      platform: brandPlatform[1],
+      pageTypes: ["atf","front","homepage","vert_front"],
+      entryId: "",
+      tags: [],
+      testAds: [],
+      bnp: "",
+      adUnits: units
+    });
+
+    function targetMap() {
+      function csvToArr(str) {
+        var str2 = str.replace(/(^\s+|\s+$)/g, '');
+        return (str2.length && str2.split(",") || []);
+      }
+      var r = [];
+      function addKV(key, val) {
+        if (val.length > 0) {
+          r.push([key, val]);
+        }
+      }
+      addKV("destination", "huffpost");
+      addKV("edition", "us");
+      addKV("hpid", "");
+      
+      addKV("zone3", "home");
+      
+      addKV("pageType", csvToArr("atf,front,homepage,vert_front"));
+      addKV("section", csvToArr(""));
+      
+      
+      
+      addKV("user", csvToArr(""));
+      var dfpKeywordVal = HPGam.getQuery("dfp-keyword");
+      if (dfpKeywordVal) {
+        addKV('dfp-keyword', dfpKeywordVal);
+      }
+      return r;
+    }
+
+    googletag.cmd.push(function(){
+      var map = targetMap();
+      HPGam.log('setTargeting', map);
+      map.forEach(function(t){
+        return googletag.pubads().setTargeting(t[0], t[1]);
+      });
+    });
+
+    return;
+  });
+
+
+var _HPJS = (function (_mod) {
+  "use strict";
+
+  _mod.loadJS = function (src, options) {
+    var options = options || {};
+    var ref = window.document.getElementsByTagName("script")[0];
+    var script = window.document.createElement("script");
+    script.src = src;
+    script.async = options.async;
+    script.defer = options.defer;
+    ref.parentNode.insertBefore(script, ref);
+    return script;
+  }
+
+  _mod.loadJSLater = function (url, timeout) {
+    var ran = false;
+    var loader = function () {
+      if (ran) {
+        return;
+      }
+      ran = true;
+      _mod.loadJS(url, {async:true});
+    }
+    window.addEventListener ?
+      window.addEventListener("load",loader,false) :
+      window.attachEvent && window.attachEvent("onload",loader);
+    // in case the load event never fires
+    setTimeout(loader, timeout || 15000);
+  }
+
+  _mod.waitForGlobal = function(identifier, cb, poll) {
+    var test = typeof identifier === "function" ? identifier : function() { return !!window[identifier]; };
+    var interval;
+    if(test()) {
+      cb();
+    } else {
+      interval = setInterval(function(){
+        if(test()) {
+          cb();
+          clearInterval(interval);
+        }
+      }, poll || 50);
+    }
+  };
+
+  return _mod;
+
+}(_HPJS || {}));
+
+
+waitForGlobal("adSetMOAT", function() {
+  adSetMOAT("1");
+});
+
+
+  waitForGlobal(function() {
+    console.log('flight loaded');
+    return !!document.getElementById("zone-d");
+  }, function() {
+    console.log('firing readmo');
+    var c = document.querySelector(".ad-container.right-container.taboola") || 
+      document.querySelector(".ad-container.right-container .readmo");
+    console.log(c);
+    c.innerHTML = "<div id='readmo-3f7cfe78595240c883052cc8ef1cebc4' style='width:300px;'></div>";
+    window.readmo = window.readmo || [];
+    window.readmo.push({
+      section: '3f7cfe78595240c883052cc8ef1cebc4',
+      container: '#readmo-3f7cfe78595240c883052cc8ef1cebc4'
+    });
+
+    !(function(d) {
+      var script = d.createElement("script");
+      script.async = true;
+      script.src = "https://s.yimg.com/dy/ads/readmo.js";
+      d.body.appendChild(script);
+    })(document);
+  });
+
+
+
+
+  window._taboola = window._taboola || [];
+  _taboola.push({home:'auto'});
+  !function (e, f, u, i) {
+    if (!document.getElementById(i)){
+      e.async = 1;
+      e.src = u;
+      e.id = i;
+      f.parentNode.insertBefore(e, f);
+    }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  'https://cdn.taboola.com/libtrc/huffingtonpost-homepage/loader.js',
+  'tb_loader_script');
+  if(window.performance && typeof window.performance.mark == 'function') {
+    window.performance.mark('tbl_ic');
+  }
+
+
+  waitForGlobal(function() {
+    return !!document.getElementById("trending-zone")
+  }, function() {
+    var c = document.getElementById("trending-zone");
+    c.innerHTML = "";
+    c.id = "taboola-homepage-thumbnails"
+    window._taboola = window._taboola || [];
+    _taboola.push({
+      mode: 'thumbnails-a',
+      container: 'taboola-homepage-thumbnails',
+      placement: 'Homepage Thumbnails',
+      target_type: 'mix'
+    });
+    _taboola.push({flush: true});
+  });
+
+
+  HPGam.cmd.push(function(){
+    return HPGam.render("top", "leaderboard_flex");
+  });
+  
+if (typeof HPAds !== 'undefined') { 
+HPAds.ad_onload('div[id^="ad_leaderboard_flex"] iframe','HPAds.ad_uac_onload_handler(\' iframe[class^="uac_"]\',this,\'bottom_ad_border_div\',10)');
+}
+
+  HPGam.cmd.push(function(){
+    return HPGam.render("sidebar-1", "right_rail_content_1");
+  });
+  
+
+  HPGam.cmd.push(function(){
+    return HPGam.render("sidebar-2", "right_rail_300x250_lower");
+  });
+  
+
+  HPGam.cmd.push(function(){
+    return HPGam.render("sidebar-3", "right_rail_content_3");
+  });
+  
+
+  HPGam.cmd.push(function(){
+    return HPGam.render("bottom-1", "leaderboard_footer");
+  });
+  
+{"locale":"en-US","messages":{"ABOUT":"About","AND":"and","BLOCKQUOTE":"“{quote}”","BREAKING_NEWS":"BREAKING NEWS","BROUGHT_TO_YOU_BY_HUFFPOST_FINDS":"Brought To You By Huffpost Finds","BY":"By","CANCEL":"Cancel","CLICK_TO_SUGGEST_A_CORRECTION":"Click to suggest a correction","CLOSE":"Close","CLOSE_EDITIONS_MENU":"Close editions menu","COLUMNIST":"Columnist","CONTENT_REMOVED":"Content Removed","CONTRIBUTOR":"Contributor","CONTRIBUTOR_DISCLAIMER":"This post was published on the now-closed HuffPost Contributor platform. Contributors control their own work and posted freely to our site. If you need to flag this entry as abusive, <a>send us an email.</a>","COPYRIGHT":"Part of {comscoreFooterText}. ©{year} BuzzFeed, Inc. All rights reserved.","DEVELOPING":"DEVELOPING","EDITIONS_MENU_LABEL":"{editionName} Edition","EXCLUSIVE":"EXCLUSIVE","FIND_HUFFPOST_ARTICLES":"Find HuffPost Articles","FOLLOW_US":"Follow Us","FOLLOW_US_EXCLAMATION":"Follow us!","GOT_A_TIP":"Got a tip?","GOT_A_TIP_DESCRIPTION":"Do you have info to share with HuffPost reporters? <a>Here’s how.</a>","GUEST_WRITER":"Guest Writer","HOUSE":"House","INTERNAL_SERVER_ERROR":"Internal Server Error","LATEST_ELECTION_POLLS":"LATEST ELECTION POLLS","LATEST_IN":"Latest In","LIVE":"Live","LOAD_MORE_ARTICLES":"Load More Articles","MORE":"More","MORE_FROM_SECTION":"More {sectionName}","MORE_IN":"More In {section}","NEWSLETTER_SIGN_UP":"Newsletter Sign Up","NEWSLETTER_SIGNUP_EMAIL_PLACEHOLDER":"address@email.com","NEWSLETTER_SIGNUP_ENTER_EMAIL":"Enter your email address","NEWSLETTER_SIGNUP_SUBSCRIBE":"Subscribe","NEWSLETTER_SIGNUP_SUCCESS":"You have been successfully signed up.","NEWSLETTER_SIGNUP_THANKYOU":"Thanks!","NOT_FOUND":"Not Found","PAGE_NOT_FOUND":"Page not found!","PRESIDENT":"President","PRIVACY_POLICY":"Privacy Policy","REDESIGN_PROMO_DESCRIPTION":"At HuffPost, we report with empathy and put people at the heart of every story. <a>Learn more here.</a>","REDESIGN_PROMO_TITLE":"It's Personal","SEE_GALLERY":"See Gallery","SEE_MORE":"See More","SENATE":"Senate","SEND":"Send","SENDING":"Sending...","SHOW_FULL_BIO":"Show Full Bio","SPECIAL_REPORT":"SPECIAL REPORT","SUGGEST_A_CORRECTION":"Suggest a correction","SUGGEST_CORRECTION_FORM_EMAIL_FIELD_LABEL":"Your Email","SUGGEST_CORRECTION_FORM_EMAIL_FIELD_PLACEHOLDER":"pat@example.com","SUGGEST_CORRECTION_FORM_MESSAGE_FIELD_LABEL":"What is the correction? Describe the error here.","SUGGEST_CORRECTION_FORM_MESSAGE_FIELD_PLACEHOLDER":"i.e. a name was wrong in a recent story...","SUGGEST_CORRECTION_FORM_NAME_FIELD_LABEL":"Your Name","SUGGEST_CORRECTION_FORM_NAME_FIELD_PLACEHOLDER":"Pat Smith","SUGGEST_CORRECTION_FORM_SUBMISSION_ERROR_TEXT":"There was an error in processing your submission.  Please close this form and try again","SUGGEST_CORRECTION_FORM_SUBMISSION_ERROR_TITLE":"ERROR!","SUGGEST_CORRECTION_FORM_SUBMISSION_SUCCESS_TEXT":"Your correction has been submitted successfully","SUGGEST_CORRECTION_FORM_SUBMISSION_SUCCESS_TITLE":"SUCCESS!","TAKE_ME_TO_THE_FRONT_PAGE":"TAKE ME TO THE FRONT PAGE","TERMS":"Terms","TEXTAREA_CHARACTERS_REMAINING":"{charsRemaining} {charsRemaining, plural, one {character} other {characters}} remaining","THE_BLOG":"The Blog","THIS_CONTENT_HAS_BEEN_REMOVED":"This content has been removed.","TOP_VIDEOS":"TOP VIDEOS","TRENDING":"Trending","TRUMPS_APPROVAL":"Trump's Approval","UPDATED":"Updated","VIEW_COMMENTS":"View Comments"}}
+
+  window.comscore_data = {"c1":2,"c2":6723616,"c3":"","c4":"https://www.huffpost.com/","c5":"front-page","c6":"","c15":"","options":{"url_append":"comscorekw=front-page"}};
+
+  var script = document.createElement("script");
+  script.src = "https://sb.scorecardresearch.com/beacon.js";
+  script.async = true;
+  script.onload = function() {
+    if (window.__cmp) {
+      window.__cmp('getVendorConsents', null, function(cmpData, cmpSuccess) {
+        window.waitForGlobal('__uspapi', function() {
+          window.__uspapi( 'getDoNotSell', 1, function(uspData, uspSuccess) {
+            if ( cmpSuccess && cmpData && cmpData.gdprApplies && cmpData.vendorConsents ) {
+              console.log('[COMSCORE] cs_ucfr from vendorConsents');
+              window.comscore_data.cs_ucfr = cmpData.vendorConsents[77] ? 1 : 0; // 77 is comscore's vendor id
+            } else if ( uspSuccess && uspData && uspData.hasOwnProperty('doNotSell') ) {
+              // "doNotSell === true" => user has opted out of letting us sell their info
+              // "doNotSell === false" => user hasn't opted out
+              console.log('[COMSCORE] cs_ucfr from USP');
+              window.comscore_data.cs_ucfr = uspData.doNotSell ? 0 : 1;
+            }
+            if (window.COMSCORE) {
+              window.COMSCORE.beacon(window.comscore_data);
+            }
+          });
+        });
+      });
+    } else {
+      if (window.COMSCORE) {
+        window.COMSCORE.beacon(window.comscore_data);
+      }
+    }
+  };
+  document.body.appendChild(script);
+
+
+window.rapidConfig = (function(){
+  var rapidJson = {"spaceid":"1197803116","async_all_clicks":true,"accountGUID":null,"tracked_mods":[],"nonanchor_track_class":"yr-track","rapid_noclick_resp":"yr-no-track","test_id":null,"keys":{"st_sec":"us.hpmg","pt":"home","ver":"cambria","p_sec":"homepage","p_subsec":"front-page","pl2":"","pageview_on_init":true},"pageview_on_init":true} || {};
+  function getCookie(a) {
+    var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
+  }
+
+  var thambaVal = getCookie('thamba');
+  if (thambaVal) {
+    var name = null;
+    if (thambaVal === '2') {
+      name = 'abp';
+    } else if (thambaVal === '1') {
+      name = 'other';
+    }
+    if (name) {
+      window.console && console.log('[daTRK] set rapid config keys.abk:' + name);
+      rapidJson.keys = rapidJson.keys || {};
+      rapidJson.keys.abk = name;
+    }
+  }
+  return rapidJson;
+}());
+
+window.getProfile()
+.then(function(profile) {
+  if (!profile) return;
+  window.rapidConfig.accountGUID = profile.guid;
+  var subscription = profile.subscriptions.find(function(sub) {
+    return sub.roles && sub.roles.indexOf('premium') > -1;
+  });
+  if (!subscription) {
+    window.rapidConfig.keys.pl4 = 'basic';
+    return;
+  }
+  switch (subscription.renewalPeriod) {
+    case 'monthly':
+      window.rapidConfig.keys.pl4 = 'premium-monthly';
+    break;
+    case 'yearly':
+      window.rapidConfig.keys.pl4 = 'premium-annual';
+    break;
+  }
+})
+.then(function() {
+  window.RapidInstance = new window.YAHOO.i13n.Rapid(window.rapidConfig);
+
+  window.HUFFPOST.pageReady(function() {
+    var sections = document.querySelectorAll('[data-rapid="marko-sec"]');
+    window.HUFFPOST.rapidSecs = Array.prototype.map.call(sections, function(el) { return el.id });
+    window.RapidInstance.addModules(window.HUFFPOST.rapidSecs, false, { useViewability: true });
+    if ( window.RapidInstance.addModuleProgression && window.HUFFPOST.rapidSecs.includes("entry-body") ) {
+      window.RapidInstance.addModuleProgression('entry-body');
+    }
+  });
+})
+.catch(function(e) {
+  console.warn("Couldn't init Rapid", e);
+})
+
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  getProfile().then(function(profile) {
+    gtag('js', new Date());
+    gtag('set', {
+      custom_map: {
+        dimension1: 'pageType',
+        dimension2: 'team',
+        dimension3: 'tags',
+        dimension4: 'edition',
+        dimension5: 'department',
+        dimension6: 'section',
+        dimension7: 'author',
+        dimension8: 'articleId',
+        dimension9: 'publishDate',
+        dimension10: 'platform',
+        dimension11: 'loggedIn',
+        dimension12: 'videoPresence',
+        dimension13: 'originalEdition',
+      },
+    });
+    var config = {"pageType":"home","edition":"us","department":"homepage","section":"front-page","platform":"cambria","loggedIn":false};
+    config.loggedIn = !!profile;
+    gtag('set', config);
+    gtag('config', 'UA-1740781-82', {
+      page_title: undefined,
+    });
+  });
+
+
+  var rightRail = document.getElementById("right-rail-videos");
+  if ( rightRail ) {
+    rightRail.style.display="none";
+  }
+
+
+waitForGlobal(function(){
+  var c1 = !!document.getElementById('zone-right1');
+  var c2 = true;
+  var c3 = true;
+  
+  var c2 = !!document.getElementById('zone-d');
+  
+                                                                        
+  return c1 && c2 && c3;
+}, function() {
+  if (!!(window._modulous_disabled && window._modulous_disabled('gemini'))) { 
+    return; 
+  }
+
+  console.log('[GEMINI] loading flurry unit f1566993-d472-4529-b4b3-7f76b7aee61c');
+  var w_yahoo = (top == self) ? window : window.top, d_yahoo = w_yahoo.document;
+  w_yahoo.native = w_yahoo.adUnitCode || [];
+  w_yahoo.native.push("f1566993-d472-4529-b4b3-7f76b7aee61c");
+  
+  console.log('[GEMINI] loading flurry unit c0ca0a17-7f6f-468c-aab1-0268c269cf22');
+  w_yahoo.native.push("c0ca0a17-7f6f-468c-aab1-0268c269cf22");
+  
+  
+  w_yahoo.apiKey = "W56S5QZ4HX56YM9MRGXS";
+  (function(){
+    console.log('[GEMINI] loading yap');
+    var script = d_yahoo.createElement("script");
+    script.async = true;
+    script.src = "https://s.yimg.com/dy/ads/native.js";
+    script.onload = function() {
+      console.log('[GEMINI] yap loaded');
+    };
+    d_yahoo.body.appendChild(script);
+  })();
+});
+
+
+waitForGlobal(function() {
+  return window.jQuery && (window.jQuery("#categories").find("section.zone").length > 0 || window.jQuery("#categories-zone").find("section.zone").length > 0);
+}, function() {
+  window.jQuery(".author-list--card:contains('By Booking.com')").html("By Booking.com");
+  window.jQuery(".author-list--card:contains('By Booking.com')").append("<br><span style=\"font-style:italic\">Paid Partner</span>");
+});

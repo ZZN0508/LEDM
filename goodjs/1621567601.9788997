@@ -1,0 +1,423 @@
+window.scriptsLoaded++;
+window.runATCClick = function () {
+    try {
+        var createFloodlight = function createFloodlight(srcId, type, cat, ord, num, cust) {
+            var a, axel, custom, n, src;
+            axel = Math.random() + "";
+            a = axel * 10000000000000;
+            custom = '';
+
+            if (ord && typeof ord !== 'string') {
+                cust = ord;
+                ord = '';
+            }
+
+            if (num && typeof num !== 'string' && typeof num !== 'number') {
+                cust = num;
+                num = '';
+            }
+
+            if (cust && cust.length) {
+                var i = 0,
+                    len = cust.length;
+
+                for (; i < len; i++) {
+                    custom += ';' + cust[i];
+                }
+            }
+
+            src = document.location.protocol + "//2906542.fls.doubleclick.net/activityi;src=" + srcId + ";type=" + type + ";cat=" + cat;
+            src += custom;
+            src += custom.indexOf('ord=') === -1 ? ord ? ";ord=" + ord : ';ord=' + a : '';
+            src += num ? ";num=" + num : "";
+            src += !custom ? '?' : '';
+            n = document.createElement('iframe');
+            n.style.display = 'none';
+            n.style.width = n.style.height = 1;
+            n.src = src;
+            document.getElementsByTagName('body')[0].appendChild(n);
+        };
+
+
+        var filterVideoGames = function filterVideoGames(subCategory) {
+            var categoryName = "video games";
+
+            switch (subCategory.toString()) {
+                case "02":
+                case "2":
+                    categoryName = categoryName + ": nintendo 3ds";
+                    break;
+
+                case "13":
+                    categoryName = "electronics: computer & office";
+                    break;
+
+                case "22":
+                    categoryName = categoryName + ": xbox 360";
+                    break;
+
+                case "24":
+                    categoryName = categoryName + ": playstation 3";
+                    break;
+
+                case "26":
+                    categoryName = categoryName + ": nintendo wii";
+                    break;
+
+                case "28":
+                    categoryName = categoryName + ": pc games";
+                    break;
+
+                case "29":
+                    categoryName = categoryName + ": retro consoles";
+                    break;
+
+                case "30":
+                    categoryName = categoryName + ": nintendo switch/wii u";
+                    break;
+
+                case "32":
+                    categoryName = categoryName + ": xbox one";
+                    break;
+
+                case "34":
+                    categoryName = categoryName + ": playstation 4";
+                    break;
+
+                case "35":
+                    break;
+
+                default:
+                    categoryName = "";
+                    break;
+            }
+
+            return categoryName;
+        };
+
+        var filterMovies = function filterMovies(subCategory) {
+            var categoryName = "movies";
+
+            switch (subCategory.toString()) {
+                case "01":
+                case "1":
+                case "02":
+                case "2":
+                case "03":
+                case "3":
+                    categoryName = categoryName + ": dvd: miscellaneous";
+                    break;
+
+                case "10":
+                case "21":
+                    categoryName = categoryName + ": kids & family";
+                    break;
+
+                case "11":
+                    categoryName = categoryName + ": dvd: fitness";
+                    break;
+
+                case "12":
+                    categoryName = categoryName + ": dvd: drama";
+                    break;
+
+                case "13":
+                    categoryName = categoryName + ": dvd: musical";
+                    break;
+
+                case "14":
+                    categoryName = categoryName + ": dvd: comedy";
+                    break;
+
+                case "15":
+                    categoryName = categoryName + ": dvd: special interest";
+                    break;
+
+                case "16":
+                    categoryName = categoryName + ": dvd: horror & sci-fi";
+                    break;
+
+                case "17":
+                    categoryName = categoryName + ": dvd: action & adeventure";
+                    break;
+
+                case "18":
+                    categoryName = categoryName + ": dvd: western";
+                    break;
+
+                case "19":
+                    categoryName = categoryName + ": dvd: holiday";
+                    break;
+
+                case "22":
+                    categoryName = categoryName + ": dvd: tv";
+                    break;
+
+                case "23":
+                case "24":
+                    categoryName = categoryName + ": dvd: bundles";
+                    break;
+
+                case "27":
+                    categoryName = categoryName + ": blu ray";
+                    break;
+
+                case "28":
+                    categoryName = categoryName + ": dvd: spanish";
+                    break;
+
+                case "30":
+                case "31":
+                    categoryName = categoryName + ": blu ray: kids & family";
+                    break;
+
+                case "32":
+                    categoryName = categoryName + ": blu ray: drama";
+                    break;
+
+                case "33":
+                    categoryName = categoryName + ": blu ray: musical";
+                    break;
+
+                case "34":
+                    categoryName = categoryName + ": blu ray: comedy";
+                    break;
+
+                case "35":
+                    categoryName = categoryName + ": blu ray: special interest";
+                    break;
+
+                case "36":
+                    categoryName = categoryName + ": blu ray: horror & sci-fi";
+                    break;
+
+                case "37":
+                    categoryName = categoryName + ": blu ray: holiday";
+                    break;
+
+                case "39":
+                    categoryName = categoryName + ": blu ray: tv";
+                    break;
+
+                case "40":
+                case "41":
+                    categoryName = categoryName + ": blu ray: bundles";
+                    break;
+
+                case "50":
+                case "51":
+                case "52":
+                    categoryName = categoryName + ": disney";
+                    break;
+
+                default:
+                    categoryName = "";
+                    break;
+            }
+
+            return categoryName;
+        };
+
+        var filterMusic = function filterMusic(subCategory) {
+            var categoryName = "music";
+
+            switch (subCategory.toString()) {
+                case "00":
+                    categoryName = categoryName + ": kids";
+                    break;
+
+                case "01":
+                    categoryName = categoryName + ": budget";
+                    break;
+
+                case "02":
+                case "2":
+                case "17":
+                    categoryName = categoryName + ": target exclusive";
+                    break;
+
+                case "03":
+                case "3":
+                    categoryName = categoryName + ": r&b/rap";
+                    break;
+
+                case "04":
+                case "4":
+                    categoryName = categoryName + ": pop";
+                    break;
+
+                case "05":
+                case "5":
+                    categoryName = categoryName + ": country";
+                    break;
+
+                case "06":
+                case "6":
+                    categoryName = categoryName + ": rock";
+                    break;
+
+                case "07":
+                case "7":
+                    categoryName = categoryName + ": various artists";
+                    break;
+
+                case "09":
+                case "9":
+                    categoryName = categoryName + ": latin";
+                    break;
+
+                case "11":
+                    categoryName = categoryName + ": dvd music video";
+                    break;
+
+                case "12":
+                    categoryName = categoryName + ": holiday";
+                    break;
+
+                case "13":
+                    categoryName = categoryName + ": soundtracks & compilations";
+                    break;
+
+                case "14":
+                    categoryName = categoryName + ": christian/gospel";
+                    break;
+
+                default:
+                    categoryName = "";
+                    break;
+            }
+
+            return categoryName;
+        };
+
+        var checkIfFilterReq = function checkIfFilterReq(tcin, obj) {
+            var checkTcin = tcin;
+
+            if (obj !== undefined && obj.tcin === tcin) {
+                checkTcin = obj.webSubClass;
+            }
+
+            return checkTcin;
+        };
+
+        var getPropertyValue = function getPropertyValue(object, propertyName) {
+            var propertyValue;
+
+            if (object !== null && typeof object === 'object') {
+                propertyValue = object[propertyName];
+            }
+
+            return propertyValue;
+        };
+
+        var returnObj = function returnObj(tcin, pageType) {
+            var dpci, state, obj, product, productDetails, items, item, webClass, webSubClass;
+
+            if (window.__STORE__ !== undefined) {
+                state = window.__STORE__.getState();
+            } else {
+                state = {};
+            }
+
+            if (pageType === 'product listing page: cart add') {
+                items = getPropertyValue(state, 'items');
+                item = getPropertyValue(items, tcin);
+                dpci = getPropertyValue(item, 'dpci');
+            } else {
+                product = getPropertyValue(state, 'product');
+                productDetails = getPropertyValue(product, 'productDetails');
+                item = getPropertyValue(productDetails, 'item');
+                dpci = getPropertyValue(item, 'dpci');
+            }
+
+            if (dpci !== undefined && dpci !== null) {
+                webClass = dpci.split('-')[0];
+            }
+
+            if (webClass !== undefined && webClass !== null) {
+                switch (webClass.toString()) {
+                    case "012":
+                    case "12":
+                        webSubClass = filterMusic(dpci.split('-')[1]);
+                        break;
+
+                    case "058":
+                    case "58":
+                        webSubClass = filterMovies(dpci.split('-')[1]);
+                        break;
+
+                    case "207":
+                        webSubClass = filterVideoGames(dpci.split('-')[1]);
+                        break;
+
+                    case "244":
+                        webSubClass = "music: miscellaneous";
+                        break;
+
+                    case "246":
+                        webSubClass = "movies: miscellaneous";
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            if (webSubClass !== undefined) {
+                obj = {
+                    tcin: tcin,
+                    webSubClass: webSubClass
+                };
+            }
+
+            return obj;
+        };
+
+        var pinterest = function pinterest(globalPage, tcin, units, value) {
+            var filteredTcin, obj;
+
+            (function (e) {
+                if (!window.pintrk) {
+                    window.pintrk = function () {
+                        window.pintrk.queue.push(Array.prototype.slice.call(arguments));
+                    };
+
+                    var n = window.pintrk;
+                    n.queue = [], n.version = "3.0";
+                    var t = document.createElement("script");
+                    t.async = !0, t.src = e;
+                    var r = document.getElementsByTagName("script")[0];
+                    r.parentNode.insertBefore(t, r);
+                }
+            })("https://s.pinimg.com/ct/core.js");
+
+            obj = returnObj(tcin, globalPage);
+            filteredTcin = checkIfFilterReq(tcin, obj);
+            pintrk('track', 'AddToCart', {
+                currency: 'USD',
+                product_id: filteredTcin
+            });
+        };
+
+        var coreFunction = function coreFunction() {
+            var fls, globalPage, partNums, price, units;
+            fls = {};
+            partNums = "";
+            price = "";
+
+            if (window.tgt !== undefined && window.tgt.dataLayer !== undefined && window.tgt.dataLayer.products.length > 0) {
+                partNums = window.tgt.dataLayer.products[0].tcin;
+                price = window.tgt.dataLayer.products[0].price;
+                units = window.tgt.dataLayer.products[0].units;
+                globalPage = window.tgt.dataLayer.appState.globalPage;
+            }
+
+            fls.arr = ['u5=' + partNums];
+            createFloodlight('2906542', 'addto789', 'addto156', fls.arr);
+        };
+
+        coreFunction();
+    } catch (e) {
+        console.log(e.message);
+    }
+};

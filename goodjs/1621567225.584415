@@ -1,0 +1,60 @@
+
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "https://evernote.com/",
+        "logo": "https://s24953.pcdn.co/blog/wp-content/uploads/2018/08/enblog_brandlaunch_2600x1000-1-685x425.png",
+        "sameAs": [
+          "https://www.facebook.com/evernote/",
+          "https://medium.com/@evernote",
+          "https://www.instagram.com/evernote", "https://www.youtube.com/channel/UCr_JcNR6slxFcTtDZ8t6F0A",
+          "https://www.linkedin.com/company/evernote",
+          "https://twitter.com/evernote"
+        ]
+      }
+    
+
+      {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "name": "Evernote",
+        "url": "https://evernote.com/"
+      }
+    
+
+      window.ActionHasBeenTakenOnSiteCookieName = 'ActionHasBeenTakenOnSite';
+    
+
+      window.web50017GaPropertyId = 'UA-285778-5';
+      window.web50017PreUserGuid = 'f8f3ebf1-8d59-4723-87fd-115b82e3c928';
+      window.ActionHasBeenTakenOnSiteCookieName = 'ActionHasBeenTakenOnSite';
+      window.wwwsite6404GaCountryCode = 'JP';
+    
+
+      window.EmbedGoogleTagManagerCode = function () {
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({
+            'gtm.start':
+              new Date().getTime(), event: 'gtm.js'
+          });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MP67N8C');
+      };
+
+      if (document.cookie.indexOf(window.ActionHasBeenTakenOnSiteCookieName) !== -1) {
+        window.EmbedGoogleTagManagerCode();
+      }
+
+    
+
+        if(document.cookie.indexOf(window.ActionHasBeenTakenOnSiteCookieName) == -1){
+            window['optimizely'] = window['optimizely'] || [];
+            window['optimizely'].push(['disable']);
+        }
+    

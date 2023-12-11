@@ -1,0 +1,7 @@
+﻿/*document.write('<style>#tipsreplay{width:21px;height:80px;right:0px;position:absolute;top:0px;z-index:99999;}#tips{width:250px;height:220px;right:0px;position:absolute;top:0px;z-index:99999;}</style><div id="tipsreplay"><embed src="http://'+ym+'/Pics/2017/index_zhejiao481_21c80.swf" width="21" height="80" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" wmode="transparent"></div><div id="tips"><embed src="http://'+ym+'/Pics/2017/index_zhejiao481_250c220.swf" width="250" height="220" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" wmode="transparent"></div>');
+function opentips(){
+	$("#tips").css("display","block");
+}
+function closetips(){
+	$("#tips").css("display","none");
+}*/

@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "type": "pageConfig",
+    "namespace": "wwpmf4k2jln",
+    "id": "6omn80g896f",
+    "version": "2.1.0"
+  },
+  "template": {
+    "parseAssets": true,
+    "cacheFirst": true,
+    "type": "html",
+    "url": "https://www.alibaba.com/sale/rtsrankinglist.html"
+  },
+  "apis": [],
+  "assets": []
+}

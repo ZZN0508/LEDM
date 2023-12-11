@@ -1,0 +1,15 @@
+// service-worker.js
+
+console.log('In service worker test.');
+
+self.addEventListener('install', function () {
+    console.log('Install success');
+});
+
+self.addEventListener('activate', function () {
+    console.log('Activated');
+});
+
+self.addEventListener('fetch', function(event) {
+
+});

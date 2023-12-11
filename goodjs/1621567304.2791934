@@ -1,0 +1,65 @@
+$(document).ready(function () {
+    console.log("Post event Called");
+    $(".homepage-content .banner-card-section").addClass("banner-card-section-new");
+    var t = "Personalizedname";
+    var j = jQuery.cookie(t);
+    if (typeof j != "undefined") {
+        if (j != null && j != "") {
+            $(".card-item .blue-text").append(j);
+            console.log("Customer name: " + j);
+        }
+    }
+    $(".mobcard .cardone").empty();
+    $(".mobcard .cardtwo").empty();
+    $(".mobcard .cardthree").empty();
+    $(".mobcard .cardfour").empty();
+    if (typeof FedID != "undefined") {
+        if (FedID != null && FedID != "") {
+            var d = [];
+            $(".card-item").each(function () {
+                var c = $(this).find("#mccmmobiletitle").val();
+                var a = $(this).find("#defaultmobiletitle").val();
+                if (typeof c != "undefined") {
+                    if (c != "") {
+                        d.push(c);
+                    }
+                }
+                if (typeof a != "undefined") {
+                    if (a != "") {
+                        d.push(a);
+                    }
+                }
+            });
+            console.log("cardname length: " + d.length);
+            $(".mobcard .cardone").text(d[0]);
+            $(".mobcard .cardtwo").text(d[1]);
+            $(".mobcard .cardthree").text(d[2]);
+            $(".mobcard .cardfour").text(d[3]);
+        } else {
+            console.log("No Fed id found null or blank");
+        }
+    } else {
+        console.log("No Fed id found undefined");
+        var d = [];
+        $(".card-item #defaultmobiletitle").each(function () {
+            var a = $(this).val();
+            if (typeof a != "undefined") {
+                if (a != "") {
+                    d.push(a);
+                }
+            }
+        });
+        console.log("cardname length: " + d.length);
+        $(".mobcard .cardone").text(d[0]);
+        $(".mobcard .cardtwo").text(d[1]);
+        $(".mobcard .cardthree").text(d[2]);
+        $(".mobcard .cardfour").text(d[3]);
+    }
+ 
+ //Push notification click event called
+ $(".desktop-only #push-modal-close,.mobile-only #push-modal-close").click(function () {
+  $("#push-modal-background").fadeOut("600");
+  $("#push-modal-content").fadeOut("400");
+  $("#push-modal-content,#push-modal-background").toggleClass("active")
+ });
+});

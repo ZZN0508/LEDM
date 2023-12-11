@@ -1,0 +1,213 @@
+
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "https://www.ruten.com.tw",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.ruten.com.tw/find/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  
+
+  window.RT = window.RT || {};
+  RT.config = {
+    www_host           : 'https://www.ruten.com.tw',
+    search_host        : 'https://find.ruten.com.tw',
+    member_host        : 'https://member.ruten.com.tw',
+    mobile_host        : 'https://m.ruten.com.tw',
+    goods_host         : 'https://goods.ruten.com.tw',
+    www_pchomeus_host  : 'https://www.pchomeus.com',
+    mybid_host         : 'https://mybid.ruten.com.tw',
+    mybidu_host        : 'https://mybidu.ruten.com.tw',
+    point_host         : 'https://point.ruten.com.tw',
+    class_host         : 'https://class.ruten.com.tw',
+    pub_host           : 'https://pub.ruten.com.tw',
+    ad_host            : 'https://ahd.ruten.com.tw',
+    ahd_host           : 'https://ahd.ruten.com.tw',
+    kwad_host          : 'http://kwad.ruten.com.tw',
+    bid_img_dir        : 'https://www.ruten.com.tw/images',
+    alert_host         : 'https://alert.ruten.com.tw',
+    im_host            : 'https://im.ruten.com.tw',
+    rtapi_host         : 'https://rtapi.ruten.com.tw',
+    rapi_host          : 'https://rapi.ruten.com.tw',
+    img_host           : 'https://img.ruten.com.tw',
+    upload_host        : 'https://upload.ruten.com.tw',
+    promote_host       : 'https://promote.ruten.com.tw',
+    seller_host        : 'https://seller.ruten.com.tw',
+    mass_host          : 'https://mass.ruten.com.tw'
+  };
+  RT.config.env = 'main';
+  RT.config.ppPayway = [
+    'PAYLINK',
+    'PP_PI',
+    'PL_ATM',
+    'PL_ACCOUNT',
+    'PL_POSTATM',
+    'PP_CRD',
+    'PP_CRD_N3',
+    'PP_CRD_N6',
+    'PP_CRD_N12',
+    'PP_EACH'
+  ];
+  RT.config.ppRelatedPayway = RT.config.ppPayway.concat([
+    'CVS_COD',
+    'SEVEN',
+    'SEVEN_COD',
+    'TCAT_COD',
+    'PP_CPON'
+  ]);
+  if(window.Box) {
+    RT.App = Box.Application;
+
+    RT.App.initBroadcast = function(name, obj) {
+      setTimeout(function() {
+        RT.App.broadcast(name, obj)
+      });
+    };
+  }
+
+
+    /*<![CDATA[*/setTimeout(function(){(function() {
+    var script = document.createElement('script'), event;
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', 'https://www.ruten.com.tw/js/lib/rtchat_vendors.min.js?v=4c77bd0b11ce357a5252');
+    if(typeof window.Event === 'function') {
+      event = new Event('rtchat_vendors.min.js:loaded');
+    } else {
+      event = document.createEvent('Event');
+      event.initEvent('rtchat_vendors.min.js:loaded', true, true);
+    }
+    script.onload = function(e) {window.dispatchEvent(event);e.target.complete=true;}
+    document.documentElement.appendChild(script);
+    })();(function() {
+    var script = document.createElement('script'), event;
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', 'https://www.ruten.com.tw/js/lib/rtchat_teddy.min.js?v=900db0651f6742e911cd');
+    if(typeof window.Event === 'function') {
+      event = new Event('rtchat_teddy.min.js:loaded');
+    } else {
+      event = document.createEvent('Event');
+      event.initEvent('rtchat_teddy.min.js:loaded', true, true);
+    }
+    script.onload = function(e) {window.dispatchEvent(event);e.target.complete=true;}
+    document.documentElement.appendChild(script);
+    })();})/*]]>*/
+    
+
+        window.RT = window.RT || {};
+        if(RT.headerUserData) {
+          RT.headerUserData.setParams({
+            member_host: "https://member.ruten.com.tw",
+            mybid_host: "https://mybid.ruten.com.tw",
+            rapi_host: "https://rapi.ruten.com.tw",
+            www_host: "https://www.ruten.com.tw"
+          }).defaultRender();
+        }
+        if('footer' in RT) {
+          $(".mobile").css("display", "inline-block");
+        }
+
+        function detectIE() {
+          var ua = window.navigator.userAgent;
+
+          var msie = ua.indexOf('MSIE ');
+          if (msie > 0) {
+            // IE 10 or older => return version number
+            return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+          }
+
+          var trident = ua.indexOf('Trident/');
+          if (trident > 0) {
+            // IE 11 => return version number
+            var rv = ua.indexOf('rv:');
+            return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+          }
+
+          var edge = ua.indexOf('Edge/');
+          if (edge > 0) {
+            // IE 12 => return version number
+            return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+          }
+
+          // other browser
+          return false;
+        }
+
+        function check_search_kw(){
+          var search_form = document.header_search_form,
+              search_type = document.getElementById('search_type'),
+              search_type_value = search_type? search_type.value:'',
+              search_seller_nick = document.getElementById('search_seller_user_nick'),
+              search_seller_nick_value = search_seller_nick? search_seller_nick.value:'',
+              search_g_class = document.getElementById('search_g_class'),
+              search_g_class_value = search_g_class? search_g_class.value:'',
+              accept_charset = 'utf-8';
+
+          if(search_type_value !== ''){;
+            if(search_type_value === 'seller') {
+              var hidden = document.createElement('input');
+              hidden.setAttribute('type', 'hidden');
+              hidden.setAttribute('name', 's');
+              hidden.value = search_seller_nick_value;
+              search_form.appendChild(hidden);
+              search_form.setAttribute('action','https://find.ruten.com.tw/search/ulist00.php');
+              accept_charset = 'utf-8';
+            } else if(search_type_value === 'class') {
+              var hidden = document.createElement('input');
+              hidden.setAttribute('type', 'hidden');
+              hidden.setAttribute('name', 'c');
+              hidden.value = search_g_class_value;
+              search_form.appendChild(hidden);
+            }
+          }
+          search_form.setAttribute('accept-charset', accept_charset);
+          detectIE() && (document.charset = accept_charset);
+          search_form.submit();
+        }
+
+        var headerSearchSubmit = document.querySelector('.header-search-submit')
+        var headerKeywordInput = document.getElementById('keyword')
+
+        headerSearchSubmit && headerSearchSubmit.addEventListener('click', function() {
+          check_search_kw();
+        });
+
+        headerKeywordInput &&　headerKeywordInput.addEventListener('keypress', function(e) {
+          if(e.which === 13) {
+            check_search_kw();
+          }
+        });
+      
+
+      var globalHeader = document.querySelector('.js-global-header');
+
+      window.addEventListener('scroll', function(e) {
+        var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+        if (globalHeader) {
+          if(scrollTop > globalHeader.clientHeight) {
+            globalHeader.classList.add('rt-header-fixed');
+          } else {
+            globalHeader.classList.remove('rt-header-fixed');
+          }
+        }
+      });
+    
+
+/*<![CDATA[*/setTimeout(function(){(function() {
+var script = document.createElement('script'), event;
+script.setAttribute('type', 'text/javascript');
+script.setAttribute('src', 'https://www.ruten.com.tw/js/lib/rt_analytics.min.js?v=5c9dfa611f47340460b8');
+if(typeof window.Event === 'function') {
+  event = new Event('rt_analytics.min.js:loaded');
+} else {
+  event = document.createEvent('Event');
+  event.initEvent('rt_analytics.min.js:loaded', true, true);
+}
+script.onload = function(e) {window.dispatchEvent(event);e.target.complete=true;}
+document.documentElement.appendChild(script);
+})();})/*]]>*/
+
+
+  jQuery.holdReady(true)

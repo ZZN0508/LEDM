@@ -1,0 +1,45 @@
+
+        window.RECAPTCHA_SITE_KEY = "6Lf8Bg4UAAAAAJ9KPbr_AoCbQ5l9jDqcuaLAgBDM";
+        function onRecaptchaReady() {
+            if (document) {
+                document.dispatchEvent(new CustomEvent('px:recaptcha-ready'));
+            }
+        }
+    
+
+        window.dataLayer = window.dataLayer || [];
+        
+    
+window.csrf_token = 'fqJKeb9Rdfc6VVGJ8cOh8BHf69B1ol0ksF7f60wNpf5QrHV3o2hF0VG2zPATCTzu';
+
+    var DEBUG = 0, LANG = 'en', LANG_URL_PREFIX = '', LANGS = [["cs","\u010ce\u0161tina"],["da","Dansk"],["de","Deutsch"],["en","English"],["es","Espa\u00f1ol"],["fr","Fran\u00e7ais"],["id","Indonesia"],["it","Italiano"],["hu","Magyar"],["nl","Nederlands"],["no","Norsk"],["pl","Polski"],["pt","Portugu\u00eas"],["ro","Rom\u00e2n\u0103"],["sk","Sloven\u010dina"],["fi","Suomi"],["sv","Svenska"],["tr","T\u00fcrk\u00e7e"],["vi","Vi\u1ec7t"],["th","\u0e44\u0e17\u0e22"],["bg","\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438"],["ru","\u0420\u0443\u0441\u0441\u043a\u0438\u0439"],["el","\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ae"],["ja","\u65e5\u672c\u8a9e"],["ko","\ud55c\uad6d\uc5b4"],["zh","\u7b80\u4f53\u4e2d\u6587"]], I18N = { 'delete': 'Really delete?', 'safesearch': 'SafeSearch', 'adult_content': 'Adult Content' };
+    window.is_mobile = 0;
+
+
+    function sendVital(metric) {
+        const value = Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value);
+
+        dataLayer.push({
+            event: 'web-vital',
+            vitalName: metric.name,
+            vitalValue: value,
+            vitalId: metric.id
+        });
+    }
+
+    addEventListener('DOMContentLoaded', function() {
+        webVitals.getCLS(sendVital);
+        webVitals.getFID(sendVital);
+        webVitals.getLCP(sendVital);
+    });
+
+
+        $('.flex_grid').flexImages({ rowHeight: 320, maxRows: 8, truncate: true });
+        $('[data-lazy]').unveil(400);
+        resized();
+    
+{
+        "@context": "http://schema.org", "@type": "WebSite", "url": "https://pixabay.com/",
+        "name": "Pixabay", "sameAs" : ["https://www.facebook.com/pixabay", "https://twitter.com/pixabay", "https://www.instagram.com/pixabay/"],
+        "potentialAction": { "@type": "SearchAction", "target": "https://pixabay.com/images/search/{q}/", "query-input": "required name=q" }
+    }

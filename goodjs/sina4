@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error>
+  <Code>NoSuchKey</Code>
+  <Message>key not found</Message>
+  <Resource>/litong/zhitou/sinaads/Media.full.js</Resource>
+  <RequestId>f310e52c-2311-0114-3747-b4055d752c57</RequestId>
+</Error>

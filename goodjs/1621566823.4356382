@@ -1,0 +1,89 @@
+
+        $('.cmp span').fadeTo(0, 0.3).on('mouseenter', function () {
+            $(this).fadeTo(0, 0.7);
+        }).on('mouseleave', function () {
+            $(this).fadeTo(0, 0.3);
+        });
+
+        var cmSum = $('.commend1 li').size() + 1,
+            cmCur = 0,
+            cmAuto = null;
+
+        $('.commend1 ul').css('width', 880 * cmSum).append($('.commend1 li').first().clone());
+
+        $('.cmr').on('click', function () {
+            cmCur += 1;
+            cmRoll();
+        });
+
+        $('.cml').on('click', function () {
+            cmCur -= cmCur > 0 ? 1 : 0;
+            cmRoll();
+        });
+
+        function cmRoll() {
+            $('.commend1 ul').stop(true, true).animate({
+                'margin-left': -880 * cmCur
+            }, function () {
+                if (cmCur >= cmSum - 1) {
+                    $('.commend1 ul').css('margin-left', '0px');
+                    cmCur = 0;
+                }
+            });
+        }
+    
+
+        (function ($) {
+
+            var WCCur = 0, WCSum = $('.WC .pic').size(), wid;
+
+            // Function
+            function changePic1() {
+                $('.WC .pic').hide();
+                $('.WC .pic').eq(WCCur).fadeTo(200, 1);
+                $('.WCMenu p').removeClass('cur');
+                $('.WCMenu p').eq(WCCur).addClass('cur');
+            }
+
+            function autoPic1() {
+                WCCur += 1;
+                WCCur %= WCSum;
+                changePic1();
+            }
+
+            // Action
+            $('.WCpic p').fadeTo(0, 0.7);
+            $('.left').fadeTo(0, 0.7);
+            $('.right').fadeTo(0, 0.7);
+            $('.WC .pic').each(function () {
+                $('.WCMenu').append('<p>&nbsp;<\/p>');
+            });
+            $('.WCMenu p').first().addClass('cur');
+            $('.WC .pic').first().show();
+
+            $('.right').on('click', function () {
+                WCCur += 1;
+                WCCur %= WCSum;
+                changePic1();
+            });
+            $('.left').on('click', function () {
+                WCCur -= 1;
+                WCCur += WCSum;
+                WCCur %= WCSum;
+                changePic1();
+            });
+            $('.WCMenu p').on('click', function () {
+                WCCur = $(this).index();
+                changePic1();
+            });
+            wid = window.setInterval(autoPic1, 5000);
+            $('.WC').on('mouseenter', function () {
+                window.clearInterval(wid);
+            }).on('mouseleave', function () {
+                wid = window.setInterval(autoPic1, 5000);
+            });
+        })(jQuery);
+    
+
+            wd_paramtracker("_wdxid=000000000000000000000000000000000000000000")
+        

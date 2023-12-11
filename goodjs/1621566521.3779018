@@ -1,0 +1,80 @@
+
+        //<![CDATA[
+        _pageBITags={"pageTags":{"uri":"https://www.microsoft.com/zh-cn/","mkt":"zh-cn","referrerUri":"","browserGroup":"uplevel.web.pc.webkit.chrome","expId":"EX:sfwaab,EX:atperf680t2,EX:7272t1,EX:9508c,EX:11004t12,EX:11326c,EX:tasmigration010,EX:cartemberpl,EX:disablenorefunds,EX:daconvertenabled,EX:enablescarlettmetadata","enabledFeatures":"UhfPb:1,UhfUsePh:1,EnableLocaleDetection:1,UhfSwp:1,uhfgreenid:1,enable_sasslib_minification_runtime:1,UhfJs_1_22_1:1,UhfJs_1_22_3:1,core_akamai_im_enabled:1,coreui_hero_image_resize_90:1,UhfJs_1_23_1:1,uhf_as_iris:1,uhf_pivot-nav:1,core_use_coreui_mwf:1,coreui_makeimagebackgroundtransparent:1,f_audiencemanager_disabled:1,core_BypassJWTValidation:1,uhf_epb_v2:1,MSADisableForceSignin:1,DisableToSkipMarketdetectionforUknownRoutes:1,uhf_magic_triangle:1,RelevanceOverride:1,coreui_videomodule_useflexsize:1,uhf_css_override:1,core_uhf_access_policy:1,uhf_st_enabled:1,DisableOneRFSearchRoute:1,clientTypeSfw:1,ResolveDataProviderByPartnerNameSpace:1,InvokeLoginAuthorizeAndRedirect:1,uhf_stick_footer_to_bottom:1,boomerang_disabled:1,i_uhf_cache_flush__7:1,uhf_enable_domain_check:1,uhf_enable_promo_banner:1,core_useAfsRestApiForStatics:1,Use1PCommonReplyUrl:1,uhf_enable_generic_promo_banner:1,coreui-multiflyout_enable_vp1:1,liveengage:1,core_cookiev2:1,s_core_mwf_version__MWF_20210208_31270267:1,jquery_previous:1,DisableTATToken:1,rushmore_gzip_html:1,s_core_statics_cacheflush__20210415:1,RMDisablePolicyValidationInRP:1,OwACService:1,mwf_useazureblobstorage:1","signedInStatus":false,"pv":"0.1","dv":"2021/5/19 4:08:02 +00:00","jsEnabled":true,"isTented":false,"isCached":false,"isOneRf":true,"isCorpNet":false,"isStatic":false,"tags":{"serviceName":"marketingsites-prod-odeastasia"},"shareAuthStatus":false,"userConsent":true,"muidDomain":"microsoft.com","autoCapture":{"pageView":true,"onLoad":true,"click":true,"scroll":true,"resize":true,"context":true,"jsError":true,"perf":true},"scripts":"JQuery,Comscore,AudienceManager,AdobeTarget","disableJsll":false,"pageTemplateId":"RE2MDAF","pageSubType":"RE2MDAF","canvasType":"Web","deviceFamily":null,"authType":null,"appId":"MicrosoftHP","iKey":null,"tasId":"6329b79f-d45a-4b15-9ea3-e3dc2500ead6","tasMuid":"173E2DBA48BF689807393D84493469AD","pageName":"Homepage","pageType":"HP.AllModules","env":"onerf_prod","cV":"8FBuouKBFEOh6gJb.0","imprGuid":"6329b79f-d45a-4b15-9ea3-e3dc2500ead6"},"elementTag":"data-m","defaultParent":"Body","defaultValue":"Unspecified"};
+        //]]>
+    
+requirejs.config({paths:{"platform":"//www.microsoft.com/onerfstatics/marketingsites-eas-prod/mscomhp/_scrf/js/themes=default/2f-63ce8f/45-f9a0d4/aa-dc1460/2d-7a9063/dc-7e9864/4f-5115f8/7d-266f10/4a-abd94b/6d-c07ea1/9d-b58f60/f6-aa5278/cd-23d3b0/6d-1e7ed0/b7-cadaa7/c4-898cf2/ca-40b7b0/4e-ee3a55/3e-f5c39b/c3-6454d7/f9-7592d3/92-10345d/f8-73a5f2/79-499886/7e-cda2d3/69-13871c/b7-0ad59f/91-97a04f/1f-100dea/33-abe4df/17-f90ef1/e3-082b89?ver=2.0&_cf=20210415","partner":"//www.microsoft.com/onerfstatics/marketingsites-eas-prod/mscomhp/_scrf/js/themes=default/a4-539297?ver=2.0&_cf=20210415","telem":"//www.microsoft.com/onerfstatics/marketingsites-eas-prod/mscomhp/_scrf/js/themes=default/78-6f121b/94-3cd1e0?ver=2.0&_cf=20210415","redtux":"https://www.microsoft.com/mwf/js/MWF_20210208_31270267/alert/autosuggest/contentplacement/contentplacementitem/flipper/glyph/heading/hero/heroitem/hyperlinkgroup/image/list/pagebehaviors/singleslidecarousel/skiptomain/social?apiVersion=1.0"},bundles:{"platform":["requireJS","ariaWebTelemetry","html5Shiv","html5ShivMin","modernizrMin","pictureFillMin","RedTiger_telemetry"],"partner":null,"telem":["trackHelper","jsll"],"redtux":["copyrightHeader","iController","iCollectionItem","videoClosedCaptions","videoControls","keycodes","viewportCollision","utility","swipe","stringExtensions","removeFocus","publisher","observableComponent","htmlExtensions","handleImageError","componentFactory","breakpointTracker","actionToggle","additionalInformation","alert","areaHeading","autosuggest","backToTop","banner","biProductPlacement","obsoleteCarousel","checkbox","combo","compareChart","contentPlacement","contentPlacementItem","contentToggle","contentRichBlock","dateTimePicker","deviceActions","dialog","drawer","emailSignUp","feature","featureChannel","featureGroup","file","flyout","groupCallToAction","heading","hero","heroItem","highlightFeature","histogram","hyperlinkGroup","image","imageIntro","immersiveHero","immersiveHeroItem","inPageNavigation","linkNavigation","liveGoldBadge","media","mediaGallery","mosaic","multiColumn","multiFeature","mWFComponentsAll","mWFPage","pageBar","pageBehaviors","pagination","panes","panesProductPlacementItem","pivot","productPlacement","productPlacementItem","ratingsAndReviews","refineItem","refinements","refineMenu","richHeading","searchHelp","searchResults","sequenceIndicator","select","selectButton","selectMenu","skipToMain","slider","social","structuredList","supplementalNavigation","systemRequirements","table","toggle","tooltip","trackList","typographicIntro","video","rating","multiFeatureCarousel","multiHeroItem","multiHero","feedHero","feedHeroItem","carouselBase","multiSlideCarousel","singleSlideCarousel","logoController","heroItemBase","button","actionMenu","navigationMenu","rangeSlider","videoPlayer","review","splitReveal","ageGate","productDetailOverview","productDetailHeroDigital","reportReviewForm","productDetailHero","mixedProductPlacement","list","flipper","divider","glyph","navigationBar","mosaicPlacement","fullBundle","persona","cards","quote","channelPlacement","channelPlacementItem","textArea","callToAction","tag","logo","parallax","metadataBadge","sticky","actionBar","ageRating","ambientVideo","badge","blockquote","breadcrumb","contextMenu","explicit","footer","paragraph","password","price","progress","search","subheading","channelPivot","expansionPanel","tslib"]},onNodeCreated:function(n,c,m,u){if('platform'===m||'telem'===m||'partner'===m||'redtux'===m)return n.setAttribute('crossorigin','anonymous'),n}});require(['platform']);require(['partner']);require(['telem']);require(['redtux']);
+require(["window","document","location","deferExec!"],function(n,t,i){var r,u,f;if(i.host.indexOf(".xbox.com")!=-1&&(r=document.getElementsByClassName("video-player"),r&&r.length))for(u=0;u<r.length;u++)f=r[u].getAttribute("data-player-data"),f&&f.length&&r[u].setAttribute("data-player-data",f.replace("autoLoad","autoload"))});define("uhfUssCategoryService",["require","exports"],function(n,t){"use strict";var i=function(){function n(n){this.market=n;this.responseCache={};this.ajaxCall=function(n,t){var i=new XMLHttpRequest;i.open("GET",n);i.onreadystatechange=function(){this.readyState===4&&this.status>=200&&this.status<400&&t(this.responseText)};i.send();i=null}}return n.prototype.getServiceUrl=function(n){return"https://ussearchprod.trafficmanager.net/services/api/v1.0/store/categories"+("?clientid=7f27b536-cf6b-4c65-8638-a0f8cbdfca65&scope=games,apps,devices,software&query="+n+"&markets="+this.market)},n.prototype.getCachedCategory=function(n){return this.responseCache[this.getCacheKey(n)]},n.prototype.getCategory=function(n,t){var i=this.getCachedCategory(n);i?t(i):this.queryService(n,t)},n.prototype.queryService=function(n,t){var i=this;if(!n||this.getCachedCategory(n)){t&&t(null);return}this.ajaxCall(this.getServiceUrl(n),function(n){try{var r=JSON.parse(n),u=r.categories&&r.categories[0],f=r.query;!u||!f.trim()?t&&t(null):(i.responseCache[i.getCacheKey(f)]=u,t&&t(u))}catch(e){t&&t(null)}})},n.prototype.getCacheKey=function(n){return encodeURIComponent(n.trim().toLowerCase())},n}();t.UhfUssCategoryService=i});require(["window","document","deferExec!"],function(){var i,t,n;if(window.location.href.indexOf("microsoft.com/en-us/p/surface-go/8v9dp4lnknsz")!=-1&&(i=document.getElementById("MultiFeatureWithPivotsA_14"),i))for(t=i.getElementsByClassName("c-video-player"),t.length&&(n=0),n=0;n<t.length;n++)t[n].setAttribute("data-player-data",t[n].getAttribute("data-player-data").replace('"trigger":false,','"trigger":true,'))});require(["utility","jqReady!"],function(n){$("body.r_videoplayeriframeroute")&&(n.saveToSessionStorage=function(n,t){try{if(window.sessionStorage&&n&&t)try{sessionStorage.setItem(n,t)}catch(i){}}catch(i){}},n.getValueFromSessionStorage=function(n){try{if(!window.sessionStorage||!n)return null;try{return sessionStorage.getItem(n)}catch(t){return null}}catch(i){return null}},n.saveToLocalStorage=function(n,t){try{if(window.localStorage&&n&&t)try{localStorage.setItem(n,t)}catch(i){}}catch(i){}},n.getValueFromLocalStorage=function(n){try{if(!window.localStorage||!n)return null;try{return localStorage.getItem(n)}catch(t){return null}}catch(i){return null}})});window.location.href.indexOf("/newsapp")!==-1&&define("headData",[],function(){return{locale:document.getElementsByTagName("html")[0].getAttribute("lang").toLowerCase()}})
+window.performance && performance.mark && performance.mark("HeadEnd")
+window.performance && performance.mark && performance.mark("HeaderAreaBegin")
+window.performance && performance.mark && performance.mark("HeaderAreaEnd")
+window.performance && performance.measure && performance.measure("HeaderAreaDuration", "HeaderAreaBegin", "HeaderAreaEnd");
+window.performance && performance.mark && performance.mark("MainAreaBegin")
+window.performance && performance.mark && performance.mark("MainAreaEnd")
+window.performance && performance.measure && performance.measure("MainAreaDuration", "MainAreaBegin", "MainAreaEnd");
+window.performance && performance.mark && performance.mark("FooterAreaBegin")
+window.performance && performance.mark && performance.mark("FooterAreaEnd")
+window.performance && performance.measure && performance.measure("FooterAreaDuration", "FooterAreaBegin", "FooterAreaEnd");
+require(['deferExec!'],function(){require(['https://www.microsoft.com/library/svy/broker.js']);require(['//www.microsoft.com/onerfstatics/marketingsites-eas-prod/_h/30ab1743/mscom.statics/externalscripts/mscomhp/audiencemanager.js']);})
+
+            if (window.addEventListener) {
+                window.addEventListener("load", createSilentAuthFrame, false);
+            } else if (window.attachEvent) {
+                window.attachEvent("onload", createSilentAuthFrame);
+            } else {
+                window.onload = createSilentAuthFrame;
+            }
+
+            function InvokeSSOFrame(src) {
+                var i = document.createElement("iframe");
+                i.src = src;
+                i.setAttribute("width", "0");
+                i.setAttribute("height", "0");
+                i.setAttribute("border", "0");
+                i.setAttribute("frameborder", "0");
+                i.setAttribute("style", "display: none");
+                i.style = "display: none";
+                document.body.appendChild(i);
+            }
+
+            function RefreshRemoteSSOSession(isUserAuthenticatedApi, silentPassport) {
+                require(['jqReady!'], function ($) {
+                    $.ajax(isUserAuthenticatedApi, {
+                        type: "GET",
+                        contentType: "text/plain",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        success: function (data) {
+                            if (data.Status !== "Authenticated") {
+                                InvokeSSOFrame(silentPassport);
+                            }
+                        }
+                    });
+                });
+            }
+
+            function createSilentAuthFrame() {
+                var SSOCookieName = "ONERFSSO";
+                if (document.cookie.indexOf(SSOCookieName) === -1) {
+                    if ("False" === "True" && 10 !== 0) {
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                            RefreshRemoteSSOSession("https://account.xbox.com/en-us/mscomhp/onerf/IsUserAuthenticated", "https://account.xbox.com/en-us/mscomhp/onerf/MeSilentPassport");
+                    }
+                    else {
+                        InvokeSSOFrame("https://www.microsoft.com/zh-cn/mscomhp/onerf/MeSilentPassport");
+                    }
+                    document.cookie = SSOCookieName + "=1";
+                }
+            }
+
+        

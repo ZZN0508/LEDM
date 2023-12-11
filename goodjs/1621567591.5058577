@@ -1,0 +1,293 @@
+
+    $(function () {
+
+      function addHeader(cookie, header, jqXHR) {
+        var value = $.cookie(cookie);
+        if (value) jqXHR.setRequestHeader(header, value);
+      };
+
+      $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
+        if (!$.cookie) return;
+        if (originalOptions.crossDomain && originalOptions.url.search(".4shared.com") == -1) return;
+        addHeader('Login', 'x-security', jqXHR);
+        addHeader('4langcookie', 'locale', jqXHR);
+      });
+    });
+  
+
+  function Config() {
+    return this
+  }
+
+  Config.isVideo4SyncDomain = location.href.indexOf('video.4sync.com') > -1;
+  Config.video4SyncDomain = 'video.4sync.com';
+  Config.mainSiteDomain = '4shared.com';
+  Config.mainSiteUrlPath = 'https://www.4shared.com/';
+  Config.mainSiteUrlHttpsPath  = 'https://www.4shared.com/';
+  Config.isRTLLanguage = false;
+  Config.currentLanguage = 'zh';
+  Config.revisionNum = 61464;
+  Config.syncDomain = 'https://www.4sync.com/';
+  Config.cdDomain = 'https://dc721.4shared.com/';
+  Config.mailPatterrn = new RegExp("^[_A-Za-z0-9-]+(?:\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(?:\\.[A-Za-z0-9-]+)+$");
+  Config.isMobile = false;
+  Config.isIpad = false;
+  Config.is4Sync = false;
+  Config.isUserLoggedIn = false;
+  Config.epomHost = 'adserver-e7.com';
+  Config.isMobileVersion = false;
+  Config.isMobileView = Config.isMobileVersion; //'xs' & 'sm'- mobile size
+  Config.detectAd = {
+    allowedUri: '/empty.js',
+    blockedUri: '/show_ad_.gif',
+    tg: 'link',
+    host : '',
+    applyD1D2 : 'false'
+  };
+  Config.searchDomain = 'search.4shared.com';
+  Config.mainSiteSecure = 'https://www.4shared.com';
+  Config.suggestionsDomain = 'suggestions.4shared.com';
+  Config.facebookVersion = 'v2.12';
+
+  Config.userVerifiedOrNull = true;
+  Config.userJustLogged = false;
+  Config.captchaSiteKey = '6LcAUAUTAAAAAObjLm32e3JFqsFFLC2mPXSn7zJY';
+
+  if (!Config.isVideo4SyncDomain) {
+    document.domain = '4shared.com';
+    Config.cookieDomain = (function () {
+      var domain = document.domain;
+      var splited = domain.split(".");
+      if (splited.length > 2) {
+        splited = splited.splice(splited.length - 2, splited.length);
+      }
+      return "." + splited.join(".");
+    })();
+  }
+
+  $(function() {
+    //lets detect if user just logged
+    if (typeof $.cookie === "function") {
+      Config.userJustLogged = $.cookie('justLogged') === "1";
+      if (Config.userJustLogged) {
+        $.cookie("justLogged", "0", {expires: new Date(), domain: Config.cookieDomain, path: '/'});
+        Events.fireEvent('just.logged');
+      }
+    }
+  });
+  $(function(){
+      //lets detect touch device
+      try{
+          document.createEvent("TouchEvent");
+        if (window.opera && !/Opera Mobi/.test(navigator.userAgent) && !/Opera Mini/.test(navigator.userAgent)) $("body").addClass("notTouch");
+      } catch(e){
+          $("body").addClass("notTouch");
+      }
+  });
+
+
+  
+  function selectLang(lang){
+    if (!Config.isVideo4SyncDomain) {
+      $.post("/web/user/language", {code: lang}, // save langCode into UserEntity
+          function (data) {
+            if (data.status = 'ok') {
+              document.cookie = '4langcookie=' + lang + '; path=/; domain=' + encodeURIComponent(Config.cookieDomain);
+              window.location.reload();
+            }
+          })
+    }
+  }
+
+
+  try {Notification.requestPermission()} catch(e) {}
+
+
+    function sendVerificationLetter(){
+        $.get('https://www.4shared.com/account/sendEmailVerification.jsp?globSysLang=zh&callback=?', {ajax: 'true'} ,function(data) {
+            var msg;
+            if (data.ok) {
+                msg = data.verificationMailSentMsg;
+            }else{
+                msg = data.errorMessage;
+            }
+            PopupModule.popupWithButtons({title:"Check your e-mail", content:msg});
+        }, "jsonp");
+    }
+
+
+  function feedback() {
+    var windowname="Feedback";
+    var url="/feedback.jsp";
+    OpenWindow = window.open(url,windowname,'toolbar=no,scrollbars=yes,resizable=yes,width=600,height=600,left=50,top=50');
+    OpenWindow.focus();
+  }
+  function reportCopyright() {
+    var windowname="reportCopyright";
+    var url="/web/abuse?&abuseType=2&link=" + " ";
+    OpenWindow = window.open(url,windowname,'toolbar=no,scrollbars=yes,resizable=yes,width=600,height=750,left=50,top=50');
+    OpenWindow.focus();
+  }
+
+  $(function () {
+    reportAbuseAttachEvent();
+  });
+
+  function reportAbuseAttachEvent() {
+    $('.jsReportAbuse').click(function () {
+      reportAbuse(document.location.href);
+    });
+
+    function reportAbuse(alink) {
+      var windowname="abuse";
+      var link =  (alink !== undefined) ? "&aLink=" + alink : + " ";
+      var url="/web/abuse?abuseType=1" + link;
+      OpenWindow = window.open(url,windowname,'toolbar=no,scrollbars=yes,resizable=yes,width=600,height=650,left=50,top=50');
+      OpenWindow.focus();
+    }
+  }
+
+
+
+  $(function() {
+    $('.jsChangeLang').click(function() {
+      window.langPopup = PopupModule.popup({
+        element: $("#langdiv"),
+        title: '\u9078\u64c7\u8a9e\u8a00'
+      });
+    });
+  })
+
+
+  var debugInfo = {
+    loc: "Location = " + window.location,
+    usrAgent: "UserAgent = " + navigator.userAgent,
+    usrName: "Login = null",
+    accountType: "AccType = null",
+    winSize: "Window.W = " + screen.availWidth + "\nWindow.H = " + screen.availHeight,
+    title: "Title = dc566, rev=61464"
+  };
+
+  var userInfo = debugInfo.loc + "<br>" + debugInfo.usrAgent + "<br>" + debugInfo.usrName + "<br>" + debugInfo.accountType + "<br>" + debugInfo.winSize + "<br>" + debugInfo.title;
+
+  $(document).keydown(function (e) {
+    if (!e) e = window.event;
+    var k = e.keyCode;
+    if (e.ctrlKey && e.altKey && k == 73) { // Alt+Ctrl+i
+      PopupModule.popup({
+        content: userInfo,
+        title: 'Debug Info'
+      })
+    }
+  });
+
+
+    function sendVerificationLetter(){
+        $.get('https://www.4shared.com/account/sendEmailVerification.jsp?globSysLang=zh&callback=?', {ajax: 'true'} ,function(data) {
+            var msg;
+            if (data.ok) {
+                msg = data.verificationMailSentMsg;
+            }else{
+                msg = data.errorMessage;
+            }
+            PopupModule.popupWithButtons({title:"Check your e-mail", content:msg});
+        }, "jsonp");
+    }
+
+
+  var searchInputElement = $('#searchQuery');
+  AjaxSuggestion.init(searchInputElement);
+
+
+  UploadModule.build = function(options) {
+    var defaultSettings = {
+      
+      url: '/main/upload.jsp?sId=VBqrNQ0yPGVN2rwV&fau=1&ausk=VBqrNQ0yPGVN2rwV',
+      
+      uploadHandler: UploadModule.getAnonUploadHandler(),
+      
+      max_file_size: 209715200,
+      
+      dc_path : 'https://dc716.4shared.com',
+      retryCount: 5,
+      i18n: {
+        file_size_exceeded: "\u6a94\u6848\u592a\u5927\u3002\u60a8\u7121\u6cd5\u4e0a\u8f09\u5927\u65bc[maxFileSize]\u7684\u6a94\u6848\u3002 ",
+        some_files_size_exceeded: '\u8d85\u904e\u4e86\u4e00\u4e9b\u6587\u4ef6\u7684\u9650\u5236\u3002\u8981\u7e7c\u7e8c\u55ce\uff1f',
+        no_files_selected: "\u60a8\u9084\u6c92\u9078\u64c7\u4efb\u4f55\u8981\u4e0a\u8f09\u7684\u6a94\u6848\u3002 ",
+        file_already_in_proccess: '\u8a72\u6587\u4ef6\u5df2\u5728\u8655\u7406\u4e2d\u3002',
+        your_browser_not_supported: 'File is too large. Try uploading via 4shared Desktop.',
+        you_can_resume_upload: '\u4f60\u7684\u50b3\u8f38\u5df2\u88ab\u53d6\u6d88\u3002\u4f60\u53ef\u4ee5\u7e7c\u7e8c\u5f9e\u7576\u524d\u5df2\u4e0a\u50b3\u7684\u4f4d\u7f6e\u4e0a\u50b3\u3002',
+        not_enough_free_space: 'Not enough free space.',
+        can_not_upload_empty_file : "File is empty or can\'t be found.",
+        dc_error : "Unknown server error",
+        connection_error : "Connection problem",
+        you_cannot_upload: '\u4f60\u7121\u6cd5\u7528\u7576\u524d\u7684\u700f\u89bd\u5668\u4e0a\u50b3\u9019\u4e9b\u6587\u4ef6\u3002\u8acb\u5617\u8a66\u684c\u9762\u7248\u672c\u3002',
+        you_cannot_upload_flash: '\u4f60\u7121\u6cd5\u7528Multiload\u4e0a\u50b3\u9019\u4e9b\u6587\u4ef6\u3002\u8acb\u5617\u8a664shared\u684c\u9762\u3002',
+        some_files_cannot_upload_flash: 'Multiupload failed. Try uploading via 4shared Desktop.',
+        file_uploading_from_another_place : "File upload has already been resumed from another browser.",
+        file_was_removed : "File is empty or can\'t be found.",
+        incompleted_was_deleted : "File was removed from server.",
+        continue_without_flash: '\u8981\u7e7c\u7e8c\u55ce\uff1f',
+        errors_files_flash: '(\u7e3d\u5171$[p1] \u500b\u6587\u4ef6) ',
+        wrong_file_type : '\u932f\u8aa4\u7684\u6a94\u6848\u985e\u578b\u3002 ',
+        pending_upload_page_close: 'Your upload may be incomplete if you leave this page.'
+      },
+      resumable: {
+        section_size: 10240000,
+        user_agents: 'chrome,firefox'
+      }
+    }
+    options = $.extend(true, defaultSettings, options)
+    return new UploadModule(options)
+  }
+
+
+   var anonUploadWidget = new AnonUploadWidget({
+     upload_form: $(document.uploadForm),
+     i18n: {
+       hours: '\u5C0F\u6642',
+       minutes: '\u5206',
+       seconds: '\u79D2',
+       upload_canceled: '\u60A8\u7684\u50B3\u8F38\u5DF2\u53D6\u6D88',
+       file_upload: '\u6587\u4EF6\u4E0A\u50B3',
+       files_upload: '\u6587\u4EF6\u4E0A\u50B3',
+       upload: '\u4E0A\u50B3',
+       do_you_want_to_cancel_upload: '\u4F60\u8981\u53D6\u6D88\u4E0A\u50B3\u55CE\uFF1F'
+     }
+   });
+
+
+  $(document).ready(function () {
+    $('#fid0').change(function () {
+      anonUploadWidget.start();
+    });
+  });
+
+  document.domain = '4shared.com';
+  currentDirId = '';
+
+  function anonUploadDone() {
+    if (!Config.isUserLoggedIn) {
+      // au - anon upload
+      $.cookie('ausk', 'VBqrNQ0yPGVN2rwV', { expires: 1, path: '/', domain: Config.cookieDomain });
+    }
+
+    top.location.href = 'https://www.4shared.com/web/login?sId=VBqrNQ0yPGVN2rwV&fau=1&ausk=VBqrNQ0yPGVN2rwV&au=1';
+  }
+
+  function stopAnonUpload() {
+    PopupModule.popupWithButtons({
+      content: "\u4f60\u8981\u53d6\u6d88\u4e0a\u50b3\u55ce\uff1f",
+      buttonsType: 1,
+      notCloseOthers: true,
+      confirmCallback: anonUploadWidget.stop
+    });
+  }
+
+
+  Events.addListener("countEvent", function (data) {
+    $("<img/>").attr('src', "//www.jscount.com/a/" + data + "/z?ref=" +
+        escape(document.referrer) + "&url=" + escape(document.URL) + "&rand=" + Math.random());
+  });
+
+Events.fireLazyEvent("ld.counter");

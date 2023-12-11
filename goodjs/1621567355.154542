@@ -1,0 +1,129 @@
+/* global nielsenPageConf, md5, NOLBUNDLE */
+
+// START Nielsen STATIC SDK
+function doNielsenMapping() {
+ var kw_currentPageUrl = window.location.href.toString().split("?")[0];
+ for(var a = 0; a < nielsenPageConf[window.kw_tlh_activeBrand].length; a++) {
+  var kw_currentUrlList = nielsenPageConf[window.kw_tlh_activeBrand][a][1];
+  for(var b = 0; b < kw_currentUrlList.length; b ++) {
+   var hasMatched = kw_currentPageUrl.match(kw_currentUrlList[b]);
+   console.log("[NIELSEN STATIC MAPPING] "+(a+1), "CANALE: " + nielsenPageConf[window.kw_tlh_activeBrand][a][0], "URL INDEX: "+(b+1), "REGEXP: "+kw_currentUrlList[b], "HAS MATCHED: "+(hasMatched !== null));
+   if(hasMatched !== null) {
+    console.log("[NIELSEN STATIC MAPPING] MATCH FOUND!!!!!!!!");
+    console.log("[NIELSEN STATIC MAPPING] Assigning ID:", nielsenPageConf[window.kw_tlh_activeBrand][a][2]);
+    console.log("[NIELSEN STATIC MAPPING] Assigning Section:", nielsenPageConf[window.kw_tlh_activeBrand][a][3]);
+    window.kw_nielsenAppId = nielsenPageConf[window.kw_tlh_activeBrand][a][2];
+    window.nie_section = nielsenPageConf[window.kw_tlh_activeBrand][a][3];
+    break;
+   }  
+  }
+  if(hasMatched !== null) {
+   break;
+  }
+ }
+}
+
+try {
+ window.currPageType = "";
+ if(window.webtrekkPageConfig !== undefined) {
+  window.currPageType = window.webtrekkPageConfig.pageType;
+ } else {
+  window.currPageType = window.pageType;
+ }
+} catch(e) {
+ window.currPageType = "notdefined"; 
+}
+
+
+try {
+ if(window.currPageType === "homepage") {
+  window.nie_assetid = window.kw_tlh_activeHost+"_home_"+md5.generate(window.location.href);
+ } else if(window.currPageType === "section") {
+  window.nie_assetid = window.kw_tlh_activeHost+"_section_"+md5.generate(window.location.href);
+ } else if(window.currPageType.indexOf("ricerca") > -1) {
+  window.nie_assetid = window.kw_tlh_activeHost+"_ricerca_"+md5.generate(window.location.href);
+ } else if(window.currPageType.indexOf("dettaglio") > -1) {
+  window.nie_assetid = window.kw_tlh_activeHost+"_detail_"+md5.generate(window.location.href); 
+ } else {
+  window.nie_assetid = window.kw_tlh_activeHost+"_"+window.currPageType+"_"+md5.generate(window.location.href);
+ }
+} catch(e) {
+ try {
+  window.nie_assetid = window.kw_tlh_activeHost+"_"+md5.generate(window.location.href);
+ } catch(e) {
+  window.nie_assetid = 'no_asset_id';
+ }
+}
+
+
+try {
+ if(typeof(nielsenPageConf[window.kw_tlh_activeBrand][0][1]) === "object") {
+  window.doNielsenMapping();
+ } else {
+                if (window.location.href.toString().split("?")[0].indexOf("//quotidiani.gelocal.it") > -1) {
+                    console.log("[NIELSEN STATIC] Nielsen Specific Rule for GNN Edicola");
+                    try { 
+                        window.nie_section = nielsenPageConf["gelocal"][1] + "_BRW";
+                        console.log("[NIELSEN STATIC MAPPING] MATCH FOUND!!!!!!!!");
+                        console.log("[NIELSEN STATIC MAPPING] Assigning Section:", window.nie_section);
+                    } catch(e) {
+                        window.nie_section = "no_section_available_BRW";
+                    }
+                    
+                    try {
+                        window.kw_nielsenAppId = nielsenPageConf["gelocal"][0];
+                        if (!window.kw_nielsenAppId) {
+                            window.kw_nielsenAppId = "";
+                        }
+                        console.log("[NIELSEN STATIC MAPPING] Assigning ID:", window.kw_nielsenAppId);
+                    } catch (e) {
+                        console.log("[NIELSEN STATIC] Error setting kwNienselAppid - Host (window.kw_tlh_activeHost) not found? => Setting Empty", e);
+                        window.kw_nielsenAppId = "";
+                    }
+                } else {
+                    try {
+                        window.nie_section = nielsenPageConf[window.kw_tlh_activeHost][1] + "_BRW";
+                        console.log("[NIELSEN STATIC MAPPING] MATCH FOUND!!!!!!!!");
+                        console.log("[NIELSEN STATIC MAPPING] Assigning Section:", window.nie_section);
+                    } catch (e) {
+                        window.nie_section = "no_section_available_BRW";
+                    }
+                    try {
+                        window.kw_nielsenAppId = nielsenPageConf[window.kw_tlh_activeHost][0];
+                        if (!window.kw_nielsenAppId) {
+                            window.kw_nielsenAppId = "";
+                        }
+                        console.log("[NIELSEN STATIC MAPPING] Assigning ID:", window.kw_nielsenAppId);
+                    } catch (e) {
+                        console.log("[NIELSEN STATIC] Error setting kwNienselAppid - Host (window.kw_tlh_activeHost) not found? => Setting Empty", e);
+                        window.kw_nielsenAppId = "";
+                    }
+                }
+ }
+} catch(e) {
+ window.nie_section = "no_section_available_BRW"; 
+ window.kw_nielsenAppId = "";
+}
+
+console.log("[NIELSEN STATIC] DATA SET => nie_assetid = "+window.nie_assetid+" - nie_section = "+window.nie_section+" - kwNielsenAppId (if empty no integration) => "+window.kw_nielsenAppId);
+
+if(window.kw_nielsenAppId != "") {
+ // Static Queue Snippet
+ !function(t,n){t[n]=t[n]||{nlsQ:function(e,o,c,r,s,i){return s=t.document,r=s.createElement("script"),r.async=1,r.src=("http:"===t.location.protocol?"http:":"https:")+"//cdn-gl.imrworldwide.com/conf/"+e+".js#name="+o+"&ns="+n,i=s.getElementsByTagName("script")[0],i.parentNode.insertBefore(r,i),t[n][o]=t[n][o]||{g:c||{},ggPM:function(e,c,r,s,i){(t[n][o].q=t[n][o].q||[]).push([e,c,r,s,i])}},t[n][o]}}}(window,"NOLBUNDLE");
+
+ // SDK Initialization
+ var kw_nSdkPageInstance = NOLBUNDLE.nlsQ(window.kw_nielsenAppId,"kw_nSdkPageInstance");
+
+ // Content Metadata 
+ var nielsenMetadata = {
+  type: 'static', 
+  assetid: window.nie_assetid, // *DYNAMIC METADATA*: unique ID for each article **REQUIRED**
+  section: window.nie_section // *DYNAMIC METADATA*: section of site **REQUIRED**
+ }; 
+
+ // Event 'staticstart' Call
+ kw_nSdkPageInstance.ggPM("staticstart", nielsenMetadata);
+} else {
+ console.log("[NIELSEN STATIC] !!!!!!! NO NIELSEN APP ID FOUND - Disabling Static DCR Nielsen Library Download");
+}
+// END Nielsen STATIC SDK

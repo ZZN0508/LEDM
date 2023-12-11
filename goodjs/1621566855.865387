@@ -1,0 +1,478 @@
+
+            window.orb_fig_blocking = true;
+            window.bbcredirection = {geo: true};
+        
+
+    // nav-orbit-pollyfills
+    // Promise polyfill from https://github.com/bramstein/promis
+    (function(){'use strict';var f,g=[];function l(a){g.push(a);1==g.length&&f()}function m(){for(;g.length;)g[0](),g.shift()}f=function(){setTimeout(m)};function n(a){this.a=p;this.b=void 0;this.f=[];var b=this;try{a(function(a){q(b,a)},function(a){r(b,a)})}catch(c){r(b,c)}}var p=2;function t(a){return new n(function(b,c){c(a)})}function u(a){return new n(function(b){b(a)})}function q(a,b){if(a.a==p){if(b==a)throw new TypeError;var c=!1;try{var d=b&&b.then;if(null!=b&&"object"==typeof b&&"function"==typeof d){d.call(b,function(b){c||q(a,b);c=!0},function(b){c||r(a,b);c=!0});return}}catch(e){c||r(a,e);return}a.a=0;a.b=b;v(a)}} function r(a,b){if(a.a==p){if(b==a)throw new TypeError;a.a=1;a.b=b;v(a)}}function v(a){l(function(){if(a.a!=p)for(;a.f.length;){var b=a.f.shift(),c=b[0],d=b[1],e=b[2],b=b[3];try{0==a.a?"function"==typeof c?e(c.call(void 0,a.b)):e(a.b):1==a.a&&("function"==typeof d?e(d.call(void 0,a.b)):b(a.b))}catch(h){b(h)}}})}n.prototype.g=function(a){return this.c(void 0,a)};n.prototype.c=function(a,b){var c=this;return new n(function(d,e){c.f.push([a,b,d,e]);v(c)})}; function w(a){return new n(function(b,c){function d(c){return function(d){h[c]=d;e+=1;e==a.length&&b(h)}}var e=0,h=[];0==a.length&&b(h);for(var k=0;k<a.length;k+=1)u(a[k]).c(d(k),c)})}function x(a){return new n(function(b,c){for(var d=0;d<a.length;d+=1)u(a[d]).c(b,c)})};window.Promise||(window.Promise=n,window.Promise.resolve=u,window.Promise.reject=t,window.Promise.race=x,window.Promise.all=w,window.Promise.prototype.then=n.prototype.c,window.Promise.prototype["catch"]=n.prototype.g);}());
+
+
+    // Polyfill Event constructor for IE ref: ORBITEN-919
+    // see: https://stackoverflow.com/questions/26596123
+    (function () {
+      if (typeof window.CustomEvent === "function") {
+        return false;
+      }
+      function CustomEvent(event, params) {
+        params = params || { bubbles: false, cancelable: false, detail: undefined };
+        var evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+        return evt;
+      }
+      CustomEvent.prototype = window.Event.prototype;
+      window.Event = CustomEvent;
+    })();
+
+
+    //Element.prototype.matches polyfill
+    //from https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector ||
+                                  Element.prototype.webkitMatchesSelector;
+    }
+    //NodeList.forEach Polyfill
+    //from https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach#Polyfill
+    if (window.NodeList && !NodeList.prototype.forEach) {
+      NodeList.prototype.forEach = Array.prototype.forEach;
+    }
+
+    // Object.assign polyfill from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
+    if (typeof Object.assign != 'function') {
+      // Must be writable: true, enumerable: false, configurable: true
+      Object.defineProperty(Object, "assign", {
+        value: function assign(target, varArgs) { // .length of function is 2
+          'use strict';
+          if (target == null) { // TypeError if undefined or null
+            throw new TypeError('Cannot convert undefined or null to object');
+          }
+
+          var to = Object(target);
+
+          for (var index = 1; index < arguments.length; index++) {
+            var nextSource = arguments[index];
+
+            if (nextSource != null) { // Skip over if undefined or null
+              for (var nextKey in nextSource) {
+                // Avoid bugs when hasOwnProperty is shadowed
+                if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                  to[nextKey] = nextSource[nextKey];
+                }
+              }
+            }
+          }
+          return to;
+        },
+        writable: true,
+        configurable: true
+      });
+    }
+
+    // window.fetch polyfill https://github.com/github/fetch/blob/v0.11.0/fetch.js - chosen for IE9 compatibility
+    if(typeof window.fetch !== 'function') {
+      (function(self){"use strict";if(self.fetch){return}function normalizeName(name){if(typeof name!=="string"){name=String(name)}if(/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)){throw new TypeError("Invalid character in header field name")}return name.toLowerCase()}function normalizeValue(value){if(typeof value!=="string"){value=String(value)}return value}function Headers(headers){this.map={};if(headers instanceof Headers){headers.forEach(function(value,name){this.append(name,value)},this)}else if(headers){Object.getOwnPropertyNames(headers).forEach(function(name){this.append(name,headers[name])},this)}}Headers.prototype.append=function(name,value){name=normalizeName(name);value=normalizeValue(value);var list=this.map[name];if(!list){list=[];this.map[name]=list}list.push(value)};Headers.prototype["delete"]=function(name){delete this.map[normalizeName(name)]};Headers.prototype.get=function(name){var values=this.map[normalizeName(name)];return values?values[0]:null};Headers.prototype.getAll=function(name){return this.map[normalizeName(name)]||[]};Headers.prototype.has=function(name){return this.map.hasOwnProperty(normalizeName(name))};Headers.prototype.set=function(name,value){this.map[normalizeName(name)]=[normalizeValue(value)]};Headers.prototype.forEach=function(callback,thisArg){Object.getOwnPropertyNames(this.map).forEach(function(name){this.map[name].forEach(function(value){callback.call(thisArg,value,name,this)},this)},this)};function consumed(body){if(body.bodyUsed){return Promise.reject(new TypeError("Already read"))}body.bodyUsed=true}function fileReaderReady(reader){return new Promise(function(resolve,reject){reader.onload=function(){resolve(reader.result)};reader.onerror=function(){reject(reader.error)}})}function readBlobAsArrayBuffer(blob){var reader=new FileReader;reader.readAsArrayBuffer(blob);return fileReaderReady(reader)}function readBlobAsText(blob){var reader=new FileReader;reader.readAsText(blob);return fileReaderReady(reader)}var support={blob:"FileReader"in self&&"Blob"in self&&function(){try{new Blob;return true}catch(e){return false}}(),formData:"FormData"in self,arrayBuffer:"ArrayBuffer"in self};function Body(){this.bodyUsed=false;this._initBody=function(body){this._bodyInit=body;if(typeof body==="string"){this._bodyText=body}else if(support.blob&&Blob.prototype.isPrototypeOf(body)){this._bodyBlob=body}else if(support.formData&&FormData.prototype.isPrototypeOf(body)){this._bodyFormData=body}else if(!body){this._bodyText=""}else if(support.arrayBuffer&&ArrayBuffer.prototype.isPrototypeOf(body)){}else{throw new Error("unsupported BodyInit type")}if(!this.headers.get("content-type")){if(typeof body==="string"){this.headers.set("content-type","text/plain;charset=UTF-8")}else if(this._bodyBlob&&this._bodyBlob.type){this.headers.set("content-type",this._bodyBlob.type)}}};if(support.blob){this.blob=function(){var rejected=consumed(this);if(rejected){return rejected}if(this._bodyBlob){return Promise.resolve(this._bodyBlob)}else if(this._bodyFormData){throw new Error("could not read FormData body as blob")}else{return Promise.resolve(new Blob([this._bodyText]))}};this.arrayBuffer=function(){return this.blob().then(readBlobAsArrayBuffer)};this.text=function(){var rejected=consumed(this);if(rejected){return rejected}if(this._bodyBlob){return readBlobAsText(this._bodyBlob)}else if(this._bodyFormData){throw new Error("could not read FormData body as text")}else{return Promise.resolve(this._bodyText)}}}else{this.text=function(){var rejected=consumed(this);return rejected?rejected:Promise.resolve(this._bodyText)}}if(support.formData){this.formData=function(){return this.text().then(decode)}}this.json=function(){return this.text().then(JSON.parse)};return this}var methods=["DELETE","GET","HEAD","OPTIONS","POST","PUT"];function normalizeMethod(method){var upcased=method.toUpperCase();return methods.indexOf(upcased)>-1?upcased:method}function Request(input,options){options=options||{};var body=options.body;if(Request.prototype.isPrototypeOf(input)){if(input.bodyUsed){throw new TypeError("Already read")}this.url=input.url;this.credentials=input.credentials;if(!options.headers){this.headers=new Headers(input.headers)}this.method=input.method;this.mode=input.mode;if(!body){body=input._bodyInit;input.bodyUsed=true}}else{this.url=input}this.credentials=options.credentials||this.credentials||"omit";if(options.headers||!this.headers){this.headers=new Headers(options.headers)}this.method=normalizeMethod(options.method||this.method||"GET");this.mode=options.mode||this.mode||null;this.referrer=null;if((this.method==="GET"||this.method==="HEAD")&&body){throw new TypeError("Body not allowed for GET or HEAD requests")}this._initBody(body)}Request.prototype.clone=function(){return new Request(this)};function decode(body){var form=new FormData;body.trim().split("&").forEach(function(bytes){if(bytes){var split=bytes.split("=");var name=split.shift().replace(/\+/g," ");var value=split.join("=").replace(/\+/g," ");form.append(decodeURIComponent(name),decodeURIComponent(value))}});return form}function headers(xhr){var head=new Headers;var pairs=xhr.getAllResponseHeaders().trim().split("\n");pairs.forEach(function(header){var split=header.trim().split(":");var key=split.shift().trim();var value=split.join(":").trim();head.append(key,value)});return head}Body.call(Request.prototype);function Response(bodyInit,options){if(!options){options={}}this.type="default";this.status=options.status;this.ok=this.status>=200&&this.status<300;this.statusText=options.statusText;this.headers=options.headers instanceof Headers?options.headers:new Headers(options.headers);this.url=options.url||"";this._initBody(bodyInit)}Body.call(Response.prototype);Response.prototype.clone=function(){return new Response(this._bodyInit,{status:this.status,statusText:this.statusText,headers:new Headers(this.headers),url:this.url})};Response.error=function(){var response=new Response(null,{status:0,statusText:""});response.type="error";return response};var redirectStatuses=[301,302,303,307,308];Response.redirect=function(url,status){if(redirectStatuses.indexOf(status)===-1){throw new RangeError("Invalid status code")}return new Response(null,{status:status,headers:{location:url}})};self.Headers=Headers;self.Request=Request;self.Response=Response;self.fetch=function(input,init){return new Promise(function(resolve,reject){var request;if(Request.prototype.isPrototypeOf(input)&&!init){request=input}else{request=new Request(input,init)}var xhr=new XMLHttpRequest;function responseURL(){if("responseURL"in xhr){return xhr.responseURL}if(/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())){return xhr.getResponseHeader("X-Request-URL")}return}xhr.onload=function(){var status=xhr.status===1223?204:xhr.status;if(status<100||status>599){reject(new TypeError("Network request failed"));return}var options={status:status,statusText:xhr.statusText,headers:headers(xhr),url:responseURL()};var body="response"in xhr?xhr.response:xhr.responseText;resolve(new Response(body,options))};xhr.onerror=function(){reject(new TypeError("Network request failed"))};xhr.open(request.method,request.url,true);if(request.credentials==="include"){xhr.withCredentials=true}if("responseType"in xhr&&support.blob){xhr.responseType="blob"}request.headers.forEach(function(value,name){xhr.setRequestHeader(name,value)});xhr.send(typeof request._bodyInit==="undefined"?null:request._bodyInit)})};self.fetch.polyfill=true})(typeof self!=="undefined"?self:this);
+    }
+
+    if (typeof window.CustomEvent !== 'function') {
+
+      function CustomEvent(event, params) {
+        params = params || { bubbles: false, cancelable: false, detail: null };
+        var evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+        return evt;
+      }
+
+      CustomEvent.prototype = window.Event.prototype;
+
+      window.CustomEvent = CustomEvent;
+
+    }
+
+
+    window.orbitData = {};
+
+    var additionalPageProperties = {};
+        additionalPageProperties['custom_var_1'] = 'us' || null;
+        additionalPageProperties['custom_var_9'] = '1' || null;
+
+    window.orbitData.partialCookieOvenUrl = 'https://cookie-oven.api.bbc';
+    window.orbitData.language = 'en';
+    window.orbitData.language = 'en';
+
+    window.orbitData.userProfileUrl = "https://www.bbc.co.uk/userprofile";
+
+    window.orbitData.modal = false;
+
+    function generateCountername() {
+        if (window.location.protocol === 'file:') {
+            return 'local.file';
+        }
+        var pathName = window.location.pathname
+                .replace(/\/$/, "")
+                .replace(/^\//, "")
+                .replace(/\//g, '.');
+        return pathName + '.page';
+    }
+
+    window.orbitData.page = {
+        name: 'home.page' || generateCountername(),
+        destination: 'HOMEPAGE_GNL' || null,
+        producer: 'GNL_HOMEPAGE' || null,
+        section: '' || null,
+        site: '' || null,
+        contentId: '' || null,
+        contentType: 'Index-home' || null,
+        edition: '' || null,
+        additionalProperties: additionalPageProperties
+    };
+
+
+       window.orb = {
+         worldwideNavlinks: '<li class="orb-nav-homedotcom"><a href="https://www.bbc.com/">Home</a></li><li class="orb-nav-newsdotcom"><a href="https://www.bbc.com/news">News</a></li><li class="orb-nav-sport"><a href="https://www.bbc.com/sport">Sport</a></li><li class="orb-nav-reeldotcom"><a href="https://www.bbc.com/reel">Reel</a></li><li class="orb-nav-worklife"><a href="https://www.bbc.com/worklife">Worklife</a></li><li class="orb-nav-traveldotcom"><a href="https://www.bbc.com/travel">Travel</a></li><li class="orb-nav-future"><a href="https://www.bbc.com/future">Future</a></li><li class="orb-nav-culture"><a href="https://www.bbc.com/culture">Culture</a></li><li class="orb-nav-music"><a href="https://www.bbc.com/culture/music">Music</a></li><li class="orb-nav-tv"><a href="https://www.bbc.co.uk/schedules/p00fzl9m">TV</a></li><li class="orb-nav-weather"><a href="https://www.bbc.com/weather">Weather</a></li><li class="orb-nav-sounds"><a href="https://www.bbc.co.uk/sounds">Sounds</a></li>',
+       }
+
+
+    function updatePageData(newData) {
+        window.orbitData.page = Object.assign(window.orbitData.page, newData);
+    }
+
+    document.addEventListener('bbc-page-reset', function(event) {
+        if (event.detail && event.detail.page) {
+            updatePageData(event.detail.page);
+        }
+        document.dispatchEvent(new Event('bbc-page-updated'));
+    });
+
+(function () {if (!window.require) {throw new Error('idcta: could not find require module');}if (typeof (map) == 'undefined') {var map = {};}if (!!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect) {document.documentElement.className += ' id-svg';}var ptrt = new RegExp("[\\?&]ptrt=([^&]*)").exec(document.location.href);var ENDPOINT_URL = 'https://idcta.api.bbc.co.uk';var ENDPOINT_CONFIG = ('/idcta/config?callback=&ptrt=' + (ptrt ? ptrt[1] : encodeURIComponent(document.location.href))).replace(/\&amp;/g, '&');var ENDPOINT_TRANSLATIONS = '/idcta/translations?callback=';function hasPromise() {var P = window.Promise;var promiseToString = null;if (P) {try {promiseToString = Object.prototype.toString.call(P.resolve());} catch (e) {/*silently ignored*/}}return (promiseToString === '[object Promise]' && !P.cast);}if (hasPromise()) {define('idcta/es6-promise', function () {return window.Promise;});define('idcta-v2/es6-promise', function () {return window.Promise;});}map['idcta-v2'] = 'https://static.files.bbci.co.uk/account/id-cta/1.53.25/modules/idcta-v2';map['idcta-v2/config'] = ENDPOINT_URL + ENDPOINT_CONFIG;map['idcta-v2/translations'] = ENDPOINT_URL + ENDPOINT_TRANSLATIONS;map['idcta'] = 'https://static.files.bbci.co.uk/account/id-cta/1.8.2/modules/idcta';map['idcta-v2/idcta-1'] = 'https://static.files.bbci.co.uk/account/id-cta/1.53.25/modules/idcta-v2/dist/idcta-1.min';map['idcta-v2/experiment-snippet'] = 'https://cdn.optimizely.com/public/4621041136/s/idcta_live';const idctaShim = {deps: ['idcta-v2/idcta-1'],};require({shim: {'idcta-v2/statusbar': idctaShim,'idcta-v2/id-config': idctaShim},map: {'*': {'idcta/idcta-1': 'idcta-v2/idcta-1','idcta': 'idcta-v2',}},paths: map});window.idctaBaseUrl = ENDPOINT_URL;define('idcta/config', ['idcta-v2/config'], function (data) { return data; });define('idcta/translations', ['idcta-v2/translations'], function (data) { return data; });})();
+
+  // Globally available search context
+  window.SEARCHBOX={"variant":"default","locale":"en","feature":"forge-free","navSearchboxStaticPrefix":"https://nav.files.bbci.co.uk/searchbox/5fd4576cf8cc3a0a113632cb2e7e046a/","searchboxAppStaticPrefix":"https://nav.files.bbci.co.uk/searchbox/5fd4576cf8cc3a0a113632cb2e7e046a/drawer","searchFormHtml":"<div tabindex=\"-1\"><div><section class=\"se-searchbox-panel\"><div class=\"se-g-wrap\"><div class=\"se-g-layout\"><div class=\"se-g-layout__item se-searchbox-title\" aria-hidden=\"true\">search</div><div class=\"se-g-layout__item se-searchbox\"><form accept-charset=\"utf-8\" id=\"searchboxDrawerForm\" method=\"get\" action=\"https://search.bbc.co.uk/search\"><label class=\"se-searchbox__input\" for=\"se-searchbox-input-field\"><span class=\"se-sr-only\">Search Term</span><div><input type=\"text\" name=\"q\" value=\"\" id=\"se-searchbox-input-field\" class=\"se-searchbox__input__field\" maxLength=\"100\" autoComplete=\"off\" autoCorrect=\"off\" autoCapitalize=\"off\" spellcheck=\"false\" tabindex=\"0\"/></div></label><input type=\"hidden\" name=\"scope\" value=\"\"/><button type=\"submit\" class=\"se-searchbox__submit\" tabindex=\"0\" data-bbc-container=\"se-searchbox-panel\" data-bbc-title=\"search-icon\" data-bbc-metadata=\"{&quot;PAR&quot;:&quot;form::1&quot;,&quot;CHD&quot;:&quot;button::1&quot;}\" data-bbc-personalisation=\"{&quot;QRY&quot;:&quot;&quot;}\">Search</button><button type=\"button\" class=\"se-searchbox__clear se-searchbox__clear--visible\" tabindex=\"0\" data-bbc-container=\"se-searchbox-panel\" data-bbc-title=\"clear-icon\" data-bbc-metadata=\"{&quot;PAR&quot;:&quot;form::1&quot;,&quot;CHD&quot;:&quot;button::2&quot;}\" data-bbc-personalisation=\"{&quot;QRY&quot;:&quot;&quot;}\">Close</button></form></div></div></div></section><div aria-live=\"polite\" aria-atomic=\"true\" class=\"se-suggestions-container\"><section class=\"se-g-wrap\"></section></div></div></div>","searchScopePlaceholder":"","searchScopeParam":"","searchScopeTemplate":"","searchPlaceholderWrapperStart":"","searchPlaceholderWrapperEnd":""};
+  window.SEARCHBOX.searchScope = SEARCHBOX.searchScopeTemplate.split('-')[0];
+
+void 0!==window.define&&define("orb/cookies",function(){return window.bbccookies})
+window.__detectview={clickManagementEnabled:false};
+"use strict";!function(){window.__reverbStaticLocation="https://mybbc-analytics.files.bbci.co.uk/reverb-client-js/",window.__smarttagVersion="5.27.0",window.__reverb={},window.__reverb.__reverbLoadedPromise=new Promise(function(e,i){window.__reverb.__resolveReverbLoaded=e,window.__reverb.__rejectReverbLoaded=i}),window.__reverb.__reverbTimeout=setTimeout(function(){window.__reverb.__rejectReverbLoaded()},5e3);var i=function(d,a){window.__reverb.__reverbLoadedPromise.then(function(e){if(d&&d.detail){var i=!!d.detail.item,t=d.detail.label,n=i?"viewability":d.detail.type,o=d.detail.elem,r=d.detail.originalEvent;d.detail.isClick&&(a=d.detail.isClick),e.userActionEvent(n,t,d.detail,o,r,a)}},function(){console.log("Reverb failed to load. Event not sent")})};document.addEventListener("bbc-user-event",function(e){i(e,!1)}),document.addEventListener("bbc-user-click",function(e){i(e,!0)}),document.addEventListener("bbc-page-updated",function(){window.__reverb.__reverbLoadedPromise.then(function(e){e.initialise().then(function(){return e.viewEvent()})},function(){console.log("Reverb failed to load. Event not sent")})})}();
+
+            (function () {
+              require.config({
+                    baseUrl: 'https://gn-web-assets.api.bbc.com/wwhp/20210408-1443-566462faac87b119937b383e7f1ced2b4cb2e267/modules',
+                    paths: {
+                        'bump-3': 'https://emp.bbci.co.uk/emp/bump-3/bump-3',
+                        'domReady': 'vendor/require/domReady',
+                        'jquery-1.9': 'vendor/jquery/jquery'
+                    },
+                    map: {
+                        '*': {
+                            jquery: 'jquery-1.9'
+                        }
+                    },
+                    shim: {
+                        'vendor/bower/underscore/underscore': {
+                            exports: '_'
+                        },
+                        'vendor/bower/js-breakpoints/breakpoints': {
+                            exports: 'Breakpoints'
+                        },
+                        'vendor/bower/cookie-monster/cookie-monster': {
+                            exports: 'monster'
+                        }
+                    }
+                });
+
+                // FIXME: Should be in ads.js, however some devices return ads before ads is able to register to event.
+                if (window.bbcdotcom && bbcdotcom.pubsub) {
+                      var stickyOptions = {
+                      "leaderboard": {
+                          "offset": {
+                              "from": ['.module--leaderboard'],
+                              "to": ['.module--promo', 'bottom']
+                          },
+                          "applyTo": "parent",
+                          "heightLimit": 150,  //don't add sticky if ad is taller than this number
+                          "offsetType": "include",
+                          "parallax": false
+                        },
+                      "mpu": {
+                          "offset": {
+                              "from": ['.content--block--modules section:first-child .module__content'],
+                              "to": ['.content--block--modules section:last-child', 'bottom']
+                          },
+                          "offsetType": "include",
+                      },
+                      /*
+                      "mpu_bottom": {
+                        "offset": {
+                            "from": ['.module--editors-picks .runway--wrapper'],
+                            "to": ['.module--editors-picks .runway--wrapper', 'bottom']
+                        },
+                        "offsetType": "include"
+                      }
+                      */
+                    };
+
+                    bbcdotcom.pubsub.on('ad:done', function(id) {
+                        if(stickyOptions[id]) {
+                            bbcdotcom.stickyAdvert().add(id, document.getElementById('bbccom_'+id), stickyOptions[id]);
+                        }
+                    });
+                }
+
+                if (window.bbcdotcom) {
+                    bbcdotcom.init({ adsToDisplay: ["parallax","leaderboard","native","mpu","platinum","infeed","module_feature-1","module_feature-2","mpu_bottom"] });
+
+                    require(["domReady","compiled"], function (domReady) {
+                        domReady(function () {
+                            require(['app'], function (app) {
+                                app.init(window, {
+                                  staticPrefix: 'https://gn-web-assets.api.bbc.com/wwhp/20210408-1443-566462faac87b119937b383e7f1ced2b4cb2e267/',
+                                  continuousPlayEnabled: true,
+                                  counterName: 'home.page',
+                                  producer: 'GNL_HOMEPAGE',
+                                  destination: 'HOMEPAGE_GNL'
+                                });
+                            });
+                        });
+                    });
+                }
+
+            }());
+        
+
+                var _sf_startpt = (new Date()).getTime();
+                var wwhpEdition = 'us';
+                var _sf_async_config = _sf_async_config || {};
+                _sf_async_config.uid = 50924;
+                _sf_async_config.domain = "bbc.co.uk";
+                _sf_async_config.title = "Homepage"+(wwhpEdition !== '' ? ' - '+wwhpEdition : '');
+                _sf_async_config.sections = "Homepage"+(wwhpEdition !== '' ? ', Homepage - '+wwhpEdition : '');
+                _sf_async_config.region = wwhpEdition;
+                _sf_async_config.path = "/"+(wwhpEdition !== '' ? '?'+wwhpEdition : '');
+            
+
+                (function(){
+                    /* set correct OptimizelyURL for prod or sandbox */
+                    var optimizelyURL = "https://cdn.optimizely.com/public/4621041136/s/bbccom_sandbox.js";
+                    if(window.location.hostname === 'www.bbc.com') {
+                        optimizelyURL = "https://cdn.optimizely.com/public/4621041136/s/bbccom_prod.js";
+                    }
+
+                    /* Set cookie to 1 year */
+                    window['optimizely'] = window['optimizely'] || [];
+                    window['optimizely'].push({
+                        "type": "cookieExpiration",
+                        "cookieExpirationDays": 365
+                    });
+
+                    var script = document.createElement('script');
+                    script.async = false;
+                    script.src = optimizelyURL;
+                    document.head.appendChild(script);
+                })();
+            
+require(['idcta/statusbar'], function (statusbar) {new statusbar.Statusbar({id: 'idcta-statusbar', publiclyCacheable: true});});
+/*<![CDATA[*/(function() {if (window.bbcdotcom && bbcdotcom.slotAsync) {bbcdotcom.slotAsync("platinum", [1,2,3,4]);}})();/*]]>*/
+/*<![CDATA[*/(function() {if (window.bbcdotcom && bbcdotcom.slotAsync) {bbcdotcom.slotAsync("native", [1,2,3,4]);}})();/*]]>*/
+/*<![CDATA[*/(function() {if (window.bbcdotcom && bbcdotcom.slotAsync) {bbcdotcom.slotAsync("module_feature-1", [1,2,3,4]);}})();/*]]>*/
+/*<![CDATA[*/(function() {if (window.bbcdotcom && bbcdotcom.slotAsync) {bbcdotcom.slotAsync("infeed", [1,2,3,4]);}})();/*]]>*/
+/*<![CDATA[*/(function() {if (window.bbcdotcom && bbcdotcom.slotAsync) {bbcdotcom.slotAsync("module_feature-2", [1,2,3,4]);}})();/*]]>*/
+/*<![CDATA[*/(function() {if (window.bbcdotcom && bbcdotcom.slotAsync) {bbcdotcom.slotAsync("parallax", [1,2,3,4]);}})();/*]]>*/
+/*<![CDATA[*/(function() {if (window.bbcdotcom && bbcdotcom.slotAsync) {bbcdotcom.slotAsync("mpu_bottom", [1,2,3,4]);}})();/*]]>*/
+
+                (function(){
+                    function updateNavBar(){
+                        var navEl = document.createElement("li"),
+                            aEl = document.createElement("a"),
+                            orbNav = document.querySelectorAll(".orb-panel-content ul")[0],
+                            orbNavWeather = document.querySelectorAll(".orb-panel-content .orb-nav-weather")[0];
+                        navEl.setAttribute("class", "orb-nav-bbcselect orb-nav-hide");
+                        aEl.setAttribute("href", "https://www.bbcselect.com");
+                        aEl.innerHTML = "BBC Select";
+                        navEl.appendChild(aEl);
+                        try {
+                            if(typeof orbNav !== "undefined" && typeof orbNavWeather !== "undefined") {
+                                orbNav.insertBefore(navEl, orbNavWeather);
+                                if (window.bbcuser && window.bbcuser.getCountry && typeof (window.bbcuser.getCountry) === 'function') {
+                                    window.bbcuser.getCountry().then(function (countryCode) {
+                                        var isValid = countryCode && ['US', 'CA'].indexOf(countryCode.toUpperCase()) !== -1;
+                                        /*if no countryCode return, we default to the edition css to show-hide */
+                                        if (countryCode && !isValid) {
+                                            document.getElementsByClassName('orb-nav-bbcselect')[0].remove();
+                                        }
+                                        if (countryCode && countryCode.toUpperCase() === 'CA') {
+                                            aEl.setAttribute("href", "https://www.bbcselect.com/ca/")
+                                        }
+                                    });
+                                }
+                                clearInterval(window.isNavBarReadyInterval);
+                            }
+                        } catch(e) {}
+                    }
+
+                    window.isNavBarReadyInterval = setInterval(updateNavBar, 500);
+                    setTimeout(function (){
+                        clearInterval(window.isNavBarReadyInterval);
+                    }, 5000);
+                })();
+            
+
+                (function(){
+                    function loadChartbeat() {
+                        window._sf_endpt=(new Date()).getTime();
+                        var e = document.createElement("script");
+                        e.setAttribute("language", "javascript");
+                        e.setAttribute("type", "text/javascript");
+                        e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+                        document.body.appendChild(e);
+                    }
+                    var oldonload = window.onload;
+                    window.onload = (typeof window.onload != "function") ? loadChartbeat : function() { oldonload(); loadChartbeat(); };
+                }());
+            
+/*<![CDATA[*/
+       require(['orb/nav'], function(nav) {
+         window.bbcuser.isUKCombined().then(function(isUK) {
+           if (isUK) {
+             nav.loadJs('https://static.files.bbci.co.uk/orbit/2db37c31bc02cc6fce405b4ed988793d/js/edr.min.js');
+           }
+         });
+       });
+       /*]]>*/
+window.orb.worldwideFooterlinks = '<li class="orb-footer-ads"><a href="https://www.bbcglobalnews.com/">Advertise with us<' + '/a><' + '/li><li class="orb-footer-adchoices"><a href="https://www.bbc.com/usingthebbc/cookies/how-does-the-bbc-use-cookies-for-advertising/">AdChoices / Do Not Sell My Info<' + '/a><' + '/li>';
+require.config({
+            paths: {
+                "mybbc/templates": '//mybbc.files.bbci.co.uk/notification-ui/4.3.5/templates',
+                "mybbc/notifications": '//mybbc.files.bbci.co.uk/notification-ui/4.3.5/js'
+            }
+        });
+
+        require(['mybbc/notifications/NotificationsMain', 'idcta/idcta-1'], function (NotificationsMain, idcta) {
+
+            var loadNotifications = function (isUK) {
+                if (isUK) {
+                    window.bbcpage.loadCSS('//mybbc.files.bbci.co.uk/notification-ui/4.3.5/css/main.min.css').then(function() {
+                        NotificationsMain.run(idcta, '//mybbc.files.bbci.co.uk/notification-ui/4.3.5/');
+                    });
+                }
+            };
+            
+            window.bbcuser.isUKCombined().then(function(isUK) {
+                loadNotifications(isUK);
+            });
+        });
+if (window.SEARCHBOX.locale) {
+    require.config({
+      paths: {
+        "search/searchbox": window.SEARCHBOX.searchboxAppStaticPrefix,
+      }
+    });
+
+    if (bbcuser && bbcuser.isUKCombined) {
+        bbcuser.isUKCombined().then(function (isUK) {
+            if (isUK) {
+                require(['search/searchbox/searchboxDrawer'], function (SearchboxDrawer) {
+                  SearchboxDrawer.run(window.SEARCHBOX);
+                });
+            }
+        });
+    }
+
+  }
+require.config({
+    "paths": {
+        "orb/async/_footerpromo": 'https://nav.files.bbci.co.uk/navpromo/035c37085a0e184ccd49d0e29cb36ea3/js/async/_footerpromo'
+    }
+});
+(function() {
+
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+      initialiseFooter();
+    });
+
+    var scrollCheckTimer;
+    var didScroll;
+    var previousPosition = 0;
+    var delta = 5;
+    var PROMO_SHOW_BREAKPOINT = 1500;
+    var pageLength = 0;
+
+    function getCookie(key) {
+        if (!key) {
+            return document.cookie;
+        }
+        return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    }
+
+    function initialiseFooter() {
+        // Suppress this feature on browsers we no longer test
+        var myNav = navigator.userAgent.toLowerCase();
+        var oldIE = (myNav.indexOf('msie') !== -1) && parseInt(myNav.split('msie')[1], 10) <= 10;
+        if (!oldIE) {
+            var disabledByCookie = (parseInt(getCookie('ckns_nav_promofail')) || 0) >= 3;
+            if (!disabledByCookie) {
+                window.bbcpage.getLanguage().then(function(language) {
+                    if (language === 'en') {
+                        window.bbcuser.isUKCombined().then(function(isUK) {
+                            if (isUK) {
+                                setUpLazyLoading();
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    }
+
+    function setUpLazyLoading() {
+        // offsetHeight is expensive to calculate, only do it once.
+        pageLength = Math.abs(document.body.offsetHeight);
+
+        if (pageLength < getViewportHeight() + 300 || pageLength - getCurrentPosition() < PROMO_SHOW_BREAKPOINT) {
+            loadPromo();
+
+        } else {
+            window.onscroll = function () {
+                didScroll = true;
+            };
+
+            scrollCheckTimer = setInterval(function () {
+                if (didScroll) {
+                    hasScrolled();
+                    didScroll = false;
+                }
+            }, 250);
+        }
+    }
+
+    function loadPromo() {
+        clearInterval(scrollCheckTimer);
+
+        require(['orb/async/_footerpromo'], function(promo) {
+            promo.init('https://navpromo.api.bbci.co.uk', '');
+        });
+    }
+
+    function getViewportHeight() {
+        return window.innerHeight;
+    }
+
+    function getCurrentPosition() {
+        return Math.abs(window.scrollY || document.body.scrollTop || document.documentElement.scrollTop);
+    }
+
+    function hasScrolled() {
+        var currentPosition = getCurrentPosition();
+
+        if (Math.abs(previousPosition - currentPosition) <= delta) {
+            return;
+        }
+        if (currentPosition > previousPosition) {
+            if ((pageLength - currentPosition) <= PROMO_SHOW_BREAKPOINT) {
+                loadPromo();
+            }
+        }
+        previousPosition = currentPosition;
+    }
+})();
+window.COOKIES_STATIC_HOST="https://static.files.bbci.co.uk/cookies/a0354f8a4a10eccc2923da437dcf04c8/cookie-banner/cookie-prompt/"
+"use strict";window.__reverb.__reverbLoadedPromise.then(function(e){return e.initialise().then(function(){return e.viewEvent()})},function(){console.log("Failed to load reverb. No event sent")});

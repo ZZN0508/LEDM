@@ -1,0 +1,42 @@
+
+    <!-- 
+      if (top.location != self.location) {
+      top.location = self.location.href
+     }
+    //--> 
+    
+
+    function OptanonWrapper() { }
+    
+
+                curdate=new Date();
+                document.write("<strong>Copyright &copy; 2000-"+curdate.getFullYear()+" AZLyrics.com<\/strong>");
+             
+
+cf_page_artist = "";
+cf_page_song = "";
+cf_page_genre = "";
+
+<!--
+e9 = new Object();
+e9.snackbar=true;
+//-->
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4309237-1']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+
+      $(function () {
+       if ($('#CssFailCheck').is(':visible') === true) {
+         $('<link rel="stylesheet" type="text/css" href="//www.azlyrics.com/bs/css/bootstrap.min.css"><link rel="stylesheet" href="//www.azlyrics.com/bsaz.css">').appendTo('head');
+       }
+      });
+    

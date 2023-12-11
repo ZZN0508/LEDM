@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error>
+  <Code>NoSuchKey</Code>
+  <Message>The specified key does not exist.</Message>
+  <RequestId>6541F7DEDD9963363166B384</RequestId>
+  <HostId>jingwei-static.oss-cn-hangzhou.aliyuncs.com</HostId>
+  <Key>node_modules/js-base64/base64.js</Key>
+  <EC>0026-00000001</EC>
+  <RecommendDoc>https://api.aliyun.com/troubleshoot?q=0026-00000001</RecommendDoc>
+</Error>

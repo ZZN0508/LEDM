@@ -1,0 +1,78 @@
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?5a25061016ff6f738b9d9b5fdaadbf1c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+
+<!--
+//document.write("");
+var imgArr=["sj001","sj002","sj003"];
+var random=Math.floor(Math.random()*3);
+document.getElementById(imgArr[random]).style.display="block";
+//-->
+
+
+
+                    function chanageMenu1(id) {
+                        for (var i = 1; i < 9; i++) {
+                            $("#whi_0" + i).hide();
+                            $("#whj" + i + " a").removeClass("hover");
+                        }
+                        $("#whi_0" + id).show();
+                        $("#whj" + id + " a").addClass("hover");
+                    }
+
+                    function chanageMenu(id) {
+                        for (var i = 1; i < 3; i++) {
+                            $("#content_0" + i).hide();
+                            $("#temp" + i + " a").removeClass("hover");
+                        }
+                        $("#content_0" + id).show();
+                        $("#temp" + id + " a").addClass("hover");
+                    }
+					
+										
+					
+                    
+                
+
+var scroll_70= new ifeng_Scroll("photolist_70","pre_70","next_70");
+scroll_70.Speed=20; //滚动速度微调
+scroll_70.IsSmoothScroll= false;//是否平滑连续滚动 平滑滚动:true 间隔滚动:false
+scroll_70.PauseTime = 5000;//间隔滚动时每次滚动间隔的时间。单位：毫秒。建议值：100--3000 适用于间隔滚动。
+scroll_70.Direction = "E"; //滚动方向.向东：E，向北：N
+scroll_70.Step =8;		//滚动步长，可以理解为滚动速度。值越大速度越快。值范围:1--10
+scroll_70.ControllerType = "click";//上一个和下一个按钮事件的触发方式:click为点击触发滚动 否则就是 鼠标按住按钮触发滚动。支持click 和mousedown两种模式
+scroll_70.BackCall = null;//回调函数 滚动到末尾时执行 
+scroll_70.Init();
+scroll_70.Start(true);//开始滚动
+
+
+	var scroll_69= new ifeng_Scroll("photolist_69");
+	scroll_69.Speed=30; //滚动速度微调
+	scroll_69.IsSmoothScroll= false;//是否平滑连续滚动 平滑滚动:true 间隔滚动:false
+	scroll_69.PauseTime = 2000;//间隔滚动时每次滚动间隔的时间。单位：毫秒。建议值：100--3000 适用于间隔滚动。
+	scroll_69.Direction = "N"; //滚动方向.向东：E，向北：N
+	scroll_69.Step =1;		//滚动步长，可以理解为滚动速度。值越大速度越快。值范围:1--10
+	scroll_69.ControllerType = "none";//上一个和下一个按钮事件的触发方式:click为点击触发滚动 否则就是 鼠标按住按钮触发滚动。支持click 和mousedown两种模式
+	scroll_69.BackCall = null;//回调函数 滚动到末尾时执行 
+	scroll_69.Init();
+	scroll_69.Start();				//开始滚动
+	
+
+                        var scroll_87 = new ifeng_Scroll("photolist_87", "pre_87", "next_87");
+                        scroll_87.Speed = 30; //滚动速度微调
+                        scroll_87.IsSmoothScroll = false; //是否平滑连续滚动 平滑滚动:true 间隔滚动:false
+                        scroll_87.PauseTime = 5000; //间隔滚动时每次滚动间隔的时间。单位：毫秒。建议值：100--3000 适用于间隔滚动。
+                        scroll_87.Direction = "E"; //滚动方向.向东：E，向北：N
+                        scroll_87.Step = 5; 	//滚动步长，可以理解为滚动速度。值越大速度越快。值范围:1--10
+                        scroll_87.ControllerType = "click"; //上一个和下一个按钮事件的触发方式:click为点击触发滚动 否则就是 鼠标按住按钮触发滚动。支持click 和mousedown两种模式
+                        scroll_87.LiSpace = 171;
+                        scroll_87.BackCall = null; //回调函数 滚动到末尾时执行 
+                        scroll_87.Init();
+                        scroll_87.Start(); 			//开始滚动
+                    

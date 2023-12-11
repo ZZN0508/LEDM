@@ -1,0 +1,109 @@
+(function ($) {
+  var LinkageListData = [
+    {
+      GameCover: "https://imgf.gamersky.com/img/tqbc2010/jflr0720.jpg",
+      GameName: "疾风猎人",
+      GameDen:
+        "疾风追击，猎神诛魔！全新3D魔幻炫酷爽游等你来玩，登录领亿万钻石！",
+      qrcode: "https://imgf.gamersky.com/img/tqbc2010/jflr.png",
+      BtnText: "开始游戏",
+      BtnLink:
+        "http://web-cps.gamersky.com/InstPage/index.html?key=jflrsytl2230720",
+      StatisticalId: "1621915",
+    },
+    {
+      GameCover: "https://imgf.gamersky.com/img/tqbc2010/hcrjx0720.jpg",
+      GameName: "火柴人觉醒",
+      GameDen:
+        "“正版IP，欢迎来到《火柴人觉醒》的世界，请放肆激斗，畅快到底。",
+      qrcode: "https://imgf.gamersky.com/img/tqbc2010/hcrjx.png",
+      BtnText: "开始游戏",
+      BtnLink:
+        "http://web-cps.gamersky.com/InstPage/index.html?key=hcrjxsytl2230720",
+      StatisticalId: "1621917",
+    },
+    {
+      GameCover: "https://imgf.gamersky.com/img/tqbc2010/yscq0720.jpg",
+      GameName: "原始传奇",
+      GameDen:
+        "十年经典，再续传奇，万人同屏，激情攻沙，复刻1.76传奇版本。",
+      qrcode: "https://imgf.gamersky.com/img/tqbc2010/yscq.png",
+      BtnText: "开始游戏",
+      BtnLink:
+        "http://web-cps.gamersky.com/InstPage/index.html?key=yscqsytl2230720",
+      StatisticalId: "1621919",
+    },
+  ];
+  var LinkageListDom = ' <div class="LinkageList">';
+  $.each(LinkageListData, function (index, item) {
+    var Cur = index == 0 ? " cur" : "";
+    var GameDataBoxWidth = item.qrcode ? "170px" : "100%";
+    var Dom =
+      '   <div class="item' +
+      Cur +
+      '"><div style="width:24px;height:13px;position:absolute;left:3px;top:3px;background:url(//image.gamersky.com/webimg15/adtag.png);opacity:0.5"></div><a class="Btn" StatisticalId="' +
+      item.StatisticalId +
+      '" href="' +
+      item.BtnLink +
+      '" target="_blank"><img src="' +
+      item.GameCover +
+      '" class="GameCover" alt=""></a> ';
+    Dom +=
+      '<div class="GameDataBox"><div class="GameData" style="width:' +
+      GameDataBoxWidth +
+      '">';
+    Dom += '<div class="GameName">' + item.GameName + "</div>";
+    Dom += '<div class="GameDen">' + item.GameDen + "</div></div>";
+    if (item.qrcode) {
+      Dom +=
+        '<div class="qrcode"><img src="' + item.qrcode + '"  alt="">  </div>';
+    }
+    Dom +=
+      '<a class="Btn" StatisticalId="' +
+      item.StatisticalId +
+      '" href="' +
+      item.BtnLink +
+      '" target="_blank">' +
+      item.BtnText +
+      "</a> </div></div>";
+
+    LinkageListDom += Dom;
+  });
+  LinkageListDom += "</div>";
+  $("#adscontainer_banner_new_second_index_1060").append(LinkageListDom);
+  var styleDom =
+    "<style>.LinkageList{width:1070px;height:140px}.LinkageList .item{float:left;box-sizing:border-box;width:268px;height:140px;padding-right:10px;position:relative}.LinkageList .item:last-child{padding-right:0}.LinkageList .item.cur{width:534px}.LinkageList .item .GameCover{width:258px;height:140px;margin-right:11px;float:left}.LinkageList .item .GameDataBox{position:absolute;left:268px;top:0;width:248px;height:140px}.LinkageList .item .GameDataBox .GameData{min-width:170px;float:left}.LinkageList .item .GameDataBox .GameData .GameName{margin-top:12px;font-size:14px;height:14px;line-height:14px;color:#333333;margin-bottom:9px;font-weight:bold}.LinkageList .item .GameDataBox .GameData .GameDen{color:#666666;font-size:14px;line-height:18px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}.LinkageList .item .GameDataBox .qrcode{float:left;margin-left:12px;margin-top:12px;width:66px;height:66px}.LinkageList .item .GameDataBox .qrcode img{width:66px;height:66px}.LinkageList .item .GameDataBox .Btn{display:block;text-decoration:none;width:248px;float:left;height:41px;line-height:41px;text-align:center;background-color:#e5e5e5;position:absolute;font-size:14px;color:#333333;bottom:0}.LinkageList .item .GameDataBox .Btn:hover{background:#ffffff}.hei .LinkageList .GameName{color:#cccccc !important}.hei .LinkageList .GameDen{color:#999999 !important}.hei .LinkageList .Btn{color:#aaaaaa !important;background-color:#444444 !important}.hei .LinkageList .Btn:hover{color:#ffffff !important;background-color:#666666 !important}</style>";
+  $("#adscontainer_banner_new_second_index_1060").append(styleDom);
+
+  $(".LinkageList .item").hover(function () {
+    $(this)
+      .stop(true)
+      .animate({ width: "534px" }, 300)
+      .siblings()
+      .stop(true)
+      .animate({ width: "267px" }, 300);
+  });
+
+  //统计方法
+  function GetHits(id) {
+    $.ajax({
+      url: "//click.gamersky.com/Common/GetHits.aspx",
+      type: "get",
+      contentType: "application/json",
+      dataType: "jsonp",
+      data: {
+        script: 3,
+        id: id,
+      },
+      success: function (rs) {
+        if (typeof callback == "function") {
+          callback(rs);
+        }
+      },
+    });
+  }
+  $(".LinkageList .item  a").on("click", function () {
+    var StatisticalId = $(this).attr("StatisticalId");
+    GetHits(StatisticalId);
+  });
+})(jQuery);

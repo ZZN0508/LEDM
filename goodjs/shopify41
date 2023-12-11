@@ -1,0 +1,1 @@
+import{R as i,U as o}from"https://cdn.shopify.com/shopifycloud/brochure-iii/production/_shared/chunk-DNYBQARL.js";function c(r=!1){let{site:a}=i(),{pricingSite:n}=o(),t=r&&n?n:a,e=t.languageCode||t.locale?.split("-")[0]||"en";return e.endsWith(t.countryCode)?e:`${e}-${t.countryCode}`}export{c as a};

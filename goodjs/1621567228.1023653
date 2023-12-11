@@ -1,0 +1,302 @@
+
+	var browser=function(){
+		var u = navigator.userAgent, app = navigator.appVersion;
+		var shell=function(){return {//浏览器版本信息
+			trident: u.indexOf('Trident/') > -1, //IE内核
+			presto: u.indexOf('Presto/') > -1, //opera内核
+			webKit: u.indexOf('AppleWebKit/') > -1 || u.indexOf('UCWEB') > -1, //苹果、谷歌内核（UC急速浏览器也支持webkit）
+			gecko: u.indexOf('Gecko/') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+			mobile: !!u.match(/AppleWebKit.*Mobile.*|UCWEB/), //是否为移动终端
+			ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X|iOS/), //ios终端
+			android: /Android|Linux.*UCWEB/i.test(u), //android终端
+			iPhone: u.indexOf('iPhone') > -1, //是否为iPhone
+			iPad: u.indexOf('iPad') > -1, //是否iPad
+			webApp: u.indexOf('Safari/') == -1, //是否web应该程序，没有头部与底部
+			UC: u.indexOf('UC') > -1
+		};
+		}();
+		if(shell.android || shell.iPhone || shell.UC){return true;}else{return false;}
+	}
+	function JumpLink(){
+		var s=browser();
+		var strInd = document.referrer;//获取来源链接
+		var reInd =/\/\/(.+)\.caijing/; //来源匹配
+		var objInd =strInd.match(reInd); 
+       		if(s){
+                     // alert(strInd +"----"+strInd.indexOf("http://m.caijing.com.cn"));
+                      
+                      if(strInd.indexOf("http://m.caijing.com.cn")>=0){//来源手机版
+                          return;
+                      }else{
+                          window.location="http://m.caijing.com.cn/";
+                      }
+                }
+	}JumpLink();
+
+
+						$(function(){
+							if ($.cookie(COOKIE_PRE+'auth')) {
+								$('#head_logout').show();
+								$('#head_name').show();
+								var username = $.cookie(COOKIE_PRE+'username');
+								if(!username) username = $.cookie(COOKIE_PRE+'rememberusername');
+								username = '<a href="http://app.caijing.com.cn/?app=member&controller=panel&action=index" target="_blank">&#12288;'+username+'&nbsp;</a>';
+								$('#head_name').html(username);
+							} else {
+								$('#logout_status').show();
+							}
+						});
+					
+
+					$(function(){
+						$("#head_wd").bind('focus', function(){
+							if($(this).val() == '请输入关键字')
+							$(this).val('');
+						});
+
+						$("#head_wd").bind('blur', function(){
+							if($(this).val() == '')
+							$(this).val('请输入关键字');
+						});
+					});
+					
+var lastScrollY=0;
+var percent;
+function heartBeat(){
+lastScrollY =document.documentElement.scrollTop || document.body.scrollTop;
+if(lastScrollY<800)
+{
+document.getElementById("float_nav").style.display="none";
+}
+else
+{
+document.getElementById("float_nav").style.display="block";
+}
+}
+window.setInterval("heartBeat()",1);
+
+
+    (function(){
+        var speed = 80;
+        var tab = document.getElementById("news_marq");
+        var tab1 = document.getElementById("scllo_begin");
+        var tab2 = document.getElementById("scllo_end");
+        tab2.innerHTML = tab1.innerHTML;
+        function Marquee(){
+            if(tab2.offsetWidth-tab.scrollLeft<=0)
+                tab.scrollLeft-=tab2.offsetWidth
+            else{
+                tab.scrollLeft++;
+            }
+        }
+        var gundong=setInterval(Marquee,speed);
+        tab.onmouseover=function(){  clearInterval(gundong)};
+        tab.onmouseout=function(){gundong=setInterval(Marquee,speed)};
+    })();
+
+
+                //播放图片地址
+                var pics='https://tx1.cdn.caijing.com.cn/2021/0420/thumb_270_218_1618888369213.jpg|https://img6.caijing.com.cn/2021/0429/thumb_270_218_1619685008209.jpg|https://tx1.cdn.caijing.com.cn/2021/0107/thumb_270_218_1610010684909.jpg|https://tx2.cdn.caijing.com.cn/2021/0302/thumb_270_218_1614672356753.jpg|https://img6.caijing.com.cn/2021/0519/thumb_270_218_1621421906626.jpg';
+                var mylinks='http://politics.caijing.com.cn/20210420/4758031.shtml|http://politics.caijing.com.cn/20210427/4760634.shtml|http://politics.caijing.com.cn/20210105/4729055.shtml|http://politics.caijing.com.cn/20210302/4742504.shtml|http://industry.caijing.com.cn/20210519/4766423.shtml'
+                //图片对应描
+                var texts='习近平在博鳌亚洲论坛2021年年会开幕式上的视频主旨演讲（全文）|习近平在柳州考察调研|习近平签署中央军委2021年1号命令 向全军发布开训动员令|习近平：广大脱贫群众露出了真诚笑脸是对脱贫攻坚的最大肯定|喜小茶发布一周年小报告：22家门店销量超280万杯';
+                var ivWidth=270;//自定义宽
+                var ivHeight=218;//自定义高
+                var _str='https://img1.caijing.com.cn/retain/js/2010/imageView.swf';//flash文件地址
+                _str+="?Time="+"5000";//图片自动切换时间：毫秒
+                _str+="&Titles="+encodeURI(texts);//标题内容
+                _str+="&Mode="+"6";//窗口模式：6－淡入淡出，播放按钮；7－随机
+                _str+="&ImgUrls="+pics;//图片地址
+                _str+="&LinkUrls="+escape(mylinks);//链接地址
+                _str+="&TitlesColor="+"0x2c4484";//标题文字颜色
+                _str+="&TitlesLinkColor="+"0x2c4484";//文字链接颜色（鼠标划入标题时）
+                _str+="&TitlesBgColor="+"0xffffff";//标题衬底颜色
+                _str+="&TitlesBgAlpha="+"0.3";//标题衬底透明度
+                _str+="&TBHeight="+"21";//标题衬底高度
+                _str+="&Font="+"宋体";//标题文字字体
+                _str+="&Size="+"12";//标题文字大小
+                _str+="&Weight="+"bold";//标题文字粗细
+                _str+="&Align="+"left";
+                var f = new hxFoucs('index_jdtp',pics,mylinks,texts,_str,ivWidth,ivHeight);
+                f.init("sjdt_botbg","sjdt_num","sjdt_num_show","sjdt_tit");
+                f.create();
+            
+
+        //播放图片地址
+        var pics='https://tx1.cdn.caijing.com.cn/2021/0517/1621253479961.png|https://img4.caijing.com.cn/2021/0518/1621294888307.jpg|https://img5.caijing.com.cn/2021/0518/1621294065804.jpg|https://tx2.cdn.caijing.com.cn/2021/0518/1621293331894.jpg|https://img6.caijing.com.cn/2021/0518/1621295930373.jpg';
+        var mylinks='http://tech.caijing.com.cn/20210517/4765725.shtml|http://tech.caijing.com.cn/20210518/4765749.shtml|http://tech.caijing.com.cn/20210518/4765747.shtml|http://tech.caijing.com.cn/20210518/4765745.shtml|http://tech.caijing.com.cn/20210518/4765752.shtml'
+        //图片对应描
+        var texts='徕卡转投新欢，手机影像联名还是门好生意吗?|快讯 | 腾讯音乐娱乐集团与索尼音乐续签长期版权合作协议|快讯 | 社交应用Parler重返AppStore 承诺将审查不当内容|快讯 | AT&T和Discovery宣布合并娱乐业务 打造全球顶级娱乐公司|快讯 | 苹果前营销总监席勒：确实为亚马逊等提供过特殊抽成待遇';
+        var ivWidth=270;//自定义宽
+        var ivHeight=140;//自定义高
+        var _str='http://img1.caijing.com.cn/js/2010/imageView.swf';//flash文件地址
+        _str+="?Time="+"5000";//图片自动切换时间：毫秒
+        _str+="&Titles="+encodeURI(texts);//标题内容
+        _str+="&Mode="+"6";//窗口模式：6－淡入淡出，播放按钮；7－随机
+        _str+="&ImgUrls="+pics;//图片地址
+        _str+="&LinkUrls="+escape(mylinks);//链接地址
+        _str+="&TitlesColor="+"0x2c4484";//标题文字颜色
+        _str+="&TitlesLinkColor="+"0x2c4484";//文字链接颜色（鼠标划入标题时）
+        _str+="&TitlesBgColor="+"0xffffff";//标题衬底颜色
+        _str+="&TitlesBgAlpha="+"0.3";//标题衬底透明度
+        _str+="&TBHeight="+"10";//标题衬底高度
+        _str+="&Font="+"宋体";//标题文字字体
+        _str+="&Size="+"12";//标题文字大小
+        _str+="&Weight="+"bold";//标题文字粗细
+        _str+="&Align="+"left";
+        var f = new hxFoucs('index_kj',pics,mylinks,texts,_str,ivWidth,ivHeight);
+        f.init("kj_botbg","kj_num","kj_num_show","kj_tit");
+        f.create();
+    
+
+//播放图片地址
+var pics='https://tx2.cdn.caijing.com.cn/2020/0730/1596064244717.jpeg|https://img5.caijing.com.cn/2020/0730/1596064051733.png|https://file.caijing.com.cn/images/nopic.gif';
+var mylinks='http://tech.caijing.com.cn/20200730/4685805.shtml|http://tech.caijing.com.cn/20200730/4685802.shtml|http://tech.caijing.com.cn/20200729/4685672.shtml'
+//图片对应描
+var texts='从错失移动市场到7纳米延期 英特尔何去何从|美国国会启动对四大科技巨头国会调查听证会|小米：中兴原副总裁曾学忠出任手机部总裁';
+var ivWidth=270;//自定义宽
+var ivHeight=140;//自定义高
+var _str='http://img1.caijing.com.cn/js/2010/imageView.swf';//flash文件地址
+_str+="?Time="+"5000";//图片自动切换时间：毫秒
+_str+="&Titles="+encodeURI(texts);//标题内容
+_str+="&Mode="+"6";//窗口模式：6－淡入淡出，播放按钮；7－随机
+_str+="&ImgUrls="+pics;//图片地址
+_str+="&LinkUrls="+escape(mylinks);//链接地址
+_str+="&TitlesColor="+"0x2c4484";//标题文字颜色
+_str+="&TitlesLinkColor="+"0x2c4484";//文字链接颜色（鼠标划入标题时）
+_str+="&TitlesBgColor="+"0xffffff";//标题衬底颜色
+_str+="&TitlesBgAlpha="+"0.3";//标题衬底透明度
+_str+="&TBHeight="+"10";//标题衬底高度
+_str+="&Font="+"宋体";//标题文字字体
+_str+="&Size="+"12";//标题文字大小
+_str+="&Weight="+"bold";//标题文字粗细
+_str+="&Align="+"left";
+var f = new hxFoucs('index_lscj',pics,mylinks,texts,_str,ivWidth,ivHeight);
+f.init("kj_botbg","kj_num","kj_num_show","kj_tit");
+f.create();
+
+
+									//播放图片地址
+									//图片大小限制：300*220
+									var pics='https://tx3.cdn.caijing.com.cn/2019/0805/1564975133333.png|https://tx3.cdn.caijing.com.cn/2019/0802/1564713621383.png|https://img2.caijing.com.cn/2019/0802/1564714368157.jpg|https://tx1.cdn.caijing.com.cn/2019/0802/1564714225649.jpg|https://img1.caijing.com.cn/2019/0802/1564714281717.jpg|https://tx3.cdn.caijing.com.cn/2019/0802/1564714043132.jpg|https://tx3.cdn.caijing.com.cn/2019/0802/1564713980741.jpg|https://img5.caijing.com.cn/2019/0801/1564645651701.jpg|https://img3.caijing.com.cn/2019/0606/1559788027490.jpg|https://img6.caijing.com.cn/2019/0605/1559745295628.jpg';
+									var mylinks='http://tech.caijing.com.cn/20190805/4607092.shtml|http://tech.caijing.com.cn/20190802/4606711.shtml|http://tech.caijing.com.cn/20190802/4606713.shtml|http://tech.caijing.com.cn/20190802/4606706.shtml|http://tech.caijing.com.cn/20190802/4606707.shtml|http://tech.caijing.com.cn/20190802/4606708.shtml|http://tech.caijing.com.cn/20190802/4606710.shtml|http://tech.caijing.com.cn/20190801/4606590.shtml|http://tech.caijing.com.cn/20190606/4593980.shtml|http://tech.caijing.com.cn/20190605/4593932.shtml'
+									//图片对应描
+									var texts='滴滴自动驾驶升级为独立公司 滴滴CTO张博兼任新公司CEO|腾讯视频《陈情令》超前点播:谁剥夺了VIP的追剧快乐|世界首富贝索斯卖亚马逊股票套现18亿美元 疑为太空公司筹经费|网络文学：向涉黄说“不”|“X分钟带你看完电影” “谷阿莫们”侵权了吗|全球最吸金视频App排行：YouTube榜首 快手排名第二|快递企业泄露个人信息或将被列入信用“黑名单”|百度回应“HR抄袭小米招聘信息”：系冒充 已封禁|华为全力支持中国运营商建好中国5G|滴滴程维：安全生产月不搞形式化 管理者需下一线';
+									var ivWidth=300;//自定义宽
+									var ivHeight=240;//自定义高
+									var _str='http://ws1.cdn.caijing.com.cn/js/2010/imageView.swf';//flash文件地址
+									_str+="?Time="+"5000";//图片自动切换时间：毫秒
+									_str+="&Titles="+encodeURI(texts);//标题内容
+									_str+="&Mode="+"6";//窗口模式：6－淡入淡出，播放按钮；7－随机
+									_str+="&ImgUrls="+pics;//图片地址
+									_str+="&LinkUrls="+escape(mylinks);//链接地址
+									_str+="&TBHeight="+"20";//标题衬底高度
+									_str+="&Font="+"宋体";//标题文字字体
+									_str+="&Size="+"12";//标题文字大小
+									_str+="&Weight="+"normal";//标题文字粗细
+									_str+="&Align="+"left";
+									var f = new hxFoucs_2('index_bjtj',pics,mylinks,texts,_str,ivWidth,ivHeight);
+									 f.init_2("rtjdt_botbg","rtjdt_num","rtjdt_num_show","rtjdt_tit");
+									 f.create_2();
+								
+
+            //播放图片地址
+            //图片大小限制：296*197
+            var pics='https://tx2.cdn.caijing.com.cn/2021/0417/thumb_296_242_1618625490296.png|https://tx1.cdn.caijing.com.cn/2021/0415/thumb_296_242_1618496433567.png|https://img3.caijing.com.cn/2021/0412/thumb_296_242_1618203304426.png|https://img4.caijing.com.cn/2021/0409/thumb_296_242_1617924002423.png|https://tx1.cdn.caijing.com.cn/2021/0329/thumb_296_242_1617031916710.jpg';
+            var mylinks='http://auto.caijing.com.cn/2021/0417/4757296.shtml|http://auto.caijing.com.cn/2021/0415/4756672.shtml|http://auto.caijing.com.cn/2021/0412/4754810.shtml|http://auto.caijing.com.cn/2021/0409/4753958.shtml|http://auto.caijing.com.cn/2021/0329/4750980.shtml'
+            //图片对应描
+            var texts='威马W6正式上市|极氪品牌正式发布 极氪001开启预售|新款坦克300申报图曝光  换装新LOGO |红旗L3路试谍照曝光|广汽埃安AION Y 开启预售 ';
+            var ivWidth=296;//自定义宽
+            var ivHeight=242;//自定义高
+            var _str='http://ws1.cdn.caijing.com.cn/js/2010/imageView.swf';//flash文件地址
+            _str+="?Time="+"5000";//图片自动切换时间：毫秒
+            _str+="&Titles="+encodeURI(texts);//标题内容
+            _str+="&Mode="+"6";//窗口模式：6－淡入淡出，播放按钮；7－随机
+            _str+="&ImgUrls="+pics;//图片地址
+            _str+="&LinkUrls="+escape(mylinks);//链接地址
+            _str+="&TBHeight="+"25";//标题衬底高度
+            _str+="&Font="+"宋体";//标题文字字体
+            _str+="&Size="+"12";//标题文字大小
+            _str+="&Weight="+"normal";//标题文字粗细
+            _str+="&Align="+"center";
+            var f = new cjFoucs('car_jdtp',pics,mylinks,texts,_str,ivWidth,ivHeight);
+             f.init2("rtjdt_botbg","rtjdt_num","rtjdt_num_show","jjxj_tit");
+             f.create2();
+        
+
+									//播放图片地址
+									//图片大小限制：
+									var pics='https://img5.caijing.com.cn/2021/0521/1621557139253.jpg|https://img6.caijing.com.cn/2021/0521/1621556710916.png|https://img6.caijing.com.cn/2021/0521/1621555997270.png|https://tx2.cdn.caijing.com.cn/2021/0521/1621555387219.png|https://tx3.cdn.caijing.com.cn/2021/0521/1621554419956.jpg';
+									var mylinks='http://tech.caijing.com.cn/20210521/4766876.shtml|http://tech.caijing.com.cn/20210521/4766870.shtml|http://tech.caijing.com.cn/20210521/4766860.shtml|http://tech.caijing.com.cn/20210521/4766852.shtml|http://tech.caijing.com.cn/20210521/4766844.shtml'
+									//图片对应描
+									var texts='快讯 | 中国在线旅游消费总额已达万亿元 “互联网+”让旅游更有趣|快讯 | 新东方教室奸杀案受害人母亲：凶手三次庭审变化大，一开始穿得像明星|快讯 | 谷歌宣布在纽约市开设首家实体零售店今夏开业|快讯 | 美国加州要求到2030年网约车接近全部电动化|快讯｜京东物流香港IPO已获得散户超额认购271倍 ';
+									var ivWidth=360;//自定义宽
+									var ivHeight=175;//自定义高
+									var _str='http://img.caijing.com.cn/js/2010/imageView.swf';//flash文件地址
+									_str+="?Time="+"5000";//图片自动切换时间：毫秒
+									_str+="&Titles="+encodeURI(texts);//标题内容
+									_str+="&Mode="+"6";//窗口模式：6－淡入淡出，播放按钮；7－随机
+									_str+="&ImgUrls="+pics;//图片地址
+									_str+="&LinkUrls="+escape(mylinks);//链接地址
+									_str+="&TBHeight="+"30";//标题衬底高度
+									_str+="&Font="+"宋体";//标题文字字体
+									_str+="&Size="+"14";//标题文字大小
+									_str+="&Weight="+"bold";//标题文字粗细
+									_str+="&Align="+"center";
+									var f = new hxFoucs_keji('phone_jdt',pics,mylinks,texts,_str,ivWidth,ivHeight);
+									f.init_2("rtjdt_botbg","rtjdt_num","rtjdt_num_show","rtjdt_tit");
+									f.create_2();
+								
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?b0bfb2d8ed2ed295c7354d304ad369f1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?3694d7ec09e48181debb3e5b975f1721";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+
+$(document).ready(function(){
+(function(){
+	var $backToTopTxt = "", 
+	
+	$backToTopEle = $('<div class="backToTop"></div>').appendTo($("body"))
+		.text($backToTopTxt).attr("title", $backToTopTxt).click(function(){
+			$("html, body").animate({ scrollTop: 0 }, 350);
+	}), 
+	$backToTopFun = function(){
+		var st = $(document).scrollTop(), winh = $(window).height();
+		(st > 800)? $backToTopEle.show(): $backToTopEle.hide();
+		
+		//(st > 800)? fnav.show(): fnav.hide();
+		//IE6下的定位
+		if(!window.XMLHttpRequest){
+			$backToTopEle.css("top", st + winh - 280);
+		}
+	};
+	
+	$(window).bind("scroll", $backToTopFun);
+	$(function(){ $backToTopFun(); });
+
+})();
+});
+
+
+
+	Tabp("wzph_tit","wzph_main","pht_show");
+	Tabp("wzph2_tit","wzph2_main","pht_show");
+	Tabp("rwsh_tit","rwsh_main","rwt_show");
+	Tabp("btab_tit","btab_main","tabt_show");
+    Tabp("wzph3_tit","wzph3_main","pht_show");
+
+(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=2942127813356630428' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();

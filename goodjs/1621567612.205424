@@ -1,0 +1,35 @@
+/*! Akamai image converter plugin for Riloadr.js 2.x (c) 2014 Tubal Martin - MIT license */ ! function(a) {
+    "function" == typeof define && define.amd ? define(["jquery", "riloadr"], a) : a(jQuery, Riloadr)
+}(function(a, b) {
+    "use strict";
+    var c = "output-quality",
+        d = "output-format",
+        e = ["unit", "interpolation", "composite", "filter", "crop", "downsize", "resize", "background-color", d, c],
+        f = /gif|jpe?g|png|tiff$/,
+        g = /jpe?g$/,
+        h = /jpe?g$/;
+    return a.extend(b.prototype, {
+        buildImageSrc: function(b, i) {
+            var o, p, j = a(b).attr("data-src"),
+                k = j.split(".").pop(),
+                l = a.extend({}, i.commands),
+                m = [],
+                n = 0;
+
+            if (c in l && (d in l ? g.test(l[d]) || delete l[c] : h.test(k) ? l[d] = k : delete l[c]), f.test(k))
+                for (; o = e[n]; n++) l.hasOwnProperty(o) && (p = l[o].trim()) && m.push(o + "=" + p);
+            
+            // console.log("__");
+            // console.log(j);
+            // console.log(m.length);
+
+            var interrog = "?";
+
+            if(j.includes("?")){
+                interrog = "&";
+            }
+
+            return j + (m.length ? interrog + m.join("&") : "")
+        }
+    }), b
+});

@@ -1,0 +1,130 @@
+
+  window._taboola = window._taboola || [];
+  _taboola.push({category:'auto'});
+  !function (e, f, u, i) {
+    if (!document.getElementById(i)){
+      e.async = 1;
+      e.src = u;
+      e.id = i;
+      f.parentNode.insertBefore(e, f);
+    }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/dcinside/loader.js',
+  'tb_loader_script');
+
+
+		window._taboola = window._taboola || [];
+		_taboola.push({flush: true});
+	
+
+        	dc_logo = 'https://nstatic.dcinside.com/dc/logo_day/dc_logo_rina_4_100.gif';
+        	dark_logo = 'https://nstatic.dcinside.com/dc/logo_day/dc_logo_dark_rina_4_100.gif';
+        	
+
+                        <li class="lately_gall gall_${id}" style="display:none;">
+                          <a href="https://${link}" class="lately_log" section="${id}">${name}</a>{{if type == 'MI'}}<em class="icon_mini">미니갤러리</em>{{/if}}
+                          <button type="button" class="btn_del" style="outline:" data-id="${id}"><span class="blind" >삭제</span><em class="sp_img icon_del"></em></button>
+                        </li>
+					  
+
+                        <li class="lately_gall gallog_${id}" style="display:none;">
+                          <a href="https://${link}" class="">${name} 갤로그</a>
+                          <button type="button" class="btn_del" style="outline:" data-id="${id}"><span class="blind" >삭제</span><em class="sp_img icon_del"></em></button>
+                        </li>
+					  
+
+	  <section class="tab_container clear recomSection recom${page}">
+		<h3 class="blind">${cate_name} 개념글</h3>
+		
+		{{each(prop, values) data}}
+		<div class="wraping">
+		  <div class="tab_content">
+			<div class="tab_header">
+			  <h4 class="tit"><a href="https://gall.dcinside.com/board/lists/?id=${values[0].gall_id}" class="main_log" section_code="recommend">${values[0].gallName} 갤러리<span class="sp_img img_deco"></span></a></h4>
+			</div>
+			<ul class="con_list txt">
+			  
+			  {{each(i, val) values}}
+			  <li><a href="${val.url}">${val.title}</a></li>
+			  {{/each}}
+			  
+			</ul>
+		  </div>
+		</div>
+		{{/each}}
+
+	  </section>
+	
+
+		{{if type == 'manager'}}
+		<li class="notice_mng">
+		  <a {{if link}}href="${link}"{{/if}} class="notice_txt"><span>${prefix} ${content}</span>
+			<span class="inner">
+			{{if time >= alarm_new_max}}<span class="new"><em class="blind">NEW</em><em class="sp_img icon_new"></em></span>{{/if}}
+			<button type="button" class="" onclick="remove_alarm($(this).closest('li'))"><span class="blind">알림삭제</span><em class="sp_img icon_bword_del"></em></button>
+			</span>
+		  </a>
+		</li>
+		{{else}}
+		<li>
+		  <a href="${link}" class="notice_txt">${prefix} ${content}</a>{{if time >= alarm_new_max}}<span class="new"><em class="blind">NEW</em><em class="sp_img icon_new"></em></span>{{/if}}
+		  <button type="button" class="" onclick="remove_alarm($(this).closest('li'))"><span class="blind">알림삭제</span><em class="sp_img icon_bword_del"></em></button>
+		</li>
+		{{/if}}
+	
+
+          alarm_init();
+          
+
+		  <dd><a href="${url}">${ko_name}</a></dd>
+		  
+
+	<div class="alarmPopup pop_wrap type1 fixed" style="right:30px;bottom:30px;display:none">
+	  <div class="pop_content one_noticewrap">
+		<a href="${link}" class="one_notice_txt">
+		  <span class="new"><em class="blind">NEW</em><em class="sp_img icon_new"></em></span>[${type}] ${content}
+		</a>
+		<button type="button" class="poply_close" onclick="$('.alarmPopup').remove()"><span class="blind">알림 레이어 닫기</span><em class="sp_img icon_blueclose"></em></button>
+	  </div>
+	</div>
+  
+
+	//<![CDATA[
+	// 기본 애널리틱스
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-5149721-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+	// 추가 애널리틱스
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-5149721-39']);
+	_gaq.push(['_setDomainName', 'dcinside.com']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+	// 추가 애널리틱스
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-5149721-64']);
+	_gaq.push(['_setDomainName', 'dcinside.com']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]>

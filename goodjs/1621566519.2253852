@@ -1,0 +1,250 @@
+
+        StackExchange.init({"locale":"en","serverTime":1621566504,"routeName":"Home/Index","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"cookieDomain":".stackoverflow.com","childUrl":"https://meta.stackoverflow.com","styleCodeWithHighlightjs":true,"negativeVoteScoreFloor":null,"enableSocialMediaInSharePopup":true,"protocol":"https"},"user":{"fkey":"fb0d641afb6ba49158eb5bf49110e5b7bb66ed3df9d19970a173a2fef5f6dfce","tid":"088f46a9-8d92-19a4-1425-d8b4fe359e34","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300},"jobPreferences":{"maxNumDeveloperRoles":2,"maxNumIndustries":4},"svgIconPath":"https://cdn.sstatic.net/Img/stacks-icons","svgIconHash":"7eb510ec72e5"}, {"userProfile":{"openGraphAPIKey":"4a307e43-b625-49bb-af15-ffadf2bda017"},"userMessaging":{"showNewFeatureNotice":true},"tags":{},"subscriptions":{"defaultBasicMaxTrueUpSeats":250,"defaultFreemiumMaxTrueUpSeats":50,"defaultMaxTrueUpSeats":1000},"snippets":{"renderDomain":"stacksnippets.net","snippetsEnabled":true},"slack":{"sidebarAdDismissCookie":"slack-sidebar-ad","sidebarAdDismissCookieExpirationDays":60.0},"site":{"allowImageUploads":true,"enableImgurHttps":true,"enableUserHovercards":true,"forceHttpsImages":true,"styleCode":true},"questions":{"enableQuestionTitleLengthLiveWarning":true,"maxTitleSize":150,"questionTitleLengthStartLiveWarningChars":50},"intercom":{"appId":"inf0secd","hostBaseUrl":"https://stacksnippets.net"},"paths":{},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000},"mentions":{"maxNumUsersInDropdown":50},"markdown":{"enableTables":true},"legal":{"oneTrustConfigId":"c3d9f1e3-55f3-4eba-b268-46cee4c6789c"},"flags":{"allowRetractingCommentFlags":true,"allowRetractingFlags":true},"elections":{"opaVoteResultsBaseUrl":"https://www.opavote.com/results/"},"comments":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true}});
+        StackExchange.using.setCacheBreakers({"js/adops.en.js":"22a9bd59b1e9","js/ask.en.js":"469e6156d3bf","js/begin-edit-event.en.js":"b6f47dd7a88c","js/copy-transpiled.en.js":"f8f92960ae26","js/cm.en.js":"c9cf2d410a2b","js/events.en.js":"733be4aa355f","js/explore-qlist.en.js":"a6f836ff8aa6","js/full-anon.en.js":"b10c59f3da46","js/full.en.js":"34e4e97d0c8a","js/help.en.js":"2c6f9524a8ea","js/highlightjs-loader.en.js":"2daf53a7f3b7","js/inline-tag-editing.en.js":"c94308b035ef","js/keyboard-shortcuts.en.js":"e169ae7afca7","js/markdown-it-loader.en.js":"1aabf94ff0fd","js/modElections.en.js":"eb4dc4d13ccd","js/mobile.en.js":"ed3df618ee8f","js/moderator.en.js":"3e6e31d44c50","js/postCollections-transpiled.en.js":"367658cee324","js/post-validation.en.js":"84877a29e208","js/prettify-full.en.js":"d610f3b63a70","js/question-editor.en.js":"","js/review.en.js":"ee21000fffa1","js/review-v2-transpiled.en.js":"88493c6fc99f","js/revisions.en.js":"b4e68bf9aff9","js/stacks-editor.en.js":"2523620c6f17","js/tageditor.en.js":"19069c7bcaa1","js/tageditornew.en.js":"3d33e4a93312","js/tagsuggestions.en.js":"4d2d70ee1e16","js/unlimited-transpiled.en.js":"079bed89c84f","js/wmd.en.js":"52823f6dc820","js/snippet-javascript-codemirror.en.js":"c3770ca7ae51"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(false);
+        });
+    
+
+        StackExchange.ready(function () { StackExchange.topbar.init(); });
+StackExchange.scrollPadding.setPaddingTop(50, 10);    
+
+(function () {
+    var logos = document.querySelector('.js-carousel-logos');
+    var logosShown = 4;
+    var logosTotalPages = Math.ceil(logos.children.length / logosShown) - 1;
+    var logosCurrentPage = 0;
+    var logosCarouselTime = 4000;
+    var logosCarouselPlayer;
+
+    logos.classList.remove('o100');
+    
+    for (var i = 0; i < logos.children.length; ++i) {
+        logos.appendChild(logos.children[Math.random() * i | 0]);
+        logos.children[i].classList.add('d-none');
+    }
+
+    var logosCarouselNav = document.createElement('div');
+    logosCarouselNav.className = 'ta-center py12';
+    logos.parentNode.insertBefore(logosCarouselNav, logos.nextSibling);
+
+    for (var i = 0; i <= logosTotalPages; ++i) {
+        var navEl = document.createElement('span');
+        navEl.className = 'js-carousel-logos-nav c-pointer w24 h6 bg-black-200 h:bg-black-400 d-inline-block bar-pill my6 mx4';
+
+        navEl.setAttribute('data-page', i);
+        navEl.addEventListener('click', showLogos);
+
+        logosCarouselNav.appendChild(navEl);
+    }
+
+    function updateNav() {
+        var navItems = document.querySelectorAll('.js-carousel-logos-nav');
+
+        for (var i = 0; i < navItems.length; ++i) {
+            if (i === logosCurrentPage) {
+                navItems[i].classList.remove('bg-black-200');
+                navItems[i].classList.add('bg-black-800');
+            } else {
+                navItems[i].classList.add('bg-black-200');
+                navItems[i].classList.remove('bg-black-800');
+            }
+        }
+    }
+
+    function showLogos(evt) {
+        logos.classList.add('o0');
+
+        if (evt) {
+            clearInterval(logosCarouselPlayer);
+            logosCurrentPage = parseInt(evt.currentTarget.getAttribute('data-page') || 0);
+        }
+    
+        setTimeout(function() {
+            for (var i = 0; i < logos.children.length; ++i) {
+                console.log("logos start", logosShown * logosCurrentPage)
+                console.log("logos end", (logosShown * logosCurrentPage) + logosShown)
+                if (
+                    (i >= logosShown * logosCurrentPage) &&
+                    (i < (logosShown * logosCurrentPage) + logosShown)
+                ) {
+                    logos.children[i].classList.remove('d-none');
+                } else {
+                    logos.children[i].classList.add('d-none');
+                }
+            }
+
+            logos.classList.remove('o0');
+
+            updateNav();
+
+            if (logosCurrentPage >= logosTotalPages) {
+                logosCurrentPage = 0;
+            } else {
+                logosCurrentPage++;
+            }
+        }, 300);        
+    }
+
+    showLogos();
+
+    logosCarouselPlayer = setInterval(function() { showLogos(); }, logosCarouselTime);
+})(); 
+
+
+(function () {
+    var billingPeriodSwitch = document.querySelectorAll('input[name="billing-period"]');
+
+    billingPeriodSwitch.forEach(function(radio) {
+        radio.addEventListener('change', function(e) {
+            var cycle = e.target.checked ? 'annually' : 'monthly';
+            var notCycle = e.target.checked ? 'monthly' : 'annually';
+
+            document.querySelectorAll('.js-billed-' + cycle).forEach(function(price) {
+                price.classList.remove('d-none');
+            });
+            document.querySelectorAll('.js-billed-' + notCycle).forEach(function(price) {
+                price.classList.add('d-none');
+            });
+        });
+    });
+})(); 
+
+
+window.onload = function () {
+  var userSlider = document.querySelector(".js-user-slider");
+  var userWordsData = userSlider.getAttribute("data-words").split(",");
+  var userWords;
+  var userWordsWidth = [];
+  var userSliderCount = 0;
+  var userSliderStarted = false;
+  var userSliderTimeout;
+  var userSliderPrev = null;
+  var userSliderCur;
+
+  function userSliderInit() {
+    userSlider.innerHTML = "";
+
+    for (var i = 0; i < userWordsData.length; ++i) {
+      var _span = document.createElement("span");
+      var _text = document.createTextNode(userWordsData[i]);
+      var _elm = _span.appendChild(_text);
+
+      userSlider.appendChild(_span);
+    }
+
+    userWords = userSlider.childNodes;
+
+    userSlider.style.width = userSlider.clientWidth + "px";
+    userSlider.style.height = userSlider.clientHeight + "px";
+
+    userSliderRun();
+  }
+
+  function userSliderRun() {
+    clearTimeout(userSliderTimeout);
+
+    userSliderTimeout = setTimeout(
+      function () {
+        userSlider.classList.add("js-loaded");
+
+        userSliderStarted = true;
+
+        userSliderCur = userWords[userSliderCount];
+
+        if (userSliderPrev) {
+          userSliderPrev.classList.add("js-user-slide-out");
+          userSliderCur.classList.remove("js-user-slide-out");
+          userSliderCur.classList.add("js-user-slide-in");
+        } else {
+          userSliderCur.classList.add("js-user-slide-init");
+        }
+
+        userSlider.style.width = userSliderCur.clientWidth + "px";
+        userSlider.style.height = userSliderCur.clientHeight + "px";
+
+        userSliderPrev = userSliderCur;
+
+        if (userSliderCount === userWords.length - 1) {
+          userSliderCount = 0;
+        } else {
+          userSliderCount++;
+        }
+
+        userSliderRun();
+      },
+      userSliderStarted ? 2000 : 0
+    );
+  }
+
+  userSliderInit();
+};
+
+(function () {
+  var useCases = document.querySelectorAll(".js-use-case");
+  var useCaseClassActive = "js-use-case wmn3 fc-white d:fc-black js-use-case--is-active c-pointer grid--cell bg-black-700 d:bg-black-100 py32 bar-lg bs-md";
+  var useCaseClass = "js-use-case c-pointer fc-black-025 h:bg-black-800 bar-lg grid--cell py32";
+  var useCaseCur = 0;
+  var useCasePlayer;
+  var useCaseSpeed = 5000;
+
+  for (var i = 0; i < useCases.length; ++i) {
+    var useCase = useCases[i];
+    useCase.addEventListener("click", function(event) { 
+        useCaseShow(event.currentTarget, i);
+        clearInterval(useCasePlayer);
+    });
+  }   
+
+  function useCaseReset() {
+    for (var i = 0; i < useCases.length; ++i) {
+      useCases[i].className = useCaseClass;
+    }
+  }
+
+  function useCaseShow(el) {
+    useCaseReset();
+    el.className = useCaseClassActive;
+  }
+
+  function useCaseInit() {
+      useCasePlayer = setInterval(function() {
+          if (useCaseCur === useCases.length) {
+              useCaseCur = 0;
+          }
+          useCaseShow(useCases[useCaseCur++])
+      }, useCaseSpeed)
+  }
+
+  //useCaseInit();
+})(); 
+
+StackExchange.ready(function () { StackExchange.responsiveness.addSwitcher(); })
+
+(function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            StackExchange.ready(function () {
+
+                StackExchange.ga.init({
+                    autoLink: ["stackoverflow.blog","info.stackoverflowsolutions.com","stackoverflowsolutions.com"],
+                    sendTitles: true,
+                    tracker: window.ga,
+                    trackingCodes: [
+                        'UA-108242619-1'
+                    ],
+                        checkDimension: 'dimension42'
+                });
+
+
+
+
+
+                    StackExchange.ga.setDimension('dimension3', 'Home/Index');
+
+
+                StackExchange.ga.trackPageView();
+            });
+                

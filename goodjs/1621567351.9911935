@@ -1,0 +1,291 @@
+
+   facet="False";
+  
+
+  window.kwait = window.kwait || [] ;
+  window.kwait.deps = window.kwait.deps || [] ;
+
+
+  window.kwait.deps["social_js"] = ["jquery_js"];
+
+window.kwait.deps["video_js"] = ["jquery_js"];
+
+   var pageHref='https://www.repubblica.it/';
+	var pageType='homepage';
+	
+	var term='/repubblica';
+  
+var wt_map_tree='/repubblica/homepage';var webtrekkConfig={trackId:"253822047730481",trackDomain:"a.gedidigital.it",
+  domain : "REGEXP:^(([^/.]+\\.)+)?((webtrekk\\.net)|(3nz|capital|deejay|entietribunali|gedispa|gelestatic|gelocal|gruppoespresso|huff(ingtonpost|post-italia)|jobpricing|kataweb|lescienze|m2o|mymovies|nationalgeographic|repstatic|repubblica|storiebrevi|trovacinema|sportellocuore|lastampa|ilsecoloxix|film|sport|stile|televisione|turismo|consigli|xixeventi|memorie)\\.it|((huffpost|limesonline|it\\.businessinsider|tuttoaffari)\\.com)|(specchiodeitempi\\.org))$",	
+  cookie:"3",contentId:"",tabBrowsing:false,ignorePrerendering:true};
+
+
+	try {
+    window.kwasyncsetup = true;
+    var kw_alt_tlh_regex_3 = /^https?:\/\/(test|pre|www)\.lanuovasardegna\.it/;
+    if (location.href.match(kw_alt_tlh_regex_3)) {
+		window.kwasyncsetup = false;
+    }
+} catch(e) {
+    console.log('%c[head.js] %c ERROR SETTING kwasyncsetup value => setting false as fallback', 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F'); 
+    window.kwasyncsetup = false;
+}
+function MNZ_RICH() {}
+function MNZ_moreContent() {}
+function asr_error() {
+    window.kw_tlh_adSetupAvailable = false;
+    console.log("%c[head.js] %cLoading TLH Library Manually", 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F');
+    var script = document.createElement('script');
+    script.async = false;
+    script.onload = function (e, elem) {
+		window.kw_tlh_ready();
+		console.log('%c[head.js] %cDETECTED MISSING ADSETUP LOADING -> loading single js tlh configuration', 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F'); 
+	};
+	script.onerror = function (e) {
+		console.log(e);
+	};
+	script.src = "https://www.repstatic.it/cless/common/esi/tlh/alternative_tlh_config_50.js";
+	document.head.appendChild(script);
+}
+function kw_tlh_ready() {
+    console.log('%c[head.js] %cTLH READY EVENT RECEIVED', 'padding: 2px; background: yellow; color: #000', 'padding: 2px; color: #00F'); 
+}
+
+
+	{
+  		"@context": "http://schema.org",
+  		"@type": "NewsMediaOrganization",
+  		"name": "La Repubblica",
+  		"logo":   {
+    		"@type": "ImageObject",
+    		"url": "https://www.repstatic.it/cless/main/nazionale/2016-v1/img/home/larepubblica.png",
+    		"width": 400,
+    		"height": 80
+  		},
+  		"sameAs":   [
+    		"https://www.facebook.com/Repubblica/",
+    		"https://twitter.com/repubblica"
+  		],
+  		"masthead": "https://www.repubblica.it/static/trust/ethics/#gerenza",
+  		"foundingDate": "1976-01-14",
+  		"correctionsPolicy": "https://www.repubblica.it/static/trust/ethics/#correzioni",
+  		"publishingPrinciples": "https://www.repubblica.it/static/trust/ethics/",
+  		"url": "http://www.repubblica.it",
+  		"ethicsPolicy": "https://www.repubblica.it/static/trust/ethics/#codice-etico",
+  		"missionCoveragePrioritiesPolicy": "https://www.repubblica.it/static/trust/ethics/#missione",
+  		"diversityPolicy": "",
+  		"verificationFactCheckingPolicy": "https://www.repubblica.it/static/trust/ethics/#fcfonti",
+  		"unnamedSourcesPolicy": "https://www.repubblica.it/static/trust/ethics/#fonti-anonime",
+  		"actionableFeedbackPolicy": "https://www.repubblica.it/static/trust/ethics/#scrivi",
+  		"ownershipFundingInfo": "https://www.repubblica.it/static/trust/ethics/#gerenza",
+  		"diversityStaffingReport": "",
+  		"contactPoint":   [
+							{
+								"@type": "ContactPoint",
+      							"contactType": "Newsroom Contact",
+      							"email": "repubblicawww@repubblica.it ",
+      							"url": "https://www.repubblica.it/static/trust/ethics/#scrivi"
+    						},
+        					{
+      							"@type": "ContactPoint",
+      							"contactType": "Public Engagement",
+      							"email": "desk_repubblica.it@repubblica.it",
+      							"url": "https://www.repubblica.it/static/trust/ethics/#scrivi"
+    						}
+  						]
+	}
+
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_302038033", "https://video.repubblica.it/embed/edizione/bari/bari-il-laboratorio-costruisce-protesi-per-animali-restituiamo-dignita-alla-loro-vita-le-richieste-da-tutta-italia/387206/387931?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_302038033&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           function videoSetup() {
+                viewability_handler.desnapWhenEnded = false;
+                viewability_handler.snappedPlayerWidth =  533;
+                viewability_handler.snappedPlayerHeight = 300;
+                viewability_handler.storePlayerIdSnapTimeout = true;
+                viewability_handler.setNotActivePlayerId("301999278");
+            }
+            kwait.push([["video_js"], "videoSetup"]);
+          
+
+           kwait.push(["video_js", function(){
+            VideoEmbed.main(".gd-row");
+            VideoEmbed.addIframe("player_ex_301999278", "https://video.repubblica.it/embed/gediwatch/il-detective-della-natura-e-il-mistero-del-sarago-di-gomma/387315/388040?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=true&width=233&height=132&pm=true&pl_listen=true&gd-facet-webview=false&el=player_ex_301999278&kwdebug=true&mode=embed&wpm&dp", 996, 560, true, true);
+            }])
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_301963778", "https://video.repubblica.it/embed/dossier/migranti-2019/ceuta-l-abbraccio-tra-un-migrante-e-una-volontaria-le-lacrime-del-ragazzo-sopravvissuto-alla-traversata/387382/388106?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_301963778&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_301866384", "https://video.repubblica.it/embed/cronaca/giovani/387304/388029?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_301866384&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_298696094", "https://video.repubblica.it/embed/cronaca/digitali-e-uguali-molinari-i-pc-del-progetto-in-una-scuola-romana-per-colmare-le-disuguaglianze-educative/386305/387031?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_298696094&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_300946512", "https://video.repubblica.it/embed/edizione/milano/digitali-e-uguali-federico-marchetti-consegna-i-pc-agli-studenti-la-preside-fondamentali-per-una-scuola-di-periferia/387035/387760?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_300946512&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_300756446", "https://video.repubblica.it/embed/cronaca/quarant-anni-fa-l-attentato-al-papa-l-ombra-della-morte-su-piazza-san-pietro/386979/387704?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_300756446&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_301057254", "https://video.repubblica.it/embed/spettacoli-e-cultura/il-tuo-corpo-e-per-gli-altri-non-per-te-il-corto-sul-piu-odioso-dei-crimini-la-violenza-sulle-donne/387088/387813?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_301057254&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_297156693", "https://video.repubblica.it/embed/dossier/colloquia/scienza-e-solidarieta-per-un-pianeta-sostenibile/385466/386194?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_297156693&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+
+           kwait.push([["video_js"], function(){
+                VideoEmbed.main(".gd-row");
+                VideoEmbed.addIframe("player_ex_301001377", "https://video.repubblica.it/embed/viaggi/roma-e-l-esquilino-il-nuovo-museo-degli-artisti-di-piazza-vittorio/386998/387723?adref=https://www.repubblica.it&generation=pageload&responsive=true&autostart=false&width=482&height=272&gd-facet-webview=false&pm=true&pl_listen=true&el=player_ex_301001377&kwdebug=true&mode=embed", 316, 178, true, false);
+            }
+            ]);
+          
+kwait.push(["home_js", "home"]);
+
+(function postSegmentsWhenReady(maxRetries) {
+    if (!maxRetries) {
+        console.log('Max retries for fetching Krux segments exhausted');
+    } else {
+        var pollingInterval = 5000;
+        if (!window.Krux) {
+            console.log('Waiting for Krux object');
+            --maxRetries
+            setTimeout(postSegmentsWhenReady, pollingInterval, maxRetries);
+        } else {
+            if (!window.Krux.segments) {
+                console.log('Waiting for Krux.segments');
+                --maxRetries
+                setTimeout(postSegmentsWhenReady, pollingInterval, maxRetries);
+            } else {
+                console.log('Krux.segments available... posting');
+                var segments = window.Krux.segments;
+                var retrieveSegmentsXhr = new (XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+                retrieveSegmentsXhr.open('POST', '/plugins/public/krux/segments', true);
+                retrieveSegmentsXhr.setRequestHeader('Content-type', 'application/json');
+                retrieveSegmentsXhr.withCredentials = true;
+                retrieveSegmentsXhr.send(JSON.stringify(segments));
+            }
+        }
+    }
+})(3);
+
+
+  if (!window.Zephr) window.Zephr = {};
+  window.Zephr.accessDetails = {"authenticated":false,"accessDecisions":{},"entitlements":{},"credits":{},"meters":{},"trialTrackingDetails":[],"testGroups":{"6575d3f2-2bb2-4641-ab18-55a71f76c6ff":"A","d51f93c2-cf5b-41e9-ab0a-8e8ecb45dc83":"A","746fb34e-7416-479f-a38e-2cb4c88b49c9":"A","04268b89-337b-4373-bfd6-456a7df94e6c":"B","e481b8ce-6fe9-480d-a16e-b40462cf4659":"B","8c5d5081-cd8e-42a2-8a1d-57c2d644f5a4":"A","8a1e6bc2-bf44-445b-82ec-9282461bbbc4":"A","98568817-9ddf-4b4e-9f39-ba5e98d55a5a":"A","4ffbe8f6-2dcc-4c3a-a6dd-df35ea9f1575":"A","f87dfb18-d532-4d98-bf91-f068c33ad3af":"A","5413e28c-f496-4979-a490-7a3f8758fab4":"B","7024e44c-0a15-46d1-aa2a-33dce1ee5c29":"B","f147d226-da04-47d7-958c-6495c6f4a38c":"C","ee6b7c8e-8b85-46f3-a362-2e0feca04260":"B","10d18f81-7532-49bd-b147-d92e8a07cb57":"A","0ceb39bc-1dce-45a4-9c98-98cb27112aab":"B","3ef018f4-33fa-4036-82f3-9e0a100d35d1":"B","61e3a934-aad5-4d9f-87c3-0092a1f0a6ea":"D","12ad6c0a-93b6-4d09-ba35-72bedfa2d71f":"A","43b150ff-41b2-4e29-b03d-00ef61491e61":"B"},"activeProducts":[]};
+
+
+  window.Zephr = window.Zephr || {};
+  window.Zephr.includeOutcomes = true;
+  window.Zephr.outcomesAsEvents = true;
+  window.Zephr.groupFields = true;
+
+
+(function() {
+    var xhr = new(XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+    xhr.open('GET', '/blaize/datalayer', true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var response;
+            try {
+                response = JSON.parse(xhr.response);
+            } catch (e) {
+                response = xhr.response;
+            }
+            if (xhr.status === 200) {
+                for (var dataLayerFieldName in response) {
+                    if (!(dataLayerFieldName in window)) window[dataLayerFieldName] = [];
+
+                    var pageView = response[dataLayerFieldName];
+                    var events = [];
+
+                    if (window.Zephr && window.Zephr.includeOutcomes && window.Zephr.outcomes) {
+                        pageView.zephrOutcomes = window.Zephr.outcomes;
+
+                        if (window.Zephr.outcomesAsEvents) {
+                            Object.keys(window.Zephr.outcomes || []).forEach(function(outcomeKey) {
+                                var outcomeEvent = {
+                                    event: "zephr-outcome-" + outcomeKey,
+                                    featureId: outcomeKey,
+                                    featureLabel: window.Zephr.outcomes[outcomeKey].featureLabel,
+                                    outcomeId: window.Zephr.outcomes[outcomeKey].outcomeId,
+                                    outcomeLabel: window.Zephr.outcomes[outcomeKey].outcomeLabel,
+                                };
+                                events.push(outcomeEvent);
+                            });
+                        }
+                    }
+                    if (window.Zephr && window.Zephr.accessDetails) {
+                        (window.Zephr.accessDetails.trialTrackingDetails || []).forEach(function(details) {
+                            var type = details.entitlementType === 'credits' ? 'credits' : 'meters';
+                            var trial = (window.Zephr.accessDetails[type] || {})[details.entitlementId];
+                            if (!trial) return;
+                            if (window.Zephr.groupFields && !pageView.zephrTrials) pageView.zephrTrials = {};
+                            if (details.creditsRemainingKey) {
+                                if (window.Zephr.groupFields) {
+                                    pageView.zephrTrials[details.creditsRemainingKey] = trial.remainingCredits;
+                                } else {
+                                    pageView[details.creditsRemainingKey] = trial.remainingCredits;
+                                }
+                            }
+                            if (details.creditsUsedKey) {
+                                if (window.Zephr.groupFields) {
+                                    pageView.zephrTrials[details.creditsUsedKey] = trial.totalCredits - trial.remainingCredits;
+                                } else {
+                                    pageView[details.creditsUsedKey] = trial.totalCredits - trial.remainingCredits;
+                                }
+                            }
+                        });
+                    }
+                    if (Object.keys(pageView).length) {
+                        pageView.event = "zephr-pageview";
+                        events.unshift(pageView);
+                    }
+                    if (!events.length) continue;
+
+                    events.forEach(function(event) {
+                        window[dataLayerFieldName].push(event);
+                    });
+                }
+                var readyEvent = document.createEvent('Event');
+                readyEvent.initEvent('zephr.dataLayerReady', true, true);
+                document.dispatchEvent(readyEvent);
+            }
+        }
+    }
+    xhr.send({});
+})();
+

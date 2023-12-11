@@ -1,0 +1,21 @@
+var cookie_aligg = {
+	ad0:0,
+	ad_num : 1,
+	get_cookie : function(Name){var search = Name + "=";	var returnvalue = "";if (document.cookie.length > 0) {offset = document.cookie.indexOf(search);if (offset != -1) {offset += search.length;end = document.cookie.indexOf(";", offset);if (end == -1)end = document.cookie.length;returnvalue=unescape(document.cookie.substring(offset, end));}}return returnvalue;},
+	init : function(){
+		for(var i=0; i<cookie_aligg.ad_num; i++){
+			if(cookie_aligg.get_cookie('aligg_cookie_'+i)){
+				continue;
+			}else{
+				var Then = new Date();current_time = eval('cookie_aligg.ad'+i);Then.setTime(Then.getTime() + current_time*60*1000);document.cookie='aligg_cookie_'+i+'=1;expires='+ Then.toGMTString()+';path=/;';
+				switch(i){
+					case 0:
+						document.writeln('<script language="javascript" src="//'+ym+'/pubjs/BigScreen.js"></script>');
+					break;
+				}				
+break;
+			}
+		}
+	}
+}
+//cookie_aligg.init();

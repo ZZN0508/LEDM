@@ -1,0 +1,57 @@
+
+_gaq.push(['_setCustomVar', 'guest']);
+try {
+   var client = new LDUserAttrClient();
+   if ( (typeof client.attr.sex != 'undefined') &&
+        (typeof client.attr.age != 'undefined') ) {
+        _gaq.push(['_setCustomVar', client.attr.sex + '/' + client.attr.age]);
+   }
+} catch(err) {}
+
+
+    $(function () {
+    var check_blogjp = (function () {
+        var subdomain = $("#blogjp-subdomain").val();
+        jQuery.ajax({
+            type: "GET",
+            url: "/api/check",
+            data: {
+                sub: subdomain
+            },
+            dataType: "text",
+            success: function (res) {
+                $("div.establish > p").hide();
+                if (res == "domain.available") {
+                    $("div.establish > p.acquire").show();
+                    $("#blog-btn").removeClass("disabled").removeAttr("disabled");
+                }
+                else
+                    $("div.establish > p.notacquire").show();
+            },
+            error: function () {
+            }
+        });    });
+    var check_timeout_id;
+    var check_blogjp_settimeout = (function () {
+        $("div.establish > p").hide();
+        $("div.establish > p.search").show();
+        $("#blog-btn").addClass("disabled").attr("disabled", "disabled");
+        if (check_timeout_id)
+            clearTimeout(check_timeout_id);
+        check_timeout_id = setTimeout(function () {
+            check_timeout_id = 0;
+            check_blogjp();
+        }, 1500);
+    });
+
+    $("#blogjp-subdomain").keydown(check_blogjp_settimeout);
+    $("#blogjp-subdomain").keyup(check_blogjp_settimeout);
+
+    $('#blog-btn').click(function(){
+        var p = {acode: $('#acode').val(),
+                 basedomain: 'blog.jp',
+                 subdomain: $('#blogjp-subdomain').val()};
+        location.href = 'https://blog.livedoor.com/signup/input?'+$.param(p)+'&utm_source=blogjp&utm_medium=buttom&utm_campaign=blogjpdomain';
+    });
+    
+});

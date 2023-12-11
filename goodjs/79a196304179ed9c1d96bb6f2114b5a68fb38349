@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Master Style Test Page</title>
+<link href="styles/master_style.css" rel="stylesheet" type="text/css" />
+
+<script language="JScript">
+
+  function ForceHardSpace(ss)
+  {
+     var r, re;                    //Declare variables.
+     re = / /g;                    //Create regular expression pattern.
+     r = ss.replace(re, "&nbsp;"); //Replace " " with "&nbsp;".
+     return(r);                    //Return string with replacement made.
+  }
+
+  function SetupStrings()
+  {
+    var button_text = ForceHardSpace(window.external.GetString(6));
+    document.getElementById("launch_button").innerHTML = external.GetExitButtonText();
+    document.getElementById("PoweredBy").innerText = window.external.GetString(9);
+  }
+
+  function EnableLaunchButton()
+  {
+    document.getElementById("enabled_button").className = 'button_color';
+    document.getElementById("enabled_button").disabled = false;
+  }
+
+  function PIP_SetProgress(p)
+  {
+    // the magic way to show the progress bar.
+    if (p >= 0)
+    {
+       document.getElementById("enabled_button").disabled = true;
+      // make the general progress and "launch" button visible
+      var progress_container = document.getElementById("ProgressBarContainer");
+      progress_container.style.display = "block";
+    }
+
+    var ProgressTextString = window.external.GetProgressText(p);
+    document.getElementById("ProgressText").innerText = ProgressTextString;
+    document.getElementById("ProgressBar").style.width = '' + p + '%';
+
+    // as soon as the progress exceeds 0%, then display the left end cap as full.
+    if (p > 99)
+    {
+      EnableLaunchButton();
+    }
+
+  }
+
+</script>
+
+
+</head>
+
+<body scroll=no onload="javascript:SetupStrings()" style="background-image:none;">
+
+
+<div id="ProgressBarContainer" style="display:none;">
+  <div class="bar_container">
+    <div class="bar_progress" id="ProgressBar"></div>
+  </div>    
+
+  <div class="bar_left"></div>
+  <div class="bar_right"></div>
+  <div class="bar_tile"></div>
+
+  <div class="bar_percent_complete" id="ProgressText">&nbsp;</div>
+</div>
+
+<div class="poweredby" id="PoweredBy"></div>
+
+<div class="launch_button">
+  <a href="javascript:window.external.LaunchSoftware();" class="button_disabled" disabled=true id="enabled_button">
+	<span id="launch_button"></span>
+  </a>
+</div>
+
+
+
+
+</body>
+</html>

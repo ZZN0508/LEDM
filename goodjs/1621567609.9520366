@@ -1,0 +1,19 @@
+function scrollDoor(menus,divs,current,notCurrent,show,hide){
+   for(var i = 0 ; i < menus.length ; i++)
+   { 
+     document.getElementById(menus[i]).value = i; 
+  /*   document.getElementById(menus[i]).href = "javascript:void(0)";     */
+     document.getElementById(menus[i]).onmouseover = function(){    
+   for(var j = 0 ; j < menus.length ; j++)
+   {      
+     document.getElementById(menus[j]).className = notCurrent;
+     document.getElementById(divs[j]).className = hide;
+   }
+   document.getElementById(menus[this.value]).className = current; 
+   document.getElementById(divs[this.value]).className = show;  
+     }
+   }
+ }
+window.onload = function(){
+  scrollDoor(["n1","n2"],["d1","d2"],"current","","show","");
+}// JavaScript Document

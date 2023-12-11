@@ -1,0 +1,18 @@
+{"@context":"http:\/\/schema.org","@type":"Corporation","name":"Keap","url":"https:\/\/keap.com","telephone":"1-855-557-4965","address":{"streetAddress":"1260 South Spectrum Boulevard","addressLocality":"Chandler","addressRegion":"AZ","postalCode":"85286","addressCountry":"USA"}}
+
+window.utag_data = {};
+utag_data.cloudflare_ip_country = 'jp';
+utag_data.is_gdpr_country = 'false';
+utag_data.session_page_count = '1';
+utag_data.website_environment = 'production';
+utag_data.request_timestamp = 1621567553;
+utag_data.feature_flags = 'email_capture,buy_now,live_demo_exit_intent';
+
+
+    utag_data.content_grouping = '1|Homepage';
+    
+
+window.marketoFormRedirects={};
+window.PHXTS=1621567553;setInterval(function(){PHXTS++},1000);
+
+window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"NRJS-41a625ca791ef393d3a","applicationID":"357313063","transactionName":"NlQGZUYFX0QEAUAKXw8eJVJADV5ZShJVBFVPWQtcURRQUAA=","queueTime":3,"applicationTime":201,"atts":"GhMFEw4fTEo=","errorBeacon":"bam-cell.nr-data.net","agent":""}

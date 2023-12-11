@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": "pageConfig",
+    "namespace": "xq0190qh3ds",
+    "id": "0wc6tgzgnbwq",
+    "version": "2.1.0"
+  },
+  "template": {
+    "parseAssets": true,
+    "cacheFirst": true,
+    "url": "https://sale.alibaba.com/pages/new_arrivals/index.html?&categoryIds=44&ncms_static=true&topOfferIds=62454712847",
+    "type": "html"
+  },
+  "apis": [],
+  "assets": [],
+  "apiData": {}
+}

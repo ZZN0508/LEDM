@@ -1,0 +1,80 @@
+$(function() {
+    if ($('#countn') && $('#countn').attr('generalid') == 1192960) {
+        $.cachedScript('//ja2.gamersky.com/common/SearchBox_index.js');
+    } else {
+        $.cachedScript('//ja2.gamersky.com/common/SearchBox_content.js');
+    }
+    $.fn.SearchForm = function() {
+        return this.each(function() {
+            var $div = $(this),
+                SearchNname = "Search"; //Cookie名称;
+            var $form = $div.find(".form");
+            var $radio = $div.find(".radio");
+            var $con = $div.find(".con");
+            var SearchCkie = cookie(SearchNname);
+            if (SearchCkie != null) {
+                var n = parseInt(SearchCkie);
+                $radio.find("input").removeAttr("checked").eq(n).attr("checked", "checked");
+                $form.attr("class", "form none").eq(n).toggleClass("none block");
+                $div.find(".txt").html($con.find("a").eq(n).text());
+            }
+
+            $radio.on("mouseenter", function() {
+                $(this).addClass("cur");
+            }).on("mouseleave", function() {
+                $(this).removeClass("cur");
+            }).on("click", "input", function() {
+                var i = $radio.find("input").index($(this));
+                var value = $form.eq(i == 0 ? 1 : 0).find(".Sinput").val();
+                $form.attr("class", "form none").eq(i).toggleClass("none block").find(".Sinput").val(value);
+                cookie(SearchNname, i, {
+                    path: "/",
+                    domain: "gamersky.com",
+                    expires: 180
+                });
+            }).on("click", "a", function(event) {
+                event.preventDefault();
+                var $this = $(this),
+                    i = $con.find("a").index($this);
+                $radio.removeClass("cur").find(".txt").html($this.text());
+                var value = $div.find(".form.block .Sinput").val();
+                $form.attr("class", "form none").eq(i).toggleClass("none block").find(".Sinput").val(value);
+                cookie(SearchNname, i, {
+                    path: "/",
+                    domain: "gamersky.com",
+                    expires: 180
+                });
+            });
+
+            $div.on("click", function() {
+                if (!$(this).hasClass("cur")) {
+                    $(this).addClass("cur");
+                }
+            }).on("keyup", "input", function(event) {
+                var keyCode = event.keyCode || event.which;
+                if (keyCode == 13 || keyCode == 108) {
+                    event.preventDefault();
+                    $(this).parent().find(".Sbutton").click();
+                }
+            }).on("click", ".Sbutton", function(event) {
+                event.preventDefault();
+                var $this = $(this),
+                    transmit = '';
+                var s = $this.siblings("input[name='s']").val();
+                var q = $this.siblings("input[name='q']").val();
+                var action = $this.parent().attr("data-action");
+                if (action.indexOf("so.gamersky.com") != -1) {
+                    transmit = '?s=' + encodeURI(s);
+                } else if (action.indexOf("soso.gamersky.com") != -1) {
+                    transmit = '&q=' + encodeURI(q);
+                } else {
+                    transmit = '&wd=' + encodeURI(q + ' site:gamersky.com');
+                }
+
+                var url = action + transmit;
+                window.open(url).location = url;
+            });
+        });
+    };
+    $("#search-form").SearchForm(); //搜索下拉
+});

@@ -1,0 +1,1 @@
+function l(n,r=1){let t=[];for(let e=1;e<=r;e++)t.push(n);return t.flat()}var o=n=>r=>l(r,n),u=o(3),c=o(4),a=n=>{let r=n.length;return r<10?c(n):r>=10&&r<20?u(n):n};export{l as a,a as b};

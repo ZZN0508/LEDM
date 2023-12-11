@@ -1,0 +1,369 @@
+(function(){
+        window.foxstrike = window.foxstrike || {};
+        window.foxstrike.cmd = window.foxstrike.cmd || [];
+        window.foxstrike.config = {
+            taboolaEnabled: true,
+            meta: {
+                channel: "fnc",
+                pageType: "homepage",
+                section: "root"
+            },
+            props: {
+				adPrefetchMargin: 350,
+				adRefreshRate: 30
+			}
+            , dynamicProps: {"deskPeakInterstitial":true,"deskInterstitial":false,"mobPeakInterstitial":true,"mobInterstitial":false,"tabletPeakInterstitial":true,"tabletInterstitial":false,"adPrefetchMarginDeskSectionBucket":"250","adRefreshRateDeskSectionBucket":"30","adSizesDeskSectionBucket":"970x250,728x90,300x250,320x50,300x50,fluid","adPrefetchMarginMobBan1":"125","adRefreshRateMobBan1":"30","adSizesMobBan1":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan2":"125","adRefreshRateMobBan2":"30","adSizesMobBan2":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan3":"125","adRefreshRateMobBan3":"30","adSizesMobBan3":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan4":"125","adRefreshRateMobBan4":"30","adSizesMobBan4":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan5":"125","adRefreshRateMobBan5":"30","adSizesMobBan5":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan6":"125","adRefreshRateMobBan6":"30","adSizesMobBan6":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan7":"125","adRefreshRateMobBan7":"30","adSizeseMobBan7":"","adPrefetchMarginMobBan8":"125","adRefreshRateMobBan8":"30","adSizesMobBan8":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan9":"125","adRefreshRateMobBan9":"30","adSizesMobBan9":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan10":"125","adRefreshRateMobBan10":"30","adSizesMobBan10":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan11":"125","adRefreshRateMobBan11":"30","adSizesMobBan11":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan12":"125","adRefreshRateMobBan12":"30","adSizesMobBan12":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan13":"125","adRefreshRateMobBan13":"30","adSizesMobBan13":"300x250,320x50,300x50,fluid","adPrefetchMarginMobBan14":"250","adRefreshRateMobBan14":"30","adSizesMobBan14":"","adPrefetchMarginMobBan15":"250","adRefreshRateMobBan15":"30","adSizesMobBan15":"","adPrefetchMarginMobSectionBucket":"250","adRefreshRateMobSectionBucket":"30","adSizesMobSectionBucket":"","adPrefetchMarginTabLb1":"125","adRefreshRateTabLb1":"30","adSizesTabLb1":"728x90,320x50,300x50","adPrefetchMarginTabBan1":"125","adRefreshRateTabBan1":"30","adSizesTabBan1":"728x90,300x250,320x50,300x50,fluid","adPrefetchMarginTabBan2":"125","adRefreshRateTabBan2":"30","adSizesTabBan2":"728x90,300x250,320x50,300x50,fluid","adPrefetchMarginTabBan3":"125","adRefreshRateTabBan3":"30","adSizesTabBan3":"728x90,300x250,320x50,300x50,fluid","adPrefetchMarginTabBan4":"125","adRefreshRateTabBan4":"30","adSizesTabBan4":"728x90,300x250,320x50,300x50,fluid","adPrefetchMarginTabBan5":"125","adRefreshRateTabBan5":"30","adSizesTabBan5":"728x90,300x250,320x50,300x50,fluid","adPrefetchMarginTabBan6":"125","adRefreshRateTabBan6":"30","adSizesTabBan6":"728x90,300x250,320x50,300x50,fluid","adPrefetchMarginTabSectionBucket":"250","adRefreshRateTabSectionBucket":"30","adSizesTabSectionBucket":""}
+        };
+
+        var dt = new Date();
+        window.foxstrike.cmd.push(function(Strike){
+            if (Strike.plog) {
+                Strike.plog('global', {
+                    msg: 'page load start',
+                    start: true,
+                    ts: dt
+                });
+            }
+        });
+    })();
+[{
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://www.foxnews.com",
+      "logo": "https://global.fncstatic.com/static/orion/styles/img/fox-news/logos/fox-news-desktop.png",
+      "sameAs": [
+        "https://www.facebook.com/FoxNews",
+        "https://twitter.com/foxnews",
+        "https://www.google.com/+FoxNews",
+        "https://www.instagram.com/foxnews",
+        "https://www.linkedin.com/company/fox-news-channel"
+      ],
+      "contactPoint": [
+        { "@type": "ContactPoint",
+          "telephone": "+1-888-369-4762",
+          "contactType": "customer service"
+        }
+      ]
+    },
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": "https://www.foxnews.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.foxnews.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }]
+(window.BOOMR_mq=window.BOOMR_mq||[]).push(["addVar",{"rua.upush":"false","rua.cpush":"true","rua.upre":"true","rua.cpre":"false","rua.uprl":"false","rua.cprl":"false","rua.cprf":"false","rua.trans":"SJ-03c09ac5-4c01-411c-8205-3350987e7bca","rua.cook":"false","rua.ims":"false","rua.ufprl":"false","rua.cfprl":"false","rua.isuxp":"","rua.texp":""}]);
+window.foxstrike = window.foxstrike || {};
+          window.foxstrike.cmd = window.foxstrike.cmd || [];
+          window.foxstrike.cmd.push(function(Strike){
+              Strike.loadAd({
+                  target: '#desk-hp-mktupdte',
+                  iu: 'desk/hp/mktupdte',
+                  sizes: ['88x31'],
+                  pos: 'stocksearch'
+              });
+          });
+window.foxstrike = window.foxstrike || {};
+            window.foxstrike.cmd = window.foxstrike.cmd || [];
+            window.foxstrike.cmd.push(function(Strike){
+                Strike.loadAd({
+                    target: '#tablet-hp-mktupdte',
+                    iu: 'tw/hp/mktupdte',
+                    sizes: ['88x31'],
+                    pos: 'stocksearch'
+                });
+            });
+window.foxstrike = window.foxstrike || {};
+        window.foxstrike.cmd = window.foxstrike.cmd || [];
+        window.foxstrike.cmd.push(function(Strike){
+            Strike.loadAd({
+                target: '#desktop_desk-hp-lb1',
+                iu: 'desk/hp/lb1',
+                sizes: (function(sz){
+                    return (sz && sz.length > 0) ? (sz.split(',')) : [];
+                })('970x250,970x66,728x90'),
+                pos: 'desktop',
+                props: {
+                    adPrefetchMargin: typeof parseInt( 250 ) === "number" ? parseInt( 250 ) : 350,
+                    adRefreshRate: typeof parseInt( 40 ) === "number" ? parseInt( 40 ) : 30
+                }
+            });
+        });
+window.foxstrike = window.foxstrike || {};
+        window.foxstrike.cmd = window.foxstrike.cmd || [];
+        window.foxstrike.cmd.push(function(Strike){
+            Strike.loadAd({
+                target: '#desktop_desk-hp-ban1',
+                iu: 'desk/hp/ban1',
+                sizes: (function(sz){
+                    return (sz && sz.length > 0) ? (sz.split(',')) : [];
+                })('300x250,300x600,160x600,fluid'),
+                pos: 'desktop',
+                props: {
+                    adPrefetchMargin: typeof parseInt( 250 ) === "number" ? parseInt( 250 ) : 350,
+                    adRefreshRate: typeof parseInt( 30 ) === "number" ? parseInt( 30 ) : 30
+                }
+            });
+        });
+(function($){
+        // component type is: component-iframed.covid-19-vaccine-distribution
+        // set up Event listener for height
+        function handler(payload){
+            var data = payload.data || null,
+                info = data.data || null;
+            if (data && data.type === 'component-iframed.covid-19-vaccine-distribution' && info && info.event === 'resize') {
+                 $('.component-iframed.covid-19-vaccine-distribution > iframe:first').css('height', info.data);
+             }
+        }
+
+        try {
+            window.addEventListener("message", handler, false);
+        } catch (error) {
+            window.attachEvent("onmessage", handler);
+        }
+    })(window.jQuery);
+window.foxstrike = window.foxstrike || {};
+        window.foxstrike.cmd = window.foxstrike.cmd || [];
+        window.foxstrike.cmd.push(function(Strike){
+            Strike.loadAd({
+                target: '#desktop_desk-hp-ban2',
+                iu: 'desk/hp/ban2',
+                sizes: (function(sz){
+                    return (sz && sz.length > 0) ? (sz.split(',')) : [];
+                })('300x250,fluid'),
+                pos: 'desktop',
+                props: {
+                    adPrefetchMargin: typeof parseInt( 250 ) === "number" ? parseInt( 250 ) : 350,
+                    adRefreshRate: typeof parseInt( 30 ) === "number" ? parseInt( 30 ) : 30
+                }
+            });
+        });
+window.foxstrike = window.foxstrike || {};
+      window.foxstrike.cmd = window.foxstrike.cmd || [];
+      window.foxstrike.cmd.push(function(Strike){
+          Strike.loadVendorUnit({
+              uid: 'hp-1',
+              platforms: {
+                  desktop: {
+                      mode: 'thumbnails-a',
+                      placement: 'Mid-Homepage'
+                  },
+                  mobile: {
+                    mode: 'thumbnails-d',
+                    placement: 'Mid-Homepage Stream'
+                }
+              }
+          });
+      });
+window.foxstrike = window.foxstrike || {};
+        window.foxstrike.cmd = window.foxstrike.cmd || [];
+        window.foxstrike.cmd.push(function(Strike){
+            Strike.loadAd({
+                target: '#desktop_desk-hp-lb2',
+                iu: 'desk/hp/lb2',
+                sizes: (function(sz){
+                    return (sz && sz.length > 0) ? (sz.split(',')) : [];
+                })('970x250,728x90,300x250,320x50,300x50,fluid'),
+                pos: 'desktop',
+                props: {
+                    adPrefetchMargin: typeof parseInt( 75 ) === "number" ? parseInt( 75 ) : 350,
+                    adRefreshRate: typeof parseInt( 30 ) === "number" ? parseInt( 30 ) : 30
+                }
+            });
+        });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb3',
+                            iu: 'desk/hp/lb3',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb4',
+                            iu: 'desk/hp/lb4',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb5',
+                            iu: 'desk/hp/lb5',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb6',
+                            iu: 'desk/hp/lb6',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb7',
+                            iu: 'desk/hp/lb7',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb8',
+                            iu: 'desk/hp/lb8',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb9',
+                            iu: 'desk/hp/lb9',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+window.foxstrike = window.foxstrike || {};
+                    window.foxstrike.cmd = window.foxstrike.cmd || [];
+                    var strikeConfig = (window.foxstrike.config) ? JSON.parse(JSON.stringify(window.foxstrike.config)) : {},
+                        strikeConfigDynamicProps = strikeConfig.dynamicProps || {},
+                        adRefreshRateDeskSectionBucket = parseInt( strikeConfigDynamicProps.adRefreshRateDeskSectionBucket, 10) || 30,
+                        adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                        adPrefetchMarginDeskSectionBucket = parseInt( strikeConfigDynamicProps.adPrefetchMarginDeskSectionBucket, 10) || 500;
+
+                    window.foxstrike.cmd.push(function(Strike){
+                        Strike.loadAd({
+                            target: '#desktop_desk-hp-lb10',
+                            iu: 'desk/hp/lb10',
+                            sizes: (function(){
+                                var adSizesDeskSectionBucket = strikeConfigDynamicProps.adSizesDeskSectionBucket || [],
+                                    adSizes = adSizesDeskSectionBucket;
+                                return (adSizes && adSizes.length > 0) ? (adSizes.split(',')) : [];
+                            })(),
+                            pos: 'desktop',
+                            props: {
+                                adRefreshRate: adRefreshRateDeskSectionBucket,
+                                adPrefetchMargin: adPrefetchMarginDeskSectionBucket
+                            }
+                        });
+                    });
+(function(FNC){ if (FNC.Loader) { FNC.Loader.init(); } }(window.FNC || {}));

@@ -1,0 +1,167 @@
+$(document).ready(function () {
+    console.log("Cashback offers and compare buy offers js called!");
+    /* beta url: var b = "https://icicicashbackapi.lmssecure.com/api/v1/trending_deals?apikey=ec25c81b-433c-4db2-8406-773db55d562f"; */
+ var b = "https://icicicashback.com/api/v1/trending_deals?apikey=ec25c81b-433c-4db2-8406-773db55d562f";
+    var c = "https://beta-icicibank.paymetry.com/paymetryservice/public/getIciciData";
+    var f = $("#cashbackJsonDefault").val();
+    var e = $("#compareandbuyJsonDefault").val();
+    var a = "<div class='trending-deals-slider'>";
+    var d = "<div class='trending-deals-slider'>";
+    $.ajax({
+  dataType: "json",
+        url: b,
+        type: "GET",
+        success: function (g) {
+            cashbackOffers = g.data;
+            console.log("cashbackOffersApi json :" + g.data.length);
+            console.log("cashbackOffersApi :" + cashbackOffers);
+            for (var j = 0; j < cashbackOffers.length; j++) {
+                var h = cashbackOffers[j].attributes.name;
+                var k = cashbackOffers[j].attributes.short_description;
+                var m = cashbackOffers[j].attributes.unique_identifier;
+                var l = cashbackOffers[j].attributes.image_url;
+    var activeateUrl;
+    var storeUrl;
+    var n;
+    activeateUrl = "/offers/cashback-and-buy/cashback-and-buy.page?redirectURL=/stores/"+m+"";
+    storeUrl = "/offers/cashback-and-buy/cashback-and-buy.page?storeUrl=/stores/"+m+"";
+                d +=
+                    "<div class='deal-card'><div class='deal-inner'><div class='image'><a target='blank' href='"+ storeUrl +"'><img style='height: 50px; width: 90px;' src='" +
+                    l +
+                    "'></a></div><div class='offer'><a target='blank' href='"+ storeUrl +"'>" +
+                    h +
+                    "</a></div><div class='description'>" +
+                    k +
+                    "</div><div class='buttons'><a href='"+ activeateUrl +"' class='ic-btn'>Activate now</a></div></div></div>";
+            }
+            d = d + "</div>";
+            $("#cashbackOffers").append(d);
+            $("#cashbackOffers").css("display", "block");
+            $("#cashbackOffersdefault").css("display", "none");
+            $("#cashback .trending-deals-slider").slick({
+                dots: true,
+                infinite: true,
+                autoplay: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                responsive: [
+                    { breakpoint: 1025, settings: { slidesToShow: 2 } },
+                    { breakpoint: 767, settings: { slidesToShow: 1, arrows: false, dots: true } },
+                    { breakpoint: 640, settings: { slidesToShow: 1, arrows: false, dots: true, centerMode: true, centerPadding: "15px", infinite: true } },
+                ],
+            });
+        },
+        error: function () {
+            console.log("cashbackOffersApi calling unsuccessful");
+        },
+    });
+    $.ajax({
+        dataType: "json",
+        url: c,
+        type: "GET",
+        success: function (s) {
+            comparebuyOffers = s.products;
+            console.log("compareBuyOffersApi json :" + s.products.length);
+            console.log("compareBuyOffersApi :" + comparebuyOffers);
+            for (var k = 0; k < s.products.length; k++) {
+                var r = s.products[k]["ribbonLabel"];
+                var o = s.products[k]["title"];
+                var p = s.products[k]["imageUrl"];
+                var n = s.products[k]["vendorRedirectUrl"];
+                var g = s.products[k]["productDetailPageUrl"];
+                var j = s.products[k]["CTA_Name_1"];
+                var h = s.products[k]["CTA_Name_2"];
+                var l = s.products[k]["maxprice"];
+                var m = s.products[k]["minprice"];
+                var q = s.products[k]["tagname"];
+                if (typeof FedID != "undefined") {
+                    if (FedID != null && FedID != "") {
+                       n = n + "&" + q + "=" + FedID;
+                       g = g;
+         a +=
+      "<div class='deal-card'><div class='deal-inner'><div class='offer-strip'><p>" +
+      r +
+      "</p></div><div class='img-offer-wrapper'><div class='image'><a href='" + n + "'><img src='" +
+      p +
+      "'/></a></div><div class='offer'><div class='name' style='font-size:medium;'><a href='" + n + "'>" +
+      o +
+      "</a></div><div classs='price-wrapper'><span class='new-price'> " +
+      m +
+      "</span><span class='old-price'> " +
+      l +
+      "</span></div></div></div><div class='buttons'><a href='" +
+      n +
+      "' class='ic-btn'>" +
+      j +
+      "</a><a href='" +
+      g +
+      "' class='ic-more'>" +
+      h +
+      "</a></div></div></div>";
+                    } else {
+                        console.log("No Fed id found null or blank");
+                        n = "https://nli.icicibank.com/NewRetailWeb/paymeTryHome.htm?paymid=XXXXXXXXXX";
+      g = g;
+      a +=
+      "<div class='deal-card'><div class='deal-inner'><div class='offer-strip'><p>" +
+      r +
+      "</p></div><div class='img-offer-wrapper'><div class='image'><a href='" + g + "'><img src='" +
+      p +
+      "'/></a></div><div class='offer'><div class='name' style='font-size:medium;'><a href='" + g + "'>" +
+      o +
+      "</a></div><div classs='price-wrapper'><span class='new-price'> " +
+      m +
+      "</span><span class='old-price'> " +
+      l +
+      "</span></div></div></div><div class='buttons'><a href='" +
+      g +
+      "' class='ic-btn'>" +
+      h +
+      "</a></div></div></div>";
+                    }
+                } else {
+                    console.log("Fed id is undefined");
+                    n = "https://nli.icicibank.com/NewRetailWeb/paymeTryHome.htm?paymid=XXXXXXXXXX";
+                    g = g;
+     a +=
+     "<div class='deal-card'><div class='deal-inner'><div class='offer-strip'><p>" +
+     r +
+     "</p></div><div class='img-offer-wrapper'><div class='image'><a href='" + g + "'><img src='" +
+     p +
+     "'/></a></div><div class='offer'><div class='name' style='font-size:medium;'><a href='" + g + "'>" +
+     o +
+     "</a></div><div classs='price-wrapper'><span class='new-price'> " +
+     m +
+     "</span><span class='old-price'> " +
+     l +
+     "</span></div></div></div><div class='buttons'><a href='" +
+     g +
+     "' class='ic-btn'>" +
+     h +
+     "</a></div></div></div>";
+                }
+            }
+            a = a + "</div>";
+            $("#comparebuy").append(a);
+            $("#comparebuy").css("display", "block");
+            $("#comparebuydefault").css("display", "none");
+            $("#compareandbuy .trending-deals-slider").slick({
+                dots: true,
+                infinite: true,
+                autoplay: true,
+                speed: 500,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                responsive: [
+                    { breakpoint: 1025, settings: { slidesToShow: 2 } },
+                    { breakpoint: 767, settings: { slidesToShow: 1, arrows: false, dots: true } },
+                    { breakpoint: 640, settings: { slidesToShow: 1, arrows: false, dots: true, centerMode: true, centerPadding: "15px", infinite: true } },
+                ],
+            });
+        },
+        error: function () {
+            console.log("compareBuyOffersApi calling unsuccessful");
+        },
+    });
+});

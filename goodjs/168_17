@@ -1,0 +1,1 @@
+define("home/v2015/module/v-bar",function(){var a={init:function(){async.loadResource(["//assets.1688.com/??app/vbar/1.0.0/js/1688-config.js,app/vbar/1.0.0/view.js"])}};return a});;

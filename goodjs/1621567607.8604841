@@ -1,0 +1,192 @@
+
+      //<![CDATA[
+      $(document).ready(function(){
+        $('.list_lh li:even').addClass('lieven');
+      })
+      $(function(){
+        $("div.list_lh").myScroll({
+          speed:90, //数值越大，速度越慢
+          rowHeight:90 //li的高度
+        });
+      });
+      //]]>
+    
+
+        //<![CDATA[
+        window._newsroom = window._newsroom || [];
+        window._newsroom.push({pageTemplate: 'home'});
+        window._newsroom.push({pageDashboard: 'home'});
+        window._newsroom.push('auditClicks');
+        window._newsroom.push('trackPage');
+
+        !function (e, f, u) {
+          e.async = 1;
+          e.src = u;
+          f.parentNode.insertBefore(e, f);
+        }(document.createElement('script'),
+          document.getElementsByTagName('script')[0], '//c2.taboola.com/nr/chinadaily-int/newsroom.js');
+        //]]>
+      
+
+        //<![CDATA[
+        var oSearchForm = document.getElementById('searchform');
+        var oSearchImg = document.getElementById('searchimg');
+        var oSearchTxt = document.getElementById('searchtxt');
+        oSearchImg.onclick = function (){
+          if(oSearchTxt.value != ''){
+
+
+            if($('.select_showbox')[0].innerHTML == 'Site Search'){
+              oSearchForm.action = 'http://newssearch.chinadaily.com.cn/en/search?query='+oSearchTxt.value;
+              oSearchForm.target = '_blank';
+              oSearchForm.submit();
+            }
+            else if($('.select_showbox')[0].innerHTML == 'Sogou Search'){
+              oSearchForm.action = 'https://english.sogou.com/english?query=' + oSearchTxt.value + '&amp;b_o_e=1&amp;ie=utf8 ';
+              oSearchForm.target = '_blank';
+              oSearchForm.submit();
+            }
+          }
+          else{
+            alert('请输入搜索内容')
+
+          }
+
+        };
+        document.onkeydown = function (event) {
+          var e = event || window.event || arguments.callee.caller.arguments[0];
+          if (e && e.keyCode == 13) {
+            if(oSearchTxt.value != ''){
+
+
+              if($('.select_showbox')[0].innerHTML == 'Site Search'){
+                oSearchForm.action = 'http://newssearch.chinadaily.com.cn/en/search?query='+oSearchTxt.value;
+                oSearchForm.target = '_blank';
+                oSearchForm.submit();
+              }
+              else if($('.select_showbox')[0].innerHTML == 'Sogou Search'){
+                oSearchForm.action = 'https://english.sogou.com/english?query=' + oSearchTxt.value + '&amp;b_o_e=1&amp;ie=utf8 ';
+                oSearchForm.target = '_blank';
+                oSearchForm.submit();
+              }
+            }
+            else{
+              alert('Please input your words')
+
+            }
+          }
+        };
+
+        $jq = jQuery.noConflict(true);
+        //]]>
+      
+
+              //<![CDATA[
+              Qfast.add('widgets', { path: "//www.chinadaily.com.cn/js/2016/terminator2.2.min.js", type: "js", requires: ['fx'] });
+              Qfast(false, 'widgets', function () {
+                K.tabs({
+                  id: 'fsD1',   //焦点图包裹id
+                  conId: "D1pic1",  //** 大图域包裹id
+                  tabId:"D1fBt",
+                  tabTn:"a",
+                  conCn: '.fcon', //** 大图域配置class
+                  auto: 1,   //自动播放 1或0
+                  effect: 'hide',   //效果配置
+                  eType: 'click', //** 鼠标事件
+                  pageBt:true,//是否有按钮切换页码
+                  bns: ['.prev', '.next'],//** 前后按钮配置class
+                  interval: 5000  //** 停顿时间
+                })
+              })
+              //]]>
+            
+
+            //<![CDATA[
+            Qfast.add('widgets', { path: "//www.chinadaily.com.cn/js/2016/terminator2.2.min.js", type: "js", requires: ['fx'] });
+            Qfast(false, 'widgets', function () {
+              K.tabs({
+                id: 'fsD2',   //焦点图包裹id
+                conId: "D1pic2",  //** 大图域包裹id
+                tabId:"D2fBt",
+                tabTn:"a",
+                conCn: '.fcon', //** 大图域配置class
+                auto: 1,   //自动播放 1或0
+                effect: 'hide',   //效果配置
+                eType: 'click', //** 鼠标事件
+                pageBt:true,//是否有按钮切换页码
+                bns: ['.prev', '.next'],//** 前后按钮配置class
+                interval: 15000  //** 停顿时间
+              })
+            })
+            //]]>
+          
+
+            <!--
+              picrun_ini()
+            //-->
+          
+//<![CDATA[
+                var num = cd_json.length;
+                document.write('<ul class=\"liBox2\">');
+                for(var i=0;i<5;i++){
+                  var n=i+1;
+                  document.write('<li><a href="'+cd_json[i].url+'" target="_blank">'+cd_json[i].title+'</a></li>');
+                }
+                document.write('</ul>');
+                //]]>
+              
+
+            //<![CDATA[
+            var oTime = new Date();
+            document.write(oTime.getFullYear());
+            //]]>
+            
+
+          //<![CDATA[
+          var oTime = new Date();
+          document.write(oTime.getFullYear());
+          //]]>
+          
+
+      //<![CDATA[
+      var toggleBtn = document.getElementById('showpc');
+      var vp = document.querySelector('meta[name=viewport]');
+      var vpHtml = document.getElementById('showpc');
+      vpHtml.textContent = 'desktop';
+      var flag = 0;
+      function transView(){
+        var x = (flag) ? 'initial-scale=1' : 'width=1300';
+        var  relax = (flag) ? 'none' : 'block';
+        vp.setAttribute('content', x);
+        document.getElementById("mobileView").style.display=relax;
+
+        flag^=1;
+      };
+
+
+      //]]>
+    
+//<![CDATA[
+      window._pt_lt = new Date().getTime();
+      window._pt_sp_2 = [];
+      _pt_sp_2.push('setAccount,3bfec6ad');
+      var _protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      (function() {
+        var atag = document.createElement('script'); atag.type = 'text/javascript'; atag.async = true;
+        atag.src = _protocol + 'js.ptengine.cn/3bfec6ad.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(atag, s);
+      })();
+      //]]>
+    
+
+          //<![CDATA[
+          wd_paramtracker("_wdxid=000000000000000000000000000000000000000000")
+          //]]>
+        
+
+          //<![CDATA[
+          _atrk_opts = { atrk_acct:"uM+9j1a8Dy00qn", domain:"chinadaily.com.cn",dynamic: true};
+          (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://certify-js.alexametrics.com/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+          //]]>
+        

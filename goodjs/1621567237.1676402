@@ -1,0 +1,32 @@
+
+    var carouselTime = 800;
+
+
+    var liveObj ={
+    'cctv6':{
+                cid:'999999',
+                configUrl:'https://www.1905.com/api/live/home_live_cctv6.xml',
+                video:'https://hlslive.1905.com/live/LIVEQYR8M567KGOXO/index.m3u8?tm=1622734471&sign=64d6513664670a3e9ba4a7f72173d1e2'
+            },
+    'mvideo':{
+        status: 2,
+        cid:"3372",
+        title: "辉煌历程 伟大复兴&mdash;&mdash;庆祝中国共产党成立100周年电影展播",
+        thumb: "https://image12.m1905.cn/nm/uploadfile/2021/0507/thumb_1_590_280_2021050704552319891.jpg",
+        start_time:"1620878400",
+        start_time_info:"5月13日12:00",
+                live:true,
+                live_xml_url:"https://www.1905.com/api/live/nm_live_3372.xml",
+        live_rtmp_url:"https://hlslive.1905.com/live/LIVE7MJMQ4388LJ4C/index.m3u8?tm=1622088000&sign=0c8061df114896a22bb6c6d0bc0fe084",
+        lookback_xml_url:"https://www.1905.com/api/live/nm_live_3372_lb.xml",
+        lookback_rtmp_url:""
+        }
+    };
+
+
+function __sdonclick(btvalue){ var obj_for_bi = document.getElementById("added_object_for_bi");
+     if (obj_for_bi) {
+         obj_for_bi.value = btvalue;
+        obj_for_bi.click()
+     }
+}

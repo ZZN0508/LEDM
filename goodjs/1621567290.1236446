@@ -1,0 +1,303 @@
+
+(function(obj) {
+  try {
+     obj.msSiteModeCreateJumplist('価格.com');
+     obj.msSiteModeAddJumpListItem ('新着・お知らせ一覧' , 'https://kakaku.com/whatsnew/', 'https://img1.kakaku.k-img.com/images/favicon/jumplist_08.ico');
+     obj.msSiteModeAddJumpListItem ('閲覧履歴' , 'https://history.kakaku.com/history/', 'https://img1.kakaku.k-img.com/images/favicon/jumplist_07.ico');
+     obj.msSiteModeAddJumpListItem ('マイページ（ログイン）' , 'https://kakaku.com/auth/mypage/mypage.aspx', 'https://img1.kakaku.k-img.com/images/favicon/jumplist_06.ico');
+     obj.msSiteModeAddJumpListItem ('価格.com トップページ' , 'https://kakaku.com/', 'https://img1.kakaku.k-img.com/images/favicon/kakaku.ico');
+   } catch(e) {}
+})(window.external);
+
+
+        window.grumi = {  
+         cfg: { 
+                advs: { 
+                "32148626": true,"32148866": true,"34370186": true,"43896146": true,"53230466": true,"55099106": true,"55782266": true,"56178266": true,"56721986": true,"56755586": true,"56755706": true,"58001426": true,"58360226": true,"59549306": true,"61257026": true,"4405549196": true,"4408203299": true,"4431326639": true,"4432999800": true,"4486756552": true,"4513783652": true,"4516158635": true,"4533800282": true,"4540986218": true,"4574259275": true,"4588395787": true,"4601311364": true,"4603732973": true,"4651130842": true,"4652320541": true,"4655370946": true,"4661301597": true,"4603732973": true,"4803603968": true,"4604246571": true,"4606374940": true,"4606374940": true,"4486756552": true,"4600251007": true,"4784061264": true,"4841433335": true,"4821338128": true,"4838987244": true,"31963346": true,"4699022531": true,"4556307520": true,"9625494599": 
+true,"57341306": true,"4829205770": true,"9385513290": true,"4873357430": 
+true,"4556307520": true
+
+                }
+         },      
+         key: '05814563-51c5-414e-a385-f7f2ed38328e'
+    };
+
+
+    !function (a9, a, p, s, t, A, g) { if (a[a9]) return; function q(c, r) { a[a9]._Q.push([c, r]) } a[a9] = { init: function () { q('i', arguments) }, fetchBids: function () { q('f', arguments) }, setDisplayBids: function () { }, targetingKeys: function () { return [] }, _Q: [] }; A = p.createElement(s); A.async = !0; A.src = t; g = p.getElementsByTagName(s)[0]; g.parentNode.insertBefore(A, g) }('apstag', window, document, 'script', '//c.amazon-adsystem.com/aax2/apstag.js');
+
+
+    var pbjs = pbjs || {};
+    pbjs.que = pbjs.que || [];
+    var headerBiddingSlots = [];
+    var nonHeaderBiddingSlots = [];
+
+
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+
+
+  googletag.cmd.push(function() {
+    var gptAdSlots=[];
+    gptAdSlots[0] = googletag.defineSlot('/116070306/k/top_300x250', [300,250], 'div-gpt-ad-k/top_300x250').addService(googletag.pubads());
+gptAdSlots[1] = googletag.defineSlot('/116070306/k/top_468x60', [468,60], 'div-gpt-ad-k/top_468x60').addService(googletag.pubads());
+gptAdSlots[2] = googletag.defineSlot('/116070306/k/header_text', [475,17], 'div-gpt-ad-k/header_text').addService(googletag.pubads());
+gptAdSlots[3] = googletag.defineSlot('/116070306/k/top_140x830l', [140,830], 'div-gpt-ad-k/top_140x830l').addService(googletag.pubads());
+gptAdSlots[4] = googletag.defineSlot('/116070306/k/top_140x830r', [140,831], 'div-gpt-ad-k/top_140x830r').addService(googletag.pubads());
+gptAdSlots[5] = googletag.defineSlot('/116070306/k/top_2nd_300x250', [300,250], 'div-gpt-ad-k/top_2nd_300x250').addService(googletag.pubads());
+    
+    headerBiddingSlots.push(gptAdSlots[0]);
+headerBiddingSlots.push(gptAdSlots[5]);
+
+    nonHeaderBiddingSlots.push(gptAdSlots[1]);
+nonHeaderBiddingSlots.push(gptAdSlots[2]);
+nonHeaderBiddingSlots.push(gptAdSlots[3]);
+nonHeaderBiddingSlots.push(gptAdSlots[4]);
+    
+    googletag.pubads().disableInitialLoad();
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().setTargeting('k_Top_Category', 'top');
+    googletag.pubads().setTargeting('domain', document.domain);
+    googletag.enableServices();
+
+    if (nonHeaderBiddingSlots.length > 0) {
+      googletag.pubads().refresh(nonHeaderBiddingSlots);
+    }
+  });
+
+  (function () {
+    apstag.init({
+      pubID: '3950',
+      adServer: 'googletag',
+      bidTimeout: 2000
+    });
+
+    var apstagSlots = [{
+  slotID: 'div-gpt-ad-k/top_300x250',
+  slotName: '/116070306/k/top_300x250',
+  sizes: [300,250]
+}, {
+  slotID: 'div-gpt-ad-k/top_2nd_300x250',
+  slotName: '/116070306/k/top_2nd_300x250',
+  sizes: [300,250]
+}];
+    function fetchHeaderBids() {
+      var bidders = ['a9', 'prebid'];
+
+      var requestManager = {
+        adserverRequestSent: false
+      };
+
+      bidders.forEach(function (bidder) {
+        requestManager[bidder] = false;
+      })
+
+      function allBiddersBack() {
+        var allBiddersBack = bidders
+          .map(function (bidder) { return requestManager[bidder]; })
+          .filter(function (bool) { return bool; })
+          .length === bidders.length;
+        return allBiddersBack;
+      }
+
+      function headerBidderBack(bidder) {
+        if (requestManager.adserverRequestSent === true) {
+          return;
+        }
+        if (bidder === 'a9') {
+          googletag.cmd.push(function () {
+            apstag.setDisplayBids();
+          });
+        } else if (bidder === 'prebid') {
+          // DO NOTHING
+        }
+
+        requestManager[bidder] = true;
+
+        if (allBiddersBack()) {
+          sendAdserverRequest();
+        }
+      }
+
+      function sendAdserverRequest() {
+        if (requestManager.adserverRequestSent === true) {
+          return;
+        }
+        requestManager.adserverRequestSent = true;
+        googletag.cmd.push(function () {
+          googletag.pubads().refresh(headerBiddingSlots);
+        });
+      }
+
+      function requestBids() {
+        if (apstagSlots.length > 0) {
+          apstag.fetchBids({
+            slots: apstagSlots
+          }, function(bids) {
+            headerBidderBack('a9');
+          });
+        }
+
+        googletag.cmd.push(function () {
+          pbjs.que.push(function () {
+            pbjs.rp.requestBids({
+              callback: function (bidResponses) {
+                headerBidderBack('prebid');
+              },
+              gptSlotObjects: headerBiddingSlots
+            });
+          });
+        });
+      }
+
+      requestBids();
+
+      window.setTimeout(function () {
+        sendAdserverRequest();
+      }, 3000);
+    }
+
+    fetchHeaderBids();
+  })();
+
+
+// jackAd 配信連動表示制御 -----
+googletag.cmd.push(function() {
+  var ua = navigator.userAgent.toLowerCase();
+  googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+    if (!event.isEmpty) {
+      if (event.slot.getAdUnitPath().indexOf('k/top_140x830l') > -1 && !(ua.indexOf('iphone') > 0 || ua.indexOf('ipad') > 0 || ua.indexOf('ipod') > 0 || ua.indexOf('android') > 0)) {
+        if (document.getElementsByTagName('html')[0].className == '') {
+          document.getElementsByTagName('html')[0].className = 'is-jack';
+        } else {
+          document.getElementsByTagName('html')[0].className += ' is-jack';
+        }
+      }
+    }
+  });
+});
+// jackAd  配信連動表示制御 ここまで -----
+
+
+
+window.yjDataLayer = window.yjDataLayer || [];
+function ytag() { yjDataLayer.push(arguments); }
+
+ytag({"type":"ycl_cookie", "config":{"ycl_use_non_cookie_storage":true}});
+
+
+    googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-k/header_text');
+    });
+    
+
+    googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-k/top_468x60');
+    });
+    
+<!--
+NAVI_1();
+//-->
+
+    googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-k/top_300x250');
+    });
+    
+
+<!--
+RDM(Math.random())
+//-->
+
+
+    googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-k/top_2nd_300x250');
+    });
+    
+
+    googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-k/top_140x830l');
+    });
+    
+
+    googletag.cmd.push(function() {
+        googletag.display('div-gpt-ad-k/top_140x830r');
+    });
+    
+<!--
+if(malltag) {
+ malltag.val.base = '010000';
+ malltag.set();
+}
+//-->
+<!--
+/* You may give each page an identifying name, server, and channel on
+the next lines. */
+s.pageName="価格.comトップ"
+s.server="kakaku.com"
+s.channel="トップ"
+s.pageType=""
+s.prop1="[top]価格.comトップ"
+s.prop46 = s.channel+"_"+(window.location.search.search(/(\?|&)cid=[^\?&#]+/) > -1 ? "campaign" : "organic")
+s.prop47 = s.prop1+"_"+(window.location.search.search(/(\?|&)cid=[^\?&#]+/) > -1 ? "campaign" : "organic")
+s.campaign=""
+/************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
+var s_code=s.t();if(s_code)document.write(s_code)//-->
+<!--
+if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+//-->
+<!--
+function onclickcatalyst(clicktype){
+var s=s_gi(s_code_gi);
+s.linkTrackVars="channel,prop1,prop2"
+s.channel="オール"
+s.prop1="[ALL]グループサイト枠"
+s.prop2="[ALL]グループサイト枠_" + clicktype;
+s.tl(this,'o','top_groupsite');
+}
+// -->
+<!--
+function onclickcatalyst_togroupsite(wakuID){
+var s=s_gi(s_account);
+s.usePlugins=false;
+s.linkTrackVars="prop1,prop44,eVar48";
+s.linkTrackEvents="None";
+s.prop1 = "[ALL]waku_click";
+s.prop44 = wakuID;
+s.eVar48 = wakuID;
+s.tl(this,'o',s.prop1);
+s.usePlugins=true;
+}
+// -->
+
+/* <![CDATA[ */
+var google_conversion_id = 1039335471;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "c2PLCJmdpQIQr4DM7wM";
+var google_conversion_value = 0;
+/* ]]> */
+
+
+<!--
+ShowShortcut("top");
+//-->
+
+/* <![CDATA[ */
+var google_tag_params = {
+ecomm_prodid: "",
+ecomm_pagetype: "home",
+ecomm_totalvalue: ""
+};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var google_conversion_id = 1039335471;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+
+
+    if(typeof _satellite !== "undefined"){
+        _satellite.pageBottom();
+    }

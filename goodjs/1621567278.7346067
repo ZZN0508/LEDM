@@ -1,0 +1,63 @@
+ 
+			var pubId=156180; 
+			var siteId=253824; 
+			var kadId=2619913; 
+			var kadwidth=300; 
+			var kadheight=250; 
+			var kadschain="SUPPLYCHAIN_GOES_HERE"; 
+			var kadUsPrivacy=""; <!-- Insert user CCPA consent string here for CCPA compliant inventory --> 
+			var kadtype=1; 
+			var kadGdpr=""; <!-- set to 1 if inventory is GDPR compliant --> 
+			var kadGdprConsent=""; <!-- Insert user GDPR consent string here for GDPR compliant inventory --> 
+			var kadpageurl= "https%3A%2F%2Fwww.5ch.net%2F"; 
+			
+ 
+			var pubId=156180; 
+			var siteId=253824; 
+			var kadId=2620198; 
+			var kadwidth=300; 
+			var kadheight=250; 
+			var kadschain="SUPPLYCHAIN_GOES_HERE"; 
+			var kadUsPrivacy=""; <!-- Insert user CCPA consent string here for CCPA compliant inventory --> 
+			var kadtype=1; 
+			var kadGdpr=""; <!-- set to 1 if inventory is GDPR compliant --> 
+			var kadGdprConsent=""; <!-- Insert user GDPR consent string here for GDPR compliant inventory --> 
+			var kadpageurl= "https%3A%2F%2Fwww.5ch.net%2F"; 
+			
+
+  $(document).ready(function () {
+		let showLeader = function(){
+			$('#js-to-itest').removeClass('hidden');
+		}
+  let observeLeader = function(){
+    setInterval(function(){
+			let d = $('#js-to-itest');
+			let top = $(window).scrollTop();
+			if(top > 45){
+				d.addClass('leader-fixed');
+				d.next('.post-item-box').addClass('margin-80px');
+			} else {
+				d.removeClass('leader-fixed');
+				d.next('.post-item-box').removeClass('margin-80px');
+			}
+		}, 50);
+  }
+
+  let getEnv = function(){
+    let ua = navigator.userAgent.toLowerCase();
+    let env = 'SP';
+    if (ua.indexOf("iphone")  === -1 &&
+        ua.indexOf("ipad")    === -1 &&
+        ua.indexOf("ipod")    === -1 &&
+        ua.indexOf("android") === -1) {
+      env = "PC";
+    }
+    return env;
+  }
+  let env = getEnv();
+  let wid = $(document).width();
+  if(env == 'SP' && 976 >= wid) {
+		showLeader();
+    observeLeader();
+  }
+  });

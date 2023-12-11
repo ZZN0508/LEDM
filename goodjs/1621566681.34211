@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "type": "pageConfig",
+    "namespace": "acwzwt7hv3m",
+    "id": "u41uwglqv5m",
+    "version": "2.1.0"
+  },
+  "template": {
+    "parseAssets": true,
+    "cacheFirst": true,
+    "type": "html",
+    "url": "https://www.alibaba.com/weeklydeals"
+  },
+  "apis": [],
+  "assets": [
+    "https://s.alicdn.com/@g/sc/list/0.0.63/sc-list/global-icon/global-icon.css",
+    "https://s.alicdn.com/@g/icbu-search-assets/search-boost/0.0.251/organic-list-new.css",
+    "https://s.alicdn.com/@g/sc/header-footer/0.0.48/sc-header-footer/header/entrances/global-header-new/header.css"
+  ],
+  "apiData": {}
+}

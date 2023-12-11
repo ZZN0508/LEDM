@@ -1,0 +1,397 @@
+
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.tribunnews.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.tribunnews.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+
+var googletag=googletag||{};function sendAdserverRequest(){pbjs.adserverRequestSent||((pbjs.adserverRequestSent=!0),googletag.cmd.push(function(){pbjs.que.push(function(){pbjs.setTargetingForGPTAsync(),googletag.pubads().refresh();});}));} (googletag.cmd=googletag.cmd||[]),googletag.cmd.push(function(){googletag.pubads().disableInitialLoad();}),pbjs.que.push(function(){pbjs.aliasBidder("criteo","criteorn");pbjs.setConfig({enableSendAllBids:true,priceGranularity:"high"});pbjs.addAdUnits(adUnits),pbjs.requestBids({bidsBackHandler:sendAdserverRequest,timeout:PREBID_TIMEOUT});}),setTimeout(function(){sendAdserverRequest();},FAILSAFE_TIMEOUT);
+
+googletag.cmd.push(function() {
+	var dlws = googletag.defineSlot('/31800665/Tribunnews/Home', [160, 600], 'div-Left-WideSkyscraper');
+	dlws.setTargeting('pos',['LeftWideSkyscraper']);
+	dlws.setTargeting('page',['home']);
+	dlws.addService(googletag.pubads());
+
+		var dtll = googletag.defineSlot('/31800665/Tribunnews/Home', [[970, 90], [970, 250]], 'div-Top-LargeLeaderboard');
+	dtll.setTargeting('pos',['TopLargeLeaderboard']);
+	dtll.setTargeting('page',['home']);
+	dtll.addService(googletag.pubads());
+	
+	var dtl = googletag.defineSlot('/31800665/Tribunnews/Home', [[728, 90], [970, 90], [970, 250]], 'div-Top-Leaderboard');
+	dtl.setTargeting('pos',['TopLeaderboard']);
+	dtl.setTargeting('page',['home']);
+	dtl.addService(googletag.pubads());
+
+	var drmr1 = googletag.defineSlot('/31800665/Tribunnews/Home', [[300, 600],[300, 250]], 'div-Right-MediumRectangle-1');
+	drmr1.setTargeting('pos',['RightMediumRectangle-1']);
+	drmr1.setTargeting('page',['home']);
+	drmr1.addService(googletag.pubads());
+
+	var drmr2 = googletag.defineSlot('/31800665/Tribunnews/Home', [300, 250], 'div-Right-MediumRectangle-2');
+	drmr2.setTargeting('pos',['RightMediumRectangle-2']);
+	drmr2.setTargeting('page',['home']);
+	drmr2.addService(googletag.pubads());
+
+	var drmr3 = googletag.defineSlot('/31800665/Tribunnews/Home', [[300, 600],[300, 250]], 'div-Right-MediumRectangle-3');
+	drmr3.setTargeting('pos',['RightMediumRectangle-3']);
+	drmr3.setTargeting('page',['home']);
+	drmr3.addService(googletag.pubads());
+
+	
+	
+	
+	
+	
+	
+		var dnp1 = googletag.defineSlot('/31800665/Tribunnews/Home', [300, 100], 'div-NativeAds-Populer-1');
+	dnp1.setTargeting('pos',['NativeAds-Populer-1']);
+	dnp1.setTargeting('page',['home']);
+	dnp1.addService(googletag.pubads());
+	
+		var dnp2 = googletag.defineSlot('/31800665/Tribunnews/Home', [300, 100], 'div-NativeAds-Populer-2');
+	dnp2.setTargeting('pos',['NativeAds-Populer-2']);
+	dnp2.setTargeting('page',['home']);
+	dnp2.addService(googletag.pubads());
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	var dbtjb = googletag.defineOutOfPageSlot('/31800665/Tribunnews/Home', 'div-NativeAds-BelowTJB');
+    dbtjb.setTargeting('pos',['Nativeads-BelowTJB']);
+    dbtjb.setTargeting('page',['home']);
+    dbtjb.addService(googletag.pubads());
+
+	
+	var dpt = googletag.defineOutOfPageSlot('/31800665/Tribunnews/Home', 'div-Premium-Topframe');
+	dpt.setTargeting('pos',['PremiumTopframe']);
+	dpt.setTargeting('page',['home']);
+	dpt.addService(googletag.pubads());
+
+
+	
+
+
+	googletag.pubads().enableSingleRequest();
+	googletag.pubads().collapseEmptyDivs();
+	googletag.enableServices();
+});
+
+
+            googletag.cmd.push(function() { googletag.display('div-Premium-Topframe'); });
+        
+
+function moveScroller_menu() {
+    var movemenu = function() {
+        var st = $(window).scrollTop();
+        var ot = $("#fixposmenu").offset().top - 30;
+        var s = $(".main-menu");
+        if(st > ot) {
+			if(window.innerHeight < 700) {
+				var heo = 0;
+			}else {
+				var heo = 1;
+			}
+            s.css({
+                "position": "fixed",
+                "top": "50px",
+				"left": "0",
+				"margin-top": "0",
+				"z-index":"9",
+				"opacity":heo,
+				"width":"100%",
+				"background":"rgba(1,111,186,.95)"
+            });
+			$(".main-menu > div > ul > li:first-child").css("border-left","1px solid rgba(0,0,0,.1)");
+			$(".main-menu > div > ul > li:last-child").css("border-right","1px solid rgba(0,0,0,.1)");
+			$(".theader").hover(function(){
+				s.css({
+					"opacity":"1",
+				});
+				if($( "#share" ).css( "top" ) == '60px') {
+					$("#share").css({
+						"top":"95px",
+					});
+				}
+			});
+			$("#fixposmenu").html("&nbsp");
+        } else {
+            if(st <= ot) {
+                s.css({
+                    "position": "relative",
+                    "top": "",
+					"opacity":"1",
+					"margin-top": "0px",
+					"background":"rgba(1,111,186,1)"
+                });
+				$(".main-menu > div > ul > li:first-child").css("border-left","none");
+				$(".main-menu > div > ul > li:last-child").css("border-right","none");
+				$("#fixposmenu").html("");
+       	     }
+        }
+    };
+    $(window).scroll(movemenu);
+    movemenu();
+}
+$(document).ready(function(){
+	moveScroller_menu();
+});
+
+
+$(function() {
+    $('#topil').bxSlider({
+		pagerCustom: '#navtopil',
+		autoHover: true,
+		pagerEvent:'mousemove',
+		controls:false
+    });
+}); 
+
+
+
+function moveScroller_sec() {
+    var movesec = function() {
+        var ssec = $("#popsec");
+        var stsec = $(window).scrollTop();
+        var otsecb = $("#fixpos_secb").offset().top - ssec.height() - 120;
+        if(stsec > otsecb) {
+			var vtop = 65;
+			if($(".main-menu").css("opacity") == "1") vtop = 65 + $(".main-menu").height();
+            ssec.css({
+                position: "fixed",
+                top: vtop,
+				zIndex: "2",
+            });
+			$("#fixposc").height(ssec.height());
+			$("#fixpos_sec").html("&nbsp;");
+			ssec.attr("class","w160");
+
+        } 
+		else {
+            ssec.css({
+               	position: "relative",
+        		top: ""
+            });
+			$("#fixposc").height(0);
+			$("#fixpos_sec").html("&nbsp;");
+			ssec.attr("class","w160");
+        }
+    };
+    $(window).scroll(movesec);
+    movesec();
+}
+$(document).ready(function(){
+	moveScroller_sec();
+});
+
+
+$(function() {
+	$("#bx-pager a").hover(function(){
+		slider.goToSlide($(this).attr("data-slide-index"));
+		$("#bx-pager a").removeClass("active");
+		$(this).addClass("active");
+	})
+
+    var slider = $('#slideshow').bxSlider({
+		mode: 'fade',
+		controls:false,
+		auto: false,
+		pause: 10000,
+		speed: 200,
+		pagerCustom: '#bx-pager',
+		autoHover: true,
+		autoControlsCombine:true,
+		autoHover: true,
+		pagerEvent:'mousemove',
+	});
+    $('#bx-pager').bxSlider({
+		auto: true,
+		pause: 50000,
+		pager:false,
+		controls:true,
+   	 	slideWidth: 250,
+    	minSlides: 5,
+    	maxSlides: 5,
+    	slideMargin: 0,
+  		infiniteLoop: false,
+  		hideControlOnEnd: true,
+		nextText: '<i class="fa fa-chevron-right"></i>',
+		prevText: '<i class="fa fa-chevron-left"></i>'
+	});
+
+}); 
+var ia = 1;
+var ibc = 1;
+
+{"@context":"https://schema.org","@type":"VideoObject","name":"Terpopuler Hari Ini","description":"Terpopuler Hari Ini","thumbnailUrl":"https://ivx-image.ivideosmart.com/serve/image/video/1689437?width=300","duration":"PT50S","uploadDate":"2021-05-21T00:15:49.000Z"}
+
+function moveScroller_boxright() {
+    var moveright = function() {
+        var wct = $(window).scrollTop();
+	    var brfc = $("#boxright_fixc").offset().top - $(window).height();
+        var brf = $("#boxright_fix");
+		var wbr = $("#boxright").width();
+		if(wct < brfc) {
+        	brf.css({
+                position: "relative",
+           		bottom: "",
+				width: wbr
+            });
+			$("#boxright_fixb").height(0);
+        }
+        if(wct > brfc) {
+            brf.css({
+                position: "fixed",
+                bottom: "0px",
+				width: wbr
+            });
+			$("#boxright_fixb").height(brf.height());
+        }
+    };
+    $(window).scroll(moveright);
+    moveright();
+}
+
+function moveScroller_menu2() {
+    var movemenu = function() {
+        var st = $(window).scrollTop();
+        var ot = $("#fixposmenu").offset().top - 30;
+        var s = $(".main-menu");
+        if(st > ot) {
+			if(window.innerHeight < 700) {
+				var heo = 0;
+			}else {
+				var heo = 1;
+			}
+            s.css({
+                "position": "fixed",
+                "top": "50px",
+				"left": "0",
+				"margin-top": "40px",
+				"z-index":"9",
+				"opacity":heo,
+				"width":"100%",
+				"background":"rgba(1,111,186,.95)"
+            });
+			$(".main-menu > div > ul > li:first-child").css("border-left","1px solid rgba(0,0,0,.1)");
+			$(".main-menu > div > ul > li:last-child").css("border-right","1px solid rgba(0,0,0,.1)");
+			$(".theader").hover(function(){
+				s.css({
+					"opacity":"1",
+				});
+				if($( "#share" ).css( "top" ) == '60px') {
+					$("#share").css({
+						"top":"95px",
+					});
+				}
+			});
+			$("#fixposmenu").html("&nbsp");
+        } else {
+            if(st <= ot) {
+                s.css({
+                    "position": "relative",
+                    "top": "",
+					"opacity":"1",
+					"margin-top": "0px",
+					"background":"rgba(1,111,186,1)"
+                });
+				$(".main-menu > div > ul > li:first-child").css("border-left","none");
+				$(".main-menu > div > ul > li:last-child").css("border-right","none");
+				$("#fixposmenu").html("");
+       	     }
+        }
+    };
+    $(window).scroll(movemenu);
+    movemenu();
+}
+
+$(document).ready(function(){
+	moveScroller_boxright();
+
+	jQuery.ajax({
+		  	type: "GET",
+			url: "https://www.tribunnews.com/main/getNewsbreaking",
+			dataType: 'text',
+			success: function(result){
+				if(result != ''){
+					var title = JSON.parse(result).title;
+					var url = JSON.parse(result).url;
+					var arrmatch = ["BREAKING NEWS: ", "BREAKING NEWS - ", "BREAKING NEWS ", "BREAKING NEWS, ", "Breaking News : "];
+
+					for(var i = 0; i < arrmatch.length; i++){
+						var match = RegExp(arrmatch[i], 'g');
+						if(title.match(match)){
+							title = title.replace(match, "");
+						}
+					}
+
+					$('#breaking-news-wrapper').show();
+					$('#titleid').html(title);
+					$('#ahrefid').attr('href', url);
+					moveScroller_menu2();
+				}
+			}
+	});
+});
+
+
+	const observer = lozad();
+	observer.observe();
+
+
+_atrk_opts = { atrk_acct:"6d9Cm1akKd605T", domain:"tribunnews.com",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+
+
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "8077308" });
+  (function() {
+    var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+    el.parentNode.insertBefore(s, el);
+  })();
+
+
+    if(document.cookie.indexOf('ukid=') == -1){
+        $.ajax({
+            url: 'https://apis.kompas.com/api/activity/user',
+            type: 'get',
+            dataType: "json",
+            success: function (res) {
+
+                let ukid = res.ukid;
+                let date = new Date();
+                    date.setDate(date.getDate() + 1);
+                let expired = date.toUTCString();
+                let domain = '.tribunnews.com';
+
+                document.cookie = "ukid="+ ukid +"; expires="+ expired +"; domain="+ domain +"; path=/"; // set cookie
+            }
+        });
+    }
+
+var actionjixie=document.querySelector('meta[name\x3d"actionjixie"]').content;window.jixie_o={userprofile:!0};window.jixie_p=window.jixie_p||[];
+"visit"==actionjixie?window.jixie_p.push({accountid:"9262bf2590d558736cac4fff7978fcb1",action:actionjixie,parameters:{itemid:google_tag_manager["GTM-NNJ5M3B"].macro(4),keywords:google_tag_manager["GTM-NNJ5M3B"].macro(5),title:google_tag_manager["GTM-NNJ5M3B"].macro(6),description:document.querySelector('meta[name\x3d"description"]').content}}):"viewsection"==actionjixie?window.jixie_p.push({accountid:"9262bf2590d558736cac4fff7978fcb1",action:actionjixie,category:document.querySelector('meta[name\x3d"sectionname"]').content}):window.jixie_p.push({accountid:"9262bf2590d558736cac4fff7978fcb1",
+action:actionjixie});

@@ -1,0 +1,132 @@
+function reportOneTrustEvents (source) {
+    var acceptCookieButton = document.querySelectorAll('#onetrust-accept-btn-handler')[0];
+    var privacyCentreButton = document.querySelectorAll('#onetrust-pc-btn-handler')[0];
+    var privacyCentreFooterButton = document.querySelectorAll('.ot-sdk-show-settings')[0];
+    var saveSettingsButton = document.querySelectorAll('.save-preference-btn-handler.onetrust-close-btn-handler')[0];
+    var allowAllButton = document.querySelectorAll('#accept-recommended-btn-handler')[0];
+    var closePrivacyButton = document.querySelectorAll('#close-pc-btn-handler')[0];
+
+    function uiControlULEM(label, section) {
+        if(source === 'hp') {
+            return function () {
+                window.uiControlHP(label, section);
+            };
+        }
+        if(source === 'wtt') {
+            return function() {
+                window.uiControlWTT(label, section);
+            };
+        }
+        if(source==='serp') {
+            return function() {
+                serpOneTrustTracking(label, section);
+            }
+        }
+        if(source==='web') {
+            return function() {
+                window.clickLogger(label, section);
+            }
+        }
+    }
+
+    function dialogViewULEM(name, section, zone) {
+        if(source === 'hp') {
+            return function () {
+                window.dialogViewHP(name, section, zone);
+            };
+        }
+        if(source === 'wtt') {
+            return function() {
+                window.dialogViewWTT(name, section, zone);
+            }
+        }
+        if(source==='serp') {
+            return function() {
+                serpOneTrustTracking(name, section, zone);
+            }
+        }
+        if(source==='web') {
+            return function() {
+                window.dialogLogger(name, section, zone);
+            }
+        }
+    }
+
+    function oneTrustErrorULEM(type) {
+        if(source === 'hp') {
+            window.errorULHP(type);
+        }
+        if(source === 'wtt') {
+            window.errorULWTT(type);
+        }
+        if(source==='serp') {
+            window.logError(type);
+        }
+        if(source==='web') {
+            window.errorLogger(type);
+        }
+    }
+
+    function cookieToggle() {
+        if (window.OnetrustActiveGroups.indexOf(',3,4,') !== -1) {
+            uiControlULEM('One Trust Cookies',JSON.stringify({"functional": "on", "targeting": "on"}))();
+        }
+        else if (window.OnetrustActiveGroups.indexOf(',3,4,') === -1 && window.OnetrustActiveGroups.indexOf(',3,') !== -1) {
+            uiControlULEM('One Trust Cookies',JSON.stringify({"functional": "on", "targeting": "off"}))();
+        }
+        else if (window.OnetrustActiveGroups.indexOf(',3,4,') === -1 && window.OnetrustActiveGroups.indexOf(',4,') !== -1) {
+            uiControlULEM('One Trust Cookies',JSON.stringify({"functional": "off", "targeting": "on"}))();
+        }
+        else {
+            uiControlULEM('One Trust Cookies',JSON.stringify({"functional": "off", "targeting": "off"}))();
+        }
+    }
+
+    Optanon.OnConsentChanged(cookieToggle);
+
+    if (!(Optanon.IsAlertBoxClosedAndValid())) {
+        dialogViewULEM('OneTrustCookieBanner', 'OneTrustCookieBanner', 'bottom')();
+    }
+
+    if (acceptCookieButton !== undefined) {
+        acceptCookieButton.addEventListener('click', uiControlULEM('accept-cookie', 'accept-cookie-button'));
+    }
+    else {
+        oneTrustErrorULEM('accept-cookie');
+    }
+
+    if (privacyCentreButton !== undefined) {
+        privacyCentreButton.addEventListener('click', dialogViewULEM('OneTrustPrivacyCentre', 'OneTrustPrivacyCentre', 'middle'));
+    }
+    else {
+        oneTrustErrorULEM('OneTrustPrivacyCentre');
+    }
+
+    if (privacyCentreFooterButton !== undefined) {
+        privacyCentreFooterButton.addEventListener('click', dialogViewULEM('OneTrustPrivacyCentre', 'OneTrustPrivacyCentreFooter', 'middle'));
+    }
+    else {
+        oneTrustErrorULEM('OneTrustPrivacyCentreFooter');
+    }
+
+    if (saveSettingsButton !== undefined) {
+        saveSettingsButton.addEventListener('click', uiControlULEM('save-cookie-settings', 'save-cookie-settings-button'));
+    }
+    else {
+        oneTrustErrorULEM('save-cookie-settings');
+    }
+
+    if (allowAllButton !== undefined) {
+        allowAllButton.addEventListener('click', uiControlULEM('allow-all-cookie-settings', 'allow-all-cookie-settings-button'));
+    }
+    else {
+        oneTrustErrorULEM('allow-all-cookie-settings');
+    }
+
+    if (closePrivacyButton !== undefined) {
+        closePrivacyButton.addEventListener('click', uiControlULEM('close-privacy-centre', 'close-privacy-centre-button'));
+    }
+    else {
+        oneTrustErrorULEM('close-privacy-centre');
+    }
+}

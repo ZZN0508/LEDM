@@ -1,0 +1,384 @@
+
+    (function () {
+      if(document.head.append) {
+        var dep = {"jquery":"https://www2.grouponcdn.com/layout/assets/jquery-5f007cd025.js","hogan":"https://www1.grouponcdn.com/layout/assets/hogan-bbf42d8c88.js","underscore":"https://www1.grouponcdn.com/layout/assets/underscore-cb0217df31.js","modernizr":"https://www1.grouponcdn.com/layout/assets/modernizr-14c60f3df7.js"};
+        "".split(',').forEach(function(i) {
+          if (dep[i]) {
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'script';
+            link.href = dep[i];
+            document.head.append(link);
+          }
+        });
+      }
+    }())
+  
+
+    (function(){
+      "use strict";
+      var isEdge, supported;
+      isEdge = !!navigator.appVersion.match(/edge\/1[2-5]/i);
+      supported = window.CSS && window.CSS.supports && window.CSS.supports('(--foo: red)') && !isEdge;
+      if (!supported) {
+        var s = document.createElement('script');
+        s.src = 'https://www2.grouponcdn.com/layout/assets/grpn-css-var-polyfill-1303d421d1.js';
+        document.head.appendChild(s);
+      }
+    })()
+  
+
+  (function () {
+  window.BOOMR = { t_lstart: +new Date() };
+(function(event) {
+  window.addEventListener(event, function() { window.BOOMR.t_lonload = +new Date(); }, false);
+})('onpagehide' in window ? 'pageshow' : 'load');
+window.applicationConfig = {};
+window.Groupon || (window.Groupon = {});
+  window.Groupon.Performance = {
+    pageReady: function(allow) {
+      if (allow) {
+        if (typeof BOOMR.page_ready === 'function') {
+          BOOMR.page_ready();
+        } else if (BOOMR && !BOOMR.t_done) {
+          BOOMR.t_done = new Date().getTime();
+        }
+      }
+    }
+  };
+  window.googletag || (window.googletag = {});
+window.Optimize = {
+  appConfig: {"page":{"id":"1279d073-2cda-46f7-b9d0-732cda96f73c-1621567543855-TH0","app":"pull","channel":"main","country":"US","lang":"en","locale":"en_US","brand":"groupon","division":null,"parentEventId":null,"parentPageId":null,"url":"https%3A%2F%2Fwww.groupon.com%2F","requestId":"71375ad4-309f-4a13-94ed-5a38cb9f56ed","bindingsVersion":"4.6.5","type":"homepage\/index"},"session":{"id":"1279d073-2cda-46f7-b9d0-732cda96f73c","referral":{"source":"direct"}},"user":{"browserId":"43d6e73a-1a68-17d2-2b93-bc174eeef33c","consumerId":null,"consumerIdSource":null,"lat":null,"lng":null,"loggedIn":false,"scid":null,"visit":null,"platform":"desktop","os":"Windows","browser":"Chrome","browserVersion":"71.0","device":"other","deviceType":"desktop","userAgent":"Mozilla\/5.0 (Windows NT 10.0; WOW64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/71.0.3578.98 Safari\/537.36","updatedParser":true,"requestedWith":""},"cookieDomain":".groupon.com","seed":"1279d073-2cda-46f7-b9d0-732cda96f73c","browse":{"page_type":"browse\/deals\/index"},"getaways":{"page_type":"channels\/show"},"goods":{"page_type":"goods\/index"},"home":{"page_type":"homepage\/index"},"touch_featured":{"page_type":"homepage\/index"},"touch_nearby":{"page_type":"nearby\/deals\/index"},"touch_page":{"page_type":"browse\/deals\/index"},"tracking":{"secureStorageEnabled":false},"advancedAnalytics":{"enabled":false,"serverDimensions":{}}},
+  appName: "homepage",
+  channel: "main",
+  cookieDomain: ".groupon.com",
+  pageType: "homepage/index",
+  
+  
+  
+  layoutConfig: {"suiteData":{"config":{"googleAnalyticsTrackingId":"UA-62974313-1","unthrottleGoogleAnalytics":false},"division":"chicago","country":"US","channel":"main","cookieDomain":"www.groupon.com","appName":"homepage"}},
+  delayBloodhound: true
+};
+window.Optimize.finchConfig = (function () {
+  var appConfig = {};
+  var layoutConfig = {};
+
+  appConfig = {"sms-download-link-experiment":{"experiments":{"sms-download-link-experiment":{"name":"sms-download-link-experiment","tracking":true,"variants":["control","sms_download_link"],"variant_settings":{"control":null,"sms_download_link":null},"control":"control","bucket_min":0,"bucket_max":249,"buckets":"0..249"}},"bucketing_salt":"sms-download-link-experiment","diversion_type":"CookieDiversion"},"pull-touch-recently-viewed":{"experiments":{"PullTouchRecentlyViewed":{"name":"PullTouchRecentlyViewed","tracking":true,"variants":["ShowWidget"],"variant_settings":{"Control":null,"ShowWidget":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"pull-touch-recently-viewed","diversion_type":"ConsumerIdDiversion"},"ION-9185-HomepagePaginationV2":{"experiments":{"ION-9185-HomepagePaginationV2":{"name":"ION-9185-HomepagePaginationV2","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showHomepagePaginationV2":true}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"ION-9185-HomepagePaginationV2","diversion_type":"CookieDiversion"},"TTD_CustomerReviewPopUpWeb_Q218_1":{"experiments":{"TTD_CustomerReviewPopUpWeb_Q218_1":{"name":"TTD_CustomerReviewPopUpWeb_Q218_1","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showTTDTopRatedCarousel":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"TTD_CustomerReviewPopUpWeb_Q218_1","diversion_type":"CookieDiversion"},"ION-9728-PullPreloadNextPageDealsBucketOnFrontend":{"experiments":{"ION-9728-PullPreloadNextPageDealsBucketOnFrontend":{"name":"ION-9728-PullPreloadNextPageDealsBucketOnFrontend","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->preloadNextPageDeals":true}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"ION-9728-PullPreloadNextPageDealsBucketOnFrontend","diversion_type":"CookieDiversion"},"ION-9455-affinity-based-app-download-touch":{"experiments":{"ION-9455-affinity-based-app-download-touch":{"name":"ION-9455-affinity-based-app-download-touch","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showAffinityAppDownloadCard":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"ION-9455-affinity-based-app-download-touch","diversion_type":"CookieDiversion"},"ION-9838-BCookieRVDDesktop":{"experiments":{"ION-9838-BCookieRVDDesktop":{"name":"ION-9838-BCookieRVDDesktop","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showBCookieBottomRVDDesktop":true}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"ION-9838-BCookieRVDDesktop","diversion_type":"CookieDiversion"},"ION-9773-ShowGrouponPlusPencilBanner":{"experiments":{"ION-9773-ShowGrouponPlusPencilBanner":{"name":"ION-9773-ShowGrouponPlusPencilBanner","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showGrouponPlusBannerAboveTheFold":true}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"ION-9773-ShowGrouponPlusPencilBanner","diversion_type":"CookieDiversion"},"ION-9919-OpenInAppOnSearch-finch":{"experiments":{"ION-9919-OpenInAppOnSearch-finch":{"name":"ION-9919-OpenInAppOnSearch-finch","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showOpenInAppButtonOnSearch":true,"pull->useBranchIODeepLink":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"bdbad0e0-2fc6-4706-a524-3695f559afc8","diversion_type":"CookieDiversion"},"ION-9919-OpenInAppOnEmailLandingPage-finch":{"experiments":{"ION-9919-OpenInAppOnEmailLandingPage-finch":{"name":"ION-9919-OpenInAppOnEmailLandingPage-finch","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showOpenInAppButtonOnSmuggledDeal":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"50e1f2fc-a7c0-41d6-a077-6d495c4636e4","diversion_type":"CookieDiversion"},"ION-10178-ShowLinkOnRvdDesktop":{"experiments":{"ION-10178-ShowLinkOnRvdDesktop":{"name":"ION-10178-ShowLinkOnRvdDesktop","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showLinkOnRvdDesktop":true}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"ION-10178-ShowLinkOnRvdDesktop","diversion_type":"CookieDiversion"},"LS-4925-Disable-Search-Desktop":{"experiments":{"LS-4925-Disable-Search-Desktop":{"name":"LS-4925-Disable-Search-Desktop","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-4925-Disable-Search-Desktop","diversion_type":"CookieDiversion"},"LS-4925-Disable-Search-Touch":{"experiments":{"LS-4925-Disable-Search-Touch":{"name":"LS-4925-Disable-Search-Touch","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-4925-Disable-Search-Touch","diversion_type":"CookieDiversion"},"TTD_AudienceOccasionsTouch_Q318_2":{"experiments":{"TTD_AudienceOccasionsTouch_Q318_2":{"name":"TTD_AudienceOccasionsTouch_Q318_2","tracking":false,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showTargetedAudienceOccasionsOnTouch":true}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"ad2cb282-9870-473d-ab1d-9cbeec59b6b1","diversion_type":"CookieDiversion"},"ION-10394-ScrollDepthOnBrowse":{"experiments":{"ION-10394-ScrollDepthOnBrowse":{"name":"ION-10394-ScrollDepthOnBrowse","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->addScrollDepthOnBrowse":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"ION-10394-ScrollDepthOnBrowse","diversion_type":"CookieDiversion"},"ION-10734-Scroll-To-Dismiss-Intercept-Touch":{"experiments":{"ION-10734-Scroll-To-Dismiss-Intercept-Touch":{"name":"ION-10734-Scroll-To-Dismiss-Intercept-Touch","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->scrollToCloseIntercept":true}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"ION-10734-Scroll-To-Dismiss-Intercept-Touch","diversion_type":"CookieDiversion"},"TTD_YMALForDealViews_Q119_2":{"experiments":{"TTD_YMALForDealViews_Q119_2":{"name":"TTD_YMALForDealViews_Q119_2","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->TTDshowYMALCarousel":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"TTD_YMALForDealViews_Q119_2","diversion_type":"CookieDiversion"},"LS-5996_RemoveAppModal_USCA":{"experiments":{"LS-5996_RemoveAppModal_USCA":{"name":"LS-5996_RemoveAppModal_USCA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-5996_RemoveAppModal_USCA","diversion_type":"CookieDiversion"},"ION-11499-RevampedMap":{"experiments":{"ION-11499-RevampedMap":{"name":"ION-11499-RevampedMap","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showRevampedMap":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"1838540b-275a-4dfc-8450-68f2d81929dd","diversion_type":"CookieDiversion"},"geekon-maps":{"experiments":{"geekon-maps":{"name":"geekon-maps","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{"pull->showGeekonMapView":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"geekon-maps","diversion_type":"CookieDiversion"},"web-project-taco":{"experiments":{"web-project-taco":{"name":"web-project-taco","tracking":false,"variants":["Control","Treatment"],"guards":[{"name":"inDivision","parameters":{"divisions":["london","long-island","new-york","houston"]}}],"variant_settings":{"Control":null,"Treatment":{"pull->enableTaco":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"web-project-taco","diversion_type":"CookieDiversion"},"MIA_Revamp_US":{"experiments":{"MIA_Revamp_US":{"name":"MIA_Revamp_US","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Treatment","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"MIA_Revamp_US","diversion_type":"CookieDiversion"},"20-05_touch_AddToCart_NA":{"experiments":{"20-05_touch_AddToCart_NA":{"name":"20-05_touch_AddToCart_NA","tracking":true,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"20-05_touch_AddToCart_NA","diversion_type":"CookieDiversion"},"LS-6587-Enable-Coupons-Voucher-Endpoint":{"experiments":{"LS-6587-Enable-Coupons-Voucher-Endpoint":{"name":"LS-6587-Enable-Coupons-Voucher-Endpoint","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6587-Enable-Coupons-Voucher-Endpoint","diversion_type":"CookieDiversion"},"LS-7602_CX90PromoBanner_Touch_US":{"experiments":{"LS-7602_CX90PromoBanner_Touch_US":{"name":"LS-7602_CX90PromoBanner_Touch_US","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7602_CX90PromoBanner_Touch_US","diversion_type":"CookieDiversion"},"LS-7621-Touch-CX90HeaderNA":{"experiments":{"LS-7621-Touch-CX90HeaderNA":{"name":"LS-7621-Touch-CX90HeaderNA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7621-Touch-CX90HeaderNA","diversion_type":"CookieDiversion"},"LS-7640-Desktop-CX90-IAMBannerNA":{"experiments":{"LS-7640-Desktop-CX90-IAMBannerNA":{"name":"LS-7640-Desktop-CX90-IAMBannerNA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7640-Desktop-CX90-IAMBannerNA","diversion_type":"CookieDiversion"},"LS-7653-Desktop-CX90SearchBarNA":{"experiments":{"LS-7653-Desktop-CX90SearchBarNA":{"name":"LS-7653-Desktop-CX90SearchBarNA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7653-Desktop-CX90SearchBarNA","diversion_type":"CookieDiversion"}};
+  layoutConfig = {"api-mobile-iphone-rtrGoods1408ZA":{"experiments":{"rtrGoods1408ZA":{"name":"rtrGoods1408ZA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"api-mobile-iphone-rtrGoods1408ZA","diversion_type":"CookieDiversion"},"sms-download-link-experiment":{"experiments":{"sms-download-link-experiment":{"name":"sms-download-link-experiment","tracking":true,"variants":["control","sms_download_link"],"variant_settings":{"control":null,"sms_download_link":null},"control":"control","bucket_min":0,"bucket_max":249,"buckets":"0..249"}},"bucketing_salt":"sms-download-link-experiment","diversion_type":"CookieDiversion"},"OptimizeSuiteGALoadLater":{"experiments":{"OptimizeSuiteGALoadLater":{"name":"OptimizeSuiteGALoadLater","tracking":false,"variants":["injectOnPageload"],"variant_settings":{"Control":null,"injectOnPageload":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"OptimizeSuiteGALoadLater","diversion_type":"CookieDiversion"},"LS-4100-intentmedia-gtm":{"experiments":{"LS-4100-intentmedia-gtm":{"name":"LS-4100-intentmedia-gtm","tracking":true,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-4100-intentmedia-gtm","diversion_type":"CookieDiversion"},"LS-4925-Disable-Search-Desktop":{"experiments":{"LS-4925-Disable-Search-Desktop":{"name":"LS-4925-Disable-Search-Desktop","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-4925-Disable-Search-Desktop","diversion_type":"CookieDiversion"},"LS-4925-Disable-Search-Touch":{"experiments":{"LS-4925-Disable-Search-Touch":{"name":"LS-4925-Disable-Search-Touch","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-4925-Disable-Search-Touch","diversion_type":"CookieDiversion"},"LS-4989-Search-Icon-Touch":{"experiments":{"LS-4989-Search-Icon-Touch":{"name":"LS-4989-Search-Icon-Touch","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-4989-Search-Icon-Touch","diversion_type":"CookieDiversion"},"GoodsTouchRemoveCartSummary_US":{"experiments":{"GoodsTouchRemoveCartSummary_US":{"name":"GoodsTouchRemoveCartSummary_US","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"GoodsTouchRemoveCartSummary_US","diversion_type":"CookieDiversion"},"LS-5320-Groupon-Select-Flyout-Signup":{"experiments":{"LS-5320-Groupon-Select-Flyout-Signup":{"name":"LS-5320-Groupon-Select-Flyout-Signup","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-5320-Groupon-Select-Flyout-Signup","diversion_type":"CookieDiversion"},"LS-5826-CurrentLocationLink-USCA":{"experiments":{"LS-5826-CurrentLocationLink-USCA":{"name":"LS-5826-CurrentLocationLink-USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"9e9795b0-fd31-42c5-822d-c833025b35ac","diversion_type":"CookieDiversion"},"LS-5944-SelectHamburgerBanner-US":{"experiments":{"LS-5944-SelectHamburgerBanner-US":{"name":"LS-5944-SelectHamburgerBanner-US","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-5944-SelectHamburgerBanner-US","diversion_type":"CookieDiversion"},"LS-5953_ImproveBrowseLocation_USCA":{"experiments":{"LS-5953_ImproveBrowseLocation_USCA":{"name":"LS-5953_ImproveBrowseLocation_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-5953_ImproveBrowseLocation_USCA","diversion_type":"CookieDiversion"},"LS-5958_NewDesktopHeader_USCA":{"experiments":{"LS-5958_NewDesktopHeader_USCA":{"name":"LS-5958_NewDesktopHeader_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-5958_NewDesktopHeader_USCA","diversion_type":"CookieDiversion"},"LS-6055_GrouponLogoRedirect_USCA":{"experiments":{"LS-6055_GrouponLogoRedirect_USCA":{"name":"LS-6055_GrouponLogoRedirect_USCA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"cc5d7968-f019-4fdb-a7d8-ffd35d4d3ae4","diversion_type":"CookieDiversion"},"LS-6113_GoodsImproveLocation_Touch_USCA":{"experiments":{"LS-6113_GoodsImproveLocation_Touch_USCA":{"name":"LS-6113_GoodsImproveLocation_Touch_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6113_GoodsImproveLocation_Touch_USCA","diversion_type":"CookieDiversion"},"LS-6173_HamburgerCarousel_Touch_USCA":{"experiments":{"LS-6173_HamburgerCarousel_Touch_USCA":{"name":"LS-6173_HamburgerCarousel_Touch_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6173_HamburgerCarousel_Touch_USCA","diversion_type":"CookieDiversion"},"LS-6110_Travel2Hotels_Touch_All":{"experiments":{"LS-6110_Travel2Hotels_Touch_All":{"name":"LS-6110_Travel2Hotels_Touch_All","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6110_Travel2Hotels_Touch_All","diversion_type":"CookieDiversion"},"LS-6110_Travel2Hotels_Desktop_All":{"experiments":{"LS-6110_Travel2Hotels_Desktop_All":{"name":"LS-6110_Travel2Hotels_Desktop_All","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6110_Travel2Hotels_Desktop_All","diversion_type":"CookieDiversion"},"LS-6236-DoNotSell":{"experiments":{"LS-6236-DoNotSell":{"name":"LS-6236-DoNotSell","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6236-DoNotSell","diversion_type":"CookieDiversion"},"LS-5898_GetawaysImproveLocation_Desktop_USCA":{"experiments":{"LS-5898_GetawaysImproveLocation_Desktop_USCA":{"name":"LS-5898_GetawaysImproveLocation_Desktop_USCA","tracking":false,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-5898_GetawaysImproveLocation_Desktop_USCA","diversion_type":"CookieDiversion"},"LS-5898_GetawaysImproveLocation_Touch_USCA":{"experiments":{"LS-5898_GetawaysImproveLocation_Touch_USCA":{"name":"LS-5898_GetawaysImproveLocation_Touch_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-5898_GetawaysImproveLocation_Touch_USCA","diversion_type":"CookieDiversion"},"LS-6113_GoodsImproveLocation_Desktop_USCA":{"experiments":{"LS-6113_GoodsImproveLocation_Desktop_USCA":{"name":"LS-6113_GoodsImproveLocation_Desktop_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6113_GoodsImproveLocation_Desktop_USCA","diversion_type":"CookieDiversion"},"LS-6555_SelectinHeader_Desktop":{"experiments":{"LS-6555_SelectinHeader_Desktop":{"name":"LS-6555_SelectinHeader_Desktop","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"540e6184-39ce-49cd-b3db-326b8054311c","diversion_type":"CookieDiversion"},"LS-6646-Do-Not-Sell-XHR":{"experiments":{"LS-6646-Do-Not-Sell-XHR":{"name":"LS-6646-Do-Not-Sell-XHR","tracking":false,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-6646-Do-Not-Sell-XHR","diversion_type":"CookieDiversion"},"LS-6645-Disable-Right-To-Forget-XHR":{"experiments":{"LS-6645-Disable-Right-To-Forget-XHR":{"name":"LS-6645-Disable-Right-To-Forget-XHR","tracking":false,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-6645-Disable-Right-To-Forget-XHR","diversion_type":"CookieDiversion"},"LS-6644-Disable-Cart-Size-XHR":{"experiments":{"LS-6644-Disable-Cart-Size-XHR":{"name":"LS-6644-Disable-Cart-Size-XHR","tracking":false,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-6644-Disable-Cart-Size-XHR","diversion_type":"CookieDiversion"},"web_MinimalSearch_USCA":{"experiments":{"web_MinimalSearch_USCA":{"name":"web_MinimalSearch_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"web_MinimalSearch_USCA","diversion_type":"CookieDiversion"},"19-16_touch_GuestCheckoutHalfSheet_NA":{"experiments":{"19-16_touch_GuestCheckoutHalfSheet_NA":{"name":"19-16_touch_GuestCheckoutHalfSheet_NA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"726f9498-2382-476c-89b9-491a268af7cc","diversion_type":"CookieDiversion"},"20-01_touch_GuestCheckoutHalfSheetv2_NA_old":{"experiments":{"20-01_touch_GuestCheckoutHalfSheetv2_NA_old":{"name":"20-01_touch_GuestCheckoutHalfSheetv2_NA_old","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"20-01_touch_GuestCheckoutHalfSheetv2_NA_old","diversion_type":"CookieDiversion"},"LS-6560_MinimalSearch_Touch_USCA":{"experiments":{"LS-6560_MinimalSearch_Touch_USCA":{"name":"LS-6560_MinimalSearch_Touch_USCA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6560_MinimalSearch_Touch_USCA","diversion_type":"CookieDiversion"},"web-project-taco":{"experiments":{"web-project-taco":{"name":"web-project-taco","tracking":false,"variants":["Control","Treatment"],"guards":[{"name":"inDivision","parameters":{"divisions":["london","long-island","new-york","houston"]}}],"variant_settings":{"Control":null,"Treatment":{"pull->enableTaco":true}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"web-project-taco","diversion_type":"CookieDiversion"},"MIA_Revamp_US":{"experiments":{"MIA_Revamp_US":{"name":"MIA_Revamp_US","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Treatment","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"MIA_Revamp_US","diversion_type":"CookieDiversion"},"20-01_touch_GuestCheckoutHalfSheetv2_NA":{"experiments":{"20-01_touch_GuestCheckoutHalfSheetv2_NA":{"name":"20-01_touch_GuestCheckoutHalfSheetv2_NA","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"20-01_touch_GuestCheckoutHalfSheetv2_NA","diversion_type":"CookieDiversion"},"20-05_touch_AddToCart_NA":{"experiments":{"20-05_touch_AddToCart_NA":{"name":"20-05_touch_AddToCart_NA","tracking":true,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"20-05_touch_AddToCart_NA","diversion_type":"CookieDiversion"},"LS-7036_TicketsEventsPage_Touch_USCA":{"experiments":{"LS-7036_TicketsEventsPage_Touch_USCA":{"name":"LS-7036_TicketsEventsPage_Touch_USCA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7036_TicketsEventsPage_Touch_USCA","diversion_type":"CookieDiversion"},"LS-7181_RemoveIAMBrowse_Touch_USCA":{"experiments":{"LS-7181_RemoveIAMBrowse_Touch_USCA":{"name":"LS-7181_RemoveIAMBrowse_Touch_USCA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7181_RemoveIAMBrowse_Touch_USCA","diversion_type":"CookieDiversion"},"LS-6587-Enable-Coupons-Voucher-Endpoint":{"experiments":{"LS-6587-Enable-Coupons-Voucher-Endpoint":{"name":"LS-6587-Enable-Coupons-Voucher-Endpoint","tracking":false,"variants":["Treatment"],"variant_settings":{"Control":null,"Treatment":null},"control":"Control","bucket_min":0,"bucket_max":999,"buckets":"0..999"}},"bucketing_salt":"LS-6587-Enable-Coupons-Voucher-Endpoint","diversion_type":"CookieDiversion"},"LS-7602_CX90PromoBanner_Touch_US":{"experiments":{"LS-7602_CX90PromoBanner_Touch_US":{"name":"LS-7602_CX90PromoBanner_Touch_US","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7602_CX90PromoBanner_Touch_US","diversion_type":"CookieDiversion"},"LS-7621-Touch-CX90HeaderNA":{"experiments":{"LS-7621-Touch-CX90HeaderNA":{"name":"LS-7621-Touch-CX90HeaderNA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7621-Touch-CX90HeaderNA","diversion_type":"CookieDiversion"},"LS-7640-Desktop-CX90-IAMBannerNA":{"experiments":{"LS-7640-Desktop-CX90-IAMBannerNA":{"name":"LS-7640-Desktop-CX90-IAMBannerNA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7640-Desktop-CX90-IAMBannerNA","diversion_type":"CookieDiversion"},"LS-7653-Desktop-CX90SearchBarNA":{"experiments":{"LS-7653-Desktop-CX90SearchBarNA":{"name":"LS-7653-Desktop-CX90SearchBarNA","tracking":true,"variants":["Control","Treatment"],"variant_settings":{"Control":{},"Treatment":{}},"control":"Control","bucket_min":9999,"bucket_max":9999,"buckets":"9999..9999"}},"bucketing_salt":"LS-7653-Desktop-CX90SearchBarNA","diversion_type":"CookieDiversion"}};
+  for (var key in layoutConfig) {
+    if(layoutConfig.hasOwnProperty(key)) {
+      appConfig[key] = layoutConfig[key];
+    }
+  }
+  return appConfig;
+})();
+
+window.Optimize.expyConfig = (function () {
+  var appConfig = {};
+  var layoutConfig = {};
+
+  appConfig = null || {};
+  layoutConfig = {};
+  for (var key in layoutConfig) {
+    if(layoutConfig.hasOwnProperty(key)) {
+      appConfig[key] = layoutConfig[key];
+    }
+  }
+  return appConfig;
+})();
+
+window.googletag || (window.googletag = {});
+window.googletag.cmd || (googletag.cmd = []);
+
+})();
+  
+
+  (function() {
+    window.applicationConfig = {};
+    if (window.BOOMR && (window.BOOMR.version || window.BOOMR.snippetExecuted)) {
+      return;
+    }
+    if (window.parent && (window.parent.window.BOOMR && window.parent.window.BOOMR.snippetExecuted)) {
+      return;
+    }
+
+    window.BOOMR = window.BOOMR || {};
+    window.BOOMR.snippetStart = new Date().getTime();
+    window.BOOMR.snippetExecuted = true;
+    window.BOOMR.snippetVersion = 12;
+    window.BOOMR.url = "https://www1.grouponcdn.com/layout/assets/boomerang-sls-485b8ab14d.js";
+    var
+        where = document.currentScript || document.getElementsByTagName("script")[0],
+        promoted = false,
+        LOADER_TIMEOUT = 3000;
+
+    function promote() {
+      if (promoted) {
+        return;
+      }
+
+      var script = document.createElement("script");
+      script.id = "boomr-scr-as";
+      script.src = window.BOOMR.url;
+      script.async = true;
+      where.parentNode.appendChild(script);
+
+      promoted = true;
+    }
+
+    function iframeLoader(wasFallback) {
+      promoted = true;
+      var dom, doc = document, bootstrap, iframe, iframeStyle, win = window;
+      window.BOOMR.snippetMethod = wasFallback ? "if" : "i";
+
+      bootstrap = function(parent, scriptId) {
+        var script = doc.createElement("script");
+        script.id = scriptId || "boomr-if-as";
+        script.src = window.BOOMR.url;
+
+        BOOMR_lstart = new Date().getTime();
+
+        parent = parent || doc.body;
+        parent.appendChild(script);
+      };
+
+      iframe = document.createElement("IFRAME");
+      iframe.src = "about:blank";
+      iframe.title = "";
+      iframe.role = "presentation";
+      iframe.loading = "eager";
+      iframeStyle = (iframe.frameElement || iframe).style;
+      iframeStyle.width = 0;
+      iframeStyle.height = 0;
+      iframeStyle.border = 0;
+      iframeStyle.display = "none";
+      where.parentNode.appendChild(iframe);
+
+      try {
+        win = iframe.contentWindow;
+        doc = win.document.open();
+      } catch (e) {
+        dom = document.domain;
+        iframe.src = "javascript:var d=document.open();d.domain='" + dom + "';void(0);";
+        win = iframe.contentWindow;
+        doc = win.document.open();
+      }
+
+      if (dom) {
+        doc._boomrl = function() {
+          this.domain = dom;
+          bootstrap();
+        };
+        doc.write("<bo" + "dy onload='document._boomrl();'>");
+      } else {
+        win.addEventListener("load", function() {
+          bootstrap();
+        }, false);
+      }
+      doc.close();
+    }
+    var link = document.createElement("link");
+    if (link.relList &&
+        typeof link.relList.supports === "function" &&
+        link.relList.supports("preload") &&
+        ("as" in link)) {
+      window.BOOMR.snippetMethod = "p";
+      link.href = window.BOOMR.url;
+      link.rel = "preload";
+      link.as = "script";
+      link.addEventListener("load", promote);
+      link.addEventListener("error", function() {
+        iframeLoader(true);
+      });
+
+      setTimeout(function() {
+        if (!promoted) {
+          iframeLoader(true);
+        }
+      }, LOADER_TIMEOUT);
+      BOOMR_lstart = new Date().getTime();
+      where.parentNode.appendChild(link);
+    } else {
+      iframeLoader(false);
+    }
+
+    function boomerangSaveLoadTime(e) {
+      window.BOOMR_onload = (e && e.timeStamp) || new Date().getTime();
+    }
+
+    window.addEventListener("load", boomerangSaveLoadTime, false);
+  })();
+
+
+      window.googletag = window.googletag || {};
+      googletag.cmd = googletag.cmd || [];
+    
+
+
+
+  window.GIG || (window.GIG = {});
+
+  window.GIG.loadGigComponents = function () {
+    return new Promise(
+      function load(resolve, reject) {
+        if (typeof window.GIG.components !== 'undefined') {
+          resolve();
+          return;
+        }
+
+        window.addEventListener('loaded-gig-components', resolve);
+
+        window.addEventListener('failed-gig-components', resolve)
+      }
+    );
+  };
+
+
+    window.Groupon || (window.Groupon = {});
+      Groupon.division = {"name":"Chicago","id":"chicago","lat":41.88,"lng":-87.624};
+      Groupon.boldChat = {"accountId":"888454639756334259","websiteId":"3958328191494078484","pushData":[["setAccountID","888454639756334259"],["setParameter","WebsiteID","3958328191494078484"]]};
+    Groupon.endpoints = {
+          cartInfo: "/layout/cart/info",
+        cards: "/layout/calls/cards", 
+          loginIframe: "/login/iframe",
+    };
+    Groupon.LS = {
+      data: {
+        appName: 'homepage',
+          googleClientId: '169314272487.apps.googleusercontent.com',
+      },
+    };
+  
+
+  window.Groupon.ads = { url: "https://www1.grouponcdn.com/layout/assets/adframe-ca3fcd5cf4.js" }
+  
+{"homeDesktopTaxonomyLazyLoadedJavascript":"https://www2.grouponcdn.com/browse/assets/home_desktop_taxonomy_lazy_load.js","homeDesktopTaxonomyLazyLoadedCss":"https://www2.grouponcdn.com/browse/assets/home_desktop_taxonomy_lazy_load.css","showTaxonomyPreferences":false,"appliedFinchSettings":["useAsyncCssDesktopHome:false","showProactiveCachedFlexibleHomepageAnonUser:false","showProactiveCachedFlexibleHomepage:false","showRecognizedUnrecognizedHomepageDesktop:false","showCX90Desktop:false","showEmphasizingPriceForDesktopWithSwapPosition:false","showXForYStrikethrough:true","showSingleOptionTitleDesktop:false","showTTDTopRatedCarousel:false","showVerboseUrgencyHoursLeftDesktop:true","showVerboseUrgencyDeadlineDesktop:false","useAlternateCDN:false","showEmphasizingPriceForDesktop:false","hideDistanceDesktopHome:false","showMultipleLocationsDesktop:false","showAmountSavedBadgeDesktop:false","showUrgencyMessageLocalDesktop:true","showUrgencyMessagingGoodsDesktop:false","showOneStarRatingDesktop:false","showSelectDayUnenrolled:false","showValuePricingDesktop:false","showProactiveCachedFlexibleTouchAnonUser:false","showProactiveCachedFlexibleTouch:false","showSponsoredListingsDesktopHome:true"],"csrfToken":"eNj3aPIG-4A1x9ehNqZA8t7uMIziffWSTd9c","division":{"id":"chicago","cll":{"lat":"24.147","lng":"120.684","ip":"211.72.35.152"},"ell":{"lat":41.8795,"lng":-87.6243},"country":"US"}}
+
+  window.gtmData = {
+      "data":"{&quot;dl_division&quot;:&quot;chicago&quot;,&quot;dl_category&quot;:&quot;&quot;,&quot;dl_category_sub&quot;:&quot;&quot;,&quot;dl_user_id&quot;:&quot;43d6e73a-1a68-17d2-2b93-bc174eeef33c&quot;,&quot;dl_purchased_groupon&quot;:&quot;&quot;,&quot;dl_channel&quot;:&quot;&quot;}",
+      "enabled":true,
+    "id":"GTM-B76Z",
+    "platform":"Desktop"
+  };
+  
+
+      if (typeof window.fbAsyncInit === 'undefined') {
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '7829106395',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.9'
+          });
+          if (FB && FB.AppEvents) FB.AppEvents.logPageView();
+        };
+      }
+    
+
+  (function () {
+    "use strict";
+    var cond_IE11 = !(
+      window.Promise &&
+      window.fetch &&
+      window.URL &&
+      typeof Object.values === 'function'
+    ) , rIC = window.requestIdleCallback
+      , promiseFinally = window.Promise && window.Promise.prototype.finally
+      , cond_safari = !(window.fetch && promiseFinally && typeof Object.entries === 'function')
+      , cond_edge = !(window.AbortController && promiseFinally)
+      , cond_ric = !(rIC && window.IntersectionObserver)
+      , cond_dom4 = !(document.head.closest && Element.prototype.replaceWith && Element.prototype.before && Element.prototype.after);
+    var fn = function() {
+      var files = [];
+      if (cond_IE11) { files.push('https://www2.grouponcdn.com/layout/assets/poly-ie11andr-53c598ed4e.js');}
+      else {
+        if (cond_dom4) { files.push('https://www1.grouponcdn.com/layout/assets/poly-dom4-0ed12e3bc6.js');}
+        if (!window.HTMLPictureElement) { files.push('https://www1.grouponcdn.com/layout/assets/poly-picture-f8dc47073a.js');}
+        if (cond_ric) { files.push('https://www2.grouponcdn.com/layout/assets/poly-io-ric-0d58c08ed4.js');}
+        if (cond_safari) {
+          files.push('https://www1.grouponcdn.com/layout/assets/poly-safari-cf6c06ceab.js');
+        } else if (cond_edge) { files.push('https://www2.grouponcdn.com/layout/assets/poly-edge-cb76d926f7.js');}
+      }
+
+      files.push('https://www2.grouponcdn.com/layout/assets/desktop-core-v7.0-809b46d66c.js');
+      files.push('https://www2.grouponcdn.com/layout/assets/optimize-suite-v2-4a2c5ee580.js');
+      files.push('https://www2.grouponcdn.com/layout/assets/desktop-preact-da42fc7fef.js');
+
+      files.push('/browse/js/locale.js?country=US&locale=en_US&brand=groupon&version=b0e9a30224');
+        var dep = {"jquery":"https://www2.grouponcdn.com/layout/assets/jquery-5f007cd025.js","hogan":"https://www1.grouponcdn.com/layout/assets/hogan-bbf42d8c88.js","underscore":"https://www1.grouponcdn.com/layout/assets/underscore-cb0217df31.js","modernizr":"https://www1.grouponcdn.com/layout/assets/modernizr-14c60f3df7.js"};
+        "".split(',').forEach(function(i) {
+          if (dep[i]) { files.push(dep[i]) }
+        });
+        var gig_js = {"a11y":"https://www1.grouponcdn.com/layout/assets/gig-js-a11y-4e6459ba93.js","forms":"https://www2.grouponcdn.com/layout/assets/gig-js-forms-60e702e9f9.js","helper":"https://www1.grouponcdn.com/layout/assets/gig-js-helper-bfc1511804.js","modals":"https://www1.grouponcdn.com/layout/assets/gig-js-modals-9dc5a93487.js","tabs":"https://www1.grouponcdn.com/layout/assets/gig-js-tabs-15116a7b0e.js","tooltips":"https://www1.grouponcdn.com/layout/assets/gig-js-tooltips-0d1e7e8f6a.js","truncation":"https://www2.grouponcdn.com/layout/assets/gig-js-truncation-d2d039fb37.js"};
+        "truncation".split(',').forEach(function(i){
+          if (gig_js[i]) { files.push(gig_js[i]) }
+        });
+      files.push('https://www2.grouponcdn.com/browse/assets/home_desktop-3b039f3d96.js');
+      head.js(files);
+    };
+    var s = document.createElement('script');
+    s.defer = true;
+    s.src = "https://www2.grouponcdn.com/layout/assets/head.load-e781b50355.js";
+    s.addEventListener('load', fn, false);
+    document.getElementsByTagName('head')[0].appendChild(s);
+  }());
+
+
+      (function() {
+        var hasI18n = function(){
+          return typeof window.I18n !== 'undefined' && window.I18n != null
+        };
+        var setSubsI18n = function() {
+          if (hasI18n()) {
+            window.subsI18n = I18n.scoped();
+            window.subsI18n.translations = {
+              "js": {
+                "modules": {
+                  "subscription": {
+                    "subscribe": {
+                      "email_step": {
+                        "suggest_email": "Did you mean {link_open}{suggested_email}{link_close}?"
+                      }
+                    },
+                    "simple_subscription_success": "Thank you for subscribing!",
+                    "subscription_success": "Thank you for subscribing to {division} deals with {email}.",
+                    "subscription_success_subsave": "Thank you for subscribing to {division} deals with {email}. Your $5 savings will be applied at checkout.",
+                    "subscription_failure": "Sorry, we were unable to create your subscription at this time. Please continue to browse our site for great deals, or {link_open}click here{link_close} to try subscribing again.",
+                    "social_subscription_touch_success": "Thank you for subscribing with ",
+                    "social_subscription_touch_failure": "Something went wrong!",
+                    "social_subscription_success": "Thank you for subscribing with {email}",
+                    "social_subscription_failure": "Sorry, we were unable to create your subscription at this time."
+                  }
+                }
+              }
+            };
+            window.subsI18n.translations.js.modules.subscription.subscribe.email_step.suggest_email = window.subsI18n.translations.js.modules.subscription.subscribe.email_step.suggest_email.replace(/{/g, "{{");
+            window.subsI18n.translations.js.modules.subscription.subscribe.email_step.suggest_email = window.subsI18n.translations.js.modules.subscription.subscribe.email_step.suggest_email.replace(/}/g, "}}");
+            window.subsI18n.translations.js.modules.subscription.subscription_success = window.subsI18n.translations.js.modules.subscription.subscription_success.replace(/{/g, "{{");
+            window.subsI18n.translations.js.modules.subscription.subscription_success = window.subsI18n.translations.js.modules.subscription.subscription_success.replace(/}/g, "}}");
+            window.subsI18n.translations.js.modules.subscription.subscription_success_subsave = window.subsI18n.translations.js.modules.subscription.subscription_success_subsave.replace(/{/g, "{{");
+            window.subsI18n.translations.js.modules.subscription.subscription_success_subsave = window.subsI18n.translations.js.modules.subscription.subscription_success_subsave.replace(/}/g, "}}");
+            window.subsI18n.translations.js.modules.subscription.subscription_failure = window.subsI18n.translations.js.modules.subscription.subscription_failure.replace(/{/g, "{{");
+            window.subsI18n.translations.js.modules.subscription.subscription_failure = window.subsI18n.translations.js.modules.subscription.subscription_failure.replace(/}/g, "}}");
+            //window.subsI18n.translations.js.modules.subscription.social_subscription_touch_success = window.subsI18n.translations.js.modules.subscription.social_subscription_touch_success.replace(/{/g, "{{");
+            //window.subsI18n.translations.js.modules.subscription.social_subscription_touch_success = window.subsI18n.translations.js.modules.subscription.social_subscription_touch_success.replace(/}/g, "}}");
+            window.subsI18n.translations.js.modules.subscription.social_subscription_success = window.subsI18n.translations.js.modules.subscription.social_subscription_success.replace(/{/g, "{{");
+            window.subsI18n.translations.js.modules.subscription.social_subscription_success = window.subsI18n.translations.js.modules.subscription.social_subscription_success.replace(/}/g, "}}");
+            window.subsI18n.translations.number = I18n.translations.number;
+            window.subsI18n.scope = [ "js" ];
+
+          } else {
+            setTimeout(setSubsI18n, 250);
+          }
+
+        };
+        setSubsI18n();
+      }
+      )();
+
+    
+
+            var _csrf = "";
+            var _divisionId = "chicago";
+        
+var _cf = _cf || []; _cf.push(['_setIpr', true]);  _cf.push(['_setFsp', true]);  _cf.push(['_setBm', true]);  _cf.push(['_setAu', '/resource/1da52893a8rn223bfebc31cbd3e1d74a']); 

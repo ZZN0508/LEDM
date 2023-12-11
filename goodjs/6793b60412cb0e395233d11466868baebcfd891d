@@ -1,0 +1,135 @@
+﻿index {
+full=index_by.page
+left_button=btn_send
+right_button=btn_show_rules
+}
+
+index_p1 {
+full=index_p1.page
+timer1 {
+timeout=1
+action=showPage index_p2
+}
+}
+index_p2 {
+full=index_p2.page
+timer1 {
+timeout=1
+action=showPage index_p3
+}
+}
+index_p3 {
+full=index_p3.page
+timer1 {
+timeout=1
+action=showPage index_p4
+}
+}
+index_p4 {
+full=index_p4.page
+timer1 {
+timeout=1
+action=showPage index_p5
+}
+}
+index_p5 {
+full=index_p5.page
+timer1 {
+timeout=1
+action=showPage index_p6
+}
+}
+index_p6 {
+full=index_p6.page
+timer1 {
+timeout=1
+action=showPage index1
+}
+}
+
+index1 {
+full=index1.page
+left_button=btn_send
+right_button=btn_show_rules
+}
+
+rules {
+head=rules_head.page
+part1=rules1.page
+part2=rules2.page
+part3=rules3.page
+part4=rules4.page
+part5=rules5.page
+left_button=btn_send
+right_button=btn_exit
+}
+
+wait_p0 {
+full=wait_p0.page
+timer1 {
+timeout=5
+action=showPage wait_p1
+}
+}
+wait_p1 {
+full=wait_p1.page
+timer1 {
+timeout=5
+action=showPage wait_p2
+}
+}
+wait_p2 {
+full=wait_p2.page
+timer1 {
+timeout=5
+action=showPage wait_p3
+}
+}
+wait_p3 {
+full=wait_p3.page
+timer1 {
+timeout=5
+action=showPage wait_p4
+}
+}
+wait_p4 {
+full=wait_p4.page
+timer1 {
+timeout=5
+action=showPage wait_p5
+}
+}
+wait_p5 {
+full=wait_p5.page
+timer1 {
+timeout=5
+action=showPage wait_p6
+}
+}
+wait_p6 {
+full=wait_p6.page
+timer1 {
+timeout=5
+action=showPage wait_p7
+}
+}
+wait_p7 {
+full=wait_p7.page
+timer1 {
+timeout=5
+action=showPage wait_p8
+}
+}
+wait_p8 {
+full=wait_p8.page
+}
+
+member {
+full=member.page
+left_button=btn_download
+}
+
+failed {
+full=failed.page
+left_button=btn_send_after_fail
+}

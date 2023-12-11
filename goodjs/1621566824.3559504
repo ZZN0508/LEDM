@@ -1,0 +1,346 @@
+
+    window['akamaiRoot'] = '//www.salesforce.com';
+
+
+      <!-- /* OneTrust callback */ -->
+      function OptanonWrapper() {
+        function getCookie(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length == 2) {
+            return parts.pop().split(";").shift();
+          }
+        }
+        function removeElement(element) {
+          if (!getCookie('OptanonAlertBoxClosed') && element) {
+            element.style.display = "none";
+          }
+        }
+        <!-- /* enable footer link */ -->
+
+        var footerLinkToggle = (document.querySelector(".page-footer_link .optanon-toggle-display") ? document.querySelector(".page-footer_link .optanon-toggle-display") : false);
+
+        if (footerLinkToggle) {
+          footerLinkToggle.addEventListener("click", Optanon.ToggleInfoDisplay, false);
+          footerLinkToggle.addEventListener("keydown", function(e){
+            if (e.keyCode === 13) {
+              Optanon.ToggleInfoDisplay()
+            }
+          }, false);
+        }
+        //Check if user's cookies are enabled, if not remove One Trust from page
+        var cookies = ("cookie" in document && (document.cookie.length > 0 || (document.cookie = "test").indexOf.call(document.cookie, "test") > -1));
+        if (!cookies) {
+          var box = document.querySelector('#onetrust-consent-sdk');
+          box.remove();
+          return;
+        }
+        try {
+          //Check if current page is Privacy page, if so do not display One Trust modal
+          if(digitalData) {
+            if(digitalData.page.pagename.indexOf(":company:privacy") > -1){
+              var el = document.querySelector("#onetrust-consent-sdk");
+              removeElement(el);
+            }
+          }
+          <!-- /* reinitialize active groups after user updates consent */ -->
+          if (SfdcWwwBase.gdpr) {
+            SfdcWwwBase.gdpr.init();
+          }
+        }catch(err){
+          console.error(err.message)
+        }
+      }
+    
+
+          window.optimizely = window.optimizely || [];
+          window.optimizely.push({ type : 'holdEvents'});
+          window.addEventListener('load', function() {
+            window.optimizely.push({ type : 'sendEvents'});
+          });
+        
+(window.BOOMR_mq=window.BOOMR_mq||[]).push(["addVar",{"rua.upush":"false","rua.cpush":"false","rua.upre":"false","rua.cpre":"false","rua.uprl":"false","rua.cprl":"false","rua.cprf":"false","rua.trans":"","rua.cook":"false","rua.ims":"false","rua.ufprl":"false","rua.cfprl":"false","rua.isuxp":"","rua.texp":""}]);
+
+    $CQ(function() {
+        
+    
+
+    if (window.CQ_Analytics && CQ_Analytics.SegmentMgr) {
+	CQ_Analytics.SegmentMgr.register("\/etc\/segmentation\/sfdc\u002Dwww\/customer\u002Dprofile","( ( CQ_Analytics.OperatorActions.operate(clientcontext.sfdcsegment, \x27visitorprofile\x27, \x27equals\x27, \x27customer\x27, \x27\x27) ) )",0);
+	CQ_Analytics.SegmentMgr.areSegmentsLoaded = true;
+	CQ_Analytics.SegmentMgr.fireEvent('segmentsload');
+}
+
+
+    if ( CQ_Analytics && CQ_Analytics.CampaignMgr ) {
+        var campaigns = [{"path":"/content/campaigns/ja_jp/master/kazu","title":"JP-Customer Homepage test","id":"content-campaigns-ja_jp-master-kazu","experiences":[{"path":"/content/campaigns/ja_jp/master/kazu/customer","id":"content-campaigns-ja_jp-master-kazu-customer","title":"Customer","segments":["/etc/segmentation/sfdc-www/customer-profile"]}],"cloudConfiguration":""},{"path":"/content/campaigns/ja_jp/master/homepage","title":"JP-Homepage","id":"content-campaigns-ja_jp-master-homepage","experiences":[{"path":"/content/campaigns/ja_jp/master/homepage/customer_profile","id":"content-campaigns-ja_jp-master-homepage-customer_profile","title":"Customer","segments":["/etc/segmentation/sfdc-www/customer-profile"]}],"cloudConfiguration":""}];
+        CQ_Analytics.CampaignMgr.addInitProperty('campaigns', campaigns);
+        CQ_Analytics.CampaignMgr.init();
+    }
+    
+
+CQ_Analytics.SFDCSegmentUtils.init();
+CQ_Analytics.kruxStore.init();
+
+
+CQ_Analytics.SFDCSegmentUtils.init();
+CQ_Analytics.DemandbaseStore.init();
+
+
+    if( CQ_Analytics && CQ_Analytics.PageDataMgr) {
+    CQ_Analytics.PageDataMgr.loadInitProperties({
+  "hits": 0,
+  "title": "Home",
+  "path": "/content/www/ja_jp/home",
+  "navTitle": "Home",
+  "tags": "",
+  "description": "セールスフォース・ドットコム（Salesforce）はクラウドベースのCRM/顧客管理システムやSFA/営業支援システム、MA/マーケティングオートメーションを世界15万社以上に提供しています。Salesforce製品一覧、導入事例、2分でわかる動画や30日間無料のトライアルなどをご紹介します。",
+  "sitesection": "ja_jp",
+  "subsection": "home",
+  "random": "0.72"
+}, true);
+}
+
+
+
+        CQ_Analytics.Utils.isOptimizedCC = true;
+        CQ_Analytics.ClientContextMgr.PATH = "\/etc\/clientcontext\/sfdc\u002Dwww";
+        CQ_Analytics.ClientContextMgr.loadConfig({"initializationEventTimer": 10}, true);
+
+        
+    });
+
+
+     $CQ(function() {
+         var campaignParam = 'campaign',
+             experienceParam = 'experience',
+             campaignName = CQ.shared.HTTP.getParameter(location.href, campaignParam),
+             experienceName = CQ.shared.HTTP.getParameter(location.href, experienceParam),
+             allTeasers = [{"path":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_5c25","name":"home-columncontainer_5c25","title":"Customer","campaignName":"homepage","campaignPath":"/content/campaigns/ja_jp/master/homepage","thumbnail":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_5c25.thumb.png","id":"homepage_home-columncontainer_5c25","url":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_5c25/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_5c25/default","url":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_5c25.default.html","name":"default","title":"Default","campainName":"","thumbnail":"/jp/_jcr_content/main-par/columncontainer_5c25/.thumb.png"}];
+
+         // if campaign and experience in url params
+         // get the specified experience and set it as the default in the allTeasers array
+         if (campaignName && experienceName){
+             function isForcedTeaser(teaser, campaign, experience){
+                 var campaignsDirectory = '/content/campaigns';
+                 var pathToCampaign = campaignsDirectory + '/' + campaign;
+                 var fullPathToExperience = pathToCampaign + '/' + experience + '/';
+                 if(teaser.campaignPath == pathToCampaign){
+                     if(teaser.path.startsWith(fullPathToExperience) || teaser.thumbnail.startsWith(fullPathToExperience)){
+                         return true;
+                     }
+                 }
+                 return false;
+             }
+             
+             for (i = 0; i < allTeasers.length; i++) {
+                 if (isForcedTeaser(allTeasers[i], campaignName, experienceName)) {
+                     var forcedTeaser = allTeasers[i];
+                     forcedTeaser.name = "default";
+                     forcedTeaser.segments = undefined;
+                     delete forcedTeaser.segments;
+                     allTeasers = [forcedTeaser]; 
+                 }
+             }
+         }
+	 
+             CQ_Analytics.Engine.loadTeaser({ targetID: "_content_www_ja_jp_home_jcr_content_main-par_columncontainer_5c25", teasers: allTeasers, strategy: "", trackingURL: null});
+	 });
+    
+
+     $CQ(function() {
+         var campaignParam = 'campaign',
+             experienceParam = 'experience',
+             campaignName = CQ.shared.HTTP.getParameter(location.href, campaignParam),
+             experienceName = CQ.shared.HTTP.getParameter(location.href, experienceParam),
+             allTeasers = [{"path":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_918e","name":"home-columncontainer_918e","title":"Customer","campaignName":"homepage","campaignPath":"/content/campaigns/ja_jp/master/homepage","thumbnail":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_918e.thumb.png","id":"homepage_home-columncontainer_918e","url":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_918e/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/campaigns/ja_jp/master/kazu/customer/home-201021-kazu-columncontainer_918e","name":"home-201021-kazu-columncontainer_918e","title":"Customer","campaignName":"kazu","campaignPath":"/content/campaigns/ja_jp/master/kazu","thumbnail":"/content/campaigns/ja_jp/master/kazu/customer/home-201021-kazu-columncontainer_918e.thumb.png","id":"kazu_home-201021-kazu-columncontainer_918e","url":"/content/campaigns/ja_jp/master/kazu/customer/home-201021-kazu-columncontainer_918e/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_918e/default","url":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_918e.default.html","name":"default","title":"Default","campainName":"","thumbnail":"/jp/_jcr_content/main-par/columncontainer_918e/.thumb.png"}];
+
+         // if campaign and experience in url params
+         // get the specified experience and set it as the default in the allTeasers array
+         if (campaignName && experienceName){
+             function isForcedTeaser(teaser, campaign, experience){
+                 var campaignsDirectory = '/content/campaigns';
+                 var pathToCampaign = campaignsDirectory + '/' + campaign;
+                 var fullPathToExperience = pathToCampaign + '/' + experience + '/';
+                 if(teaser.campaignPath == pathToCampaign){
+                     if(teaser.path.startsWith(fullPathToExperience) || teaser.thumbnail.startsWith(fullPathToExperience)){
+                         return true;
+                     }
+                 }
+                 return false;
+             }
+             
+             for (i = 0; i < allTeasers.length; i++) {
+                 if (isForcedTeaser(allTeasers[i], campaignName, experienceName)) {
+                     var forcedTeaser = allTeasers[i];
+                     forcedTeaser.name = "default";
+                     forcedTeaser.segments = undefined;
+                     delete forcedTeaser.segments;
+                     allTeasers = [forcedTeaser]; 
+                 }
+             }
+         }
+	 
+             CQ_Analytics.Engine.loadTeaser({ targetID: "_content_www_ja_jp_home_jcr_content_main-par_columncontainer_918e", teasers: allTeasers, strategy: "", trackingURL: null});
+	 });
+    
+
+     $CQ(function() {
+         var campaignParam = 'campaign',
+             experienceParam = 'experience',
+             campaignName = CQ.shared.HTTP.getParameter(location.href, campaignParam),
+             experienceName = CQ.shared.HTTP.getParameter(location.href, experienceParam),
+             allTeasers = [{"path":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_2b56","name":"home-columncontainer_2b56","title":"Customer","campaignName":"homepage","campaignPath":"/content/campaigns/ja_jp/master/homepage","thumbnail":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_2b56.thumb.png","id":"homepage_home-columncontainer_2b56","url":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_2b56/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/campaigns/ja_jp/master/kazu/customer/home-201021-kazu-columncontainer_2b56","name":"home-201021-kazu-columncontainer_2b56","title":"Customer","campaignName":"kazu","campaignPath":"/content/campaigns/ja_jp/master/kazu","thumbnail":"/content/campaigns/ja_jp/master/kazu/customer/home-201021-kazu-columncontainer_2b56.thumb.png","id":"kazu_home-201021-kazu-columncontainer_2b56","url":"/content/campaigns/ja_jp/master/kazu/customer/home-201021-kazu-columncontainer_2b56/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_2b56/default","url":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_2b56.default.html","name":"default","title":"Default","campainName":"","thumbnail":"/jp/_jcr_content/main-par/columncontainer_2b56/.thumb.png"}];
+
+         // if campaign and experience in url params
+         // get the specified experience and set it as the default in the allTeasers array
+         if (campaignName && experienceName){
+             function isForcedTeaser(teaser, campaign, experience){
+                 var campaignsDirectory = '/content/campaigns';
+                 var pathToCampaign = campaignsDirectory + '/' + campaign;
+                 var fullPathToExperience = pathToCampaign + '/' + experience + '/';
+                 if(teaser.campaignPath == pathToCampaign){
+                     if(teaser.path.startsWith(fullPathToExperience) || teaser.thumbnail.startsWith(fullPathToExperience)){
+                         return true;
+                     }
+                 }
+                 return false;
+             }
+             
+             for (i = 0; i < allTeasers.length; i++) {
+                 if (isForcedTeaser(allTeasers[i], campaignName, experienceName)) {
+                     var forcedTeaser = allTeasers[i];
+                     forcedTeaser.name = "default";
+                     forcedTeaser.segments = undefined;
+                     delete forcedTeaser.segments;
+                     allTeasers = [forcedTeaser]; 
+                 }
+             }
+         }
+	 
+             CQ_Analytics.Engine.loadTeaser({ targetID: "_content_www_ja_jp_home_jcr_content_main-par_columncontainer_2b56", teasers: allTeasers, strategy: "", trackingURL: null});
+	 });
+    
+
+     $CQ(function() {
+         var campaignParam = 'campaign',
+             experienceParam = 'experience',
+             campaignName = CQ.shared.HTTP.getParameter(location.href, campaignParam),
+             experienceName = CQ.shared.HTTP.getParameter(location.href, experienceParam),
+             allTeasers = [{"path":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_943174924","name":"home-columncontainer_943174924","title":"Customer","campaignName":"homepage","campaignPath":"/content/campaigns/ja_jp/master/homepage","thumbnail":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_943174924.thumb.png","id":"homepage_home-columncontainer_943174924","url":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_943174924/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_943174924/default","url":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_943174924.default.html","name":"default","title":"Default","campainName":"","thumbnail":"/jp/_jcr_content/main-par/columncontainer_943174924/.thumb.png"}];
+
+         // if campaign and experience in url params
+         // get the specified experience and set it as the default in the allTeasers array
+         if (campaignName && experienceName){
+             function isForcedTeaser(teaser, campaign, experience){
+                 var campaignsDirectory = '/content/campaigns';
+                 var pathToCampaign = campaignsDirectory + '/' + campaign;
+                 var fullPathToExperience = pathToCampaign + '/' + experience + '/';
+                 if(teaser.campaignPath == pathToCampaign){
+                     if(teaser.path.startsWith(fullPathToExperience) || teaser.thumbnail.startsWith(fullPathToExperience)){
+                         return true;
+                     }
+                 }
+                 return false;
+             }
+             
+             for (i = 0; i < allTeasers.length; i++) {
+                 if (isForcedTeaser(allTeasers[i], campaignName, experienceName)) {
+                     var forcedTeaser = allTeasers[i];
+                     forcedTeaser.name = "default";
+                     forcedTeaser.segments = undefined;
+                     delete forcedTeaser.segments;
+                     allTeasers = [forcedTeaser]; 
+                 }
+             }
+         }
+	 
+             CQ_Analytics.Engine.loadTeaser({ targetID: "_content_www_ja_jp_home_jcr_content_main-par_columncontainer_943174924", teasers: allTeasers, strategy: "", trackingURL: null});
+	 });
+    
+
+     $CQ(function() {
+         var campaignParam = 'campaign',
+             experienceParam = 'experience',
+             campaignName = CQ.shared.HTTP.getParameter(location.href, campaignParam),
+             experienceName = CQ.shared.HTTP.getParameter(location.href, experienceParam),
+             allTeasers = [{"path":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_332d","name":"home-columncontainer_332d","title":"Customer","campaignName":"homepage","campaignPath":"/content/campaigns/ja_jp/master/homepage","thumbnail":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_332d.thumb.png","id":"homepage_home-columncontainer_332d","url":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_332d/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_332d/default","url":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_332d.default.html","name":"default","title":"Default","campainName":"","thumbnail":"/jp/_jcr_content/main-par/columncontainer_332d/.thumb.png"}];
+
+         // if campaign and experience in url params
+         // get the specified experience and set it as the default in the allTeasers array
+         if (campaignName && experienceName){
+             function isForcedTeaser(teaser, campaign, experience){
+                 var campaignsDirectory = '/content/campaigns';
+                 var pathToCampaign = campaignsDirectory + '/' + campaign;
+                 var fullPathToExperience = pathToCampaign + '/' + experience + '/';
+                 if(teaser.campaignPath == pathToCampaign){
+                     if(teaser.path.startsWith(fullPathToExperience) || teaser.thumbnail.startsWith(fullPathToExperience)){
+                         return true;
+                     }
+                 }
+                 return false;
+             }
+             
+             for (i = 0; i < allTeasers.length; i++) {
+                 if (isForcedTeaser(allTeasers[i], campaignName, experienceName)) {
+                     var forcedTeaser = allTeasers[i];
+                     forcedTeaser.name = "default";
+                     forcedTeaser.segments = undefined;
+                     delete forcedTeaser.segments;
+                     allTeasers = [forcedTeaser]; 
+                 }
+             }
+         }
+	 
+             CQ_Analytics.Engine.loadTeaser({ targetID: "_content_www_ja_jp_home_jcr_content_main-par_columncontainer_332d", teasers: allTeasers, strategy: "", trackingURL: null});
+	 });
+    
+
+     $CQ(function() {
+         var campaignParam = 'campaign',
+             experienceParam = 'experience',
+             campaignName = CQ.shared.HTTP.getParameter(location.href, campaignParam),
+             experienceName = CQ.shared.HTTP.getParameter(location.href, experienceParam),
+             allTeasers = [{"path":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_9d29","name":"home-columncontainer_9d29","title":"Customer","campaignName":"homepage","campaignPath":"/content/campaigns/ja_jp/master/homepage","thumbnail":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_9d29.thumb.png","id":"homepage_home-columncontainer_9d29","url":"/content/campaigns/ja_jp/master/homepage/customer_profile/home-columncontainer_9d29/_jcr_content/par.html","campaignPriority":100,"segments":["/etc/segmentation/sfdc-www/customer-profile"],"tags":[]},{"path":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_9d29/default","url":"/content/www/ja_jp/home/jcr:content/main-par/columncontainer_9d29.default.html","name":"default","title":"Default","campainName":"","thumbnail":"/jp/_jcr_content/main-par/columncontainer_9d29/.thumb.png"}];
+
+         // if campaign and experience in url params
+         // get the specified experience and set it as the default in the allTeasers array
+         if (campaignName && experienceName){
+             function isForcedTeaser(teaser, campaign, experience){
+                 var campaignsDirectory = '/content/campaigns';
+                 var pathToCampaign = campaignsDirectory + '/' + campaign;
+                 var fullPathToExperience = pathToCampaign + '/' + experience + '/';
+                 if(teaser.campaignPath == pathToCampaign){
+                     if(teaser.path.startsWith(fullPathToExperience) || teaser.thumbnail.startsWith(fullPathToExperience)){
+                         return true;
+                     }
+                 }
+                 return false;
+             }
+             
+             for (i = 0; i < allTeasers.length; i++) {
+                 if (isForcedTeaser(allTeasers[i], campaignName, experienceName)) {
+                     var forcedTeaser = allTeasers[i];
+                     forcedTeaser.name = "default";
+                     forcedTeaser.segments = undefined;
+                     delete forcedTeaser.segments;
+                     allTeasers = [forcedTeaser]; 
+                 }
+             }
+         }
+	 
+             CQ_Analytics.Engine.loadTeaser({ targetID: "_content_www_ja_jp_home_jcr_content_main-par_columncontainer_9d29", teasers: allTeasers, strategy: "", trackingURL: null});
+	 });
+    
+
+
+$( document ).ready(function() {
+/*var consent = document.getElementById("teconsent");
+consent.innerHTML = "<a data-ignore-geolocation='true' class='optanon-toggle-display' href='#'>Cookie Preferences</a>";*/
+// NON TECONSENT DIVS
+$(".page-footer_links_list").append('<li class="page-footer_links_item"><a data-ignore-geolocation="true" class="optanon-toggle-display" href="#">Cookie Preferences</a></li>');
+
+$("ul.page-footer_links_list").find("div#teconsent").parent().remove();
+
+});
+

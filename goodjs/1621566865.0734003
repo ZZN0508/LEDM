@@ -1,0 +1,19 @@
+//logo_ettoday =======================================
+(function(){
+ var etLogoRightNow = new Date();
+ 
+ //母親節
+ var etLogoStartTime1 = new Date(2021, 5-1, 7, 0, 0, 0); // 結束時間 (年,月(0-11),日,時,分,秒)
+ var etLogoEndTime1 = new Date(2021, 5-1, 9, 23, 59, 59); // 結束時間 (年,月(0-11),日,時,分,秒)
+ // var etLogoSrc1 = "./images/logo/mother_day_2021.gif"; //圖檔路徑
+ var etLogoSrc1 = "https://static.ettoday.net/style/ettoday2017/images/logo/mother_day_2021.gif";
+
+
+ if(etLogoRightNow > etLogoStartTime1 && etLogoRightNow < etLogoEndTime1){
+  document.write('<a href="http://www.ettoday.net/?from=logo" title="回首頁"><img src="'+etLogoSrc1+'" border="0" alt="ETtoday 新聞雲"/></a>');
+ }else{
+  //下檔期間-預設Logo
+  document.write('<a href="http://www.ettoday.net/?from=logo" title="回首頁"><img src="//static.ettoday.net/style/ettoday2017/images/logo_ettoday.png" border="0" alt="ETtoday 新聞雲"/></a>');
+ }
+
+})();

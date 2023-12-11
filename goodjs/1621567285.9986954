@@ -1,0 +1,162 @@
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9840601cb51320c55bca4fa0f4949efe";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+
+    // Baidu Statistical Code.
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?ab2e5965345c61109c5e97c34de8026a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+var instance = new AutoTrack({ })
+//<![CDATA[
+ac_as_id = 22118;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 22090;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 23054;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 22114;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 23053;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+
+            var fadeTime;
+            var mySwiper = new Swiper('.picslide .swiper-container', {
+                observer: true,
+                observeParents: true,
+                autoplay: true,
+                pagination: {
+                    el: '.picslide .swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                  nextEl: '.picslide .swiper-button-next',
+                  prevEl: '.picslide .swiper-button-prev',
+                },
+            });
+            $('.picslide').mouseenter(function(){
+                mySwiper.autoplay.stop();
+                clearTimeout(fadeTime);
+                $('.picslide .swiper-button-prev').stop(true,true).fadeIn();
+                $('.picslide .swiper-button-next').stop(true,true).fadeIn();
+            });
+            $('.picslide').mouseleave(function(){
+                mySwiper.autoplay.start();
+                fadeTime = setTimeout(function(){
+                    $('.picslide .swiper-button-prev').stop(true,true).fadeOut();
+                    $('.picslide .swiper-button-next').stop(true,true).fadeOut();
+                },500);
+            });
+        
+//<![CDATA[
+ac_as_id = 22095;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 23051;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+
+    (window.slotbydup = window.slotbydup || []).push({
+        id: "u6055252",
+        container: "_yy2waqxvot",
+        async: true
+    });
+
+
+    (window.slotbydup = window.slotbydup || []).push({
+        id: "u6055253",
+        container: "_7eufo9ayqye",
+        async: true
+    });
+
+//<![CDATA[
+ac_as_id = 23052;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+
+    (window.slotbydup = window.slotbydup || []).push({
+        id: "u6055281",
+        container: "_szgm221unmp",
+        async: true
+    });
+
+
+    (window.slotbydup = window.slotbydup || []).push({
+        id: "u6055282",
+        container: "_992w5jg979m",
+        async: true
+    });
+
+//<![CDATA[
+ac_as_id = 22093;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 22094;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 2762;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+//<![CDATA[
+ac_as_id = 2761;
+ac_format = 0;
+ac_mode = 1;
+ac_group_id = 1;
+ac_server_base_url = "d-test.39.net/";
+//]]>
+$(document).ready(function(){$(".float_show .closethis").click(function(){$(this).parent().fadeOut();})})

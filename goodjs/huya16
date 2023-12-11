@@ -1,0 +1,99 @@
+try {
+  var countTest = function () {
+    let now, finishTime, i = 0;
+    now = Date.now();
+    finishTime = now + 200;
+    while (now < finishTime) {
+      i++;
+      now = Date.now();
+    }
+    return i
+  }
+  
+  let totalArr = [];
+
+  var fpsCount = function (callback) {
+    if (typeof requestAnimationFrame == 'undefined') {
+      callback && callback([0]);
+      return;
+    }
+    var rAF = function () {
+      return (
+        requestAnimationFrame ||
+        webkitRequestAnimationFrame ||
+        function (callback) {
+          window.setTimeout(callback, 1000 / 60);
+        }
+      );
+    }();
+
+    var frame = 0;
+    var allFrameCount = 0;
+    var lastTime = Date.now();
+    var lastFameTime = Date.now();
+    var runTimer = 0;
+    var lastCount = 0;
+    var fpsArr = [2];
+
+    var loop = function () {
+      var now = Date.now();
+      var fs = (now - lastFameTime);
+      var fps = Math.round(1000 / fs);
+
+      lastFameTime = now;
+      // 不置 0，在动画的开头及结尾记录此值的差值算出 FPS
+      allFrameCount++;
+      frame++;
+
+      if (now > 1000 + lastTime) {
+        var fps = Math.round((frame * 1000) / (now - lastTime));
+        runTimer++;
+        lastCount += fps;
+        fpsArr.push(fps);
+        // console.log(`第${runTimer}次统计`, `${new Date()} 1S内 FPS：`, fps, `平均值${parseInt(lastCount / runTimer, 10)}`);
+        frame = 0;
+        lastTime = now;
+      };
+
+      if (runTimer == 3) {
+        callback && callback(fpsArr)
+        return;
+      }
+      rAF(loop);
+    }
+
+    loop();
+  }
+
+  self.addEventListener('message', function (e) {
+    if (e.data.type == 'performance') {
+      totalArr.length = 0;
+      for (let i = 1; i <= 10; i++) {
+        totalArr.push(countTest());
+      }
+      totalArr = totalArr.sort(function (a, b) { return (a - b) });
+
+      let count = 0;
+      for (let o = 1; o <= 10; o++) {
+        if (o > 3 && o < 8) {
+          count += totalArr[o - 1]
+        }
+      }
+
+      fpsCount(function (fpsArr) {
+        var fps = Math.max.apply(null, fpsArr)
+        self.postMessage({
+          type: 'performance',
+          data: {
+            total: totalArr,
+            avgCount: parseInt(count / 4),
+            fps: fps
+          }
+        })
+      });
+    }
+  }, false);
+} catch (e) {
+
+}
+

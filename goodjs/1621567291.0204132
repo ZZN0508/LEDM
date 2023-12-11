@@ -1,0 +1,23 @@
+<!--
+//DATA
+var ctopRdm = [
+'<div class="c-feed_cell"><a href="https:\/\/kakaku.com\/productaward\/?lid=waku_categorytop_exp_E_83817_10" class="c-feed_item c-feed_item-kakaku"><div class="c-feed_visual" data-original="https:\/\/img1.kakaku.k-img.com\/images\/productaward\/2020\/bnr_award_250x130.png"></div><div class="c-feed_lines"><p class="p-cat p-cat-kakaku c-feed_lines_cat">価格.com </p><p class="c-feed_lines_ttl">ゲーミング部門新設！ユーザーに支持された17部門の大賞を発表！</p></div><!-- /c-feed_lines --></a><!-- /c-feed_item --></div><!-- /c-feed_cell -->'
+];
+
+function NAVI_1(){
+ var len = ctopRdm.length;
+ if(len > 0){
+  if(len > 1){
+   while (len){
+    var j = Math.floor(Math.random()*len);
+    var t = ctopRdm[--len];
+    ctopRdm[len] = ctopRdm[j];
+    ctopRdm[j] = t;
+   }
+  }
+  for(i=0; i < 1; i++){
+   document.write(ctopRdm[i]);
+  }
+ }
+}
+//-->

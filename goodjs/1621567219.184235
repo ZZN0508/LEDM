@@ -1,0 +1,31 @@
+
+  var _gaq = _gaq || [];
+  _gaq.push(
+    ['_setAccount', 'UA-31336-2'],
+    ['_setDomainName', '.dmm.co.jp'],
+    ['_setSampleRate', '10'],
+    ['_setCampaignCookieTimeout', 2592000000],
+    ['_trackPageview']
+  );
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+(function() {
+if (!window["Marketing"]) { window.Marketing = {}; }
+var j={"host":"www.dmm.co.jp","device":"pc"};
+window.Marketing.Gateway = { getParam: function(k) { if (!k) { return j; } return j[k]; } };})();
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({"dtm":{"viewLayout":"pc","isForeign":0}});
+
+
+var trackingTagApi = trackingTagApi || {};
+trackingTagApi.environment = 'production';
+
+(function(){function d(b,c){if("string"!==typeof b||!c)return!1;if(/object/i.test(c))return"undefined"!==typeof ga&&ga(google_tag_manager["GTM-JLBT"].macro(40)+".send","event","Error","setCookie",c),!1;"clientId"==b?b="dtmc":"userId"==b?b="dtmu":"hashId"==b&&(b="dtmh");var d=31536E6,e=document.domain?document.domain.replace("www.",""):"",a=e.split(".");3<=a.length&&(e=2>=a[a.length-2].length?a[a.length-3]+"."+a[a.length-2]+"."+a[a.length-1]:a[a.length-2]+"."+a[a.length-1]);a=new Date;a=new Date(a.getTime()+d);b=b+"\x3d"+
+escape(c)+"; domain\x3d"+e+"; path\x3d/;";d&&(b=b+" expires\x3d"+a.toGMTString()+";");document.cookie=b;return!0}var c=google_tag_manager["GTM-JLBT"].macro(44);c&&d("dtmc",c);(c=google_tag_manager["GTM-JLBT"].macro(47))&&d("dtmu",c);if(c=google_tag_manager["GTM-JLBT"].macro(50))d("dtmh",c),(c=google_tag_manager["GTM-JLBT"].macro(55))?d("dtms",1):d("dtms",10)})();
+(function(){function b(a){return"object"===typeof a&&null!==a}function d(a,c){var b=a.className;0>b.indexOf(c)&&(b+=(b?" ":"")+c,a.className=b)}var c=document.getElementsByClassName("hd-mainnav");if(b(c))for(i=0;i<c.length;i++){var a=c[i].getElementsByTagName("a");if(b(a))for(t=0;t<a.length;t++)d(a[t],"head-anchor")}if(-1<location.href.indexOf("dmm.co.jp/digital/videoa/-/detail/")&&(c=document.getElementById("side-l"),b(c)&&(a=c.getElementsByTagName("a"),b(a))))for(i=0;i<a.length;i++)d(a[i],"side-anchor")})(window);
+for(var cookies=document.cookie,cookiesArray=cookies.split(";"),_gnd={},i=0;i<cookiesArray.length;i++){var cArray=cookiesArray[i].split("\x3d");"cdp_id"==cArray[0].trim()&&(_gnd.mid=cArray[1])}window._gnd=_gnd;

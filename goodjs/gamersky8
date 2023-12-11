@@ -1,0 +1,51 @@
+(function ($) {
+    var gsOption = {};
+    gsOption.infos = [[], []];
+    //宽度
+    gsOption.width = '408';
+    //高度
+    gsOption.height = '86';
+    //是否自动切换 循环为 true,不循环为 false
+    gsOption.isChange = false;
+    //是否显示广告角标 显示为 show，不显示为 hide，默认为show
+    gsOption.isIcon = 'hide';
+    //图片或flash地址
+    gsOption.infos[0][0] = 'https://imgf.gamersky.com/img/tqbc2010/cj_816x172_0524.png';
+    //连接地址,不填写链接，本行不生效
+    gsOption.infos[0][1] = 'https://app.gamersky.com/lottery/';
+    //统计ID
+    gsOption.infos[0][2] = '1117219';
+    //监测代码
+    gsOption.jcCode = 'https://image.gamersky.com/webimg13/zhuanti/common/blank.png';
+    //广告位置
+    gsOption.tar = '#top_index_660';
+
+    // 增加曝光统计
+    //统计方法
+    function GetHits(id) {
+        $.ajax({
+            url: "//click.gamersky.com/Common/GetHits.aspx",
+            type: "get",
+            contentType: 'application/json',
+            dataType: "jsonp",
+            data: {
+                script: 3,
+                id: id
+            },
+            success: function (rs) {
+                if (typeof callback == "function") {
+                    callback(rs)
+                }
+            }
+        })
+    }
+    if (typeof gsTg === 'object') {
+        gsTg.base(gsOption);
+        GetHits(1567676)
+    } else {
+        $.getScript('//j.gamersky.com/g/gs.common.income.v1.js', function () {
+            gsTg.base(gsOption);
+            GetHits(1567676)
+        });
+    }
+})(jQuery);

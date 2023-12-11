@@ -1,0 +1,429 @@
+
+            var IS_LOGGED_IN = false;
+        
+
+        $(document).ready(function() {
+            var shouldHide = false;
+            function hide(){
+                if(shouldHide){
+                    $('.language_switcher ul').slideUp('fast',function(){
+                        $('.language_switcher').removeClass('hover');
+                    });
+                }
+            }
+
+            $('.language_switcher').hover(function(){
+                shouldHide = false;
+                $('.language_switcher').addClass('hover');
+                $(this).find('ul').slideDown('fast');
+            },function(){
+                shouldHide = true;
+                setTimeout(hide,1000);
+            });
+        });
+    
+
+                            $(document).ready(function() {
+                                $('#learn_more').dialog({
+                                    autoOpen: false,
+                                    width: $('body').hasClass('msie7') ? 670 : 670,
+                                    minHeight: 465,
+                                    modal: true,
+                                    resizable: false,
+                                    open: function() {
+                                        jQuery('.ui-widget-overlay').bind('click', function() {
+                                            jQuery('#learn_more').dialog('close');
+                                        })
+                                    },
+                                    close: function(event, ui) {
+                                        $('#learn_more').html('');
+                                    }
+                                });
+                                $('#learnMore').click(function(e) {
+                                    $('#learn_more').load('learn_more.php').dialog("open");
+                                });
+                            });
+                        
+(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=399141353502152&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+	var bmlUrl = '';	var bmlType = '';	var bmlDomain = '';	var bmlFolder = '';
+
+    var cant_submit = 0;
+
+    $(document).ready(function() {
+        $('#account_type').chosen({disable_search_threshold: 2});
+        $('#account_type_chzn').css('width', '200px');
+
+        $('#join_form').dialog({
+            autoOpen: false,
+            maxWidth: 550,
+            width: '90%',
+            position: ['center',20],
+            create: function( event, ui ) {
+                // Set maxWidth
+                $(this).parent().css("maxWidth", "550px");
+            },
+            minHeight: 465,
+            modal: true,
+            resizable: false
+        });
+
+        $('#joinNow, #joinNow2').click(function(e) {
+            $('#join_form').dialog("open");
+            //return e.preventDefault();
+        });
+
+        $('#mobile_prefix').chosen({disable_search_threshold: 1000000});
+
+        $('#MobileNumber').on('keypress',function(e){
+            $('#mobileVerify').removeClass('hide');
+        });
+
+
+        $('#_smb').live('click',function(e){
+            var user_challenge = document.getElementById('adcopy_challenge').value;
+            var user_response = document.getElementById('adcopy_response').value;
+            var number = $('#MobileNumber').val();
+            var country_code = $('#country_code').val();
+            $('#solveerror').hide();
+            $.ajax({
+                type: "POST",
+                data: {challenge:user_challenge, response:user_response, number:number, country_code:country_code},
+                dataType: "json",
+                url: "/mobile/sendCode"
+            }).done(function(content) {
+                var a;
+                if(content == 1){
+                    $('#_sm').fadeOut();
+                    $('#fade').fadeOut();
+                    $('.verificationCode').fadeIn();
+                    $('#mobileVerify').parent().find('.loader').addClass('hide');
+                    $('#codeVerifyAction').show();
+                }else if (content == 2){
+                    ACPuzzle.reload('');
+                    $('#solveerror').show();
+                }else if (content == 3){
+                    $('#mobileVerify').show();
+                    $('#_sm').fadeOut();
+                    $('#fade').fadeOut();
+                    $('#mobileVerify').parent().find('.loader').addClass('hide');
+                    alert('发送短信出错。请稍后重试');
+                }else if (content == 4){
+                    $('#mobileVerify').show();
+                    $('#_sm').fadeOut();
+                    $('#fade').fadeOut();
+                    $('#mobileVerify').parent().find('.loader').addClass('hide');
+                    alert('手机无效');
+                }
+            });
+
+            e.preventDefault();
+        });
+
+        $('#adcopy_response').live('keypress',function(e){
+            if(e.keyCode == 13){
+                $('#_smb').click();
+            }
+        });
+
+        $('#fade').live('click',function(e){
+            $('#_sm').fadeOut();
+            $('#fade').fadeOut();
+            $('#mobileVerify').show();
+            $('#mobileVerify').parent().find('.loader').addClass('hide');
+            e.preventDefault();
+            return true;
+        });
+
+        $('#mobileVerify').live('click',function(e){
+            var number = $('#MobileNumber').val();
+            if(number == ''){
+                return false;
+            }
+            $('#_sm').fadeIn();
+            $('#fade').fadeIn();
+
+            //$('.verificationCode').fadeIn();
+
+            $('#mobileVerify').hide();
+            $('#mobileVerify').parent().find('.loader').removeClass('hide');
+            e.preventDefault();
+            return true;
+        });
+
+
+        $('#country_code').chosen();
+
+        $("#country_code").change(function() {
+            $('#mobile_prefix').val($(this).val());
+        });
+    });
+
+    $(window).load(function() {
+        if ('#join_advertiser' == window.location.hash) {
+            $('#account_type').val(2);
+            $("#account_type").trigger("liszt:updated");
+            open_reg();
+        } else if ('#join' == window.location.hash) {
+            open_reg();
+        }
+    });
+
+    function joinDialogAddAlert($el, msg, link) {
+        
+        AdFly.removeAlert($('#your_name'));
+        AdFly.removeAlert($('#username'));
+        AdFly.removeAlert($('#password'));
+        AdFly.removeAlert($('#confirm_password'));
+        AdFly.removeAlert($('#terms'));
+        AdFly.removeAlert($('#email'));
+        AdFly.removeAlert($('#confirm_email'));
+        
+        $el.addClass('error');
+        
+        $('#alert_wrapper').show();
+        
+        AdFly.addAlert(msg, $el, $('#alert_wrapper'), link);
+    }
+
+    function joinDialogRemoveAlert($el) {
+        $el.removeClass('error');
+        AdFly.removeAlert($el);
+    }
+
+    function open_reg () {
+        // if (typeof(adblock) != 'undefined' && adblock) {
+        //    alert('Can\'t initiate the register process.\n\nIt appears that you use AdBlock or similar browser plugin. Please disable it and reload the page before filling in the register form, because it conflicts with Captcha.\n\nSorry for the inconvenience.');
+        // } else {
+        $('#join_form').dialog("open");
+        // }
+    }
+
+    function validate_email(email) {
+        var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,6})$/;
+        if(reg.test(email) == false) {
+            return false;
+        }
+        return true;
+    }
+
+    function check_name() {
+        if ($.trim($('#your_name').val())) {
+            cant_submit = 0;
+            joinDialogRemoveAlert($('#your_name'));
+        } else {
+            cant_submit = 1;
+            joinDialogAddAlert($('#your_name'), "请输入你的名字");
+        }
+    }
+
+    function keydelayFunc() {
+        var timer;
+        return function( fun, time ) {
+            clearTimeout( timer );
+            timer = setTimeout( fun, time );
+        };
+    }
+
+    function doCheckUsername() {
+        $.post("/index/checkusername", { username: $('#username').val() }, function(data) {
+            if (data == 1) {
+                username_error = 1;
+                joinDialogAddAlert($('#username'), "请选择其他用户名。");
+            } else if (data == 2) {
+                username_error = 0;
+                joinDialogRemoveAlert($('#username'));
+            }
+        });
+    }
+
+    function doUsernameKeyUp() {
+        if ($('#username').val().length > 3 && $('#username').val().length < 13) {
+            if (/[^a-zA-Z0-9_-]|anonymous|adfly|admin|support/.test($('#username').val())) {
+                username_error = 1;
+                joinDialogAddAlert($('#username'), "用户名包括无效的字符。");
+            } else {
+                username_error = 0;
+                keydelay( doCheckUsername, 500 );
+            }
+        } else {
+            joinDialogAddAlert($('#username'), "用户名长度为4到12个字符。");
+            username_error = 1;
+        }
+    }
+
+    var keydelay = keydelayFunc();
+
+    var username_error = 1;
+    var password_error = 0;
+
+    function check_username() {
+        doUsernameKeyUp();
+
+        if (username_error) {
+            cant_submit = 1;
+        } else {
+            cant_submit = 0;
+        }
+    }
+
+    function check_password_compromized() {
+        $.post("/index/compromizedPassword", { password: $('#password').val() }, function(data) {
+            if (data == '1') {
+                password_error = 1;
+                joinDialogAddAlert($('#password'), "Weak password - reused on the Internet", 'https://haveibeenpwned.com/Passwords');
+            } else if (data == '0') {
+                password_error = 0;
+                joinDialogRemoveAlert($('#password'));
+            }
+        });
+    }
+    
+    $('#password').focusout(function() {
+        check_password_compromized();
+    });
+
+    function check_email($el) {
+        var email = $el.val();
+
+        at_pos = email.indexOf("@");
+        period_pos = email.lastIndexOf(".");
+
+        var match = $('#email').val() == $('#confirm_email').val();
+        var confirm = $el.attr('id') == 'confirm_email';
+
+        if (validate_email(email)) {
+            cant_submit = 0;
+            joinDialogRemoveAlert($('#email, #confirm_email'));
+        } else {
+            cant_submit = 1;
+            joinDialogAddAlert($el, "请输入一个有效的电子邮件地址");
+        }
+
+        if(!cant_submit){
+            if (confirm && !match) {
+                cant_submit = 1;
+                joinDialogAddAlert($el, "你的电子邮件地址不匹配。");
+            } else {
+                cant_submit = 0;
+                joinDialogRemoveAlert($el);
+            }
+        }
+    }
+
+    function checkPasswordStrength(password){
+        if(password.length < 8){
+            return false;
+        }
+
+        if(!/\d/.test(password)){
+            return false;
+        }
+
+        if(!/[a-zA-Z]/.test(password)){
+            return false;
+        }
+
+        return true;
+    }
+
+    function check_password(num) {
+        if(num==4) var password = $('#password').val();
+        if(num==5) var password = $('#confirm_password').val();
+
+        if (password_error) {           
+            cant_submit = 1;
+            return;
+        }
+
+        if (checkPasswordStrength(password) && (num==4 || (num==5 && $('#password').val() == $('#confirm_password').val()))) {
+            cant_submit = 0;
+            joinDialogRemoveAlert($('#password, #confirm_password'));
+        } else {
+            cant_submit = 1;
+            
+            if ($('#password').val() != $('#confirm_password').val()) {
+                joinDialogAddAlert($('#password, #confirm_password'), "你的密码不匹配。");
+            } else {
+                joinDialogAddAlert($('#password, #confirm_password'), "Password too short or must also include a letter and number.");
+            }
+        }
+    }
+
+    function check_terms() {
+        if ($('#terms:checked').val()) {
+            cant_submit = 0;
+            joinDialogRemoveAlert($('#terms'));
+        } else {
+            cant_submit = 1;
+            joinDialogAddAlert($('#terms'), "你必须接收我们的条款和条件。");
+        }
+    }
+
+    function submit_form() {
+        cant_submit = 0;
+
+        if(!cant_submit) check_name();
+        if(!cant_submit) check_username();
+        if(!cant_submit) check_email($('#email'));
+        if(!cant_submit) check_email($('#confirm_email'));
+        if(!cant_submit) check_password(4);
+        if(!cant_submit) check_password(5);
+        if(!cant_submit) check_terms();
+
+        var tmp1 = $('#tmp1').val();
+        $('#tmp2').val(tmp1);
+
+        if (cant_submit == 1) {
+            return false;
+        }
+
+        return check_captcha();
+    }
+
+    function check_captcha() {
+        var reqData = {
+            captcha_code: $('#captcha_code').val()
+        };
+
+        $('#submitJoin').css('visibility', 'hidden');
+        $.post("/index/checkPhpcaptcha", reqData, function(data) {
+            if (data == "success") {
+                $('#register_form')[0].submit();
+            } else {
+                $('#submitJoin').css('visibility', 'visible');
+                joinDialogAddAlert($('#recaptcha_response_field'), "验证码的人类检查输入不正确。");
+                Recaptcha.reload();
+            }
+        });
+        return false;
+    }
+    
+
+            try {
+                var pageTracker = _gat._getTracker("UA-6469700-8");
+                pageTracker._trackPageview();
+            } catch(err) {}
+        
+
+        function removeCookieNotice() {
+            document.cookie="removeCookieNotice=1";
+            $("#cookie_notice").css("display","none");
+        }
+
+        function getCookie(name) {
+            var re = new RegExp(name + "=([^;]+)");
+            var value = re.exec(document.cookie);
+            return (value != null) ? unescape(value[1]) : null;
+        }
+
+        if (getCookie('removeCookieNotice') != 1) {
+            $("#cookie_notice").css("display","block");
+        }
+        

@@ -1,0 +1,94 @@
+
+if (location.hostname.indexOf('www')===0) {
+    if( window.location.search.indexOf("?via=")<0 &&
+                ( /Android|Windows Phone|iPhone|iPod/i.test(navigator.userAgent)  || /AppleWebKit.*Mobile/i.test(navigator.userAgent) )
+          ){
+                try{
+                    if(/Android|iPhone|Windows Phone|webOS|iPod|BlackBerry/i.test(navigator.userAgent)){
+                        var referrer = document.referrer;
+                        if (referrer && referrer !== "") {
+                          referrer += referrer.indexOf("?") > -1 ? "&pcjump=1" : "?pcjump=1";
+                        } else {
+                          referrer = "none";
+                        }
+                        if (document.cookie) {
+                          var date = new Date();
+                          date.setDate(date.getDate() + 1);
+                          document.cookie = "PC2MRealRef=" + escape(referrer) + ";expires=" + date.toUTCString() + "; domain=.zol.com.cn; path=/";
+                        }
+                        window.location.href="https://m.zol.com.cn/";
+                    }
+                }catch(e){}
+         };
+}
+document.domain = 'zol.com.cn';
+var __publicNavWidth=1000;
+// 登录回调 login callback
+function userLoginCallback(data){
+	try{
+		if (data.type == 'change' || data.type == 'bind' || data.type=='bindPhone'){
+			var param = 'type='+data.type+'&userid='+encodeURIComponent(data.userid);
+			param += '&token='+data.token+'&timestamp='+data.timestamp;
+			param += '&email='+data.email+'&phone='+data.phone;
+			param += '&backurl='+encodeURIComponent(data.backurl);
+
+			var script  = document.createElement('script');
+			script.type = 'text/javascript';
+			script.id   = 'chgpwd_scriptChangePwd';
+			script.src  = 'https://icon.zol-img.com.cn/service/js/chgpwd.js?'+param;
+			document.body.appendChild(script);
+			return false;
+		}
+	}catch(e){}
+	window.location.href = 'https://www.zol.com.cn';
+}
+
+
+    //执行广告
+    try {adsLoad('run');}catch(e){}
+    // 广告需要声明的变量
+    var bms_no_request = 1;
+    var z_mac = 1;
+    var  _zpv_cfg = {
+        terminal: 'pc',
+        site: 'ZOL',
+        buz: 'media',
+        channel: 'www',
+        pagetype: 'homepage'
+    };
+    var newsList = [{"title":"\u5c0f\u6ee1\u79d1\u62808\u5468\u5e74\uff1a\u63a2\u7d22\u65e0\u9650","url":"http:\/\/news.zol.com.cn\/768\/7688554.html"},{"title":"\u53d1\u5e03\u521b\u65b0\u50a8\u80fd\u89e3\u51b3\u65b9\u6848","url":"http:\/\/news.zol.com.cn\/768\/7688552.html"},{"title":"\u7f8e\u56fd\u5f00\u59cb\u76d1\u7ba1\u52a0\u5bc6\u8d27\u5e01\u4ea4\u6613","url":"http:\/\/news.zol.com.cn\/768\/7688545.html"},{"title":"\u897f\u6570\u63a8\u51fa\u7d2b\u76d8Pro\u76d1\u63a7\u76d8\u4ea7\u54c1","url":"http:\/\/news.zol.com.cn\/768\/7688542.html"},{"title":"\u79d1\u6280\u516c\u53f8\u96c6\u4f53\u53cd\u5bf9\u7ef4\u4fee\u6cd5\u6848","url":"http:\/\/news.zol.com.cn\/768\/7688523.html"},{"title":"\u8c37\u6b4cPixel6Pro\u6700\u65b0\u6e32\u67d3\u56fe","url":"http:\/\/news.zol.com.cn\/768\/7688519.html"},{"title":"\u6bd4\u7279\u5e01\u201c\u6316\u77ff\u201d\u8017\u7535\u91cf","url":"http:\/\/news.zol.com.cn\/768\/7688511.html"},{"title":"ZOL\u79d1\u6280\u65e9\u9910","url":"http:\/\/news.zol.com.cn\/768\/7688360.html"},{"title":"\u6df1\u5733\u8d5b\u683c\u5927\u53a6\u7591\u518d\u53d1\u6643\u52a8","url":"http:\/\/news.zol.com.cn\/768\/7688205.html"},{"title":"Epic\u548c\u82f9\u679c\u8bc9\u8bbc\u6848\u66f4\u65b0\u4e2d..","url":"http:\/\/news.zol.com.cn\/768\/7688133.html"},{"title":"\u7279\u65af\u62c9\u5728\u4e2d\u56fd\u9500\u91cf\u6025\u901f\u4e0b\u964d","url":"http:\/\/news.zol.com.cn\/768\/7688115.html"},{"title":"Aqara\u667a\u80fd\u7f51\u5173E1\u53d1\u5e03","url":"http:\/\/news.zol.com.cn\/768\/7688114.html"},{"title":"\u817e\u8baf\u6570\u5b57\u5f00\u5c01\u5cf0\u4f1a\u5c06\u5f00\u5e55","url":"http:\/\/news.zol.com.cn\/768\/7688099.html"},{"title":"\u798f\u7279\u63a8\u51faF-150\u7eaf\u7535\u7248\u76ae\u5361","url":"http:\/\/news.zol.com.cn\/768\/7688098.html"},{"title":"\u8f6f\u4ef6\u5b9a\u4e49\u6c7d\u8f66","url":"http:\/\/news.zol.com.cn\/768\/7688101.html"},{"title":"ThinkPad X1 Nano\u5982\u671f\u800c\u81f3","url":"http:\/\/news.zol.com.cn\/768\/7687992.html"},{"title":"Linksys\u4e3aVR\u4f53\u9a8c\u5e26\u6765\u652f\u6301","url":"http:\/\/news.zol.com.cn\/768\/7687981.html"},{"title":"\u56fd\u884cNS\u5065\u8eab\u73af\u5927\u5192\u9669\u5957\u88c5","url":"http:\/\/news.zol.com.cn\/768\/7687973.html"},{"title":"\u4e9a\u4fe1\u4e0e\u5e7f\u897f\u5317\u6295\u4fe1\u521b\u5408\u4f5c","url":"http:\/\/news.zol.com.cn\/768\/7687967.html"},{"title":"\u4eac\u4e1c\u65b9\u4e0e\u5409\u5229\u7b7e\u8ba2\u5408\u4f5c\u534f\u8bae","url":"http:\/\/news.zol.com.cn\/768\/7687966.html"}];
+    var bms_after_fun = {
+        zol_index_nav_bottom_txtlink : function(ad){
+            var txtLen = ad.adPlace.length,
+                txtStr = '',
+                adNum  = 6;
+            if(txtLen < 1){
+                //资讯
+                txtStr += '<div class="wrapper scroll-message">\
+                    <a href="//news.zol.com.cn/" class="scroll-message-tit">快讯<i></i></a>\
+                    <div id="scrollDiv" class="scroll-mol">\
+                        <div class="scroll-top">\
+                            <ul class="scroll-top-list scrollText" style="margin-top: 0px;"><li><a href="//news.zol.com.cn/768/7688554.html">小满科技8周年：探索无限</a><a href="//news.zol.com.cn/768/7688552.html">发布创新储能解决方案</a><a href="//news.zol.com.cn/768/7688545.html">美国开始监管加密货币交易</a><a href="//news.zol.com.cn/768/7688542.html">西数推出紫盘Pro监控盘产品</a></li><li><a href="//news.zol.com.cn/768/7688523.html">科技公司集体反对维修法案</a><a href="//news.zol.com.cn/768/7688519.html">谷歌Pixel6Pro最新渲染图</a><a href="//news.zol.com.cn/768/7688511.html">比特币“挖矿”耗电量</a><a href="//news.zol.com.cn/768/7688360.html">ZOL科技早餐</a></li><li><a href="//news.zol.com.cn/768/7688205.html">深圳赛格大厦疑再发晃动</a><a href="//news.zol.com.cn/768/7688133.html">Epic和苹果诉讼案更新中..</a><a href="//news.zol.com.cn/768/7688115.html">特斯拉在中国销量急速下降</a><a href="//news.zol.com.cn/768/7688114.html">Aqara智能网关E1发布</a></li><li><a href="//news.zol.com.cn/768/7688099.html">腾讯数字开封峰会将开幕</a><a href="//news.zol.com.cn/768/7688098.html">福特推出F-150纯电版皮卡</a><a href="//news.zol.com.cn/768/7688101.html">软件定义汽车</a><a href="//news.zol.com.cn/768/7687992.html">ThinkPad X1 Nano如期而至</a></li><li><a href="//news.zol.com.cn/768/7687981.html">Linksys为VR体验带来支持</a><a href="//news.zol.com.cn/768/7687973.html">国行NS健身环大冒险套装</a><a href="//news.zol.com.cn/768/7687967.html">亚信与广西北投信创合作</a><a href="//news.zol.com.cn/768/7687966.html">京东方与吉利签订合作协议</a></li></ul>\
+                </div>\
+                <div class="scroll-btn">\
+                    <span class="scrollPrev" style="cursor: pointer;"></span>\
+                    <span class="scrollNext" style="cursor: pointer;"></span>\
+                </div>\
+            </div>\
+        </div>';
+            }else{
+                var txtNum = adNum - txtLen;
+                txtStr = '<dl class="topda-list mt10"> <dt></dt><dd><ul class="clearfix">';
+                for(var i = 0 ; i < txtLen ; i++ ){
+                    //输出广告
+                    txtStr += '<li><a href="'+ad.adPlace[i].conf.click_url+'">'+ad.adPlace[i].conf.title+'</a></li>';
+                }
+                for(var i = 0 ; i < txtNum ; i++ ){
+                    //资讯
+                    txtStr += '<li><a href="'+newsList[i].url+'">'+newsList[i].title+'</a> </li>';
+                }
+                txtStr += '</ul></dd></dl>';
+            }
+            $('#news_list_scroll').html(txtStr);
+        }
+    }

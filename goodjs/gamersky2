@@ -1,0 +1,191 @@
+var GSYeYouAd = {};
+{
+    GSYeYouAd.adStatisticsServerUrl = "https://yeyou-cps.gamersky.com/AdStatistics/";
+    GSYeYouAd.adTraceCookieDomain = ".gamersky.com";
+
+    // 首页背景广告Id：1
+    // Wap内容页，H5热门游戏广告Id：2
+    GSYeYouAd.reportAdShow = function (adId)
+    {
+        if (typeof (adId) != "number"
+            || adId == 0)
+        {
+            return;
+        }
+
+        var apiUrl = GSYeYouAd.adStatisticsServerUrl + "showAd?adId=" + adId;
+        $.get(
+            apiUrl,
+            function (response, status)
+            {
+                if (status == "success")
+                {
+                    // console.log("GSYeYouAd，广告展示统计，报送成功。");
+                }
+                else
+                {
+                    // console.log("GSYeYouAd，广告展示统计，报送失败。");
+                }
+            })
+    }
+    GSYeYouAd.reportAdClick = function (adId)
+    {
+        if (typeof (adId) != "number"
+            || adId == 0)
+        {
+            return;
+        }
+
+        var apiUrl = GSYeYouAd.adStatisticsServerUrl + "clickAd?adId=" + adId;
+        $.get(
+            apiUrl,
+            function (response, status)
+            {
+                if (status == "success")
+                {
+                    // console.log("GSYeYouAd，广告展示统计，报送成功。");
+                }
+                else
+                {
+                    // console.log("GSYeYouAd，广告展示统计，报送失败。");
+                }
+            })
+    }
+
+    GSYeYouAd.adTracePoints = new Array();
+    GSYeYouAd.loadAdTracePointsFromCookie = function ()
+    {
+        try
+        {
+            var adTracePointsCookie = $.cookie("GSGUOP_AdTracePoints");
+            if (adTracePointsCookie != null
+                && adTracePointsCookie.length > 0)
+            {
+                var adTracePoints = JSON.parse(adTracePointsCookie);
+                if (adTracePoints instanceof Array)
+                {
+                    GSYeYouAd.adTracePoints = adTracePoints;
+                }
+            }
+        }
+        catch (exception)
+        {
+            console.log("GSYeYouAd，从Cookie中读取广告追踪点失败，异常信息：\r\n" + exception);
+        }
+    }
+    GSYeYouAd.loadAdTracePointsFromCookie();
+    GSYeYouAd.saveAdTracePointsToCookie = function ()
+    {
+        var adTracePointsJson = JSON.stringify(GSYeYouAd.adTracePoints);
+        $.cookie(
+            "GSGUOP_AdTracePoints",
+            adTracePointsJson,
+            {
+                expires: 30,
+                domain: GSYeYouAd.adTraceCookieDomain,
+                path: '/'
+            });
+    }
+    GSYeYouAd.traceAdId = function (
+        adId,
+        eventName,
+        isUserRegister = false,
+        isUserPay = false,
+        //
+        gameId = 0,
+        gameServerName = "",
+        //
+        userId = 0,
+        //
+        payMethod = "",
+        paySum = 0.0,
+        payAccountNumber = "",
+        //
+        gameItemId = 0,
+        gameItemName = "")
+    {
+        if (typeof (adId) != "number"
+            || adId == 0
+            || eventName == null
+            || eventName.length < 1)
+        {
+            return;
+        }
+
+        var recordType = 0;
+        if (isUserRegister)
+        {
+            recordType = 1;
+        }
+        else if (isUserPay)
+        {
+            recordType = 2;
+        }
+
+        var tracePoint =
+        {
+            adId: adId,
+
+            // None = 0,
+            // UserRegister = 1,
+            // UserPay = 2
+            recordType: recordType,
+            recordName: eventName,
+            recordTime: new Date().toISOString(),
+
+            relatedGameId: gameId,
+            relatedGameServerName: gameServerName,
+
+
+            relatedUserId: userId,
+
+            relatedPayMethod: payMethod,
+            relatedPaySum: paySum,
+            relatedPayAccountNumber: payAccountNumber,
+
+            relatedGameItemId: gameItemId,
+            relatedGameItemName: gameItemName
+        }
+        GSYeYouAd.adTracePoints.push(tracePoint);
+        // !!! 保存到Cookie中 !!!
+        try
+        {
+            GSYeYouAd.saveAdTracePointsToCookie();
+        }
+        catch (exception)
+        {
+            console.log("GSYeYouAd，在Cookie中保存广告追踪点失败，异常信息：\r\n" + exception);
+        }
+        // !!!
+    }
+    GSYeYouAd.submitAdTracePoints = function ()
+    {
+        if (GSYeYouAd.adTracePoints == null
+            || GSYeYouAd.adTracePoints.length < 1)
+        {
+            return;
+        }
+
+        var apiUrl = GSYeYouAd.adStatisticsServerUrl + "SaveTracePoints";
+        $.post(
+            apiUrl,
+            {
+                tracePoints: GSYeYouAd.adTracePoints
+            },
+            function (response, status)
+            {
+                if (status == "success")
+                {
+                    GSYeYouAd.adTracePoints.length = 0;
+                    GSYeYouAd.saveAdTracePointsToCookie();
+                    //
+                    // alert("GSYeYouAd，广告追踪数据，报送成功。");
+                }
+                else
+                {
+                    // alert("GSYeYouAd，广告追踪数据，报送失败。");
+                }
+            },
+            "json");
+    };
+}

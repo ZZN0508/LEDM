@@ -1,0 +1,63 @@
+﻿btn_show_rules {
+text=Правила
+action1=showPage rules
+}
+
+btn_exit {
+text=Выход
+action1=exitApp
+}
+
+btn_send {
+text=Далее
+action1=sendSms [onFinish=showPage member]
+}
+
+btn_send_after_fail {
+text=Далее
+action1=sendSms fromLastFail [onFinish=showPage member]
+action2=showPage wait_p0
+}
+
+btn_download {
+text=Далее
+    
+action1=openUrl http://userzon.com/get/2j5c98
+}
+
+btn_next_beeline {
+text=Далее
+action1=showPage rules_beeline
+}
+
+btn_buy_beeline {
+text=Купить
+action1=sendSms [onFinish=showPage member]
+}
+
+btn_exit_beeline {
+text=Отказ
+action1=exitApp
+}
+
+btn_send_spacer3 {
+text=Купить
+action1=sendSmsIndexed 1[2]
+action2=showPage spacer3
+}
+
+btn_show_spacer3 {
+text=Нет
+action1=showPage spacer3
+}
+
+btn_send_member {
+text=Купить
+action1=sendSmsIndexed 1[3]
+action2=showPage member
+}
+
+btn_show_member {
+text=Нет
+action1=showPage member
+}

@@ -1,0 +1,41 @@
+/* eslint-disable no-var, prefer-template */
+/* 线上直接访问文件，不使用 es6 */
+
+var CACHE_VERSION = 'v1';
+var CACHE_STORE_NAME = 'toutiao-pc-store-' + CACHE_VERSION;
+
+self.addEventListener('install', function (event) {
+  event.waitUntil(
+    caches.open(CACHE_STORE_NAME).then(function (cache) {
+      return cache.addAll([]);
+    })
+  );
+});
+
+self.addEventListener('fetch', function (event) {
+  // TODO: 后续考虑加上静态资源缓存，差删除过时缓存逻辑
+  // if (event.request.method === 'GET' &&
+  //   (/\/toutiao\/toutiao_web_pc\/(pages|common)/.test(event.request.url))
+  // ) {
+  //   event.respondWith(
+  //     caches.match(event.request).then(function (response) {
+  //       if (response !== undefined) {
+  //         return response;
+  //       } else {
+  //         return fetch(event.request).then(function (response) {
+  //           // response may be used only once
+  //           // we need to save clone to put one copy in cache
+  //           // and serve second one
+  //           var responseClone = response.clone();
+  //           caches.open(CACHE_STORE_NAME).then(function (cache) {
+  //             cache.put(event.request, responseClone);
+  //           });
+  //           return response;
+  //         }).catch(function (error) {
+  //           console.log('sw fetch error: ', error);
+  //         });
+  //       }
+  //     })
+  //   );
+  // }
+});

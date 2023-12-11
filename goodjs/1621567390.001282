@@ -1,0 +1,2763 @@
+(function webpackUniversalModuleDefinition(root, factory) {
+ if(typeof exports === 'object' && typeof module === 'object')
+  module.exports = factory(require("base"), require("core"), require("ui"), require("angular"));
+ else if(typeof define === 'function' && define.amd)
+  define("feature-hdfc-navigation", ["base", "core", "ui", "angular"], factory);
+ else if(typeof exports === 'object')
+  exports["feature-hdfc-navigation"] = factory(require("base"), require("core"), require("ui"), require("angular"));
+ else
+  root["feature-hdfc-navigation"] = factory(root["base"], root["core"], root["ui"], root["angular"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_160__) {
+return /******/ (function(modules) { // webpackBootstrap
+/******/  // The module cache
+/******/  var installedModules = {};
+/******/
+/******/  // The require function
+/******/  function __webpack_require__(moduleId) {
+/******/
+/******/   // Check if module is in cache
+/******/   if(installedModules[moduleId])
+/******/    return installedModules[moduleId].exports;
+/******/
+/******/   // Create a new module (and put it into the cache)
+/******/   var module = installedModules[moduleId] = {
+/******/    exports: {},
+/******/    id: moduleId,
+/******/    loaded: false
+/******/   };
+/******/
+/******/   // Execute the module function
+/******/   modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/   // Flag the module as loaded
+/******/   module.loaded = true;
+/******/
+/******/   // Return the exports of the module
+/******/   return module.exports;
+/******/  }
+/******/
+/******/
+/******/  // expose the modules object (__webpack_modules__)
+/******/  __webpack_require__.m = modules;
+/******/
+/******/  // expose the module cache
+/******/  __webpack_require__.c = installedModules;
+/******/
+/******/  // __webpack_public_path__
+/******/  __webpack_require__.p = "";
+/******/
+/******/  // Load entry module and return exports
+/******/  return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+ module.exports = __webpack_require__(158);
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+ module.exports = function(module) {
+  if(!module.webpackPolyfill) {
+   module.deprecate = function() {};
+   module.paths = [];
+   // module.parent = undefined by default
+   module.children = [];
+   module.webpackPolyfill = 1;
+  }
+  return module;
+ }
+
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+ module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+ module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports) {
+
+ module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+
+/***/ }),
+
+/***/ 158:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+ 
+ /* global window */
+ /* global window */
+ !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), module, __webpack_require__(5), __webpack_require__, __webpack_require__(160), __webpack_require__(6), __webpack_require__(161), __webpack_require__(162), __webpack_require__(163), __webpack_require__(164), __webpack_require__(165), __webpack_require__(166), __webpack_require__(159)], __WEBPACK_AMD_DEFINE_RESULT__ = function (base, module, core, require, angular, ui) {
+ 
+     'use strict';
+ 
+     module.name = "fm.base";
+     var deps = [core.name, ui.name, "ui.router", "ct.ui.router.extras"];
+ 
+     function run($rootScope, $location, $previousState, $stickyState, $state, $timeout, $window, $q, PlatformService, NavigationService, $document) {
+ 
+         if ($state.get(PlatformService.getWidgetName() + ".default")) {
+ 
+             var _isNotMobileBaseOnSize = PlatformService._isNotMobileBaseOnSize;
+ 
+             // Mobile back press event -> History management
+ 
+ 
+             //WebView Back event listening
+             var browserBackPressed = false;
+             $window.addEventListener('webviewBack', function (param) {
+                 NavigationService.back();
+             });
+ 
+             // On state change trigger push state into previous state, if state change was because of webview
+             // back press, the dont add into stack
+             // TODO *** instead of relying upon flag for checking if state cahnge was due to back press, pass as
+             // state params
+ 
+             $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+                 $document.context.body.scrollTop = $document.context.documentElement.scrollTop = 0;
+                 console.debug("State change is observed from ->", from, "to ->", to);
+ 
+                 // to trigger changes in header in case a popup opens as a page in mobile view - start
+                 if (to.mode) {
+                     if (to.mode.desktop === 'popup') {
+                         gadgets.pubsub.publish('POPUP_HAS_HISTORY');
+                     }
+                 }
+                 // to trigger changes in header in case a popup opens as a page in mobile view - end
+                 if (to.name.contains(".popup.")) {
+                     console.debug("Popup state entered");
+                     console.debug("2) On Enter of  popup state -- >", to);
+                     if (!$previousState.get("MAIN-COVER")) {
+                         console.debug("NO Previous Memorised state before popup, hence memorising", $previousState.get());
+ 
+                         $state.$custom_$memo = $previousState.get().state.name;
+                         $previousState.memo("MAIN-COVER"); // remember the previous state with memoName "modalInvoker"
+                     } else {
+                         console.debug("Already inn popup state,not  hence memorising");
+                     }
+                 }
+ 
+                 var momorisedState = $previousState.get("MAIN-COVER");
+                 if (!momorisedState) {
+                     // If no memorised state available mock it.
+                     momorisedState = {};
+                     momorisedState.state = {};
+                     momorisedState.state.name = "none";
+                 }
+                 if (!/.popup./.test(to.name) && !/.popup./.test(momorisedState.state.name)) {
+                     // Not calling events on transition between popup and main slab
+                     gadgets.pubsub.publish('titleChange', {
+                         title: to.title
+                     });
+                 }
+ 
+                 if (to.name == momorisedState.state.name) {
+                     console.debug("Resetting state --> ", from.name);
+ 
+                     // Note : When state changes happen along a parent line, the child line reset and load for syncing digest cycles. Hence on close of 2nd popup,
+                     // the first popup , who state was still available reloads and any service calls directly under controller gets triggered un-necessrily.
+                     // Hence on close of popup, all contents in the popup are reset again. This is done under the analysis that any user clicling a popup would want to
+                     // re-navigate through the flow, and there is no flow where the user would want to continue on the previous state.
+ 
+                     var parentResetName = from.name.substring(0, from.name.indexOf(".popup.") + 6);
+                     $stickyState.reset(parentResetName);
+                     $state.$custom_$memo = "";
+                     $previousState.forget("MAIN-COVER");
+                 }
+ 
+                 if ($state.dontStoreInHistory == false) {
+                     gadgets.pubsub.publish('HAS_HISTORY', { isPopup: /.popup./.test(to.name) });
+                     if (!$rootScope.previousState) {
+                         $rootScope.previousState = [];
+                     }
+                     console.debug("HAS History is published and previoius state is added", from);
+                     $rootScope.previousState.push(from);
+                     $rootScope.previousStateName = from.name;
+                 } else {
+                     console.debug("State is not added in history as flag is true", from);
+                     $state.dontStoreInHistory = false;
+                 }
+ 
+                 if (!/.popup./.test(to.name) && !/.popup./.test(momorisedState.state.name)) {
+                     // Not calling events on transition between popup and main slab
+                     if (to.events) {
+                         var eventKeys = Object.keys(to.events);
+                         /*var length = eventKeys.length;*/
+                         for (var i = 0; i < eventKeys.length; i++) {
+                             gadgets.pubsub.publish(eventKeys[i], to.events[eventKeys[i]]);
+                         }
+                     }
+                     var eventType = typeof cxp !== 'undefined' ? "nativeEvents" : "browserEvents";
+                     if (to[eventType]) {
+                         var eventKeys = Object.keys(to[eventType]);
+                         /* var length = eventKeys.length;*/
+                         for (var i = 0; i < eventKeys.length; i++) {
+                             gadgets.pubsub.publish(eventKeys[i], to[eventType][eventKeys[i]]);
+                         }
+                     }
+                 }
+ 
+                 if (typeof to.mode != 'undefined') {
+                     if (!$state.current.notMainWidget && !$state.current.name.includes("default") && to.mode.desktop != "popup") {
+                         //Clearing Zineone Banners
+                         gadgets.pubsub.publish("bannerIdentifier", { "name": "clearBanners" });
+                     }
+                 } /*else{
+                      gadgets.pubsub.publish("bannerIdentifier",{"name":"clearBanners"});
+                   }*/
+             });
+ 
+             var getNavData = function getNavData() {
+                 var extrasPlugin = typeof cxp !== 'undefined' && cxp.mobile.plugins['ExtrasPlugin'];
+                 if (extrasPlugin) {
+                     var deferred = $q.defer();
+                     extrasPlugin.getStateAndExtras(function (extras) {
+                         deferred.resolve(extras);
+                     });
+                     return deferred.promise;
+                 } else {
+                     return {};
+                 }
+             };
+ 
+             // Load State
+             if (typeof cxp == 'undefined') {
+                 $state.forwardCall = true;
+                 var location = $location.path().trim();
+                 var states = $state.get();
+                 var length = states.length;
+                 var widgetName = PlatformService.getWidgetName();
+                 var startState = widgetName + ".default";
+ 
+                 if (location != "" && location != "/") {
+                     for (var i = 0; i < length; i++) {
+                         var tempState = states[i];
+                         if (tempState.referenceURL == location) {
+                             startState = tempState.name;
+                             break;
+                         }
+                     }
+                 }
+                 var widgetName = PlatformService.getWidgetName();
+                 if ($state.get(startState) != undefined) {
+                     var extr = sessionStorage.getItem("transactionData");
+                     if (widgetName != "widget-hdfc-favorite-nb") {
+                         sessionStorage.removeItem("transactionData");
+                     }
+                     if (extr && $state.get(startState)) $state.get(startState).$extras = JSON.parse(extr);
+                     if ($state.get(startState)) $timeout(function () {
+                         $state.go(startState, {}, { location: false });
+                     }, 100);
+                 }
+             } else {
+                 getNavData().then(function (extras) {
+                     if (!!extras.data && !!extras.data.wrapper) {
+                         if ($state.get(widgetName + "." + extras.state)) {
+                             $state.get(widgetName + "." + extras.state).$extras = extras.data.wrapper;
+                         }
+                     }
+                     if ($state.get(widgetName + "." + extras.state)) {
+                         $state.go(widgetName + "." + extras.state, {}, { location: false });
+                     }
+                 });
+             }
+         }
+     }
+ 
+     module.exports = base.createModule(module.name, deps).provider(__webpack_require__(162)).provider('Navigation', __webpack_require__(164).Navigation).service(__webpack_require__(165)).service(__webpack_require__(159)).directive(__webpack_require__(166)).config(function () {}).run(run);
+ }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+ /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
+
+/***/ }),
+
+/***/ 159:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+ 
+ !(__WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
+ 
+     'use strict';
+ 
+     var ACTUAL_EVENET = "zineoneClickEvent";
+ 
+     function EventManager() {
+ 
+         var publish = function publish(eventName, data) {
+ 
+             gadgets.pubsub.publish(ACTUAL_EVENET, {
+                 eventName: eventName,
+                 data: data
+             });
+         };
+ 
+         var subscribe = function subscribe(eventName, callBack) {
+             gadgets.pubsub.subscribe(eventName, callBack);
+         };
+         return {
+             publish: publish,
+             subscribe: subscribe
+         };
+     }
+ 
+     exports.EventManager = EventManager;
+ }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 160:
+/***/ (function(module, exports) {
+
+ module.exports = __WEBPACK_EXTERNAL_MODULE_160__;
+
+/***/ }),
+
+/***/ 161:
+/***/ (function(module, exports) {
+
+ "use strict";
+ 
+ "undefined" != typeof module && "undefined" != typeof exports && module.exports === exports && (module.exports = "ui.router"), function (e, t, r) {
+   "use strict";
+   var n,
+       a = t.isDefined,
+       i = t.isFunction,
+       o = t.isString,
+       u = t.isObject,
+       s = t.isArray,
+       l = t.forEach,
+       c = t.extend,
+       f = t.copy,
+       p = t.toJson;function h(e, t) {
+     return c(new (c(function () {}, { prototype: e }))(), t);
+   }function v(e) {
+     return l(arguments, function (t) {
+       t !== e && l(t, function (t, r) {
+         e.hasOwnProperty(r) || (e[r] = t);
+       });
+     }), e;
+   }function $(e) {
+     if (Object.keys) return Object.keys(e);var t = [];return l(e, function (e, r) {
+       t.push(r);
+     }), t;
+   }function m(e, t) {
+     if (Array.prototype.indexOf) return e.indexOf(t, Number(arguments[2]) || 0);var r = e.length >>> 0,
+         n = Number(arguments[2]) || 0;for ((n = n < 0 ? Math.ceil(n) : Math.floor(n)) < 0 && (n += r); n < r; n++) {
+       if (n in e && e[n] === t) return n;
+     }return -1;
+   }function d(e, t, r, n) {
+     var a,
+         i = function (e, t) {
+       var r = [];for (var n in e.path) {
+         if (e.path[n] !== t.path[n]) break;r.push(e.path[n]);
+       }return r;
+     }(r, n),
+         o = {},
+         u = [];for (var s in i) {
+       if (i[s] && i[s].params && (a = $(i[s].params)).length) for (var l in a) {
+         m(u, a[l]) >= 0 || (u.push(a[l]), o[a[l]] = e[a[l]]);
+       }
+     }return c({}, o, t);
+   }function g(e, t, r) {
+     if (!r) for (var n in r = [], e) {
+       r.push(n);
+     }for (var a = 0; a < r.length; a++) {
+       var i = r[a];if (e[i] != t[i]) return !1;
+     }return !0;
+   }function y(e, t) {
+     var r = {};return l(e, function (e) {
+       r[e] = t[e];
+     }), r;
+   }function w(e) {
+     var t = {},
+         r = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));return l(r, function (r) {
+       r in e && (t[r] = e[r]);
+     }), t;
+   }function b(e) {
+     var t = {},
+         r = Array.prototype.concat.apply(Array.prototype, Array.prototype.slice.call(arguments, 1));for (var n in e) {
+       -1 == m(r, n) && (t[n] = e[n]);
+     }return t;
+   }function S(e, t) {
+     var r = s(e),
+         n = r ? [] : {};return l(e, function (e, a) {
+       t(e, a) && (n[r ? n.length : a] = e);
+     }), n;
+   }function E(e, t) {
+     var r = s(e) ? [] : {};return l(e, function (e, n) {
+       r[n] = t(e, n);
+     }), r;
+   }function x(e, t) {
+     var n = 1,
+         i = 2,
+         s = {},
+         f = [],
+         p = s,
+         h = c(e.when(s), { $$promises: s, $$values: s });this.study = function (s) {
+       if (!u(s)) throw new Error("'invocables' must be an object");var d = $(s || {}),
+           g = [],
+           y = [],
+           w = {};function S(e) {
+         return u(e) && e.then && e.$$promises;
+       }return l(s, function e(r, a) {
+         if (w[a] !== i) {
+           if (y.push(a), w[a] === n) throw y.splice(0, m(y, a)), new Error("Cyclic dependency: " + y.join(" -> "));if (w[a] = n, o(r)) g.push(a, [function () {
+             return t.get(r);
+           }], f);else {
+             var u = t.annotate(r);l(u, function (t) {
+               t !== a && s.hasOwnProperty(t) && e(s[t], t);
+             }), g.push(a, r, u);
+           }y.pop(), w[a] = i;
+         }
+       }), s = y = w = null, function (n, i, o) {
+         if (S(n) && o === r && (o = i, i = n, n = null), n) {
+           if (!u(n)) throw new Error("'locals' must be an object");
+         } else n = p;if (i) {
+           if (!S(i)) throw new Error("'parent' must be a promise returned by $resolve.resolve()");
+         } else i = h;var s = e.defer(),
+             f = s.promise,
+             $ = f.$$promises = {},
+             m = c({}, n),
+             y = 1 + g.length / 3,
+             w = !1;function E() {
+           --y || (w || v(m, i.$$values), f.$$values = m, f.$$promises = f.$$promises || !0, delete f.$$inheritedValues, s.resolve(m));
+         }function x(e) {
+           f.$$failure = e, s.reject(e);
+         }if (a(i.$$failure)) return x(i.$$failure), f;i.$$inheritedValues && v(m, b(i.$$inheritedValues, d)), c($, i.$$promises), i.$$values ? (w = v(m, b(i.$$values, d)), f.$$inheritedValues = b(i.$$values, d), E()) : (i.$$inheritedValues && (f.$$inheritedValues = b(i.$$inheritedValues, d)), i.then(E, x));for (var P = 0, j = g.length; P < j; P += 3) {
+           n.hasOwnProperty(g[P]) ? E() : A(g[P], g[P + 1], g[P + 2]);
+         }function A(r, i, u) {
+           var s = e.defer(),
+               c = 0;function p(e) {
+             s.reject(e), x(e);
+           }function h() {
+             if (!a(f.$$failure)) try {
+               s.resolve(t.invoke(i, o, m)), s.promise.then(function (e) {
+                 m[r] = e, E();
+               }, p);
+             } catch (e) {
+               p(e);
+             }
+           }l(u, function (e) {
+             $.hasOwnProperty(e) && !n.hasOwnProperty(e) && (c++, $[e].then(function (t) {
+               m[e] = t, --c || h();
+             }, p));
+           }), c || h(), $[r] = s.promise;
+         }return f;
+       };
+     }, this.resolve = function (e, t, r, n) {
+       return this.study(e)(t, r, n);
+     };
+   }function P(e, t, r) {
+     this.fromConfig = function (e, t, r) {
+       return a(e.template) ? this.fromString(e.template, t) : a(e.templateUrl) ? this.fromUrl(e.templateUrl, t) : a(e.templateProvider) ? this.fromProvider(e.templateProvider, t, r) : null;
+     }, this.fromString = function (e, t) {
+       return i(e) ? e(t) : e;
+     }, this.fromUrl = function (r, n) {
+       return i(r) && (r = r(n)), null == r ? null : e.get(r, { cache: t, headers: { Accept: "text/html" } }).then(function (e) {
+         return e.data;
+       });
+     }, this.fromProvider = function (e, t, n) {
+       return r.invoke(e, null, n || { params: t });
+     };
+   }function j(e, t, a) {
+     t = c({ params: {} }, u(t) ? t : {});var i,
+         o,
+         s,
+         l,
+         f = /([:*])([\w\[\]]+)|\{([\w\[\]]+)(?:\:\s*((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,
+         p = /([:]?)([\w\[\].-]+)|\{([\w\[\].-]+)(?:\:\s*((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g,
+         v = "^",
+         $ = 0,
+         m = this.segments = [],
+         d = a ? a.params : {},
+         g = this.params = a ? a.params.$$new() : new n.ParamSet(),
+         y = [];function w(t, r, a, i) {
+       if (y.push(t), d[t]) return d[t];if (!/^\w+([-.]+\w+)*(?:\[\])?$/.test(t)) throw new Error("Invalid parameter name '" + t + "' in pattern '" + e + "'");if (g[t]) throw new Error("Duplicate parameter name '" + t + "' in pattern '" + e + "'");return g[t] = new n.Param(t, r, a, i), g[t];
+     }function b(e, t, r, n) {
+       var a = ["", ""],
+           i = e.replace(/[\\\[\]\^$*+?.()|{}]/g, "\\$&");if (!t) return i;switch (r) {case !1:
+           a = ["(", ")" + (n ? "?" : "")];break;case !0:
+           i = i.replace(/\/$/, ""), a = ["(?:/(", ")|/)?"];break;default:
+           a = ["(" + r + "|", ")?"];}return i + a[0] + t + a[1];
+     }function S(a, i) {
+       var o, u, s, l, c;return o = a[2] || a[3], c = t.params[o], s = e.substring($, a.index), (u = i ? a[4] : a[4] || ("*" == a[1] ? ".*" : null)) && (l = n.type(u) || h(n.type("string"), { pattern: new RegExp(u, t.caseInsensitive ? "i" : r) })), { id: o, regexp: u, segment: s, type: l, cfg: c };
+     }for (this.source = e; (i = f.exec(e)) && !((o = S(i, !1)).segment.indexOf("?") >= 0);) {
+       s = w(o.id, o.type, o.cfg, "path"), v += b(o.segment, s.type.pattern.source, s.squash, s.isOptional), m.push(o.segment), $ = f.lastIndex;
+     }var E = (l = e.substring($)).indexOf("?");if (E >= 0) {
+       var x = this.sourceSearch = l.substring(E);if (l = l.substring(0, E), this.sourcePath = e.substring(0, $ + E), x.length > 0) for ($ = 0; i = p.exec(x);) {
+         s = w((o = S(i, !0)).id, o.type, o.cfg, "search"), $ = f.lastIndex;
+       }
+     } else this.sourcePath = e, this.sourceSearch = "";v += b(l) + (!1 === t.strict ? "/?" : "") + "$", m.push(l), this.regexp = new RegExp(v, t.caseInsensitive ? "i" : r), this.prefix = m[0], this.$$paramNames = y;
+   }function A(e) {
+     c(this, e);
+   }function O(e, n) {
+     var u,
+         l = [],
+         f = null,
+         p = !1;function h(e, t, r) {
+       if (!r) return !1;var n = e.invoke(t, t, { $match: r });return !a(n) || n;
+     }function v(n, a, i, s, c) {
+       var h,
+           v = s.baseHref(),
+           $ = n.url();function m(e) {
+         if (!e || !e.defaultPrevented) {
+           h && n.url();h = r;var t,
+               a = l.length;for (t = 0; t < a; t++) {
+             if (u(l[t])) return;
+           }f && u(f);
+         }function u(e) {
+           var t = e(i, n);return !!t && (o(t) && n.replace().url(t), !0);
+         }
+       }function d() {
+         return u = u || a.$on("$locationChangeSuccess", m);
+       }return p || d(), { sync: function sync() {
+           m();
+         }, listen: function listen() {
+           return d();
+         }, update: function update(e) {
+           e ? $ = n.url() : n.url() !== $ && (n.url($), n.replace());
+         }, push: function push(e, t, a) {
+           var i = e.format(t || {});null !== i && t && t["#"] && (i += "#" + t["#"]), n.url(i), h = a && a.$$avoidResync ? n.url() : r, a && a.replace && n.replace();
+         }, href: function href(r, a, i) {
+           if (!r.validates(a)) return null;var o = e.html5Mode();t.isObject(o) && (o = o.enabled), o = o && c.history;var u = r.format(a);if (i = i || {}, o || null === u || (u = "#" + e.hashPrefix() + u), null !== u && a && a["#"] && (u += "#" + a["#"]), u = function (e, t, r) {
+             return "/" === v ? e : t ? v.slice(0, -1) + e : r ? v.slice(1) + e : e;
+           }(u, o, i.absolute), !i.absolute || !u) return u;var s = !o && u ? "/" : "",
+               l = n.port();return l = 80 === l || 443 === l ? "" : ":" + l, [n.protocol(), "://", n.host(), l, s, u].join("");
+         } };
+     }this.rule = function (e) {
+       if (!i(e)) throw new Error("'rule' must be a function");return l.push(e), this;
+     }, this.otherwise = function (e) {
+       if (o(e)) {
+         var t = e;e = function e() {
+           return t;
+         };
+       } else if (!i(e)) throw new Error("'rule' must be a function");return f = e, this;
+     }, this.when = function (e, t) {
+       var r,
+           a = o(t);if (o(e) && (e = n.compile(e)), !a && !i(t) && !s(t)) throw new Error("invalid 'handler' in when()");var u = { matcher: function matcher(e, t) {
+           return a && (r = n.compile(t), t = ["$match", function (e) {
+             return r.format(e);
+           }]), c(function (r, n) {
+             return h(r, t, e.exec(n.path(), n.search()));
+           }, { prefix: o(e.prefix) ? e.prefix : "" });
+         }, regex: function regex(e, t) {
+           if (e.global || e.sticky) throw new Error("when() RegExp must not be global or sticky");return a && (r = t, t = ["$match", function (e) {
+             return t = e, r.replace(/\$(\$|\d{1,2})/, function (e, r) {
+               return t["$" === r ? 0 : Number(r)];
+             });var t;
+           }]), c(function (r, n) {
+             return h(r, t, e.exec(n.path()));
+           }, { prefix: (n = e, i = /^\^((?:\\[^a-zA-Z0-9]|[^\\\[\]\^$*+?.()|{}]+)*)/.exec(n.source), null != i ? i[1].replace(/\\(.)/g, "$1") : "") });var n, i;
+         } },
+           l = { matcher: n.isMatcher(e), regex: e instanceof RegExp };for (var f in l) {
+         if (l[f]) return this.rule(u[f](e, t));
+       }throw new Error("invalid 'what' in when()");
+     }, this.deferIntercept = function (e) {
+       e === r && (e = !0), p = e;
+     }, this.$get = v, v.$inject = ["$location", "$rootScope", "$injector", "$browser", "$sniffer"];
+   }function k(e, p) {
+     var v,
+         b,
+         S = {},
+         x = {},
+         P = "abstract",
+         j = { parent: function parent(e) {
+         if (a(e.parent) && e.parent) return A(e.parent);var t = /^(.+)\.[^.]+$/.exec(e.name);return t ? A(t[1]) : v;
+       }, data: function data(e) {
+         return e.parent && e.parent.data && (e.data = e.self.data = h(e.parent.data, e.data)), e.data;
+       }, url: function url(e) {
+         var t = e.url,
+             r = { params: e.params || {} };if (o(t)) return "^" == t.charAt(0) ? p.compile(t.substring(1), r) : (e.parent.navigable || v).url.concat(t, r);if (!t || p.isMatcher(t)) return t;throw new Error("Invalid url '" + t + "' in state '" + e + "'");
+       }, navigable: function navigable(e) {
+         return e.url ? e : e.parent ? e.parent.navigable : null;
+       }, ownParams: function ownParams(e) {
+         var t = e.url && e.url.params || new n.ParamSet();return l(e.params || {}, function (e, r) {
+           t[r] || (t[r] = new n.Param(r, null, e, "config"));
+         }), t;
+       }, params: function params(e) {
+         var t = w(e.ownParams, e.ownParams.$$keys());return e.parent && e.parent.params ? c(e.parent.params.$$new(), t) : new n.ParamSet();
+       }, views: function views(e) {
+         var t = {};return l(a(e.views) ? e.views : { "": e }, function (r, n) {
+           n.indexOf("@") < 0 && (n += "@" + e.parent.name), t[n] = r;
+         }), t;
+       }, path: function path(e) {
+         return e.parent ? e.parent.path.concat(e) : [];
+       }, includes: function includes(e) {
+         var t = e.parent ? c({}, e.parent.includes) : {};return t[e.name] = !0, t;
+       }, $delegates: {} };function A(e, t) {
+       if (!e) return r;var n,
+           a = o(e),
+           i = a ? e : e.name;if (0 === (n = i).indexOf(".") || 0 === n.indexOf("^")) {
+         if (!t) throw new Error("No reference point given for path '" + i + "'");t = A(t);for (var u = i.split("."), s = 0, l = u.length, c = t; s < l; s++) {
+           if ("" !== u[s] || 0 !== s) {
+             if ("^" !== u[s]) break;if (!c.parent) throw new Error("Path '" + i + "' not valid for state '" + t.name + "'");c = c.parent;
+           } else c = t;
+         }u = u.slice(s).join("."), i = c.name + (c.name && u ? "." : "") + u;
+       }var f = S[i];return !f || !a && (a || f !== e && f.self !== e) ? r : f;
+     }function O(t) {
+       var r = (t = h(t, { self: t, resolve: t.resolve || {}, toString: function toString() {
+           return this.name;
+         } })).name;if (!o(r) || r.indexOf("@") >= 0) throw new Error("State must have a valid name");if (S.hasOwnProperty(r)) throw new Error("State '" + r + "' is already defined");var n = -1 !== r.indexOf(".") ? r.substring(0, r.lastIndexOf(".")) : o(t.parent) ? t.parent : u(t.parent) && o(t.parent.name) ? t.parent.name : "";if (n && !S[n]) return function (e, t) {
+         x[e] || (x[e] = []), x[e].push(t);
+       }(n, t.self);for (var a in j) {
+         i(j[a]) && (t[a] = j[a](t, j.$delegates[a]));
+       }return S[r] = t, !t[P] && t.url && e.when(t.url, ["$match", "$stateParams", function (e, r) {
+         b.$current.navigable == t && g(e, r) || b.transitionTo(t, e, { inherit: !0, location: !1 });
+       }]), function (e) {
+         for (var t = x[e] || []; t.length;) {
+           O(t.shift());
+         }
+       }(r), t;
+     }function k(e, p, x, j, O, k, q, C, I) {
+       var V = p.reject(new Error("transition superseded")),
+           M = p.reject(new Error("transition prevented")),
+           D = p.reject(new Error("transition aborted")),
+           N = p.reject(new Error("transition failed"));function R(e, r, n, a, o, u) {
+         var c = n ? r : y(e.params.$$keys(), r),
+             f = { $stateParams: c };o.resolve = O.resolve(e.resolve, f, o.resolve, e);var h = [o.resolve.then(function (e) {
+           o.globals = e;
+         })];return a && h.push(a), p.all(h).then(function () {
+           var r = [];return l(e.views, function (n, a) {
+             var l = n.resolve && n.resolve !== e.resolve ? n.resolve : {};l.$template = [function () {
+               return x.load(a, { view: n, locals: o.globals, params: c, notify: u.notify }) || "";
+             }], r.push(O.resolve(l, o.globals, o.resolve, e).then(function (r) {
+               if (i(n.controllerProvider) || s(n.controllerProvider)) {
+                 var u = t.extend({}, l, o.globals);r.$$controller = j.invoke(n.controllerProvider, null, u);
+               } else r.$$controller = n.controller;r.$$state = e, r.$$controllerAs = n.controllerAs, o[a] = r;
+             }));
+           }), p.all(r).then(function () {
+             return o.globals;
+           });
+         }).then(function (e) {
+           return o;
+         });
+       }return v.locals = { resolve: null, globals: { $stateParams: {} } }, (b = { params: {}, current: v.self, $current: v, transition: null }).reload = function (e) {
+         return b.transitionTo(b.current, k, { reload: e || !0, inherit: !1, notify: !0 });
+       }, b.go = function (e, t, r) {
+         return b.transitionTo(e, t, c({ inherit: !0, relative: b.$current }, r));
+       }, b.transitionTo = function (t, r, i) {
+         r = r || {}, i = c({ location: !0, inherit: !1, relative: null, notify: !0, reload: !1, $retry: !1 }, i || {});var s = b.$current,
+             l = b.params,
+             $ = s.path,
+             m = A(t, i.relative),
+             g = r["#"];if (!a(m)) {
+           var S = { to: t, toParams: r, options: i },
+               E = function (t, r, n, a) {
+             var i = e.$broadcast("$stateNotFound", t, r, n);if (i.defaultPrevented) return q.update(), D;if (!i.retry) return null;if (a.$retry) return q.update(), N;var o = b.transition = p.when(i.retry);return o.then(function () {
+               return o !== b.transition ? V : (t.options.$retry = !0, b.transitionTo(t.to, t.toParams, t.options));
+             }, function () {
+               return D;
+             }), q.update(), o;
+           }(S, s.self, l, i);if (E) return E;if (r = S.toParams, m = A(t = S.to, (i = S.options).relative), !a(m)) {
+             if (!i.relative) throw new Error("No such state '" + t + "'");throw new Error("Could not resolve '" + t + "' from state '" + i.relative + "'");
+           }
+         }if (m[P]) throw new Error("Cannot transition to abstract state '" + t + "'");if (i.inherit && (r = d(k, r || {}, b.$current, m)), !m.params.$$validates(r)) return N;r = m.params.$$values(r);var x = (t = m).path,
+             O = 0,
+             C = x[O],
+             I = v.locals,
+             F = [];if (i.reload) {
+           if (o(i.reload) || u(i.reload)) {
+             if (u(i.reload) && !i.reload.name) throw new Error("Invalid reload state object");var U = !0 === i.reload ? $[0] : A(i.reload);if (i.reload && !U) throw new Error("No such reload state '" + (o(i.reload) ? i.reload : i.reload.name) + "'");for (; C && C === $[O] && C !== U;) {
+               I = F[O] = C.locals, C = x[++O];
+             }
+           }
+         } else for (; C && C === $[O] && C.ownParams.$$equals(r, l);) {
+           I = F[O] = C.locals, C = x[++O];
+         }if (function (e, t, r, a, i, o) {
+           if (!o.reload && e === r && (i === r.locals || !1 === e.self.reloadOnSearch && function (e, t, r) {
+             var a = e.params.$$keys().filter(function (t) {
+               return "search" != e.params[t].location;
+             }),
+                 i = w.apply({}, [e.params].concat(a));return new n.ParamSet(i).$$equals(t, r);
+           }(r, a, t))) return !0;
+         }(t, r, s, l, I, i)) return g && (r["#"] = g), b.params = r, f(b.params, k), f(y(t.params.$$keys(), k), t.locals.globals.$stateParams), i.location && t.navigable && t.navigable.url && (q.push(t.navigable.url, r, { $$avoidResync: !0, replace: "replace" === i.location }), q.update(!0)), b.transition = null, p.when(b.current);if (r = y(t.params.$$keys(), r || {}), g && (r["#"] = g), i.notify && e.$broadcast("$stateChangeStart", t.self, r, s.self, l, i).defaultPrevented) return e.$broadcast("$stateChangeCancel", t.self, r, s.self, l), null == b.transition && q.update(), M;for (var T = p.when(I), z = O; z < x.length; C = x[++z]) {
+           I = F[z] = h(I), T = R(C, r, C === t, T, I, i);
+         }var B = b.transition = T.then(function () {
+           var n, a, o;if (b.transition !== B) return V;for (n = $.length - 1; n >= O; n--) {
+             (o = $[n]).self.onExit && j.invoke(o.self.onExit, o.self, o.locals.globals), o.locals = null;
+           }for (n = O; n < x.length; n++) {
+             (a = x[n]).locals = F[n], a.self.onEnter && j.invoke(a.self.onEnter, a.self, a.locals.globals);
+           }return b.transition !== B ? V : (b.$current = t, b.current = t.self, b.params = r, f(b.params, k), b.transition = null, i.location && t.navigable && q.push(t.navigable.url, t.navigable.locals.globals.$stateParams, { $$avoidResync: !0, replace: "replace" === i.location }), i.notify && e.$broadcast("$stateChangeSuccess", t.self, r, s.self, l), q.update(!0), b.current);
+         }, function (n) {
+           return b.transition !== B ? V : (b.transition = null, e.$broadcast("$stateChangeError", t.self, r, s.self, l, n).defaultPrevented || q.update(), p.reject(n));
+         });return B;
+       }, b.is = function (e, t, n) {
+         var i = A(e, (n = c({ relative: b.$current }, n || {})).relative);return a(i) ? b.$current === i && (!t || g(i.params.$$values(t), k)) : r;
+       }, b.includes = function (e, t, n) {
+         if (n = c({ relative: b.$current }, n || {}), o(e) && e.indexOf("*") > -1) {
+           if (!function (e) {
+             for (var t = e.split("."), r = b.$current.name.split("."), n = 0, a = t.length; n < a; n++) {
+               "*" === t[n] && (r[n] = "*");
+             }return "**" === t[0] && (r = r.slice(m(r, t[1]))).unshift("**"), "**" === t[t.length - 1] && (r.splice(m(r, t[t.length - 2]) + 1, Number.MAX_VALUE), r.push("**")), t.length == r.length && r.join("") === t.join("");
+           }(e)) return !1;e = b.$current.name;
+         }var i = A(e, n.relative);return a(i) ? !!a(b.$current.includes[i.name]) && (!t || g(i.params.$$values(t), k, $(t))) : r;
+       }, b.href = function (e, t, n) {
+         var i = A(e, (n = c({ lossy: !0, inherit: !0, absolute: !1, relative: b.$current }, n || {})).relative);if (!a(i)) return null;n.inherit && (t = d(k, t || {}, b.$current, i));var o = i && n.lossy ? i.navigable : i;return o && o.url !== r && null !== o.url ? q.href(o.url, y(i.params.$$keys().concat("#"), t || {}), { absolute: n.absolute }) : null;
+       }, b.get = function (e, t) {
+         if (0 === arguments.length) return E($(S), function (e) {
+           return S[e].self;
+         });var r = A(e, t || b.$current);return r && r.self ? r.self : null;
+       }, b;
+     }(v = O({ name: "", url: "^", views: null, abstract: !0 })).navigable = null, this.decorator = function (e, t) {
+       if (o(e) && !a(t)) return j[e];if (!i(t) || !o(e)) return this;j[e] && !j.$delegates[e] && (j.$delegates[e] = j[e]);return j[e] = t, this;
+     }, this.state = function (e, t) {
+       u(e) ? t = e : t.name = e;return O(t), this;
+     }, this.$get = k, k.$inject = ["$rootScope", "$q", "$view", "$injector", "$resolve", "$stateParams", "$urlRouter", "$location", "$urlMatcherFactory"];
+   }function q() {
+     function e(e, t) {
+       return { load: function load(e, r) {
+           var n;return (r = c({ template: null, controller: null, view: null, locals: null, notify: !0, async: !0, params: {} }, r)).view && (n = t.fromConfig(r.view, r.params, r.locals)), n;
+         } };
+     }this.$get = e, e.$inject = ["$rootScope", "$templateFactory"];
+   }t.module("ui.router.util", ["ng"]), t.module("ui.router.router", ["ui.router.util"]), t.module("ui.router.state", ["ui.router.router", "ui.router.util"]), t.module("ui.router", ["ui.router.state"]), t.module("ui.router.compat", ["ui.router"]), x.$inject = ["$q", "$injector"], t.module("ui.router.util").service("$resolve", x), P.$inject = ["$http", "$templateCache", "$injector"], t.module("ui.router.util").service("$templateFactory", P), j.prototype.concat = function (e, t) {
+     var r = { caseInsensitive: n.caseInsensitive(), strict: n.strictMode(), squash: n.defaultSquashPolicy() };return new j(this.sourcePath + e + this.sourceSearch, c(r, t), this);
+   }, j.prototype.toString = function () {
+     return this.source;
+   }, j.prototype.exec = function (e, t) {
+     var r = this.regexp.exec(e);if (!r) return null;t = t || {};var n,
+         i,
+         o,
+         u,
+         s,
+         l = this.parameters(),
+         c = l.length,
+         f = this.segments.length - 1,
+         p = {};if (f !== r.length - 1) throw new Error("Unbalanced capture group in route '" + this.source + "'");function h(e) {
+       function t(e) {
+         return e.split("").reverse().join("");
+       }var r = E(t(e).split(/-(?!\\)/), t);return E(r, function (e) {
+         return e.replace(/\\-/g, "-");
+       }).reverse();
+     }for (n = 0; n < f; n++) {
+       for (o = l[n], u = this.params[o], s = r[n + 1], i = 0; i < u.replace.length; i++) {
+         u.replace[i].from === s && (s = u.replace[i].to);
+       }s && !0 === u.array && (s = h(s)), a(s) && (s = u.type.decode(s)), p[o] = u.value(s);
+     }for (; n < c; n++) {
+       for (p[o = l[n]] = this.params[o].value(t[o]), u = this.params[o], s = t[o], i = 0; i < u.replace.length; i++) {
+         u.replace[i].from === s && (s = u.replace[i].to);
+       }a(s) && (s = u.type.decode(s)), p[o] = u.value(s);
+     }return p;
+   }, j.prototype.parameters = function (e) {
+     return a(e) ? this.params[e] || null : this.$$paramNames;
+   }, j.prototype.validates = function (e) {
+     return this.params.$$validates(e);
+   }, j.prototype.format = function (e) {
+     e = e || {};var t = this.segments,
+         r = this.parameters(),
+         n = this.params;if (!this.validates(e)) return null;var a,
+         i = !1,
+         u = t.length - 1,
+         l = r.length,
+         c = t[0];function f(e) {
+       return encodeURIComponent(e).replace(/-/g, function (e) {
+         return "%5C%" + e.charCodeAt(0).toString(16).toUpperCase();
+       });
+     }for (a = 0; a < l; a++) {
+       var p = a < u,
+           h = r[a],
+           v = n[h],
+           $ = v.value(e[h]),
+           m = v.isOptional && v.type.equals(v.value(), $),
+           d = !!m && v.squash,
+           g = v.type.encode($);if (p) {
+         var y = t[a + 1],
+             w = a + 1 === u;if (!1 === d) null != g && (s(g) ? c += E(g, f).join("-") : c += encodeURIComponent(g)), c += y;else if (!0 === d) {
+           var b = c.match(/\/$/) ? /\/?(.*)/ : /(.*)/;c += y.match(b)[1];
+         } else o(d) && (c += d + y);w && !0 === v.squash && "/" === c.slice(-1) && (c = c.slice(0, -1));
+       } else {
+         if (null == g || m && !1 !== d) continue;if (s(g) || (g = [g]), 0 === g.length) continue;c += (i ? "&" : "?") + h + "=" + (g = E(g, encodeURIComponent).join("&" + h + "=")), i = !0;
+       }
+     }return c;
+   }, A.prototype.is = function (e, t) {
+     return !0;
+   }, A.prototype.encode = function (e, t) {
+     return e;
+   }, A.prototype.decode = function (e, t) {
+     return e;
+   }, A.prototype.equals = function (e, t) {
+     return e == t;
+   }, A.prototype.$subPattern = function () {
+     var e = this.pattern.toString();return e.substr(1, e.length - 2);
+   }, A.prototype.pattern = /.*/, A.prototype.toString = function () {
+     return "{Type:" + this.name + "}";
+   }, A.prototype.$normalize = function (e) {
+     return this.is(e) ? e : this.decode(e);
+   }, A.prototype.$asArray = function (e, t) {
+     if (!e) return this;if ("auto" === e && !t) throw new Error("'auto' array mode is for query parameters only");return new function (e, t) {
+       function n(e, t) {
+         return function () {
+           return e[t].apply(e, arguments);
+         };
+       }function i(e) {
+         return s(e) ? e : a(e) ? [e] : [];
+       }function o(e) {
+         return !e;
+       }function u(e, n) {
+         return function (a) {
+           if (s(a) && 0 === a.length) return a;var u = E(a = i(a), e);return !0 === n ? 0 === S(u, o).length : function (e) {
+             switch (e.length) {case 0:
+                 return r;case 1:
+                 return "auto" === t ? e[0] : e;default:
+                 return e;}
+           }(u);
+         };
+       }var l;this.encode = u(n(e, "encode")), this.decode = u(n(e, "decode")), this.is = u(n(e, "is"), !0), this.equals = (l = n(e, "equals"), function (e, t) {
+         var r = i(e),
+             n = i(t);if (r.length !== n.length) return !1;for (var a = 0; a < r.length; a++) {
+           if (!l(r[a], n[a])) return !1;
+         }return !0;
+       }), this.pattern = e.pattern, this.$normalize = u(n(e, "$normalize")), this.name = e.name, this.$arrayMode = t;
+     }(this, e);
+   }, t.module("ui.router.util").provider("$urlMatcherFactory", function e() {
+     n = this;var f = !1,
+         p = !0,
+         v = !1;function d(e) {
+       return null != e ? e.toString().replace(/~/g, "~~").replace(/~~/g, "~2F") : e;
+     }var g,
+         y = {},
+         w = !0,
+         b = [],
+         x = { string: { encode: d, decode: function decode(e) {
+           return null != e ? e.toString().replace(/~2F/g, "/").replace(/~~/g, "~") : e;
+         }, is: function is(e) {
+           return null == e || !a(e) || "string" == typeof e;
+         }, pattern: /[^\/]*/ }, int: { encode: d, decode: function decode(e) {
+           return parseInt(e, 10);
+         }, is: function is(e) {
+           return a(e) && this.decode(e.toString()) === e;
+         }, pattern: /\d+/ }, bool: { encode: function encode(e) {
+           return e ? 1 : 0;
+         }, decode: function decode(e) {
+           return 0 !== parseInt(e, 10);
+         }, is: function is(e) {
+           return !0 === e || !1 === e;
+         }, pattern: /0|1/ }, date: { encode: function encode(e) {
+           return this.is(e) ? [e.getFullYear(), ("0" + (e.getMonth() + 1)).slice(-2), ("0" + e.getDate()).slice(-2)].join("-") : r;
+         }, decode: function decode(e) {
+           if (this.is(e)) return e;var t = this.capture.exec(e);return t ? new Date(t[1], t[2] - 1, t[3]) : r;
+         }, is: function is(e) {
+           return e instanceof Date && !isNaN(e.valueOf());
+         }, equals: function equals(e, t) {
+           return this.is(e) && this.is(t) && e.toISOString() === t.toISOString();
+         }, pattern: /[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[1-2][0-9]|3[0-1])/, capture: /([0-9]{4})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/ }, json: { encode: t.toJson, decode: t.fromJson, is: t.isObject, equals: t.equals, pattern: /[^\/]*/ }, any: { encode: t.identity, decode: t.identity, equals: t.equals, pattern: /.*/ } };function P(e) {
+       return i(e) || s(e) && i(e[e.length - 1]);
+     }function O() {
+       for (; b.length;) {
+         var e = b.shift();if (e.pattern) throw new Error("You cannot override a type's .pattern at runtime.");t.extend(y[e.name], g.invoke(e.def));
+       }
+     }function k(e) {
+       c(this, e || {});
+     }e.$$getDefaultValue = function (e) {
+       if (!P(e.value)) return e.value;if (!g) throw new Error("Injectable functions cannot be called at configuration time");return g.invoke(e.value);
+     }, this.caseInsensitive = function (e) {
+       return a(e) && (f = e), f;
+     }, this.strictMode = function (e) {
+       return a(e) && (p = e), p;
+     }, this.defaultSquashPolicy = function (e) {
+       if (!a(e)) return v;if (!0 !== e && !1 !== e && !o(e)) throw new Error("Invalid squash policy: " + e + ". Valid policies: false, true, arbitrary-string");return v = e, e;
+     }, this.compile = function (e, t) {
+       return new j(e, c({ strict: p, caseInsensitive: f }, t));
+     }, this.isMatcher = function (e) {
+       if (!u(e)) return !1;var t = !0;return l(j.prototype, function (r, n) {
+         i(r) && (t = t && a(e[n]) && i(e[n]));
+       }), t;
+     }, this.type = function (e, t, r) {
+       if (!a(t)) return y[e];if (y.hasOwnProperty(e)) throw new Error("A type named '" + e + "' has already been defined.");return y[e] = new A(c({ name: e }, t)), r && (b.push({ name: e, def: r }), w || O()), this;
+     }, l(x, function (e, t) {
+       y[t] = new A(c({ name: t }, e));
+     }), y = h(y, {}), this.$get = ["$injector", function (e) {
+       return g = e, w = !1, O(), l(x, function (e, t) {
+         y[t] || (y[t] = new A(e));
+       }), this;
+     }], this.Param = function (e, n, i, l) {
+       var f = this;i = function (e) {
+         var t = u(e) ? $(e) : [];return -1 === m(t, "value") && -1 === m(t, "type") && -1 === m(t, "squash") && -1 === m(t, "array") && (e = { value: e }), e.$$fn = P(e.value) ? e.value : function () {
+           return e.value;
+         }, e;
+       }(i), n = function (r, n, a) {
+         if (r.type && n) throw new Error("Param '" + e + "' has two type configurations.");return n || (r.type ? t.isString(r.type) ? y[r.type] : r.type instanceof A ? r.type : new A(r.type) : "config" === a ? y.any : y.string);
+       }(i, n, l);var p,
+           h,
+           d = (p = { array: "search" === l && "auto" }, h = e.match(/\[\]$/) ? { array: !0 } : {}, c(p, h, i).array);"string" !== (n = d ? n.$asArray(d, "search" === l) : n).name || d || "path" !== l || i.value !== r || (i.value = "");var w = i.value !== r,
+           b = function (e, t) {
+         var r = e.squash;if (!t || !1 === r) return !1;if (!a(r) || null == r) return v;if (!0 === r || o(r)) return r;throw new Error("Invalid squash policy: '" + r + "'. Valid policies: false, true, or arbitrary string");
+       }(i, w),
+           x = function (e, t, n, a) {
+         var i,
+             u,
+             l = [{ from: "", to: n || t ? r : "" }, { from: null, to: n || t ? r : "" }];return i = s(e.replace) ? e.replace : [], o(a) && i.push({ from: a, to: r }), u = E(i, function (e) {
+           return e.from;
+         }), S(l, function (e) {
+           return -1 === m(u, e.from);
+         }).concat(i);
+       }(i, d, w, b);c(this, { id: e, type: n, location: l, array: d, squash: b, replace: x, isOptional: w, value: function value(e) {
+           return e = function (e) {
+             var t,
+                 r = E(S(f.replace, (t = e, function (e) {
+               return e.from === t;
+             })), function (e) {
+               return e.to;
+             });return r.length ? r[0] : e;
+           }(e), a(e) ? f.type.$normalize(e) : function () {
+             if (!g) throw new Error("Injectable functions cannot be called at configuration time");var e = g.invoke(i.$$fn);if (null !== e && e !== r && !f.type.is(e)) throw new Error("Default value (" + e + ") for parameter '" + f.id + "' is not an instance of Type (" + f.type.name + ")");return e;
+           }();
+         }, dynamic: r, config: i, toString: function toString() {
+           return "{Param:" + e + " " + n + " squash: '" + b + "' optional: " + w + "}";
+         } });
+     }, k.prototype = { $$new: function $$new() {
+         return h(this, c(new k(), { $$parent: this }));
+       }, $$keys: function $$keys() {
+         for (var e = [], t = [], r = this, n = $(k.prototype); r;) {
+           t.push(r), r = r.$$parent;
+         }return t.reverse(), l(t, function (t) {
+           l($(t), function (t) {
+             -1 === m(e, t) && -1 === m(n, t) && e.push(t);
+           });
+         }), e;
+       }, $$values: function $$values(e) {
+         var t = {},
+             r = this;return l(r.$$keys(), function (n) {
+           t[n] = r[n].value(e && e[n]);
+         }), t;
+       }, $$equals: function $$equals(e, t) {
+         var r = !0,
+             n = this;return l(n.$$keys(), function (a) {
+           var i = e && e[a],
+               o = t && t[a];n[a].type.equals(i, o) || (r = !1);
+         }), r;
+       }, $$validates: function $$validates(e) {
+         var n,
+             a,
+             i,
+             o,
+             u,
+             s = this.$$keys();for (n = 0; n < s.length && (a = this[s[n]], (i = e[s[n]]) !== r && null !== i || !a.isOptional); n++) {
+           if (o = a.type.$normalize(i), !a.type.is(o)) return !1;if (u = a.type.encode(o), t.isString(u) && !a.type.pattern.exec(u)) return !1;
+         }return !0;
+       }, $$parent: r }, this.ParamSet = k;
+   }), t.module("ui.router.util").run(["$urlMatcherFactory", function (e) {}]), O.$inject = ["$locationProvider", "$urlMatcherFactoryProvider"], t.module("ui.router.router").provider("$urlRouter", O), k.$inject = ["$urlRouterProvider", "$urlMatcherFactoryProvider"], t.module("ui.router.state").factory("$stateParams", function () {
+     return {};
+   }).provider("$state", k), q.$inject = [], t.module("ui.router.state").provider("$view", q), t.module("ui.router.state").provider("$uiViewScroll", function () {
+     var e = !1;this.useAnchorScroll = function () {
+       e = !0;
+     }, this.$get = ["$anchorScroll", "$timeout", function (t, r) {
+       return e ? t : function (e) {
+         return r(function () {
+           e[0].scrollIntoView();
+         }, 0, !1);
+       };
+     }];
+   });var C = t.version.major,
+       I = t.version.minor;function V(e, r, n, a) {
+     var i = r.has ? function (e) {
+       return r.has(e) ? r.get(e) : null;
+     } : function (e) {
+       try {
+         return r.get(e);
+       } catch (e) {
+         return null;
+       }
+     },
+         o = i("$animator"),
+         u = i("$animate");return { restrict: "ECA", terminal: !0, priority: 400, transclude: "element", compile: function compile(r, i, s) {
+         return function (r, i, l) {
+           var c,
+               f,
+               p,
+               h,
+               v = l.onload || "",
+               $ = l.autoscroll,
+               m = function (e, r) {
+             var n = { enter: function enter(e, t, r) {
+                 t.after(e), r();
+               }, leave: function leave(e, t) {
+                 e.remove(), t();
+               } };if (e.noanimation) return n;function a(e) {
+               return 1 === C && I >= 4 ? !!u.enabled(e) : 1 === C && I >= 2 ? !!u.enabled() : !!o;
+             }if (u) return { enter: function enter(e, r, i) {
+                 a(e) ? t.version.minor > 2 ? u.enter(e, null, r).then(i) : u.enter(e, null, r, i) : n.enter(e, r, i);
+               }, leave: function leave(e, r) {
+                 a(e) ? t.version.minor > 2 ? u.leave(e).then(r) : u.leave(e, r) : n.leave(e, r);
+               } };if (o) {
+               var i = o && o(r, e);return { enter: function enter(e, t, r) {
+                   i.enter(e, null, t), r();
+                 }, leave: function leave(e, t) {
+                   i.leave(e), t();
+                 } };
+             }return n;
+           }(l, r);function d(o) {
+             var u,
+                 d = D(r, l, i, a),
+                 g = d && e.$current && e.$current.locals[d];if ((o || g !== h) && !r._willBeDestroyed) {
+               u = r.$new(), h = e.$current.locals[d], u.$emit("$viewContentLoading", d);var y = s(u, function (e) {
+                 m.enter(e, i, function () {
+                   p && p.$emit("$viewContentAnimationEnded"), (t.isDefined($) && !$ || r.$eval($)) && n(e);
+                 }), function () {
+                   var e = c,
+                       t = p;function r() {
+                     e && e.remove(), t && t.$destroy();
+                   }t && (t._willBeDestroyed = !0), f ? (m.leave(f, function () {
+                     r(), c = null;
+                   }), c = f) : (r(), c = null), f = null, p = null;
+                 }();
+               });f = y, (p = u).$emit("$viewContentLoaded", d), p.$eval(v);
+             }
+           }r.$on("$stateChangeSuccess", function () {
+             d(!1);
+           }), d(!0);
+         };
+       } };
+   }function M(e, t, r, n) {
+     return { restrict: "ECA", priority: -400, compile: function compile(a) {
+         var i = a.html();return function (a, o, u) {
+           var s = r.$current,
+               l = D(a, u, o, n),
+               c = s && s.locals[l];if (c) {
+             o.data("$uiView", { name: l, state: c.$$state }), o.html(c.$template ? c.$template : i);var f = e(o.contents());if (c.$$controller) {
+               c.$scope = a, c.$element = o;var p = t(c.$$controller, c);c.$$controllerAs && (a[c.$$controllerAs] = p), o.data("$ngControllerController", p), o.children().data("$ngControllerController", p);
+             }f(a);
+           }
+         };
+       } };
+   }function D(e, t, r, n) {
+     var a = n(t.uiView || t.name || "")(e),
+         i = r.inheritedData("$uiView");return a.indexOf("@") >= 0 ? a : a + "@" + (i ? i.state.name : "");
+   }function N(e, t) {
+     var r,
+         n = e.match(/^\s*({[^}]*})\s*$/);if (n && (e = t + "(" + n[1] + ")"), !(r = e.replace(/\n/g, " ").match(/^([^(]+?)\s*(\((.*)\))?$/)) || 4 !== r.length) throw new Error("Invalid state ref '" + e + "'");return { state: r[1], paramExpr: r[3] || null };
+   }function R(e) {
+     var t = e.parent().inheritedData("$uiView");if (t && t.state && t.state.name) return t.state;
+   }function F(e) {
+     var t = "[object SVGAnimatedString]" === Object.prototype.toString.call(e.prop("href")),
+         r = "FORM" === e[0].nodeName;return { attr: r ? "action" : t ? "xlink:href" : "href", isAnchor: "A" === e.prop("tagName").toUpperCase(), clickable: !r };
+   }function U(e, t, r, n, a) {
+     return function (i) {
+       var o = i.which || i.button,
+           u = a();if (!(o > 1 || i.ctrlKey || i.metaKey || i.shiftKey || e.attr("target"))) {
+         var s = r(function () {
+           t.go(u.state, u.params, u.options);
+         });i.preventDefault();var l = n.isAnchor && !u.href ? 1 : 0;i.preventDefault = function () {
+           l-- <= 0 && r.cancel(s);
+         };
+       }
+     };
+   }function T(e, r) {
+     return { restrict: "A", require: ["?^uiSrefActive", "?^uiSrefActiveEq"], link: function link(n, a, i, o) {
+         var u = N(i.uiSref, e.current.name),
+             s = { state: u.state, href: null, params: null },
+             l = F(a),
+             f = o[1] || o[0];s.options = c(function (e, t) {
+           return { relative: R(e) || t.$current, inherit: !0 };
+         }(a, e), i.uiSrefOpts ? n.$eval(i.uiSrefOpts) : {});var p = function p(r) {
+           r && (s.params = t.copy(r)), s.href = e.href(u.state, s.params, s.options), f && f.$$addStateInfo(u.state, s.params), null !== s.href && i.$set(l.attr, s.href);
+         };u.paramExpr && (n.$watch(u.paramExpr, function (e) {
+           e !== s.params && p(e);
+         }, !0), s.params = t.copy(n.$eval(u.paramExpr))), p(), l.clickable && a.bind("click", U(a, e, r, l, function () {
+           return s;
+         }));
+       } };
+   }function z(e, t) {
+     return { restrict: "A", require: ["?^uiSrefActive", "?^uiSrefActiveEq"], link: function link(r, n, a, i) {
+         var o = F(n),
+             u = i[1] || i[0],
+             s = "[" + [a.uiState, a.uiStateParams || null, a.uiStateOpts || null].map(function (e) {
+           return e || "null";
+         }).join(", ") + "]",
+             l = { state: null, params: null, options: null, href: null };function c(t) {
+           l.state = t[0], l.params = t[1], l.options = t[2], l.href = e.href(l.state, l.params, l.options), u && u.$$addStateInfo(l.state, l.params), l.href && a.$set(o.attr, l.href);
+         }r.$watch(s, c, !0), c(r.$eval(s)), o.clickable && n.bind("click", U(n, e, t, o, function () {
+           return l;
+         }));
+       } };
+   }function B(e, t, r) {
+     return { restrict: "A", controller: ["$scope", "$element", "$attrs", "$timeout", function (t, n, a, i) {
+         var s,
+             c,
+             f = [],
+             h = {};s = r(a.uiSrefActiveEq || "", !1)(t);try {
+           c = t.$eval(a.uiSrefActive);
+         } catch (e) {}function v(r, a, i) {
+           var s = e.get(r, R(n)),
+               l = function (e, r) {
+             if (!o(e)) throw new Error("state should be a string");if (u(r)) return e + p(r);if (r = t.$eval(r), u(r)) return e + p(r);return e;
+           }(r, a);f.push({ state: s || { name: r }, params: a, hash: l }), h[l] = i;
+         }function $() {
+           for (var t = 0; t < f.length; t++) {
+             r = f[t].state, a = f[t].params, e.includes(r.name, a) ? m(n, h[f[t].hash]) : d(n, h[f[t].hash]), g(f[t].state, f[t].params) ? m(n, s) : d(n, s);
+           }var r, a;
+         }function m(e, t) {
+           i(function () {
+             e.addClass(t);
+           });
+         }function d(e, t) {
+           e.removeClass(t);
+         }function g(t, r) {
+           return e.is(t.name, r);
+         }c = c || r(a.uiSrefActive || "", !1)(t), u(c) && l(c, function (r, n) {
+           if (o(r)) {
+             var a = N(r, e.current.name);v(a.state, t.$eval(a.paramExpr), n);
+           }
+         }), this.$$addStateInfo = function (e, t) {
+           u(c) && f.length > 0 || (v(e, t, c), $());
+         }, t.$on("$stateChangeSuccess", $), $();
+       }] };
+   }function J(e) {
+     var t = function t(_t, r) {
+       return e.is(_t, r);
+     };return t.$stateful = !0, t;
+   }function K(e) {
+     var t = function t(_t2, r, n) {
+       return e.includes(_t2, r, n);
+     };return t.$stateful = !0, t;
+   }V.$inject = ["$state", "$injector", "$uiViewScroll", "$interpolate"], M.$inject = ["$compile", "$controller", "$state", "$interpolate"], t.module("ui.router.state").directive("uiView", V), t.module("ui.router.state").directive("uiView", M), T.$inject = ["$state", "$timeout"], z.$inject = ["$state", "$timeout"], B.$inject = ["$state", "$stateParams", "$interpolate"], t.module("ui.router.state").directive("uiSref", T).directive("uiSrefActive", B).directive("uiSrefActiveEq", B).directive("uiState", z), J.$inject = ["$state"], K.$inject = ["$state"], t.module("ui.router.state").filter("isState", J).filter("includedByState", K);
+ }(window, window.angular);
+
+/***/ }),
+
+/***/ 162:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+ 
+ /* global window */
+ !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), module, __webpack_require__(5), __webpack_require__], __WEBPACK_AMD_DEFINE_RESULT__ = function (base, module, core, require, angular) {
+ 
+     'use strict';
+ 
+     var deviceMap = {
+         'phone': 'phone',
+         'tablet': 'tablet',
+         'web': 'web'
+     };
+ 
+     function PlatformService(lpPortal) {
+ 
+         this.window = undefined;
+ 
+         var root = this;
+ 
+         root.widgetName = "app";
+         this.setWindow = function (window) {
+             root.window = window;
+         };
+         this._isNotMobileBaseOnUserAgent = function () {
+             var check = false;
+             (function (a) {
+                 if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+             })((navigator.userAgent || navigator.vendor || window.opera).toLowerCase());
+             return !check;
+         };
+         this._isNotDevice = function () {
+             if (typeof cxp == "undefined") {
+                 return true;
+             } else {
+                 return false;
+             }
+         };
+         this._isNotMobileBaseOnSize = function () {
+             if (root.window.innerWidth > 500) {
+                 return true;
+             } else {
+                 return;
+             }
+         };
+         this.getTemplateUrl = function (templateUrl) {
+             if (typeof cxp == 'undefined') {
+                 return lpPortal.root + templateUrl;
+             } else {
+                 return templateUrl.replace(/\/static\//, "static/");
+             }
+         };
+ 
+         var isNotMobile = function () {
+             var check = false;
+             (function (a) {
+                 if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+             })(navigator.userAgent || navigator.vendor || window.opera);
+             return !check;
+         }();
+ 
+         this.setType = function () {
+             var devicePlugin = typeof cxp !== 'undefined' && cxp.mobile.plugins['DeviceInfo'];
+ 
+             if (devicePlugin) {
+                 if (!sessionStorage.getItem("deviceType")) {
+                     devicePlugin.getDeviceInfo(function (deviceObject) {
+                         sessionStorage.setItem('deviceType', deviceMap[deviceObject.deviceType]);
+                     });
+                 }
+             } else {
+                 sessionStorage.setItem('deviceType', 'web');
+             }
+         };
+ 
+         this.getType = function () {
+             return isNotMobile;
+         };
+         this.setWidgetName = function (widgetName) {
+             root.widgetName = widgetName;
+         };
+ 
+         this.getWidgetName = function () {
+             return root.widgetName;
+         };
+ 
+         this.getMode = function () {
+             if (root._isNotDevice()) {
+                 if (root._isNotMobileBaseOnSize()) {
+                     return "desktop";
+                 } else {
+                     return "mobile";
+                 }
+             } else {
+                 return "native";
+             }
+         };
+         this.$get = function () {
+             return {
+                 _isNotMobileBaseOnSize: root._isNotMobileBaseOnSize,
+                 _isNotDevice: root._isNotDevice,
+                 setType: root.setType,
+                 getType: root.getType,
+                 getTemplateUrl: root.getTemplateUrl,
+                 getWidgetName: root.getWidgetName,
+                 getMode: root.getMode
+             };
+         };
+     }
+ 
+     module.exports.PlatformService = PlatformService;
+ }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 163:
+/***/ (function(module, exports) {
+
+ "use strict";
+ 
+ !function (t, e) {
+   "use strict";
+   var r = t.module("ct.ui.router.extras.core", ["ui.router"]),
+       n = {},
+       a = [];r.config(["$stateProvider", "$injector", function (e, r) {
+     e.decorator("parent", function (e, r) {
+       return n[e.self.name] = e, e.self.$$state = function () {
+         return n[e.self.name];
+       }, t.forEach(a, function (t) {
+         t(e);
+       }), r(e);
+     });
+   }]);var o,
+       i = t.forEach,
+       u = t.extend,
+       s = t.isArray,
+       c = function c(t, e) {
+     var r = [];return i(t, function (t, n) {
+       r.push(e(t, n));
+     }), r;
+   },
+       f = function f(t) {
+     return c(t, function (t, e) {
+       return e;
+     });
+   },
+       l = function l(t, e) {
+     var r = [];return i(t, function (t, n) {
+       e(t, n) && r.push(t);
+     }), r;
+   },
+       p = function p(t, e) {
+     var r = {};return i(t, function (t, n) {
+       e(t, n) && (r[n] = t);
+     }), r;
+   };function v(t, e) {
+     var r = [];for (var n in t.path) {
+       if (t.path[n] !== e.path[n]) break;r.push(t.path[n]);
+     }return r;
+   }function d(e) {
+     if (Object.keys) return Object.keys(e);var r = [];return t.forEach(e, function (t, e) {
+       r.push(e);
+     }), r;
+   }function m(t, e) {
+     var r = [];for (var n in t) {
+       e && -1 !== e.indexOf(n) || r.push(n);
+     }return r;
+   }function h(t, e) {
+     if (Array.prototype.indexOf) return t.indexOf(e, Number(arguments[2]) || 0);var r = t.length >>> 0,
+         n = Number(arguments[2]) || 0;for ((n = n < 0 ? Math.ceil(n) : Math.floor(n)) < 0 && (n += r); n < r; n++) {
+       if (n in t && t[n] === e) return n;
+     }return -1;
+   }function $(t, e, r, n) {
+     var a,
+         o = v(r, n),
+         i = {},
+         c = [];for (var f in o) {
+       if (o[f].params && (a = s(o[f].params) ? o[f].params : d(o[f].params)).length) for (var l in a) {
+         h(c, a[l]) >= 0 || (c.push(a[l]), i[a[l]] = t[a[l]]);
+       }
+     }return u({}, i, e);
+   }function g(t, e) {
+     return u(new (u(function () {}, { prototype: t }))(), e);
+   }function x(t) {
+     a.push(t);
+   }function y() {
+     o = e;
+   }r.provider("uirextras_core", function () {
+     var e = { internalStates: n, onStateRegistered: x, forEach: i, extend: u, isArray: s, map: c, keys: f, filter: l, filterObj: p, ancestors: v, objectKeys: d, protoKeys: m, arraySearch: h, inheritParams: $, inherit: g };t.extend(this, e), this.$get = function () {
+       return e;
+     };
+   }), t.module("ct.ui.router.extras.dsr", ["ct.ui.router.extras.core"]).config(["$provide", function (t) {
+     var e;t.decorator("$state", ["$delegate", "$q", function (t, r) {
+       return e = t.transitionTo, t.transitionTo = function (n, a, i) {
+         return i.ignoreDsr && (o = i.ignoreDsr), e.apply(t, arguments).then(function (t) {
+           return y(), t;
+         }, function (t) {
+           return y(), r.reject(t);
+         });
+       }, t;
+     }]);
+   }]), t.module("ct.ui.router.extras.dsr").service("$deepStateRedirect", ["$rootScope", "$state", "$injector", function (r, n, a) {
+     var i = {},
+         u = {},
+         s = "Redirect",
+         c = "AncestorRedirect";function f(t) {
+       var r = t.name;if (u.hasOwnProperty(r)) return u[r];!function t(r) {
+         var a = n.get(r);if (!a) return !1;var o = l(a);o.dsr && (u[a.name] = s, i[r] === e && (i[r] = {}));var f = a.$$state && a.$$state().parent;if (f) {
+           var p = t(f.self.name);p && u[a.name] === e && (u[a.name] = c);
+         }return u[a.name] || !1;
+       }(r);
+     }function l(e) {
+       var r = e.deepStateRedirect || e.dsr;if (!r) return { dsr: !1 };var n = { dsr: !0 };return t.isFunction(r) ? n.fn = r : t.isObject(r) && (n = t.extend(n, r)), t.isString(n.default) && (n.default = { state: n.default }), n.fn || (n.fn = ["$dsr$", function (t) {
+         return t.redirect.state != t.to.state;
+       }]), n;
+     }function p(r, n) {
+       !0 === n && (n = Object.keys(r)), null !== n && n !== e || (n = []);var a = {};return t.forEach(n.sort(), function (t) {
+         a[t] = r[t];
+       }), a;
+     }function v(e, r) {
+       var n = p(e, r);var a = {};return t.forEach(n, function (t, e) {
+         var r;a[e] = (r = t) ? r.toString() : r;
+       }), t.toJson(a);
+     }return r.$on("$stateChangeStart", function (e, r, u, c, d) {
+       var m = l(r);if (!o && (f(r) === s || m.default)) {
+         var h = v(u, m.params),
+             $ = i[r.name][h] || m.default;if ($) {
+           var g = { redirect: { state: $.state, params: $.params }, to: { state: r.name, params: u } },
+               x = a.invoke(m.fn, r, { $dsr$: g });if (x) {
+             x.state && ($ = x), e.preventDefault();var y = p(u, m.params);n.go($.state, t.extend(y, $.params));
+           }
+         }
+       }
+     }), r.$on("$stateChangeSuccess", function (e, r, a, o, u) {
+       if (f(r)) {
+         var s = r.name;t.forEach(i, function (e, r) {
+           var o = l(n.get(r)),
+               u = v(a, o.params);s != r && -1 == s.indexOf(r + ".") || (i[r][u] = { state: s, params: t.copy(a) });
+         });
+       }
+     }), { reset: function reset(e, r) {
+         if (e) {
+           var a = n.get(e);if (!a) throw new Error("Unknown state: " + e);if (i[a.name]) if (r) {
+             var o = v(r, l(a).params);delete i[a.name][o];
+           } else i[a.name] = {};
+         } else t.forEach(i, function (t, e) {
+           i[e] = {};
+         });
+       } };
+   }]), t.module("ct.ui.router.extras.dsr").run(["$deepStateRedirect", function (t) {}]), t.module("ct.ui.router.extras.sticky", ["ct.ui.router.extras.core"]);var S,
+       b = t.module("ct.ui.router.extras.sticky");function E(e, r) {
+     var n = r,
+         a = n.inheritParams,
+         o = n.protoKeys,
+         i = n.map,
+         u = {},
+         s = {},
+         c = !1;this.registerStickyState = function (t) {
+       s[t.name] = t;
+     }, this.enableDebug = this.debugMode = function (e) {
+       return t.isDefined(e) && (c = e), c;
+     }, this.$get = ["$rootScope", "$state", "$stateParams", "$injector", "$log", function (e, r, n, s, f) {
+       function l() {
+         var e = {};return t.forEach(u, function (t, r) {
+           for (var n = function (t) {
+             var e = [];if (!t) return e;do {
+               t.sticky && e.push(t), t = t.parent;
+             } while (t);return e.reverse(), e;
+           }(t), a = 0; a < n.length; a++) {
+             var o = n[a].parent;e[o.name] = e[o.name] || [], e[o.name].push(t);
+           }e[""] && (e.__inactives = e[""]);
+         }), e;
+       }function p(t, e, r, n) {
+         if (n) return "updateStateParams";var a = u[t.self.name];return a ? t.self === r ? "updateStateParams" : d(e, a.locals.globals.$stateParams, t.ownParams) ? "reactivate" : "updateStateParams" : "enter";
+       }function v(t, e) {
+         var r = u[t.name];return r ? e ? d(e, r.locals.globals.$stateParams, t.ownParams) ? r : null : r : null;
+       }function d(e, r, n) {
+         if (!t.isArray(n) && t.isObject(n) && (n = o(n, ["$$keys", "$$values", "$$equals", "$$validates", "$$new", "$$parent"])), !n) for (var a in n = [], e) {
+           n.push(a);
+         }for (var i = 0; i < n.length; i++) {
+           var u = n[i];if (e[u] != r[u]) return !1;
+         }return !0;
+       }var m = { getInactiveStates: function getInactiveStates() {
+           var e = [];return t.forEach(u, function (t) {
+             e.push(t);
+           }), e;
+         }, getInactiveStatesByParent: function getInactiveStatesByParent() {
+           return l();
+         }, processTransition: function processTransition(e) {
+           var o = { inactives: [], enter: [], exit: [], keep: 0 },
+               u = e.fromState.path,
+               s = e.fromParams,
+               c = e.toState.path,
+               f = e.toParams,
+               v = e.reloadStateTree,
+               m = e.options,
+               h = 0,
+               $ = c[h];for (m.inherit && (f = a(n, f || {}, r.$current, e.toState)); $ && $ === u[h] && d(f, s, $.ownParams);) {
+             $ = c[++h];
+           }o.keep = h;var g,
+               x,
+               y,
+               S = {},
+               b = function (t, e, r) {
+             return t[r] === e[r] ? { from: !1, to: !1 } : { from: r < t.length && t[r].self.sticky, to: r < e.length && e[r].self.sticky };
+           }(u, c, h),
+               E = !!m.reload;for (g = h; g < c.length; g++) {
+             var P = b.to ? p(c[g], f, v, E) : "enter";E = E || "updateStateParams" == P, o.enter[g] = P, "reactivate" == P && (y = S[c[g].name] = c[g]), "updateStateParams" == P && (x = S[c[g].name] = c[g]);
+           }y = y ? y.self.name + "." : "", x = x ? x.self.name + "." : "";var k = l(),
+               w = [""].concat(i(u.slice(0, h), function (t) {
+             return t.self.name;
+           }));for (t.forEach(w, function (t) {
+             for (var e = k[t], r = 0; e && r < e.length; r++) {
+               var n = e[r];S[n.name] || y && 0 === n.self.name.indexOf(y) || x && 0 === n.self.name.indexOf(x) || o.inactives.push(n);
+             }
+           }), g = h; g < u.length; g++) {
+             var j = "exit";b.from && (o.inactives.push(u[g]), j = "inactivate"), o.exit[g] = j;
+           }return o;
+         }, stateInactivated: function stateInactivated(t) {
+           u[t.self.name] = t, t.self.status = "inactive", t.self.onInactivate && s.invoke(t.self.onInactivate, t.self, t.locals.globals);
+         }, stateReactivated: function stateReactivated(t) {
+           u[t.self.name] && delete u[t.self.name], t.self.status = "entered", t.self.onReactivate && s.invoke(t.self.onReactivate, t.self, t.locals.globals);
+         }, stateExiting: function stateExiting(e, r, n) {
+           var a = {};t.forEach(r, function (t) {
+             a[t.self.name] = !0;
+           }), t.forEach(u, function (r, n) {
+             !a[n] && r.includes[e.name] && (c && f.debug("Exiting " + n + " because it's a substate of " + e.name + " and wasn't found in ", a), r.self.onExit && s.invoke(r.self.onExit, r.self, r.locals.globals), t.forEach(r.locals, function (t, e) {
+               delete w.locals[e];
+             }), r.locals = null, r.self.status = "exited", delete u[n]);
+           }), n && s.invoke(n, e.self, e.locals.globals), e.locals = null, e.self.status = "exited", delete u[e.self.name];
+         }, stateEntering: function stateEntering(t, e, r, n) {
+           var a = v(t);if (a && (n || !v(t, e))) {
+             var o = t.locals;this.stateExiting(a), t.locals = o;
+           }t.self.status = "entered", r && s.invoke(r, t.self, t.locals.globals);
+         }, reset: function reset(t, n) {
+           var a = v(r.get(t), n);return !!a && (m.stateExiting(a), e.$broadcast("$viewContentLoading"), !0);
+         } };return m;
+     }];
+   }E.$inject = ["$stateProvider", "uirextras_coreProvider"], b.provider("$stickyState", E);n = {};var P,
+       k,
+       w,
+       j = [],
+       F = { hasParamSet: !1 };function R(t) {
+     return { resolve: {}, locals: { globals: P && P.locals && P.locals.globals }, views: {}, self: {}, params: {}, ownParams: F.hasParamSet ? { $$equals: function $$equals() {
+           return !0;
+         } } : [], surrogateType: t };
+   }t.module("ct.ui.router.extras.sticky").run(["$stickyState", function (t) {
+     S = t;
+   }]), t.module("ct.ui.router.extras.sticky").config(["$provide", "$stateProvider", "$stickyStateProvider", "$urlMatcherFactoryProvider", "uirextras_coreProvider", function (r, n, a, o, i) {
+     var u,
+         s = i,
+         c = s.internalStates,
+         f = s.inherit,
+         l = (s.inheritParams, s.map),
+         p = s.filterObj;F.hasParamSet = !!o.ParamSet, w = t.extend(new R("__inactives"), { self: { name: "__inactives" } }), P = k = e, j = [], i.onStateRegistered(function (t) {
+       !0 === t.self.sticky && a.registerStickyState(t.self);
+     }), r.decorator("$state", ["$delegate", "$log", "$q", function (r, n, i) {
+       return P = r.$current, c[""] = P, P.parent = w, w.parent = e, P.locals = f(w.locals, P.locals), delete w.locals.globals, u = r.transitionTo, r.transitionTo = function (e, s, f) {
+         var v = a.debugMode();w.locals || (w.locals = P.locals);var d = j.length;k && (k(), v && n.debug("Restored paths from pending transition"));var m,
+             h,
+             $,
+             g,
+             x = r.$current,
+             y = r.params,
+             b = f && f.relative || r.$current,
+             E = r.get(e, b),
+             O = [],
+             A = [];s = s || {}, arguments[1] = s;var T = function T() {},
+             _2 = function _() {
+           m && (C.path = m, m = null), h && (x.path = h, h = null), t.forEach(_2.restoreFunctions, function (t) {
+             t();
+           }), _2 = T, k = null, j.splice(d, 1);
+         };function I(t) {
+           var e = t.self.onExit;return t.self.onExit = function () {
+             S.stateExiting(t, A, e);
+           }, _2.addRestoreFunction(function () {
+             t.self.onExit = e;
+           }), t;
+         }if (_2.restoreFunctions = [], _2.addRestoreFunction = function (t) {
+           this.restoreFunctions.push(t);
+         }, E) {
+           var C = c[E.name];if (C) {
+             m = C.path, h = x.path;var M = f && f.reload || !1,
+                 D = M && (!0 === M ? m[0].self : r.get(M, b));f && M && !0 !== M && delete f.reload;var N = { toState: C, toParams: s || {}, fromState: x, fromParams: y || {}, options: f, reloadStateTree: D };if (j.push(N), k = _2, D) {
+               N.toParams.$$uirouterextrasreload = Math.random();var q = D.$$state().params,
+                   J = D.$$state().ownParams;if (F.hasParamSet) {
+                 var K = new o.Param("$$uirouterextrasreload");q.$$uirouterextrasreload = J.$$uirouterextrasreload = K, _2.restoreFunctions.push(function () {
+                   delete q.$$uirouterextrasreload, delete J.$$uirouterextrasreload;
+                 });
+               } else q.push("$$uirouterextrasreload"), J.push("$$uirouterextrasreload"), _2.restoreFunctions.push(function () {
+                 q.length = q.length - 1, J.length = J.length - 1;
+               });
+             }$ = S.processTransition(N), v && function (e, r, n) {
+               function a(t, e, r) {
+                 return t[e] ? t[e].toUpperCase() + ": " + r.self.name : "(" + r.self.name + ")";
+               }var o = l(n.inactives, function (t) {
+                 return t.self.name;
+               }),
+                   i = l(r.toState.path, function (t, e) {
+                 return a(n.enter, e, t);
+               }),
+                   u = l(r.fromState.path, function (t, e) {
+                 return a(n.exit, e, t);
+               }),
+                   s = r.fromState.self.name + ": " + t.toJson(r.fromParams) + ":  -> " + r.toState.self.name + ": " + t.toJson(r.toParams);e.debug("   Current transition: ", s), e.debug("Before transition, inactives are:   : ", l(S.getInactiveStates(), function (t) {
+                 return t.self.name;
+               })), e.debug("After transition,  inactives will be: ", o), e.debug("Transition will exit:  ", u), e.debug("Transition will enter: ", i);
+             }(n, N, $);var U = C.path.slice(0, $.keep),
+                 z = x.path.slice(0, $.keep);t.forEach(w.locals, function (t, e) {
+               -1 != e.indexOf("@") && delete w.locals[e];
+             });for (var B = 0; B < $.inactives.length; B++) {
+               var H = $.inactives[B].locals;t.forEach(H, function (t, e) {
+                 H.hasOwnProperty(e) && -1 != e.indexOf("@") && (w.locals[e] = t);
+               });
+             }if (t.forEach($.enter, function (e, r) {
+               var n,
+                   a,
+                   o,
+                   i,
+                   u = C.path[r];"reactivate" === e ? (n = function (e) {
+                 var r = t.extend(new R("reactivate_phase1"), { locals: e.locals });return r.self = t.extend({}, e.self), r;
+               }(u), U.push(n), z.push(n), O.push(function (e) {
+                 var r = t.extend(new R("reactivate_phase2"), e),
+                     n = r.self.onEnter;return r.resolve = {}, r.views = {}, r.self.onEnter = function () {
+                   r.locals = e.locals, S.stateReactivated(e);
+                 }, _2.addRestoreFunction(function () {
+                   e.self.onEnter = n;
+                 }), r;
+               }(u)), g = u) : "updateStateParams" === e ? (i = (a = u).self.onEnter, a.self.onEnter = function () {
+                 S.stateEntering(a, o, i, !0);
+               }, _2.addRestoreFunction(function () {
+                 a.self.onEnter = i;
+               }), n = a, U.push(n), g = u) : "enter" === e && U.push(function (t, e) {
+                 var r = t.self.onEnter;return t.self.onEnter = function () {
+                   S.stateEntering(t, e, r);
+                 }, _2.addRestoreFunction(function () {
+                   t.self.onEnter = r;
+                 }), t;
+               }(u));
+             }), t.forEach($.exit, function (t, e) {
+               var r = x.path[e];"inactivate" === t ? (z.push(function (t) {
+                 var e = new R("inactivate");e.self = t.self;var r = t.self.onExit;return e.self.onExit = function () {
+                   S.stateInactivated(t);
+                 }, _2.addRestoreFunction(function () {
+                   t.self.onExit = r;
+                 }), e;
+               }(r)), A.push(r)) : "exit" === t && (z.push(I(r)), A.push(r));
+             }), O.length && t.forEach(O, function (t) {
+               U.push(t);
+             }), C === g) {
+               var V = g.self.name + ".",
+                   W = S.getInactiveStates(),
+                   L = [];W.forEach(function (t) {
+                 0 === t.self.name.indexOf(V) && L.push(t);
+               }), L.sort(), L.reverse(), z = z.concat(l(L, function (t) {
+                 return I(t);
+               })), A = A.concat(L);
+             }C.path = U, x.path = z;var Y = function Y(t) {
+               return (t.surrogateType ? t.surrogateType + ":" : "") + t.self.name;
+             };v && n.debug("SurrogateFromPath: ", l(z, Y)), v && n.debug("SurrogateToPath:   ", l(U, Y));
+           }
+         }return u.apply(r, arguments).then(function (t) {
+           return _2(), v && function (t, e, r) {
+             t.debug("Current state: " + e.self.name + ", inactive states: ", l(S.getInactiveStates(), function (t) {
+               return t.self.name;
+             }));var n = function n(t, e) {
+               return "'" + e + "' (" + t.$$state.name + ")";
+             },
+                 a = function a(t, e) {
+               return "globals" != e && "resolve" != e;
+             },
+                 o = function o(t) {
+               var e = l(p(t.locals, a), n).join(", ");return "(" + (t.self.name ? t.self.name : "root") + ".locals" + (e.length ? ": " + e : "") + ")";
+             },
+                 i = o(e),
+                 u = e.parent;for (; u && u !== e;) {
+               "" === u.self.name && (i = o(r.$current.path[0]) + " / " + i), i = o(u) + " / " + i, u = (e = u).parent;
+             }t.debug("Views: " + i);
+           }(n, c[t.name], r), t.status = "active", t;
+         }, function (t) {
+           return _2(), v && "transition prevented" !== t.message && "transition aborted" !== t.message && "transition superseded" !== t.message && n.debug("transition failed", t), i.reject(t);
+         });
+       }, r;
+     }]);
+   }]), function (t, e) {
+     var r = t.module("ct.ui.router.extras.future", ["ct.ui.router.extras.core"]);function n(e, r, n, a) {
+       var o,
+           i = a.internalStates,
+           u = {},
+           s = {},
+           c = !1,
+           f = [],
+           l = !1,
+           p = this;function v(e, r) {
+         var n = t.isObject(e) ? e.name : e;return r ? s[n] : i[n];
+       }function d(t, e) {
+         if (e.name) {
+           var r = e.name.split(/\./);for ("." === e.name.charAt(0) && (r[0] = t.current.name); r.length;) {
+             var n = r.join(".");if (t.get(n, { relative: t.current })) return null;if (s[n]) return s[n];r.pop();
+           }
+         }if (e.url) {
+           var a = [];for (var o in s) {
+             var i = s[o].urlMatcher;i && i.exec(e.url) && a.push(s[o]);
+           }for (var u = a.slice(0), c = a.length - 1; c >= 0; c--) {
+             for (var f = 0; f < u.length; f++) {
+               a[c] === u[f].parentFutureState && a.splice(c, 1);
+             }
+           }return a[0];
+         }
+       }function m(t, e) {
+         c = !0;var r = t.get("$q");if (!e) {
+           var n = r.defer();return n.reject("No lazyState passed in " + e), n.promise;
+         }var a = r.when([]),
+             o = e.parentFutureState;o && s[o.name] && (a = m(t, s[o.name]));var i = e.type,
+             f = u[i];if (!f) throw Error("No state factory for futureState.type: " + (e && e.type));return a.then(function (r) {
+           return t.invoke(f, f, { futureState: e }).then(function (t) {
+             return t && r.push(t), r;
+           });
+         }).finally(function () {
+           delete s[e.name];
+         });
+       }this.addResolve = function (t) {
+         f.push(t);
+       }, this.stateFactory = function (t, e) {
+         u[t] = e;
+       }, this.futureState = function (e) {
+         e.stateName && (e.name = e.stateName), e.urlPrefix && (e.url = "^" + e.urlPrefix), s[e.name] = e;var r,
+             a = e.name.split(/\./).slice(0, -1).join("."),
+             o = v(e.parent || a);if (o) r = o.url || o.navigable.url;else if ("" === a) r = n.compile("");else {
+           var i = v(e.parent || a, !0);if (!i) throw new Error("Couldn't determine parent state of future state. FutureState:" + t.toJson(e));var u = i.urlMatcher.source.replace(/\*rest$/, "");r = n.compile(u), e.parentFutureState = i;
+         }e.url && (e.urlMatcher = "^" === e.url.charAt(0) ? n.compile(e.url.substring(1) + "*rest") : r.concat(e.url + "*rest"));
+       }, this.get = function () {
+         return t.extend({}, s);
+       };var h = ["$log", "$location", function (t, e) {
+         t.debug("Unable to map " + e.path());
+       }];r.otherwise(function (t, r) {
+         var n = !1,
+             a = ["$rootScope", "$urlRouter", "$state", function (a, i, u) {
+           function s() {
+             n = !0, i.sync(), n = !1;
+           }if (!l) return o().then(s), void (l = !0);var f = d(u, { url: r.path() });if (!f) return t.invoke(h);m(t, f).then(function (t) {
+             t.forEach(function (t) {
+               t && (!u.get(t) || t.name && !u.get(t.name)) && e.state(t);
+             }), c = !1, s();
+           }, function () {
+             c = !1, s();
+           });
+         }];if (!c) {
+           var i = n ? h : a;return t.invoke(i);
+         }
+       }), r.otherwise = function (e) {
+         if (t.isString(e)) {
+           var n = e;e = function e() {
+             return n;
+           };
+         } else if (!t.isFunction(e)) throw new Error("'rule' must be a function");return h = ["$injector", "$location", e], r;
+       };var $ = { getResolvePromise: function getResolvePromise() {
+           return o();
+         } };this.$get = ["$injector", "$state", "$q", "$rootScope", "$urlRouter", "$timeout", "$log", function (r, n, a, i, u, s, l) {
+         return function () {
+           if (i.$on("$stateNotFound", function (t, a, o, i) {
+             if (!c) {
+               l.debug("event, unfoundState, fromState, fromParams", t, a, o, i);var u = d(n, { name: a.to });u && (t.preventDefault(), m(r, u).then(function (t) {
+                 t.forEach(function (t) {
+                   t && (!n.get(t) || t.name && !n.get(t.name)) && e.state(t);
+                 }), n.go(a.to, a.toParams), c = !1;
+               }, function (t) {
+                 n.go(o, i), c = !1;
+               }));
+             }
+           }), !o) {
+             var p = [];t.forEach(f, function (t) {
+               p.push(r.invoke(t));
+             }), o = function o() {
+               return a.all(p);
+             };
+           }o().then(function () {
+             s(function () {
+               n.transition ? n.transition.then(u.sync, u.sync) : u.sync();
+             });
+           });
+         }(), $.state = e.state, $.futureState = p.futureState, $.get = p.get, $;
+       }];
+     }n.$inject = ["$stateProvider", "$urlRouterProvider", "$urlMatcherFactoryProvider", "uirextras_coreProvider"], r.provider("$futureState", n);var a = { state: function state(t) {
+         a.$rootScope && a.$rootScope.$broadcast("$stateAdded", t);
+       }, itsNowRuntimeOhWhatAHappyDay: function itsNowRuntimeOhWhatAHappyDay(t) {
+         a.$rootScope = t;
+       }, $rootScope: void 0 };r.config(["$stateProvider", function (e) {
+       var r = e.state;e.state = function () {
+         var n = r.apply(e, arguments),
+             o = t.isObject(arguments[0]) ? arguments[0] : arguments[1];return a.state(o), n;
+       };
+     }]), r.run(["$futureState", function (t, e) {
+       a.itsNowRuntimeOhWhatAHappyDay(e);
+     }]);
+   }(t), t.module("ct.ui.router.extras.previous", ["ct.ui.router.extras.core", "ct.ui.router.extras.transition"]).service("$previousState", ["$rootScope", "$state", function (t, r) {
+     var n = null,
+         a = null,
+         o = {};t.$on("$transitionStart", function (t, e) {
+       var r = e.from,
+           o = r.state && r.state.$$state && r.state.$$state();o && o.navigable && (a = n, n = e.from), e.promise.then(function () {
+         a = null;
+       }).catch(function () {
+         n = a;
+       });
+     });var i = { get: function get(t) {
+         return t ? o[t] : n;
+       }, go: function go(t, e) {
+         var n = i.get(t);return r.go(n.state, n.params, e);
+       }, memo: function memo(t, e, a) {
+         o[t] = n || { state: r.get(e), params: a };
+       }, forget: function forget(t) {
+         t ? delete o[t] : n = e;
+       } };return i;
+   }]), t.module("ct.ui.router.extras.previous").run(["$previousState", function (t) {}]), t.module("ct.ui.router.extras.transition", ["ct.ui.router.extras.core"]).config(["$provide", function (e) {
+     e.decorator("$state", ["$delegate", "$rootScope", "$q", "$injector", function (e, r, n, a) {
+       var o = e.transitionTo,
+           i = -1,
+           u = [],
+           s = [];function c() {
+         s.pop()(), u.pop(), i--;
+       }return e.transitionTo = function (t, a, f) {
+         var l = n.defer(),
+             p = u[++i] = { promise: l.promise };return s[i] = function () {}, o.apply(e, arguments).then(function (t, e) {
+           return function (n) {
+             return c(), r.$broadcast("$transitionSuccess", e), t.resolve(n), n;
+           };
+         }(l, p), function (t, e) {
+           return function (a) {
+             return c(), r.$broadcast("$transitionError", e, a), t.reject(a), n.reject(a);
+           };
+         }(l, p));
+       }, r.$on("$stateChangeStart", function (e, n, o, c, f) {
+         var l = i,
+             p = t.extend(u[l], { to: { state: n, params: o }, from: { state: c, params: f } }),
+             v = function (e) {
+           var r = a.invoke,
+               n = a.instantiate;return a.invoke = function (n, a, o) {
+             return r(n, a, t.extend({ $transition$: e }, o));
+           }, a.instantiate = function (r, a) {
+             return n(r, t.extend({ $transition$: e }, a));
+           }, function () {
+             a.invoke = r, a.instantiate = n;
+           };
+         }(p);s[l] = v, r.$broadcast("$transitionStart", p);
+       }), e;
+     }]);
+   }]), function () {
+     t.module("ct.ui.router.extras.statevis", ["ct.ui.router.extras.core", "ct.ui.router.extras.sticky"]).directive("stateVis", ["$state", "$timeout", "$interval", function (e, r, n) {
+       return { scope: { width: "@", height: "@" }, restrict: "AE", template: "<svg></svg>", link: function link(r, a, o) {
+           var i = {},
+               u = r.width || 400,
+               s = r.height || 400,
+               c = d3.layout.tree().size([u - 20, s - 20]).separation(function (t, e) {
+             return t.parent == e.parent ? 10 : 25;
+           }),
+               f = e.get().filter(function (t) {
+             return "" === t.name;
+           })[0],
+               l = c(f);f.parent = f, f.px = f.x = u / 2, f.py = f.y = s / 2;var p = {};p.px = p.x = f.px, p.py = p.y = f.py;var v = d3.svg.diagonal(),
+               d = d3.select(a.find("svg")[0]).attr("width", u).attr("height", s).append("g").attr("transform", "translate(10, 10)"),
+               m = d.selectAll(".node"),
+               h = d.selectAll(".link"),
+               $ = d.selectAll(".active"),
+               g = 200;setInterval(x, 200);function x() {
+             m = m.data(c.nodes(f), function (t) {
+               return t.name;
+             }), h = h.data(c.links(l), function (t) {
+               return t.target.name;
+             }), $ = $.data(p), l.forEach(function (t) {
+               t.y = 70 * t.depth;
+             });var t = m.enter();$.enter().append("circle").attr("class", "active").attr("r", 13).attr("cx", function (t) {
+               return t.parent.px || 100;
+             }).attr("cy", function (t) {
+               return t.parent.py || 100;
+             }), t.append("circle").attr("class", "node").attr("r", 9).attr("cx", function (t) {
+               return t.parent.px;
+             }).attr("cy", function (t) {
+               return t.parent.py;
+             }), t.append("text").attr("class", "label").attr("x", function (t) {
+               return t.parent.px;
+             }).attr("y", function (t) {
+               return t.parent.py;
+             }).attr("text-anchor", function (t) {
+               return "middle";
+             }).text(function (t) {
+               var e = t.name.split(".").pop();t.sticky && (e += " (STICKY)");t.deepStateRedirect && (e += " (DSR)");return e;
+             }).style("fill-opacity", 1), h.enter().insert("path", ".node").attr("class", "link").attr("d", function (t) {
+               var e = { x: t.source.px, y: t.source.py };return v({ source: e, target: e });
+             });var e = d.transition().duration(g);e.selectAll(".link").attr("d", v);var r = { entered: "#AF0", exited: "#777", active: "#0f0", inactive: "#55F", future: "#009" };e.selectAll(".node").attr("cx", function (t) {
+               return t.px = t.x;
+             }).attr("cy", function (t) {
+               return t.py = t.y;
+             }).attr("r", function (t) {
+               return "active" === t.status ? 15 : 10;
+             }).style("fill", function (t) {
+               return r[t.status] || "#FFF";
+             }), e.selectAll(".label").attr("x", function (t) {
+               return t.px = t.x;
+             }).attr("y", function (t) {
+               return t.py = t.y - 15;
+             }).attr("transform", function (t) {
+               return "rotate(-25 " + t.x + " " + t.y + ")";
+             }), e.selectAll(".active").attr("x", function (t) {
+               return t.px = t.x;
+             }).attr("y", function (t) {
+               return t.py = t.y - 15;
+             });
+           }n(function () {
+             r.states = e.get(), t.forEach(l, function (t) {
+               var r = e.get(t.name);r && (t.status = r.status || "exited");
+             });
+           }, 250), r.$watchCollection("states", function (e, r) {
+             var n,
+                 a = (r || []).map(function (t) {
+               return t.name;
+             });n = (n = (e || []).filter(function (t) {
+               return -1 == a.indexOf(t.name);
+             })).map(function (e) {
+               return "" === e.name ? f : t.copy(e);
+             }), t.extend(i, n.reduce(function (t, e) {
+               return t[e.name] = e, t;
+             }, {})), n.forEach(function (t) {
+               var e = t.name.split(/\./).slice(0, -1).join("."),
+                   r = t.name != e && i[e];r && ((r.children || (r.children = [])).push(t), t.px = r.px, t.py = r.py, l.push(t));
+             });
+           }), x();
+         } };
+     }]);
+   }(), t.module("ct.ui.router.extras", ["ct.ui.router.extras.core", "ct.ui.router.extras.dsr", "ct.ui.router.extras.future", "ct.ui.router.extras.previous", "ct.ui.router.extras.statevis", "ct.ui.router.extras.sticky", "ct.ui.router.extras.transition"]);
+ }(angular);
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+ 
+ !(__WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
+ 
+     'use strict';
+ 
+     function Navigation($stateProvider, $windowProvider, PlatformServiceProvider) {
+ 
+         PlatformServiceProvider.setWindow($windowProvider.$get());
+ 
+         var storeWidget = function storeWidget(widgetName, cb) {
+             PlatformServiceProvider.setWidgetName(widgetName);
+             sessionStorage.setItem("ent-" + widgetName, new Date().getTime());
+             if (cb) {
+                 cb();
+             }
+         };
+ 
+         var NavConfigurer = function NavConfigurer(widgetName, useURL) {
+ 
+             storeWidget(widgetName);
+ 
+             this.useURL = useURL;
+             this.widgetName = widgetName;
+             var _self = this;
+             this._template = "";
+             this._popupTemplate = "";
+ 
+             /* Intialising config for main widget */
+             var widgetConfig = {};
+             if (_self.useURL) {
+                 widgetConfig.url = "/" + widgetName;
+             } else {
+                 widgetConfig.url = "";
+             }
+             widgetConfig.views = {};
+             widgetConfig.views[widgetName] = {
+                 template: function template() {
+                     return _self._template + ' <modal-container class="nb-pop-up" listen-back ="test"></modal-container>';
+                 },
+                 controller: function controller($scope, $state) {
+                     $scope.$state = $state;
+                 }
+ 
+             };
+             widgetConfig.abstract = true;
+             widgetConfig.sticky = true;
+             widgetConfig.deepStateRedirect = true;
+             $stateProvider.state(widgetName, widgetConfig);
+             /* initialising config for popup */
+             var popupconfig = {};
+             if (_self.useURL) {
+                 popupconfig.url = "/popup";
+             } else {
+                 popupconfig.url = "";
+             }
+             popupconfig.views = {};
+             popupconfig.views["popup"] = {
+                 template: function template() {
+                     return _self._popupTemplate;
+                 },
+                 controller: function controller($scope, $state) {
+                     $scope.$state = $state;
+                 }
+             };
+             popupconfig.abstract = true;
+             popupconfig.sticky = true;
+             popupconfig.deepStateRedirect = true;
+             $stateProvider.state(widgetName + ".popup", popupconfig);
+             this.state = function (name, config) {
+ 
+                 /*  Form the widget state name*/
+                 var stateName = this.widgetName + "." + name;
+                 if (config.onBack) {
+                     config.onBack = this.widgetName + "." + config.onBack;
+                 }
+                 /*  reset url if required*/
+                 config.referenceURL = config.url + "";
+                 if (!(_self.useURL || config.useURL)) {
+                     config.url = "";
+                 }
+                 /* Abstraction for template url to allow modes*/
+ 
+                 if (config.templateUrl) {
+                     var givenTemplateUrl = undefined;
+                     var tempUrl = config.templateUrl;
+                     if (typeof tempUrl != 'string') {
+                         givenTemplateUrl = tempUrl;
+                     } else {
+                         givenTemplateUrl = function givenTemplateUrl() {
+                             var x = PlatformServiceProvider.getTemplateUrl(tempUrl);
+                             return x;
+                         };
+                     }
+ 
+                     if (givenTemplateUrl.mode) {
+                         config.templateUrl = function () {
+                             var templateToUse;
+                             var currentMode = PlatformServiceProvider.getMode();
+                             if (currentMode == "desktop") {
+                                 templateToUse = givenTemplateUrl.mode.desktop ? givenTemplateUrl.mode.desktop : givenTemplateUrl.mode.mobile;
+                                 return PlatformServiceProvider.getTemplateUrl(templateToUse);
+                             } else if (currentMode == "mobile") {
+                                 templateToUse = givenTemplateUrl.mode.mobile ? givenTemplateUrl.mode.mobile : givenTemplateUrl.mode.desktop;
+                                 return PlatformServiceProvider.getTemplateUrl(templateToUse);
+                             } else if (currentMode == "native") {
+                                 templateToUse = givenTemplateUrl.mode.native ? givenTemplateUrl.mode.native : givenTemplateUrl.mode.mobile;
+ 
+                                 return PlatformServiceProvider.getTemplateUrl(templateToUse);
+                             } else {
+                                 console.error("No Proper Mode defined for current mode -> " + currentMode);
+                             }
+                         };
+                     } else {
+                         config.templateUrl = givenTemplateUrl;
+                     }
+                 }
+ 
+                 /*  construct view object  and stickyness */
+                 var viewObject = {};
+                 if (config.template) {
+                     viewObject.template = template;
+                 } else if (config.templateUrl) {
+                     viewObject.templateUrl = config.templateUrl;
+                 }
+                 if (config.controller) {
+                     viewObject.controller = config.controller;
+                 }
+                 config.views = {};
+                 config.views[name] = viewObject;
+                 if (config.isSticky) {
+                     config.sticky = "true";
+                     config.deepStateRedirect = "true";
+                 }
+                 if (config.notMainWidget) {
+                     config.notMainWid = "true";
+                 }
+ 
+                 if (config.template) delete config.template;
+                 if (config.templateUrl) delete config.templateUrl;
+                 if (config.controller) delete config.controller;
+                 if (config.isSticky) {
+                     delete config.isSticky;
+                 }
+ 
+                 config.onEnter = function ($state, $previousState) {
+                     $state.$custom_$memo = "";
+                     $previousState.forget("MAIN-COVER");
+                     /* forget memorised state */
+                 };
+ 
+                 /* Create the State and add it to the ui -view template config*/
+                 $stateProvider.state(stateName, config);
+ 
+                 _self._template = _self._template + '<div  class="anim-in-out anim-fade" data-anim-sync="true" data-anim-speed="10" ui-view="' + name + '" ng-show="(($state.includes(\'' + this.widgetName + '.' + name + '\'))||($state.$custom_$memo==\'' + this.widgetName + '.' + name + '\'))"> </div>';
+ 
+                 /* checke if popup is required for given item, if present create a popup state popup{{widgetname}}.state*/
+                 var popup = config.mode ? config.mode.desktop : undefined;
+                 if (popup) {
+                     var popupStateName = _self.widgetName + ".popup." + name;
+ 
+                     var newConfig = {};
+                     var keys = Object.keys(config);
+                     for (var i = 0; i < keys.length; i++) {
+                         newConfig[keys[i]] = config[keys[i]];
+                     }
+                     newConfig.name = popupStateName;
+                     if (!_self.useURL) {
+                         newConfig.url = "";
+                     }
+                     newConfig.alias = stateName;
+                     newConfig.onEnter = function ($state, $previousState) {};
+                     /*Create the State and add it to the ui -view template config*/
+                     _self._popupTemplate = _self._popupTemplate + '<div class="anim-in-out anim-fade" data-anim-sync="true" data-anim-speed="10" ui-view="' + name + '" ng-show="(($state.includes(\'' + popupStateName + '\'))||($state.$custom_$memo==\'' + popupStateName + '\'))"> </div>';
+ 
+                     $stateProvider.state(popupStateName, newConfig);
+                 }
+ 
+                 return _self;
+             };
+             return this;
+         };
+ 
+         this.getConfig = function (widgetName, useURL) {
+             return new NavConfigurer(widgetName, useURL);
+         };
+ 
+         this.$get = {};
+     }
+ 
+     exports.Navigation = Navigation;
+ }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 165:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+ 
+ !(__WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
+ 
+     'use strict';
+ 
+     function NavigationService($rootScope, $state, $stickyState, $previousState, $timeout, $window, $q, PlatformService, $http, lpPortal) {
+ 
+         var _isNotMobileBasedOnSize = PlatformService._isNotMobileBaseOnSize;
+         var _isNotMobile = PlatformService._isNotDevice;
+         var states = [];
+ 
+         /*Declare previousState in root scope to be empty array*/
+         $rootScope.previousState = states;
+         /* Intialise flag to be false  (so that first state is stored in the stack)*/
+         /* ----- Portrait mode popup changes ----- */
+         window.addEventListener("orientationchange", function (requestedState) {
+             setTimeout(function () {
+                 if (window.matchMedia("(orientation: portrait)").matches) {
+                     /* you're in PORTRAIT mode */
+                     $('.nb-pop-up .modal-content').removeClass('modal-content').addClass('portrait-css');
+                     $('.nb-pop-up .modal-header').css("display", "block");
+                 } else if (window.matchMedia("(orientation: landscape)").matches) {
+                     /* you're in LANDSCAPE mode */
+                     $('.nb-pop-up .modal-content').removeClass('portrait-css').addClass('modal-content');
+                 }
+             }, 200);
+         });
+         /* ----- Portrait mode popup changes ----- */
+ 
+         /*modal-popup changes for mobile browser*/
+ 
+         gadgets.pubsub.subscribe("showPopupTitle", function (data) {
+             if (data) {
+                 $('.modal-header').addClass('modal-show-titile-ie');
+             } else {
+                 $('.modal-header').removeClass('modal-show-titile-ie');
+             }
+         });
+ 
+         var logOut = function logOut() {
+             var requestUrl = lpPortal.root + '/j_spring_security_logout?portalName=' + lpPortal.name;
+             var request = {
+                 url: requestUrl,
+                 method: 'POST'
+             };
+             $http(request).then(onSuccess, onError);
+             function onSuccess(response) {
+                 if (response.status == 200) {
+                     $window.sessionStorage.clear();
+                     $window.location.href = b$.portal.urlRedirect + '/login';
+                 }
+             }
+             function onError(response) {}
+         };
+ 
+         var resetState = function resetState(state) {
+ 
+             if (typeof state == "string") {
+                 $stickyState.reset(state);
+             } else {
+                 var length = state.length;
+                 for (var i = 0; i < length; i++) {
+                     $stickyState.reset(state[i]);
+                 }
+             }
+         };
+         var openPopup = function openPopup(requestedState) {
+             $rootScope.$emit('popup-triger', requestedState);
+         };
+         /* TODO going back with stickky ness, going back in popup*/
+         var doBack = function doBack() {
+             var current = $state.current;
+ 
+             console.debug("Back is intiated with onBack as ", current.onBack);
+             if (b$.portal.popUpOpened) {
+                 var useGoBackDir = false;
+                 gadgets.pubsub.publish("POPUP_GO_BACK", { "useGoBackDir": useGoBackDir });
+             }
+             var nextState = undefined;
+             if (current.onBack) {
+                 while (nextState == undefined && $rootScope.previousState.length != 0) {
+                     var tempState = $rootScope.previousState.pop();
+                     console.debug("State popped from history", tempState);
+                     if (typeof current.onBack == 'string') {
+                         if (tempState.name == current.onBack || tempState.alias == current.onBack) {
+                             nextState = tempState.name;
+                         }
+                     } else {
+                         if (current.onBack.includes(tempState.name) || current.onBack.includes(tempState.alias)) {
+                             nextState = tempState.name;
+                         }
+                     }
+                 }
+             }
+             var oldState = undefined;
+             if (current.onBack && !nextState && $rootScope.previousState.length == 0) {
+                 console.debug("on Back is present, but not found in local history popped from history, hence calling Native back for immediate back", tempState);
+                 gadgets.pubsub.publish('NO_MORE_HISTORY', {});
+                 var widgetToNavigate = getLastUsedWidget(current.onBack, null);
+ 
+                 gadgets.pubsub.publish(widgetToNavigate, {
+                     title: widgetToNavigate,
+                     data: {},
+                     events: current.events
+                 });
+             } else if (nextState) {
+                 console.debug("On Back is found state was found in history ", nextState);
+                 oldState = nextState;
+             }
+             /* after adding*/
+             if (oldState == undefined) {
+                 oldState = $rootScope.previousState.pop();
+                 console.debug("On Back param not found hence navigating to previous history state", oldState);
+             }
+             if ($rootScope.previousState.length == 0) {
+                 console.debug("No more previous state , hence publishing no_more_history");
+                 gadgets.pubsub.publish('NO_MORE_HISTORY', {});
+             }
+             if (oldState) {
+                 $state.dontStoreInHistory = true;
+                 /* must recheck with saif on using stickyness*/
+                 var oldStateJson = $state.get(oldState);
+                 if (oldStateJson.mode) {
+                     var desktopMode = oldStateJson.mode.desktop;
+                     if (_isNotMobileBasedOnSize() && desktopMode == "popup") {
+                         openPopup(oldStateJson);
+                     } else {
+                         $rootScope.$emit('popup-close', {});
+                         if (desktopMode == "popup") {
+                             $('.bp-area.c-template-hdfc-2-7-3--area.col-xs-12.col-sm-4.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').hide();
+                             $('.bp-area.tempate-hdfc-nb-273-profile--area.col-xs-12.col-sm-3.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').hide();
+                             $('.B-template-hdfc-footer--area').hide();
+                             $('.lp-widget-hdfc-demat-ticker').hide();
+                         } else {
+                             $('.bp-area.c-template-hdfc-2-7-3--area.col-xs-12.col-sm-4.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').show();
+                             $('.bp-area.tempate-hdfc-nb-273-profile--area.col-xs-12.col-sm-3.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').show();
+                             $('.lp-widget-hdfc-demat-ticker').show();
+                             $('.B-template-hdfc-footer--area').show();
+                         }
+                         goToInternalState(oldStateJson);
+                     }
+                 } else {
+                     $rootScope.$emit('popup-close', {});
+                     $('.bp-area.c-template-hdfc-2-7-3--area.col-xs-12.col-sm-4.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').show();
+                     $('.bp-area.tempate-hdfc-nb-273-profile--area.col-xs-12.col-sm-3.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').show();
+                     $('.lp-widget-hdfc-demat-ticker').show();
+                     $('.B-template-hdfc-footer--area').show();
+                     $state.go(oldStateJson, {}, { location: false });
+                 }
+             } else {
+                 if (typeof cxp !== "undefined") {
+                     gadgets.pubsub.publish("onBackPressEvent");
+                 } else {
+                     sessionStorage.setItem('allowReload', true);
+                     $window.history.go(-1);
+                 }
+             }
+         };
+ 
+         var goToExternalState = function goToExternalState(args) {
+             if (_isNotMobile()) {
+                 if (args.data) {
+                     sessionStorage.setItem("transactionData", JSON.stringify(args.data));
+                 }
+                 sessionStorage.setItem('allowReload', true);
+                 $window.location.assign(args.link);
+             } else {
+                 var dataToBeSent = {};
+                 dataToBeSent.wrapper = args.data;
+                 var widgetToGo = args.state;
+                 /* added for backard compataility,where in developer does not use widgetName.something*/
+                 var re = new RegExp(PlatformService.getWidgetName() + ".");
+                 if (re.test(widgetToGo)) {
+                     widgetToGo = widgetToGo.replace(PlatformService.getWidgetName() + ".", "");
+                 }
+ 
+                 gadgets.pubsub.publish(widgetToGo, { title: widgetToGo, state: args.startState, data: dataToBeSent, events: args.events });
+             }
+         };
+ 
+         var closePopup = function closePopup(data) {
+             if (b$.portal.popUpOpened) {
+                 var useGoBackDir = false;
+                 gadgets.pubsub.publish("POPUP_GO_BACK", { "useGoBackDir": useGoBackDir });
+             }
+             $rootScope.$emit('popup-close', { 'value': data });
+             var activeState = $previousState.get("MAIN-COVER");
+             var x = $rootScope.previousState.length;
+             for (var i = x; i > 0; i--) {
+                 var previous = $rootScope.previousState[i - 1];
+                 if (previous.name != activeState.state.name) {
+                     $rootScope.previousState.pop();
+                     /*to reset previous state*/
+                     if (typeof $state.current.events !== 'undefined' && $state.current.events.RESET_PREV_STATE) {
+                         resetState(activeState.state.name);
+                     }
+                 } else {
+                     break;
+                 }
+             }
+ 
+             if (activeState) {
+                 if ($state.current.name != activeState.state.name) {
+                     /* There were double callbacks due to synchronisation issues in angular + animations,hence adding if to cause close only first  time*/
+                     console.debug("setting dont store in history flag as Popup is being closed, and previous main state is made active", activeState);
+                     $state.dontStoreInHistory = true;
+                     $state.go(activeState.state, {}, { location: false });
+                 } else {
+                     console.debug("close of popup already triggered , hecne dropping call silently");
+                 }
+             }
+         };
+ 
+         var goToInternalState = function goToInternalState(requestedState, resetState) {
+             $state.forwardCall = true;
+             $stickyState.reset(requestedState.name);
+             if (b$.portal.popUpOpened) {
+                 var useGoBackDir = false;
+                 gadgets.pubsub.publish("POPUP_GO_BACK", { "useGoBackDir": useGoBackDir });
+             }
+             $state.go(requestedState, {}, { location: false });
+         };
+ 
+         var go = function go() {
+             var length = arguments.length;
+             var navObj = undefined;
+             if (length == 1 && $window.angular.isObject(arguments[0])) {
+                 navObj = arguments[0];
+             } else {
+                 navObj = {};
+                 if (arguments[0]) {
+                     /*added for backard compataility,where in developer does not use widgetName.something
+                      modified below*/
+                     var re = new RegExp(PlatformService.getWidgetName() + ".");
+                     if (re.test(arguments[0])) navObj.state = arguments[0];else {
+                         navObj.state = PlatformService.getWidgetName() + "." + arguments[0];
+                     }
+                     /*end of backard compataility,where in developer does not use widgetName.something*/
+                 }
+                 if (arguments[1]) {
+                     navObj.link = arguments[1];
+                 }
+                 if (arguments[2]) {
+                     navObj.data = arguments[2];
+                 }
+                 if (arguments[3]) {
+                     navObj.startState = arguments[3];
+                 }
+                 if (arguments[4]) {
+                     navObj.reset = arguments[4];
+                 }
+             }
+             if (b$.portal.popUpOpened) {
+                 var useGoBackDir = false;
+                 gadgets.pubsub.publish("POPUP_GO_BACK", { "useGoBackDir": useGoBackDir });
+             }
+             var requestedState = $state.get(navObj.state);
+ 
+             if (requestedState == undefined) {
+                 goToExternalState(navObj);
+                 return;
+             } else {
+                 var mode = requestedState.mode ? requestedState.mode.desktop : "none";
+                 if (_isNotMobileBasedOnSize() && mode == "popup") {
+                     openPopup(requestedState);
+                 } else {
+                     $rootScope.$emit('popup-close', {});
+                     if (mode == "popup") {
+                         $('.bp-area.c-template-hdfc-2-7-3--area.col-xs-12.col-sm-4.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').hide();
+                         $('.bp-area.tempate-hdfc-nb-273-profile--area.col-xs-12.col-sm-3.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').hide();
+                         $('.lp-widget-hdfc-demat-ticker').hide();
+                         $('.B-template-hdfc-footer--area').hide();
+                     } else {
+                         $('.bp-area.c-template-hdfc-2-7-3--area.col-xs-12.col-sm-4.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').show();
+                         $('.bp-area.tempate-hdfc-nb-273-profile--area.col-xs-12.col-sm-3.col-md-3.col-lg-3.right-side-scroll-fix.clearfix').show();
+                         $('.lp-widget-hdfc-demat-ticker').show();
+                         $('.B-template-hdfc-footer--area').show();
+                     }
+                     goToInternalState(requestedState, navObj.reset);
+                 }
+             }
+         };
+ 
+         var publish = function publish(eventName, data) {
+             gadgets.pubsub.publish(eventName, data);
+         };
+ 
+         var subscribe = function subscribe(eventName, callBack) {
+             gadgets.pubsub.subscribe(eventName, callBack);
+         };
+ 
+         var getNavData = function getNavData() {
+             return $state.get($state.current.name).$extras;
+         };
+ 
+         var getLastUsedWidget = function getLastUsedWidget(widgetNames, cb) {
+             if (typeof widgetNames == 'string') {
+                 widgetNames = [widgetNames];
+             }
+             var length = widgetNames.length;
+             var resultArray = [];
+             for (var i = 0; i < length; i++) {
+                 var timeOfWidgetLoad = sessionStorage.getItem("ent-" + widgetNames[i]);
+                 if (timeOfWidgetLoad) {
+                     resultArray.push({
+                         name: widgetNames[i],
+                         time: timeOfWidgetLoad
+                     });
+                 }
+                 if (resultArray.length > 0) {
+                     resultArray.sort(function (a, b) {
+                         return parseFloat(a.time) - parseFloat(b.time);
+                     });
+                     if (cb) {
+                         cb(resultArray.pop());
+                     } else {
+                         return resultArray.pop();
+                     }
+                 } else {
+                     if (cb) {
+                         cb(null);
+                     } else {
+                         return null;
+                     }
+                 }
+             }
+         };
+ 
+         var anchorScroll = function anchorScroll(eID) {
+             var startY = currentYPosition();
+             var stopY = elmYPosition(eID);
+             var distance = stopY > startY ? stopY - startY : startY - stopY;
+             if (distance < 100) {
+                 scrollTo(0, stopY);return;
+             }
+             var speed = Math.round(distance / 100);
+             if (speed >= 20) speed = 20;
+             var step = Math.round(distance / 25);
+             var leapY = stopY > startY ? startY + step : startY - step;
+             var timer = 0;
+             if (stopY > startY) {
+                 for (var i = startY; i < stopY; i += step) {
+                     setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                     leapY += step;if (leapY > stopY) leapY = stopY;timer++;
+                 }return;
+             }
+             for (var j = startY; j > stopY; j -= step) {
+                 setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                 leapY -= step;if (leapY < stopY) leapY = stopY;timer++;
+             }
+ 
+             function currentYPosition() {
+                 // Firefox, Chrome, Opera, Safari
+                 if (self.pageYOffset) return self.pageYOffset;
+                 // Internet Explorer 6 - standards mode
+                 if (document.documentElement && document.documentElement.scrollTop) {
+                     return document.documentElement.scrollTop;
+                 }
+                 // Internet Explorer 6, 7 and 8
+                 if (document.body.scrollTop) return document.body.scrollTop;
+                 return 0;
+             }
+ 
+             function elmYPosition(eID) {
+                 var elm = document.getElementById(eID);
+                 var y = elm.offsetTop - 125;
+                 var node = elm;
+                 while (node.offsetParent && node.offsetParent != document.body) {
+                     node = node.offsetParent;
+                     y += node.offsetTop;
+                 }return y;
+             }
+         };
+ 
+         return {
+             go: go,
+             back: doBack,
+             publish: publish,
+             subscribe: subscribe,
+             getNavData: getNavData,
+             closePopup: closePopup,
+             getLastUsedWidget: getLastUsedWidget,
+             resetState: resetState,
+             logOut: logOut,
+             anchorScroll: anchorScroll
+         };
+     }
+     exports.NavigationService = NavigationService;
+ }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ }),
+
+/***/ 166:
+/***/ (function(module, exports, __webpack_require__) {
+
+ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;'use strict';
+ 
+ !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__, exports], __WEBPACK_AMD_DEFINE_RESULT__ = function (require, exports) {
+ 
+     //'use strict';
+ 
+     function uiBack(NavigationService) {
+         return {
+             restrict: 'A',
+             link: function link($scope, $element, $attr, parentDirectCtrl) {
+                 $element.bind('click', function () {
+                     NavigationService.back();
+                 });
+             }
+         };
+     }
+ 
+     function listenBack(NavigationService) {
+         return {
+             restrict: 'A',
+             link: function link($scope, $element, $attr, parentDirectCtrl) {
+                 gadgets.pubsub.unsubscribe("goBack");
+                 gadgets.pubsub.subscribe("goBack", function (data) {
+                     NavigationService.back();
+                 });
+             }
+         };
+     }
+ 
+     function popupClose(NavigationService) {
+         return {
+             restrict: 'A',
+             link: function link($scope, $element, $attr, parentDirectCtrl) {
+                 $element.bind('click', function () {
+                     NavigationService.closePopup(true);
+                 });
+             }
+         };
+     }
+ 
+     function uiSubscribe(NavigationService) {
+         return {
+             restrict: 'A',
+             scope: {
+                 eventName: "@uiSubscribe",
+                 model: "=?bindTo",
+                 callback: "=?callback"
+             },
+             link: function link($scope, $element, $attr) {
+ 
+                 NavigationService.subscribe($scope.eventName, function (data) {
+                     // console.log("Subscripton inside directive for event " + $scope.eventName + " received")
+                     $scope.$apply(function () {
+                         if ($scope.model) {
+                             $scope.model = data;
+                         } else {
+                             $scope.callback(data);
+                         }
+                     });
+                 });
+             }
+         };
+     }
+ 
+     function ngModalOverlay(NavigationService) {
+         return {
+             restrict: 'C',
+             link: function link($scope, $element, $attr) {
+                 $element.bind('click', function () {
+                     NavigationService.closePopup();
+                 });
+             }
+         };
+     }
+     function uiPublish(NavigationService) {
+         return {
+             restrict: 'A',
+             scope: {
+                 eventName: "@uiPublish",
+                 model: "=?bindTo",
+                 trigger: "@trigger"
+             },
+             link: function link($scope, $element, $attr) {
+                 if ($scope.trigger == "click") {
+                     $element.bind('click', function () {
+                         //console.log("publishing data from directive on click")
+                         $scope.$apply(function () {
+                             NavigationService.publish($scope.eventName, $scope.model);
+                         });
+                     });
+                 }
+             }
+         };
+     }
+     // Ui P Serf directive
+     function uiPsref(NavigationService) {
+         return {
+             scope: {
+                 uiAfter: "=?",
+                 uiData: "=?"
+             },
+             restrict: 'A',
+             link: function link($scope, $element, $attr, parentDirectCtrl) {
+                 //you now have access to parentDirectCtrl.variable
+                 var routeNow = function routeNow(json) {
+ 
+                     NavigationService.go(json);
+                 };
+ 
+                 $element.click(function () {
+                     var state = $attr.uiPsref;
+                     var json = {
+                         'state': state,
+                         'link': $attr.uiLink
+                     };
+ 
+                     if ($scope.uiData) {
+                         json.data = $scope.uiData;
+                     }
+                     if ($attr.uiAfter) {
+                         $scope.uiAfter(function (data, newJson) {
+                             if (newJson) {
+                                 json = newJson;
+                             }
+                             json.data = data;
+                             routeNow(json);
+                         }, json, $attr);
+                     } else {
+                         routeNow(json);
+                     }
+                 });
+             }
+         };
+     }
+ 
+     // Ui P Model Outlet directive
+     function modelOutlet($compile, $http, $controller, $templateCache) {
+         return {
+             restrict: 'E',
+             scope: true,
+             link: function link(scope, element, attrs) {
+                 var _root = this;
+                 _root.tpl = null;
+                 _root.ctrl = null;
+                 _root.html = null;
+                 _root.templateCtrl = null;
+                 _root.templateScope = null;
+                 //console.log(attrs)
+                 attrs.$observe('tpl', function (val) {
+                     _root.tpl = scope.$eval(val);
+                     load();
+                 });
+ 
+                 attrs.$observe('ctrl', function (val) {
+                     _root.ctrl = val;
+                     load();
+                 });
+ 
+                 function load() {
+                     //console.log("load-triggered")
+                     if (_root.tpl && _root.ctrl && _root.tpl != 'empty' && _root.ctrl != 'empty') {
+ 
+                         $http.get(_root.tpl, {
+                             cache: $templateCache
+                         }).then(function (response) {
+                             _root.templateScope = scope.$new();
+                             _root.templateCtrl = $controller(_root.ctrl, {
+                                 $scope: _root.templateScope
+                             });
+                             element.html(response.data);
+                             element.children().data('$ngControllerController', _root.templateCtrl);
+                             $compile(element.contents())(_root.templateScope);
+                         });
+                     }
+                 }
+             }
+         };
+     }
+ 
+     // Ui P Model Outlet directive
+     function modalContainer($compile, $http, $controller, $templateCache, PlatformService, $timeout, $state) {
+         return {
+             restrict: 'E',
+             scope: true,
+             template: '<div modal-dialog="" show="modal">' + '<div popup-close="true" nb-intg-events="[0]" class="light-box-close" aria-label="Close"></div>' + '     <div class="anim-in-out mainpopup" ui-view="popup"></div><a href="#" id="preventDefault"></a>' + '</div>',
+             controller: function controller($scope, $rootScope, $state, $window, $stickyState) {
+                 $scope.modal = false;
+ 
+                 $scope.modalController = "empty";
+                 $scope.modalTemplate = "empty";
+ 
+                 /*                $(document).keydown(function(objEvent) {
+                                     if (objEvent.keyCode == 9) {  //tab pressed
+                                          objEvent.preventDefault(); // stops its action
+                                      }
+                                  });
+                 */
+ 
+                 /* var _isNotMobile = PlatformService._isNotDevice;
+                  var _isNotMobileBasedOnSize = PlatformService._isNotMobileBaseOnSize;*/
+ 
+                 var popupState;
+ 
+                 $rootScope.$on('popup-close', function (event, data) {
+                     //$timeout(function() {
+                     //var offset = $window.scrollY;
+                     angular.element('body').removeClass("body-modal-custom");
+                     angular.element('header').removeClass("no-z-index");
+                     angular.element('.quick-navbar.middle-quick-menus.top-stick-menus .full-width-bg').removeClass("no-z-index");
+                     angular.element('.nb-portal .lp-widget-hdfc-nb-profile.profile-section-top').removeClass("no-z-index");
+                     angular.element('.lp-admin .navbar-inverse').removeClass("no-z-index");
+                     angular.element('.nb-portal footer').removeClass("no-footer-z-index");
+                     angular.element('.nb-portal footer > .row').removeClass("no-footer-z-index");
+                     angular.element('.sticky-notification-container').removeClass("no-footer-z-index");
+                     $scope.modal = false;
+                     /*$timeout(function() {
+                         $window.scrollTo(0, offset);
+                     }, 10);*/
+                     //},100)
+ 
+                     if (data.value) {
+                         var dataObj = { "eventCategory": popupState.title, "eventAction": "closeButtonClick", "eventLabel": "close", "count": 0 };
+                         gadgets.pubsub.publish("nbGap", dataObj);
+                     }
+                 });
+ 
+                 $rootScope.$on('popup-triger', function (event, requestedState) {
+                     console.debug("popup-triger");
+                     var stateToShowInPopup = requestedState.name;
+                     var widgetName = PlatformService.getWidgetName();
+                     //var offset = $window.scrollY;
+                     if (!/.popup./.test(stateToShowInPopup)) {
+                         stateToShowInPopup = stateToShowInPopup.replace(widgetName + ".", widgetName + ".popup.");
+                     }
+                     $('#preventDefault').on('keydown', function (evt) {
+                         if (evt.which == 9) {
+                             evt.preventDefault();
+                         }
+                     });
+                     console.debug("Requested popup state name ", stateToShowInPopup);
+                     popupState = $state.get(stateToShowInPopup);
+                     if (popupState) {
+                         $stickyState.reset(popupState.name);
+                         $state.go(popupState, {}, { location: false });
+                         angular.element('body').addClass("body-modal-custom");
+                         angular.element('header').addClass("no-z-index");
+                         angular.element('.quick-navbar.middle-quick-menus.top-stick-menus .full-width-bg').addClass("no-z-index");
+                         angular.element('.nb-portal .lp-widget-hdfc-nb-profile.profile-section-top').addClass("no-z-index");
+                         angular.element('.lp-admin .navbar-inverse').addClass("no-z-index");
+                         angular.element('.nb-portal footer').addClass("no-footer-z-index");
+                         angular.element('.nb-portal footer > .row').addClass("no-footer-z-index");
+                         angular.element('.sticky-notification-container').addClass("no-footer-z-index");
+                         angular.element('.ng-modal-overlay').unbind("click");
+                     }
+ 
+                     $timeout(function () {
+                         $scope.modal = true;
+                         //$window.scrollTo(0, offset);
+                     }, 100);
+                 });
+             },
+             link: function link(scope, element, attrs) {
+                 var _root = this;
+                 _root.tpl = null;
+                 _root.ctrl = null;
+ 
+                 attrs.$observe('tpl', function (val) {
+                     _root.tpl = scope.$eval(val);
+                     scope.modalTemplate = tpl;
+                 });
+ 
+                 attrs.$observe('ctrl', function (val) {
+                     _root.ctrl = val;
+                     scope.modalController = val;
+                 });
+             }
+         };
+     }
+ 
+     exports.uiPsref = uiPsref;
+     exports.modelOutlet = modelOutlet;
+     exports.modalContainer = modalContainer;
+     exports.uiBack = uiBack;
+     exports.uiSubscribe = uiSubscribe;
+     exports.uiPublish = uiPublish;
+     exports.popupClose = popupClose;
+     exports.ngModalOverlay = ngModalOverlay;
+     exports.listenBack = listenBack;
+ }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+/***/ })
+
+/******/ })
+});
+;
+//# sourceMappingURL=feature-hdfc-navigation.js.map

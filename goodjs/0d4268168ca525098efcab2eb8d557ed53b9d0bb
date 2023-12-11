@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Master Style Test Page</title>
+<link href="styles/master_style.css" rel="stylesheet" type="text/css" />
+<script type="text/JavaScript" src="js/rounded_corners.inc.js"></script>
+<script type="text/JavaScript">
+
+  function SetupStrings()
+  { 
+    document.getElementById('title').innerText = external.GetString(35);
+		document.getElementById('button_text').innerText = external.GetString(37);
+    document.getElementById('copy_text').innerHTML = external.GetString(38);
+  }
+
+  window.onload = function(event)
+  {
+      settings = {
+          tl: { radius: 5 },
+          tr: { radius: 5 },
+          bl: { radius: 5 },
+          br: { radius: 5 },
+          antiAlias: true,
+          validTags: ["div"]
+      }
+  
+   	var content = new curvyCorners(settings, "eula_content");
+    content.applyCornersToAll();	
+	  
+	var infoblock = new curvyCorners(settings, "info_block");
+    infoblock.applyCornersToAll();  
+			
+	SetupStrings();
+	SetupLanguages();	  
+	setSelectedLanguage();
+  }
+  
+  function setSelectedLanguage()
+  {
+    var lang = window.external.GetLanguage();
+    lang = lang.toLowerCase();
+    var langlist = document.getElementById('languages');
+    var found = false;
+    for(var c = 0;c<langlist.length && !found;c++)
+    {
+      if(langlist.options[c].value == lang)
+      {
+        langlist.options[c].selected = true;
+        found = true;
+      }
+    }
+  }
+  
+  function SetupLanguages()
+  {
+	var langlist = document.getElementById('languages');
+	var langs = eval("("+window.external.GetAllLanguages()+")");
+	//langs.languages.sort();
+	for (var c = 0; c<langs.languages.length; c++)
+	{
+		var elem = document.createElement('option');
+		elem.text = external.GetString(39,langs.languages[c]);
+		elem.value = langs.languages[c];
+		
+		try
+		{
+			langlist.add(elem,null); // standards compliant
+		}
+		catch(ex)
+		{
+			langlist.add(elem); //Internet Exploder
+		}
+	}
+  }
+  
+  function ChangeLanguage()
+  {
+	var langlist = document.getElementById('languages');
+	var lang = langlist.options[langlist.selectedIndex].value;
+	window.external.ChangeLanguage(lang);
+  }
+  
+</script>
+</head>
+
+<body scroll=no>
+
+<div class="banner"></div>
+<div class="banner_left_gfx"></div>
+<div class="banner_right_gfx">
+  <select id="languages" onchange=ChangeLanguage() style="float:right; margin-right:15px; margin-top:12px">  </select>
+</div>
+<div class="swoosh"></div>
+
+
+<div class="app_title" id='title'>&nbsp</div>
+
+<div style="text-align:center">
+
+<div class="big_button">
+<a href="javascript:window.external.AcceptEULA();" class="installCasino"><div><span id='button_text'>&nbsp</span></div></a>
+<span id='copy_text'>&nbsp</span>
+</div>
+
+</div>
+
+</body>
+</html>

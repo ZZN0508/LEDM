@@ -1,0 +1,28 @@
+window.addEventListener('error', function (e) {
+  if (e && e.error) {
+    var target = {}
+    if (e.target) {
+      target = e.target
+    }
+    setTimeout(function () {
+      $.ajax({
+        method: 'post',
+        url: '/web/log-client-error',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          message: e.error.message,
+          stack: e.error.stack,
+          extra: {
+            originalUrl: window.location.href,
+            nodeName: target.nodeName,
+            outerHTML: target.outerHTML,
+            src: target.src,
+            type: e.type,
+            message: e.message,
+            error: e.error
+          }
+        })
+      })
+    }, 1000)
+  }
+}, true)

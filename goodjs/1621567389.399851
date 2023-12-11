@@ -1,0 +1,65 @@
+define(function (require, exports) {
+
+ return function Utils() {
+
+  return {
+   addCustomJS: function() {
+                require(['require', 'exports', 'module', 'features/%5BBBHOST%5D/feature-hdfc-slick-slider/scripts/slick'],function(require, exports, module, SlickSlider) {
+
+//                require('feature-hdfc-portal-slick-slider');
+                $(document).ready(function(){
+                /*Logo URL*/
+                  //var homeUrl = $('header .top-menu .main-header ul.nav.navbar-nav.lp-navbar-advanced-root.normal-main-header li:first-child a').attr('href');
+                  setTimeout(function(){
+                    var homeUrl = $('.header-menu .nav.normal-main-header li:first-child a').attr('href');
+                   $("a.first-ul-li-logo-url").attr("href", homeUrl);
+                  },1000);
+                /*End Logo URL*/
+
+                /*ADDED BY SKC ON 07082017*/
+                if (window.location.href.indexOf("profile") > -1){
+                    $("header ul.nav.navbar-nav.navbar-right.profile-info").addClass("active");
+                } else if(window.location.href.indexOf("/personal") > -1) {
+                    $(".header-menu .nav.normal-main-header").find('li').eq(0).addClass('active');
+                } else if(window.location.href.indexOf("/nri") > -1) {
+                    $(".header-menu .nav.normal-main-header").find('li').eq(1).addClass('active');
+                } else if(window.location.href.indexOf("/sme") > -1) {
+                    $(".header-menu .nav.normal-main-header").find('li').eq(2).addClass('active');
+                } else if(window.location.href.indexOf("/wholesale") > -1) {
+                    $(".header-menu .nav.normal-main-header").find('li').eq(3).addClass('active');
+                } else if(window.location.href.indexOf("/agri") > -1) {
+                    $(".header-menu .nav.normal-main-header").find('li').eq(4).addClass('active');
+                } else {
+                    $(".header-menu .nav.normal-main-header").find('li').eq(0).addClass('active');
+                }
+
+                /*FINISHED HERE CHANGES BY SKC ON 07082017*/
+                $('.slick-slider-main-header').not('.slick-initialized').slick({
+                         infinite: false,
+                         slidesToShow: 4,
+                         slidesToScroll: 1,
+                         arrows: false,
+                         responsive: [
+                           {
+                             breakpoint: 321,
+                             settings: {
+                               slidesToShow: 3.5,
+                               slidesToScroll: 1,
+
+                             }
+                           }
+                         ]
+                       });
+/**************** Added for NB GAP and Zineone Implementation ****************/
+               $('.header-menu .navbar-nav li a').on('click', function(){
+                       var clickedMenuName = $(this).text();
+                       console.log(clickedMenuName);
+                       var dataObj = {"count":0,"eventCategory":"headerMenu","eventAction":"menuItemClick","eventLabel":clickedMenuName};
+                       gadgets.pubsub.publish("nbGap",dataObj);
+                        });
+                    });
+                });
+   }
+  }
+ }
+});

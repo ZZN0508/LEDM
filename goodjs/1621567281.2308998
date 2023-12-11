@@ -1,0 +1,399 @@
+Highcharts.setOptions({
+    lang: {
+        months: ['一月', '二月', '三月', '四月', '五月', '六月',  '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        weekdays: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        thousandsSep: '',
+        shortMonths: ['一月', '二月', '三月', '四月', '五月', '六月',  '七月', '八月', '九月', '十月', '十一月', '十二月']
+    }
+});
+
+var drawChart = function(elements, options) {
+    this.elements = elements;
+    this.codeList = [];
+    this.dataPool = {};
+    this.options = options || {};
+    //this.init();
+};
+
+drawChart.prototype.init = function() {
+    var that = this;
+    $(this.elements).each(function(k, v) {
+        that.codeList.push($(v).data('code'));
+    });
+    this.fetchData();
+
+};
+
+drawChart.prototype.getStockPriceInfo = function(realData, realPre) {
+ var extent = function(array, f) {
+  var i = - 1,
+  n = array.length,
+  a, b, c;
+  if (arguments.length === 1) {
+   while (++i < n && ! ((a = c = array[i]) != null && a <= a)) a = c = undefined;
+   while (++i < n) if ((b = array[i]) != null) {
+    if (a > b) a = b;
+    if (c < b) c = b;
+   }
+  } else {
+   while (++i < n && ! ((a = c = f.call(array, array[i], i)) != null && a <= a)) a = undefined;
+   while (++i < n) if ((b = f.call(array, array[i], i)) != null) {
+    if (a > b) a = b;
+    if (c < b) c = b;
+   }
+  }
+  return [a, c];
+ };
+ var temp = extent(realData, function(d) {
+ return d[1]
+ });
+ var min = temp[0];
+ var max = temp[1];
+
+ if (realPre) {
+  var maxDiff = Math.abs(realPre - max);
+  var minDiff = Math.abs(realPre - min);
+  var realMax = Math.max(maxDiff, minDiff);
+  min = +realPre - realMax;
+  max = +realPre + realMax;
+ }
+ return {
+  max: max,
+  min: min,
+  pre: realPre
+ }
+ //console.log(min, max);
+ 
+};
+
+drawChart.prototype.getSeriesInfo = function(code) {
+    if (!code) {
+        return {
+            count: 242,
+            xLabel: [[0, '09:30'], [121, '11:30/13:00'], [241, '15:00']]
+        }
+    }
+    if (code.indexOf('gqh_') >= 0) {
+        return {
+            count: 1442,
+            xLabel: [[0, '00:00'], [721, '12:00'], [1442, '23:59']]
+        }
+    }
+    if (code.indexOf('gzqh') >= 0 || code.indexOf('129') >= 0) {
+        return {
+            count: 272,
+            xLabel: [[0, '09:15'], [136, '11:30/13:00'], [272, '15:15']]
+        }
+    }
+    if (code.indexOf('hk') >= 0) {
+        return {
+            count: 332,
+            xLabel: [[0, '09:30'], [332, '16:00']]
+        }
+    }
+
+    return {
+        count: 242,
+        xLabel: [[0, '09:30'], [121, '11:30/13:00'], [241, '15:00']]
+    };
+
+};
+
+drawChart.prototype.ready = function(element) {
+
+    this.drawHQ(element || this.elements);
+
+};
+
+drawChart.prototype.drawHQ = function(element) {
+
+    var that = this;
+ 
+
+    $(element).each(function(k, v) {
+        var code = $(v).data('code');
+
+        if (!code) {
+            return;
+        }
+
+        if (!that.dataPool[code]) {
+            that.fetchData(code, element);
+            return;
+        }
+        that.drawFn({
+            element: v,
+            code: code
+        });
+
+    });
+};
+
+drawChart.prototype.drawByData = function(options) {
+    return this.drawFn(options);
+};
+
+drawChart.prototype.drawFn = function(options) {
+    var that = this;
+
+    var code = options.code;
+    var v = options.element;
+    var decimals =  that.options.tickDecimals;
+    var realData = options.data || that.dataPool[code].data;
+    var realPre = options.data ? null : that.dataPool[code].pre;
+
+ var priceObj = that.getStockPriceInfo(realData, realPre);
+
+ 
+    $(v).highcharts({
+        chart: {
+            marginRight: 0,
+            marginLeft: 0,
+            marginBottom: that.options.hasXaxis ? 20 : 2,
+            style: {
+                'font-family': 'Arial'
+            },
+            zoomType: 'x',
+            events: {
+                selection: function(event) {
+                    var axis = event.xAxis[0];
+                    var min = axis.min;
+                    var max = axis.max;
+                    if (realData[max >> 0]) {
+                        //console.log(((realData[max >> 0][1] - realData[min >> 0][1]) / realPre * 100).toFixed(2) + '%')
+                    }
+                    return false;
+                },
+                click: function(event) {
+                    var eventHandle = that.options.clickCallback;
+                    eventHandle && eventHandle(code);
+                }
+            }
+        },
+        title: {
+            text: ''
+        },
+        legend: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            area: {
+                fillColor: '#F7FCFF',
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1,
+                        halo: {
+                            size: 0
+                        }
+                    }
+                },
+                threshold: null
+            }
+        },
+        series: [{
+            type: 'area',
+            data: realData,
+            lineWidth: 1,
+            lineColor: '#0174DD',
+            marker: {
+                enabled: false
+            },
+            animation: false,
+   yAxis: 0
+        }],
+        tooltip: {
+            shadow: false,
+            style: {
+                'padding': 5
+            },
+            formatter: function() {
+                if (options.data) {
+                    return realData[this.x][2] + '<br />' + this.y.toFixed(decimals);
+                } else {
+                    return realData[this.x][2].toString().replace(/(.{2})\B/g,'$1:') + '<br />' + this.y.toFixed(decimals);
+                }
+            }
+        },
+        xAxis: {
+            labels: {
+                enabled: false
+            },
+            tickLength: 0,
+            lineWidth: 0,
+            min: 0,
+            max: options.data ? (options.data.length - 1) : that.getSeriesInfo(code).count
+        },
+        yAxis: {
+            title: {
+                text: ''
+            },
+            gridLineWidth: 0,
+            lineWidth: 0,
+   tickPositions: [+priceObj.min, +priceObj.max],
+   tickAmount: 6,
+            labels: {
+                align: 'left',
+                x: 5,
+                y: 0,
+                style: {
+                    'font-size': 10,
+                    'line-height': 1
+                },
+                formatter: function() {
+                    return this.value.toFixed(decimals);
+                }
+            },
+            plotLines: that.options.showPreLine ? [{
+                color: '#D75442',
+                width: 1,
+                dashStyle: 'ShortDash',
+                value: realPre,
+                zIndex: 4,
+                label: {
+                    text: realPre,
+                    textAlign: 'left',
+                    x: 5,
+                    style: {
+                        color: '#888'
+                    }
+                }
+            }] : []
+        }
+    }, function(chart) {
+        if (that.options.hasXaxis) {
+            var xPos = options.data ? [[0, options.data[0][2]], [options.data.length - 1, options.data[options.data.length - 1][2]]] : that.getSeriesInfo(code).xLabel;
+            var height = chart.plotHeight;
+            var width = chart.plotWidth;
+            var left = chart.plotLeft;
+            var top = chart.plotTop;
+            var alignType;
+            var cLeft;
+
+            for (var i = 0; i < xPos.length; i++) {
+                cLeft = left + chart.xAxis[0].toPixels(xPos[i][0]);
+                if (i == 0) {
+                    alignType = 'left';
+                    var _date = xPos[i][1];
+                    if(typeof(_date)=="number"){
+                        _date = xPos[i][1].toString().substring(0,4)+"-"+xPos[i][1].toString().substring(4,6)+"-"+xPos[i][1].toString().substring(6);
+                    }
+                    var textPanel = $('<div />').css({
+                        'position': 'absolute',
+                        'left': cLeft,
+                        'text-align': alignType,
+                        'top': -9999,
+                        'font-size': 10,
+                        'z-index':99,
+                        'line-height': '20px'
+                    }).html(_date).prependTo(chart.container);
+                    textPanel.css({
+                        'top': height + top
+                    })
+                } else if (i == xPos.length - 1) {
+                    alignType = 'right';
+                    var _date = xPos[i][1];
+                    if(typeof(_date)=="number"){
+                        _date = xPos[i][1].toString().substring(0,4)+"-"+xPos[i][1].toString().substring(4,6)+"-"+xPos[i][1].toString().substring(6);
+                    }
+                    var textPanel = $('<div />').css({
+                        'position': 'absolute',
+                        //'left': cLeft,
+                        'text-align': alignType,
+                        'top': -9999,
+                        'font-size': 10,
+                        'z-index':99,
+                        'line-height': '20px'
+                    }).html(_date).prependTo(chart.container);
+                    textPanel.css({
+                        //'left': cLeft - textPanel.width(),
+                        'right':0,
+                        'top': height + top
+                    })
+                } else {
+                    alignType = 'center';
+                    var _date = xPos[i][1];
+                    if(typeof(_date)=="number"){
+                        _date = xPos[i][1].toString().substring(0,4)+"-"+xPos[i][1].toString().substring(4,6)+"-"+xPos[i][1].toString().substring(6);
+                    }
+                    var textPanel = $('<div />').css({
+                        'position': 'absolute',
+                        'left': cLeft,
+                        'text-align': alignType,
+                        'top': -9999,
+                        'font-size': 10,
+                        'z-index':99,
+                        'line-height': '20px'
+                    }).html(_date).prependTo(chart.container);
+                    textPanel.css({
+                        'left': cLeft - textPanel.width() / 2,
+                        'top': height + top
+                    })
+                }
+            };
+        };
+
+        var hc = chart;
+        var price = realData[realData.length - 1][1];
+        $(v).data('stockLastInfo', {
+            lastData: {
+                pre: realPre,
+                price: realData[realData.length - 1][1],
+                zde: (price - realPre),
+                zdf: (price - realPre) / realPre,
+                min: hc.yAxis[0].dataMin,
+                max: hc.yAxis[0].dataMax
+            },
+            originData: realData
+        });
+        that.options.drawComplete && that.options.drawComplete($(v));
+
+
+    });
+};
+
+drawChart.prototype.fetchData = function(code, element) {
+    code = code || this.codeList;
+    if (!$.isArray(code) && $.inArray(code, this.codeList) < 0) {
+        this.codeList.push(code);
+        code = [code];
+    }
+    var that = this;
+    var timer = setInterval(function() {
+        if (window.hx_canvas_puredataprovider) {
+            clearInterval(timer);
+            var stockList = code;
+            var sortProvider = new hx_canvas_puredataprovider({
+                url:'http://d.10jqka.com.cn/',
+                urlVersion:'v2/time/',
+                lastPart: stockList.join(',') + '/last.js',
+                isKeepingGet : true,
+                intervalTime: 60000,
+                callbackName: 'quotebridge_v2_time_' + stockList.join('_') + '_last',
+                success:function(d){
+
+                    for (var i in d) {
+                        var item = d[i];
+                        var data = item.data.split(';');
+                        for (var j = 0, arr = []; j < data.length; j++) {
+                            var dataGroup = data[j].split(',');
+                            arr.push([j, + dataGroup[1], dataGroup[0]]);
+                        };
+                        that.dataPool[i] = item;
+                        that.dataPool[i]['data'] = arr;
+                    }
+                    that.ready(element);
+
+
+                }
+            });
+        }
+    }, 30);
+
+};

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Master Style Test Page</title>
+<link href="styles/master_style.css" rel="stylesheet" type="text/css" />
+<script type="text/JavaScript" src="js/rounded_corners.inc.js"></script>
+<script type="text/JavaScript">
+
+  function SetupStrings()
+  {
+    document.getElementById( 'title' ).innerText = external.GetString(32);
+    document.getElementById( 'heading' ).innerText = external.GetString(12);
+    document.getElementById( 'confirm_question' ).innerText = external.GetString(13);
+    document.getElementById( 'button_ok' ).innerText = external.GetString(12);
+    document.getElementById( 'button_cancel' ).innerText = external.GetString(33);
+  }
+
+  window.onload = function(event)
+  {
+      settings = {
+          tl: { radius: 5 },
+          tr: { radius: 5 },
+          bl: { radius: 5 },
+          br: { radius: 5 },
+          antiAlias: true,
+          validTags: ["div"]
+      }
+  
+      var content = new curvyCorners(settings, "content");
+      content.applyCornersToAll();	
+      var infoblock = new curvyCorners(settings, "info_block");
+      infoblock.applyCornersToAll();  
+
+    SetupStrings();
+
+  }
+</script>
+</head>
+
+<body scroll=no>
+
+<div class="banner"></div>
+<div class="banner_left_gfx"></div>
+<div class="banner_right_gfx"></div>
+
+<div class="app_title" id="title">&nbsp</div>
+
+<div class="page_title" id="heading">&nbsp</div>
+
+<div class="swoosh"></div>
+
+<div class="content">
+<div class="content_padding">
+<div id="confirm_question">&nbsp</div>
+<br />
+<hr />
+<a href="javascript:window.external.StartUninstall();" class="button_color"><span id="button_ok">&nbsp</span></a>
+<a href="javascript:window.external.Quit();" class="button"><span id="button_cancel">&nbsp</span></a>
+<br />
+<br />
+</div>
+</div>
+
+</body>
+</html>

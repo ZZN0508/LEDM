@@ -1,0 +1,124 @@
+
+var ajax_object = {"ajaxurl":"https:\/\/indianexpress.com\/wp-admin\/admin-ajax.php","security":"a767769f95"};
+
+
+jQuery(document).ready(function(){jQuery('a').not('#fixednavbar > .toggle-menu a, #section-nav > .toggle-close a, .topsocial a').attr('target', '_blank').attr('rel', 'noopener');});
+
+
+var taboolaHeaderExports = {"home":"auto","device_check":"","tracking":"utm_source=Taboola_Recirculation&utm_medium=RC&utm_campaign=IE"};
+
+{"@context":"https:\/\/schema.org","@type":"WebPage","inLanguage":"en","name":"Latest News, India News, Covid-19 News, Breaking News, Today&#039;s News Headlines Online| The Indian Express","description":"India News, Latest News - Indian Express provides the covid-19 latest news today from India and the world. Get all exclusive Breaking News, current headlines, live news, latest news on business, sports, world, and entertainment with exclusive Opinions and Editorials.","url":"https:\/\/indianexpress.com\/","mainEntityOfPage":"","publisher":{"@type":"Organization","name":"The Indian Express","logo":{"@type":"ImageObject","url":"https:\/\/images.indianexpress.com\/2019\/11\/ienewlogo3_new.png","width":"600","height":"60"}}}
+[{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"India","url":"https:\/\/indianexpress.com\/section\/india\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Elections","url":"https:\/\/indianexpress.com\/elections\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Cities","url":"https:\/\/indianexpress.com\/section\/cities\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Opinion","url":"https:\/\/indianexpress.com\/section\/opinion\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Sports","url":"https:\/\/indianexpress.com\/section\/sports\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Entertainment","url":"https:\/\/indianexpress.com\/section\/entertainment\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Lifestyle","url":"https:\/\/indianexpress.com\/section\/lifestyle\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Technology","url":"https:\/\/indianexpress.com\/section\/technology\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Viral","url":"https:\/\/indianexpress.com\/trending\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Photos","url":"https:\/\/indianexpress.com\/photos\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Videos","url":"https:\/\/indianexpress.com\/videos\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"ePaper","url":"https:\/\/epaper.indianexpress.com\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Elections 2018","url":"https:\/\/indianexpress.com\/elections\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Home","url":"https:\/\/indianexpress.com\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Latest News","url":"https:\/\/indianexpress.com\/latest-news\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Business","url":"https:\/\/indianexpress.com\/section\/business\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Explained","url":"https:\/\/indianexpress.com\/section\/explained\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Trending","url":"https:\/\/indianexpress.com\/section\/trending\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Astrology","url":"https:\/\/indianexpress.com\/astrotype\/daily\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Today\u2019s Paper","url":"https:\/\/indianexpress.com\/todays-paper\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Education","url":"https:\/\/indianexpress.com\/section\/education\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"What Is","url":"https:\/\/indianexpress.com\/section\/what-is\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"When Is","url":"https:\/\/indianexpress.com\/section\/when-is\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Who Is","url":"https:\/\/indianexpress.com\/section\/who-is\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"How to","url":"https:\/\/indianexpress.com\/section\/how-to\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Budget 2018","url":"https:\/\/indianexpress.com\/section\/business\/budget\/"},{"@context":"https:\/\/schema.org","@type":"SiteNavigationElement","name":"Brand Solutions","url":"https:\/\/indianexpress.com\/brand-solutions\/"}]
+{"@context":"https:\/\/schema.org","@type":"WebSite","url":"https:\/\/indianexpress.com","name":"The Indian Express","potentialAction":{"@type":"SearchAction","target":"https:\/\/indianexpress.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}
+{"@context":"https:\/\/schema.org","@type":"Organization","name":"The Indian Express","url":"https:\/\/indianexpress.com","logo":"https:\/\/images.indianexpress.com\/2019\/11\/ienewlogo3_new.png","address":{"@type":"PostalAddress","streetAddress":"B-1\/B, Sector-10","addressLocality":"Noida","addressRegion":"India","postalCode":"201301","Telephone":"+91-0120-25 0049"},"sameAs":["https:\/\/www.facebook.com\/indianexpress","https:\/\/twitter.com\/indianexpress","https:\/\/www.youtube.com\/IndianExpress"]}
+
+			var _comscore = _comscore || [];
+			_comscore.push( { c1: "2", c2: "8738137" } );
+			( function() {
+				var s = document.createElement("script"), el = document.getElementsByTagName( "script" )[0];
+				s.async = true;
+				s.src = ( document.location.protocol === "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+				el.parentNode.insertBefore( s, el );
+			})();
+		
+
+		if (window.innerWidth) //if browser supports window.innerWidth
+		var page_w=window.innerWidth;
+		else if (document.all) //else if browser supports document.all (IE 4+)
+		var page_w=document.body.clientWidth;
+		//var page_w=screen.width;
+		if( page_w > 1024 ) {
+			jQuery(".add-left,.add-right").show();
+		}else{
+			jQuery(".add-left,.add-right").hide();
+		}
+	
+
+				var siteDomain  = "https:\/\/ecommerce.indianexpress.com";
+				var authDomain  = "https:\/\/authentication.indianexpress.com\/";
+				var eCommConfig = {
+						orderPage: "https:\/\/accounts.indianexpress.com\/account\/new\/order\/",
+						newsStandPage: "https:\/\/indianexpress.com\/express-plus\/today-newsstand\/",
+						issuesPage: "https:\/\/indianexpress.com\/express-plus\/epaper\/previous-issues\/",
+						productPage: "https:\/\/indianexpress.com\/express-plus\/subscription-plan\/"
+				};
+			
+
+		(function (d, s, id) {
+			IESSO = window.IESSO || (window.IESSO = []);
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.defer = "defer";
+			js.src = "https://accounts.indianexpress.com/swagger-js/v2.0.0/sdk.js?v=05022021.1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, "script", "ie-jssdk"));
+		IESSO.push({
+			client_id: "indianexpress-03",
+			redirect_uri: "https://indianexpress.com/accountredirects/",
+			request_uri: location.href,
+		});
+	
+
+		var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+		sessionStorage['WZRK_D'] = " ";
+		localStorage['WZRK_D'] = " ";
+		 // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+		clevertap.account.push({"id": "844-RZZ-995Z"});
+		clevertap.privacy.push({optOut: false}); //set the flag to true, if the user of the device opts out of sharing their data
+		clevertap.privacy.push({useIP: false}); //set the flag to true, if the user agrees to share their IP data
+		 (function () {
+			 var wzrk = document.createElement('script');
+			 wzrk.type = 'text/javascript';
+			 wzrk.async = true;
+			 wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/a.js';
+			 var s = document.getElementsByTagName('script')[0];
+			 s.parentNode.insertBefore(wzrk, s);
+		  })();
+	
+
+var ad_code_params = {"articleId":"","loop_counter":"11","ad_units":[{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_ATF_1x1","slot_size":[1,1],"slot_id":"gpt_ad_IE_ROS_ATF_1X1"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_ATF_728X90","slot_size":[[970,250],[970,90],[970,200],[728,90],"fluid"],"slot_id":"gpt_ad_IE_ROS_ATF_728X90"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_ATF_300X250","slot_size":[[300,250],[300,600],"fluid"],"slot_id":"gpt_ad_IE_ROS_ATF_300X250"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_MID_300X250","slot_size":[[300,250],[300,600],"fluid"],"slot_id":"gpt_ad_IE_ROS_MID_300X250"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_BTF_300X250","slot_size":[[300,250],[300,600],"fluid"],"slot_id":"gpt_ad_IE_ROS_BTF_300X250"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_BTF_728X90","slot_size":[[970,250],[970,90],[970,200],[728,90],"fluid"],"slot_id":"gpt_ad_IE_ROS_BTF_728X90"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_OOP_INNOV1","slot_size":"","slot_id":"gpt_ad_IE_ROS_OOP_INNOV1"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_OOP_INNOV2","slot_size":"","slot_id":"gpt_ad_IE_ROS_OOP_INNOV2"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_SKIN_LHS","slot_size":[[120,600],[160,600]],"slot_id":"gpt_ad_IE_ROS_LEFT_GUTTER"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_ROS_HOME_HP_SKIN_RHS","slot_size":[[120,600],[160,600]],"slot_id":"gpt_ad_IE_ROS_RIGHT_GUTTER"},{"slot_name":"\/1050432\/www.indianexpress.com\/IE_Promotional_Slug_220x70","slot_size":[220,70],"slot_id":"gpt_ad_IE_ROS_PROMO_SLUG_DESK"}]};
+
+
+var templateType = "home";
+			var peCid=2;
+			(function(d, s) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				js = d.createElement(s);
+				js.id = "psdk";
+				js.async = 1;
+				js.src = "https://ua.indianexpress.com/personlization-sdk.min.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, "script"));
+
+
+var custom_ev_data = {"articleId":"","site":"The Indian Express","title":"Homepage","authors":"","category":"","section":"homepage","tags":"homepage_tags","premium":""};
+
+
+var follow_widget_data = {"af_article_count":"2","ie_mobile_check":"no","ajax_url":"https:\/\/indianexpress.com\/wp-admin\/admin-ajax.php","tracking_c":"home"};
+
+
+var onscroll_script = {"live_blog_script":"","twitter_script":"","insta_script":"","andbeyond_lib":"","andbeyond_lib_home":"https:\/\/rtbcdn.andbeyond.media\/prod-global-324113.js","andbeyond_lib_liveblog":"","crazy_egg_script":"","adsbygooglejs":"","image_overlay_js":"","device_type":"desktop"};
+
+
+var onscroll_bot = {"chat_bot":"https:\/\/chat.amplify.ai\/plugin\/5d8c79fc71d7034e8751eec9\/chat_plugin.js?pluginId=5d8c79fc71d7034e8751eec9","device_type":"desktop","event_url":"https:\/\/indianexpress.com\/"};
+
+
+var setting_data = {"days":"365"};
+
+
+var af_widget_data = {"af_article_count":"2"};
+
+
+var mafl_check = {"mafl_count":"3","box_msg":"Get email alerts for your favourite author. Sign up here","ie_mobile_check":"no","theme_url":"https:\/\/indianexpress.com\/wp-content\/themes\/indianexpress","tracking_c":"home"};
+
+
+var taboolaExports = {"mode":"alternating-thumbnails-a","placement":"Below Home Thumbnails","container":"taboola-below-content","target_type":"mix"};
+
+
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:9.7',blog:'150893645',post:'0',tz:'5.5',srv:'indianexpress.com'} ]);
+	_stq.push([ 'clickTrackerInit', '150893645', '0' ]);
+
+window.googletag = window.googletag || {cmd: []}; googletag.cmd.push(function() { googletag.defineSlot('/21791476620/indianexpress.com/indianexpress_sideshow_desktop_1x1', [1, 1], 'sideshow').addService(googletag.pubads()); googletag.enableServices();});
+googletag.cmd.push(function() { googletag.display('sideshow'); });

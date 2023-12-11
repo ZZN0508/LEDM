@@ -1,0 +1,375 @@
+
+var gtmData = "{}";
+
+
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'AW-845664086');
+	
+
+				gtag('config', 'UA-19303147-22', { 'optimize_id': 'GTM-KR4WGN8', 'send_page_view': false});
+				gtag('config', 'UA-19303147-22', { 'optimize_id': 'GTM-KHXTLLN', 'send_page_view': false});
+	
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if ('function' === typeof window.gtm) {
+			window.gtm();
+
+			dataLayer.push({
+				country: 'JP'
+			});
+        }
+    });
+    
+
+		{"@context":"http:\/\/schema.org","@type":"Organization","logo":"https:\/\/www.freepik.com\/media\/img\/logos\/freepik.svg","name":"Freepik","sameAs":["https:\/\/www.facebook.com\/Freepik","https:\/\/twitter.com\/freepik","https:\/\/www.pinterest.es\/freepik\/","https:\/\/www.instagram.com\/freepik","https:\/\/www.youtube.com\/channel\/UC9wPXN2TIWoUamqONb7v8Pw"],"url":"https:\/\/www.freepik.com\/"}	
+
+		{"@context":"http:\/\/schema.org","@type":"WebSite","name":"Freepik","url":"https:\/\/www.freepik.com\/","potentialAction":{"@type":"SearchAction","target":"https:\/\/www.freepik.com\/search?query={search_term_string}","query-input":"required name=search_term_string"}}	
+
+        var URL_RESOURCE_KEYWORDS = 'free-photos-vectors';
+        var URL_CATEGORY = 'free-vectors';
+        var ACCOUNTS_BASE_URL = 'https://www.freepik.com/profile/';
+        var ACCOUNTS_API_KEY = 'aHR0cHM6Ly93d3cuZnJlZXBpay5jbw==';
+        var GOOGLE_ANALYTICS_ID = 'UA-19303147-22';
+        var NUM_RELATED_RESOURCES = 40;
+        var NUM_SPONSOR_RESOURCES = 40;
+        var URL_STATIC_IMG = "https://freepik.cdnpk.net/img/";
+        var BASE_URL = 'https://www.freepik.com/';
+        var DOMAIN_FP = BASE_URL.replace(/(^\w+:|^)\/\//, '').replace(/\/+$/, '');
+        var TRACKER_URL = 'https://www.freepik.com/';
+        var REDIRECT_URL = 'https://www.freepik.com/redirect/';
+        var SPONSOR_BASE_URL = 'https://fpedge.cdnpk.net/';
+        var LANGUAGE = 'en';
+        var LANGUAGE_NAME = 'english';
+        var NUM_RESOURCES = '13225893';
+        var NUM_RESOURCES_SELECTION = '2665083';
+        var NUM_RESOURCES_PREMIUM = '12981975';
+        var NUM_RESOURCES_ESSENTIAL = '2627136';
+        var BASIC_PRICE = '$11.99 USD';
+        var MONTHLY_PRICE = '$8.25 USD';
+        var YEARLY_PRICE = '$99.00 USD';
+        var CONFIG_NUM_TOTAL_RESOURCES = 50;
+        var CONFIG_NUM_LATEST_RESOURCES = 2;
+        var RE_CAPTCHA_KEY_INVISIBLE = '6LfEmSMUAAAAAEDmOgt1G7o7c53duZH2xL_TXckC';
+        var RE_CAPTCHA_API_KEY = '6LfEmSMUAAAAAEDmOgt1G7o7c53duZH2xL_TXckC';
+		var CRITEO_ACCOUNT_ID = '54019';
+        var OPTIMAL_BROWSER = false;
+        var IS_MOBILE = false;
+		var URL_FREEPIK_EDITOR = 'https://wepik.com/api/redirector/';
+		var URL_FREEPIK_WEPIK_ALL_PHOTOS = 'https://wepik.com/edit/new-artboard';
+		var URL_FREEPIK_STORIES = 'https://stories.freepiklabs.com/api/redirector/';
+        var SPONSOR_URL = '//www.freepik.com?url=aHR0cHM6Ly9jbGsudHJhZGVkb3VibGVyLmNvbS9jbGljaz9wPTI2NDM1NSZhPTMwNjg3OTAmZz0yNDMwNTkxMCZ1cmw9aHR0cHMlM0ElMkYlMkZzdG9jay5hZG9iZS5jb20lMkZwcm9tbyUyRmZpcnN0bW9udGhmcmVlJTNGYXNfY29udGVudCUzRGJhbm5lciUyNmFzX2NhbXBhaWduJTNEZnJlZXBpaw==';
+        var SPONSOR_URL_IMPRESS = '';
+        var DOWNLOADS_CONSUMED = 0;
+        var DOWNLOADS_LIMIT = 3;
+
+		var CSRF_TOKEN = '38657ff36b639266d7e3530fc2883916';
+
+		var USER_COUNTRY_CODE = 'JP';
+		var USER_COUNTRY_CODE_ISO_3 = 'JPN';
+		var USER_CURRENCY = 'EURO';
+        var USER_PRICE_MONTHLY = '9.99';
+        var USER_PRICE_YEARLY = '89.99';
+		var USER_PRICE_ESSENTIAL_MONTHLY = '4.99';
+
+		var IMG_ZOOM_STRIP = 40;
+
+        var HOW_EDIT_URL = {
+            psd: '//support.freepik.com/hc/en-us/articles/202642031-What-is-a-PSD-',
+            vector: '//support.freepik.com/hc/en-us/articles/203578042-How-to-edit-a-vector-file-from-Freepik-',
+            icon: '//support.freepik.com/hc/en-us/articles/203578042-How-to-edit-a-vector-file-from-Freepik-',
+            photo: '//support.freepik.com/hc/en-us/articles/360024473313-How-to-edit-a-JPG',
+        }
+
+        var SUPPORT_URL = '//support.freepik.com/hc/en-us';
+        var HOW_ATTRIBUTE_AUTHOR_URL = '//support.freepik.com/hc/en-us/articles/208976585-Attribution-How-when-and-where-';
+        var PREMIUM_LICENSE_URL = 'https://www.freepik.com/standard-license-freepik';
+        var STANDARD_LICENSE_URL = 'https://www.freepik.com/standard-license-freepik';
+        var APP_RELEASE = '2.223.1';
+
+		var TESTAB_LANDING_PRICING = true;
+
+        var FEATURE_ESSENTIAL_PLAN = true;
+		var FEATURE_BUYER_PERSONA = false;
+		var FEATURE_NEW_JS_TRANSLATIONS = false;
+		var FEATURE_SPONSOR_COUPON_WINDOW = false;
+		var FEATURE_SPONSOR_OPTIMIZE_AWAIT = false;
+		var FEATURE_FEEDBACK_PHOTO_HOME = false;
+		var FEATURE_WATERMARK = false;
+		var SPONSOR_SHOW_ADOBESTOCK_PERCENT = 100;
+        var FEATURE_AUTH_COOKIE_CHECK = false;
+        var FEATURE_COUPON_IN_BR = false;
+        var FEATURE_NOTIFICATION_CENTER = false;
+        var FEATURE_NEW_PINTEREST_IMAGES = true;
+        var FEATURE_ENABLE_SSEO = true;
+        var FEATURE_NOTIFICATION_80_DOWNLOADS = true;
+        var FEATURE_BLOCK_DOWNLOAD_USING_XHR = true;
+        var FEATURE_UPDATE_DOWNLOADS_MENU_USER = false;
+        var FEATURE_STATIC_SLIDER = true;
+        var FEATURE_TAGS_COLLECTIONS = true;
+        var FEATURE_GETTY = false;
+        var FEATURE_NEXTSEARCH = true;
+        var FEATURE_BLOCK_DOWNLOAD_TOO_MANY_IPS = true;
+        var FEATURE_RESOURCE_OPTIMIZE_TESTS = false;
+        var FEATURE_XHR_DOWNLOADS = false;
+        var FEATURE_FILTERS_HIDE_BY_DEFAULT = true;
+        var FEATURE_USER_CONFIG_NOTIFICATION = false;
+        var FEATURE_USER_ESSENTIAL_UNPAID = true;
+        var FEATURE_XHR_LIKES_USING_REDIS = false;
+        var FEATURE_XHR_LIKES_BY_MYSQL_WO_MEMCACHED = true;
+        var FEATURE_DOWNLOAD_JPG_SIZES = true;
+        var FEATURE_NPS_DOWNLOAD = true;
+        var FEATURE_DISPLAY_SRCSET = false;
+        var FEATURE_DETAIL_MOBILE = false;
+        var FEATURE_ENABLE_TWITTER_LOGIN = false;
+        var FEATURE_STICKY_NAV = true;
+        var FEATURE_LANDING_TAG_PHOTO_TITLE = true;
+		var FEATURE_FIXED_FIRST_POSITIONS = true;
+		var FEATURE_EYEEM = false;
+		var FEATURE_HOTJAR_TRUSTPILOT = true;
+		var FEATURE_SWIPE_NATURAL = true;
+		var FEATURE_LIMIT_SIZING_AFFILIATE = true;
+		var FEATURE_LIMIT_SIZING_SERIES = true;
+		var FEATURE_HIDE_SPONSOR_VISIBILITY = true;
+		var FEATURE_PRELOAD_IMAGE_DETAIL = true;
+		var FEATURE_AUTOPROMO_GAM = true;
+		var FEATURE_FIVERR = true;
+		var FEATURE_FULLWIDTH_RESOURCES = true;
+		var FEATURE_ADOBE_EMPTY_SEARCHES = true;
+		var FEATURE_SEARCH_FILTER = false;
+		var FEATURE_MOVE_EDIT_BUTTON = false;
+		var FEATURE_WEPIK_ALL_PHOTOS = true;
+
+		var FIXED_RESOURCES_IN_RESULTS = 5;
+		var JS_SENTRY_ENABLED = false;
+
+		        var HUBSPOT_ENDPOINT_URL = 'xhr/events/send';
+		
+        var COLLECTION_COUNT = 0;
+        var COLLECTION_LIMIT = 100;
+
+        var ESSENTIAL_USER_TYPE = '0';
+        var ESSENTIAL_COUNTRY = '0';
+
+        var RecaptchaDownloads;
+                var TOP_SEARCH_TERMS = [
+            'background',
+            'logo',
+            'business card',
+            'infography',
+            'banner',
+            'pattern',
+            'flyer',
+            'abstract background'
+        ];
+
+		
+        function randomAvatar(name) {
+            if ('function' === typeof randomAvatarMethod && name) {
+                return randomAvatarMethod(name);
+            }
+
+            return 'https://freepik.cdnpk.net/img/avatars/01.svg';
+		}
+
+					var MAX_WIDTH_RESOURCE = 0;
+			
+
+                window.googletag = window.googletag || {cmd: []};
+                googletag.cmd.push(function() {
+                    googletag.pubads().setTargeting("domain", DOMAIN_FP);
+                });
+
+        window.suggestmeyes_loaded = true;
+	
+
+        var detailAttr = [];
+
+        function setDetailAttributes(detailId, attr) {
+            var names = {
+                ci: 'cacheId',
+                ts: 'thumbnailsSmall',
+                tl: 'thumbnailsLarge',
+                tz: 'thumbnailsZoom',
+                mk: 'mainKeywords',
+                mkl: 'mainKeywordsLabel',
+                mks: 'mainKeywordsSponsor',
+                dc: 'downloads',
+                dfu: 'downloadFileUrl',
+                dlu: 'downloadLandingUrl',
+                diu: 'downloadLicenseUrl',
+                aid: 'authorId',
+                aname: 'authorName',
+                auid: 'authorUserId',
+                aavatar: 'authorAvatar',
+                alink: 'authorLink',
+                cd: 'creationDate',
+                ca: 'creationAgo',
+                ph: 'previewHeight',
+                pw: 'previewWidth',
+                al: 'attributionLink',
+                at: 'attributionText',
+                atr: 'authorTotalResources',
+                kw: 'keywords',
+                cg: 'categories',
+                ct: 'comments',
+                cl: 'likes',
+                ls: 'selection',
+                lp: 'premium',
+                ptv: 'printTypeValue',
+                pti: 'printTypeId',
+                tp: 'typology',
+				ris: 'ris',
+				fe: 'freepikEditor',
+				fs: 'freepikStories',
+            }
+            var link = document.getElementById("dtl-" + detailId);
+            for (var k in attr) {
+                link.dataset[names[k] || k] = attr[k];
+            }
+        }
+	
+
+        var globalCampaignData = [];
+        var autoCampaignJson = [
+            'https://static.freepikcompany.com/freepik/cross-selling/campaign.json',
+        ];
+	
+
+		var stockBannerImage = '';
+		var stockBannerUrl = '';
+		var stockBannerPixelVariation = '';
+		var stockBannerPixelAffiliate = '';
+        var bannerAffiliate = [];
+        var urlPopupAffiliate = '';
+	
+
+		var optimizeTests = [];
+    
+
+    document.body.classList.remove('noscript');
+
+    function checkIfGrLibraryLoaded() {
+        return ('undefined' !== typeof gr) && (null !== gr);
+    }
+
+    if (checkIfGrLibraryLoaded() && gr.isLogged()) {
+        document.body.classList.add('logged-user');
+    }
+
+    if (checkIfGrLibraryLoaded() && gr.isPremium()) {
+        document.body.classList.add('premium-user');
+    }
+
+    if (checkIfGrLibraryLoaded() && gr.isEssential()) {
+        document.body.classList.add('essential-user');
+    }
+
+    if (checkIfGrLibraryLoaded() && gr.user && gr.user.email.match(/\@freepik.com/)) {
+        document.body.classList.add('admin-user');
+	}
+
+	if ('undefined' !== typeof CampaignHelpers && CampaignHelpers.showBanner()) {
+		document.body.classList.add('campaign-active');
+    }
+
+
+    if (typeof gr !== 'undefined' && gr.updateUI) {
+        gr.updateUI();
+    }
+
+if ('undefined' !== typeof Showcase) Showcase.setButton();
+
+    if ('function' === typeof window.setupFilters) {
+        window.setupFilters();
+    }
+
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"abstract scene background with cylinder podium, confetti and ribbons 13714504","contentUrl":"https:\/\/image.freepik.com\/free-vector\/abstract-scene-background-with-cylinder-podium-confetti-ribbons_3482-203.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/abstract-scene-background-with-cylinder-podium-confetti-ribbons_3482-203.jpg?size=664&ext=jpg","datePublished":"2021-04-21 12:13:31","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13714504"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"gradient hello summer sale illustration 13757975","contentUrl":"https:\/\/image.freepik.com\/free-vector\/gradient-hello-summer-sale-illustration_52683-61659.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/gradient-hello-summer-sale-illustration_52683-61659.jpg?size=664&ext=jpg","datePublished":"2021-04-24 00:05:31"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"phone and screen - ui ux app presentation mockup 13111635","contentUrl":"https:\/\/image.freepik.com\/free-psd\/phone-screen-ui-ux-app-presentation-mockup_165789-302.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/phone-screen-ui-ux-app-presentation-mockup_165789-302.jpg?size=664&ext=jpg","datePublished":"2021-03-10 07:41:52"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"interior wall with green plant and shelf. 3d rendering 13892539","contentUrl":"https:\/\/image.freepik.com\/free-photo\/interior-wall-with-green-plant-shelf-3d-rendering_41470-3486.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/interior-wall-with-green-plant-shelf-3d-rendering_41470-3486.jpg?size=664&ext=jpg","datePublished":"2021-05-04 12:24:26"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"close up mobile screen 13396509","contentUrl":"https:\/\/image.freepik.com\/free-psd\/close-up-mobile-screen_23-2148915401.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/close-up-mobile-screen_23-2148915401.jpg?size=664&ext=jpg","datePublished":"2021-03-26 17:10:18"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"cartoon vaccination campaign badge collection 13859996","contentUrl":"https:\/\/image.freepik.com\/free-vector\/cartoon-vaccination-campaign-badge-collection_52683-62501.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/cartoon-vaccination-campaign-badge-collection_52683-62501.jpg?size=664&ext=jpg","datePublished":"2021-04-30 17:52:22"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"two event ticket  mockup 12954106","contentUrl":"https:\/\/image.freepik.com\/free-psd\/two-event-ticket-mockup_1150-37639.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/two-event-ticket-mockup_1150-37639.jpg?size=664&ext=jpg","datePublished":"2021-03-02 09:48:59"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"technology banner template 13623434","contentUrl":"https:\/\/image.freepik.com\/free-psd\/technology-banner-template_23-2148933808.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/technology-banner-template_23-2148933808.jpg?size=664&ext=jpg","datePublished":"2021-04-15 13:40:56"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"bright yellow and realistic coffee illustration 13821016","contentUrl":"https:\/\/image.freepik.com\/free-vector\/bright-yellow-realistic-coffee-illustration_1284-56216.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/bright-yellow-realistic-coffee-illustration_1284-56216.jpg?size=338&ext=jpg","datePublished":"2021-04-29 02:54:11"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"smooth golden textured material 13762271","contentUrl":"https:\/\/image.freepik.com\/free-photo\/smooth-golden-textured-material_23-2148943382.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/smooth-golden-textured-material_23-2148943382.jpg?size=664&ext=jpg","datePublished":"2021-04-24 10:19:39"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"abstract scene background with cylinder podium, confetti and ribbons 13714503","contentUrl":"https:\/\/image.freepik.com\/free-vector\/abstract-scene-background-with-cylinder-podium-confetti-ribbons_3482-202.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/abstract-scene-background-with-cylinder-podium-confetti-ribbons_3482-202.jpg?size=664&ext=jpg","datePublished":"2021-04-21 12:13:30","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13714503"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"tender cosmetic collection rose poster with soft cream tubes illustration 13805760","contentUrl":"https:\/\/image.freepik.com\/free-vector\/tender-cosmetic-collection-rose-poster-with-soft-cream-tubes-illustration_1284-55960.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/tender-cosmetic-collection-rose-poster-with-soft-cream-tubes-illustration_1284-55960.jpg?size=664&ext=jpg","datePublished":"2021-04-28 03:45:16"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"portrait photo mockup with plastic wrap  13711248","contentUrl":"https:\/\/image.freepik.com\/free-psd\/portrait-photo-mockup-with-plastic-wrap_220607-107.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/portrait-photo-mockup-with-plastic-wrap_220607-107.jpg?size=338&ext=jpg","datePublished":"2021-04-21 09:34:05","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13711248"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"set of colorful speech bubbles 13878185","contentUrl":"https:\/\/image.freepik.com\/free-vector\/set-colorful-speech-bubbles_6735-1281.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/set-colorful-speech-bubbles_6735-1281.jpg?size=664&ext=jpg","datePublished":"2021-05-03 13:07:33","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13878185"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"hand painted watercolor nature background 13723043","contentUrl":"https:\/\/image.freepik.com\/free-vector\/hand-painted-watercolor-nature-background_23-2148941603.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/hand-painted-watercolor-nature-background_23-2148941603.jpg?size=664&ext=jpg","datePublished":"2021-04-21 22:09:30"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"storytelling flyer template 13403069","contentUrl":"https:\/\/image.freepik.com\/free-psd\/storytelling-flyer-template_23-2148909506.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/storytelling-flyer-template_23-2148909506.jpg?size=338&ext=jpg","datePublished":"2021-03-28 11:16:18"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"hand painted watercolor flower collection 13900284","contentUrl":"https:\/\/image.freepik.com\/free-vector\/hand-painted-watercolor-flower-collection_52683-61911.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/hand-painted-watercolor-flower-collection_52683-61911.jpg?size=338&ext=jpg","datePublished":"2021-05-04 18:18:26"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"flat lay of summer umbrella next to towel 13785018","contentUrl":"https:\/\/image.freepik.com\/free-photo\/flat-lay-summer-umbrella-towel_23-2148939027.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/flat-lay-summer-umbrella-towel_23-2148939027.jpg?size=664&ext=jpg","datePublished":"2021-04-26 21:28:42"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"landing page template for coronavirus awareness 13879790","contentUrl":"https:\/\/image.freepik.com\/free-psd\/landing-page-template-coronavirus-awareness_23-2148956342.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/landing-page-template-coronavirus-awareness_23-2148956342.jpg?size=664&ext=jpg","datePublished":"2021-05-03 13:55:21"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"realistic 3d sale background 13756562","contentUrl":"https:\/\/image.freepik.com\/free-vector\/realistic-3d-sale-background_23-2148944687.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/realistic-3d-sale-background_23-2148944687.jpg?size=664&ext=jpg","datePublished":"2021-04-23 21:22:42"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"horizontal digital marketing agency web template design 13785116","contentUrl":"https:\/\/image.freepik.com\/free-vector\/horizontal-digital-marketing-agency-web-template-design_23-2148943944.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/horizontal-digital-marketing-agency-web-template-design_23-2148943944.jpg?size=664&ext=jpg","datePublished":"2021-04-26 21:29:01"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"coronavirus vaccine landing page 13762422","contentUrl":"https:\/\/image.freepik.com\/free-vector\/coronavirus-vaccine-landing-page_52683-61522.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/coronavirus-vaccine-landing-page_52683-61522.jpg?size=664&ext=jpg","datePublished":"2021-04-24 11:25:34"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"blue abstract background 13777983","contentUrl":"https:\/\/image.freepik.com\/free-vector\/blue-abstract-background_1393-339.jpg?1","thumbnail":"https:\/\/img.freepik.com\/free-vector\/blue-abstract-background_1393-339.jpg?size=664&ext=jpg","datePublished":"2021-04-26 13:01:21"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"covid 19 social media post 13452100","contentUrl":"https:\/\/image.freepik.com\/free-psd\/covid-19-social-media-post_23-2148923225.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/covid-19-social-media-post_23-2148923225.jpg?size=664&ext=jpg","datePublished":"2021-03-31 15:41:05"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"golden stage podium with golden frame on grey background 13714514","contentUrl":"https:\/\/image.freepik.com\/free-vector\/golden-stage-podium-with-golden-frame-grey-background_3482-209.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/golden-stage-podium-with-golden-frame-grey-background_3482-209.jpg?size=664&ext=jpg","datePublished":"2021-04-21 12:13:40","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13714514"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"3d render flash offer with shopping cart and podium campaign in brazil 13765749","contentUrl":"https:\/\/image.freepik.com\/free-psd\/3d-render-flash-offer-with-shopping-cart-podium-campaign-brazil_332265-387.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/3d-render-flash-offer-with-shopping-cart-podium-campaign-brazil_332265-387.jpg?size=664&ext=jpg","datePublished":"2021-04-25 15:10:28","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13765749"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"cold brew coffee banner on summer resort beach in 3d style 13728445","contentUrl":"https:\/\/image.freepik.com\/free-vector\/cold-brew-coffee-banner-summer-resort-beach-3d-style_317810-1800.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/cold-brew-coffee-banner-summer-resort-beach-3d-style_317810-1800.jpg?size=664&ext=jpg","datePublished":"2021-04-22 09:16:30","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13728445"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"kitty with monochrome wall behind her 13863370","contentUrl":"https:\/\/image.freepik.com\/free-photo\/kitty-with-monochrome-wall-her_23-2148955134.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/kitty-with-monochrome-wall-her_23-2148955134.jpg?size=338&ext=jpg","datePublished":"2021-04-30 22:46:37"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"top view sticker collection mock up 12893820","contentUrl":"https:\/\/image.freepik.com\/free-psd\/top-view-sticker-collection-mock-up_23-2148884437.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/top-view-sticker-collection-mock-up_23-2148884437.jpg?size=664&ext=jpg","datePublished":"2021-02-25 10:43:51"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"happy family illustration korean translation happy may 13800448","contentUrl":"https:\/\/image.freepik.com\/free-vector\/happy-family-illustration-korean-translation-happy-may_260828-710.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/happy-family-illustration-korean-translation-happy-may_260828-710.jpg?size=338&ext=jpg","datePublished":"2021-04-27 16:41:38","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13800448"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"flat certificate template 13757922","contentUrl":"https:\/\/image.freepik.com\/free-vector\/flat-certificate-template_52683-61539.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/flat-certificate-template_52683-61539.jpg?size=664&ext=jpg","datePublished":"2021-04-24 00:02:10"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"cartoon vaccination campaign illustration 13859994","contentUrl":"https:\/\/image.freepik.com\/free-vector\/cartoon-vaccination-campaign-illustration_52683-62384.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/cartoon-vaccination-campaign-illustration_52683-62384.jpg?size=338&ext=jpg","datePublished":"2021-04-30 17:52:21"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"wood table top on blur kitchen counter. 3d rendering 13892628","contentUrl":"https:\/\/image.freepik.com\/free-photo\/wood-table-top-blur-kitchen-counter-3d-rendering_41470-3538.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/wood-table-top-blur-kitchen-counter-3d-rendering_41470-3538.jpg?size=664&ext=jpg","datePublished":"2021-05-04 12:26:30"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"natural plant assortment on monochromatic background 13762046","contentUrl":"https:\/\/image.freepik.com\/free-photo\/natural-plant-assortment-monochromatic-background_23-2148945655.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/natural-plant-assortment-monochromatic-background_23-2148945655.jpg?size=664&ext=jpg","datePublished":"2021-04-24 09:43:18"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"flat flowers background 13757915","contentUrl":"https:\/\/image.freepik.com\/free-vector\/flat-flowers-background_52683-61609.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/flat-flowers-background_52683-61609.jpg?size=664&ext=jpg","datePublished":"2021-04-24 00:02:09"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"geometrical monochromatic background in minimal style 13763407","contentUrl":"https:\/\/image.freepik.com\/free-vector\/geometrical-monochromatic-background-minimal-style_23-2148942313.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/geometrical-monochromatic-background-minimal-style_23-2148942313.jpg?size=664&ext=jpg","datePublished":"2021-04-24 21:40:34","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13763407"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"cosmetic product packaging mockup 13517101","contentUrl":"https:\/\/image.freepik.com\/free-psd\/cosmetic-product-packaging-mockup_1150-40282.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/cosmetic-product-packaging-mockup_1150-40282.jpg?size=664&ext=jpg","datePublished":"2021-04-08 02:54:12"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"happy family illustration korean translation family month 13800435","contentUrl":"https:\/\/image.freepik.com\/free-vector\/happy-family-illustration-korean-translation-family-month_260828-702.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/happy-family-illustration-korean-translation-family-month_260828-702.jpg?size=338&ext=jpg","datePublished":"2021-04-27 16:41:17","license":"https:\/\/www.freepikcompany.com\/legal#nav-freepik-agreement","acquireLicensePage":"https:\/\/www.freepik.com\/profile\/preagreement\/getstarted\/13800435"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"minimal tropical plant composition 13863132","contentUrl":"https:\/\/image.freepik.com\/free-photo\/minimal-tropical-plant-composition_23-2148955715.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/minimal-tropical-plant-composition_23-2148955715.jpg?size=664&ext=jpg","datePublished":"2021-04-30 22:18:31"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"gradient abstract geometric background with triangles 13792265","contentUrl":"https:\/\/image.freepik.com\/free-vector\/gradient-abstract-geometric-background-with-triangles_52683-61899.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/gradient-abstract-geometric-background-with-triangles_52683-61899.jpg?size=664&ext=jpg","datePublished":"2021-04-27 11:02:05"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"horizontal travel banner template with photo 13757894","contentUrl":"https:\/\/image.freepik.com\/free-vector\/horizontal-travel-banner-template-with-photo_52683-61531.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/horizontal-travel-banner-template-with-photo_52683-61531.jpg?size=664&ext=jpg","datePublished":"2021-04-24 00:02:07"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"flat certificate template 13757899","contentUrl":"https:\/\/image.freepik.com\/free-vector\/flat-certificate-template_52683-61537.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/flat-certificate-template_52683-61537.jpg?size=664&ext=jpg","datePublished":"2021-04-24 00:02:07"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"adopt a friend landing page template 13766038","contentUrl":"https:\/\/image.freepik.com\/free-vector\/adopt-friend-landing-page-template_23-2148944401.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/adopt-friend-landing-page-template_23-2148944401.jpg?size=664&ext=jpg","datePublished":"2021-04-25 20:29:38"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"smooth golden textured material 13762277","contentUrl":"https:\/\/image.freepik.com\/free-photo\/smooth-golden-textured-material_23-2148943380.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/smooth-golden-textured-material_23-2148943380.jpg?size=664&ext=jpg","datePublished":"2021-04-24 10:19:39"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"tropical leaves palm branch realistic composition with image of green leaf pile isolated 13767803","contentUrl":"https:\/\/image.freepik.com\/free-vector\/tropical-leaves-palm-branch-realistic-composition-with-image-green-leaf-pile-isolated_1284-55480.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/tropical-leaves-palm-branch-realistic-composition-with-image-green-leaf-pile-isolated_1284-55480.jpg?size=664&ext=jpg","datePublished":"2021-04-26 03:35:40"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"podium display with tropical leaf on green wall, 3d rendering 13892635","contentUrl":"https:\/\/image.freepik.com\/free-photo\/podium-display-with-tropical-leaf-green-wall-3d-rendering_41470-3540.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/podium-display-with-tropical-leaf-green-wall-3d-rendering_41470-3540.jpg?size=338&ext=jpg","datePublished":"2021-05-04 12:26:45"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"top view delicious cooked vegetables sliced with different seasonings on dark background soup food sauce meal vegetable 13870372","contentUrl":"https:\/\/image.freepik.com\/free-photo\/top-view-delicious-cooked-vegetables-sliced-with-different-seasonings-dark-background-soup-food-sauce-meal-vegetable_140725-85841.jpg","thumbnail":"https:\/\/img.freepik.com\/free-photo\/top-view-delicious-cooked-vegetables-sliced-with-different-seasonings-dark-background-soup-food-sauce-meal-vegetable_140725-85841.jpg?size=664&ext=jpg","datePublished":"2021-05-03 05:34:05"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"world forest day poster template 13164157","contentUrl":"https:\/\/image.freepik.com\/free-psd\/world-forest-day-poster-template_23-2148899237.jpg","thumbnail":"https:\/\/img.freepik.com\/free-psd\/world-forest-day-poster-template_23-2148899237.jpg?size=338&ext=jpg","datePublished":"2021-03-12 13:38:22"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"editable text effect, rose pink text style 13794315","contentUrl":"https:\/\/image.freepik.com\/free-vector\/editable-text-effect-rose-pink-text-style_314614-289.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/editable-text-effect-rose-pink-text-style_314614-289.jpg?size=664&ext=jpg","datePublished":"2021-04-27 12:19:31"}
+{"@context":"http:\/\/schema.org","@type":"ImageObject","name":"milk splash and spray realistic transparent set isolated 13822585","contentUrl":"https:\/\/image.freepik.com\/free-vector\/milk-splash-spray-realistic-transparent-set-isolated_1284-56494.jpg","thumbnail":"https:\/\/img.freepik.com\/free-vector\/milk-splash-spray-realistic-transparent-set-isolated_1284-56494.jpg?size=664&ext=jpg","datePublished":"2021-04-29 03:42:34"}
+
+	if ('undefined' !== typeof Showcase) {
+		Showcase.setMulti();
+		Showcase.setLayout();
+
+		if ('undefined' !== typeof Lazyload) {
+			Lazyload.run();
+		}
+	}
+
+	[].slice.call(document.querySelectorAll('.avatar img'))
+		.forEach(function(img) {
+			var image = new Image();
+			image.onerror = function() {
+				img.src = randomAvatar.apply(null, [img.alt]);
+			}
+			image.src = img.src;
+		});
+
+
+	if ('undefined' !== typeof SwiperInitialize) {
+		SwiperInitialize({
+			selector: ".swiper-home",			breakPoint: 1400,						isCollection: true        });
+	}
+
+
+        function CollectionItemClasses() {
+            if ('undefined' !== typeof Showcase) {
+                Array.prototype.slice.call(document.getElementsByClassName('collections__showcase'))
+                    .forEach(function (collection) {
+                        Showcase.setLayoutMethodFixedClass(collection);
+                    });
+            }
+        }
+
+        window.addEventListener('resize', CollectionItemClasses)
+        document.addEventListener('DOMContentLoaded', CollectionItemClasses);
+	

@@ -1,0 +1,482 @@
+
+			var $jQ = jQuery;
+		
+
+			var KASKUS_URL = "https://www.kaskus.co.id";
+			var MICROSITE_URL = "https://microsite.kaskus.co.id";
+			var KASKUS_LIVE_URL = "https://live.kaskus.co.id";
+			var MICROSITE_CDN_URL = "https://s.kaskus.id/ms";
+			var MARKAS_URL = "https://markas.kaskus.co.id";
+			var SUNDUL_DUNIA_URL = "https://sunduldunia.kaskus.co.id";
+			var KAPTEN_URL = "https://kapten.id";
+			var KASKUS_COOKIE_DOMAIN = ".kaskus.co.id";
+			var KASKUS_PODCAST_URL = "https://podcast.kaskus.co.id";
+			var KASKUSTV_URL = "https://tv.kaskus.co.id";
+			var IS_WEB = true;
+			var CHANNEL_ID = "";
+			var mru_key = "cbf3fa5ff6ed64858ae89d87799e5aac";
+			var user_id = "";
+			var current_username = "Guest";
+			var mru_limit = 20;
+			var assetsFolderNew = 'https://s.kaskus.id/assets/web_1.0';
+			var EPULSA_URL = 'https://epulsa.kaskus.co.id';
+			var userGroupIdJSON = '1';
+			var urlCatJSON = '/misc/forum_categories/';
+			var catVersion = '270';
+			var tileTracklist = 'homepage';
+			var netcoreCfg = {
+				key: 'ADGMOT35CHFLVDHBJNIG50K96AP8J603AR5P77EVFFPNFINKE1Q0',
+				siteId: '2c371e8dffcd9199333f18546ec4cd7c'
+			};
+			var card_style = 'card';
+			var FACEBOOK_CLIENT_TOKEN = "356445735231|6d91c2ee26d4a29d49f884e169954ad9";
+		
+
+{
+	"@context" : "http://schema.org",
+	"@type" : "Website",
+	"name" : "KASKUS",
+	"url" : "http://www.kaskus.co.id",
+	"sameAs" : [
+	    "https://www.facebook.com/officialkaskus",
+		"https://www.twitter.com/kaskus",
+		"https://www.twitter.com/kaskusjualbeli",
+		"https://www.instagram.com/kaskusnetworks",
+		"https://www.instagram.com/kaskusjualbeli",
+		"https://plus.google.com/+kaskus",
+		"https://id.wikipedia.org/wiki/Kaskus",
+		"https://en.wikipedia.org/wiki/Kaskus"
+	],
+	"author" : [
+  	{
+  		"@context": "http://schema.org",
+  		"@type" : "Organization",
+  		"name" : "KASKUS",
+  		"legalName" : "PT. Darta Media Indonesia",
+  		"url" : "http://www.kaskus.co.id",
+		"logo" : "http://www.kaskus.co.id/e3.1/images/layout/home-logo-n.png",
+		"contactPoint" : [{
+			"@type" : "ContactPoint",
+			"telephone" : "+62-21-2922-3600",
+			"contactType" : "customer service"
+		}],
+		"address": "Menara Palma Annex Building P11 H. R. X2 Kav 6, Jalan Haji R. Rasuna Said, Daerah Khusus Ibukota Jakarta 12950"
+  	}
+  ]
+}
+
+
+	var adxPermission = true;
+
+					var __kaskus_dfp_channel = 'channel/-2-kaskus-home';
+
+			
+	var __forum_id = -2 ;
+	var __usergroup_id = 1;
+	var __kaskus_fsx = '/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas';
+	var __kaskus_fpt = '/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas';
+					var __kaskus_dfp = 'forum/-2-kaskus-home';
+				var __thread_id = '';
+	var listType = "others";
+	window.dataLayer = window.dataLayer || [];
+
+		
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount','UA-132312-15']);
+
+	/* begin enhanced link attribution script */
+	var pluginUrl =
+	 '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+	_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+	/* end enhanced link attribution script */
+
+			_gaq.push(['_setCustomVar',1,'Forum Section','/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas',3]);
+		_gaq.push(['_setCustomVar',2,'Forum Parent Section','/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas',3]);
+		dataLayer.push({
+			"forumSection" : "/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas",
+			"forumParentSection" : "/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas",
+			"forumHit" : "/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas",
+			"forumParentHit" : "/forum/-2 KASKUS - Berbagi Hobi, Berkomunitas",
+			"forumID" : "-2",
+			"forumParentID" : "-2",
+			"forumName" : "KASKUS - Berbagi Hobi, Berkomunitas",
+			"forumParentName" : "KASKUS - Berbagi Hobi, Berkomunitas",
+			"forumBreadCrumb" : ""
+		});
+						dataLayer.push({ "listStyle" : "homelanding card" });
+		
+	_gaq.push(['_setCustomVar',4,'User Type','1',2]);
+	dataLayer.push({
+		"userType" : "1",
+		"listType" : "others",
+		"siteCategory" : "forum"
+	});
+	_gaq.push(['_trackPageview']);
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+	function tracksidebar(cat_tag_name)
+	{
+		_gaq.push(['_trackPageview', '/bannercategories/' + cat_tag_name]);	}
+
+
+_atrk_opts = { atrk_acct:"edrok1a0Sn00is", domain:"kaskus.co.id",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+
+
+		var _comscore = _comscore || [];
+	_comscore.push({
+		c1: "2", c2: 20767306,
+		options: {
+			url_append: "comscorekw=kaskus-homepage"
+		}
+	});
+	(function() {
+		var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+		s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+		el.parentNode.insertBefore(s, el);
+	})();
+
+
+	var __isAdsHidden = 1;
+
+
+	var WEB_PUSH_CERTIFICATE = "BGXIGH8mmaaT9i-MGeIGCRqniFAhb4v4A7D6sOXP_Nm4W6A_a8fJJ9KTQY-P0qOm7GXodgZoTgE77XjcZRrqEUU";
+	var WEB_PUSH_API_KEY = "AIzaSyAtx_op63-mS2Gk6gsZ67JioK58M3FwMqY";
+	var WEB_PUSH_AUTH_DOMAIN = "web-forum-3ffcd.firebaseapp.com";
+	var WEB_PUSH_DATABASE_URL = "https://web-forum-3ffcd.firebaseio.com";
+	var WEB_PUSH_PROJECT_ID = "web-forum-3ffcd";
+	var WEB_PUSH_STORAGE_BUCKET = "web-forum-3ffcd.appspot.com";
+	var WEB_PUSH_MESSAGING_SENDER_ID = "103135385257";
+	var WEB_PUSH_APP_ID = "1:103135385257:web:4499327e70d9f4068cfbb8";
+	var PUSH_NOTIFICATION_BADGE = "https://s.kaskus.id/assets/web_1.0/images/k_badge.png";
+
+
+var PWT={}; //Initialize Namespace
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+PWT.jsLoaded = function(){ //PubMatic pwt.js on load callback is used to load GPT
+    (function() {
+        var gads = document.createElement('script');
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+};
+(function() {
+    var purl = window.location.href;
+    var url = '//ads.pubmatic.com/AdServer/js/pwt/157375/1125';
+    var profileVersionId = '';
+    if(purl.indexOf('pwtv=')>0){
+        var regexp = /pwtv=(.*?)(&|$)/g;
+        var matches = regexp.exec(purl);
+        if(matches.length >= 2 && matches[1].length > 0){
+            profileVersionId = '/'+matches[1];
+        }
+    }
+    var wtads = document.createElement('script');
+    wtads.async = true;
+    wtads.type = 'text/javascript';
+    wtads.src = url+profileVersionId+'/pwt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(wtads, node);
+})();
+
+ 
+
+googletag.cmd.push(function() {
+      googletag.defineSlot('/21995995410/kaskus-desktop-' + __kaskus_dfp +
+      '/top-leaderboard', [[1,1],[728,90],[970,90],[970,200],[970,250]], 'div-gpt-ad-top-leaderboard')
+        .setTargeting("pos","top-leaderboard")
+        .setTargeting("adxPermission",""+adxPermission+"")
+        .setTargeting("channel",""+__kaskus_dfp_channel+"")
+        .addService(googletag.pubads());
+      
+
+      googletag.defineSlot('/21995995410/kaskus-desktop-' + __kaskus_dfp + '/r1', [[300,250],[1,1]], 'div-gpt-ad-r1')
+        .setTargeting("pos", "r1")
+        .setTargeting("adxPermission",""+adxPermission+"")
+        .setTargeting("channel",""+__kaskus_dfp_channel+"")
+        .addService(googletag.pubads());
+      
+      googletag.defineSlot('/21995995410/kaskus-desktop-' + __kaskus_dfp + '/r2',[[300,250],[1,1]] , 'div-gpt-ad-r2')
+        .setTargeting("pos", "r2")
+        .setTargeting("adxPermission",""+adxPermission+"")
+        .setTargeting("listType",""+listType+"")
+        .setTargeting("channel",""+__kaskus_dfp_channel+"")
+        .addService(googletag.pubads());
+
+            googletag.defineSlot('/21995995410/kaskus-desktop-' + __kaskus_dfp + '/r3', [[300,250],[1,1]], 'div-gpt-ad-r3')
+        .setTargeting("pos", "r3")
+        .setTargeting("adxPermission",""+adxPermission+"")
+        .setTargeting("listType",""+listType+"")
+        .setTargeting("channel",""+__kaskus_dfp_channel+"")
+        .addService(googletag.pubads());
+      
+      
+      googletag.defineSlot('/21995995410/kaskus-desktop-' + __kaskus_dfp + '/skyscrapper-left', [[120,600],[160,600]], 'div-gpt-ad-skyscrapper-left')
+        .setTargeting("pos", "skyscrapper-left")
+        .setTargeting("adxPermission",""+adxPermission+"")
+        .setTargeting("listType",""+listType+"")
+        .setTargeting("channel",""+__kaskus_dfp_channel+"")
+        .addService(googletag.pubads());
+      
+      
+      googletag.defineSlot('/21995995410/kaskus-desktop-' + __kaskus_dfp + '/skyscrapper-right', [[120,600],[160,600]], 'div-gpt-ad-skyscrapper-right')
+        .setTargeting("pos", "skyscrapper-right")
+        .setTargeting("adxPermission",""+adxPermission+"")
+        .setTargeting("listType",""+listType+"")
+        .setTargeting("channel",""+__kaskus_dfp_channel+"")
+        .addService(googletag.pubads());  
+
+
+
+      googletag.pubads().enableAsyncRendering();
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs(); 
+      googletag.enableServices();
+
+
+
+    });
+
+
+
+
+    window.Criteo = window.Criteo || {};
+    window.Criteo.events = window.Criteo.events || [];
+
+
+				window.fbAsyncInit = function() {
+					FB.init({
+						appId : '356445735231',
+						xfbml : true,
+						version : 'v10.0',
+						status: true,
+						cookie: true
+					});
+				};
+			
+
+	var onloadNoticeMessage = null;
+
+
+	linksearch = '';
+	searchchoice = '';
+
+
+      
+	googletag.cmd.push(function() {
+     
+googletag.display('div-gpt-ad-skyscrapper-left');					
+	});	
+    
+
+
+      
+	googletag.cmd.push(function() {
+     
+googletag.display('div-gpt-ad-skyscrapper-right');					
+	});	
+    
+
+
+	window.KASKUS_lang = window.KASKUS_lang || {};
+
+	window.KASKUS_lang.share_facebook_button = JSON.parse('"Facebook"');
+	window.KASKUS_lang.share_twitter_button = JSON.parse('"Twitter"');
+	window.KASKUS_lang.share_google_plus_button = JSON.parse('"Google Plus"');
+	window.KASKUS_lang.subscribe_button = JSON.parse('"Subscribe"');
+	window.KASKUS_lang.unsubscribe_button = JSON.parse('"Unsubscribe"');
+	window.KASKUS_lang.go_first_new_post_button = JSON.parse('"Go to First New Post"');
+	window.KASKUS_lang.go_last_post_button = JSON.parse('"Go to Last Post"');
+
+
+window.KASKUS_lang = window.KASKUS_lang || {};
+window.KASKUS_lang.subscribe_button = JSON.parse('"Subscribe"');
+window.KASKUS_lang.unsubscribe_button = JSON.parse('"Unsubscribe"');
+window.KASKUS_lang.subscribe_forum = JSON.parse('"Subscribe Forum Ini"');
+window.KASKUS_lang.unsubscribe_forum = JSON.parse('"Unsubscribe Forum Ini"');
+window.KASKUS_lang.subscribe_forum_success = JSON.parse('"Subscribe Forum Berhasil"');
+window.KASKUS_lang.unsubscribe_forum_success = JSON.parse('"Unsubscribe Forum Berhasil"');
+
+
+	__showcase = {
+		domain: MICROSITE_URL,
+		domainOrigin: [MICROSITE_URL, KASKUS_LIVE_URL, MARKAS_URL, SUNDUL_DUNIA_URL, KAPTEN_URL]
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = MICROSITE_CDN_URL + "/js/widget/showcase_web.b35b219.js";
+		fjs.parentNode.insertBefore(js, fjs)
+	}(document, 'script', 'showcase-js'));
+
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = MICROSITE_CDN_URL + "/assets/kaskus-podcast/js/kaskus_forum.46a50f9.js";
+		fjs.parentNode.insertBefore(js, fjs)
+	}(document, 'script', 'kaskus-podcast-js'));
+
+
+	var url_recommendation = '/recommendation/trh_channel/homelanding/0';
+	window.KASKUS_LANG = window.KASKUS_LANG || {};
+	window.KASKUS_LANG.thread_recommendation_title = JSON.parse('"Thread Rekomendasi"');
+
+
+  $( document ).ready(function() {
+  $( "#div-gpt-ad-r2" ).parent().parent().attr('id','sidebarRightAdsR2');
+  });
+
+
+	window.KASKUS_lang = window.KASKUS_lang || {};
+
+	window.KASKUS_lang.success_follow_msg = JSON.parse('"Agan berhasil mengikuti %s"');
+	window.KASKUS_lang.success_unfollow_msg = JSON.parse('"Agan telah berhenti mengikuti %s"');
+	window.KASKUS_lang.success_unignore_msg = JSON.parse('"Agan telah menghapus %s dari ignore list"');
+
+
+	var KASKUSTV_CDN_URL = "https://c.kaskus.id";
+	(function (d, id) {
+		var firstScript = d.getElementsByTagName('script')[0];
+		if (d.getElementById(id)) {
+			return;
+		}
+
+		var js = d.createElement('script');
+		js.id = id;
+		js.src = KASKUSTV_CDN_URL + '/kaskus-tv/embed-resources/embed-widget-6610bb48767597ea104266a7c8225ed9.js';
+		firstScript.parentNode.insertBefore(js, firstScript);
+	}(document, 'ktv-embed'));
+
+
+$(document).ready(function() {
+
+$('.jsLeaderboardSkyscrapper').css('z-index', '1');
+  
+    if ($('#div_hl_sd1').length > 0) {
+	$('#div_hl_sd1').addClass('Mb(15px)');
+     }
+    if ($('#div_pl_sb1').length > 0) {
+	$('#div_pl_sb1').addClass('Mb(15px)');
+     }
+    
+    $('#menu-right #btn-whatsnew').hide();
+    $('.kaskus-ads.postlist').parents('td').css('padding', '0'); 
+    // $('#push_notification_radio_0').length && $('#push_notification_radio_0').prop('checked', true);
+});
+
+$(window).on("load", function (e) {
+   if($('.sidebar-wrap').length > 0){
+   
+   setTimeout(function(){ 
+      $('.sidebar-wrap').css('position','static');
+      heightright = $('.sidebar-wrap > div:last-child').offset().top; 
+}, 500);
+}
+
+    
+});
+
+
+window.addEventListener('message', function(e) {
+    try
+    {
+        var origin = e.origin || e.originalEvent.origin;
+        if (origin === MICROSITE_URL)
+        {
+            var data = JSON.parse(e.data);
+            if (data.location == 'get') {
+                if (!navigator.geolocation) {
+                    console.log('geolocation is not supported');
+                    return;
+                }
+                navigator.permissions && navigator.permissions.query({name: 'geolocation'}).then(function(permission) {
+                    var iframe_src = $('#iframe_' + data.div_id).get(0).contentWindow;
+                    if(permission.state == 'denied')
+                    {
+                        var message = {
+                            'status' : permission.state,
+                            'longitude' : '',
+                            'latitude' : '',
+                            'type' : data.type
+                        }
+                        iframe_src.postMessage(myMessage.value, "*");
+                    }
+                    else
+                    {
+                        navigator.geolocation.getCurrentPosition(
+                            function(position) {
+                                var message = {
+                                    'status' : permission.state,
+                                    'longitude' : position.coords.longitude,
+                                    'latitude' : position.coords.latitude,
+                                    'type' : data.type
+                                }
+                                iframe_src.postMessage(message, "*");
+                            },
+                            function() {
+                                var message = {
+                                    'status' : 'error',
+                                    'longitude' : '',
+                                    'latitude' : '',
+                                    'type' : data.type
+                                }
+                                iframe_src.postMessage(message, "*");
+                                console.log('Unable to retrieve your location');
+                            }
+                        );
+                    }
+                });
+            }
+        }
+    }
+    catch(err)
+    {}
+}, false);
+
+
+  var x = document.querySelector(".jsSubscribeThreadIcon[data-id='932']");
+  if(x) {
+  x.addEventListener("click", function () {
+    if (x.querySelector("i[data-tippy-content='Subscribe Forum Ini']")) {
+    x.querySelector("i").style.color = "var(--c-yellow-1)";
+    } else {
+      x.querySelector("i").style.color = "white";
+    }
+});
+  x.querySelector("i").classList.remove("C(c-gray-2)");
+  x.classList.add("C(c-white)");
+var y = x.closest(".Mb\\(10px\\).Bgc\\(c-white\\).Bd\\(borderSolidLightGrey\\).Px\\(15px\\).Py\\(10px\\)");
+y.style.backgroundImage = "linear-gradient(90deg, rgba(236,102,211,1) 2%, rgba(236,51,40,1) 13%, rgba(236,51,40,1) 48%, rgba(236,51,40,1) 80%, rgba(232,136,54,1) 100%)";
+y.style.color = "white";
+y.querySelector("img").src = "https://s.kaskus.id/img/seasonal/january2021/tematik/wp_background_fcror0mglssw.png";}
+//y.querySelector("i").style.color = "white";
+
+
+$(document).ready(function(){
+   $(window).scroll(function(){
+     if( $('.sidebar-wrap').height() > $('.home-landing-main').height() ){
+       $('.sidebar-wrap').css('position','static');     
+      } 
+   });
+});
+ 
+
+var customGtm=customGtm||{};customGtm.clickEventToAnalytics=function(a,b,c){window.dataLayer.push({event:"trackSocialInteraction","social.network":a,"social.action":b,"social.target":c})};dataLayer.push({event:"socialInteractionCodeReady"});
+var tile_array=[];
+$(function(){$(window).on("load resize scroll",function(){$(".ht_tiletrack").each(function(){$(this).isInViewport()&&$(this).trigger("push_data")});tileTrackImp()});$.fn.isInViewport=function(){var a=$(".site-header__wrapper--scrolled").outerHeight();a=null===a?0:a;var b=$(this).outerHeight();b=$(this).offset().top+b/2;a=$(window).scrollTop()+a;var c=a+$(window).height();return b>a&&b<c};$("a[name\x3dht_title]").on("click",function(){var a=$(this).attr("id").split("_")[1],b=$(this).children().text(),c=
+$(this).attr("data-threadid");tileTrackClick(b,c,a,"hot threads")});$(".ht_tiletrack").bind("push_data",function(){var a=$(this).find("a[name\x3dht_title]"),b=a.attr("id").split("_")[1],c=a.children().text();a=a.attr("data-threadid");b={name:c,id:a,price:"0.00",category:tileTracklist,variant:"hot threads",list:tileTracklist,brand:"kaskus",position:b};tile_array.push(b);$(this).removeClass("ht_tiletrack")})});
+function tileTrackImp(){0<tile_array.length&&(dataLayer.push({event:"tileImpression","eventDetails.category":"Ecommerce","eventDetails.action":"Product Impression for Tiles",ecommerce:{currencyCode:"IDR",impressions:tile_array}}),tile_array=[])}
+function tileTrackClick(a,b,c,d){dataLayer.push({event:"tileClick","eventDetails.category":"Ecommerce","eventDetails.action":"Product Click for Tiles",ecommerce:{currencyCode:"IDR",click:{actionField:{list:tileTracklist},products:[{name:a,id:b,price:"0.00",category:tileTracklist,variant:d,list:tileTracklist,brand:"kaskus",position:c}]}}})};

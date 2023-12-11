@@ -1,0 +1,4 @@
+function analysisclick(action_name,target_name){
+ ga('send', 'event', action_name, 'clicked');
+ window.location.href=target_name;
+}

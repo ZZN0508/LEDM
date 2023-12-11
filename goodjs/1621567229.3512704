@@ -1,0 +1,111 @@
+
+var winhref = window.location.href.replace("/content/samsung","").replace(".html","/");
+if ( winhref.indexOf("?") > 0) {
+	winhref = winhref.substring(0, winhref.indexOf("?"));
+}
+var siteCode = winhref.split("/")[3];
+
+//depth Info.
+var depth = winhref.split("/").length;
+var depth_last = winhref.split("/")[depth-1];
+if(depth_last =="" || depth_last.charAt(0)=="?"){
+	depth -= 1;
+}
+
+//set pathIndicator(not product page)
+var pageName = "";    
+var depth_2 = "";
+var depth_3 = "";
+var depth_4 = "";
+var depth_5 = "";
+
+var digitalData = {
+	"page" : {
+			"pageInfo" : {
+					"siteCode"    : siteCode,
+					"pageName"    : pageName,
+					"pageID"      : "L2NvbnRlbnQvc2Ftc3VuZy9jbg==",
+					"pageTrack"   : "home",
+					"originPlaform" : "web"
+			},
+			"pathIndicator" : {
+					"depth_2" : depth_2,
+					"depth_3" : depth_3,
+					"depth_4" : depth_4,
+					"depth_5" : depth_5
+			}
+	},
+	"user": {
+			"userDeviceList": [
+			]
+	},
+	"product" : {
+			"category" : "", 
+			"model_code" : "", // PD class정보 이용하여 설정
+			"model_name" : "", // PD page(server-side)
+			"displayName" : "", // PD class정보 이용하여 설정
+			"pvi_type_code" : "", //PD page(server-side)
+			"pvi_type_name" : "", //PD page(server-side)
+			"pvi_subtype_code" : "", //PD page(server-side)
+			"pvi_subtype_name" : "",//PD page(server-side)
+			"pd_type" : "", //PD type
+            "content_id" : "",
+            "products" : "",
+            "prodView" : ""
+	}
+}
+
+
+	digitalData.page.pageInfo.pageTrack = "home";
+
+(window.BOOMR_mq=window.BOOMR_mq||[]).push(["addVar",{"rua.upush":"false","rua.cpush":"false","rua.upre":"false","rua.cpre":"false","rua.uprl":"false","rua.cprl":"false","rua.cprf":"false","rua.trans":"SJ-2b21dc74-b762-41e8-b363-4442be1208ce","rua.cook":"true","rua.ims":"false","rua.ufprl":"false","rua.cfprl":"true","rua.isuxp":"","rua.texp":""}]);
+
+		var isInIframe = (window.location != window.top.location);
+		var isNotDotcom = ( window.location.href.indexOf('samsung.com') < 0);
+        var isTopNotDotcom = ( window.top.location.href.indexOf('samsung.com') < 0);
+        
+		//404 페이지에서는 실행하지 않음.
+		if ( window.location.href.indexOf('404') < 0 && isTopNotDotcom) {
+			if ( isInIframe == true ) {
+				   console.log('isInIframe =' + isInIframe );
+				   //에러 페이지 이동  self.location.href   /"+siteCd+"/common/404.html 
+				   window.location.href = '/cn/common/404.html';
+				} else {
+				   console.log('isInIframe =' + isInIframe );
+				}    
+		}
+		
+
+			;(function(win,doc,callback){'use strict';callback=callback||function(){};function detach(){if(doc.addEventListener){doc.removeEventListener('DOMContentLoaded',completed);}else{doc.detachEvent('onreadystatechange',completed);}}function completed(){if(doc.addEventListener||event.type==='load'||doc.readyState==='complete'){detach();callback(window,window.jQuery);}}function init(){if (doc.addEventListener){doc.addEventListener('DOMContentLoaded',completed);}else{doc.attachEvent('onreadystatechange',completed);}}init();})(window,document,function(win,$){
+					$(function(){
+		$(".close").click(function(){
+			$(".box-div").hide();
+		});
+	})
+			});
+		
+{"@context":"http://schema.org","@type":"Organization","name":"三星电子 中国","url":"https://www.samsung.com/cn/","logo":"https://www.samsung.com/cn/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/global-samsung-logo.svg"}
+
+function targetPageParams() { 
+
+    return { 
+
+      "at_property": "c4ec5bfb-c300-7113-5191-f05a0e122bbc" 
+
+    }; 
+
+  } 
+
+_satellite["_runScript1"](function(event, target, Promise) {
+//login
+var directCallFlv2 = _satellite.cookie.get("directCallFlv2");
+var directCallFlAA = _satellite.cookie.get("directCallFlAA");
+
+if(directCallFlAA!=directCallFlv2 && directCallFlv2=="Y"){
+  _satellite.setVar('GUID', $.cookies.get("guid", {domain : ".samsung.com"}));
+  _satellite.track('login');
+} 
+_satellite.cookie.set("directCallFlAA", directCallFlv2, {expires: null, domain : ".samsung.com"});
+});
+
+function fcTrack(t,a){var e=a;_satellite.setVar("fcEvent",t),_satellite.setVar("fcData",e),_satellite.track("floatingChat")}function fcTrack(t,a,e){var l=a;_satellite.setVar("fcEvent",t),_satellite.setVar("fcData",l),_satellite.setVar("fcAgent",e),_satellite.track("floatingChat")}

@@ -1,0 +1,451 @@
+
+function GAProxy(){
+    this.push = function(args){
+        if(args.length > 5){
+            throw "invalid argument length";
+        }
+        var eventName = args[0];
+        var category = args[1];
+        var action = args[2];
+        var label = args[3];
+        var value = args[4];
+        if(eventName !== '_trackEvent'){ // ignore
+            return;
+        }
+        if(typeof(action) === "undefined"){
+            alert("actionが設定されていません");
+            return;
+        }
+        var params = ["send", "event", category, action, label, value];
+        var filtered_params = params.filter(function(e){
+            return typeof(e) !== "undefined";
+        });
+        if(typeof(ga) !== "undefined"){
+            ga.apply(window, filtered_params);
+        }
+    };
+}
+var _gaq = new GAProxy();
+
+
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+
+
+  googletag.cmd.push(function() {
+googletag.defineSlot('/21627555768/livedoor_TOP/PC/main_middle_left', [300, 250], 'div-gpt-ad-1523251167609-0').addService(googletag.pubads());googletag.defineSlot('/21627555768/livedoor_TOP/PC/main_middle_right', [300, 250], 'div-gpt-ad-1523251186864-0').addService(googletag.pubads());googletag.defineSlot('/21627555768/livedoor_TOP/PC/sbu_1st', [300, 250], 'div-gpt-ad-1523251221036-0').addService(googletag.pubads());
+
+
+
+    googletag.pubads().setTargeting('env', ["production"]);
+
+
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+  });
+
+<!--
+    google_ad_client = "ca-pub-6988676431156825";
+    /* top_1st_300×250_b */
+    google_ad_slot = "5580519287";
+    google_ad_width = 300;
+    google_ad_height = 250;
+    //-->
+    
+
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1523251221036-0'); });
+
+
+    var rand_topics_title_hash = {};
+
+    var topics_ab_title = new Array();
+    var target_topics = {};
+
+    
+    
+    
+    topics_ab_title = randomAdv(target_topics);
+    rand_topics_title_hash['topics_2200203'] = topics_ab_title;
+
+    var topics_ab_title = new Array();
+    var target_topics = {};
+
+    
+    
+    
+    topics_ab_title = randomAdv(target_topics);
+    rand_topics_title_hash['topics_2200242'] = topics_ab_title;
+
+    var topics_ab_title = new Array();
+    var target_topics = {};
+
+    
+    
+    
+    topics_ab_title = randomAdv(target_topics);
+    rand_topics_title_hash['topics_2200219'] = topics_ab_title;
+
+    var topics_ab_title = new Array();
+    var target_topics = {};
+
+    
+    
+    
+    topics_ab_title = randomAdv(target_topics);
+    rand_topics_title_hash['topics_2200211'] = topics_ab_title;
+
+    var topics_ab_title = new Array();
+    var target_topics = {};
+
+    
+    
+    
+    topics_ab_title = randomAdv(target_topics);
+    rand_topics_title_hash['topics_2199994'] = topics_ab_title;
+
+    var topics_ab_title = new Array();
+    var target_topics = {};
+
+    
+    
+    
+    topics_ab_title = randomAdv(target_topics);
+    rand_topics_title_hash['topics_2199921'] = topics_ab_title;
+
+
+    rewrite_topics_titles(rand_topics_title_hash);
+    $(".rewrite_ab").css("visibility","visible");
+    
+
+var rand_topics_title_hash = {};
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927511'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927486'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927517'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927527'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927534'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927464'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927432'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927491'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927505'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927523'] = topics_ab_title;
+
+var topics_ab_title = new Array();
+var target_topics = {};
+
+
+
+
+topics_ab_title = randomAdv(target_topics);
+rand_topics_title_hash['topics_2927448'] = topics_ab_title;
+
+
+var rand_headline_title_hash = {};
+var rand_headline_category_hash = {};
+var rand_headline_image_hash = {};
+var rand_headline_link_hash = {};
+var rand_headline_link_category_hash = {};
+var headline_ab_title = new Array();
+var target_headline = {};
+
+
+
+
+headline_ab_title = randomAdv(target_headline);
+rand_headline_image_hash['headline_img_1_424997'] = headline_ab_title;
+rand_headline_image_hash['headline_img_2_424997'] = headline_ab_title;
+rand_headline_image_hash['headline_img_3_424997'] = headline_ab_title;
+rand_headline_title_hash['headline_424997'] = headline_ab_title;
+rand_headline_category_hash['headline_424997'] = 1;
+rand_headline_link_hash['headline_link_424997'] = headline_ab_title;
+rand_headline_link_category_hash['headline_link_424997'] = 1;
+
+rewrite_headline_titles(rand_headline_title_hash,rand_headline_category_hash);
+rewrite_headline_link(rand_headline_link_hash,rand_headline_link_category_hash);
+rewrite_titles_image(rand_headline_image_hash);
+rewrite_topics_titles(rand_topics_title_hash);
+$(".rewrite_ab").css("visibility","visible");
+
+
+    var ApiKey = 'kh7jBzB1J7jENvWUDvZ6hQmRLiyo1Owh';
+    $(function() {
+      var topics_category = $('#userParam [name=topics_category_saved]').val();
+      var id = "topics_category_" + topics_category;
+      if (topics_category != $('#userParam [name=topics_category]').val()) {
+        $("#" + id).trigger("click", [ true ]);
+      }
+      $("#" + id).addClass('active');
+    });
+
+
+var rand_article_title_hash = {};
+var rand_article_title_link_hash = {};
+var rand_article_title_image_hash = {};
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200020'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200020'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200020'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_20230260'] = article_ab_title;
+rand_article_title_link_hash['article_link_20230260'] = article_ab_title;
+rand_article_title_image_hash['article_img_20230260'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200085'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200085'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200085'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_20230244'] = article_ab_title;
+rand_article_title_link_hash['article_link_20230244'] = article_ab_title;
+rand_article_title_image_hash['article_img_20230244'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200328'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200328'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200328'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200111'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200111'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200111'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200214'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200214'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200214'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200302'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200302'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200302'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200255'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200255'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200255'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200345'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200345'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200345'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200357'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200357'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200357'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200006'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200006'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200006'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_20230043'] = article_ab_title;
+rand_article_title_link_hash['article_link_20230043'] = article_ab_title;
+rand_article_title_image_hash['article_img_20230043'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200096'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200096'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200096'] = article_ab_title;
+
+var article_ab_title = new Array();
+var target_article = {};
+
+
+
+
+article_ab_title = randomAdv(target_article);
+rand_article_title_hash['article_2200150'] = article_ab_title;
+rand_article_title_link_hash['article_link_2200150'] = article_ab_title;
+rand_article_title_image_hash['article_img_2200150'] = article_ab_title;
+
+rewrite_titles_figcaption_span(rand_article_title_hash);
+rewrite_topics_link(rand_article_title_link_hash);
+rewrite_titles_image_alt(rand_article_title_image_hash);
+$(".rewrite_ab").css("visibility","visible");
+
+
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1523251167609-0'); });
+
+
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1523251186864-0'); });
+
+
+$(function(){
+  $('.menu_open a').click(function(){
+    $('#slide-box').css('display','block');
+    $('aside#close_layer').css('z-index','5');
+  });
+  $('#slide-box .btn_close').click(function(){
+    $(this).parents('#slide-box').css('display','none');
+    $('aside#close_layer').css('z-index','-1');
+  });
+});

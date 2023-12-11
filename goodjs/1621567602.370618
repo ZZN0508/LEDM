@@ -1,0 +1,132 @@
+window.scriptsLoaded++;
+(function () {
+    try {
+        var getQueryParamKeyPairs = function getQueryParamKeyPairs() {
+            var params, query, rwg_token;
+            query = window.tgt.dataLayer.appState.url.split("?")[1];
+
+            if (query !== undefined) {
+                params = query.split("&");
+
+                for (var i = 0; i < params.length; ++i) {
+                    var pair = params[i].split('=');
+
+                    if (pair[0] == 'rwg_token') {
+                        rwg_token = decodeURIComponent(pair[1]);
+                        break;
+                    }
+                }
+            }
+
+            return rwg_token;
+        };
+
+        var getCookie = function getCookie(name) {
+            var parts, returnValue, value;
+            value = "; " + document.cookie;
+            parts = value.split("; " + name + "=");
+            returnValue = parts.pop().split(";").shift();
+            return returnValue;
+        };
+
+        var setCookie = function setCookie(cookieName, cookieValue, days) {
+            var date, expires;
+            date = new Date();
+            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            expires = "; expires=" + date.toUTCString();
+            document.cookie = cookieName + '=' + cookieValue + expires + ';domain=.target.com; path=/';
+        };
+
+        var gTagCalls = function gTagCalls(gtag) {
+            gtag('js', new Date());
+            gtag('config', 'DC-2906542');
+            gtag('config', 'AW-1069118966');
+            var rwg_token = getQueryParamKeyPairs();
+
+            if (window.tgt.dataLayer.appState.pageType === 'product details') {
+                gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-2906542/tgt/targe0+standard'
+                });
+            } else if (window.tgt.dataLayer.appState.pageName === 'circle Dashboard') {
+                gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-2906542/tgtcir00/tgtcir04+standard'
+                });
+            } else if (window.tgt.dataLayer.appState.pageName === 'home page') {
+                gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-2906542/tgtcir00/tgtcir01+standard'
+                });
+            } else if (window.tgt.dataLayer.appState.pageName === 'circle home') {
+                gtag('event', 'conversion', {
+                    'allow_custom_scripts': true,
+                    'send_to': 'DC-2906542/tgtcir00/tgtcir00+standard'
+                });
+            } else if (rwg_token !== undefined) {
+                var tpId = getCookie("tlThirdPartyIds");
+                tpId = tpId === "" ? {} : JSON.parse(decodeURIComponent(tpId));
+                tpId.rwgToken = rwg_token;
+                tpId.rwgTokenTS = new Date().toString();
+                setCookie('tlThirdPartyIds', encodeURIComponent(JSON.stringify(tpId)), 730);
+            }
+        };
+
+        var gTag = function gTag() {
+            var element, gtag;
+            element = document.querySelectorAll('.gTag');
+
+            if (window.dataLayer === undefined) {
+                window.dataLayer = [];
+            }
+
+            gtag = function gtag() {
+                dataLayer.push(arguments);
+            };
+
+            if (element.length <= 0) {
+                var head, script;
+                head = document.getElementsByTagName('head')[0];
+                script = document.createElement('script');
+                script.async = true;
+                script.className = 'gTag';
+                script.type = 'text/javascript';
+
+                script.onload = function () {
+                    gTagCalls(gtag);
+                };
+
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=DC-2906542';
+                head.appendChild(script);
+            } else {
+                gTagCalls(gtag);
+            }
+        };
+
+        var complianceFilter = function complianceFilter(dataLayer) {
+            return dataLayer.compliance.find(function (item) {
+                return item.type.toLowerCase() === "ccpa sell" && item.status.toLowerCase() === "opt out";
+            });
+        };
+
+        var coreFunction = function coreFunction() {
+            var ccpaSaleOptIn = true;
+
+            if (window.tgt !== undefined && window.tgt !== null && window.tgt.dataLayer !== undefined && window.tgt.dataLayer !== null) {
+                if (window.tgt.dataLayer.compliance != null) {
+                    if (complianceFilter(window.tgt.dataLayer) !== undefined) {
+                        ccpaSaleOptIn = false;
+                    }
+                }
+
+                if (ccpaSaleOptIn) {
+                    gTag();
+                }
+            }
+        };
+
+        coreFunction();
+    }catch(error) {
+        console.log(error.message);
+    }
+})();

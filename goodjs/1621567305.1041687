@@ -1,0 +1,91 @@
+$(document).ready(function(){
+  //alert("cross sell js");
+ var FedIDval = $.cookie('Fed_ID_NLI');  
+ var ClientIdVal = $.cookie('_ga');
+  
+  ClientIdVal = ClientIdVal.substring(6);
+  console.log("ClientIdVal : "+ClientIdVal);
+ var APIurl = 'https://asia-east2-quantum-flood-755.cloudfunctions.net/per-cross-sell';
+ var x="";
+ $.ajax({
+  url: "https://asia-east2-quantum-flood-755.cloudfunctions.net/per-cross-sell",
+  type: "POST",
+  data: {
+   "FedId": FedIDval,
+   "ClientId": ClientIdVal
+  },
+  dataType: 'json', 
+  success: function (data) {
+    console.log("Data : "+data);
+     var myObj = data;
+   if(data.product != ""){
+   //  for (i =0; i < myObj.payload.length; i++) {
+      x += data.product;
+      //var keyId = "."+x;
+      var keyId = "#"+x;
+      console.log(" GA Data : "+keyId);
+     // $("#GadataVisbile").css('display', 'none');
+      $(keyId).css('display', 'block');
+     // alert("Data Blocked...");
+      //$("div[style='display: none;']").remove();    
+    $(".gaDataShow > div[style='display: none;']").remove();        
+   }
+   else{
+    console.log("No Data in API: "+data.product);
+      $(".DefaultGa").css('display', 'block');
+      //$("div[style='display: none;']").remove();
+      $(".gaDataShow > div[style='display: none;']").remove(); 
+   }   
+  }, 
+   error: function(){
+     console.log("GA Invalid API File................");
+      $(".DefaultGa").css('display', 'block');
+      //$("div[style='display: none;']").remove();
+       $(".gaDataShow > div[style='display: none;']").remove();
+    }
+    
+ });
+ 
+ 
+ // Hcpl Change start
+  $(".closeVisit1").click(function() {
+         // alert("Closed");
+  // $("#myDivAdd1").css("display","none")
+   $("#myDivAdd1").remove();   
+  });
+  
+  setTimeout(function(){
+   $("#myDivAdd1").addClass("cross-sell-popup")
+  }, 15000);
+  
+  setTimeout(function() {
+    $('#myDivAdd1').remove();
+  }, 45000);
+ // Hcpl Change End
+ 
+  /** Cross sell popUp revamp : start **/
+ /*  setTimeout(function() {
+   $("#myDivAdd1").addClass("displayblockClass1")
+  }, 8000);
+  setTimeout(function() {
+   $("#myDivAdd1").addClass("fadeclass1")
+  }, 42000);
+  setTimeout(function() {
+   //$("#myDivAdd").removeClass("displayblockClass").removeClass("sellAds").removeClass("lastVisit")
+   $("#myDivAdd1").remove();
+  }, 42001);
+  $(".closeVisit1").click(function() {
+          alert("Closed");
+   $("#myDivAdd1").css("display","none")
+   setTimeout(function() {
+   $("#myDivAdd1").addClass("fadeclass1")
+   }, 0);
+   setTimeout(function() {
+    $("#myDivAdd1").addClass('displynoneclass1').removeClass("displayblockClass1").removeClass("sellAds1").removeClass("lastVisit1")
+   }, 2000);
+  }); */
+  /** Cross sell popUp revamp : end **/
+
+
+ 
+});

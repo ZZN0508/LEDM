@@ -1,0 +1,28 @@
+
+var DisneyOneID = {"config":{"clientId":"DATG-FIVETHIRTYEIGHT.WEB-PROD","langPref":"en-US","debug":false,"responderPage":"https:\/\/fivethirtyeight.com\/oneid-responder","campaignName":"FiveThirtyEight"}};
+
+
+var ESPNTaboola = {"publisher":"abcnews-fivethirtyeight","type":"home"};
+
+
+var ABCAnalytics = {"nielsen":{"asset_id":10521,"section":"index","seg_a":"","seg_b":"","seg_c":"","debug":""},"chartbeat":{"uid":"12240","domain":"fivethirtyeight.com","path":"\/","sections":"","authors":"","title":"FiveThirtyEight","loadPubJS":false,"loadVidJS":true},"gtm":{"id":"GTM-KLHT6T2"},"omniture":{"pageName":"index:homepage","prop1":"fivethirtyeight","prop2":"","prop5":"index","prop6":"","prop7":"index","prop8":"index","prop12":"FiveThirtyEight","prop13":"","prop14":"","prop15":"https:\/\/fivethirtyeight.com\/","prop16":"https:\/\/fivethirtyeight.com\/","prop20":"Desktop","prop23":"","eVar5":"index","eVar6":"","eVar7":"index","eVar8":"index","eVar9":false,"eVar10":"17:25","eVar12":"FiveThirtyEight","eVar13":"","eVar14":"","eVar15":"https:\/\/fivethirtyeight.com\/","eVar16":"https:\/\/fivethirtyeight.com\/","eVar20":"Desktop","eVar21":null,"eVar22":null},"account":"wdgnewfivethirtyeight"};
+
+
+{"@context":"http://schema.org","@type":"Organization","url":"https://fivethirtyeight.com/","name":"FiveThirtyEight","logo":"https://fivethirtyeight.com/wp-content/themes/espn-fivethirtyeight/assets/images/fivethirtyeight-logo.png","sameAs":["https://twitter.com/FiveThirtyEight","https://www.facebook.com/fivethirtyeight","https://www.instagram.com/fivethirtyeight"]}
+
+
+{"@context":"http://schema.org","@type":"WebSite","name":"FiveThirtyEight","url":"https://fivethirtyeight.com/","potentialAction":{"@type":"SearchAction","target":"https://fivethirtyeight.com/?s={search_term_string}","query-input":"required name=search_term_string"}}
+
+
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+
+
+var ESPNSocial = {"fbVersion":"6.0","fbAppId":"797620670264818"};
+
+
+var DTCIAdConfig = {"adSlotsToRefresh":["Banner","InContent","incontentTeads","incontentTeads2","DailyShowHP"],"adUnitPath":"\/21783347309\/abc-news\/fivethirtyeight.com\/web\/homepage","placements":{"Banner":{"out-of-page":false,"sizes":[[970,250],[970,66],[728,90],[320,50],[300,50]],"defer":"none"},"InContent":{"out-of-page":false,"sizes":[[300,250],[300,600]],"defer":"none"},"incontentTeads":{"out-of-page":false,"sizes":[1,3],"defer":"none"},"incontentTeads2":{"out-of-page":false,"sizes":[1,3],"defer":"none"},"A9InContent":{"out-of-page":false,"sizes":[[300,250],[300,600]],"defer":"none"},"DailyShowHP":{"out-of-page":false,"sizes":[[272,35]],"defer":"none"}},"slots":{"Banner":[],"InContent":[],"incontentTeads":[],"incontentTeads2":[],"A9InContent":[],"DailyShowHP":[]},"mappings":{"Banner":[[[1280,100],[[970,250],[970,66],[728,90]]],[[1024,100],[[970,250],[970,66],[728,90]]],[[768,100],[[728,90]]],[[0,0],[[320,50],[300,50]]]],"InContent":[[[0,0],[]],[[768,50],[300,250]]],"DailyShowHP":[[[0,0],[272,35]]]},"targeting":{"pgtyp":"index","sp":"fivethirtyeight","lang":"en","devType":"desktop","hip":"0fa42c848a308ba428e29b959d6466036573c1d00aa8daae0db80888042316bc"},"devType":"desktop","referringSite":null,"referralMap":{"facebook.com":"facebook","twitter.com":"twitter","t.co":"twitter","google.com":"google","bing.com":"bing","yahoo.com":"yahoo","www.espn.com":"espn","espn.com":"espn","instagram.com":"instagram","reddit.com":"reddit","bleacherreport.com":"bleacherreport","tumblr.com":"tumblr","t.umblr.com":"tumblr","pinterest.com":"pinterest","fivethirtyeight.com":"fivethirtyeight","grantland.com":"grantland","theundefeated.com":"theundefeated"},"useOverlay":"0","refreshSimulatenously":"1","disableInitialLoad":"1","a9id":"3899","a9Params":{"section":"homepage"}};
+
+
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:9.7',blog:'144970551',post:'10521',tz:'-4',srv:'fivethirtyeight.com'} ]);
+	_stq.push([ 'clickTrackerInit', '144970551', '10521' ]);

@@ -1,0 +1,3 @@
+
+{"@type":"WebSite","headline":"GitHub Pages","url":"https://pages.github.com/","description":"Websites for you and your projects, hosted directly from your GitHub repository. Just edit, push, and your changes are live.","name":"GitHub Pages","@context":"https://schema.org"}
+window.slides = {"bootstrap":"Bootstrap","yeoman":"Yeoman","facebookdesign":"Facebook Design","foundation":"Foundation","ghtraining":"GitHub Training","adobeos":"Adobe Open Source","jekyllrb":"Jekyll","electron":"Electron","semanticui":"Semantic UI","microsoft":"Microsoft on GitHub"}

@@ -1,0 +1,1 @@
+(window.HUYA_MAIN_APP_WEBPACK_JSONP=window.HUYA_MAIN_APP_WEBPACK_JSONP||[]).push([[16],{39:function(n,t,o){"use strict";o.r(t);var i=o(6),u=o(5),e=o.n(u);t.default=function(n){var t=e.a.once((function(){return i.default.init(n)}));$(window).on("load.report",t),setTimeout(t,3500)}}}]);

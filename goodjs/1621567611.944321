@@ -1,0 +1,306 @@
+/*! Riloadr.js 2.0.0 (c) 2014 Tubal Martin - MIT license */ ! function(a) {
+    "function" == typeof define && define.amd ? define("riloadr", ["jquery"], a) : window.Riloadr = a(jQuery)
+}(function(a) {
+    "use strict";
+
+    function jb(b) {
+        function cb() {
+            p = a(m), B = a(v), kb(D), E = lb(D), db(), eb(), (!J || K) && g[R]()
+        }
+
+        function db() {
+            hb = wb(), $ = mb(D, E, hb), ab = nb($, D), bb = ob(D)
+        }
+
+        function eb() {
+            J === j && V.on(j + q, g[R]), (K || P) && V.on(w + q + " " + S + q, X), K && (V.on(u + q, W), l && p.on(u + q, W).on("imageshow" + q, W))
+        }
+
+        function fb() {
+            J === j && V.off(j + q, g[R]), P || (V.off(w + q + " " + S + q, X), K && (V.off(u + q, W), l && p.off(u + q, W).off("imageshow" + q, W)))
+        }
+
+        function gb(b, c) {
+            var d = b[A] ? ab : $,
+                e = g.buildImageSrc(b, d);
+            return H in d && (e = e.split("."), e.pop(), e = e.join(".") + "." + d[H]), c && (e += (/\?/.test(e) ? "&" : "?") + "riloadrts=" + a.now()), encodeURI(e)
+        }
+
+        function jb() {
+            var c = this,
+                d = a(c),
+                e = d[o]() + d[s](); + e > 0 && (("hidden" === d.css("visibility") || "none" === d.css("display")) && d.css("visibility", "visible").show(), x in b && b[x][k](c), sb(c))
+        }
+
+        function pb() {
+            var a = this,
+                e = function(b) {
+                    var c = new Image;
+                    c[x] = function() {
+                        a[h] = c[h], jb[k](a)
+                    }, c[z] = c[F] = function() {
+                        pb[k](a)
+                    }, c[h] = b
+                };
+            z in b && b[z][k](a), a[y] < N ? (a[y]++, e(gb(a, c))) : A in $ && !a[A] && ab ? (a[y] = 0, a[A] = c, e(gb(a, d))) : sb(a)
+        }
+
+        function sb(a) {
+            a[x] = a[z] = a[F] = f, Z--, 0 === Z && (fb(), M in b && b[M]())
+        }
+        b[G] = b[G] || U;
+        var p, B, E, $, _, ab, bb, g = this,
+            i = parseInt(1e7 * Math.random()),
+            l = !!b.contentOverflowsContainer,
+            m = l ? b[G] : U,
+            v = b[G] === U ? "body" : b[G],
+            C = b.selector || "img[data-src]",
+            D = b.breakpoints || [{
+                name: "",
+                minWidth: 1
+            }],
+            I = b.defer,
+            J = I && I.mode.toLowerCase(),
+            K = "invisible" === J && !ib,
+            L = I && I.threshold || 100,
+            N = b[y] || 0,
+            O = b.watchViewport,
+            P = !!O,
+            Q = "wider" === O,
+            T = "*" === O,
+            W = Db(function() {
+                g[R]()
+            }, e),
+            X = Eb(function() {
+                P && db(), g[R]()
+            }, e),
+            Y = [],
+            Z = 0;
+        g.getOptions = function() {
+            return b
+        }, g[R] = function(b) {
+            Gb(function() {
+                var e, f, g, j, k;
+                P && (e = rb($, bb), f = qb($, _), g = rb($, _)), (!Y[t] || b) && (b && eb(), a(C, B).each(function(a, d) {
+                    r in d && d[r] !== i || n in d || ((!P || P && (Q && f || T && !g || b && !(r in d))) && (Y.push(d), Z++), d[r] = i, (!P || P && Q && e) && (d[n] = c))
+                })), P && Q && e && (P = d);
+                for (j = 0; k = Y[j]; j++)(!K || K && xb(k, L, p)) && (k[y] = 0, k[A] = d, k[x] = jb, k[z] = k[F] = pb, k[h] = gb(k, d), Y.splice(j, 1), j--);
+                _ = $
+            })
+        }, a(cb)
+    }
+
+    function kb(a) {
+        for (var c, b = 0; c = a[b]; b++) c[T] > gb && (a.splice(b, 1), b--)
+    }
+
+    function lb(a) {
+        return a.slice().sort(function(a, b) {
+            return sb(a) - sb(b)
+        })
+    }
+
+    function mb(a, b, c) {
+        for (var g, h, i, j, e = 0, f = pb(b); c > 0 && (g = a[e]); e++) h = +g[C] || d, i = +g[D] || d, j = +g[T] || 1, (h && i && c >= h && i >= c || h && !i && c >= h || i && !h && i >= c) && gb >= j && (f = g);
+        return f
+    }
+
+    function nb(a, b) {
+        if (A in a)
+            for (var d, c = 0; d = b[c]; c++)
+                if (d.name === a[A]) return d
+    }
+
+    function ob(a) {
+        return a[a[t] - 1]
+    }
+
+    function pb(a) {
+        return a[0]
+    }
+
+    function qb(a, b) {
+        return sb(a) > sb(b)
+    }
+
+    function rb(a, b) {
+        return a && b ? a[C] === b[C] && a[D] === b[D] && a[T] === b[T] : d
+    }
+
+    function sb(a) {
+        if (!a) return 0;
+        var b = +a[T] || 1;
+        return Math.max(+a[C] || 0, +a[D] || 0) * (gb >= b ? b : 1)
+    }
+
+    function tb() {
+        if (_) {
+            var a = U.innerWidth || V.width(),
+                b = U.innerHeight || V.height(),
+                d = 50;
+            bb = a > b && a - b > d, cb = ab[U[N]], (bb && cb || !bb && !cb) && (ab = {
+                "-90": c,
+                90: c
+            })
+        }
+    }
+
+    function ub() {
+        var a = c;
+        return a = _ ? ab[U[N]] : eb ? U[K]("all and (" + N + ": " + B + ")").matches : X && X[O] / X[Q] < 1.1, a ? B : J
+    }
+
+    function vb() {
+        return "undefined" != typeof U[N] || /Mobi/.test(U.navigator.userAgent)
+    }
+
+    function wb() {
+        for (var h, i, j, a = [U.innerWidth, X[O], X.offsetWidth, Z[O]], b = [U.innerHeight, X[Q]], c = [a, b], d = function(a) {
+                return a[t] && Math.max[l](Math, a) || 0
+            }, e = function(a, b) {
+                var d, c = {};
+                return c[o] = a, c[s] = b, db && (d = ub(), (d === B && a > b || d === J && b > a) && (c[o] = b, c[s] = a)), c
+            }, f = 0, g = 0; j = c[f]; f++)
+            for (; g < j[t]; g++) isNaN(j[g]) && (j.splice(g, 1), g--);
+        return i = e(d(a), d(b)), h = e(fb[o], fb[s]), (!isNaN(h[o]) && i[o] > h[o] ? h[o] : i[o]) || 0
+    }
+
+    function xb(b, c, d) {
+        var e = a(b);
+        return !(yb(e, c, d) || zb(e, c, d) || Ab(e, c, d) || Bb(e, c, d))
+    }
+
+    function yb(a, b, c) {
+        var d = c[0] === U ? c[s]() + c[L]() : c[v]()[g] + c[s]();
+        return d <= a[v]()[g] - b
+    }
+
+    function zb(a, b, c) {
+        var d = c[0] === U ? c[L]() : c[v]()[g];
+        return d >= a[v]()[g] + a[s]() + b
+    }
+
+    function Ab(a, b, c) {
+        var d = c[0] === U ? c[o]() + c[P]() : c[v]()[i] + c[o]();
+        return d <= a[v]()[i] - b
+    }
+
+    function Bb(a, b, c) {
+        var d = c[0] === U ? c[P]() : c[v]()[i];
+        return d >= a[v]()[i] + a[o]() + b
+    }
+
+    function Cb() {
+        var c, b = $.find("meta[name=viewport]"),
+            d = "content",
+            e = "width=device-width",
+            f = "initial-scale=1";
+        b[t] ? (c = b.attr(d).trim(), c.indexOf(e) < 0 && (c += (c[t] ? "," : p) + e), c.indexOf(f) < 0 && (c += (c[t] ? "," : p) + f), b.attr(d, c)) : $.append(a('<meta name="viewport" content="' + e + "," + f + '">'))
+    }
+
+    function Db(a, b) {
+        function i() {
+            h = new Date, g = f, a[l](e, c)
+        }
+        var c, d, e, g, h = 0;
+        return function() {
+            var f = new Date,
+                j = b - (f - h);
+            return c = arguments, e = this, 0 >= j ? (h = f, d = a[l](e, c)) : g || (g = Fb(i, j)), d
+        }
+    }
+
+    function Eb(a, b, c) {
+        function i() {
+            h = f, c || a[l](g, d)
+        }
+        var d, e, g, h;
+        return function() {
+            var f = c && !h;
+            return d = arguments, g = this, clearTimeout(h), h = Fb(i, b), f && (e = a[l](g, d)), e
+        }
+    }
+
+    function Fb(a, b) {
+        var c = Array[I].slice[k](arguments, 2);
+        return U.setTimeout(function() {
+            return a[l](f, c)
+        }, b)
+    }
+
+    function Gb(a) {
+        return Fb[l](f, [a, 1].concat(Array[I].slice[k](arguments, 1)))
+    }
+    var Z, $, bb, cb, hb, b = "on",
+        c = !0,
+        d = !1,
+        e = 250,
+        f = null,
+        g = "top",
+        h = "src",
+        i = "left",
+        j = "load",
+        k = "call",
+        l = "apply",
+        m = "error",
+        n = "_done_",
+        o = "width",
+        p = "",
+        q = ".riloadr",
+        r = "_groupid_",
+        s = "height",
+        t = "length",
+        u = "scroll",
+        v = "offset",
+        w = "resize",
+        x = b + j,
+        y = "retries",
+        z = b + m,
+        A = "fallback",
+        B = "portrait",
+        C = "minWidth",
+        D = "maxWidth",
+        E = "complete",
+        F = b + "abort",
+        G = "container",
+        H = "imgFormat",
+        I = "prototype",
+        J = "landscape",
+        K = "matchMedia",
+        L = u + "Top",
+        M = b + E,
+        N = "orientation",
+        O = "clientWidth",
+        P = u + "Left",
+        Q = "clientHeight",
+        R = j + "Images_",
+        S = N + "change",
+        T = "minDevicePixelRatio",
+        U = window,
+        V = a(U),
+        W = U.document,
+        X = W.documentElement,
+        Y = a(X),
+        _ = N in U && b + S in U,
+        ab = {
+            0: c,
+            180: c
+        },
+        db = vb(),
+        eb = K in U,
+        fb = U.screen,
+        gb = U.devicePixelRatio || 1,
+        ib = "[object OperaMini]" === Object[I].toString[k](U.operamini);
+    return Y.removeClass("no-js"), a(function() {
+        Z = W.body, $ = a("head"), tb(), Cb()
+    }), jb.version = "2.0.0", jb.isOrientationAwareBrowser = function() {
+        return vb()
+    }, jb[I][j] = function() {
+        this[R](c)
+    }, jb[I].buildImageSrc = function(b, c) {
+        var d = this.getOptions(),
+            e = a(b),
+            f = (e.attr("data-base") || d.base || p) + (e.attr("data-src") || e.attr("data-src-" + c.name) || p);
+        return f.replace(/\{breakpoint-name\}/gi, c.name)
+    }, jb
+});

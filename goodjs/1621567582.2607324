@@ -1,0 +1,33 @@
+
+			{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebSite","@id":"http:\/\/fastpokemap.se\/#website","url":"http:\/\/fastpokemap.se\/","name":"fastpokemap.se","description":"Data, tv- och mobilspel","publisher":{"@id":"http:\/\/fastpokemap.se\/#organization"},"potentialAction":{"@type":"SearchAction","target":"http:\/\/fastpokemap.se\/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"Organization","@id":"http:\/\/fastpokemap.se\/#organization","name":"fastpokemap.se","url":"http:\/\/fastpokemap.se\/"},{"@type":"BreadcrumbList","@id":"http:\/\/fastpokemap.se\/#breadcrumblist","itemListElement":[{"@type":"ListItem","@id":"http:\/\/fastpokemap.se\/#listItem","position":"1","item":{"@id":"http:\/\/fastpokemap.se\/#item","name":"Hem","description":"Data, tv- och mobilspel","url":"http:\/\/fastpokemap.se\/"}}]},{"@type":"WebPage","@id":"http:\/\/fastpokemap.se\/#webpage","url":"http:\/\/fastpokemap.se\/","name":"fastpokemap.se","inLanguage":"sv-SE","isPartOf":{"@id":"http:\/\/fastpokemap.se\/#website"},"breadcrumb":{"@id":"http:\/\/fastpokemap.se\/#breadcrumblist"},"image":{"@type":"ImageObject","@id":"http:\/\/fastpokemap.se\/#mainImage","url":"http:\/\/fastpokemap.se\/files\/2018\/11\/Gaming_351718496.jpg","width":"1000","height":"856"},"primaryImageOfPage":{"@id":"http:\/\/fastpokemap.se\/#mainImage"},"datePublished":"2018-11-02T14:58:58+00:00","dateModified":"2018-11-02T15:01:22+00:00"}]}
+		
+
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "archives-dropdown-2" );
+	function onSelectChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value !== '' ) {
+			document.location.href = this.options[ this.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onSelectChange;
+})();
+/* ]]> */
+
+
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			dropdown.parentNode.submit();
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+
+
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"http:\/\/fastpokemap.se\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */

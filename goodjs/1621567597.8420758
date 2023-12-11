@@ -1,0 +1,484 @@
+// Add any callback code which should run just after Adobe Target initialization.
+function adobeTargetCallback() {
+    // Cookie.
+    try {
+        (function () {
+            document.addEventListener(adobe.target.event.REQUEST_SUCCEEDED, function (e) {
+                var tokens = e.detail.responseTokens;
+
+                if (isEmpty(tokens)) {
+                    return;
+                }
+
+                var uniqueTokens = distinct(tokens);
+
+                uniqueTokens.forEach(function (token) {
+
+                    var cookieName = token["activity.name"] + ' ' + token["experience.name"];
+
+                    // Slugify the trigger_name.
+                    if (cookieName.indexOf('0016000000L2VrmAAF') > -1 || cookieName.indexOf('0016000000d2XPvAAM')) {
+                        cookieName = cookieName.replace(/\((evar.*?)\)|\[(.*?)\]/g, '').trim().replace(/[^a-zA-Z0-9]+/g, '-');
+                    } else {
+                        cookieName = cookieName.toLowerCase().replace(/\((evar.*?)\)|\[(.*?)\]/g, '').trim().replace(/[^a-z0-9]+/g, '-');
+                    }
+
+                    var existingCookie = Cookies.get('opt_campaign') || '';
+
+                    if (existingCookie.indexOf(cookieName) === -1) {
+                        var newCookie = cookieName + '|' + existingCookie;
+
+                        var checkLength = function checkLength() {
+                            if (newCookie.length > 2000) {
+                                newCookie = newCookie.split('|');
+                                newCookie.pop();
+                                newCookie = newCookie.join('|');
+
+                                checkLength();
+                            }
+                        };
+                        checkLength();
+                        Cookies.set('opt_campaign', newCookie, {
+                            expires: 30,
+                            domain: boxBootstrap.cookieDomainTld,
+                        });
+                    }
+
+                });
+            });
+
+            function isEmpty(val) {
+                return (val === undefined || val == null || val.length <= 0) ? true : false;
+            }
+
+            function key(obj) {
+                return Object.keys(obj)
+                    .map(function (k) {
+                        return k + "" + obj[k];
+                    })
+                    .join("");
+            }
+
+            function distinct(arr) {
+                var result = arr.reduce(function (acc, e) {
+                    acc[key(e)] = e;
+                    return acc;
+                }, {});
+
+                return Object.keys(result)
+                    .map(function (k) {
+                        return result[k];
+                    });
+            }
+        })();
+    } catch (err) {
+        console.log('Error in Target Opt Campaign Cookie');
+    }
+}
+
+window.Dmdbase_CDC={};
+window.Dmdbase_CDC={cookieName:"dmdbase_cdc",dimensions:{},logging:!1,enableTNT:!0,enableStandard:!0,enableAnalytics:!0,DB_DEFAULT_VALUE:"ISP Visitor",NOT_IN_AWLIST:"Not In List",NOT_ASSIGNED_AWLIST_VALUE:"In List No Value",CompanyProfile:{},targetAttributes:"demandbase_sid company_name industry sub_industry employee_range employee_count revenue_range audience audience_segment state country_name marketing_alias b2b b2c web_site watch_list_account_type watch_list_account_status".split(" "),useStorage:!0,
+useCookie:!0,targetReady:!0,init:function(){"true"===this.cdc_getParamByName("cdc_debug")&&(this.logging=!0)},setupDimensions:function(){this.dimensions.set1={demandbase_sid:10,company_name:40,industry:40,sub_industry:40,employee_range:30,revenue_range:10,audience:30,audience_segment:30};this.dimensions.set2={ip:30,watch_list_type:30,watch_list_status:30,fortune_1000:30,b2b:30,b2c:30,state:30,country_name:30};this.dimensions.set3={isp:30,primary_naics:30,employee_count:30,street_address:30,city:30,
+state:30,country:30,web_site:30};this.dimensions.set4={marketing_alias:30,phone:30,annual_sales:30,zip:30,placeholder1:30,placeholder2:30,placeholder3:30,placeholder4:30}},callback:function(a){if(a)try{window.Dmdbase_CDC.init(),a=this.flatten(a),window.Dmdbase_CDC.CompanyProfile=a,this.enableAnalytics&&this.setAnalytics(window.Dmdbase_CDC.CompanyProfile),this.enableTNT&&this.setMbox(window.Dmdbase_CDC.CompanyProfile)}catch(b){window.console&&this.logging&&console.log("DB _ "+b.message)}},loadAnalytics:function(){this.setAnalytics(window.Dmdbase_CDC.CompanyProfile)},
+setAnalytics:function(a){try{this.setupDimensions();if(window.sessionStorage){var b=sessionStorage.getItem("s_dmdbase"),c=sessionStorage.getItem("s_dmdbase_detail");c&&"Basic"===c&&this.storeSessionData(a);!b&&this.isCookieSet(this.cookieName)&&this.storeSessionData(a)}this.isCookieSet(this.cookieName)||this.storeSessionData(a)}catch(d){window.console&&this.logging&&console.log("DB _ "+d.message)}},storeSessionData:function(a){var b=this.buildDelimitedStrings(":",a);this.isCookieSet(this.cookieName)||
+this.saveToCookie(this.cookieName,"DBSET",1);Dmdbase_CDC.contextData=b;if(window.sessionStorage&&this.useStorage)for(sessionStorage.setItem("s_dmdbase",Dmdbase_CDC.contextData[0]),sessionStorage.setItem("s_dmdbase_detail",a.information_level),a=1;a<Dmdbase_CDC.contextData.length;a++)sessionStorage.setItem("s_dmdbase_custom"+a,Dmdbase_CDC.contextData[a])},setMbox:function(a){try{this.enableStandard?this.set_mbox_variables(a):null!==window.TNT&&"object"===typeof window.TNT&&this.set_mbox_variables(a)}catch(b){window.console&&
+this.logging&&console.log("DB _ "+b.message)}},flatten:function(a){for(var b in a)if("object"==typeof a[b]&&null!==a[b]&&a.hasOwnProperty(b)){for(var c in a[b])a[b].hasOwnProperty(c)&&(a[b+"_"+c]=a[b][c]);delete a[b]}return a},saveToCookie:function(a,b){var c=new Date;c.setTime(c.getTime()+18E5);c="; expires="+c.toGMTString();var d="; domain="+this.getDomain(document.location.href);document.cookie=a+"="+encodeURIComponent(b)+c+d+"; path=/"},getCookieByName:function(a){a+="=";for(var b=document.cookie.split(";"),
+c=0;c<b.length;c++){for(var d=b[c];" "==d.charAt(0);)d=d.substring(1);if(-1!=d.indexOf(a))return decodeURIComponent(d.substring(a.length,d.length))}return""},getHostName:function(a){a=a.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);return null!=a&&2<a.length&&"string"===typeof a[2]&&0<a[2].length?a[2]:null},getDomain:function(a){var b=a=this.getHostName(a);if(null!=a){var c=a.split(".").reverse();null!=c&&1<c.length&&(b="."+c[1]+"."+c[0],-1!=a.toLowerCase().indexOf(".co.uk")&&2<c.length&&(b="."+c[2]+"."+
+b))}return b},isCookieSet:function(a){return(a=this.getCookieByName(a))&&"undefined"!=a},buildDelimitedStrings:function(a,b){var c=this.dimensions,d=[],f;for(f in c)if(c.hasOwnProperty(f)){var g="",e;for(e in c[f])if(c[f].hasOwnProperty(e)){var h=-1!=e.indexOf("watch_list")&&"Detailed"===b.information_level&&b.hasOwnProperty(e)?this.truthy(b[e],this.NOT_ASSIGNED_AWLIST_VALUE):-1==e.indexOf("watch_list")||"Detailed"!==b.information_level||b.hasOwnProperty(e)?this.truthy(b[e],this.DB_DEFAULT_VALUE):
+this.truthy(b[e],this.NOT_IN_AWLIST);h=this.resizeStr(h,c[f][e]);g+=h+a}g=g.substring(0,g.length-1);g=this.resizeStr(g,255);d.push(g)}return d},resizeStr:function(a,b){a.length>b&&(a=a.substring(0,b));return a},truthy:function(a,b){return a||(!1===a?a:b)},cdc_getParamByName:function(a){a=a.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");a=(new RegExp("[\\?&]"+a+"=([^&#]*)")).exec(location.search);return null===a?"":decodeURIComponent(a[1].replace(/\+/g," "))},set_mbox_variables:function(a){try{var b=
+"",c;for(c in a)a.hasOwnProperty(c)&&-1!=this.targetAttributes.indexOf(c)&&(b+="profile."+c+"="+a[c]+",");b=b.split(",");if(this.enableStandard)window.targetPageParams=function(){return b},window.targetPageParams(),window.Dmdbase_CDC.targetReady=!0;else if("undefined"!==typeof mboxFactoryDefault){var d=mboxFactoryDefault.getUrlBuilder();d.addParameters(b)}}catch(f){console.log(f)}}};
+
+function initVisitorId() {
+  // Initialize Visitor API service.
+  var visitor = Visitor.getInstance("B9B28F7954BD76240A4C98BC@AdobeOrg", {
+    trackingServer: "analytics.box.com",
+    trackingServerSecure: "sanalytics.box.com",
+    marketingCloudServer: "analytics.box.com",
+    marketingCloudServerSecure: "sanalytics.box.com"
+  });
+
+  // Create a global object to store visitor id for Adobe Launch.
+  window.adobeVisitorId = window.adobeVisitorId || {};
+  adobeVisitorId = visitor;
+
+  // Storage for demandbase data.
+  var profile = {};
+
+  if (window.sessionStorage && sessionStorage.getItem('demandBase') !== null) {
+    profile = JSON.parse(sessionStorage.getItem('demandBase'));
+
+    // Trigger the callback of the DB library.
+    window.Dmdbase_CDC.callback(profile);
+  }
+
+  // Adobe Target params.
+  targetPageParams = function() {
+    return {
+        "pageName": document.title,
+        "destinationURL": document.location.href,
+        "referringURL": document.referrer ? document.referrer : undefined,
+        "hostname": document.location.hostname,
+        "profiles": profile ? profile : null,
+        "active_customer_cookie" : Cookies.get('box_active_user_subdomain') ? 'true' : 'false'
+    };
+  };
+
+  // Set default behavior for body hiding.
+  var adobeTargetHideBehavior = false;
+
+  // Check pre-hide status.
+  if (typeof adobeTargetBodyHidingEnabled !== 'undefined') {
+    adobeTargetHideBehavior = true
+  }
+
+  // Override Adobe Target settings.
+  window.targetGlobalSettings = {
+    bodyHidingEnabled: adobeTargetHideBehavior,
+    overrideMboxEdgeServer: false
+  };
+}
+
+/*! Fetch Inject v2.0.4 | Copyright (C) Josh Habdas @license Zlib */
+var fetchInject=function(){'use strict';var a=function(a,b,d,f,e,c,g){c=b.createElement(d),g=b.getElementsByTagName(d)[0],c.appendChild(b.createTextNode(f.text)),c.onload=e(f),g?g.parentNode.insertBefore(c,g):b.head.appendChild(c)};return function(b,c){if(!arguments.length)return Promise.reject(new ReferenceError("Failed to execute 'fetchInject': 1 argument required but only 0 present."));if(arguments[0]&&arguments[0].constructor!==Array)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 1 must be of type 'Array'."));if(arguments[1]&&arguments[1].constructor!==Promise)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 2 must be of type 'Promise'."));var d=[],e=c?[].concat(c):[],f=[];return b.forEach(function(a){return e.push(window.fetch(a).then(function(a){return[a.clone().text(),a.blob()]}).then(function(a){return Promise.all(a).then(function(a){d.push({text:a[0],blob:a[1]})})}))}),Promise.all(e).then(function(){return d.forEach(function(b){f.push({then:function(c){b.blob.type.includes("text/css")?a(window,document,"style",b,c):a(window,document,"script",b,c)}})}),Promise.all(f)})}}();
+
+var boxPrehideSelectorList="body,#site-header,.info-notice__top"
+/* Adobe Target Pre-hide snippet.
+* https://docs.adobe.com/content/help/en/launch/using/extensions-ref/adobe-extension/target-extension/overview.html
+* The script is modified by exporting method 'preHideMethods' with internal functions that allows to disable pre-hide functionality before the given timer.
+*/
+// Set a global variable for pre-hiding.
+var adobeTargetBodyHidingEnabled = true;
+// The JavaScript variable 'boxPrehideSelectorList' is created by Drupal backend to add concatenated css selectors.
+(function(a,b,c,d){function e(){return b.getElementsByTagName("head")[0]}function f(a,c){if(a){var d=b.getElementById(c);d&&a.removeChild(d)}}return function(a,c,d){if(a){var e=b.createElement("style");e.id=c,e.innerHTML=d,a.appendChild(e)}}(e(),"at-body-style",c),setTimeout(function(){f(e(),"at-body-style")},d),preHideMethods={removeStyle:f,getParent:e,STYLE_ID:"at-body-style"},{preHideMethods:preHideMethods}})(window,document, boxPrehideSelectorList+"{opacity: 0 !important}",3e3);
+
+var boxAdobeTargetScriptPath ={"at":"\/\/cdn03.boxcdn.net\/modules\/custom\/box_adobe_target\/js\/adobe\/at.min.js?qtfhvj","at_callback":"\/\/cdn03.boxcdn.net\/modules\/custom\/box_adobe_target\/js\/at_callback.js?qtfhvj","visitor_api":"\/\/cdn03.boxcdn.net\/modules\/custom\/box_adobe_target\/js\/adobe\/visitorapi.min.js?qtfhvj","visitor_api_init":"\/\/cdn03.boxcdn.net\/modules\/custom\/box_adobe_target\/js\/visitorapi_callback.js?qtfhvj","demandbase_lib":"\/\/cdn03.boxcdn.net\/modules\/custom\/box_adobe_target\/js\/demandbase\/lJdrm4D0.min.js?qtfhvj","demandbase_callback_url":"\/\/api.company-target.com\/api\/v2\/ip.json?key=0770684aa1eec67a65dc95aedbd072fd"}
+/* 
+ * Dependency explanation:
+ * 1. Fetch demandbase and load the library.
+ * 2. Load Visitor API library first 'visitor_api'.
+ * 3. Load Visitor API library initialization in parallel with the library 'visitor_api_init'.
+ * 4. Trigger the function invocation 'initVisitorId' after the libraries has been loaded.
+ * 5. Load Adobe Target library 'at'.
+ * 6. Load Adobe target callback 'at_callback'.
+ * 7. Trigger the function invocation 'adobeTargetCallback' after the libraries has been loaded.
+ */
+
+(function (w, p) {
+    function demandbaseFetch(url) {
+        return new Promise(function (resolve, reject) {
+
+            // Check storage support.
+            if (!w.sessionStorage) {
+                throw new Error("Session storage not supported");
+            }
+
+            // Check if demandbase is stored.
+            if (sessionStorage.getItem('demandBase') === null) {
+                fetch(url)
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error("HTTP error, status = " + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(function (json) {
+                        // Store the data.
+                        sessionStorage.setItem('demandBase', JSON.stringify(json));
+                        resolve()
+                    })
+                    .catch(function (error) {
+                        // In case DB fails for any reason, continue to load the rest of functionality.
+                        console.error(error.message)
+                        resolve()
+                    });
+            } else {
+                // Get data from storage.
+                resolve()
+            }
+        })
+    }
+
+    if (w.fetch) {
+        fetchInject(
+            [p.at, p.at_callback],
+            fetchInject(
+                [p.demandbase_lib, p.visitor_api, p.visitor_api_init], demandbaseFetch(p.demandbase_callback_url)).then(function () {
+                initVisitorId();
+            })).then(function () {
+            adobeTargetCallback();
+        })
+    } else {
+        loadScript(p.demandbase_lib, function () {
+            loadScript(p.demandbase_callback_url + '&callback=Dmdbase_CDC.callback', function () {
+                // Check if storage is supported along with demandbase objects.
+                if (w.sessionStorage && w.Dmdbase_CDC && w.Dmdbase_CDC.CompanyProfile) {
+                    sessionStorage.setItem('demandBase', JSON.stringify(w.Dmdbase_CDC.CompanyProfile));
+                }
+
+                loadScript(p.visitor_api, function () {
+                    loadScript(p.visitor_api_init, function () {
+                        initVisitorId();
+                        loadScript(p.at, function () {
+                            loadScript(p.at_callback, function () {
+                                adobeTargetCallback();
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    }
+})(window, boxAdobeTargetScriptPath)
+
+var boxBootstrap ={"domainTld":"box.com","cookieDomainTld":".box.com","secure":true,"currUrlLang":"en","isMktg":1,"isRedirecting":false,"facebookPixel":"\/\/cdn03.boxcdn.net\/modules\/custom\/box_scripts\/js\/fbevents.min.js?qtfhvj","infoNotices":[],"prodEnv":true,"languageMapping":{"en":"en-US","en-gb":"en-GB","fr":"fr-FR","de":"de-DE","it":"it-IT","ja":"ja-JP","ko":"ko-KR","nl":"nl-NL","es-419":"es-419","sv":"sv-SE","zh-hant":"zh-CN","da":"da-DK","nb":"nb-NO","pl":"pl-PL","tr":"tr-TR","en-ca":"en-CA","en-au":"en-AU","en-in":"en-IN","en-nl":"en-NL","en-se":"en-SE"}}
+/*! js-cookie v2.2.1 | MIT */
+
+!function(a){var b;if("function"==typeof define&&define.amd&&(define(a),b=!0),"object"==typeof exports&&(module.exports=a(),b=!0),!b){var c=window.Cookies,d=window.Cookies=a();d.noConflict=function(){return window.Cookies=c,d}}}(function(){function a(){for(var a=0,b={};a<arguments.length;a++){var c=arguments[a];for(var d in c)b[d]=c[d]}return b}function b(a){return a.replace(/(%[0-9A-Z]{2})+/g,decodeURIComponent)}function c(d){function e(){}function f(b,c,f){if("undefined"!=typeof document){f=a({path:"/"},e.defaults,f),"number"==typeof f.expires&&(f.expires=new Date(1*new Date+864e5*f.expires)),f.expires=f.expires?f.expires.toUTCString():"";try{var g=JSON.stringify(c);/^[\{\[]/.test(g)&&(c=g)}catch(j){}c=d.write?d.write(c,b):encodeURIComponent(c+"").replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g,decodeURIComponent),b=encodeURIComponent(b+"").replace(/%(23|24|26|2B|5E|60|7C)/g,decodeURIComponent).replace(/[\(\)]/g,escape);var h="";for(var i in f)f[i]&&(h+="; "+i,!0!==f[i]&&(h+="="+f[i].split(";")[0]));return document.cookie=b+"="+c+h}}function g(a,c){if("undefined"!=typeof document){for(var e={},f=document.cookie?document.cookie.split("; "):[],g=0;g<f.length;g++){var h=f[g].split("="),i=h.slice(1).join("=");c||'"'!==i.charAt(0)||(i=i.slice(1,-1));try{var j=b(h[0]);if(i=(d.read||d)(i,j)||b(i),c)try{i=JSON.parse(i)}catch(k){}if(e[j]=i,a===j)break}catch(k){}}return a?e[a]:e}}return e.set=f,e.get=function(a){return g(a,!1)},e.getJSON=function(a){return g(a,!0)},e.remove=function(b,c){f(b,"",a(c,{expires:-1}))},e.defaults={},e.withConverter=c,e}return c(function(){})});
+(function () {
+  // Create box visitor ID for use in gen204 tracking below.
+  // Similar to http://phpjs.org/functions/uniqid/
+  function uniqid(prefix, more_entropy) {
+    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +    revised by: Kankrelune (http://www.webfaktory.info/)
+    // %        note 1: Uses an internal counter (in php_js global) to avoid collision
+    if (typeof prefix === 'undefined') {
+      prefix = "";
+    }
+
+    var retId;
+    var formatSeed = function (seed, reqWidth) {
+
+      // To hex str.
+      seed = parseInt(seed, 10).toString(16);
+
+      // So long we split.
+      if (reqWidth < seed.length) {
+        return seed.slice(seed.length - reqWidth);
+      }
+
+      // So short we pad.
+      if (reqWidth > seed.length) {
+        return Array(1 + (reqWidth - seed.length)).join('0') + seed;
+      }
+      return seed;
+    };
+
+    // BEGIN REDUNDANT
+
+    if (!window.php_js) {
+      window.php_js = {};
+    }
+
+    // END REDUNDANT
+    // Init seed with big random int.
+    if (!window.php_js.uniqidSeed) {
+      window.php_js.uniqidSeed = Math.floor(Math.random() * 0x75bcd15);
+    }
+    window.php_js.uniqidSeed++;
+
+    // Start with prefix, add current milliseconds hex string.
+    retId = prefix;
+    retId += formatSeed(parseInt(new Date().getTime() / 1000, 10), 8);
+
+    // Add seed hex string.
+    retId += formatSeed(window.php_js.uniqidSeed, 5);
+    if (more_entropy) {
+
+      // For more entropy we add a float lower to 10.
+      retId += (Math.random() * 10).toFixed(8).toString();
+    }
+
+    return retId;
+  }
+
+  //  Get domain.
+  var cookieDomain = document.domain.replace(/^[^.]+\./g, "");
+
+  // Data layer variables.
+  window.analyticsData = window.analyticsData || {};
+  analyticsData.boxVisitorID = Cookies.get('box_visitor_id');
+
+  // Check cookie has created the id.
+  if (!analyticsData.boxVisitorID) {
+
+    // Generate a new id.
+    var uniqueId = uniqid('', true);
+
+    // Assign on the data layer.
+    analyticsData.boxVisitorID = uniqueId;
+
+    // Set the cookie.
+    Cookies.set('box_visitor_id', uniqueId, {
+      domain: cookieDomain,
+      path: '/',
+      expires: 365,
+      secure: location.protocol != 'https:' ? false : true
+    });
+  }
+})();
+
+/* global Cookies, boxBootstrap */
+/* eslint-disable prefer-template */
+
+/*
+ *   Automatic redirect to WebApp.
+ */
+(function redirectToApp(window, document, boxBootstrap, Cookies) {
+    // Check for the cookie if user is logged in.
+    const subdomain = Cookies.get('box_active_user_subdomain');
+
+    // If the user has been already authentificated to the WebApp, the cookie should be present in order to fall into this conditional.
+    if (subdomain && boxBootstrap.isMktg) {
+        // Split pathname in parts.
+        const paths = window.location.pathname.toLowerCase().split('/');
+        const filteredPaths = paths.filter(function (el) {
+            return el !== '';
+        });
+
+        // Get the language and region based on the Back-end language map.
+        const currentLanguageLocale = boxBootstrap.languageMapping[boxBootstrap.currUrlLang].toLowerCase();
+
+        // Conditional logic for language locale.
+        // The paths like "/", "en-gb", "de-de", etc. are considered website index.
+        // The paths like "/home", "/en-gb/home", "/de-de/home", etc. are considered normal pages.
+        if (
+            window.location.pathname === '/' ||
+            (filteredPaths[0] === currentLanguageLocale && filteredPaths[1] === undefined)
+        ) {
+            const pattern = /^[a-zA-Z0-9.\-_]+$/;
+            if (pattern.test(subdomain)) {
+                // Redirect to subdomain.
+                window.location.href = 'https://' + subdomain + '.' + boxBootstrap.domainTld + '/login';
+
+                // Hide the marketing website.
+                document.getElementsByTagName('html')[0].setAttribute('style', 'visibility:hidden;');
+
+                // Toggle the state.
+                boxBootstrap.isRedirecting = true;
+            }
+        }
+    }
+})(window, document, boxBootstrap, Cookies);
+
+// http://jscs.info/
+!function(f, b, e, v, n, t, s) {if (f.fbq)return;n = f.fbq = function() {n.callMethod ?
+n.callMethod.apply(n, arguments) : n.queue.push(arguments);};if (!f._fbq)f._fbq = n;
+n.push = n;n.loaded = !0;n.version = '2.0';n.queue = [];t = b.createElement(e);t.async = !0;
+t.src = v;s = b.getElementsByTagName(e)[ 0 ];s.parentNode.insertBefore(t, s);}(window,
+document, 'script', boxBootstrap.facebookPixel);
+
+(function() {
+  var didInit = false;
+  function initMunchkin() {
+    if(didInit === false) {
+      didInit = true;
+      Munchkin.init('107-COJ-713', {"asyncOnly":true});
+    }
+  }
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//munchkin.marketo.net/munchkin.js';
+  s.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      initMunchkin();
+    }
+  };
+  s.onload = initMunchkin;
+  document.getElementsByTagName('head')[0].appendChild(s);
+})();
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "SoftwareApplication",
+            "name": "Box",
+            "description": "Securely store, manage and share all your files, photos and documents.",
+            "softwareVersion": "5.5.3",
+            "screenshot": "https://is2-ssl.mzstatic.com/image/thumb/Purple123/v4/25/b7/30/25b730c4-bd8d-2ecf-b3e0-2fbf68191923/pr_source.png/392x696bb.png",
+            "applicationCategory": "Productivity",
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.77092",
+                "ratingCount": "124649"
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0.0",
+                "priceCurrency": "USD",
+                "category": "free"
+            }
+        }
+    ]
+}
+var infoNoticeInit = function infoNoticeInit() {
+    // Create initial styling elements.
+    var newStyle = document.createElement('style');
+    newStyle.type = 'text/css';
+    newStyle.id = 'info-notice-style';
+
+    // If boxBootstrap are available, check for Cookie information.
+    /* eslint-disable no-undef */
+    if (boxBootstrap && boxBootstrap.infoNotices) {
+        Object.keys(boxBootstrap.infoNotices).forEach(function(id) {
+            var rev = boxBootstrap.infoNotices[id];
+            var cookieName = 'infoNotice_'.concat(id);
+            var cookieValue = Cookies.get(cookieName);
+
+            // If the ID/Rev matches, then hide hide the specific banner.
+            if (typeof cookieValue !== 'undefined' && cookieValue === rev) {
+                var hideNoticeStyling = document.createTextNode(
+                    '.info-notice[data-rev-id="'.concat(rev, '"] { display: none !important; }')
+                );
+
+                newStyle.appendChild(hideNoticeStyling);
+            }
+        });
+    }
+
+    // Fallback to show the banner.
+    var showNoticeStyling = document.createTextNode(
+        '.info-notice.info-notice__top, .info-notice.info-notice__bottom { display: block; }'
+    );
+
+    newStyle.appendChild(showNoticeStyling);
+    document.head.appendChild(newStyle);
+};
+
+infoNoticeInit();
+
+window.lazySizesConfig = window.lazySizesConfig || {};
+if (Cookies.get('backstopjs_preload')) {
+    window.lazySizesConfig.loadMode = 3;
+    window.lazySizesConfig.preloadAfterLoad = true;
+} else {
+    window.lazySizesConfig.loadMode = 2;
+    window.lazySizesConfig.preloadAfterLoad = false;
+}
+
+//https://github.com/void--/googlefonts-font-display-helper/blob/master/src/script.js
+!function(e,t,n){"use strict";var s="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&display=swap",a="gFonts";function o(e){(t.head||t.body).appendChild(e)}function r(e){if(!t.getElementById(a)){var n=t.createElement("style");n.id=a,o(n)}t.getElementById(a).innerHTML=e}n[a]&&r(n[a]);const d=new XMLHttpRequest;d.onreadystatechange=function(){var e;d.readyState===XMLHttpRequest.DONE&&(200===d.status?(n[a]=d.responseText,r(d.responseText)):((e=t.createElement("link")).href=s,e.rel="stylesheet",o(e)))},d.open("GET",s,!0),d.send()}(window,document,localStorage);
+
+    "use strict";
+
+    // Adjust dimensions and display of Body, Site-Header, Main-Nav.
+    var topArea = document.getElementById('page--area__top');
+    var siteHeader = document.getElementById('site-header');
+
+    window.requestAnimationFrame(function(){
+      if (siteHeader) {
+        siteHeader.style.top = topArea.clientHeight + 'px';
+        siteHeader.style.maxHeight = 'calc(100vh - ' + topArea.clientHeight + 'px';
+      }
+
+      // If present, change appearance of Header & Nav.
+      document.body.style.paddingTop = topArea.clientHeight + 'px';
+    });
+
+    /** Directly render html blank. (e.g. used during a 301 transition) */
+    function renderBlank() {
+      document.getElementsByTagName('html')[0].setAttribute('style', 'visibility:hidden;');
+    }
+  
+{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/501","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"boxPhones":{"AU":{"printable":"+61 3 9028 8448","tel":"+61390288448"},"FR":{"printable":"+331 85 14 96 25","tel":"+33185149625"},"DE":{"printable":"+49 89 26205753","tel":"+498926205753"},"NL":{"printable":"+31 20 7956618","tel":"+31207956618"},"NZ":{"printable":"0800 000 185","tel":"+0800000185"},"CH":{"printable":"+41 022 5954623","tel":"+410225954623"},"GB":{"printable":"+44 808 189 0504","tel":"+448081890504"},"US":{"printable":"1.877.729.4269","tel":"+18777294269"}},"boxDriftIdentifiers":{"en":"946w7pnwpuzi","de":"iikytc968mme","fr":"t3gbwp8arc58"},"boxMarketoAPI":{"apiURL":"\/\/go.box.com","apiAccountID":"107-COJ-713","webAppBasePath":"account.box.com\/"},"boxGlobal":{"basePath":"\/","domainTld":"box.com","server":"https:\/\/app.box.com","secure":";secure","countryCode":"JP","isFront":1,"isMktg":1,"translationUrls":{"en":"\/home","en-gb":"\/en-gb\/home","en-ca":"\/en-ca\/home","en-au":"\/en-au\/home","en-in":"\/en-in\/home","en-nl":"\/en-nl\/home","en-se":"\/en-se\/home","fr":"\/fr-fr\/home","de":"\/de-de\/home","it":"\/it-it\/home","ja":"\/ja-jp\/home","ko":"\/ko-kr\/home","es-419":"\/es-419\/home"},"currUrlLang":"en","languageMapping":{"en":"en-US","en-gb":"en-GB","fr":"fr-FR","de":"de-DE","it":"it-IT","ja":"ja-JP","ko":"ko-KR","nl":"nl-NL","es-419":"es-419","sv":"sv-SE","zh-hant":"zh-CN","da":"da-DK","nb":"nb-NO","pl":"pl-PL","tr":"tr-TR","en-ca":"en-CA","en-au":"en-AU","en-in":"en-IN","en-nl":"en-NL","en-se":"en-SE"},"europe":["GB","FR","IT","DE","ES","AL","AD","AM","AT","AZ","BY","BE","BA","BG","HR","CY","CZ","DK","EE","FI","GE","GR","VA","HU","IS","IE","XK","LV","LI","LT","LU","MK","MT","MD","MC","ME","NL","NO","PL","PT","RO","RU","SM","RS","SK","SI","SE","CH","TR","UA"],"cacheBuster":"qtfhvj","linkResource":null,"themeName":"box_shiny","personalization":{"isAvailable":true,"enableGlobally":false,"cookieValidDays":1,"cookieTTLDays":14,"baseUrl":"https:\/\/mktg-personalization.box.com","endpoint":"\/api\/v1\/visitor-personalization","maxWaitingTime":500},"downloadAssetUri":"\/thankyou\/asset-redirect-validate\/placeholder","languageRedirect":"ja","updatedDate":"1618010597","createdDate":"1458498444","pageClass":"page--home"},"user":{"uid":0,"permissionsHash":"53738734ccb9f71198c8c0f306e845be624a6723fe220543e82c7c4ef5c3a203"}}
+window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"99756ea4a7","applicationID":"364511411,136101857","transactionName":"ZAQAMEJSVkRQWhYMX11OIwdEWldZHn0QEEBSDT4KX1dda3JWDBFCXA0OAUJvdlhVXDQMVUQiDQpEQVdbXVwQSA5FCAcT","queueTime":0,"applicationTime":1781,"atts":"SEMDRgpIRUo=","errorBeacon":"bam-cell.nr-data.net","agent":""}

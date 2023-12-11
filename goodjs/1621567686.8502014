@@ -1,0 +1,227 @@
+
+  docElement = this.document.documentElement;
+  docElement.className=docElement.className.replace(/\bno-js\b/,'') + 'js';
+
+
+  (function(){
+      window._pxAppId = 'PXUy3R669N';
+      // Custom parameters
+      // window._pxParam1 = "<param1>";
+      var p = document.getElementsByTagName('script')[0],
+          s = document.createElement('script');
+      s.async = 1;
+      s.src = '/Uy3R669N/init.js';
+      p.parentNode.insertBefore(s,p);
+  }());
+
+
+  window.honeybadgerConfiguration = {
+    apiKey : "3ed52f9b",
+    environment : "production",
+    component : "site",
+    action : "index",
+    revision : "94ffe5a3aa51755db2f4861a4591109afe9f9a4b",
+    onerror : false,
+    ignorePatterns: [/NS_ERROR_FAILURE/, /NS_ERROR_FILE_CORRUPTED/, /NS_ERROR_NOT_INITIALIZED/, /NS_ERROR_STORAGE_BUSY/, /^Script error.?$/, /^Unspecified error.?$/, /Failed to fetch/, /javaEnabled()/, /Blocked a frame with origin "https:\/\/www\.kickstarter\.com"/, /Permission denied to access property "dispatchEvent"/, /Cannot read property 'checkDomStatus' of undefined/, /_avast_submit/, /vid_mate_check is not defined/, /Can't find variable: pktAnnotationHighlighter/, /csRestoreTitle is not defined/, /Failed to read the 'cssRules' property from 'CSSStyleSheet'/, /window.mraid/, /MoatMAK/, /BetterJsPop/, /Network error: JSON|Network error: Unexpected|UnhandledPromiseRejectionWarning: Error/, /a\[b\].target.className.indexOf is not a function/, /can't redefine non-configurable property "userAgent"/, /SymBrowser/, /GM_log is not defined/, /Can't find variable: article/, /xdArbiterSyn/, /Can't find variable: YAHOO/, /Can't find variable: REpub/, /Can't find variable: getShouldDelayWebView/, /Can't find variable: IS_FAVABLE/, /Cannot redefine property: googletag/, /Netværksforbindelsen gik tabt/, /HTMLBodyElement.window.touchMoveFunc/, /fixedTimeID is not defined/, /Can't find variable: loadHomepageTiles/, /papago.naver.net/, /Can't find variable: kw__injected/, /Can't find variable: fas_longPress/, /theurl is not defined/, /MetaMask/, /tgetT is not defined/, /window\.setDgResult is not a function/, /feeddler-article/, /ReferenceError: selectword is not defined/, /web3 is not defined/, /window.AJS is undefined/, /GSApp/, /cordova is not defined/, /javacalljs is not defined/, /setConnectedRobot/, /listenToMutationsFromJS/, /ABse is not defined/, /TextViewAPI/, /navigator.sendBeacon/, /ResizeObserver loop limit exceeded/, /naverapp/, /__show__deepen is not defined/, /__firefox__/, /Can't find variable: fieldset/, /GM_getValue/, /__hawk_browser__ is not defined/]
+  };
+  
+  window.honeybadgerErrorConfiguration = {
+    apiKey : "8c621530",
+    environment : "production",
+    component : "site",
+    action : "index",
+    revision : "94ffe5a3aa51755db2f4861a4591109afe9f9a4b",
+    onerror : false,
+    maxErrors : 20,
+    ignorePatterns: [/NS_ERROR_FAILURE/, /NS_ERROR_FILE_CORRUPTED/, /NS_ERROR_NOT_INITIALIZED/, /NS_ERROR_STORAGE_BUSY/, /^Script error.?$/, /^Unspecified error.?$/, /Failed to fetch/, /javaEnabled()/, /Blocked a frame with origin "https:\/\/www\.kickstarter\.com"/, /Permission denied to access property "dispatchEvent"/, /Cannot read property 'checkDomStatus' of undefined/, /_avast_submit/, /vid_mate_check is not defined/, /Can't find variable: pktAnnotationHighlighter/, /csRestoreTitle is not defined/, /Failed to read the 'cssRules' property from 'CSSStyleSheet'/, /window.mraid/, /MoatMAK/, /BetterJsPop/, /Network error: JSON|Network error: Unexpected|UnhandledPromiseRejectionWarning: Error/, /a\[b\].target.className.indexOf is not a function/, /can't redefine non-configurable property "userAgent"/, /SymBrowser/, /GM_log is not defined/, /Can't find variable: article/, /xdArbiterSyn/, /Can't find variable: YAHOO/, /Can't find variable: REpub/, /Can't find variable: getShouldDelayWebView/, /Can't find variable: IS_FAVABLE/, /Cannot redefine property: googletag/, /Netværksforbindelsen gik tabt/, /HTMLBodyElement.window.touchMoveFunc/, /fixedTimeID is not defined/, /Can't find variable: loadHomepageTiles/, /papago.naver.net/, /Can't find variable: kw__injected/, /Can't find variable: fas_longPress/, /theurl is not defined/, /MetaMask/, /tgetT is not defined/, /window\.setDgResult is not a function/, /feeddler-article/, /ReferenceError: selectword is not defined/, /web3 is not defined/, /window.AJS is undefined/, /GSApp/, /cordova is not defined/, /javacalljs is not defined/, /setConnectedRobot/, /listenToMutationsFromJS/, /ABse is not defined/, /TextViewAPI/, /navigator.sendBeacon/, /ResizeObserver loop limit exceeded/, /naverapp/, /__show__deepen is not defined/, /__firefox__/, /Can't find variable: fieldset/, /GM_getValue/, /__hawk_browser__ is not defined/]
+  };
+
+
+  var _sift = _sift || [];
+  _sift.push(['_setAccount', '637102']);
+  _sift.push(['_setUserId', '']);
+  _sift.push(['_trackPageview']);
+
+  (function() {
+    function loadSift() {
+      var insertScript = function(url) {
+        var sift, s;
+        e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.async = true;
+        e.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + url;
+        s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(e, s);
+      };
+      if (root.visitor_id) {
+        _sift.push(['_setSessionId', root.visitor_id]);
+      }
+      insertScript('cdn.siftscience.com/s.js'); // device
+    }
+    if (window.attachEvent) {
+      window.attachEvent('onload', loadSift);
+    } else {
+      window.addEventListener('load', loadSift, false);
+    }
+  })();
+
+
+  window.current_ip = '211.72.35.152';
+  window.current_ip_datacenter = 'false';
+  window.enabled_features = {"show_posts_feed":true,"mobile_project_collection_optimizations":true,"ios_crashlytics":true,"ios_koala":true,"ios_i18n":true,"ios_tappable_category_location":true,"ios_favorite_categories":true,"ios_qualtrics":true,"ios_native_checkout":true,"ios_native_checkout_pledge_view":true,"ios_live_stream_chat":true,"ios_backer_dashboard":true,"android_native_checkout":true,"new_project_feedback":true,"new_project_preview":true,"new_build_header":true,"message_spam":true,"emoji_locale":true,"default_to_campaign_on_mobile":true,"pinned_posts_on_feed":true,"accounts_upgrade":true,"project_build_claims_detection":true,"project_build_rewards_explorer":true,"project_build_zendesk":true,"user_menu_draft_project":true,"make_100_2020":true,"funding_build":true,"funding_sheet":true,"budget_module":true,"drip_sunset_pledging":true,"qualtrics":true,"profile_projects_react":true,"go_rewardless":true,"lazysizes":true,"budget_viz_fashion":true,"budget_viz_arts":true,"project_update_requests":true,"project_header_media_carousel_hero":true,"PL":true,"GR":true,"SI":true,"addons_in_build":true,"allowed_addons_list":true,"IBAN_flexibility":true,"inside_voices_footer":true,"ch_currency_selector":true,"dk_currency_selector":true,"no_currency_selector":true,"se_currency_selector":true,"projects_on_project_page":true,"recs_on_no_results_page":true,"june_2020_privacy_policy":true,"creator_demographics_survey":true,"uk_shipping_rule_tip":true,"web_error_on_retry_of_failed_3ds_backing":true};
+  window.fb_app_id = '69103156693';
+  window.recaptcha_v2_site_key = '6LcvXZ4UAAAAAHG33vLYekJNAfdFwkLh6Zk0dQJe';
+  window.recaptcha_v3_site_key = '6Ldnq5UUAAAAAIyJ4W5iCRZDxgU7e3r2THPHaCQ-';
+  
+  window.I18n = window.I18n || {};
+  window.apple_pay_countries = ["US", "GB", "CA", "AU", "FR", "CH", "SG", "HK", "ES", "NZ", "JP", "SE", "DK", "IE", "IT", "DE"];
+  I18n.enabled = true;
+  I18n.locale = 'zh';
+  I18n.defaultLocale = 'en';
+  I18n.default_locale = I18n.defaultLocale;
+  I18n.browser_language = 'zh';
+  I18n.chosen_language = '';
+  I18n.calculated_language = 'zh';
+  I18n.display_language = 'zh';
+  I18n.available_locales = [["English","en"],["Deutsch","de"],["Español","es"],["Français","fr"],["Italiano","it"],["日本語","ja"],["繁體中文","zh"]]
+  
+  window.current_currency = 'USD'
+  
+  var _sf_startpt=(new Date()).getTime();
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  window.datalake_properties = {}
+  
+  window.ksr_track_properties = {}
+  
+  window.timeRemaining = function timeRemaining(epochTime){
+  
+    var diff = epochTime - ((new Date()).getTime() / 1000);
+    var num_unit = (diff < 60 && [Math.max(diff, 0), 'seconds']) ||
+      ((diff/=60) < 60 && [diff, 'minutes']) ||
+      ((diff/=60) < 72 && [diff, 'hours']) ||
+      [diff/=24, 'days'];
+  
+    // Round down
+    num_unit[0] = Math.floor(num_unit[0]);
+    // Singularize unit
+    if (num_unit[0] == 1) { num_unit[1] = num_unit[1].replace(/s$/,""); }
+  
+    return num_unit;
+  };
+
+
+  window.current_variants = [];
+
+
+  window.device_attributes = {
+    browserName: "Chrome",
+    browserVersion: "71.0.3578.98",
+    deviceName: "",
+    isBot: false,
+    osName: "Windows",
+    osVersion: "10"
+  };
+
+
+  window.static_routes = {
+    login: "/login",
+    contact: "/contact"
+  };
+
+
+  window.OPTIMIZELY_DATA_FILE = "&quot;{\\&quot;version\\&quot;: \\&quot;4\\&quot;, \\&quot;rollouts\\&quot;: [], \\&quot;typedAudiences\\&quot;: [], \\&quot;anonymizeIP\\&quot;: true, \\&quot;projectId\\&quot;: \\&quot;15265730851\\&quot;, \\&quot;variables\\&quot;: [], \\&quot;featureFlags\\&quot;: [], \\&quot;experiments\\&quot;: [{\\&quot;status\\&quot;: \\&quot;Running\\&quot;, \\&quot;audienceIds\\&quot;: [], \\&quot;variations\\&quot;: [{\\&quot;variables\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17581030538\\&quot;, \\&quot;key\\&quot;: \\&quot;control\\&quot;}, {\\&quot;variables\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17560120334\\&quot;, \\&quot;key\\&quot;: \\&quot;with_add_ons\\&quot;}], \\&quot;id\\&quot;: \\&quot;17542520502\\&quot;, \\&quot;key\\&quot;: \\&quot;rewards_add_ons_adoption\\&quot;, \\&quot;layerId\\&quot;: \\&quot;17569280505\\&quot;, \\&quot;trafficAllocation\\&quot;: [{\\&quot;entityId\\&quot;: \\&quot;17560120334\\&quot;, \\&quot;endOfRange\\&quot;: 5000}, {\\&quot;entityId\\&quot;: \\&quot;17581030538\\&quot;, \\&quot;endOfRange\\&quot;: 10000}], \\&quot;forcedVariations\\&quot;: {\\&quot;221f02e61acbe616-66e2e94e627d80e8-c25161b532e3ebc4v1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;23c1911ce5b9a4b1-f1d4a5ba62ccbe23-e5ac3cbb1e3d58ccv1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;32de205c810a6325-db59db3459966092-f01a2db12cf50283v1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;4c661a269632f3c3-be5c31010b2ace3f-7bb36142500a7e4bv1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;d00508537f3a3a10-b31afd907841b094-38c191ee1c8fa7a3v1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;39353c901589e5be-5300213ad880d41d-119f38ceefa1c386v1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;c7770834888c726e-d6b10f5cf4ebe98f-20e240790b2c168fv1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;1b273f92a0539f6b-a16aa5f6e39618db-222af228857d4d32v1\\&quot;: \\&quot;with_add_ons\\&quot;, \\&quot;65c643573c7c5451-62c730a6ad9c6498-bac278a93e20f510v1\\&quot;: \\&quot;with_add_ons\\&quot;}}], \\&quot;audiences\\&quot;: [{\\&quot;conditions\\&quot;: \\&quot;[\\\\\\&quot;or\\\\\\&quot;, {\\\\\\&quot;match\\\\\\&quot;: \\\\\\&quot;exact\\\\\\&quot;, \\\\\\&quot;name\\\\\\&quot;: \\\\\\&quot;$opt_dummy_attribute\\\\\\&quot;, \\\\\\&quot;type\\\\\\&quot;: \\\\\\&quot;custom_attribute\\\\\\&quot;, \\\\\\&quot;value\\\\\\&quot;: \\\\\\&quot;$opt_dummy_value\\\\\\&quot;}]\\&quot;, \\&quot;id\\&quot;: \\&quot;$opt_dummy_audience\\&quot;, \\&quot;name\\&quot;: \\&quot;Optimizely-Generated Audience for Backwards Compatibility\\&quot;}], \\&quot;groups\\&quot;: [], \\&quot;attributes\\&quot;: [{\\&quot;id\\&quot;: \\&quot;15383060506\\&quot;, \\&quot;key\\&quot;: \\&quot;USD_VISITOR\\&quot;}, {\\&quot;id\\&quot;: \\&quot;15521340422\\&quot;, \\&quot;key\\&quot;: \\&quot;client_type\\&quot;}, {\\&quot;id\\&quot;: \\&quot;15552650868\\&quot;, \\&quot;key\\&quot;: \\&quot;chosen_language\\&quot;}, {\\&quot;id\\&quot;: \\&quot;15608191113\\&quot;, \\&quot;key\\&quot;: \\&quot;backings_count\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16151730311\\&quot;, \\&quot;key\\&quot;: \\&quot;user_chosen_currency\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16153480403\\&quot;, \\&quot;key\\&quot;: \\&quot;user_uid\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16163220439\\&quot;, \\&quot;key\\&quot;: \\&quot;user_is_registered\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16175430044\\&quot;, \\&quot;key\\&quot;: \\&quot;user_backed_projects_count\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16177080164\\&quot;, \\&quot;key\\&quot;: \\&quot;user_launched_projects_count\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16177330167\\&quot;, \\&quot;key\\&quot;: \\&quot;user_chosen_language\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16558160030\\&quot;, \\&quot;key\\&quot;: \\&quot;project_category\\&quot;}, {\\&quot;id\\&quot;: \\&quot;16852816452\\&quot;, \\&quot;key\\&quot;: \\&quot;locale\\&quot;}, {\\&quot;id\\&quot;: \\&quot;17959063925\\&quot;, \\&quot;key\\&quot;: \\&quot;ref_tag\\&quot;}], \\&quot;botFiltering\\&quot;: false, \\&quot;accountId\\&quot;: \\&quot;14069890047\\&quot;, \\&quot;events\\&quot;: [{\\&quot;experimentIds\\&quot;: [\\&quot;17542520502\\&quot;], \\&quot;id\\&quot;: \\&quot;15325190695\\&quot;, \\&quot;key\\&quot;: \\&quot;Completed Checkout\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;15567170301\\&quot;, \\&quot;key\\&quot;: \\&quot;Viewed Trust And Safety Page\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16163000661\\&quot;, \\&quot;key\\&quot;: \\&quot;Project Page\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16303850222\\&quot;, \\&quot;key\\&quot;: \\&quot;sawGuidedPrompt\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16307170055\\&quot;, \\&quot;key\\&quot;: \\&quot;Saved story\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16354970753\\&quot;, \\&quot;key\\&quot;: \\&quot;Discover List View\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16518051019\\&quot;, \\&quot;key\\&quot;: \\&quot;Saved Project Story\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16714270854\\&quot;, \\&quot;key\\&quot;: \\&quot;Launched Project\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16731530793\\&quot;, \\&quot;key\\&quot;: \\&quot;Submitted Project\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16848297843\\&quot;, \\&quot;key\\&quot;: \\&quot;Viewed Welcome Page\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16896991908\\&quot;, \\&quot;key\\&quot;: \\&quot;Viewed Taste Quiz\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16910742145\\&quot;, \\&quot;key\\&quot;: \\&quot;Project Liked\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16916271219\\&quot;, \\&quot;key\\&quot;: \\&quot;Project Watch\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;16931243222\\&quot;, \\&quot;key\\&quot;: \\&quot;Project Disliked\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17012343128\\&quot;, \\&quot;key\\&quot;: \\&quot;Clicked From Search To See All\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17031252727\\&quot;, \\&quot;key\\&quot;: \\&quot;Clicked From Search To Creator\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17034753632\\&quot;, \\&quot;key\\&quot;: \\&quot;Clicked From Search To Category\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17055122321\\&quot;, \\&quot;key\\&quot;: \\&quot;Clicked Backing Button Or Reward Tier\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17059023190\\&quot;, \\&quot;key\\&quot;: \\&quot;Clicked From Search To Project\\&quot;}, {\\&quot;experimentIds\\&quot;: [\\&quot;17542520502\\&quot;], \\&quot;id\\&quot;: \\&quot;17213550784\\&quot;, \\&quot;key\\&quot;: \\&quot;Credit Card Page\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17464661000\\&quot;, \\&quot;key\\&quot;: \\&quot;pyl_newsletter\\&quot;}, {\\&quot;experimentIds\\&quot;: [\\&quot;17542520502\\&quot;], \\&quot;id\\&quot;: \\&quot;17561810274\\&quot;, \\&quot;key\\&quot;: \\&quot;Continue with add-on\\&quot;}, {\\&quot;experimentIds\\&quot;: [\\&quot;17542520502\\&quot;], \\&quot;id\\&quot;: \\&quot;17638100010\\&quot;, \\&quot;key\\&quot;: \\&quot;Overpledged Completed Checkout\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17645990313\\&quot;, \\&quot;key\\&quot;: \\&quot;Interacted With Media\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17779901467\\&quot;, \\&quot;key\\&quot;: \\&quot;Quantity Up\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17879793181\\&quot;, \\&quot;key\\&quot;: \\&quot;Login\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17890540053\\&quot;, \\&quot;key\\&quot;: \\&quot;New User\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17901950288\\&quot;, \\&quot;key\\&quot;: \\&quot;Pledge Checkout\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17918030317\\&quot;, \\&quot;key\\&quot;: \\&quot;Facebook Service Account Connected\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17930375617\\&quot;, \\&quot;key\\&quot;: \\&quot;Clicked project\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;17945190354\\&quot;, \\&quot;key\\&quot;: \\&quot;Clicked featured project\\&quot;}, {\\&quot;experimentIds\\&quot;: [], \\&quot;id\\&quot;: \\&quot;20211225777\\&quot;, \\&quot;key\\&quot;: \\&quot;project_page_next_step\\&quot;}], \\&quot;revision\\&quot;: \\&quot;2162\\&quot;}&quot;"
+
+
+  window.client_type = "web"
+
+
+  window.koala_endpoint = 'https://ev.kck.st/web/track';
+  window.koala_debug = false;
+
+
+  window.tracking_events_stream = 'dl-events'
+  window.tracking_events_url = 'https://st.ksr.io'
+
+
+  var root = root || window;
+  window.benchmark = (typeof window.performance == 'object' && typeof window.performance.mark == 'function');
+
+
+//<![CDATA[
+(function(){window.formatters = window.formatters || {}; var formatting_options = {"distance_date_intervals":[{"min":5,"i18n_key":"schwamm.just_now"},{"min":29,"i18n_key":"schwamm.less_than_a_minute_ago"},{"min":2640,"i18n_key":"schwamm.m_minutes_ago","count_key":"m"},{"min":82800,"i18n_key":"schwamm.about_h_hours_ago","count_key":"h"},{"min":604800,"i18n_key":"schwamm.d_days_ago","count_key":"d"},{"min":15778476,"i18n_key":"schwamm.on_datetime","count_key":"t"},{"min":0,"i18n_key":"schwamm.on_year","count_key":"y"}],"currency_symbol_mappings":{"AED":"AED","AFN":"؋","ALL":"Lek","AMD":"AMD","AOA":"AOA","ARS":"$","EUR":"€","AUD":"AU$ ","AWG":"ƒ","AZN":"ман","BAM":"KM","BBD":"$","BDT":"BDT","BGN":"лв","BHD":"BHD","BIF":"BIF","BMD":"$","BND":"$","BOB":"$b","BRL":"R$","BSD":"$","BTN":"BTN","BWP":"P","BYR":"p.","BZD":"BZ$","CAD":"CA$ ","CDF":"CDF","CHF":"CHF ","CLP":"$","CNY":"¥","COP":"$","CRC":"₡","CUP":"₱","CVE":"CVE","CZK":"Kč","DJF":"DJF","DKK":"DKK ","DOP":"RD$","DZD":"DZD","EGP":"£","ERN":"ERN","ETB":"ETB","FJD":"$","FKP":"£","GBP":"£","GEL":"GEL","GHS":"GHS","GIP":"£","GMD":"GMD","GNF":"GNF","GTQ":"Q","GYD":"$","HKD":"HK$ ","HNL":"L","HRK":"kn","HTG":"HTG","HUF":"Ft","IDR":"Rp","ILS":"₪","INR":"INR","IQD":"IQD","IRR":"﷼","ISK":"kr","JMD":"J$","JOD":"JOD","JPY":"¥","KES":"KES","KGS":"лв","KHR":"៛","KMF":"KMF","KPW":"₩","KRW":"₩","KWD":"KWD","KYD":"$","KZT":"лв","LAK":"₭","LBP":"£","LKR":"₨","LRD":"$","LSL":"LSL","LTL":"Lt","LVL":"Ls","LYD":"LYD","MAD":"MAD","MDL":"MDL","MGA":"MGA","MKD":"ден","MMK":"MMK","MNT":"₮","MOP":"MOP","MRO":"MRO","MUR":"₨","MVR":"MVR","MWK":"MWK","MXN":"MX$ ","MYR":"RM","MZN":"MT","NAD":"$","NGN":"₦","NIO":"C$","NOK":"NOK ","NPR":"₨","NZD":"NZ$ ","OMR":"﷼","PAB":"B/.","PEN":"S/.","PGK":"PGK","PHP":"₱","PKR":"₨","PLN":"PLN ","PYG":"Gs","QAR":"﷼","RON":"lei","RSD":"Дин.","RUB":"руб","RWF":"RWF","SAR":"﷼","SBD":"$","SCR":"₨","SDG":"SDG","SEK":"SEK ","SGD":"S$ ","SHP":"£","SLL":"SLL","SOS":"S","SRD":"$","SSP":"SSP","STD":"STD","SVC":"$","SYP":"£","SZL":"SZL","THB":"฿","TJS":"TJS","TMT":"TMT","TND":"TND","TOP":"TOP","TRY":"TL","TTD":"TT$","TWD":"NT$","TZS":"TZS","UAH":"₴","UGX":"UGX","USD":"$","UYU":"$U","UZS":"лв","VEF":"Bs","VND":"₫","VUV":"VUV","WST":"WST","YER":"﷼","ZAR":"R","ZMK":"ZMK","ZWL":"ZWL"}}; for (key in formatting_options) {window.formatters[key] = formatting_options[key]};}());
+//]]>
+
+
+  if (window.benchmark) {window.performance.mark("begin_base.js_tag");}
+
+
+  if (window.benchmark) {window.performance.mark("end_base.js_tag");}
+
+
+  window.koala_device_endpoint = 'https://t.kck.st/devices';
+  document.addEventListener('DOMContentLoaded', window.log_device);
+
+
+  window.STRIPE_PUBLISHABLE_KEY = 'pk_live_zjuK52lEUYcvBhIXEUnOEJzk';
+  window.IDENTITY_DOC_UPLOAD_URL = 'https://uploads.stripe.com/v1/files';
+
+
+  document.domain='kickstarter.com';
+
+
+  var channelUrl = window.location.protocol + "//" + window.location.host + "/channel.html",
+    needs_autologin = true && !$('body').is('.skip_autologin'),
+    needs_refresh = true && false,
+    api_version = 'v'.concat(`10.0`);
+  
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId: window.fb_app_id,
+      channelUrl: channelUrl,
+      status: true,    // check login status
+      cookie: true,    // enable cookies to allow the server to access the session
+      xfbml: true,     // parse XFBML
+      logging: false,  // turn off logging,
+      version: api_version
+    });
+  
+    FB.getLoginStatus(function (response) {
+      if (response.status === 'connected') {
+        if (read_cookie("logout_from_fb")) {
+          FB.logout();
+          destroy_cookie("logout_from_fb");
+        } else if (needs_autologin) {
+          $.get("/fb/autologin.js", {'fbsr': response.authResponse.signedRequest});
+        } else if (needs_refresh && 0 == response.authResponse.userID) {
+          $.get("/fb/refresh.js", {'fbsr': response.authResponse.signedRequest});
+        }
+      } else {
+        if (read_cookie("logout_from_fb")) {
+          destroy_cookie("logout_from_fb");
+        }
+      }
+    })
+  
+    FB.Event.subscribe('edge.create', function() {
+      if (typeof ga !== 'undefined') {
+        ga('send', 'event', 'Sharing', 'Facebook Like');
+      }
+    });
+  };
+  
+  
+  // Load the SDK Asynchronously
+  (function(d){
+    var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+    js = d.createElement('script'); js.id = id; js.async = true;
+    js.src = "//connect.facebook.net/zh_HK/sdk.js";
+    d.getElementsByTagName('head')[0].appendChild(js);
+  }(document));

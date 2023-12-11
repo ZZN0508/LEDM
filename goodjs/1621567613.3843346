@@ -1,0 +1,278 @@
+
+		window.WebFontConfig = {
+			google: {families: [
+				'Lato:300,400,500,700',
+				'Roboto:300,400,500,700',
+				'Lalezar:300,400,500,700',
+				'Quicksand:300,400,500,600,700',
+				'Oswald:200;300;400;500;600;700',
+				'Noto+Sans:400,400i,600,700,700i',
+				'Nunito:300,300i,400,400i,600,600i,700,700i,800,800i',
+				'Open+Sans:300,300i,400,400i,600,600i,700,700i',
+				'Nunito:400,600,700,800',
+				'Dosis:400,600,700,800',
+				'&display=swap'
+			]},
+			custom: {
+				families: [
+					'Glyphicons Halflings',
+					'myriad_pro_semibold',
+					'open_sanssemibold',
+					'open_sansregular',
+					'fjallaoneregular',
+					'bougan-semibold',
+					'bouganregular',
+					'oswald_light',
+					'Gotham Bold',
+					'oswaldbook',
+				],
+				urls: ['https://cdns.klimg.com/a.kapanlagi.com/v5/css/a3/fonts/common-fonts.css']
+			}
+		};
+		(function(doc, id) {
+			if(doc.getElementById(id)){return;}
+			var wf = doc.createElement('script');
+			wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			wf.type = 'text/javascript';
+			wf.async = true;
+			wf.id = id;
+			var s = doc.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(wf, s);
+		})(document, 'webfontloader');
+	
+
+        (function(doc, id){
+        	var thelink = doc.getElementById(id);
+        	var href = thelink.href;
+        	if(!thelink || !href){return;};
+        	
+        	var stylesheet = doc.createElement('link');
+        	stylesheet.rel = 'stylesheet';
+        	stylesheet.href = href;
+        	stylesheet.id = id;
+        	
+        	thelink.parentNode.replaceChild(stylesheet, thelink);
+        })(document, 'defer-mainasset-css');
+        
+
+			
+		window.kly = {};
+		window.kly.env = "production";
+		window.kly.baseAssetsUrl = "";
+		window.kly.gtm = {
+			"adblockExists":"no",
+			"articleId":"",
+			"articleTitle":"",
+			"category":"Homepage",
+			"editors":"",
+			"editorialType":"",
+			"embedVideo":"",
+			"pageTitle":"Kalau Bukan Sekarang, Kapan Lagi? - KapanLagi.com",
+			"publicationDate":"",
+			"publicationTime":"",
+			"subCategory":"root",
+			"subSubCategory":"",
+			"tag":"",
+			"authors":{
+				"type":"",
+				"names":""
+			},
+			"numberOfWords":"",
+			"enabled":true,
+			"log":false,
+			"imageCreation":false,
+			"type":"",
+			"videos":"",
+			"partner":"",
+			"isSEO":false,
+			"contributors":"",
+			"reporters":"",
+			"photographers":""
+		};
+		window.kly.visitor = {
+			"publicationDate":"",
+			"publicationTime":"",
+			"tag":[
+				
+			],
+			"subCategory":"root",
+			"subSubCategory":"",
+			"type":"",
+			"pageType":"Homepage",
+			"platform":"Desktop",
+			"audience":[
+				
+			],
+			"gaid":"",
+			"age":"",
+			"gender":"",
+			"title":"",
+			"site":"Kapanlagi"
+		};
+		window.kly.platform = "Desktop";
+		window.kly.pageType = "Homepage";
+		window.kly.channel = {
+			"id":0,
+			"name":"KapanLagi",
+			"full_slug":"\/"
+		};
+		window.kly.category = {
+			"id":0,
+			"name":"KapanLagi",
+			"full_slug":"\/"
+		};
+		window.kly.article = {
+			"id":"",
+			"title":"",
+			"type":"",
+			"shortDescription":"",
+			"keywords":"",
+			"isAdvertorial":false,
+			"isMultipage":false,
+			"isAdultContent":false,
+			"verifyAge":false,
+			"publishDate":""
+		};
+		window.kly.site = "Kapanlagi";
+		window.kly.related_system = "tag";
+
+			
+
+	_atrk_opts = { atrk_acct:"ry1us1FYxz20cv", domain:"kapanlagi.com",dynamic: true};
+	(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://certify-js.alexametrics.com/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+	
+
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(["init", {
+			appId: "80bff213-0b34-45c6-ac8d-2210ec2e348e", /*Sesuai App ID Desktop/Mobile*/
+			autoRegister: false,
+			notifyButton: {
+				enable: false /* Set to false to hide */
+			},
+			promptOptions: {
+				actionMessage: "Dapatkan berita dan foto selebriti lebih cepat dengan aktifkan notifikasi Kapanlagi.com	",
+				acceptButtonText: "Ya",
+				cancelButtonText: "Tidak"
+			},
+			welcomeNotification: {
+				"title": "KapanLagi.com",
+				"message": "Terima kasih sudah mengaktifkan notifikasi"
+			}
+		}]);
+		OneSignal.push(function(){
+			OneSignal.showHttpPrompt();
+		});
+		
+		window.addEventListener('load', function(){
+			window.kly = window.kly || {};
+			if(!$ || !$.fn || !$.fn.scroll){return;};
+			
+			$(window).scroll(function(){
+				if(window.kly.oneSignalInitialized){return;};
+				window.kly.oneSignalInitialized = true;
+				
+				(function(doc, id){
+					if(doc.getElementById(id)){return;}
+					var script = doc.createElement('script');
+					script.src = 'https://cdn.onesignal.com/sdks/OneSignalSDK.js';
+					script.type = 'text/javascript';
+					script.id = id;
+					script.async = true;
+					var s = doc.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(script, s);
+				})(document, 'OneSignalSDKJS');
+			});
+		});
+	
+
+										(function() {
+											var cx = '001561947424278099921:ob4zpl7smv0';
+											var gcse = document.createElement('script');
+											gcse.type = 'text/javascript';
+											gcse.async = true;
+											gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+											var s = document.getElementsByTagName('script')[0];
+											s.parentNode.insertBefore(gcse, s);
+										})();
+										function myCallback() {
+											$(".gsc-input").attr("placeholder", "Topik berita apa yang Anda cari?");
+										}
+										window.__gcse = {
+											callback: myCallback
+										};
+									
+
+setTimeout(function(){var o=document.querySelectorAll(".leftrecomendations-loader .leftrecomendations-loader-list > li");Object.entries({3:"div-gpt-ad-kapanlagi-crm1-oop",5:"div-gpt-ad-kapanlagi-crm2-oop",6:"div-gpt-ad-kapanlagi-crm3-oop"}).forEach(function(e,t){var a=document.createElement("li"),i=document.createElement("div"),n=document.createElement("script"),d='googletag.cmd.push(function(){googletag.display("'+e[1]+'")});';i.id=e[1],i.style.display="none",n.innerText=d,i.appendChild(n),a.id="crm-organic-feed-"+(t+1),a.classList.add("clearfix"),a.appendChild(i),_idx=6==e[0]?5:e[0],o[_idx].insertAdjacentElement("beforebegin",a)})},5e3);
+
+
+			$(document).ready(function(){
+				/* start of channel script */
+				$(document).on('click', '.click-channel-more', function(){
+					$(this).toggleClass('active');
+					if($(this).hasClass('active')){
+						$('.list-channelbottom, .content-channel').addClass('open');
+					}else{
+						$('.list-channelbottom, .content-channel').removeClass('open');
+					}
+				});
+				/* end of channel script */
+			});
+		
+
+(function() {
+ var csid = "F09828";
+ var bpid = "kapanlagi_id";
+ var e = document.createElement("script");
+ var s = document.getElementsByTagName("script")[0];
+ e.src = "//js.revsci.net/gateway/gw.js?auto=t&csid=" + csid + "&bpid=" + bpid;
+ e.async = true;
+ s.parentNode.insertBefore(e, s);
+})();
+
+
+	window.addEventListener('load', function(){
+		if(!window.kly){return;};
+		
+		window.kly.visitor = window.kly.visitor || {};
+		var document = window.document;
+		var cookie = document.cookie || '';
+		
+		var trackers = [];
+		var clientId = '';
+		
+		
+		if(
+			typeof ga === 'function'
+			&& typeof ga.getAll === 'function'
+		){
+			trackers = ga.getAll();
+		};
+		
+		// Get it from GA-Api.
+		for (var i = 0; i < trackers.length; i++){
+			var tracker = trackers[i];
+			if(typeof tracker !== 'object')continue;
+			if(typeof tracker.get !== 'function')continue;
+			
+			// Get the last.
+			trackerClientId = tracker.get('clientId');
+			if(!trackerClientId || typeof trackerClientId !== 'string')
+				continue;
+			
+			clientId = trackerClientId;
+		};
+		
+		// Failover if blocked or invalid.
+		if(!clientId && typeof cookie.match === 'function'){
+			// Read cookie.
+			var gaParts = cookie.match(/_ga=(.+?);/);
+			if(gaParts && typeof gaParts[1] === 'string'){
+				clientId = gaParts[1].split('.').slice(-2).join(".");
+			};
+		};
+		
+		// Add to window.kly.
+		if(clientId){
+			window.kly.visitor.gaid = clientId;
+		};
+	});

@@ -1,0 +1,134 @@
+var cf_az_resize_delay,
+cf_last_size = !1;
+function cfResizePageFooter() {
+  var e = document.querySelectorAll('nav.navbar-footer') [0].offsetHeight,
+  t = document.querySelectorAll('div.lboard-wrap') [0].offsetHeight,
+  n = document.querySelectorAll('nav.navbar-footer') [0].offsetHeight,
+  c = document.querySelectorAll('div.footer-wrap') [0].offsetHeight;
+  document.getElementById('fake-footer').style.height = e + t + n + c + 'px'
+}
+function cfMakeFlexAd() {
+  cf_adunit_id = '39381789',
+  cf_flex = !0;
+  var e = document.createElement('div'),
+  t = document.querySelectorAll('nav.navbar-footer') [0];
+  e.style.width = '0px',
+  e.style.visibility = 'hidden',
+  e.style.position = 'absolute',
+  e.setAttribute('id', 'fake-footer'),
+  t.appendChild(e),
+  cfResizePageFooter(),
+  window.cf_page_header = 'nav.navbar-fixed-top, nav.navbar-static-top',
+  window.cf_page_footer = '#fake-footer',
+  window.cf_page_element = 'div.main-page',
+  window.cf_top_mobile_adhesion_div = 'cf_text_top',
+  document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('resize', function () {
+      cfResizePageFooter()
+    })
+  }),
+  document.write('<div class="noprint"><script src="//srv.clickfuse.com/showads/js/cf.min.js"></script></div>')
+}
+function cfMakeTfpAd(e, t) {
+  if (document.getElementById(e)) {
+    var n = 'cf.showAsyncAd({artist: cf_page_artist,song: cf_page_song,genre: cf_page_genre,adunit_id: ' + t + ',div_id: "' + e + '"});';
+    document.write('<script>' + n + '</script>')
+  }
+}
+function cfUpdateAdsNew() {
+  if((typeof cf_no_bit === 'undefined') || (cf_no_bit !== 1)) {
+  var pt='';
+  var el=null;
+  if(document.location.hostname === 'search.azlyrics.com' || document.location.pathname.match(/^\/([a-z]|(19))\//)) pt='artistsearch';
+  if(document.location.pathname.match(/^\/([a-z]|(19))\/[^\/]+\.html/)) pt='songlist';
+  if(document.location.pathname.substring(0,8) === '/lyrics/') pt='lyrics';
+  var s=document.createElement('script');
+  s.setAttribute("type","text/javascript");
+  s.setAttribute("async",true);
+  s.setAttribute("defer",true);
+  var src = '';
+  if(window.innerWidth < 768 || navigator.userAgent.match(/(Android|iPhone|iPad|iPod)/i)) {
+    if(pt === 'lyrics') {
+        src = "//1004.hostedprebid.com/1EBa/67Y3_W2xH_yc1Z/jita.js?dfp=1";
+    } else {
+        if(pt === 'songlist') {
+            src = "//1004.hostedprebid.com/1EBa/6wfz_Tt9M_rYi8_9b1C_H5nF_To6S/jita.js?dfp=1";
+        } else {
+            src = "//1004.hostedprebid.com/1EBa/6wfz_Tt9M/jita.js?dfp=1";
+        }
+        document.getElementById("RTK_n1qK").setAttribute("id", "RTK_Tt9M");
+    }
+  } else {
+      if(pt === 'lyrics') {
+        src = "//1004.hostedprebid.com/Ec6d/4QS5_p0nF/jita.js?dfp=1";
+        document.getElementById("RTK_67Y3").setAttribute("id", "RTK_4QS5");
+        document.getElementById("RTK_W2xH").setAttribute("id", "RTK_p0nF");
+//      document.getElementById("RTK_yc1Z").remove();
+      } else if(pt === 'artistsearch' || pt === 'songlist') {
+        if(pt === 'songlist') {
+            src = "//1004.hostedprebid.com/Ec6d/5tXv_Knxj_zq3C_UtnH_DMgi_6LHM/jita.js?dfp=1";
+            document.getElementById("RTK_rYi8").setAttribute("id", "RTK_Knxj");
+            if( (el = document.getElementById("RTK_9b1C")) ){ el.setAttribute("id", "RTK_UtnH"); }
+            if( (el = document.getElementById("RTK_H5nF")) ){ el.setAttribute("id", "RTK_DMgi"); }
+            if( (el = document.getElementById("RTK_To6S")) ){ el.setAttribute("id", "RTK_6LHM"); }
+        } else {
+            src = "//1004.hostedprebid.com/Ec6d/5tXv_zq3C/jita.js?dfp=1";
+        }
+        document.getElementById("RTK_6wfz").setAttribute("id", "RTK_5tXv");
+        document.getElementById("RTK_n1qK").setAttribute("id", "RTK_zq3C");
+//      document.getElementById("RTK_fpsL").remove();
+      } else {
+        src = "//1004.hostedprebid.com/Ec6d/5tXv_zq3C_fpsL/jita.js?dfp=1";
+        document.getElementById("RTK_6wfz").setAttribute("id", "RTK_5tXv");
+        document.getElementById("RTK_n1qK").setAttribute("id", "RTK_zq3C");
+//      document.getElementById("RTK_fpsL").remove();        
+      }
+  }
+  s.setAttribute("src", src);
+  document.head.appendChild(s);
+  }
+}
+function resizeIFrameToFitContent(e) {
+  var t = e.contentWindow.document.body.scrollHeight;
+  250 == t && (e.width = 300),
+  e.height = t,
+  e.parentElement.parentElement.style.height = t + 'px'
+}
+cfMakeFlexAd(),
+cfMakeTfpAd('cf_text_top', 39382074),
+cfMakeTfpAd('cf_text_bottom', 39382075),
+cfUpdateAdsNew(),
+window.addEventListener('load', function (e) {
+  for (var t = document.querySelectorAll('.cf_hybrid'), n = 0; n < t.length; n++) resizeIFrameToFitContent(t[n])
+});
+
+(function () {
+    var cnt = 0;
+    var consentSetInterval = setInterval(function () {
+        if (cnt >= 6) {
+            (adsbygoogle = window.adsbygoogle || []).pauseAdRequests = 0;
+            clearInterval(consentSetInterval);
+        }
+        if (typeof window.__tcfapi !== 'undefined') {
+            clearInterval(consentSetInterval);
+            window.__tcfapi('addEventListener', 2, function (tcData, listenerSuccess) {
+                if (listenerSuccess) {
+                    if (tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete') {
+                        if (!tcData.gdprApplies) {
+                            (adsbygoogle = window.adsbygoogle || []).pauseAdRequests = 0;
+                        } else {
+                            var hasDeviceStorageAndAccessConsent = tcData.purpose.consents[1] || false;
+                            if (hasDeviceStorageAndAccessConsent) {
+//                                var hasGoogleAdvertisingProductsConsent = tcData.vendor.consents[755] || false;
+//                                if (hasGoogleAdvertisingProductsConsent) {
+                                    (adsbygoogle = window.adsbygoogle || []).pauseAdRequests = 0;
+//                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        cnt++;
+    }, 500);
+})();

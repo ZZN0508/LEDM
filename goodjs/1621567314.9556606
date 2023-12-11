@@ -1,0 +1,548 @@
+/* Git */
+/*
+
+ this script need
+  $.fn.lazyload (1.9.5)
+  w.kkkns.des.heightFit
+ 
+*/
+;(function( w, d, $ ){
+ 
+ 'use strict';
+ 
+ // name space
+ w.kkkns || (w.kkkns = {});
+ w.kkkns.des || (w.kkkns.des = {});
+ 
+ // public
+ w.kkkns.des.feed;
+ 
+ // private
+ var
+  constructor,
+  importErrorCount = 0,
+  hasTapEvent = ('ontouchstart' in w),
+  _isNaN,
+  isModernHistory = (function(){
+   
+   var ua = navigator.userAgent.toLowerCase();
+   
+   if( history.pushState && history.state !== undefined ) {
+    
+    if(
+     ( -1 < ua.indexOf('iphone') )
+     || ( -1 < ua.indexOf('ipad') )
+     || ( -1 < ua.indexOf('ipod') )
+     || ( -1 < ua.indexOf('android') )
+    ){
+     
+     return true;
+     
+    }else{
+     
+     return true;
+     
+    }
+    
+   }
+   
+   return false;
+   
+  }()),
+  addClick,
+  state = {},
+  pushState,
+  createFeed,
+  closeFeed,
+  updateBtn,
+  update,
+  addHover,
+  removeHover,
+  heightFit,
+  initFeed,
+  initReadMore,
+  init
+  ;
+ 
+ _isNaN = function(num){
+  
+  if(typeof num === 'number'){
+   
+   if(Number.isNaN) {
+    
+    return Number.isNaN(num);
+    
+   }else{
+    
+    return isNaN(num);
+    
+   }
+   
+  }
+  
+  return false;
+  
+ };
+ 
+ addClick = function(target,func,once){
+  
+  var
+   _e,
+   touched = false,
+   moved = false,
+   touchstart,
+   touchmove,
+   touchend,
+   click,
+   remove;
+  
+  touchstart = function(e){
+   
+   touched = true;
+   _e = e;
+   
+  };
+  
+  touchmove = function(e){
+   
+   moved = true;
+   
+  };
+  
+  touchend = function(e){
+   
+   if( !moved ){
+    
+    func(_e);
+    
+    if(once) {
+     
+     remove();
+     
+    }
+    
+   }
+   
+   _e = null;
+   moved = false;
+   
+   e.preventDefault();
+   
+  };
+  
+  click = function(e){
+   
+   if( !touched ){
+    
+    func(e);
+    
+    if(once) {
+     
+     remove();
+     
+    }
+    
+   }
+   
+   touched = false;
+   
+  };
+  
+  if(hasTapEvent){
+   
+   $(target)
+    .on('touchstart',touchstart)
+    .on('touchmove',touchmove)
+    .on('touchend',touchend);
+   
+  }
+  $(target).on('click',click);
+  
+ };
+ 
+ pushState = function(){
+  
+  if(isModernHistory) {
+   
+   history.replaceState(state,'');
+   
+  }
+  
+ };
+ 
+ createFeed = function(data){
+  
+  var
+   btn = d.createElement('div'),
+   btnIn = d.createElement('span'),
+   cells = $('.c-feed_cell', data.obj).get(),
+   visuals = $('.c-feed_visual', data.obj).get()
+   ;
+  
+  btn.className = 'c-feed_btn_more';
+  btnIn.className = 'c-feed_btn_more_in';
+  
+  return {
+   'obj' : data.obj,
+   'index' : data.index,
+   'cells' : cells,
+   'visuals' : visuals,
+   'nextShow' : data.nextShow || 18,
+   'currentShow' : 0,
+   'btn' : btn,
+   'btnArea' : $('.c-feed_btn', data.obj)[0],
+   'btnIn' : btnIn
+  }
+  
+ };
+ 
+ closeFeed = function(setting){
+  
+  $(setting.btnArea).removeClass('is-show');
+  setting = null;
+  
+ };
+ 
+ updateBtn = function(setting){
+  
+  var
+   num = 0,
+   measure = setting.cells.length - setting.currentShow - setting.nextShow,
+   noneCells = 0
+   ;
+  
+  if( measure < 0 ) {
+   
+   num = setting.cells.length - setting.currentShow;
+   
+  }else{
+   
+   num = setting.nextShow;
+   
+  }
+  
+  
+  for(var i=setting.currentShow; i<setting.currentShow+num; i++){
+   
+   if( 0 < $('.c-feed_item-none',setting.cells[i]).length ) {
+    
+    noneCells++;
+    
+   }
+   
+  }
+  
+  num = num - noneCells;
+  
+  if(typeof num === 'number'){
+   
+   setting.btnIn.innerHTML = '&#27425;&#x306e;'+num+'&#x4ef6;&#x3092;&#x8868;&#x793a;';
+   
+  }else{
+   
+   closeFeed(setting);
+   
+  }
+  
+ };
+ 
+ update = function(setting){
+  
+  var
+   measure = setting.cells.length - setting.currentShow
+   ;
+  
+  if(setting.nextShow<measure) {
+   
+   measure = setting.nextShow;
+   
+  }
+  
+  // cells
+  
+  for(var i=0; i<measure; i++){
+   
+   $(setting.cells[setting.currentShow+i]).removeClass('is-hide');
+   $(setting.visuals[setting.currentShow+i]).lazyload({
+    'effect' : 'fadeIn',
+    'effect_speed' : 200,
+    'threshold' : 200
+   });
+   
+  }
+  setting.currentShow = setting.currentShow + measure;
+  
+  
+  // state
+  
+  if(state['feed'+setting.index]) {
+   
+   if( !_isNaN( state['feed'+setting.index] )){
+    
+    state['feed'+setting.index]++;
+    
+   }else{
+    
+    state['feed'+setting.index] = 0;
+    
+   }
+   
+  }else{
+   
+   state['feed'+setting.index] = 1;
+   
+  }
+  pushState();
+  
+  
+  // heightFit
+  
+  heightFit(setting);
+  
+  
+  // btn
+  
+  if(setting.cells.length === setting.currentShow){
+   
+   closeFeed(setting);
+   
+  }else{
+   
+   $(setting.btn).trigger('mouseleave');
+   updateBtn(setting);
+   
+  }
+  
+ };
+ 
+ addHover = function(e){
+  
+  $(this).addClass('is-hover');
+  
+ };
+ 
+ removeHover = function(e){
+  
+  $(this).removeClass('is-hover');
+  
+ };
+ 
+ heightFit = function(arg){
+  
+  var
+   isEvent = (typeof arg.type !== 'undefined'),
+   setting = (isEvent) ? arg.data.setting : arg,
+   section = $('.c-feed', setting.obj).get()
+   ;
+  
+  for(var i=0; i<section.length; i++){
+   
+   w.kkkns.des.heightFit({
+    'mode' : 'innerHeight',
+    'className' : 'c-feed_item',
+    'parent' : section[i],
+    'column' : section[i].className.split('c-feed-col')[1].split(' ')[0]-0 || 1
+   });
+   
+  }
+  
+ };
+ 
+ init = function(){
+  
+  var
+   data = {},
+   hook = $('.s-feed').get(),
+   individualSetup
+   ;
+  
+  individualSetup = function(obj,index){
+   
+   var
+    setting,
+    section = $('.c-feed', obj).get(),
+    additionalShow = 0,
+    allCell = 0,
+    sectionSetup
+    ;
+   
+   
+   sectionSetup = function(section){
+    
+    var
+     rows = $('.c-feed_row', section).get(),
+     cells,
+     hide = false,
+     col = section.className.split('c-feed-col')[1].split(' ')[0]-0 || 1,
+     showCell,
+     hideCell
+     ;
+    
+    showCell = function(){
+     
+     $(setting.visuals[allCell]).lazyload({
+      
+      'effect' : 'fadeIn',
+      'effect_speed' : 200,
+      'threshold' : 200
+      
+     });
+     
+     setting.currentShow++;
+     
+    };
+    
+    hideCell = function(){
+     
+     $(setting.cells[allCell]).addClass('is-hide');
+     
+    };
+    
+    // cells
+    
+    for(var i=0; i<rows.length; i++){
+     
+     cells = $('.c-feed_cell', rows[i]).length;
+     
+     hide = ( -1<rows[i].className.indexOf('is-hide') ) ? true : false;
+     
+     for(var j=0; j<cells; j++){
+      
+      if(hide){
+       
+       if( 0 < additionalShow ) {
+        
+        showCell();
+        additionalShow--;
+        
+       }else{
+        
+        hideCell();
+        
+       }
+       
+      }else{
+       
+       showCell();
+       
+      }
+      
+      allCell++;
+      
+     }
+     
+     $(rows[i]).removeClass('is-hide');
+     
+    }
+    
+   };
+   
+   data.obj = obj;
+   data.index = index;
+   setting = createFeed(data);
+   
+   
+   // cells
+   
+   if(state['feed'+index]) {
+    
+    additionalShow = state['feed'+index]-0;
+    
+    
+    if( !_isNaN(additionalShow) ){
+     
+     additionalShow = (additionalShow * setting.nextShow);
+     
+    }else{
+     
+     additionalShow = 0;
+     
+    }
+    
+   }
+   
+   for(var i=0; i<section.length; i++){
+    
+    sectionSetup(section[i]);
+    
+   }
+   
+   if(setting.currentShow < setting.cells.length-1) {
+    
+    $(setting.btnArea).addClass('is-show');
+    
+   }
+   
+   
+   // heightFit
+   
+   $(w).resize({'setting':setting}, heightFit);
+   heightFit(setting);
+   
+   
+   // btn
+   
+   addClick(setting.btn, function(){ update(setting); });
+   $(setting.btn)
+    .on('mouseenter', addHover)
+    .on('mouseleave', removeHover)
+    ;
+   
+   setting.btn.appendChild(setting.btnIn);
+   setting.btnArea.appendChild(setting.btn);
+   
+   updateBtn(setting);
+   
+  };
+  
+  // state
+  
+  if(isModernHistory) {
+   
+   if(history.state) {
+    
+    state = history.state;
+    
+   }
+   
+  }
+  
+  
+  // feed
+  
+  for(var i=0; i<hook.length; i++){
+   
+   individualSetup(hook[i],i);
+   
+  }
+  
+ };
+ 
+ constructor = function(){
+  
+  // import
+  if(w.kkkns.des.heightFit && $.fn.lazyload){
+   
+   init();
+   
+  }else{
+   
+   importErrorCount++;
+   
+   if(importErrorCount<20) {
+    
+    setTimeout(constructor,10);
+    
+   }else{
+    
+    throw 'import error : feed.js';
+    
+   }
+   
+  }
+  
+ };
+ 
+ constructor();
+ 
+}( window, document, window.jQuery||window.j$ ));

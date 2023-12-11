@@ -1,0 +1,45 @@
+!function(t,e,o,c,n,a){var s=this.nanorep=this.nanorep||{};s=s[e]=s[e]||{},s.apiHost=a,s.host=n,s.path=c,s.account=t,s.protocol="https:"===location.protocol?"https:":"http:",s.on=s.on||function(){s._calls=s._calls||[],s._calls.push([].slice.call(arguments))};var p=s.protocol+"//"+n+c+o+"?account="+t,l=document.createElement("script");l.async=l.defer=!0,l.setAttribute("src",p),document.getElementsByTagName("head")[0].appendChild(l)}("icici","floatingWidget","floating-widget.js","/web/","icici.nanorep.co");
+
+nanorep.floatingWidget.on('load', function() {
+	/* window.onload = function() { */
+		console.log("nanorep called");
+		/* setTimeout(function(){	 */
+			console.log("iframe called");
+			/* var custname = document.getElementsByTagName('iframe')[0];
+			var doc = custname.contentDocument;
+			var username = doc.getElementById('custname').value; */
+			var personalizedOfferCookieName = "Personalizedname";
+			var username = jQuery.cookie(personalizedOfferCookieName);
+			//Capture user_name : start
+			if(typeof(username) != "undefined"){
+				if(username !=null && username !=''){
+					var Username = username;		
+					nanorep.floatingWidget.setInitializedEntities({user_name: Username});
+					console.log("Username: " + Username);
+				}
+			}
+			//Capture user_name : end
+		/* }, 7000);// delay of 7 seconds */
+	/* }; */
+});
+nanorep.floatingWidget.on({
+                init: function() {
+
+                this.setConfigId('2059066363');
+		this.setKB('2055661663');
+		this.setContext({"Retail Banking":"NLI","Conversational":"Yes"});
+                	    this.setStorageOptions({customKey: 'NLIHome',type:'session'});
+				
+				// Capture FedID : start
+				if(typeof(FedID) != "undefined"){
+					if(FedID !=null && FedID !=''){
+						var fedid = FedID;				
+						this.setContext({"FedID":fedid,"Retail Banking":"NLI","Conversational":"Yes"});
+					}
+				}
+				// Capture FedID : end
+     }
+
+});
+
+

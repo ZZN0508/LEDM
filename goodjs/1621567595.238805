@@ -1,0 +1,149 @@
+
+        {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "戴尔笔记本电脑_台式电脑_服务器_电脑配件_戴尔官方网站 | Dell 中国大陆",
+        "description": "欢迎访问戴尔网上购物商城,为个人、家庭、企业办公等提供高品质戴尔笔记本电脑,台式电脑,服务器,电脑配件等及服务。登录Dell官方网站查询最新Dell产品价格、戴尔优惠活动、戴尔售后服务信息等。",
+        "url": "https://www.dell.com/zh-cn"
+        }
+    
+
+    Dell = window.Dell || {};
+    Dell.Metrics = Dell.Metrics || {};
+    Dell.Metrics.sc = Dell.Metrics.sc || {};
+    window.Dell.Metrics.sc = {"country":"cn","language":"zh","segment":"gen","customerset":"cncorp1","pagename":"dell.com responsive homepage","applicationname":"homepage","s_account":"dellglobalonline","dc":"az","cms":"stp","prod":"true","module":"csb_homepage","dellexperiment":"","bodyhiding":"false","hppersona":"dhs"};
+
+var dellScriptLoader = (function () {
+	"use strict";
+
+	var scriptsArray = [];
+	var urlRegex = /^(https:\/\/www\.|https:\/\/|\/\/|\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/; //exit if not a url or an array
+
+	function scriptsArrayCopy() {
+		return JSON.parse(JSON.stringify(scriptsArray));
+	}
+
+	//check for valid url
+	function isValidUrl(url) {
+		return typeof url === "string" && urlRegex.test(url);
+	}
+
+	//check for array
+	function isValidArray(scripts) {
+		return Array.isArray(scripts);
+	}
+
+	function load(scripts) {
+		if (!(isValidUrl(scripts) || isValidArray(scripts))) {
+			return;
+		}
+
+		//single url being passed
+		if (isValidUrl(scripts)) {
+            scriptsArray.push(scripts);
+            return;
+		}
+
+		//handling of array
+		if (isValidArray(scripts)) {
+			for (var i = 0; i < scripts.length; ++i) {
+				var _script = scripts[i];
+
+				//if array of strings
+				if (typeof _script === "string" && isValidUrl(_script)) {
+                    scriptsArray.push({ url: _script });
+                    continue;
+				}
+
+				//if array of objects with url and order
+                if (_script.hasOwnProperty("url") && _script.hasOwnProperty("order") && !isNaN(Number(_script.order))) {
+					_script.order = Number(_script.order);
+					scriptsArray.push(_script);
+					continue;
+				}
+
+				//if array of objects with only url
+                if (_script.hasOwnProperty("url") && isValidUrl(_script.url)) {
+                    scriptsArray.push(_script);
+                    continue;
+				}
+			}
+		}
+	}
+
+	return Object.freeze({
+		load: load,
+		scriptsArrayCopy: scriptsArrayCopy
+	});
+})();
+
+bazadebezolkohpepadr="1301594849"
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"https://afcs.dellcdn.com/csb/masthead/bundles/1.0.1.935/js/mastheadscripts.min.js","order":"1","crossorigin":false}])
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"https://afcs.dellcdn.com/csb/masthead/bundles/1.0.1.935/js/countrylistscripts.min.js","order":"20","crossorigin":false}])
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"https://afcs.dellcdn.com/csb/masthead/bundles/1.0.1.935/js/countrylistscripts.min.js","order":"21","crossorigin":false}])
+
+        var Dell = Dell || {};
+        Dell.Footer = Dell.Footer || {};
+        Dell.Footer.BirdSeed = Dell.Footer.BirdSeed || {};
+        Dell.Footer.BirdSeed.setBirdSeed = (function (birdseedHtml) {
+            var divFooter = document.getElementsByClassName('ft-birdseed-wrap');
+            if (divFooter.length > 0 && birdseedHtml.length > 0) {
+                divFooter[0].setAttribute('data-exists', 'True');
+                var divBirdSeed = document.getElementsByClassName('birdseed');
+                if (divBirdSeed.length > 0) {
+                    divBirdSeed[0].innerHTML = birdseedHtml;
+                }
+            }
+            else {
+
+                divFooter[0].setAttribute('data-exists', 'False');
+            }
+
+        });
+    
+
+    var MasterTmsUdo = {"cj":{"cid":"","type":"","discount":"","ogid":"","currency":"","coupon":"","customerSet":"","segment":"GEN","productCategory":"","country":"CN","language":"ZH","revenue":"","device":"D","platform":"","promoId":"1","category":"","categoryPath":"","deals":"","family":"","productCode":"","orderCode":"","profileId":"","emailHash":"","productList":[]}};
+
+
+    window.addEventListener('DOMContentLoaded',
+        function () {
+            var Dell = window.Dell || {};
+            Dell.ContactDrawer = Dell.ContactDrawer || {};
+            if (!Dell.ContactDrawer.init) { return; }
+
+            Dell.ContactDrawer.init({
+                targetElementId: "chatDrawer",
+                country: "cn",
+                language: "zh",
+                segment: "corp",
+                pageId: "dell_com_homepage"
+            });
+        });
+
+
+            var isBoomerangEnabled = true,
+                userContextApiUrl = "//www.dell.com/csbapi/zh-cn/personalization/getusercontext";
+        
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"//afcs.dellcdn.com/shop/scripts/global-bundle.min.8ba72386b7623f1268fc491fd99be01a.js","order":"0","crossorigin":true}])
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"//afcs.dellcdn.com/csb/homepage/bundles/1.0.1.7215/js/site.min.js","order":"2","crossorigin":false}])
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"//afcs.dellcdn.com/csb/homepage/bundles/1.0.1.7215/js/conversant.min.js","order":"3","crossorigin":false}])
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"//afcs.dellcdn.com/boomerang/latest/boomerang-csb-full.min.js","order":"10","crossorigin":false}])
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"//nexus.dell.com/dell/stpfooter/Bootstrap.js?v=10","order":"15","crossorigin":false}])
+if (typeof dellScriptLoader !== 'undefined') dellScriptLoader.load([{"url":"//nexus.dell.com/dell/marketing/Bootstrap.js","order":"16","crossorigin":false}])
+
+  
+    function isIE() {
+        // IE 10 and IE 11
+        return /Trident\/|MSIE/.test(window.navigator.userAgent);
+    }
+    if (document.getElementById("unified-masthead")) {
+        var r = document.querySelector(':root');
+        r.style.setProperty('--tabletMastheadHeight', '60px');
+        r.style.setProperty('--desktopMastheadHeight', '106px');
+        r.style.setProperty('--mobileMastheadHeight', '128px');
+        if (isIE()) {
+            document.getElementsByClassName("hpg-hero-spacer")[0].style.marginTop = "calc(106px * -1)"; // 128px is desktop height for unified masthead
+            document.getElementsByClassName("hpg-card-text")[0].style.height = "calc(100% - 106px)";
+            document.getElementsByClassName("hpg-card-text")[0].style.top = "106px";
+        }
+    }

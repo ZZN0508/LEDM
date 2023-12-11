@@ -1,0 +1,1 @@
+var a=(e=>(e.Gdpr="gdpr",e.Ccpa="ccpa",e.None="none",e))(a||{}),_=(t=>(t.PassiveConsent="passive_consent",t.ActiveConsent="active_consent",t))(_||{});export{a,_ as b};

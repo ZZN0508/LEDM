@@ -1,0 +1,982 @@
+$(document).ready(function(){
+// MCCM Deals and more Cookie Settings
+var mccmmaxCookieValue = 3, mccminitCookie = 1, mccmexpirationDays = 1;
+var mccmcookieName = "mccmdealsOfferSetCount";
+// Check if the cookie exists.
+if (jQuery.cookie(mccmcookieName) == null) {
+    // If the cookie doesn't exist, save the cookie with the value of 1
+    jQuery.cookie(mccmcookieName, mccminitCookie, {expires: mccmexpirationDays});
+} else {
+    // If the cookie exists, take the value
+    var mccmcookie_value = jQuery.cookie(mccmcookieName);
+ // Convert the value to an int to make sure
+    mccmcookie_value = parseInt(mccmcookie_value);
+ if (mccmcookie_value >= mccminitCookie && mccmcookie_value < mccmmaxCookieValue) {
+  mccmcookie_value++;
+  jQuery.cookie(mccmcookieName, mccmcookie_value, { expires: mccmexpirationDays });
+  //console.log('Cookie incremented. Value is ' + mccmcookie_value);
+ }
+ if (mccmcookie_value >= mccmmaxCookieValue) {
+  //console.log('Cookie max allowed value reached: ' + mccmcookie_value);
+  // if cookie is equal with the number you've set, then set the cookie value to 1
+  jQuery.cookie(mccmcookieName, mccminitCookie, {expires: mccmexpirationDays});
+ }
+}
+
+ //Cookie Settings for suppression
+ mccmHandpickedOffersCookieVal(); 
+ 
+ 
+ //Default Offers to be loaded if no offers found or no fedid found
+ 
+ function handPickedOffers(sliderdiv, cardsliderdiv){
+ var fileUrlOffer = $("input#AjaxOfferJSON").val();
+
+    $.getJSON(fileUrlOffer, function(result){   
+      
+     var cookieVal = $("input[id='readonlycategories']").val();
+     //var cookieVal = "hnoicbfk,hm1uihm9,hq0fgv0l,jncpoxds";
+     var valArrCount = 0;
+     if(typeof(cookieVal) != "undefined"){
+      if(cookieVal !=null && cookieVal!=""){
+      //console.log("cookie val: " + cookieVal);
+       var valArr = cookieVal.split(',');
+       valArrCount = valArr.length;
+       
+      }
+     }
+
+     var offerId=[];
+     var defaultOffer=[];
+      for(var d=0;d<result.Offers.length;d++){
+       if(result.Offers[d].TrendingOfferShow == "0"){
+        defaultOffer.push(result.Offers[d].OfferId);
+       
+       }
+      }
+       
+     var loopCount=0;
+        
+     if(valArrCount == 1){
+       loopCount = 3;
+      }
+     else if(valArrCount == 2){
+       loopCount = 2;
+      }
+     else if(valArrCount ==3){
+       loopCount = 1;
+      }
+     else{
+      
+      }
+      for(var k=0;k < valArrCount; k++)
+      {
+      
+       var count=0;
+       for(var i = 0; i < result.Offers.length; i++)
+       {
+       
+       var categoryArr = result.Offers[i].Category.split(':');
+         
+        for(var j=0;j < categoryArr.length; j++){
+       
+         var currOfferId = result.Offers[i].OfferId;
+       
+         
+          if((categoryArr[j] == valArr[k]) && !offerId.includes(currOfferId)){
+           offerId.push(result.Offers[i].OfferId);
+           ++count;
+            
+          }else{
+           
+          }
+        
+        }
+        if(loopCount == count){
+             break;
+            }
+            
+       }
+      }
+
+      var diffCount = defaultOffer.length - offerId.length;
+      
+        for(var o=0; o < defaultOffer.length;o++){
+         if(!offerId.includes(defaultOffer[o])){
+          offerId.push(defaultOffer[o]);
+         }
+        }
+      var countNew=0;
+      for(var h=0;h <= offerId.length;h++){
+       for(var p=0;p < result.Offers.length;p++){
+       
+     
+        if(result.Offers[p].OfferId == offerId[h]){
+         var favouriteClass = $("input#favouriteClass").val();
+         var offerShareLinkPage = $("input#offerShareLinkPage").val();
+         var image = result.Offers[p].Image;
+         var rating = result.Offers[p].Rating;
+         var imageDescription = result.Offers[p].ImageDescription;
+         var promoCodeText = result.Offers[p].PromoCodeText;
+         var promoCode = result.Offers[p].PromoCode;
+         var startDate = result.Offers[p].StartDate;
+         var expiry = result.Offers[p].Expiry;
+         var validityDescription = result.Offers[p].ValidityDescription;
+         var url = result.Offers[p].Url;
+         var brand = result.Offers[p].Brand;
+         var offerView = result.Offers[p].offerViews;
+         var view = "";
+         var offerPageUrl = result.Offers[p].brandLink;
+         var offerImage = result.Offers[p].offerImage;
+         var smallOfferImage = result.Offers[p].smallOfferImage;
+         var eventTrackCode = result.Offers[p].EventTrackCode;
+         var OfferDespOne = result.Offers[p].offerDesp1;
+         var OfferDespTwo = result.Offers[p].offerDesp2;
+         var OfferDespThree = result.Offers[p].offerDesp3;
+         var OfferDespFour = result.Offers[p].offerDesp4;
+         var categoryName = result.Offers[p].categoryName;
+         var categoryLink = result.Offers[p].categoryLink;
+         var OfferId = result.Offers[p].OfferId;
+         var OfferTitle = result.Offers[p].offerTitle;
+         var display="";
+         
+         var pageurl = offerShareLinkPage + offerPageUrl;
+
+         var fbShare = "https://www.facebook.com/sharer/sharer.php?u="+pageurl; 
+         var lkShare = "https://www.linkedin.com/shareArticle?mini=true&amp;url="+pageurl; 
+         var twShare = "https://twitter.com/intent/tweet?url="+pageurl+"&amp;text="+OfferTitle;
+         var gpShare = "https://plus.google.com/share?url="+pageurl+"&amp;text="+OfferTitle;
+         
+         if(countNew >= 3){
+         display="display:none;";
+         }
+         
+         if(offerView !=null && offerView!=""){
+          
+          if(offerView.length == 4){
+             view = offerView.substr(0, 1)+"."+offerView.substr(2, 1)+"K Views";
+          } else if(offerView.length == 5){
+           view = offerView.substr(1, 2)+"K Views";
+          } else if(offerView.length == 6){
+           view = offerView.substr(1, 3)+"K Views";
+          } else if(offerView.length == 7){
+           view = offerView.substr(0, 1)+"."+offerView.substr(2, 1)+"M Views";
+          } else {
+           view = offerView+" Views";
+          }
+         
+         }
+         sliderdiv += "<div class='deal-card' style='height:363px'><div class='deal-inner'><div class='image'><a href='"+offerPageUrl+"'><img src='"+smallOfferImage+"'></img></a></div><div class='offer' style='height:90px'><a href='"+offerPageUrl+"'>"+OfferDespOne+"</a></div><div class='description'>"+OfferDespTwo+OfferDespThree+OfferDespFour+"</div><div class='buttons'><a href='"+offerPageUrl+"' rel='"+eventTrackCode+"' class='ic-btn'>Know more</a></div></div></div>";
+         
+         if($("div").hasClass("deals-and-more-offers")){
+          //console.log("deals and more offers visible");
+          cardsliderdiv += "<div class='offer'><a href='"+offerPageUrl+"' rel='"+eventTrackCode+"'><img src='"+smallOfferImage+"'><p>"+OfferDespOne+"</p></a></div>";
+         }else{
+          console.log("deals and more offers not visible");
+         }
+         
+         countNew++;
+         
+         break;
+        }
+       }
+      }
+      sliderdiv = sliderdiv + "</div>";
+      cardsliderdiv = cardsliderdiv + "</div>";
+      //console.log(sliderdiv);
+      //console.log(cardsliderdiv);
+      if($("#mccmtrendingoffers")){
+       $("#mccmtrendingoffers").append(sliderdiv);
+      } 
+      if($("#trendingoffers")){
+       $("#trendingoffers").append(sliderdiv);
+      }
+      if($(".deals-and-more-offers")){
+       $(".deals-and-more-offers").append(cardsliderdiv);
+      }
+      var DealsandOffersCookieVal = $.cookie("mccmdealsOfferSetCount");
+      //console.log("DealsandOffersCookieVal: " + DealsandOffersCookieVal);
+      if(DealsandOffersCookieVal == 1){
+       //console.log("First mccm deals and more offer called");
+       $("#deal" + DealsandOffersCookieVal).css("display","block");
+      }else if(DealsandOffersCookieVal == 2){
+       //console.log("Second mccm deals and more offer called");
+       $("#deal" + DealsandOffersCookieVal).css("display","block");
+      }else if(DealsandOffersCookieVal == 3){
+       //console.log("Third mccm deals and more offer called");
+       $("#deal" + DealsandOffersCookieVal).css("display","block");
+      }else{
+       //console.log("No mccm deals and more offer called");
+      }
+     
+      /* offer-slider */
+      $('.offer-slider').slick({
+       dots: true,
+       infinite: true,
+       autoplay: true,
+       autoplaySpeed: 2000,
+       speed: 300,
+       slidesToShow: 1,
+       slidesToScroll: 1,
+      }); 
+      /* trending-deals-slider */
+      $('#trendingoffers .trending-deals-slider').slick({        
+        dots: true,
+        infinite: true,
+        autoplay: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [{
+          breakpoint: 1025,
+          settings: {
+           slidesToShow: 2,
+          }
+         },
+         {
+          breakpoint: 767,
+          settings: {
+           slidesToShow: 1,
+           arrows: false,
+           dots: true,
+          }
+         },
+         {
+          breakpoint: 640,
+          settings: {
+           slidesToShow: 1,
+           arrows: false,
+           dots: true,
+           centerMode: true,
+           centerPadding: '15px',
+           infinite: true,
+          }
+         }
+        ]
+      });
+      $('#mccmtrendingoffers .trending-deals-slider').slick({        
+        dots: true,
+        infinite: true,
+        autoplay: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [{
+          breakpoint: 1025,
+          settings: {
+           slidesToShow: 2,
+          }
+         },
+         {
+          breakpoint: 767,
+          settings: {
+           slidesToShow: 1,
+           arrows: false,
+           dots: true,
+          }
+         },
+         {
+          breakpoint: 640,
+          settings: {
+           slidesToShow: 1,
+           arrows: false,
+           dots: true,
+           centerMode: true,
+           centerPadding: '15px',
+           infinite: true,
+          }
+         }
+        ]
+      });
+
+    });
+}
+
+function mccmHandpickedOffersCookieVal(){
+ // Cookie Settings
+ var presentVal = $("#mccmTrendingLivesiteIdVal").val();
+ if(typeof(presentVal) != "undefined"){
+  if(presentVal !=null && presentVal !=''){
+   //console.log("presentVal: " + presentVal);
+   var newcookieVal = presentVal.replace(",","and");
+   //console.log("newcookieVal: " + newcookieVal);
+   //var cookieName = "FedID";
+   var cookie_valueArr = [];
+   // Check if the cookie exists.
+   /* if (jQuery.cookie(cookieName) != null) { */
+   if(typeof(FedID) != "undefined"){
+    if(FedID !=null && FedID !=''){
+     // If the cookie doesn't exist, create a mccmCategoryOffers cookie.
+     var mccmCookieName = "mccmCategoryOffers";
+     var url_string = window.location.href;
+     var url = new URL(url_string);
+     var id = url.searchParams.get("id");
+     var initCookie = newcookieVal; 
+     //console.log(id);
+     var expirationDays = 1;
+     if((initCookie!= null)){
+      if (jQuery.cookie(mccmCookieName) == null) {
+       // If the cookie doesn't exist, save the cookie with the value of 1
+       jQuery.cookie(mccmCookieName, initCookie, { path: '/' }, {expires: expirationDays});
+       //console.log("No cookie set");
+      }else{
+       console.log("Already cookie set");
+       /* if((id!= null)){ */
+        //console.log("Id found");
+        // If the cookie exists, take the value
+        var cookie_value = jQuery.cookie(mccmCookieName) + "and";
+        cookie_value+=initCookie;
+        //console.log('Cookie. Value is ' + cookie_value);
+        cookie_valueArr.push(cookie_value);
+        var uniqueLivesiteId = cookie_valueArr.filter(function(itm, i, cookie_valueArr) {
+         return i == cookie_valueArr.indexOf(itm);
+        });
+        jQuery.cookie(mccmCookieName, uniqueLivesiteId, { path: '/' }, {expires: expirationDays});
+       /* }  */
+      }
+     }
+    }
+   }
+  }
+ }else{
+  console.log("Set Cookie Value fetched");
+  //var cookieName = "FedID";
+  var cookie_valueArr = [];
+  // Check if the cookie exists.
+  /* if (jQuery.cookie(cookieName) != null) { */
+  if(typeof(FedID) != "undefined"){
+   if(FedID !=null && FedID !=''){
+    // If the cookie doesn't exist, create a mccmCategoryOffers cookie.
+    var mccmCookieName = "mccmCategoryOffers";
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var id = url.searchParams.get("id");
+    var initCookie = id; 
+    //console.log(id);
+    var expirationDays = 1;
+    if((initCookie!= null)){
+     if (jQuery.cookie(mccmCookieName) == null) {
+      // If the cookie doesn't exist, save the cookie with the value of 1
+      jQuery.cookie(mccmCookieName, initCookie, { path: '/' }, {expires: expirationDays});
+      //console.log("No cookie set");
+     }else{
+      //console.log("Already cookie set");
+      
+      //console.log("Id found");
+      // If the cookie exists, take the value
+      var cookie_value = jQuery.cookie(mccmCookieName) + "and";
+      cookie_value+=initCookie;
+      //console.log('Cookie. Value is ' + cookie_value);
+      cookie_valueArr.push(cookie_value);
+      var uniqueLivesiteId = cookie_valueArr.filter(function(itm, i, cookie_valueArr) {
+       return i == cookie_valueArr.indexOf(itm);
+      });
+      jQuery.cookie(mccmCookieName, uniqueLivesiteId, { path: '/' }, {expires: expirationDays});
+     }
+    }
+   }
+  }
+ } 
+ /* } */
+}
+
+/** Offer page title margin set for index page : start **/
+  if($('body').hasClass('indexPage')){
+   $("h1.visitedOffer").css("margin","10px 10px -25px 10px");
+  }
+/** Offer page title margin set for index page : ens **/
+mccmHandpickedOffers();
+function compareStrings(a, b) {
+  // Assuming you want case-insensitive comparison
+  a = a.toLowerCase();
+  b = b.toLowerCase();
+
+  return (a < b) ? -1 : (a > b) ? 1 : 0;
+}
+function compareNumbers(a, b) {
+  // Assuming you want case-insensitive comparison
+  a = a.toLowerCase();
+  b = b.toLowerCase();
+
+  return (a > b) ? -1 : (a > b) ? 1 : 0;
+}
+function defaultPickedOffers(mccmFilterOfferid,sliderdiv,cardsliderdiv){
+ //Default offers to be called when mccmCategory values are less than 4.
+ //console.log("Default Offers Called: " + mccmFilterOfferid);
+ var  mccmPopularOfferJson = $("#AjaxOfferJSON").val();
+ var mccmCategoryIdVal = [];
+ for(var i = 0; i < mccmFilterOfferid.length; i++){
+  mccmCategoryIdVal.push(mccmFilterOfferid[i]);
+ }
+ //console.log("mccmCategoryIdVal Array Length: " + mccmCategoryIdVal.length);
+ var mccmlength = mccmCategoryIdVal.length;
+ //console.log("mccmCategoryIdVal Array: " + mccmCategoryIdVal);
+ var mccmOfferIds;
+ var mccmOfferIdsArr = [];
+ $.getJSON(mccmPopularOfferJson, function(result){
+  //console.log("success");
+  //console.log("Default Unica Popular Offers: " + result.Offers.length);
+  var  sortedDefaultUnicaPopularOfferJson = result.Offers;
+  //console.log("sorted Unica Popular Offers Length: " + sortedDefaultUnicaPopularOfferJson.length);
+  for(var k = 0; k < sortedDefaultUnicaPopularOfferJson.length; k++){
+   mccmOfferIds = sortedDefaultUnicaPopularOfferJson[k].offerViews;
+   mccmOfferIdsArr.push(mccmOfferIds);
+  }
+  for(var i = 0; i<sortedDefaultUnicaPopularOfferJson.length;i++){
+   for(var j = 0;j< mccmCategoryIdVal.length; j++){
+    console.log("mccmCategoryIdVal: " + mccmCategoryIdVal[j]);
+    sortedfiltereddata = $.grep(sortedDefaultUnicaPopularOfferJson, function( n, i ) {
+      return n.LivesiteId != mccmCategoryIdVal[j];
+    });
+    console.log("sortedfiltereddata data: " + sortedfiltereddata.length);
+    sortedDefaultUnicaPopularOfferJson = sortedfiltereddata;
+   }
+  }
+  var count = 0;
+  var booleanflag = true;
+  for(var i = 0; i<sortedDefaultUnicaPopularOfferJson.length;i++){
+   if(count < (3-mccmCategoryIdVal.length)){
+    console.log("sortedDefaultUnicaPopularOfferJson[i].LivesiteId: " + sortedDefaultUnicaPopularOfferJson[i].LivesiteId);
+    for(var j = 0;j< mccmCategoryIdVal.length; j++){
+     console.log("mccmCategoryIdVal: " + mccmCategoryIdVal[j]);
+     if(sortedDefaultUnicaPopularOfferJson[i].LivesiteId != mccmCategoryIdVal[j]){
+      console.log("No offer matched");
+      count = count + 1;
+      booleanflag = false;
+     }else{
+      booleanflag = true;
+     }
+    }
+    console.log("No existing mccm offers matched.");
+    //console.log("count: " + count);
+    //alert("Matched count: " + (4-mccmCategoryIdVal.length));
+    //console.log("Default Offer Called");
+    if((sortedDefaultUnicaPopularOfferJson[i]['offerDesp1'] !="") && (sortedDefaultUnicaPopularOfferJson[i]['offerDesp1'] !="undefined") ){
+     var offerDescription ="<strong>"+sortedDefaultUnicaPopularOfferJson[i]['offerDesp1']+"</strong> "+sortedDefaultUnicaPopularOfferJson[i]['offerDesp2'];
+     var dealsOfferdescription =sortedDefaultUnicaPopularOfferJson[i]['offerDesp1'];
+    }else{
+     var offerDescription = sortedDefaultUnicaPopularOfferJson[i]['offerDesp2']+" <strong>"+sortedDefaultUnicaPopularOfferJson[i]['offerDesp3']+"</strong> "+sortedDefaultUnicaPopularOfferJson[i]['offerDesp4'];
+     var dealsOfferdescription =sortedDefaultUnicaPopularOfferJson[i]['offerDesp1'];
+    }
+    sliderdiv += "<div class='deal-card' style='height:363px'><div class='deal-inner'><div class='image'><a href='"+sortedDefaultUnicaPopularOfferJson[i]['brandLink']+"'><img src='"+sortedDefaultUnicaPopularOfferJson[i]['smallOfferImage']+"'></img></a></div><div class='offer' style='height:90px'><a href='"+sortedDefaultUnicaPopularOfferJson[i]['brandLink']+"'>"+sortedDefaultUnicaPopularOfferJson[i]['offerDesp1']+"</a></div><div class='description'>"+sortedDefaultUnicaPopularOfferJson[i]['offerDesp2']+sortedDefaultUnicaPopularOfferJson[i]['offerDesp3']+sortedDefaultUnicaPopularOfferJson[i]['offerDesp4']+"</div><div class='buttons'><a href='"+sortedDefaultUnicaPopularOfferJson[i]['brandLink']+"' class='ic-btn'>Know more</a></div></div></div>";
+    if($("div").hasClass("deals-and-more-offers")){
+     //console.log("deals and more offers visible");
+     cardsliderdiv += "<div class='offer'><a href='"+sortedDefaultUnicaPopularOfferJson[i]['brandLink']+"'><img src='"+sortedDefaultUnicaPopularOfferJson[i]['smallOfferImage']+"'><p>"+sortedDefaultUnicaPopularOfferJson[i]['offerDesp1']+"</p></a></div>";
+    }else{
+     console.log("deals and more offers not visible");
+    }
+   }
+  }
+  sliderdiv = sliderdiv + "</div>";
+  cardsliderdiv = cardsliderdiv + "</div>";
+  //console.log(sliderdiv);
+  //console.log(cardsliderdiv);
+  $("#mccmtrendingoffers").append(sliderdiv);
+  $(".deals-and-more-offers").append(cardsliderdiv);
+  
+  var DealsandOffersCookieVal = $.cookie("mccmdealsOfferSetCount");
+  //console.log("DealsandOffersCookieVal: " + DealsandOffersCookieVal);
+  if(DealsandOffersCookieVal == 1){
+   //console.log("First mccm deals and more offer called");
+   $("#deal" + DealsandOffersCookieVal).css("display","block");
+  }else if(DealsandOffersCookieVal == 2){
+   //console.log("Second mccm deals and more offer called");
+   $("#deal" + DealsandOffersCookieVal).css("display","block");
+  }else if(DealsandOffersCookieVal == 3){
+   //console.log("Third mccm deals and more offer called");
+   $("#deal" + DealsandOffersCookieVal).css("display","block");
+  }else{
+   //console.log("No mccm deals and more offer called");
+  }
+  /* offer-slider */
+  $('.offer-slider').slick({
+   dots: true,
+   infinite: true,
+   autoplay: true,
+   autoplaySpeed: 2000,
+   speed: 300,
+   slidesToShow: 1,
+   slidesToScroll: 1,
+  }); 
+  /* trending-deals-slider */
+  $('#trendingoffers .trending-deals-slider').slick({        
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [{
+      breakpoint: 1025,
+      settings: {
+       slidesToShow: 2,
+      }
+     },
+     {
+      breakpoint: 767,
+      settings: {
+       slidesToShow: 1,
+       arrows: false,
+       dots: true,
+      }
+     },
+     {
+      breakpoint: 640,
+      settings: {
+       slidesToShow: 1,
+       arrows: false,
+       dots: true,
+       centerMode: true,
+       centerPadding: '15px',
+       infinite: true,
+      }
+     }
+    ]
+  });
+  $('#mccmtrendingoffers .trending-deals-slider').slick({        
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [{
+      breakpoint: 1025,
+      settings: {
+       slidesToShow: 2,
+      }
+     },
+     {
+      breakpoint: 767,
+      settings: {
+       slidesToShow: 1,
+       arrows: false,
+       dots: true,
+      }
+     },
+     {
+      breakpoint: 640,
+      settings: {
+       slidesToShow: 1,
+       arrows: false,
+       dots: true,
+       centerMode: true,
+       centerPadding: '15px',
+       infinite: true,
+      }
+     }
+    ]
+  });
+
+ });
+}
+function mccmHandpickedOffers(){
+ if (jQuery.cookie("mccmCategoryOffers") != null) {
+  //console.log("Cookie value found");
+  $(".deals-and-more-offers").empty();
+ 
+  var mccmCookieVal = $.cookie("mccmCategoryOffers");
+  //console.log("mccmCookieVal: " + mccmCookieVal);
+  var mccCokiesplitVal = mccmCookieVal.split("and");
+  //console.log("mccCokiesplitVal: " + mccCokiesplitVal);
+  var mccCookieValArr = [];
+  for(var i=0;i<mccCokiesplitVal.length;i++){
+   mccCookieValArr.push(mccCokiesplitVal[i]);
+  }
+  //console.log("mccCookieValArr : " + mccCookieValArr);
+  //console.log("mccCookieValArr Length: " + mccCookieValArr.length);
+  
+  /* var uniqueLivesiteId = mccCookieValArr.filter(function(itm, i, mccCookieValArr) {
+   return i == mccCookieValArr.indexOf(itm);
+  });
+  console.log("uniqueLivesiteId Length: " + uniqueLivesiteId.length);
+  console.log("uniqueLivesiteId: " + uniqueLivesiteId);
+  */
+  var  mccmCategoryValCount = $("#mccmTrendingCategoryValCount").val();
+  if(mccmCategoryValCount > 0){
+   $(".offerContent").empty();
+   var  unicaPopularOfferJson = $("#unica-popular-offer-json").val();
+   var mccmCategoryVal = [];
+   for(var i = 1; i <= mccmCategoryValCount; i++){
+    mccmCategoryVal.push($("#mccmTrendingCategory" + i).val());
+   }
+   $("#mccmTrendingCategoryVal").val(mccmCategoryVal);
+   var  mccmCategoryIds = $("#mccmTrendingCategoryVal").val();
+   //console.log("mccmCategoryVal: " + mccmCategoryVal);
+   $(".offerContent").css("display","block");
+   $(".locate-near-by").css("display","none");
+   var mccmOfferCount = $("#mccmTrendingCategoryValCount").val();
+   //console.log("mccmOfferCount: " + mccmOfferCount);
+   var categoryIds;
+   var livesiteIds;
+   var mccmIds;
+   var unicaCategoryIds = mccmCategoryIds.split(',');
+   //console.log("unicaCategoryIds length: " + unicaCategoryIds.length);
+   var categoryIdArr = [];
+   var livesiteIdArr = [];
+   var mccmIdArr = [];
+   var mccmArray = [];
+   var filteredMccmArray = [];
+   var mccmfilterCategoryListArray = [];
+   var filterdata = [];
+   if(mccmOfferCount > 0){
+    $.getJSON(unicaPopularOfferJson, function(result){
+     //console.log("success");
+     //console.log("Unica Popular Offers: " + result.UnicaPopularOffers.length);
+     filterdata = result.UnicaPopularOffers;
+     for(var l = 0; l<mccCookieValArr.length;l++){
+      //console.log("mccCookieValArr: " + mccCookieValArr[l]);
+      filtereddata = $.grep(filterdata, function( n, i ) {
+        return n.Livesite != mccCookieValArr[l];
+      });
+      //console.log("filtered data: " + filtereddata.length);
+      filterdata = filtereddata;
+     }
+     var  sortedUnicaPopularOfferJson = filtereddata.sort(function(a, b) {
+       return compareStrings(a.MCCMCategory, b.MCCMCategory);
+     });
+     
+     //console.log("sorted Unica Popular Offers: " + sortedUnicaPopularOfferJson.length);
+     for(var k = 0; k < sortedUnicaPopularOfferJson.length; k++){
+      mccmIds = sortedUnicaPopularOfferJson[k].MCCMCategory;
+      mccmIdArr.push(mccmIds);
+     }
+     /* var filteredMccmArray = mccmIdArr.filter(function(item, pos){
+       return mccmIdArr.indexOf(item)== pos; 
+     }); */
+     //console.log("filtered Mccm Array: " + filteredMccmArray );
+    
+     $.each(sortedUnicaPopularOfferJson, function (index, value) {
+      if ($.inArray(value.MCCMCategory, mccmArray) == -1) {
+       mccmArray.push(value.MCCMCategory);
+       filteredMccmArray.push(value);
+      }
+     });
+     filteredMccmArray = JSON.stringify(filteredMccmArray);
+     //console.log(filteredMccmArray);
+     filteredMccmObj = JSON.parse(filteredMccmArray);
+
+     //alert(filteredMccmObj.length);
+     var mccmfiltercount = 0;
+     var mccmfilterOfferid = [];
+     var slider_div = "<div class='trending-deals-slider'>";
+     var card_slider_div = "<div class='offer-slider'>";
+     for(var n =0; n < unicaCategoryIds.length; n++){
+      //console.log("MCCM ID: " + unicaCategoryIds[n]);
+      for(var p = 0; p < filteredMccmObj.length; p++){
+       categoryIds = sortedUnicaPopularOfferJson[p].Category.split(':');
+       livesiteIds = sortedUnicaPopularOfferJson[p].Livesite.split(':');
+       //console.log("LSCS ID: " + filteredMccmObj[p]['MCCMCategory']);
+       if(unicaCategoryIds[n] === filteredMccmObj[p]['MCCMCategory']){
+        //console.log("Matched id: " + unicaCategoryIds[n]);
+        mccmfiltercount = mccmfiltercount + 1;
+        mccmfilterCategoryListArray.push(unicaCategoryIds[n]);
+        mccmfilterOfferid.push(filteredMccmObj[p]['Livesite']);
+        for(var b = 0; b < livesiteIds.length; b++){
+         var count = 0;
+         for(var a = 0; a < categoryIds.length; a++){
+          count = count + 1;
+          // do something with "categoryIds[a]"
+          //console.log("Category Id: " + categoryIds[a]);
+          categoryIdArr.push(categoryIds[a]);
+          //console.log("CategoryIdArr: " + categoryIdArr);
+          // do something with "livesiteIds[b]"
+          //console.log("livesite Id: " + livesiteIds[b]);
+          livesiteIdArr.push(livesiteIds[b]);
+          //console.log("livesiteIdsArr: " + livesiteIdArr);
+          // do something with "mccmCategoryIds[p]"
+          //console.log("MCCM Id: " + filteredMccmArray[p]);
+          /* console.log("filteredMccmArray: " + filteredMccmArray); */
+          if(count > 1){
+           //console.log("Multiple categories found for livesite id: " + livesiteIds[b] + " with count: " + count);
+          }else{
+           var mccmcount = 0;
+           /*console.log("Match found for offercount: " + count);
+           console.log("MCCM Category Id: " + filteredMccmObj[p]['MCCMCategory']);
+           console.log("Livesite Id: " + livesiteIds[b]);
+           console.log("Category Id: " + categoryIds[a]);*/
+           if((filteredMccmObj[p]['offerDesp1'] !="") && (filteredMccmObj[p]['offerDesp1'] !="undefined") ){
+            var offerDescription ="<strong>"+filteredMccmObj[p]['offerDesp1']+"</strong> "+filteredMccmObj[p]['offerDesp2'];
+            var dealsOfferdescription =filteredMccmObj[p]['offerDesp1'];
+           }else{
+            var offerDescription = filteredMccmObj['offerDesp2']+" <strong>"+filteredMccmObj[p]['offerDesp3']+"</strong> "+filteredMccmObj[p]['offerDesp4'];
+            var dealsOfferdescription =filteredMccmObj[p]['offerDesp1'];
+           }
+           slider_div += "<div class='deal-card' style='height:363px'><div class='deal-inner'><div class='image'><a href='"+filteredMccmObj[p]['brandLink']+"' ><img src='"+filteredMccmObj[p]['smallOfferImage']+"'></img></a></div><div class='offer' style='height:90px'><a href='"+filteredMccmObj[p]['brandLink']+"' >"+filteredMccmObj[p]['offerDesp1']+"</a></div><div class='description'>"+filteredMccmObj[p]['offerDesp2']+filteredMccmObj[p]['offerDesp3']+filteredMccmObj[p]['offerDesp4']+"</div><div class='buttons'><a href='"+filteredMccmObj[p]['brandLink']+"' class='ic-btn'>Know more</a></div></div></div>";
+           if($("div").hasClass("deals-and-more-offers")){
+            //console.log("deals and more offers visible");
+            card_slider_div += "<div class='offer'><a href='"+filteredMccmObj[p]['brandLink']+"'><img src='"+filteredMccmObj[p]['smallOfferImage']+"'><p>"+filteredMccmObj[p]['offerDesp1']+"</p></a></div>";
+           }else{
+            console.log("deals and more offers not visible");
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+     var DealsandOffersCookieVal = $.cookie("mccmdealsOfferSetCount");
+     //console.log("DealsandOffersCookieVal: " + DealsandOffersCookieVal);
+     if(DealsandOffersCookieVal == 1){
+      //console.log("First mccm deals and more offer called");
+      $("#deal" + DealsandOffersCookieVal).css("display","block");
+     }else if(DealsandOffersCookieVal == 2){
+      //console.log("Second mccm deals and more offer called");
+      $("#deal" + DealsandOffersCookieVal).css("display","block");
+     }else if(DealsandOffersCookieVal == 3){
+      //console.log("Third mccm deals and more offer called");
+      $("#deal" + DealsandOffersCookieVal).css("display","block");
+     }else{
+      //console.log("No mccm deals and more offer called");
+     }
+     $("#mccmTrendingLivesiteIdVal").val(mccmfilterOfferid);
+     mccmHandpickedOffersCookieVal();
+     if(mccmfiltercount==0){
+      console.log("no mccm offer matched");
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else if(mccmfiltercount==1){
+      console.log("one mccm offer matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else if(mccmfiltercount==2){
+      console.log("two mccm offers matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else if(mccmfiltercount==3){
+      console.log("three mccm offers matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else{
+      console.log("more than three mccm offer matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }
+    });
+   }else{
+    console.log("no mccm offers found");
+   }
+  }else{
+    var slider_div = "<div class='trending-deals-slider'>";
+    var card_slider_div = "<div class='offer-slider'>";
+    handPickedOffers(slider_div, card_slider_div);
+   }
+ }else{
+  console.log("Cookie value not found");
+  $(".deals-and-more-offers").empty();
+  var  mccmCategoryValCount = $("#mccmTrendingCategoryValCount").val();
+  if(mccmCategoryValCount > 0){
+   $(".offerContent").empty();
+   var  unicaPopularOfferJson = $("#unica-popular-offer-json").val();
+   var mccmCategoryVal = [];
+   for(var i = 1; i <= mccmCategoryValCount; i++){
+    mccmCategoryVal.push($("#mccmTrendingCategory" + i).val());
+   }
+   $("#mccmTrendingCategoryVal").val(mccmCategoryVal);
+   var  mccmCategoryIds = $("#mccmTrendingCategoryVal").val();
+   //console.log("mccmCategoryVal: " + mccmCategoryVal);
+   $(".offerContent").css("display","block");
+   $(".locate-near-by").css("display","none");
+   var mccmOfferCount = $("#mccmTrendingCategoryValCount").val();
+   //console.log("mccmOfferCount: " + mccmOfferCount);
+   var categoryIds;
+   var livesiteIds;
+   var mccmIds;
+   var unicaCategoryIds = mccmCategoryIds.split(',');
+   //console.log("unicaCategoryIds length: " + unicaCategoryIds.length);
+   var categoryIdArr = [];
+   var livesiteIdArr = [];
+   var mccmIdArr = [];
+   var mccmArray = [];
+   var filteredMccmArray = [];
+   var mccmfilterCategoryListArray = [];
+   var filterdata = [];
+   if(mccmOfferCount > 0){
+    $.getJSON(unicaPopularOfferJson, function(result){
+     console.log("success");
+     console.log("Unica Popular Offers: " + result.UnicaPopularOffers.length);
+     
+     var  sortedUnicaPopularOfferJson = result.UnicaPopularOffers.sort(function(a, b) {
+       return compareStrings(a.MCCMCategory, b.MCCMCategory);
+     });
+     
+     //console.log("sorted Unica Popular Offers: " + sortedUnicaPopularOfferJson.length);
+     for(var k = 0; k < sortedUnicaPopularOfferJson.length; k++){
+      mccmIds = sortedUnicaPopularOfferJson[k].MCCMCategory;
+      mccmIdArr.push(mccmIds);
+     }
+     /* var filteredMccmArray = mccmIdArr.filter(function(item, pos){
+       return mccmIdArr.indexOf(item)== pos; 
+     }); */
+     //console.log("filtered Mccm Array: " + filteredMccmArray );
+    
+     $.each(sortedUnicaPopularOfferJson, function (index, value) {
+      if ($.inArray(value.MCCMCategory, mccmArray) == -1) {
+       mccmArray.push(value.MCCMCategory);
+       filteredMccmArray.push(value);
+      }
+     });
+     filteredMccmArray = JSON.stringify(filteredMccmArray);
+     console.log(filteredMccmArray);
+     filteredMccmObj = JSON.parse(filteredMccmArray);
+
+     //console.log(filteredMccmObj.length);
+     var mccmfiltercount = 0;
+     var mccmfilterOfferid = [];
+     var slider_div = "<div class='trending-deals-slider'>";
+     var card_slider_div = "<div class='offer-slider'>";
+     for(var n =0; n < unicaCategoryIds.length; n++){
+      console.log("MCCM ID: " + unicaCategoryIds[n]);
+      for(var p = 0; p < filteredMccmObj.length; p++){
+       categoryIds = sortedUnicaPopularOfferJson[p].Category.split(':');
+       livesiteIds = sortedUnicaPopularOfferJson[p].Livesite.split(':');
+       console.log("LSCS ID: " + filteredMccmObj[p]['MCCMCategory']);
+       if(unicaCategoryIds[n] === filteredMccmObj[p]['MCCMCategory']){
+        console.log("Matched id: " + unicaCategoryIds[n]);
+        mccmfiltercount = mccmfiltercount + 1;
+        mccmfilterCategoryListArray.push(unicaCategoryIds[n]);
+        mccmfilterOfferid.push(filteredMccmObj[p]['Livesite']);
+        for(var b = 0; b < livesiteIds.length; b++){
+         var count = 0;
+         for(var a = 0; a < categoryIds.length; a++){
+          count = count + 1;
+          // do something with "categoryIds[a]"
+          //console.log("Category Id: " + categoryIds[a]);
+          categoryIdArr.push(categoryIds[a]);
+          //console.log("CategoryIdArr: " + categoryIdArr);
+          // do something with "livesiteIds[b]"
+          //console.log("livesite Id: " + livesiteIds[b]);
+          livesiteIdArr.push(livesiteIds[b]);
+          //console.log("livesiteIdsArr: " + livesiteIdArr);
+          // do something with "mccmCategoryIds[p]"
+          //console.log("MCCM Id: " + filteredMccmArray[p]);
+          /* console.log("filteredMccmArray: " + filteredMccmArray); */
+          if(count > 1){
+           //console.log("Multiple categories found for livesite id: " + livesiteIds[b] + " with count: " + count);
+          }else{
+           var mccmcount = 0;
+           /*console.log("Match found for offercount: " + count);
+           console.log("MCCM Category Id: " + filteredMccmObj[p]['MCCMCategory']);
+           console.log("Livesite Id: " + livesiteIds[b]);
+           console.log("Category Id: " + categoryIds[a]);*/
+           if((filteredMccmObj[p]['offerDesp1'] !="") && (filteredMccmObj[p]['offerDesp1'] !="undefined") ){
+            var offerDescription ="<strong>"+filteredMccmObj[p]['offerDesp1']+"</strong> "+filteredMccmObj[p]['offerDesp2'];
+            var dealsOfferdescription =filteredMccmObj[p]['offerDesp1'];
+           }else{
+            var offerDescription = filteredMccmObj['offerDesp2']+" <strong>"+filteredMccmObj[p]['offerDesp3']+"</strong> "+filteredMccmObj[p]['offerDesp4'];
+            var dealsOfferdescription =filteredMccmObj[p]['offerDesp1'];
+           }
+           slider_div += "<div class='deal-card' style='height:363px'><div class='deal-inner'><div class='image'><a href='"+filteredMccmObj[p]['brandLink']+"'><img src='"+filteredMccmObj[p]['smallOfferImage']+"'></img></a></div><div class='offer' style='height:90px'><a href='"+filteredMccmObj[p]['brandLink']+"'>"+filteredMccmObj[p]['offerDesp1']+"</a></div><div class='description'>"+filteredMccmObj[p]['offerDesp2']+filteredMccmObj[p]['offerDesp3']+filteredMccmObj[p]['offerDesp4']+"</div><div class='buttons'><a href='"+filteredMccmObj[p]['brandLink']+"' class='ic-btn'>Know more</a></div></div></div>";
+           if($("div").hasClass("deals-and-more-offers")){
+            //console.log("deals and more offers visible");
+            card_slider_div += "<div class='offer'><a href='"+filteredMccmObj[p]['brandLink']+"'><img src='"+filteredMccmObj[p]['smallOfferImage']+"'><p>"+filteredMccmObj[p]['offerDesp1']+"</p></a></div>";
+           }else{
+            console.log("deals and more offers not visible");
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+     var DealsandOffersCookieVal = $.cookie("mccmdealsOfferSetCount");
+     //console.log("DealsandOffersCookieVal: " + DealsandOffersCookieVal);
+     if(DealsandOffersCookieVal == 1){
+      //console.log("First mccm deals and more offer called");
+      $("#deal" + DealsandOffersCookieVal).css("display","block");
+     }else if(DealsandOffersCookieVal == 2){
+      //console.log("Second mccm deals and more offer called");
+      $("#deal" + DealsandOffersCookieVal).css("display","block");
+     }else if(DealsandOffersCookieVal == 3){
+      //console.log("Third mccm deals and more offer called");
+      $("#deal" + DealsandOffersCookieVal).css("display","block");
+     }else{
+      //console.log("No mccm deals and more offer called");
+     }
+     $("#mccmTrendingLivesiteIdVal").val(mccmfilterOfferid);
+     mccmHandpickedOffersCookieVal();
+     if(mccmfiltercount==0){
+      console.log("no mccm offer matched");
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else if(mccmfiltercount==1){
+      console.log("one mccm offer matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else if(mccmfiltercount==2){
+      console.log("two mccm offers matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else if(mccmfiltercount==3){
+      console.log("three mccm offers matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }else{
+      console.log("more than three mccm offer matched");
+      //console.log("MccmfilterCategoryListArray: " + mccmfilterCategoryListArray);
+      //console.log("MccmfilterOfferid Array: " + mccmfilterOfferid);
+      defaultPickedOffers(mccmfilterOfferid,slider_div,card_slider_div);
+     }
+    });
+   }else{
+    console.log("no mccm offers found");
+   }
+  }else{
+    var slider_div = "<div class='trending-deals-slider'>";
+    var card_slider_div = "<div class='offer-slider'>";
+    handPickedOffers(slider_div, card_slider_div);
+   }
+ }
+}
+ /* offer-slider */
+ $('.offer-slider').slick({
+  dots: true,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  speed: 300,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+ }); 
+ /* trending-deals-slider */
+ $('#trendingoffers .trending-deals-slider').slick({        
+   dots: true,
+   infinite: true,
+   autoplay: true,
+   speed: 500,
+   slidesToShow: 3,
+   slidesToScroll: 1,
+   responsive: [{
+     breakpoint: 1025,
+     settings: {
+      slidesToShow: 2,
+     }
+    },
+    {
+     breakpoint: 767,
+     settings: {
+      slidesToShow: 1,
+      arrows: false,
+      dots: true,
+     }
+    },
+    {
+     breakpoint: 640,
+     settings: {
+      slidesToShow: 1,
+      arrows: false,
+      dots: true,
+      centerMode: true,
+      centerPadding: '15px',
+      infinite: true,
+     }
+    }
+   ]
+ });
+ 
+});

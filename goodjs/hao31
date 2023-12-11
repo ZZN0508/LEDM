@@ -1,0 +1,1 @@
+define("indexnew:component/gamebox/common/template.js",["global","module","exports","require"],function(e,a){var t=['<p class="gameBox-item-header gameBox-item-header-#{type}">','<span class="gameBox-item-header-#{type}-bg">',"</span>","</p>"].join(""),o=['<a class="gameBox-item-btn #{extralStyle}" href="#{url}">',"#{text}","</a>"].join("");a.exports={headerTpl:t,hotBtnTpl:o}});

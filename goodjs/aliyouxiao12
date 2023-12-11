@@ -1,0 +1,37 @@
+document.write('<a href="//click.ali213.net/ALiClick-534.html" class="s1-r-img" target="_blank"><img src="//'+ym+'/Pics/2023/index_qtz534_300c425.jpg" width="300" height="425" /></a>');
+//document.write('<a class="s1-r-img" target="_blank"><img src="//'+ym+'/Pics/2020/index_qtz534_300c425.jpg" width="300" height="425" /></a>');
+/*document.write('<a href="//click.ali213.net/ALiClick-534.html" class="s1-r-img" style="position:relative;" target="_blank"><img style="transform:scale(1);" src="//pbmp.ali213.net/Pics/2020/index_qtz534_ycq_300c425.jpg" width="300" height="425" /><div id="ycqdjs" style="width:220px;height:34px;line-height:34px;position:absolute;bottom:60px;left:35px;"></div></a>');
+function countTime(value) {
+	//获取当前时间
+	var date = new Date();
+	var now = date.getTime();
+	//设置截止时间
+	var endDate = new Date("2020-06-03 00:00:00");
+	var end = endDate.getTime();
+	//时间差
+	var differTime = end - now;
+	//定义变量,h,m,s保存倒计时的时间
+	var h, m, s;
+	if (differTime >= 0) {
+		h = Math.floor(differTime / 1000 / 60 / 60);
+		m = Math.floor(differTime / 1000 / 60 % 60);
+		s = Math.floor(differTime / 1000 % 60);
+		if(h < 100 && h>=10){
+			h = "0" + h;
+		}else if(h<10){
+			h = "00" + h;
+		}
+		m = m < 10 ? ("0" + m) : m;
+		s = s < 10 ? ("0" + s) : s;
+		var timeDom = '<span style="display:inline-block;color:#936e25;font-size:22px;font-weight:bold;width:70px;margin-right:30px;letter-spacing:12px;">' + h + '</span><p style="display:inline-block;color:#936e25;font-size:22px;font-weight:bold;width:44px;margin-right:28px;letter-spacing:10px;">' + m + '</p><font style="display:inline-block;color:#936e25;font-size:22px;font-weight:bold;width:44px;letter-spacing:10px;">' + s + '</font>';
+		$("#ycqdjs").html(timeDom);
+		//递归调用函数所以是延时器不是定时器
+		setTimeout(function () {
+			countTime(value);
+		}, 1000);
+	} else {
+		var timeDom ='<span style="display:inline-block;color:#936e25;font-size:22px;font-weight:bold;width:70px;margin-right:30px;letter-spacing:12px;">000</span><p style="display:inline-block;color:#936e25;font-size:22px;font-weight:bold;width:44px;margin-right:28px;letter-spacing:10px;">00</p><font style="display:inline-block;color:#936e25;font-size:22px;font-weight:bold;width:44px;letter-spacing:10px;">00</font>';
+		$("#ycqdjs").html(timeDom);
+	}
+}
+countTime();*/

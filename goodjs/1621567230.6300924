@@ -1,0 +1,111 @@
+"use strict";
+
+var MyBrowser = {
+    version: '',
+    getBrowser: function getBrowser() {
+        var userAgent = navigator.userAgent; //鍙栧緱娴忚鍣ㄧ殑userAgent瀛楃涓�
+        var isOpera = userAgent.indexOf("Opera") > -1; //鍒ゆ柇鏄惁Opera娴忚鍣�
+        var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //鍒ゆ柇鏄惁IE<11娴忚鍣� 
+        var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //鍒ゆ柇鏄惁IE鐨凟dge娴忚鍣� 
+        var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+        var isFF = userAgent.indexOf("Firefox") > -1; //鍒ゆ柇鏄惁Firefox娴忚鍣�
+        var isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1; //鍒ゆ柇鏄惁Safari娴忚鍣�
+        var isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1; //鍒ゆ柇Chrome娴忚鍣�
+
+        if (isIE) {
+            var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+            reIE.test(userAgent);
+            var fIEVersion = parseFloat(RegExp["$1"]);
+            if (fIEVersion == 7) {
+                return "IE7";
+            } else if (fIEVersion == 8) {
+                return "IE8";
+            } else if (fIEVersion == 9) {
+                return "IE9";
+            } else if (fIEVersion == 10) {
+                return "IE10";
+            } else {
+                return "IE6";
+            } //IE鐗堟湰杩囦綆
+            // return "IE";
+        } 
+        if(isIE11) {
+            return "IE11"; //IE11  
+        }
+        if (isOpera) {
+            return "Opera";
+        }
+        if (isEdge) {
+            return "Edge";
+        }
+        if (isFF) {
+            return "FF";
+        }
+        if (isSafari) {
+            return "Safari";
+        }
+        if (isChrome) {
+            return "Chrome";
+        }
+    },
+    init: function init() {
+        MyBrowser.version = MyBrowser.getBrowser();
+        console.log(MyBrowser.version);
+
+        // ie 娴忚鍣ㄦ彁绀�
+        if(window.location.href.indexOf('article')> -1 || window.location.href.indexOf('gallery')> -1){
+            console.log("article");
+            if (MyBrowser.version.indexOf('IE') > -1 && MyBrowser.getCookie('tips') != 'IE' && article['ext-serious'] != 2) {
+                MyBrowser.render();
+                MyBrowser.event();
+            }
+        }else{
+            if (MyBrowser.version.indexOf('IE') > -1 && MyBrowser.getCookie('tips') != 'IE') {
+                MyBrowser.render();
+                MyBrowser.event();
+            }
+        }
+        
+    },
+    render: function render() {
+        var s = document.createElement('div');
+        s.id = 'browserTipsWrap';
+        s.style.background = '#fafafa';
+        s.style.position = 'fixed';
+        s.style.borderTop = '1px solid #90070d';
+        s.style.bottom = '0';
+        s.style.left = '0';
+        s.style.right = '0';
+        s.style.zIndex = '9999999999';
+        s.innerHTML = "<div class=\"browserTips\" style=\"padding: 20px 0; width: 1000px; color: #333; margin:0 auto; font: 14px/1.5 'PingFang SC', 'Microsoft YaHei'\">\n                            杩欎笉鏄竴鏉″晢涓氬箍鍛婏細鎮ㄧ殑娴忚鍣ㄥ凡缁忎笉鍐嶄富娴侊紝姝ｅ湪澶卞幓鏀寔銆傝繖鎰忓懗鐫€鏇村鐨勫畨鍏ㄩ闄╋紝浠ュ強瓒婃潵瓒婂鐨勭珯鐐瑰拰搴旂敤涓嶅啀鍏煎锛屾垜浠篃鍗冲皢鍋滄瀵硅娴忚鍣ㄧ殑鍏煎鎬т繚闅溿€備负浜嗘偍鐨勪娇鐢ㄤ綋楠岋紝寮虹儓寤鸿鎮ㄥ敖蹇洿鏂�&nbsp;&nbsp;&nbsp;&nbsp;\n                            <a href=\"//www.huanqiu.com/browser\" style=\"color: #1a72e8;\">鏌ョ湅璇︽儏</a> \n                            <a herf=\"javascript:void(0);\" id=\"browserTipsClose\" style=\"position: absolute; top: 0; right: 20px; font-size: 24px; color: #777; text-decoration: none; cursor: pointer;\">脳</a>\n                        </div>";
+        document.body.appendChild(s);
+    },
+    event: function event() {
+        var browserTipsClose = document.getElementById('browserTipsClose');
+        browserTipsClose.onclick = function () {
+            var div = document.getElementById("browserTipsWrap");
+            MyBrowser.removeElement(div);
+            MyBrowser.setCookie("tips","IE");
+        };
+    },
+    removeElement: function removeElement(_element){
+        var _parentElement = _element.parentNode;
+        if(_parentElement){
+            _parentElement.removeChild(_element);
+        }
+    },
+    setCookie: function setCookie(name,value){
+        var Days = 1;
+        var exp = new Date(); 
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        // exp.setTime(exp.getTime() + 2*60*1000);
+        document.cookie = name + "="+ escape (value) + ";path=/;domain=.huanqiu.com;expires=" + exp.toGMTString();
+    },
+    getCookie: function getCookie(name){
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg)) return unescape(arr[2]);
+        else return null;
+    }
+};
+
+MyBrowser.init();

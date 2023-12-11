@@ -1,0 +1,1513 @@
+
+//空对象返回true
+var isIplookEmpty = function (obj){
+    for (var i in obj) {
+        return false;
+    }
+    return true;
+}
+if( isIplookEmpty(remote_ip_info) || typeof remote_ip_info === "undefined"){
+    var remote_ip_info = {"ret":1,"start":-1,"end":-1,"country":"\u4e2d\u56fd","province":"\u5317\u4eac","city":"\u5317\u4eac","district":"","isp":"","type":"","desc":""};
+}   
+
+
+	jsLoader({
+	name : 'iplookup',
+	status : 'ok'
+	});
+
+
+    //设置本页面的富媒体类型的顺序
+
+var _SINAADS_CONF_PAGE_MEDIA_ORDER = ["2EF482AADE63", "PDPS000000059618", "PDPS000000000001", "PDPS000000006450", "PDPS000000051826",  "texingxibao"];
+//var sinaadsPageMediaOrder = ["流媒体/超屏","全屏/动态全屏","跨栏","背投","视窗/浮层","特型喜报"]
+//成组批量请求
+var _SINAADS_CONF_GROUP = 'PDPS000000058043,PDPS000000058046,PDPS000000058042,PDPS000000058184,PDPS000000058185'.split(',');
+
+
+
+
+//<![CDATA[
+document.domain = "sina.com.cn";
+//]]>
+
+
+    window.url = "http://www.sina.com.cn/mid/pic/index.d.html?url=";
+    window.pic1 = {"pic":"","url":"http:\/\/astro.sina.com.cn\/l\/zx\/2018-11-06\/doc-ihmutuea7564924.shtml","title":"\u57c3\u5fb7\u52a0-\u51ef\u897f\u5bf912\u661f\u5ea7\u7684\u89e3\u8bfb"};
+    window.pic2 = {"pic":"","url":"http:\/\/astro.sina.com.cn\/l\/zx\/2018-11-06\/doc-ihmutuea7564924.shtml","title":"\u57c3\u5fb7\u52a0-\u51ef\u897f\u5bf912\u661f\u5ea7\u7684\u89e3\u8bfb"};
+  
+	
+	var SUDA = SUDA || []; 
+	SUDA.push(["setGatherInfo", '', '2017_old']);  
+
+
+var sinaSSOManager=sinaSSOManager||{};sinaSSOManager.getSinaCookie=function(){function dc(u){if(u==undefined){return""}var decoded=decodeURIComponent(u);return decoded=="null"?"":decoded}function ps(str){var arr=str.split("&");var arrtmp;var arrResult={};for(var i=0;i<arr.length;i++){arrtmp=arr[i].split("=");arrResult[arrtmp[0]]=dc(arrtmp[1])}return arrResult}function gC(name){var Res=eval("/"+name+"=([^;]+)/").exec(document.cookie);return Res==null?null:Res[1]}var sup=dc(gC("SUP"));if(!sup){sup=dc(gC("SUR"))}if(!sup){return null}return ps(sup)};
+new function(r,s,t){this.a=function(n,t,e){if(window.addEventListener){n.addEventListener(t,e,false);}else if(window.attachEvent){n.attachEvent("on"+t,e);}};this.b=function(f){var t=this;return function(){return f.apply(t,arguments);};};this.c=function(){var f=document.getElementsByTagName("form");for(var i=0;i<f.length;i++){var o=f[i].action;if(this.r.test(o)){f[i].action=o.replace(this.r,this.s);}}};this.r=r;this.s=s;this.d=setInterval(this.b(this.c),t);this.a(window,"load",this.b(function(){this.c();clearInterval(this.d);}));}(/http:\/\/www\.google\.c(om|n)\/search/, "http://keyword.sina.com.cn/searchword.php", 250);
+
+        (sinaads = window.sinaads || []).push({
+            element:document.getElementById("2495FC81338A"),
+            params: {
+                sinaads_ad_width: 1600,
+                sinaads_bg_top: 46,
+                sinaads_success_handler: function(){
+                    document.getElementById("bgAdWrap").style.top = "46px";
+                },
+                sinaads_bg_asideClick: 1//0是顶部可点击，1是全部可点击
+            }
+        });
+    
+
+	 jsLoader({
+                    name: 'shm',
+                    callback: function(){             
+                           var focusScroll = new ScrollPic();
+                           focusScroll.scrollContId = "nwsu_Wrap"; //内容容器ID
+                           focusScroll.frameWidth = 50;//显示框宽度
+                           focusScroll.pageWidth = 50; //翻页宽度
+                           focusScroll.upright = true; //垂直滚动
+                           focusScroll.speed = 50; //移动速度(单位毫秒，越小越快)
+                           focusScroll.space = 40; //每次移动像素(单位px，越大越快)
+                           focusScroll.autoPlay = true; //自动播放
+                           focusScroll.autoPlayTime = 5; //自动播放间隔时间(秒)
+                           focusScroll.circularly = true;
+                           focusScroll.initialize(); //初始化
+
+					}
+
+		})
+	
+document.write('<span id="FullScreenWrap"></span>');
+
+            // 本地tab更新
+            jsLoader({
+                name: 'navLocal',
+                charset:'utf-8',
+                url: '//interface.sina.cn/dfz/outside/ipdx/langshou_nav.d.json'
+            })
+        
+(sinaads = window.sinaads || []).push({});
+
+        ;(function () {
+            _sinaadsCacheData = window._sinaadsCacheData || {};
+            // 默认值
+            _sinaadsCacheData['PDPS000000045976Preload'] = {"id":"PDPS000000045976Preload","type":"embed","size":"240*350","template":"","logo":"","content":[{"link":[],"monitor":[],"pv":[],"src":["//www.sina.com.cn/iframe/www/focuspic.html"],"type":["url"],"ad_id":"bottom_15e9abe0e323967c7f3115b932948174","origin_monitor":[]}]};
+            var adsData
+            if (sinaadToolkit && sinaadToolkit.storage && (adsData = sinaadToolkit.storage.get('adsData'))) {
+                _sinaadsCacheData['PDPS000000045976Preload'] = sinaadToolkit.json.parse(adsData)
+            }
+          
+            ;(sinaads = window.sinaads || []).push({})
+        })();
+    
+
+        (sinaads = window.sinaads || []).push({
+            params: {
+                sinaads_beforerender: function (element, data, config) {
+                    sinaadToolkit.storage.set('adsData', sinaadToolkit.json.stringify(data), 30 * 24 * 60 * 60 * 1000)
+                    return false; // 返回false告诉页面不进行渲染
+                }
+            }
+        });
+    
+
+                        window.onload = function () {
+                            var blackcat = document.getElementById('heimaogif');
+                            setTimeout(function(){
+                                blackcat.setAttribute('src','//n.sinaimg.cn/finance/blackcat/pc/blink.gif')
+                            },6000);
+                            blackcat.onmouseover = function(e){
+                                e.target.src = '//n.sinaimg.cn/finance/blackcat/pc/blackcat-hover.gif';
+                            }
+                            blackcat.onmouseout = function(e){
+                                e.target.src = '//n.sinaimg.cn/finance/blackcat/pc/blink.gif';
+                            }
+                        } 
+                        
+                    
+
+						jsLoader({
+							name: 'shm',
+							callback: function() {
+								var ispScroll = new ScrollPic();
+								ispScroll.scrollContId = "SI_products"; //内容容器ID
+
+								ispScroll.dotClassName = ""; //点className
+								ispScroll.dotOnClassName = "cur"; //当前点className
+								ispScroll.listType = ""; //列表类型(number:数字，其它为空)
+								ispScroll.listEvent = "onmouseover"; //切换事件
+								ispScroll.frameWidth = 238; //显示框宽度
+								ispScroll.pageWidth = 238; //翻页宽度
+								ispScroll.upright = false; //垂直滚动
+								ispScroll.speed = 10; //移动速度(单位毫秒，越小越快)
+								ispScroll.space = 40; //每次移动像素(单位px，越大越快)
+								ispScroll.autoPlay = true; //自动播放
+								ispScroll.autoPlayTime = 10; //自动播放间隔时间(秒)ispScroll.autoPlayTime = typeof(autoPlayTime)!='undefined'?autoPlayTime : [15,5,5,5];
+								ispScroll.circularly = true;
+								ispScroll.initialize(); //初始化
+								SHM.E('SI_products_arrow_l').onmousedown = function() {
+									ispScroll.pre();
+									return false;
+								}
+								SHM.E('SI_products_arrow_r').onmousedown = function() {
+									ispScroll.next();
+									return false;
+								}
+
+							}
+						});
+						
+
+      //autoPlayTime = 10;
+                        jsLoader({
+                            name: 'sinaProduct',
+                            charset:'utf-8',
+                            url: '//n.sinaimg.cn/homepage/js/sina_product_tabs.js',
+                            callback:function(){
+                                jsLoader({
+                                    name: 'heimaotousu',
+                                    charset:'utf-8',
+                                    url:'//tech.sina.com.cn/other/src/sinaheimao.js'
+                                })
+                            }   
+                        })
+                        
+
+        var EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;
+        var SinaHomeTabNav = document.getElementById("TAB-NAV");
+        var SinaHomeTabNavSpan = SinaHomeTabNav.getElementsByTagName("span");
+    
+(sinaads = window.sinaads || []).push({
+element : document.getElementById("sina_ad_tab00"),
+params:{
+sinaads_success_handler: function () {
+var TabADContent = arguments[1];
+var TabADPV = TabADContent.content[0].pv;
+var IndexNum = 0;
+if(IndexNum == 0){
+EduAdSpan1 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;
+}
+else if(IndexNum == 1){
+EduAdSpan0 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;
+}
+else if(IndexNum == 2){
+EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan3 = 0;
+}
+else{
+EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan2 = 0;
+}
+EduAdSpan0++;
+SinaHomeTabNavSpan[0].onmouseover = function(){
+if(IndexNum == 0){
+EduAdSpan1 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;
+}
+else if(IndexNum == 1){
+EduAdSpan0 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;
+}
+else if(IndexNum == 2){
+EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan3 = 0;
+}
+else{
+EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan2 = 0;
+}
+if(EduAdSpan0 >= 1){
+return;
+}
+else{
+for(var p = 0,l = TabADPV.length;p < l;p++){
+var PageViewLink = TabADPV[p];
+sinaadToolkit.sio.log(PageViewLink);
+EduAdSpan0++;
+}
+}
+}
+}
+}
+});
+
+
+    var PdpsArray = ["PDPS000000058015","PDPS000000058016","PDPS000000058017","PDPS000000058018"];
+    var IdArray = ["ad_edu_01","ad_edu_02","ad_edu_03","ad_edu_04"];
+
+            SinaHomeTabNavSpan[0].onmouseover = function (){
+                var SpanId = document.getElementById(IdArray[0]);
+                if(SpanId.getElementsByTagName("ins").length > 0){
+                    return;
+                }
+                else{
+                    //鼠标移上加载广告
+                    var SinaHomeTabIns = document.createElement("ins");
+                    var SinaHomeTabSC = document.createElement("script");
+                    SinaHomeTabIns.className = "sinaads";
+                    SinaHomeTabIns.setAttribute("data-ad-pdps", PdpsArray[0]);
+                    SinaHomeTabIns.id = "sina_ad_tab0" + 0;
+                    SinaHomeTabSC.type = "text/javascript";
+                    SinaHomeTabSC.text = [
+                            '(sinaads = window.sinaads || []).push({\n',
+                                'element : document.getElementById("' + SinaHomeTabIns.id + '"),\n',
+                                'params:{\n',
+                                    'sinaads_success_handler: function () {\n',
+                                        'var TabADContent = arguments[1];\n',
+                                        'var TabADPV = TabADContent.content[0].pv;\n',
+                                        'var RegExpObj = /(\s)(selected)$/g;\n',
+                                        'EduAdSpan1 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;\n',
+                                        'EduAdSpan0++;\n',
+                                        'SinaHomeTabNavSpan[0].onmouseover = function(){\n',
+                                            //曝光计数特殊处理
+                                            'EduAdSpan1 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;\n',
+                                            'if(EduAdSpan0 >= 1){\n',
+                                                'return;\n',
+                                            '}\n',
+                                            'else{\n',
+                                                'for(var p = 0,l = TabADPV.length;p < l;p++){\n',
+                                                    'var PageViewLink = TabADPV[p];\n',
+                                                    'sinaadToolkit.sio.log(PageViewLink);\n',
+                                                    'EduAdSpan0++;\n',
+                                                '}\n',
+                                            '}\n',
+                                        '}\n',
+                                    '}\n',
+                                '}\n',
+                            '});\n'
+                    ].join('');
+                    SpanId.appendChild(SinaHomeTabIns);
+                    SpanId.appendChild(SinaHomeTabSC);
+                }
+            };
+
+            SinaHomeTabNavSpan[1].onmouseover = function(){
+                var SpanId = document.getElementById(IdArray[1]);
+                if(SpanId.getElementsByTagName("ins").length > 0){
+                    return;
+                }
+                else{
+                    //鼠标移上加载广告
+                    var SinaHomeTabIns = document.createElement("ins");
+                    var SinaHomeTabSC = document.createElement("script");
+                    SinaHomeTabIns.className = "sinaads";
+                    SinaHomeTabIns.setAttribute("data-ad-pdps", PdpsArray[1]);
+                    SinaHomeTabIns.id = "sina_ad_tab0" + 1;
+                    SinaHomeTabSC.type = "text/javascript";
+                    SinaHomeTabSC.text = [
+                            '(sinaads = window.sinaads || []).push({\n',
+                                'element : document.getElementById("' + SinaHomeTabIns.id + '"),\n',
+                                'params:{\n',
+                                    'sinaads_success_handler: function () {\n',
+                                        'var TabADContent = arguments[1];\n',
+                                        'var TabADPV = TabADContent.content[0].pv;\n',
+                                        'EduAdSpan0 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;\n',
+                                        'EduAdSpan1++;\n',
+                                        'SinaHomeTabNavSpan[1].onmouseover = function(){\n',
+                                            //曝光计数特殊处理
+                                            'EduAdSpan0 = 0,EduAdSpan2 = 0,EduAdSpan3 = 0;\n',
+                                            'if(EduAdSpan1 >= 1){\n',
+                                                'return;\n',
+                                            '}\n',
+                                            'else{\n',
+                                                'for(var p = 0,l = TabADPV.length;p < l;p++){\n',
+                                                    'var PageViewLink = TabADPV[p];\n',
+                                                    'sinaadToolkit.sio.log(PageViewLink);\n',
+                                                    'EduAdSpan1++;\n',
+                                                '}\n',
+                                            '}\n',
+                                        '}\n',
+                                    '}\n',
+                                '}\n',
+                            '});\n'
+                    ].join('');
+                    SpanId.appendChild(SinaHomeTabIns);
+                    SpanId.appendChild(SinaHomeTabSC);
+                }
+            };
+
+            SinaHomeTabNavSpan[2].onmouseover = function(){
+                var SpanId = document.getElementById(IdArray[2]);
+                if(SpanId.getElementsByTagName("ins").length > 0){
+                    return;
+                }
+                else{
+                    //鼠标移上加载广告
+                    var SinaHomeTabIns = document.createElement("ins");
+                    var SinaHomeTabSC = document.createElement("script");
+                    SinaHomeTabIns.className = "sinaads";
+                    SinaHomeTabIns.setAttribute("data-ad-pdps", PdpsArray[2]);
+                    SinaHomeTabIns.id = "sina_ad_tab0" + 2;
+                    SinaHomeTabSC.type = "text/javascript";
+                    SinaHomeTabSC.text = [
+                            '(sinaads = window.sinaads || []).push({\n',
+                                'element : document.getElementById("' + SinaHomeTabIns.id + '"),\n',
+                                'params:{\n',
+                                    'sinaads_success_handler: function () {\n',
+                                        'var TabADContent = arguments[1];\n',
+                                        'var TabADPV = TabADContent.content[0].pv;\n',
+                                        'EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan3 = 0;\n',
+                                        'EduAdSpan2++;\n',
+                                        'SinaHomeTabNavSpan[2].onmouseover = function(){\n',
+                                            //曝光计数特殊处理
+                                            'EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan3 = 0;\n',
+                                            'if(EduAdSpan2 >= 1){\n',
+                                                'return;\n',
+                                            '}\n',
+                                            'else{\n',
+                                                'for(var p = 0,l = TabADPV.length;p < l;p++){\n',
+                                                    'var PageViewLink = TabADPV[p];\n',
+                                                    'sinaadToolkit.sio.log(PageViewLink);\n',
+                                                    'EduAdSpan2++;\n',
+                                                '}\n',
+                                            '}\n',
+                                        '}\n',
+                                    '}\n',
+                                '}\n',
+                            '});\n'
+                    ].join('');
+                    SpanId.appendChild(SinaHomeTabIns);
+                    SpanId.appendChild(SinaHomeTabSC);
+                }
+            };
+
+            SinaHomeTabNavSpan[3].onmouseover = function(){
+                var SpanId = document.getElementById(IdArray[3]);
+                if(SpanId.getElementsByTagName("ins").length > 0){
+                    return;
+                }
+                else{
+                    //鼠标移上加载广告
+                    var SinaHomeTabIns = document.createElement("ins");
+                    var SinaHomeTabSC = document.createElement("script");
+                    SinaHomeTabIns.className = "sinaads";
+                    SinaHomeTabIns.setAttribute("data-ad-pdps", PdpsArray[3]);
+                    SinaHomeTabIns.id = "sina_ad_tab0" + 3;
+                    SinaHomeTabSC.type = "text/javascript";
+                    SinaHomeTabSC.text = [
+                            '(sinaads = window.sinaads || []).push({\n',
+                                'element : document.getElementById("' + SinaHomeTabIns.id + '"),\n',
+                                'params:{\n',
+                                    'sinaads_success_handler: function () {\n',
+                                        'var TabADContent = arguments[1];\n',
+                                        'var TabADPV = TabADContent.content[0].pv;\n',
+                                        'EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan2 = 0;\n',
+                                        'EduAdSpan3++;\n',
+                                        'SinaHomeTabNavSpan[3].onmouseover = function(){\n',
+                                            //曝光计数特殊处理
+                                            'EduAdSpan0 = 0,EduAdSpan1 = 0,EduAdSpan2 = 0;\n',
+                                            'if(EduAdSpan3 >= 1){\n',
+                                                'return;\n',
+                                            '}\n',
+                                            'else{\n',
+                                                'for(var p = 0,l = TabADPV.length;p < l;p++){\n',
+                                                    'var PageViewLink = TabADPV[p];\n',
+                                                    'sinaadToolkit.sio.log(PageViewLink);\n',
+                                                    'EduAdSpan3++;\n',
+                                                '}\n',
+                                            '}\n',
+                                        '}\n',
+                                    '}\n',
+                                '}\n',
+                            '});\n'
+                    ].join('');
+                    SpanId.appendChild(SinaHomeTabIns);
+                    SpanId.appendChild(SinaHomeTabSC);
+                }
+            };
+
+
+/* 热门话题、频道板块随机显示 */
+	
+var fortab_random = parseInt(2*Math.random());
+	
+/*
+    if (fortab_random == "0"){
+        document.getElementById("SI_WEIBORecommend_span").style.display = "";
+        document.getElementById("SI_channel_show_span").style.display = "none";
+		//document.getElementById("SI_channel_show_span2").style.display = "none";
+    }
+    if (fortab_random == "1"){
+        document.getElementById("SI_WEIBORecommend_span").style.display = "none";
+        document.getElementById("SI_channel_show_span").style.display = "";
+		//document.getElementById("SI_channel_show_span2").style.display = "none";
+    }
+	
+
+    if (fortab_random == "2"){
+        document.getElementById("SI_WEIBORecommend_span").style.display = "none";
+        document.getElementById("SI_channel_show_span").style.display = "none";
+		document.getElementById("SI_channel_show_span2").style.display = "";
+    }
+
+*/
+
+
+(function() {
+	function addEvent(obj, eventType, func) {
+		if(obj.attachEvent) {
+			obj.attachEvent("on" + eventType, func);
+		} else {
+			obj.addEventListener(eventType, func, false);
+		}
+	};
+
+	function attachURL2Window(id,url) {
+		var links;
+		try {
+			links = document.getElementById(id).getElementsByTagName("a");
+		}catch(e) {
+			links = [];
+		}
+		for (var i = 0, len = links.length; i < len; i++) {
+			addEvent(links[i], "mousedown", function(e) {
+				var writeCookie = function(O, o, l, I, p) {
+				var i = "",
+				c = "",
+				path = "";
+				if (l != null) {
+					if(l == "NaN"){
+						i = ";";
+					}else{
+						i = new Date((new Date).getTime() + l * 3600000);
+						i = "; expires=" + i.toGMTString();
+					}
+				};
+				if (I != null) {
+					c = ";domain=" + I
+				};
+				if(p != null){
+					path = ";path=" + p;
+				};
+				document.cookie = O + "=" + escape(o) + i + c + path;
+				};
+				writeCookie("directAd","true",1,".sina.com.cn","/");
+				//点击监测
+				var _clickStat = new Image();
+				_clickStat.src = url + "&_=" + new Date().getTime() + "&url=";
+			});
+		}
+	};
+
+	attachURL2Window("syncad_1","http://sina.allyes.com/main/adfclick?db=sina&bid=372535,533936,539210&cid=0,0,0&sid=540113&advid=358&camid=69129&show=ignore");
+	attachURL2Window("syncad_3","http://sina.allyes.com/main/adfclick?db=sina&bid=372535,534289,539559&cid=0,0,0&sid=540488&advid=358&camid=69129&show=ignore");
+	attachURL2Window("syncad_4","http://sina.allyes.com/main/adfclick?db=sina&bid=372535,539990,545264&cid=0,0,0&sid=546428&advid=358&camid=69129&show=ignore");
+	attachURL2Window("syncad_0","http://sina.allyes.com/main/adfclick?db=sina&bid=372535,547080,552353&cid=0,0,0&sid=553716&advid=358&camid=69129&show=ignore");
+	attachURL2Window("syncad_0_B","http://sina.allyes.com/main/adfclick?db=sina&bid=372535,547080,552353&cid=0,0,0&sid=553716&advid=358&camid=69129&show=ignore");
+
+})()
+
+
+        jsLoader({
+            name: 'shm',
+            charset: 'utf-8',
+            url: '//n.sinaimg.cn/index/js/shms2.js?v=20190927'
+            //url: 'build/shms.js'
+        });
+
+
+    // 修改 5 begin
+jsLoader({
+    name: 'shm',
+    callback: function () {
+        var sguid = SHM.util.cookie.getCookie('SINAGLOBAL');
+        if (typeof sguid == 'string') {
+            lastNum = sguid.charAt(sguid.length - 1, 1);
+            if (lastNum == 'A' || lastNum == 'A') {
+                var randomSwitch = (function(){
+                    var wrap = SHM.dom.byId('picBNav');
+                    var navs = SHM.dom.byAttr(wrap,'tab-type','tab-nav');
+                    var len = navs.length;
+                    return function(){
+                        var nav = navs[Math.floor(Math.random() * len)];
+                        if(nav){
+                            SHM.app.tab.switchByEle(nav);
+                        }
+                    };
+                })();
+                var timer1 = null;
+                var pic_utils = {
+                    $: function (id) {
+                      return document.getElementById(id);
+                    },
+                    fixEvent: function (e) {
+                      var e = e || win.event;
+                      e.target = e.target ? e.target : e.srcElement;
+                      return e;
+                    },
+                    delegateByTag: function(ele,tag,etype,fn){
+                      var that = this;
+                      that.addEvent(ele,etype,function(ev){
+                        var e = that.fixEvent(ev);
+                        var t = e.target;
+                        tag = tag.toLowerCase();
+                        do {
+                          if(t.nodeName && t.nodeName.toLowerCase() === tag){
+                            fn(e, t);
+                          }
+                          t = t.parentNode;
+                        } while (t && t !== ele)
+                      });
+                    },
+                    addEvent: document.addEventListener ?
+                      function (elem, type, fn) {
+                        elem.addEventListener(type, fn, false);
+                      } : function (elem, type, fn) {
+                        elem.attachEvent('on' + type, fn);
+                      },
+                    removeEvent: document.removeEventListener ?
+                      function (elem, type, fn) {
+                        elem.removeEventListener(type, fn, false);
+                      } : function (elem, type, fn) {
+                        elem.detachEvent('on' + type, fn);
+                      }
+                  };
+                var bPicArea = pic_utils.$('fc_B_pic'),
+                    bPicAttachment = pic_utils.$('fc_B_pic_attachment'),
+                    bPicShow = 0;
+					randomSwitch();
+                pic_utils.addEvent(bPicArea, 'mouseover', function (e) {
+                    clearTimeout(timer1);
+                    bPicAttachment.style.display = '';
+                    try {
+                        ! bPicShow && _S_uaTrack('index_wwwb_photo', 'pic_show');
+                        bPicShow = 1;
+                    } catch (e) {};
+                });
+                pic_utils.addEvent(bPicArea, 'mouseout', function () {
+                    clearTimeout(timer1);
+                    timer1 = setTimeout(function () {
+                        bPicAttachment.style.display = 'none';
+                        bPicShow = 0;
+                    }, 300);
+                });
+                var picbd = document.getElementById('picBNav'), currentTag = '';
+                pic_utils.delegateByTag(picbd, 'span', 'mouseover', function (e, t) {
+                    if (t.getAttribute('data-picb-uaTrack') == currentTag) {
+                        return;
+                    }
+                    currentTag = t.getAttribute('data-picb-uaTrack');
+                    try {
+                        _S_uaTrack('index_wwwb_photo', currentTag);
+                    } catch (e) {}
+                });
+            }
+        }
+    }
+});
+    // 修改 5 end
+
+/*
+20160120改版上线后取消
+
+                jsLoader({
+                    name: 'shm',
+                    callback: function(){
+                        jsLoader({
+                            name: 'StateMgr',
+                            charset:'gbk',
+                            url: 'http://www.sina.com.cn/js/96/2014/0317/StateMgr.js',
+                            callback:function(){
+								var guessCtr=document.getElementById('SI_Guess_Wrap');
+                                var mgr = new SHM.xy.stateMgr({
+                                    timeSlice: 0, //min
+                                    state1Ids:['xy-tabA', 'xy-contA', 'xy-imptabtp-A', 'xy-impcon-A'],
+                                    state2Ids:['xy-tabB', 'xy-contB', 'xy-imptabtp-B', 'xy-impcon-B'],
+                                    s1Callback:function(){
+										//guessCtr.style.height='186px';//8 条
+                                        SHM.app.tab.switchByEle(SHM.E('video-tab'));
+try{_S_uaTrack("www_update_div", "a");}catch(e){}
+                                    },
+                                    s2Callback:function(){
+										//guessCtr.style.height='186px';//8 条
+                                        SHM.app.tab.switchByEle(SHM.E('zhuanlan-tab'));
+try{_S_uaTrack("www_update_div", "b");}catch(e){}
+                                    }
+                                });
+                                SHM.evt.addEvent(SHM.E('xy-change'), 'click', function(evt){
+                                    mgr.toggleState();
+                                    SHM.evt.preventDefault(evt);
+                                }, false);
+                            }
+                        });
+                    }
+                });
+*/
+				
+
+
+		var a1=[];
+        var url_search = [];
+		$.ajax({
+            type:"GET",
+            dataType:'json',
+            url:'//www.sina.com.cn/api/hotword.json',
+            success:function(data){
+                var s = data.result.data;
+                var l = s.length;
+                for (var i = 0; i < l; i++) {
+                    a1.push(s[i].title);
+                    url_search.push(s[i].url);
+                }
+                var str = data.result.order;
+                // 20140403 MOD lqf {update the default hot}
+                jsLoader({name: "shm",callback: function() {
+                    SHM.register("io.jsonp2", function($) {
+                        return function(url, params, callback, fix) {
+                            var head_dom, old_script, script_dom, byId = $.dom.byId, idStr = url + "&" + params, fun = "";
+                            byId(url) && document.body.removeChild(byId(url)), fix = fix || !1, fix ? "string" == typeof callback && (fun = callback) : (url = url + (-1 == url.indexOf("?") ? "?" : "&") + "_t=" + Math.random(), "function" == typeof callback && (fun = "fun_" + (new Date).getUTCMilliseconds() + ("" + Math.random()).substring(3), eval(fun + "=function(res){callback(res)}"))), url = url + "&_cb=" + fun, url = url + "&" + params, head_dom = document.getElementsByTagName("head")[0], old_script = byId(idStr), old_script && head_dom.removeChild(old_script), script_dom = $.C("script"), script_dom.src = url, script_dom.id = idStr, script_dom.type = "text/javascript", script_dom.language = "javascript", head_dom.appendChild(script_dom)
+                        }
+                    }), SHM.register("home.suggest", function(a) {
+                        var b = {requestURL: "//s.weibo.com/ajax/jsonp/suggestion?ver=1&Refer=sina_sug",searchURL: "http://s.weibo.com/weibo/@@key@@",interTime: 6e5};
+                        var c = "top-suggest-", d = c + "wrap", e = c + "item", f = c + "evt", g = window, h = g.document, j = ($globalInfo.ua.isIOS, a.str.trim), k = a.dom.addClass, m = a.dom.removeClass, n = a.dom.byAttr, o = a.io.jsonp2, p = a.evt.addEvent, q = a.evt.delegatedEvent, r = function(a) {
+                            this.input = a.input, this.maxLen = a.maxLen || 10, this.onoff = a.onoff || "on", this.index = -1, this.cache = new Object, this.controlFunction = a.controlFunction || function() {
+                                    }, this.init.apply(this, arguments);
+                        };
+                        return r.prototype = {init: function() {
+                            var d, a = this, b = a.input;
+                            return "off" === a.onoff ? !1 : (a.wrap = b.parentNode, b.setAttribute("autocomplete", "off"), d = q(a.wrap), a.setDefault(), a.getRandomKey(), d.add(f, "mouseover", function(b) {
+                                var c = b.el;
+                                a.select(c)
+                            }), d.add(f, "mouseout", function(b) {
+                                var d = b.el, e = c + "mover";
+                                d.className.indexOf(e) && m(d, e), !!a.cache.curitem && m(a.cache.curitem, e)
+                            }), d.add(f, "mousedown", function(b) {
+                                a.evtclick(b.el)
+                            }), p(b, "focus", function() {
+                                !a.cache.listStatus && a.getTimeOut(a.show, "show")
+                            }), b.onpropertychange ? b.onpropertychange = function() {
+                                a.sendRequest()
+                            } : p(b, "input", function() {
+                                a.sendRequest()
+                            }), p(b, "blur", function() {
+                                a.getTimeOut(a.hidden, "hidden")
+                            }), p(b, "keydown", function(b) {
+                                a.keydownEvt(b)
+                            }), p(b, "keyup", function(b) {
+                                var b = b || g.event;
+                                return 38 == b.keyCode || 40 == b.keyCode || 27 == b.keyCode ? !1 : (a.sendRequest(), void 0)
+                            }), void 0)
+                        },getTimeOut: function(a, b) {
+                            var c = this, d = c.cache["timeLayer_" + b];
+                            !!d && clearTimeout(d), c.cache["timeLayer_" + b] = setTimeout(function() {
+                                a.apply(c, arguments)
+                            }, 200)
+                        },sendRequest: function() {
+                            var a = this,  c = a.getInputVal();
+                            a.setDefault(), "" !== c ? (a.getSugData(b.requestURL, "key=" + encodeURIComponent(c)), a.cache.listType = "sug") : (a.cache.hotList ? (a.sugWrap.innerHTML = a.cache.hotList, a.cache.curVal = "", a.curMaxLen = a.sugWrap.getElementsByTagName("DIV").length - 2, a.innerShowORHidden(!0)) : a.getHotData(b.requestURL, "", !0), a.cache.listStatus = !1, a.cache.listType = "hot")
+                        },setDefault: function() {
+                            var a = this;
+                            a.cache.curitem = null, a.cache.curindex = -1
+                        },show: function() {
+                            var a = this;
+                            a.sugWrap ? a.innerShowORHidden(!0) : a.sugWrap = a.createSugList()
+                        },hidden: function() {
+                            this.innerShowORHidden(!1);
+                            var a = this.getInputVal();
+                            "" !== a && "请输入关键字" !== a && (this.cache.listStatus = !0)
+                        },innerShowORHidden: function(a) {
+                            var b = this;
+                            b.sugWrap.className = "微博" === h.SearchEcho.SerchType.value ? "top-suggest-wrap weibo-suggest" : "top-suggest-wrap news-suggest",
+                                    this.controlFunction() ? a ? (b.sugWrap.style.display = "block", b.cache.keyDownOff = !1) : (b.sugWrap.style.display = "none", b.cache.keyDownOff = !0) : (b.sugWrap.style.display = "none", b.cache.keyDownOff = !0)
+                        },getInputVal: function() {
+                            return j(this.input.value)
+                        },evtclick: function(a) {
+                            var c = a.innerHTML, d = encodeURIComponent(encodeURIComponent(c));
+                            this.input.value = c;if("微博" === h.SearchEcho.SerchType.value) (h.hform_10.Refer.value = void 0 != this.cache.curVal && c != j(this.cache.curVal) ? "sug" === this.cache.listType ? "sina_sug" : "sina_hot_sug" : "sina_index", h.hform_10.setAttribute("action", b.searchURL.replace("@@key@@", d)), h.hform_10.submit());
+                        },keydownEvt: function() {
+                            var c, d, a = this, b = arguments[0] || g.event;
+                            if (a.cache.keyDownOff)
+                                return !1;
+                            switch (b.keyCode) {
+                                case 38:
+                                    d = a.curMaxLen || a.maxLen, c = -1 === a.cache.curindex ? d - 1 : a.cache.curindex - 1, a.select(c, !0);
+                                    break;
+                                case 40:
+                                    d = a.curMaxLen || a.maxLen, c = -1 === a.cache.curindex ? 0 : a.cache.curindex === d - 1 ? -1 : a.cache.curindex + 1, a.select(c, !0);
+                                    break;
+                                case 13:
+                            }
+                        },select: function(a, b) {
+                            var e, f, d = this, g = c + "mover", h = d.cache.curitem;
+                            "object" == typeof a ? function() {
+                                e = a, f = +e.getAttribute("index")
+                            }() : function() {
+                                -1 === a ? (e = null, f = -1) : (e = n(d.sugWrap, "index", a + "")[0], f = +a)
+                            }(), !!h && m(h, g), e ? (k(e, g), d.cache.curitem = e, d.cache.curindex = f, b && (d.input.value = e.innerHTML)) : (d.input.value = d.cache.curVal, d.cache.curitem = null, d.cache.curindex = -1), setTimeout(function() {
+                                d.setCursorPos(d.input.value.length)
+                            }, -1)
+                        },setCursorPos: function(a) {
+                            var c, b = this.input;
+                            b.setSelectionRange ? (b.setSelectionRange(a, a), b.focus()) : (c = b.createTextRange(), c.collapse(!0), c.moveEnd("character", a), c.moveStart("character", a), c.select())
+                        },createSugList: function() {
+                            var c = this, e = c.input;
+                            if (a.util.getUniqueKey(), !e)
+                                throw "input is undefined!";
+                            return c.sugWrap = h.createElement("DIV"), c.sugWrap.className = d, c.innerShowORHidden(!1), e.value = "", c.cache.hotList ? (c.sugWrap.innerHTML = c.cache.hotList, c.innerShowORHidden(!0)) : c.getHotData(b.requestURL, "", !0), c.wrap.appendChild(c.sugWrap), setInterval(function() {
+                                c.getHotData(b.requestURL, "", !1)
+                            }, b.interTime), c.sugWrap
+                        },getHotData: function(a, b, c) {
+                            var d = this, e = function(a) {
+                                if (1e5 == a.code && a.data.list.length) {
+                                    var b = a.data.list;
+                                    c ? (d.cache.hotList = d.sugWrap.innerHTML = d.itemConsturctor(b, 0), d.innerShowORHidden(!0)) : d.cache.hotList = d.itemConsturctor(b, 0, !0)
+                                } else
+                                    d.innerShowORHidden(!1)
+                            };
+                            o(a, b, e)
+                        },getSugData: function(a, b) {
+                            var c = this, d = function(a) {
+                                if (1e5 == a.code && a.data.length) {
+                                    if ("" !== c.getInputVal()) {
+                                        var b = a.data;
+                                        c.sugWrap.innerHTML = c.itemConsturctor(b, 1), c.innerShowORHidden(!0), c.cache.listStatus = !1
+                                    }
+                                } else
+                                    c.innerShowORHidden(!1)
+                            };
+                            o(a, b, d)
+                        },getRandomKey: function() {
+                            var a = this, c = a.input, d = function(a, b) {
+                                return Math.floor(a + Math.random() * (b - a))
+                            }, e = function(b) {
+								//因微博热搜暂停一周，暂时修改条件
+                                //if (1e5 == b.code && b.data.list.length) {
+								if (1e5 == b.code) {
+                                    //var e = b.data.list, f = a1.length;
+									var e = a1, f = a1.length;
+                                    var h = str.length!=0 ? str[Math.floor(Math.random()*str.length)] : d(0, f);
+                                    if(a1[h] == 'undefined'){
+                                        h = d(0, f);
+                                    }
+                                    a.cache.hotList = a.itemConsturctor(e, 0);
+                                    // MOD lqf 20140414 {default search error}
+                                    a.cache.curVal = e[h];
+                                    g.___homeSugVal___ = c.value = "大家正在搜：" + a1[h], a.cache.keyDownOff = !0
+                                } else
+                                    c.value = "请输入关键字\r\n"
+                            };
+                            o(b.requestURL, "", e)
+                        },itemConsturctor: function(a,  b, c) {
+                            var g, h, i, j, k, d = this;
+                            var url = 'http://sina.com.cn';
+                            //var a1 = ["拍照更saa清晰的OPPO R9s火爆上市", "石原里美山下智久恋情", "李二1022", "女朋友胸小", "秋冬穿搭", "贾玲", "梦想改造家", "乔任梁", "美国大选辩论", "贾玲男友曝光"];
+                            for (a = a, g = [], h = "word", i = "", j = "", l = a.length > d.maxLen ? d.maxLen : a.length, c || (d.curMaxLen = l, d.cache.curVal = d.input.value), 0 == b ? (h = "word", i = '<div class="top-suggest-tip weibo">大家正在搜：\r\n</div>') : (h = "suggestion", i = "", j = ""), g.push(i), k = 0; l > k; k++)
+                                g.push('<div class="weibo '), g.push(e), g.push('" index="'), g.push(k), g.push('" action-type="'), g.push(f), g.push('">'),g.push(a[k]), g.push("</div>");
+                            for (a = a1, g = g, h = "word", i = "", j = "", l = a.length > d.maxLen ? d.maxLen : a.length, c || (d.curMaxLen = l, d.cache.curVal = d.input.value), 0 == b ? (h = "word", i = '<div class="top-suggest-tip news">大家正在搜：\r\n</div>', j = '') : (h = "suggestion", i = "", j = ""), g.push(i), k = 0; l > k; k++)
+                                g.push('<div onclick=window.open("'+url_search[k]+'","_blank") class="news '), g.push(e), g.push('" index="'), g.push(k), g.push('" action-type="'), g.push(f), g.push('">'), g.push(a[k]), g.push("</div>");
+                            return g.push(j), g.join("");
+                        }}, r
+                    }), window.search_suggest = new SHM.home.suggest({input: document.SearchEcho.SerchKey,maxLen: 10,onoff: "on",controlFunction: function() {
+                        return "微博" === document.SearchEcho.SerchType.value || "新闻" === document.SearchEcho.SerchType.value ? !0 : !1
+                    }})
+                }});
+//});
+                // 20140403 MOD lqf {update the default hot} end
+            },
+            error:function(){
+                console.log('error');
+            }
+        });
+        function news_click(url){
+            console.log(url);
+            location.href= url;
+        }
+
+            function tSearchUatrack(val) {
+                try{
+                    _S_uaTrack('index_new_search', val);
+                }catch(e){}
+            }
+            function formSubmit(form,isWb,key){
+                var isFF = /firefox/.test(navigator.userAgent.toLowerCase());
+                if(isFF){
+                    if(!isWb) {
+                        setTimeout(function(){
+                            form.submit();
+                        },0);
+                    } else {
+                        setTimeout(function(){ 
+                            !!key ? form.setAttribute('action', '//s.weibo.com/weibo/@@key@@'.replace('@@key@@',key)) : 
+                            form.setAttribute('action', '//s.weibo.com/weibo/');
+                            form.submit();
+                        },0);
+                    }
+                } else {
+                    if(!isWb) {
+                        form.submit();  
+                    } else {
+                        !!key ? form.setAttribute('action', '//s.weibo.com/weibo/@@key@@'.replace('@@key@@',key)) : 
+                        form.setAttribute('action', '//s.weibo.com/weibo/');
+                        form.submit();
+                    }
+                }
+            }
+            function SearchSubmit(){
+              var key = document.SearchEcho.SerchKey.value.replace(/(^[\s\u3000]*)|([\s\u3000]*$)/g, "");
+              var ipt = document.SearchEcho.SerchKey;
+              if(key == "请输关键词" || key == "请输入关键字" || key === "")
+              {
+                 ipt.value = "";
+                 ipt.className = 'inp-txt inp-txt-click';
+                 setTimeout(function(){ipt.className='inp-txt'},500);
+                 ipt.focus();
+                 return false;
+              } else if(key === window.___homeSugVal___) {
+                key = key.replace("\u5927\u5BB6\u6B63\u5728\u641C\uFF1A","");
+                document.hform_10.Refer.value = 'sina_direct_index';
+              }
+              switch(document.SearchEcho.SerchType.value){
+                case "新闻" :
+                  var token = 0;
+                    for(var i=0;i<a1.length;i++){
+                        if(a1[i] == key){
+                            window.open(url_search[i],'_blank');
+                            token = 1;
+                            break;
+                        }
+                    }
+                    if(token !=0 ) break;                    
+                    else{
+                        document.hform_02.q.value = key;
+                        tSearchUatrack('search_click_news');
+                        formSubmit(document.hform_02);
+                        break;
+                    }
+                    
+                case "视频" :
+                  document.hform_03.q.value = key;
+                  tSearchUatrack('search_click_video');
+                  formSubmit(document.hform_03);
+                  break;
+                case "图片" :
+                  document.hform_05.q.value = key;
+                  tSearchUatrack('search_click_pic');
+                  formSubmit(document.hform_05);
+                  break;
+                case "博客" :
+                  document.hform_08.q.value = key;
+                  tSearchUatrack('search_click_blog');
+                  formSubmit(document.hform_08);
+                  break;
+                case "微博" :
+                  var ReferEle = document.hform_10.Refer;
+                  if(search_suggest.cache.curVal!=undefined && key != search_suggest.cache.curVal.replace(/(^[\s\u3000]*)|([\s\u3000]*$)/g, "") && search_suggest.sugWrap.style.display === 'block') {
+                   if(search_suggest.cache.listType==='sug') {
+                        ReferEle.value = 'sina_sug';
+                    } else {
+                        ReferEle.value = 'sina_hot_sug';
+                    }
+                  } else if(ReferEle.value != 'sina_direct_index') {
+                   ReferEle.value = 'sina_index';
+                  }
+                  key = encodeURIComponent(encodeURIComponent(key));
+                  tSearchUatrack('search_click_weibo');
+                  formSubmit(document.hform_10,true,key);
+                  break;
+                default : //网页
+                  break;
+              }
+              return false;
+            }
+
+            jsLoader({
+                name: 'shm',
+                callback: function() {
+                    SHM.register('home.custEvent.firstpage.fire', function($) {
+                        $.evt.custEvent.fire($, 'firstPageEnd');
+                    });
+
+                    //测试猜你喜欢的登录
+                }
+            });           
+        
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+
+					jsLoader({
+						name : 'shm',
+						callback : function() {
+							var focusScroll_Auto = new ScrollPic();
+							focusScroll_Auto.scrollContId = "SI_Scroll_Wrap_Auto"; //内容容器ID
+							focusScroll_Auto.frameWidth = 378;//显示框宽度
+							focusScroll_Auto.pageWidth = 378; //翻页宽度
+							focusScroll_Auto.upright = false; //垂直滚动
+							focusScroll_Auto.speed = 10; //移动速度(单位毫秒，越小越快)
+							focusScroll_Auto.space = 40; //每次移动像素(单位px，越大越快)
+							focusScroll_Auto.autoPlay = false; //自动播放
+							focusScroll_Auto.autoPlayTime = 15; //自动播放间隔时间(秒)
+							focusScroll_Auto.circularly = true;
+							focusScroll_Auto.initialize(); //初始化
+
+							function $(id){
+								return document.getElementById(id) || null;
+							}
+
+							$('SI_Scroll_Arr_L_Auto').onmousedown = function(){
+								focusScroll_Auto.pre();
+								return false;
+							}
+							$('SI_Scroll_Arr_R_Auto').onmousedown = function(){
+								focusScroll_Auto.next();
+								return false;
+							}
+						}
+					});
+					
+
+										function creat_autocategory(nindex, ntype) {
+											if ($('.cartype-cont').children('div').eq(nindex).attr('loaded') == 1) {
+												return;
+											}
+											$.ajax({
+									            type:"GET",
+									            dataType:'json',
+									            url:'//db.auto.sina.cn/inter/operations/sina/auto/category/result/?type='+ntype,
+									            success:function(data){
+									            	if (data.code == 0 && data.data) {
+									            		var auto_html = '';
+									            		var auto_data;
+									            		var arr_filter = [];
+                                                        for (var auto_i = 0; auto_i < data.data.length; auto_i++) {
+                                                            auto_data = data.data[auto_i];
+                                                            auto_html += '<li>'+
+                                                                            '<a href="'+auto_data.conditionUrl+'" target="_blank" class="ftb">'+auto_data.conditionName+'</a>'+
+                                                                            '<div class="scroll-pic-frame-autotype">'+
+                                                                                '<div class="scroll-pic-box">'+
+                                                                                	'<div class="scroll-pic-wrap">';
+                                                            for (var auto_j = 0; auto_j < auto_data.serialList.length; auto_j++) {
+                                                                if (arr_filter.indexOf(auto_data.serialList[auto_j].serialId) < 0) {
+                                                                    auto_html +=    '<a href="'+auto_data.serialList[auto_j].pcUrl+'" target="_blank">'+auto_data.serialList[auto_j].serialName+'</a>';
+                                                                    arr_filter.push(auto_data.serialList[auto_j].serialId);
+                                                                }
+                                                            }
+                                                            auto_html +=        	'</div>'+
+                                                                                '</div>'+
+                                                                                '<div class="scroll-arr-l-cartype"></div>'+
+                                                                                '<div class="scroll-arr-r-cartype"></div>'+
+                                                                            '</div>'+
+                                                                        '</li>';
+                                                        }
+                                                        $('.cartype-cont').children('div').eq(nindex).attr('loaded',1).children('ul').html(auto_html);
+									            	}
+									            }
+									        });
+										}
+										$('.cartype-title .type span[tab-type=tab-nav]').on('mouseenter', function() {
+											creat_autocategory($(this).index(), $(this).attr('data-type'));
+											var $curdiv = $('.cartype-cont').children('div').eq($('.cartype-cont').attr('index'));
+											$curdiv.find('.scroll-pic-box').css('left', '0px');
+											$curdiv.find('.scroll-arr-l-cartype').hide();
+											$curdiv.find('.scroll-arr-r-cartype').removeClass('end');
+											$('.cartype-cont').attr('index', $(this).index());
+										});
+										$('.mod-10 .order-menu span').eq(1).on('mouseenter', function() {
+											var nindex = $('.cartype-title .type .selected').index();
+											creat_autocategory(nindex, $('.cartype-title .type .selected').attr('data-type'));
+											$('.cartype-cont').attr('index', nindex);
+										});
+										$('.mod-10').delegate('.scroll-arr-r-cartype', 'click', function() {
+										    var $box = $(this).siblings('.scroll-pic-box');
+											if ($(this).attr('scrollwidth-init') != 1) {
+												$box.width($box.find('.scroll-pic-wrap').width()+1);
+												$(this).attr('scrollwidth-init', 1);
+											}
+										    $(this).siblings('.scroll-arr-l-cartype').show();
+											if ($box.position().left == 256-$box.width()) {
+												window.open($(this).parents('.scroll-pic-frame-autotype').siblings('.ftb').attr('href'))
+											} else if (Math.abs($box.position().left)+256*2>$box.width() || $box.position().left==2*256-$box.width()) {
+												$(this).addClass('end');
+											    $box.animate({left: (256-$box.width())+'px'});
+											} else {
+											    $box.animate({left:'-=256px'});
+											}
+										});     
+										$('.mod-10').delegate('.scroll-arr-l-cartype', 'click', function() {
+										    var $box = $(this).siblings('.scroll-pic-box');
+											$(this).siblings('.scroll-arr-r-cartype').removeClass('end');
+											if (Math.abs($box.position().left)<256) {
+											    $box.animate({left: '0px'});
+										    	$(this).hide();
+											} else {
+											    $box.animate({left:'+=256px'});
+											}
+										}); 
+				
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+
+                jsLoader({
+                    name : 'financeData',
+                    charset:'gbk',
+                    url : '//hq.sinajs.cn/list=hf_GC,hf_CL,USDCNY',
+                    callback : function() {
+                        //黄金
+                        var comexarr = hq_str_hf_GC.split(',');
+                        //原油
+                        var nymexarr = hq_str_hf_CL.split(',');
+                        //美元人民币
+                        var usdcnyarr = hq_str_USDCNY.split(',');
+                        var byId = 'getElementById',
+                            byTN = 'getElementsByTagName',
+                            D = document,
+                            T = 'SPAN',
+                            comex = (D[byId]('comex'))[byTN](T)[0],
+                            nymex = (D[byId]('nymex'))[byTN](T)[0],
+                            usdcny = (D[byId]('usdcny'))[byTN](T)[0];
+
+                        var setVal = function(obj,val,flag) {
+                            if(parseFloat(flag) < 0) {
+                                obj.className = 'num down';
+                            } else if(parseFloat(flag) > 0) {
+                                obj.className = 'num up';
+                            } else {
+                                obj.className = 'num';
+                            }
+                            obj.innerHTML = val;
+                        }
+
+                        setVal(comex,comexarr[0],comexarr[1]);
+                        setVal(nymex,nymexarr[0],nymexarr[1]);
+                        setVal(usdcny,usdcnyarr[1],parseFloat(usdcnyarr[1]) - parseFloat(usdcnyarr[3]));
+                    }
+                });
+            
+
+(function() {
+	function addEvent(obj, eventType, func) {
+		if(obj.attachEvent) {
+			obj.attachEvent("on" + eventType, func);
+		} else {
+			obj.addEventListener(eventType, func, false);
+		}
+	};
+
+	function attachURL2Window(id,url) {
+		var links;
+		try {
+			links = document.getElementById(id).getElementsByTagName("a");
+		}catch(e) {
+			links = [];
+		}
+		for (var i = 0, len = links.length; i < len; i++) {
+			addEvent(links[i], "mousedown", function(e) {
+				var writeCookie = function(O, o, l, I, p) {
+				var i = "",
+				c = "",
+				path = "";
+				if (l != null) {
+					if(l == "NaN"){
+						i = ";";
+					}else{
+						i = new Date((new Date).getTime() + l * 3600000);
+						i = "; expires=" + i.toGMTString();
+					}
+				};
+				if (I != null) {
+					c = ";domain=" + I
+				};
+				if(p != null){
+					path = ";path=" + p;
+				};
+				document.cookie = O + "=" + escape(o) + i + c + path;
+				};
+				writeCookie("directAd_finance","true",1,".sina.com.cn","/");
+				//点击监测
+				var _clickStat = new Image();
+				_clickStat.src = url + "&_=" + new Date().getTime() + "&url=";
+			});
+		}
+	};
+
+	attachURL2Window("blk_finance_1","http://sina.allyes.com/main/adfclick?db=sina&bid=202406,581303,586578&cid=0,0,0&sid=589122&advid=358&camid=36885&show=ignore");
+	attachURL2Window("blk_finance_2","http://sina.allyes.com/main/adfclick?db=sina&bid=202406,581309,586584&cid=0,0,0&sid=589128&advid=358&camid=36885&show=ignore");
+	attachURL2Window("blk_finance_3","http://sina.allyes.com/main/adfclick?db=sina&bid=202406,581310,586585&cid=0,0,0&sid=589129&advid=358&camid=36885&show=ignore");
+
+})()
+
+
+                            jsLoader({
+                               name : 'shm',
+                               callback : function() {
+                                   var focusScroll4 = new ScrollPic();
+                                   focusScroll4.scrollContId = "SI_Scroll_blogphoto_Wrap"; //内容容器ID
+                                   focusScroll4.frameWidth = 180;//显示框宽度
+                                   focusScroll4.pageWidth = 180; //翻页宽度
+                                   focusScroll4.upright = false; //垂直滚动
+                                   focusScroll4.speed = 15; //移动速度(单位毫秒，越小越快)
+                                   focusScroll4.space = 30; //每次移动像素(单位px，越大越快)
+                                   focusScroll4.autoPlay = true; //自动播放
+                                   focusScroll4.autoPlayTime = 15; //自动播放间隔时间(秒)
+                                   focusScroll4.circularly = true;
+                                   focusScroll4.initialize(); //初始化
+
+                                   SHM.dom.byId('SI_Scroll_blogphoto_Arr_L').onmousedown = function(){
+                                       focusScroll4.pre();
+                                       return false;
+                                   }
+                                   SHM.dom.byId('SI_Scroll_blogphoto_Arr_R').onmousedown = function(){
+                                       focusScroll4.next();
+                                       return false;
+                                   }
+                               }
+                           });
+                        
+(sinaads = window.sinaads || []).push({});
+
+											jsLoader({
+												name: 'shm',
+												callback: function() {
+													// 猜你喜欢js
+													var guessUrl = '//n.sinaimg.cn/homepage/js/recommender.js';
+										/*
+													var sguid = SHM.util.cookie.getCookie('SINAGLOBAL');
+													if(typeof sguid == 'string'){
+														lastNum = sguid.charAt(sguid.length - 1, 1);
+														if(lastNum == '8' || lastNum == '1' || lastNum == '4'){
+															guessUrl = 'http://www.sina.com.cn/js/index/96/home.recommender.2014.min.js';
+														}
+													}
+										*/
+
+													jsLoader({
+														url : guessUrl,
+														callback : function () {
+															var Store = window.___CrossDomainStorage___;
+															Store.ready(function(st){
+																//renderLinks(30, 'ud.fd.www.blogStorage0', 'bloglist0', 'blogNewItem', false, st);
+																//renderLinks(50, 'ud.fd.www.blogStorage1', 'bloglist1', 'blogNewItem', false, st);
+																//renderLinks(50, 'ud.fd.www.blogStorage2', 'blogPic0', 'blogNewPic', true, st);
+															});
+														}
+													});
+												}
+											});
+										
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+
+/* 手机、数码板块随机默认呈现 */
+jsLoader({
+	name: 'shm',
+	callback: function() {
+		
+		var selected = Math.random()>0.5?'tech_digi_tab':'tech_mobi_tab';
+		SHM.app.tab.switchByEle(SHM.dom.byId(selected));
+	}
+});
+
+
+                            jsLoader({
+                               name : 'shm',
+                               callback : function() {
+                                   var focusScroll = new ScrollPic();
+                                   focusScroll.scrollContId = "SI_Scroll_History_Wrap"; //内容容器ID
+                                   focusScroll.frameWidth = 180;//显示框宽度
+                                   focusScroll.pageWidth = 180; //翻页宽度
+                                   focusScroll.upright = false; //垂直滚动
+                                   focusScroll.speed = 15; //移动速度(单位毫秒，越小越快)
+                                   focusScroll.space = 30; //每次移动像素(单位px，越大越快)
+                                   focusScroll.autoPlay = true; //自动播放
+                                   focusScroll.autoPlayTime = 15; //自动播放间隔时间(秒)
+                                   focusScroll.circularly = true;
+                                   focusScroll.initialize(); //初始化
+
+                                   SHM.dom.byId('SI_Scroll_History_Arr_L').onmousedown = function(){
+                                       focusScroll.pre();
+                                       return false;
+                                   }
+                                   SHM.dom.byId('SI_Scroll_History_Arr_R').onmousedown = function(){
+                                       focusScroll.next();
+                                       return false;
+                                   }
+                               }
+                           });
+                        
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({})
+(sinaads = window.sinaads || []).push({})
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+
+                            jsLoader({
+                               name : 'shm',
+                               callback : function() {
+                                   var focusScroll3 = new ScrollPic();
+                                   focusScroll3.scrollContId = "SI_Scroll_eduopen_Wrap"; //内容容器ID
+                                   focusScroll3.frameWidth = 180;//显示框宽度
+                                   focusScroll3.pageWidth = 180; //翻页宽度
+                                   focusScroll3.upright = false; //垂直滚动
+                                   focusScroll3.speed = 15; //移动速度(单位毫秒，越小越快)
+                                   focusScroll3.space = 30; //每次移动像素(单位px，越大越快)
+                                   focusScroll3.autoPlay = true; //自动播放
+                                   focusScroll3.autoPlayTime = 15; //自动播放间隔时间(秒)
+                                   focusScroll3.circularly = true;
+                                   focusScroll3.initialize(); //初始化
+
+                                   SHM.dom.byId('SI_Scroll_eduopen_Arr_L').onmousedown = function(){
+                                       focusScroll3.pre();
+                                       return false;
+                                   }
+                                   SHM.dom.byId('SI_Scroll_eduopen_Arr_R').onmousedown = function(){
+                                       focusScroll3.next();
+                                       return false;
+                                   }
+                               }
+                           });
+                        
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({params:{sinaads_success_handler:function(){var ad_46022 = document.getElementById("ad_46022");ad_46022.style.overflow = "hidden";}}});
+(sinaads = window.sinaads || []).push({});
+
+    jsLoader({
+        name : 'shm',
+        callback : function() {
+            for(var i = 0, l = 2; i < l; i++){
+                var focusScroll = new ScrollPic();
+                focusScroll.scrollContId = "SI_Scroll_Wrap_t0" + i; //内容容器ID
+                focusScroll.dotListId = "SI_Scroll_Dot_Lists_t0" + i;//点列表ID
+                focusScroll.arrLeftId = "SI_Scroll_Arr_L_t0" + i;
+                focusScroll.arrRightId = "SI_Scroll_Arr_R_t0" + i;
+                focusScroll.dotClassName = "";//点className
+                focusScroll.dotOnClassName = "cur";//当前点className
+                focusScroll.listType = "";//列表类型(number:数字，其它为空)
+                focusScroll.listEvent = "onmouseover"; //切换事件
+                focusScroll.frameWidth = 1000;//显示框宽度
+                focusScroll.pageWidth = 1000; //翻页宽度
+                focusScroll.upright = false; //垂直滚动
+                focusScroll.speed = 10; //移动速度(单位毫秒，越小越快)
+                focusScroll.space = 40; //每次移动像素(单位px，越大越快)
+                focusScroll.autoPlay = false; //自动播放
+                focusScroll.autoPlayTime = 15; //自动播放间隔时间(秒)
+                focusScroll.circularly = true;
+                focusScroll.initialize(); //初始化
+            }
+            var tabArr = SHM.dom.byClass("mod54-tab"),
+                contArr = SHM.dom.byClass("mod54-cont");
+
+            var defaultSelectedNavIndex = (Math.random()*10|0) < 5 ? 0 : 1;
+
+            SHM.app.tab.switchByEle(tabArr[defaultSelectedNavIndex]);
+            contArr[defaultSelectedNavIndex?0:1].style.display = "none";
+        }
+    });
+    
+(sinaads = window.sinaads || []).push({});
+(sinaads = window.sinaads || []).push({});
+
+    (function (d, s, id) {
+        var n = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        s = d.createElement(s);
+        s.id = id;
+        s.setAttribute('charset', 'utf-8');
+        s.src = '//d' + Math.floor(0 + Math.random() * (9 - 0 + 1)) + '.sina.com.cn/litong/zhitou/sinaads/test/e-recommendation/release/sinaere.js';
+        n.parentNode.insertBefore(s, n);
+    })(document, 'script', 'sinaere-script');
+
+
+//        var ORDER_MAP = {'10100' : 'SI_Order_A', '10200' : 'SI_Order_B', '10300' : 'SI_Order_C', '10400' : 'SI_Order_D', '10500' : 'SI_Order_E', '10600' : 'SI_Order_F', '10700' : 'SI_Order_G', '10800' : 'SI_Order_H', '10900' : 'SI_Order_I', '11000' : 'SI_Order_J', '11100' : 'SI_Order_K', '11200' : 'SI_Order_L', '11500' : 'SI_Order_O', '11600' : 'SI_Order_P', '11700' : 'SI_Order_Q', '11800' : 'SI_Order_R', '11900' : 'SI_Order_S', '12000' : 'SI_Order_T', '12100' : 'SI_Order_U', '12200' : 'SI_Order_V', '12300' : 'SI_Order_W', '12400' : 'SI_Order_X'};
+        jsLoader({
+            name : 'middleJs',
+            url : '//finance.sina.com.cn/basejs/suggestServer.js',
+			charset:'gbk',
+            callback: function() {
+                var suggestServer = new SuggestServer();
+                suggestServer.bind({
+                  "input": "textSuggest",
+                  "type": "stock",
+                  "value": "@2@",
+                  "width": 160,
+                  "head": {"选项":'选项',"中文名称":'中文名称'},
+                  "body": {'0':'-1', '1':'4'},
+                  "link": "http://biz.finance.sina.com.cn/suggest/lookup_n.php?country=@type@&q=@2@"
+                });
+                window.changeViewInputs = function changeViewInputs(__elementSelect) {
+                    __elementSelect.form["q"].value = "代码/名称/拼音";
+                    suggestServer.changeType(__elementSelect.value);
+                }
+            }
+        });
+
+
+		jsLoader({
+            name: 'shm',
+            callback: function() {
+                jsLoader({
+                    name: 'b_search',
+					charset:'gbk',
+                    url: '//www.sina.com.cn/js/index/96/b_search.js',
+					callback : function() {
+                        window.blogsearch = function(fn,strName) {
+                            if(fn.q.value==""||fn.q.value=="请输入查询词") {
+                                fn.q.value="请输入查询词";
+                                fn.q.focus();
+                                return false
+                            }
+                            if(strName!="blog") {
+                                return false
+                            }
+                            fn.submit();
+                            return false
+                        };
+                        window.booksearch = function(fn) {
+                            if(fn.sk.value==""||fn.sk.value=="请输入查询词") {
+                                fn.sk.value="请输入查询词";
+                                fn.sk.focus();
+                                return false;
+                            }
+                              window.open('//book.weibo.com/weibobook/search.php?s_type' + fn.sk.value);
+                            return false;
+                        };
+						window.carsearch = function(fn,strName) {
+                            if(fn.q.value==""||fn.q.value=="请输入查询词") {
+                                fn.q.value="请输入查询词";
+                                fn.q.focus();
+                                return false
+                            }
+							if(strName!="car") {
+                                return false
+                            }
+							if(fn.by.value == "cars"){
+							    window.open('http://so.auto.sina.com.cn/car/' + fn.q.value+'/');
+								return false;
+							}
+							else if(fn.by.value == "kinds"){
+							    window.open('http://so.auto.sina.com.cn/search/' + fn.q.value+'/');
+								return false;
+							}
+                        };
+                    }
+                });
+            }
+        });
+
+var isIE6 = navigator.appVersion.indexOf("MSIE 6") != -1 ? true: false;
+//图片滚动加载
+~function() {var d = document, w = this, b = document.body, h = document.documentElement, p = [], eventFunc = function() {scrollLoader.scroll() }, bH = -1, timer, bT, bVH, iTotal = d.images.length; var sina = {$: function(objName) {if (d.getElementById) {return d.getElementById(objName) } else {return d.all[objName] } }, addEvent: function(obj, eventType, func) {if (obj.attachEvent) {obj.attachEvent("on" + eventType, func) } else {obj.addEventListener(eventType, func, false) } }, delEvent: function(obj, eventType, func) {if (obj.detachEvent) {obj.detachEvent("on" + eventType, func) } else {obj.removeEventListener(eventType, func, false) } }, absPosition: function(obj, parentObj) {var left = obj.offsetLeft; var top = obj.offsetTop; var tempObj = obj.offsetParent; try {while (tempObj != b && tempObj != d.documentElement && tempObj != parentObj && tempObj != null) {left += tempObj.offsetLeft; top += tempObj.offsetTop; tempObj = tempObj.offsetParent } } catch (e) {}; return {left: left, top: top } } }; var scrollLoader = {version: '1.1.0', status: "complete", mult: 2, init: function(ele) {var that = this, imgs, num = 0; if (ele && ele.getElementsByTagName) {imgs = ele.getElementsByTagName('img') } else {imgs = d.images }; for (var i = 0; i < imgs.length; i++) {if (imgs[i].getAttribute("data-src") && !imgs[i].__isSL) {if (imgs[i].offsetWidth == 0 && imgs[i].offsetHeight == 0) {imgs[i].__pObj = imgs[i].parentNode; while (imgs[i].__pObj.offsetWidth == 0 && imgs[i].__pObj.offsetHeight == 0) {imgs[i].__pObj = imgs[i].__pObj.parentNode } }; imgs[i].__isSL = true; p.push(imgs[i]); num++ } }; if (num > 0) {if (this.status != 'scrolling') {sina.addEvent(w, "scroll", eventFunc); this.status = "scrolling"; timer = setInterval(function() {that.timer() }, 200) }; this.scroll() } }, timer: function() {if (iTotal !== d.images.length) {iTotal = d.images.length; this.init() }; var vh = Math.min(h.clientHeight, b.clientHeight); var vt = (w.pageYOffset || b.scrollTop || h.scrollTop) - Math.round(vh * (this.mult - 1) / 2); var vb = vt + Math.round(vh * ((this.mult - 1) / 2 + 1)); if (bT !== vt || vb !== bVH) {this.scroll() } }, showImg: function(img) {if (img.getAttribute("data-src")) { img.removeAttribute("data-top"); img.__pObj = null; img.__isSL = null;img.src = img.getAttribute("data-src"); if(isIE6){return false;} } }, scroll: function() {if (this.status != "scrolling") {return }; var cache = 0; if (bH == d.body.scrollHeight) {cache = 1 } else {bH = d.body.scrollHeight }; var vh = Math.min(h.clientHeight, b.clientHeight); var vt = (w.pageYOffset || b.scrollTop || h.scrollTop) - Math.round(vh * (this.mult - 1) / 2); var vb = vt + Math.round(vh * ((this.mult - 1) / 2 + 1)); bT = vt; bVH = vb; var s = 0, posTop, obj; for (var i = 0; i < p.length; i++) {if (!p[i].getAttribute("data-src")) {continue }; s++; if (!cache) {if (p[i].offsetWidth == 0 && p[i].offsetHeight == 0) {p[i].__pObj = p[i].parentNode; if (!p[i].__pObj) {this.showImg(p[i]); continue }; while ( !! p[i].__pObj && p[i].__pObj.offsetWidth == 0 && p[i].__pObj.offsetHeight == 0) {p[i].__pObj = p[i].__pObj.parentNode } }; obj = p[i].__pObj || p[i]; posTop = sina.absPosition(obj, b).top; p[i].setAttribute("data-top", posTop) } else {posTop = p[i].getAttribute("data-top") } if (posTop >= vt && posTop <= vb) {this.showImg(p[i]) } }; if (s == 0) {this.status = "complete"; sina.delEvent(w, "scroll", eventFunc); clearInterval(timer) } } }; this.scrollLoader = scrollLoader }(); scrollLoader.init();
+
+      
+
+              ;(function() {
+            // 汽车ip定向
+            jsLoader({
+                url : '//interface.sina.cn/dfz/outside/auto/getcityautocontent-p1.d.html',
+                charset:'utf-8'
+            });
+            //地方站ip定向
+            jsLoader({
+                url : '//interface.sina.cn/dfz/outside/ipdx/langshou_feed.d.json',
+                charset:'utf-8'
+            });
+        })();
+
+//房产ip定向
+;(function(){
+	var API = '//ip.leju.com/sina_sanshou_2010.php';
+	var render = function() {
+		for (var i = 0, len = SI_IP_House_.length; i < len; i++) {
+			var item = SI_IP_House_[i];
+			var node = document.getElementById('SI_IP_House_'+i);
+			if (item&&node) {
+				node.innerHTML = item;
+			}
+		}
+	};
+	jsLoader({
+	    name: 'ipHouse',
+	    url:API,
+        charset:'gbk',
+	    callback: function() {
+	    	render();
+	    }
+	});
+})();
+
+      
+
+      ;(function(){
+        var render = function(id,html){
+            var wrap = document.getElementById(id);
+            if(wrap){
+                wrap.innerHTML = html;
+            }
+        };
+        jsLoader({
+          name : 'financeHQ',
+          charset:'gbk',
+          url : '//hq.sinajs.cn/list=s_sh000001,s_sh000011',
+          callback : function(){
+            var amtHQ = parseFloat( hq_str_s_sh000001.split(",")[1] ),
+            rateHQ = parseFloat( hq_str_s_sh000001.split(",")[3] );
+
+            render('SI_Text_sh600001',
+                "沪 " + amtHQ.toFixed(1) + "(" + ( rateHQ > 0 ? "+" : ( rateHQ == 0 ? "" : "" ) ) + rateHQ.toFixed(1) + "%)"
+            );
+            render('SI_Text_sh600011',
+                "上基 " + hq_str_s_sh000011.split(",")[1]
+            );
+          }
+        });
+      })();
+
+      
+function ADFunc(sFuncName){this.sFuncName = sFuncName;};function ADFuncSeq(){this.aryFunc = new Array();this.push = function(sFuncName){try{this.aryFunc.push(new ADFunc(sFuncName));}catch(e){}};this.shift = function(){try{return this.aryFunc.shift();}catch(e){}};};var arryADSeq = new ADFuncSeq();function nextAD(){var oFunAD = arryADSeq.shift();if (oFunAD != null){try{eval(oFunAD.sFuncName);}catch(e){}}};
+(sinaads = window.sinaads || []).push({});
+var FullScreenData=new Array();(sinaads = window.sinaads || []).push({});
+var SteamMediaData=new Array();(sinaads = window.sinaads || []).push({});
+var CoupletMediaData=new Array();(sinaads = window.sinaads || []).push({params:{sinaads_couple_top : 45}});
+(sinaads = window.sinaads || []).push({
+    params : {
+        sinaads_float_show_pos: 800,  //随屏对联
+        sinaads_float_top : 46
+    }
+});
+(sinaads = window.sinaads || []).push({});
+
+    function Schedule(e){e="string"==typeof e?[e]:e||[],this.ranges=[];var t,n=0,r=e.length,i,s,o=new Date,u=o.getFullYear()+"/"+(o.getMonth()+1)+"/"+o.getDate();for(;n<r;n++)t=e[n].replace(/\-/g,"/").split("~"),i=t[0],s=t[1]?t[1]:t[0],i.indexOf(":")===-1&&(i+=" 0:0:0"),s.indexOf(":")===-1&&(s+=" 0:0:0"),i.indexOf("/")===-1&&(i=u+" "+i),s.indexOf("/")===-1&&(s=u+" "+s),i=+this.parse(i),s=+this.parse(s),s<=i&&(s+=864e5),this.ranges[n]=[i,s]}Schedule.prototype={check:function(e){var t=this.ranges,n=0,r,i=t.length<=0,e=e?+this.parse(e):+(new Date);while(!i&&(r=t[n++]))i=e>=r[0]&&e<=r[1];return i},parse:function(e){var t=new RegExp("^\\d+(\\-|\\/)\\d+(\\-|\\/)\\d+$");if("string"==typeof e){if(t.test(e)||isNaN(Date.parse(e))){var n=e.split(/ |T/),r=n.length>1?n[1].split(/[^\d]/):[0,0,0],i=n[0].split(/[^\d]/);return new Date(i[0]-0,i[1]-1,i[2]-0,r[0]-0,r[1]-0,r[2]-0)}return new Date(e)}return e}}
+    if (new Schedule('2017-11-11 00:00:00~2017-11-11 23:59:59').check()) {
+        _sinaadsCacheData = window._sinaadsCacheData || {};
+        _sinaadsCacheData['texingxibao'] = {
+            "type" : "stream",
+            "content" : [
+                {
+                    "monitor":[""],
+                    "link":[""], 
+                    "type":["js"], 
+                    "pv":[],
+                    "src":[
+                        "//rm.sina.com.cn/bj-icast/mv/cr/2017/10/251633/50146/code.js"
+                    ]
+                }
+            ],
+            "size":"600*280",
+            "id":"texingxibao"
+        };
+    }
+
+(sinaads = window.sinaads || []).push({});
+
+/*
+jsLoader({
+  name : 'salebottom',
+  charset:'gbk',
+  url : 'http://d4.sina.com.cn/d1images/common/salebottom.js'
+});
+*/
+
+
+/*
+jsLoader({
+  name : 'salebottom',
+  callback : function(){
+    try{nextAD();}catch(e){}
+  }
+});
+*/
+
+suds_init(41,1.0000,1015,2);
+(sinaads = window.sinaads || []).push({
+    params:{
+        sinaads_followbutton_show_pos:1700,
+        sinaads_followbutton_position:"left bottom"
+    }
+})
+
+(sinaads = window.sinaads || []).push({})

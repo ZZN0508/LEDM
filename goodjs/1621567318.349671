@@ -1,0 +1,165 @@
+
+  if ('fonts' in document) {
+    new FontFace('Roboto', 'url("https://sc.sftcdn.net/fonts/6da0f-05fbf.woff2") format("woff2")', { 'font-weight': 300 }).load();
+  }
+
+{"trackingConfig":{"common":{"product_platform":"web","version":"1","ua":{"uaNumber":"UA-152357-1","countryCode":"JP"},"session":{"product_session":"web","instance_name":"en","event_type":"user_session"}}}}
+{"trackingConfig":{"common":{"ua":{"pageType":"home","section":"home","catLevel1":"none","catLevel2":"none","catLevel3":"none"}}}}
+{"isEU":false,"isUS":false,"appPersonalizedAds":true,"appMeasuringPerformance":true}
+{"environmentName":"production","appVersion":"1.4612.0","ads":{"slots":{"top-leaderboard-home-page-desktop":[{"provider":"gpt","size":[[970,90],[728,90],[468,60],[1,1]],"isEnabled":true,"options":{"adUnit":"ATF_leaderboard_first","slotWrapperId":"top-leaderboard-home-page-desktop-wrapper","type":"top_display_leaderboard","pos":"top","hasBids":true,"bids":[{"bidder":"aol","params":{"dcn":"8a9690a90172725091f65588f28200e4","pos":"desktop_atf_leaderboard_first"}},{"bidder":"eplanning","params":{"ci":"2c7a1"}},{"bidder":"improvedigital","params":{"placementId":22331040}},{"bidder":"ix","params":{"size":[970,90],"siteId":"249693"}},{"bidder":"richaudience","params":{"pid":["1vHUnJ5jtV","PMWOVZ3rjG"],"supplyType":"site"}},{"bidder":"smartadserver","params":{"domain":"https://prg.smartadserver.com","siteId":288250,"pageId":1051402,"formatId":75934}},{"bidder":"triplelift","params":{"inventoryCode":"ATF_leaderboard_first_desktop"}}],"adUnitPath":"/5302/Desktop/Desktop-Web-EN/Homepage/Homepage/ATF_leaderboard_first","targeting":{"type":"top_display_leaderboard","pos":"top","ad_1p_group":"ad_1p_opt","ad_dyn_group":"ad_1p_opt","ad_h":3,"CountryCluster":"A3"}}}],"bottom-mpu-home-page-desktop":[{"provider":"gpt","size":[[300,600],[300,250],[300,180],[300,150],[250,250],[200,200],[180,150]],"options":{"adUnit":"BTF_MPU_First","slotWrapperId":"bottom-mpu-home-page-desktop-wrapper","type":"bottom_display_mpu","pos":"bottom","hasBids":true,"bids":[{"bidder":"aol","params":{"dcn":"8a9690a90172725091f65588f28200e4","pos":"desktop_btf_mpu_first"}},{"bidder":"eplanning","params":{"ci":"2c7a1"}},{"bidder":"improvedigital","params":{"placementId":22331043}},{"bidder":"ix","params":{"size":[300,600],"siteId":"249693"}},{"bidder":"richaudience","params":{"pid":"UAnwZGvzmk","supplyType":"site"}},{"bidder":"smartadserver","params":{"domain":"https://prg.smartadserver.com","siteId":288250,"pageId":1051402,"formatId":75936}},{"bidder":"triplelift","params":{"inventoryCode":"BTF_MPU_First_desktop"}}],"adUnitPath":"/5302/Desktop/Desktop-Web-EN/Homepage/Homepage/BTF_MPU_First","targeting":{"type":"bottom_display_mpu","pos":"bottom","ad_1p_group":"ad_1p_opt","ad_dyn_group":"ad_1p_opt","ad_h":3,"CountryCluster":"B3"}}}],"bottom-leaderboard-home-page-desktop":[{"provider":"gpt","size":[[970,90],[728,90],[468,60]],"options":{"adUnit":"BTF_leaderboard_first","slotWrapperId":"bottom-leaderboard-home-page-desktop-wrapper","type":"bottom_display_leaderboard","pos":"bottom","hasBids":true,"bids":[{"bidder":"aol","params":{"dcn":"8a9690a90172725091f65588f28200e4","pos":"desktop_btf_leaderboard_first"}},{"bidder":"eplanning","params":{"ci":"2c7a1"}},{"bidder":"improvedigital","params":{"placementId":22331046}},{"bidder":"ix","params":{"size":[970,90],"siteId":"249693"}},{"bidder":"richaudience","params":{"pid":"0a4T7NoHm5","supplyType":"site"}},{"bidder":"smartadserver","params":{"domain":"https://prg.smartadserver.com","siteId":288250,"pageId":1051402,"formatId":75935}},{"bidder":"triplelift","params":{"inventoryCode":"BTF_leaderboard_first_desktop"}}],"adUnitPath":"/5302/Desktop/Desktop-Web-EN/Homepage/Homepage/BTF_leaderboard_first","targeting":{"type":"bottom_display_leaderboard","pos":"bottom","ad_1p_group":"ad_1p_opt","ad_dyn_group":"ad_1p_opt","ad_h":3,"CountryCluster":"B3"}}}],"wallpaper-home-page-desktop":[{"provider":"gpt","excludeLabel":true,"type":"wallpaper","prefetch":false,"options":{"adUnit":"ATF_OOP_Wallpaper","outOfPage":true,"type":"oop_display_wallpaper","pos":"top","adUnitPath":"/5302/Desktop/Desktop-Web-EN/Homepage/Homepage/ATF_OOP_Wallpaper","targeting":{"type":"oop_display_wallpaper","pos":"top","ad_1p_group":"ad_1p_opt","ad_dyn_group":"ad_1p_opt","ad_h":3,"CountryCluster":"A3"}}}]},"providerOptions":{"gpt":{"singleRequestEnabled":true,"isNonPersonalizedAds":false,"targeting":{"devel":"0","country":"JP","region":"A","personalized":"1","medium":"organic","campaign":"","source":"","term":"","medium_campaign":"organic","dc_ref":"https://en.softonic.com/","platformId":"windows","compliant":"0","ab_upr":"4"}}}},"experiments":{"userRandomPosition":494},"baseDomain":"softonic.com","siteDomain":"en.softonic.com","rootUrl":"https://en.softonic.com","staticsBaseUrl":"https://sc.sftcdn.net","pageId":"home","displayType":"desktop","currentUser":{"isAnonymous":true},"devicePlatformId":"windows","browserName":"chrome","countryCode":"JP","region":"A","avoidAds":false,"locale":"en-US","protocol":"https","isExternalRequest":true}
+
+      window.eventTracker = window.eventTracker || {}; eventTracker.cmd = eventTracker.cmd || [];
+      window.sam = window.sam || {}; sam.cmd = sam.cmd || [];
+      window.dataLayer = window.dataLayer || [];
+      eventTracker.cmd.push(function() { eventTracker.on("pageView"); });
+    
+
+  window.dataLayer.push({
+    
+    "userStatus": "unregistered",
+    "compliant": "0"
+  });
+
+
+    sam.cmd.push(function() {
+      sam.prefetch('top-leaderboard-home-page-desktop');
+sam.prefetch('bottom-mpu-home-page-desktop');
+sam.prefetch('bottom-leaderboard-home-page-desktop');
+    });
+  
+
+  (function(w,d,l){
+    w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'})
+  })(window,document,'dataLayer')
+
+
+  window['GoogleAnalyticsObject'] = 'ga';
+  window['ga'] = window['ga'] || function() {
+    (window['ga'].q = window['ga'].q || []).push(arguments)
+  };
+  ga('create', "UA-152357-1", "auto", { 'useAmpClientId': true, 'allowLinker': false });
+  // Add the Optimize plugin to ga (https://support.google.com/optimize/answer/7359264):
+  ga('require', "GTM-W7FSC8T");
+
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  function gtag_report_conversion() {
+    gtag('event', 'conversion', { 'send_to': 'AW-631321069/sAbgCN36s9EBEO3jhK0C' });
+  }
+  gtag('js', new Date());
+  gtag('config', 'AW-631321069');
+
+
+  // Stub PrebidJS
+  window.pbjs = window.pbjs || {};
+  window.pbjs.cmd = window.pbjs.cmd || [];
+  window.pbjs.que = window.pbjs.que || [];
+  window._pbjsGlobals = window._pbjsGlobals || [];
+
+
+!function(a9,a){if(a[a9])return;function q(c,r){if(!a[a9]._Q)a[a9]._Q=[];a[a9]._Q.push([c,r])}a[a9]={init:function(){q('i',arguments)},fetchBids:function(){q('f',arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]}}('apstag',window);
+
+
+  eventTracker.cmd.push(function() {
+    eventTracker.trackClick('.header__search .site-search__button', 'clickSubmitSearch');
+    eventTracker.trackClick('.header__search-dropdown .site-search__button', 'clickSubmitSearch');
+  });
+
+
+    eventTracker.cmd.push(function() {
+      eventTracker.trackClick('.track-header-logo', 'clickLogo');
+      eventTracker.trackClick('.track-menu-section', 'clickMenuSection');
+      eventTracker.trackClick('.track-all-platforms', 'clickShowPlatforms');
+      eventTracker.trackClick('.track-platform', 'clickSelectPlatform');
+      eventTracker.trackClick('.track-user-profile', 'clickUserProfile');
+      eventTracker.trackClick('.track-log-out', 'clickLogout');
+      eventTracker.trackClick('.track-all-best-products', 'clickShowBestProducts');
+      eventTracker.trackClick('.track-best-product', 'clickSelectBestProduct');
+    });
+  
+sam.cmd.push(function() { sam.display('top-leaderboard-home-page-desktop'); });
+sam.cmd.push(function() { sam.display('bottom-mpu-home-page-desktop'); });
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=315637968501782&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+sam.cmd.push(function() { sam.display('bottom-leaderboard-home-page-desktop'); });
+
+      eventTracker.cmd.push(function() {
+        // ONE HOME
+        eventTracker.trackClick('#one-home .card-one-home__container', 'clickOneHomeModule');
+
+        // FEATURED APP
+        eventTracker.trackClick('#featured-app a', 'clickFeaturedAppModule');
+
+        // TOP DOWNLOADS
+        eventTracker.trackClick('#top-downloads .top-downloads-tab__title', 'clickTopDownloadsModuleTab');
+        eventTracker.trackClick('#top-downloads .top-downloads-list__link', 'clickTopDownloadsModule');
+        eventTracker.trackClick('#top-downloads .track-btn-base', 'clickTopDownloadsModuleShowMore');
+
+        // TRENDING CATEGORIES
+        eventTracker.trackClick('#trending-categories-apps .card-category-cover__title', 'clickCategoryTopAppTitleModule');
+        eventTracker.trackClick('#trending-categories-apps .card-category-cover__list .card-category-cover__link', 'clickCategoryTopAppModule');
+        eventTracker.trackClick('#trending-categories-apps .card-category-cover__item--more .card-category-cover__link', 'clickCategoryTopAppShowMoreModule');
+
+        // LATEST ARTICLES
+        eventTracker.trackClick('#latest-articles .card-article-horizontal__link', 'clickLatestArticlesModule');
+        eventTracker.trackClick('#latest-articles .card-article a', 'clickLatestArticlesModule');
+
+        // SEO
+        eventTracker.trackClick('#top-published-last-month-apps-windows .list-apps-lite__link', 'clickTopPublishedLastMonthApp');
+        eventTracker.trackClick('#top-published-last-month-apps-windows .track-btn-base', 'clickTopPublishedLastMonthShowMore');
+        eventTracker.trackClick('#top-published-last-month-apps-mac .list-apps-lite__link', 'clickTopPublishedLastMonthApp');
+        eventTracker.trackClick('#top-published-last-month-apps-mac .track-btn-base', 'clickTopPublishedLastMonthShowMore');
+        eventTracker.trackClick('#top-published-last-month-apps-android .list-apps-lite__link', 'clickTopPublishedLastMonthApp');
+        eventTracker.trackClick('#top-published-last-month-apps-android .track-btn-base', 'clickTopPublishedLastMonthShowMore');
+        eventTracker.trackClick('#top-published-last-month-apps-iphone .list-apps-lite__link', 'clickTopPublishedLastMonthApp');
+        eventTracker.trackClick('#top-published-last-month-apps-iphone .track-btn-base', 'clickTopPublishedLastMonthShowMore');
+      });
+    
+
+    window.criteo_q = window.criteo_q || [];
+    var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+    window.criteo_q.push({"event":"setAccount","account":50916},{"event":"setEmail","email":""},{"event":"setSiteType","type":"deviceType"},{"event":"viewHome"});
+  
+
+  var PushlySDK = window.PushlySDK || [];
+  function pushly() { PushlySDK.push(arguments) }
+  pushly('load', {
+    domainKey: 'uY65Osg4q2qhGNX3j0tcnXQ5U31SfAzS3I0y',
+    requireConsent: false,
+  });
+
+  // Consents treatment.
+  if (false) {
+    window.__tcfapi && window.__tcfapi('addEventListener', 2, function (tcData, success) {
+      if (success && tcData.eventStatus === 'tcloaded') {
+        // ADS consents are accepted.
+        if (tcData.purpose.consents[4]) {
+          pushly('confirm_consent');
+        }
+
+        // remove the ourself to not get called more than once
+        __tcfapi('removeEventListener', 2, function (success) {
+        }, tcData.listenerId);
+      }
+    });
+  }
+
+
+  /** DO NOT MODIFY THIS CODE**/
+  !function(_window, _document) {
+  var OB_ADV_ID='00a3d36c60122238463de2f625cdad8f07';
+  if (_window.obApi) {var toArray = function(object) {return Object.prototype.toString.call(object) === '[object Array]' ? object : [object];};_window.obApi.marketerId = toArray(_window.obApi.marketerId).concat(toArray(OB_ADV_ID));return;}
+  var api = _window.obApi = function() {api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);};api.version = '1.1';api.loaded = true;api.marketerId = OB_ADV_ID;api.queue = [];var tag = _document.createElement('script');tag.async = true;tag.src = '//amplify.outbrain.com/cp/obtp.js';tag.type = 'text/javascript';var script = _document.getElementsByTagName('script')[0];script.parentNode.insertBefore(tag, script);}(window, document);
+  obApi('track', 'PAGE_VIEW');
+  
+
+    {"@context":"http://schema.org","@type":"ItemList","itemListElement":[{"@type":"SiteNavigationElement","position":1,"@id":"https://en.softonic.com/windows","name":"Apps","url":"https://en.softonic.com/windows"},{"@type":"SiteNavigationElement","position":2,"@id":"https://en.softonic.com/windows/games","name":"Games","url":"https://en.softonic.com/windows/games"},{"@type":"SiteNavigationElement","position":3,"@id":"https://en.softonic.com/articles","name":"Articles","url":"https://en.softonic.com/articles"}]}
+  
+var rumMOKey="cbb4ff001b7f174b72c50344ff8a1b88";(function(){if(window.performance&&window.performance.timing&&window.performance.navigation){var a=document.createElement("script");a.async=!0;a.setAttribute("src","//static.site24x7rum.eu/beacon/site24x7rum-min.js?appKey\x3d"+rumMOKey);document.getElementsByTagName("head")[0].appendChild(a)}})(window);

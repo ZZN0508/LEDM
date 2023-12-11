@@ -1,0 +1,194 @@
+
+            var FDX = {};
+			FDX.contextPath = "";
+
+            window.fdx=window.fdx || {}; 
+            fdx.isBrand = "false";
+            fdx.context={
+                       envtVar:"",
+                       searchUrl:"/services/search",
+                       isPublishMode:"true"
+            };
+
+    
+
+if (!FDX) {
+    var FDX = {};
+}
+FDX.DATALAYER ={};
+FDX.DATALAYER.event=[];
+FDX.DATALAYER.page = {
+        pageInfo: {
+             pageName: "choose\u002Dlocation",
+             locale: "choose\u002Dlocation",
+             language:"ch",
+             historicalPageName : "",
+             referrer : "",
+             toolUsage:"",
+             viewPort:"",
+             reportSuite:"",
+             region: "us",
+             country:"global_home",
+             pagePath:"",
+             securePage : "false",
+             useWLGN : "false",
+             wlgnURL : "\/secure\u002Dlogin\/choose\u002Dlocation\/"
+         },
+         category: {
+        	 pageType:"productpage",
+             primaryCategory: "",
+             isApplication:"false",
+             appName:""
+         },
+         onsiteSearch:{
+             term:"",
+             suggested: ""
+         },
+         link:{
+        	 data:"",
+        	 type:""
+         },
+         button:{
+        	 data:"",
+        	 type:""
+         },
+         assetSearch:{
+        	 keyword:"",
+        	 type:""
+         }
+ };
+
+FDX.DATALAYER.trackData = {
+        track:"",
+        from: "",
+        to: "",
+        status: "",
+        keyX:""
+    };
+
+FDX.DATALAYER.track = {
+    isSingleTrack: true,
+    trackQuantity: 0,
+    trackInfo:[],
+};
+
+FDX.DATALAYER.googleAPIFlag=false;
+FDX.DATALAYER.inputField='';
+FDX.DATALAYER.userType="";
+  
+FDX.DATALAYER.locationApp = {
+        googleAPIFlag: "",      
+
+}; 
+FDX.DATALAYER.rateShipApp = {
+        from:{
+        	googleAPIFlag:"",
+    		value:""
+     },
+        to:{
+        	googleAPIFlag:"",
+    	 	value:""
+     }
+
+       
+};   
+
+
+
+	        (function(g,b,d,f){(function(a,c,d){if(a){var e=b.createElement("style");e.id=c;e.innerHTML=d;a.appendChild(e)}})(b.getElementsByTagName("head")[0],"at-body-style",d);setTimeout(function(){var a=b.getElementsByTagName("head")[0];if(a){var c=b.getElementById("at-body-style");c&&a.removeChild(c)}},f)})(window,document,"body {opacity: 0 !important}",3E3);
+	    
+bazadebezolkohpepadr="1645614553"
+
+			var ua = navigator.userAgent,tem,
+			M = ua.match(/(opera|chrome|safari|firefox|msie|trident)\s?\/*(\d+)/i) || [];
+            var mobilePatt=/mobile/i;
+            var isMobile=mobilePatt.test(ua);
+            //console.log('isMobile ?',isMobile);
+        	//Mm = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\s?\/?s*(\d+)/i) || [];
+            var returnType = false;
+     		if(!isMobile){
+	        	M = M[2]? [M[1], M[2]] :[navigator.appName,navigator.appVersion,'-?'];
+	       		if((tem = ua.match(/version\/(\d+)/i)) != null){
+	            	M.splice(1,1,tem[1]);
+	       		 }
+	       		var osTemp = navigator.appVersion,
+	            browserType = M.join(' '),
+	            fdx_browserType = browserType.toString().split(" ")[0].toLowerCase(),
+	            fdx_browserVMajor = parseInt(browserType.toString().split(" ")[1]) || 0;
+
+	            switch(fdx_browserType){
+	                case "opera" :
+	                     // Currently does not support Opera,  jsut not showing alert for Opera 11.1+ , MIni and Mobile
+	                    if(fdx_browserVMajor >= 11.1){ returnType = true;}
+	                    break;
+	                case "chrome" :
+	                    //Support Chrome 41+
+	                    if(fdx_browserVMajor >= 41){ returnType = true;}
+	                    break;
+	                case "safari" :
+	                    //Support Safari 7.0+
+	                    if(fdx_browserVMajor >= 7){ returnType = true;}
+	                    break;
+	                case "firefox" :
+	                    //Support Mozilla Firefox 38+
+	                    if(fdx_browserVMajor >= 38){ returnType = true;}
+	                    break;
+	                case "msie" :
+	                    //Support Microsoft Internet Explorer
+	                    if(fdx_browserVMajor >= 11){ returnType = true;}
+	                    break;
+	                case "trident":
+	                    if(fdx_browserVMajor >= 7){ returnType = true;}
+	                    break;
+	                default:
+	                    returnType=true;
+	            	}
+			}
+			else{
+				returnType=true;
+			}
+            if(returnType === false){
+                        window.onload=function(){
+                            try{
+                                    $("#myModal").modal();
+                            }
+                            catch(e){
+                                	//console.log('..catch..')
+                                    // lOGGING ERROR
+                                    console.log(e);
+                                    window.onload=openModal();
+                    		}
+                       }
+			}
+
+            function openModal(){
+                document.getElementById('myModal').style.display='block';
+                document.getElementById('myModal').style.opacity='1';
+                $('#myModal').css('background-color','rgba(0,0,0,0.5')
+                var buttonElements=$('.modal-content button');
+                var newEventListner=true;
+                if( document.getElementById('myModal').addEventListener === undefined){
+                    newEventListener=false;
+                }else{
+
+                    newEventListener=true;
+                }
+                if (newEventListener){
+                    $.each(buttonElements,function(element,value){
+                        value.addEventListener('click',function(){
+                            document.getElementById('myModal').style.opacity='0';
+                            document.getElementById('myModal').style.display='none';
+                        });
+                    });
+                }else{
+                    $.each(buttonElements,function(element,value){
+                        value.attachEvent('onclick',function(){
+                            document.getElementById('myModal').style.opacity='0';
+                            document.getElementById('myModal').style.display='none';
+                        });
+                    });
+                }
+			}
+
+    
+var _cf = _cf || [];  _cf.push(['_setFsp', true]);  _cf.push(['_setBm', true]);  _cf.push(['_setAu', '/webcontent/1e3af7a3ui26641e2e3fe4312489ea']); 

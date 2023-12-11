@@ -1,0 +1,3 @@
+
+__cmp("setLogo", "https://www.w3schools.com/images/w3schools_logo_500_04AA6D.png");
+__cmp("setPrivacyPolicy", "https://www.w3schools.com/about/about_privacy.asp");

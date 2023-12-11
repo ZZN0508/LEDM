@@ -1,0 +1,262 @@
+
+                $(document).ready(function () {
+                    $('div.inner_menu').wrap('<div class="outer_menu"></div>');
+                    $('div.inner_menu').each(function () {
+                        var t = $(this).corner("round 4px").parent().css('padding', '2px').corner("round 6px");
+                        eval(t);
+                    });
+
+                    $('div.inner_main').each(function () {
+                        var t = $(this).corner("round 4px").parent().css('padding', '2px').corner("round 6px");
+                        eval(t);
+                    });
+                });
+            
+
+                $(document).ready(function () {
+                    $("#lang-one li").hover(
+                            function () {
+                                $("ul", this).fadeIn("fast");
+                            },
+                            function () {
+                            }
+                    );
+                    if (document.all) {
+                        $("#lang-one li").hoverClass("sfHover");
+                    }
+                });
+
+                $.fn.hoverClass = function (c) {
+                    return this.each(function () {
+                        $(this).hover(
+                                function () {
+                                    $(this).addClass(c);
+                                },
+                                function () {
+                                    $(this).removeClass(c);
+                                }
+                        );
+                    });
+                };
+            
+
+        var uploadId = 'HZ84D90C5CF17245EDB7731ED4F2BAC7CC';
+        var server = 'www63';
+    
+
+                    $('#plain-links-menu').click(function () {
+                        hideAll();
+                        $('#plain-links-menu').addClass('active');
+                        $('#plain-links-div').removeClass('hidden');
+                    });
+                    $('#names-links-menu').click(function () {
+                        hideAll();
+                        $('#names-links-menu').addClass('active');
+                        $('#names-links-div').removeClass('hidden');
+                    });
+                    $('#forum-links-menu').click(function () {
+                        hideAll();
+                        $('#forum-links-menu').addClass('active');
+                        $('#forum-links-div').removeClass('hidden');
+                    });
+                    $('#altforum-links-menu').click(function () {
+                        hideAll();
+                        $('#altforum-links-menu').addClass('active');
+                        $('#altforum-links-div').removeClass('hidden');
+                    });
+                    $('#htmlem-links-menu').click(function () {
+                        hideAll();
+                        $('#htmlem-links-menu').addClass('active');
+                        $('#htmlem-links-div').removeClass('hidden');
+                    });
+                    $('#html-links-menu').click(function () {
+                        hideAll();
+                        $('#html-links-menu').addClass('active');
+                        $('#html-links-div').removeClass('hidden');
+                    });
+                    $('#althtml-links-menu').click(function () {
+                        hideAll();
+                        $('#althtml-links-menu').addClass('active');
+                        $('#althtml-links-div').removeClass('hidden');
+                    });
+
+                    var hideAll = function () {
+                        $('#plain-links-menu').removeClass('active');
+                        $('#names-links-menu').removeClass('active');
+                        $('#forum-links-menu').removeClass('active');
+                        $('#altforum-links-menu').removeClass('active');
+                        $('#html-links-menu').removeClass('active');
+                        $('#althtml-links-menu').removeClass('active');
+                        $('#htmlem-links-menu').removeClass('active');
+                        $('#plain-links-div').addClass('hidden');
+                        $('#names-links-div').addClass('hidden');
+                        $('#forum-links-div').addClass('hidden');
+                        $('#altforum-links-div').addClass('hidden');
+                        $('#html-links-div').addClass('hidden');
+                        $('#althtml-links-div').addClass('hidden');
+                        $('#htmlem-links-div').addClass('hidden');
+                    }
+                
+
+        function show_remote() {
+            $('#fupload').css('display', 'none');
+            $('#upload_form2').css('display', 'block');
+            $('#remote_select').css('display', 'block');
+            $('#local_select').css('display', 'none');
+        }
+        function show_local() {
+            $('#fupload').css('display', 'block');
+            $('#upload_form2').css('display', 'none');
+            $('#remote_select').css('display', 'none');
+            $('#local_select').css('display', 'block');
+        }
+
+        var empty = false;
+        function emptyTextArea() {
+            if (!empty) {
+                $('#remoteFileTxt').val('');
+                empty = true;
+            }
+        }
+
+        function submitForm() {
+            $('#upload_form2').submit();
+        }
+
+        function bindRemove(obj) {
+            $(obj).parent().remove();
+        }
+    
+
+                var calculateExpanderHeight = function () {
+                    var maxHeight = $(window).height();
+                    var headerHeight = $('.container').outerHeight(true);
+                    var heightMap = maxHeight - headerHeight - 120;
+                    $('#expander').css("height", heightMap);
+                };
+                $(function () {
+                    $(window).bind('resize', calculateExpanderHeight);
+                    calculateExpanderHeight();
+                });
+
+            
+
+    $(document).ready(function() {
+        var uploader = new plupload.Uploader({
+            runtimes: 'html5,flash,html4',
+            browse_button: 'browse', // you can pass in id...
+            url: document.location.protocol+'//www63.zippyshare.com/upload',
+            flash_swf_url: '/flash/Moxie.swf',
+            silverlight_xap_url: '../js/Moxie.xap',
+            drop_element: 'hiddenDropArea',
+            multipart_params: {
+            },
+            filters: {
+                max_file_size: '500mb'
+            },
+            init: {
+                PostInit: function() {
+                    $('#fileQueue').html('');
+
+                    $('#share_button').click(function() {
+                        if ($("#private").is(':checked')) {
+                            uploader.setOption('multipart_params', {'private': 'true', 'zipname': '', 'ziphash': '', 'embPlayerValues': $.cookie('embed-player-values')});
+                        } else {
+                            uploader.setOption('multipart_params', {'notprivate': 'true', 'zipname': '', 'ziphash': '', 'embPlayerValues': $.cookie('embed-player-values')});
+                        }
+                        $('#fileQueue div:not(.too-large) div.cancel').remove();
+                        uploader.start();
+                        return false;
+                    });
+                },
+                FilesAdded: function(up, files) {
+                    plupload.each(files, function(file) {
+                        $('#fileQueue').html($('#fileQueue').html() + '<div class="uploadify-queue-item" id="' + file.id + '"><div class="cancel"><span>X</span></div><span class="fileName">' + file.name + ' (' + plupload.formatSize(file.size).toUpperCase() + ') </span><span class="perc"></span><div class="uploadify-progress"><div class="uploadify-progress-bar"><!--Progress Bar--></div></div></div>');
+                        $(document).delegate( '#' + file.id + " div.cancel span", 'click', function() {
+                            uploader.removeFile(file);
+                            $('#' + file.id).remove();
+                        });
+                    });
+                    $('#hiddenDropArea').css('display', 'none');
+                    calculateExpanderHeight();
+                },
+                UploadProgress: function(up, file) {
+                    $('#' + file.id + " span.perc").html(" - "+file.percent + "%");
+                    var progressWidth = $('#' + file.id + " div.uploadify-progress").width();
+                    $('#' + file.id + " div.uploadify-progress-bar").width(Math.round(file.percent * progressWidth / 100));
+                    
+                    var speed2 = parseInt(up.total.bytesPerSec/1024);
+                    var uploadedSize = plupload.formatSize(uploader.total.loaded).toUpperCase();
+                    var totalSize = plupload.formatSize(uploader.total.size).toUpperCase();
+                    var uploadRem = uploader.total.size-uploader.total.loaded;
+                    var eta = secondeenminute(Math.round(uploadRem/up.total.bytesPerSec));  
+                    $('#overall-progress span.speed').html(speed2+"KB/s");
+                    $('#overall-progress span.done').html(uploadedSize);
+                    $('#overall-progress span.remaining').html(totalSize);
+                    $('#overall-progress span.tr').html(eta);
+                    $('#overall-progress').css('display', 'block');
+                    $('#overall-progress div.speed-bar').width(Math.min(150, Math.round(150 * speed2 / 450))+'px');
+                    
+                },
+                Error: function(up, err) {
+                    if (err.code === -600) {
+                        var file = err.file;
+                        $('#fileQueue').html($('#fileQueue').html() + '<div class="uploadify-queue-item too-large" id="' + file.id + '"><div class="cancel"><span>X</span></div><span class="fileName">' + file.name + ' (<span style="color: red; font-weight: bold">' + plupload.formatSize(file.size).toUpperCase() + '</span>) </span><span class="perc"></span></div></div></div>');
+                        $(document).delegate( '#' + file.id + " div.cancel span", 'click', function() {
+                            uploader.removeFile(file);
+                            $('#' + file.id).remove();
+                        });
+                    }
+                    $('#hiddenDropArea').css('display', 'none');
+                    calculateExpanderHeight();
+                },
+                FileUploaded: function(up, file, response) {
+                    if (response.status === 200) {
+                        $('#upload_results').append(response.response.substring(response.response.indexOf('<div id="urls"'), response.response.indexOf('<!--tekst-->')));
+                        $('#plain-links').val($('#plain-links').val() + $('#plain-links', response.response).val());
+                        $('#names-links').val($('#names-links').val() + $('#names-links', response.response).val());
+                        $('#forum-links').val($('#forum-links').val() + $('#forum-links', response.response).val());
+                        $('#altforum-links').val($('#altforum-links').val() + $('#altforum-links', response.response).val());
+                        $('#html-links').val($('#html-links').val() + $('#html-links', response.response).val());
+                        $('#althtml-links').val($('#althtml-links').val() + $('#althtml-links', response.response).val());
+                        $('#htmlem-links').val($('#htmlem-links').val() + $('#htmlem-links', response.response).val());
+                        $('#urlsNew').css('display', 'block');
+                        $('#' + file.id).remove();
+                    } else {
+                        $('#' + file.id + " b").html('<span style="color: red">ERROR</span>"');
+                    }
+                    calculateExpanderHeight();
+                },
+                UploadComplete: function() {
+                    $('#overall-progress').css('display', 'none');
+                    calculateExpanderHeight();
+                }
+            }
+        });
+
+        uploader.init();
+        
+        function secondeenminute(sec) {
+            if ((sec/60)<1) {
+                return  sec+'sec.' ;
+            } else if ((sec/60)>1 && (sec/3600)<1) {
+                var min = sec/60;
+                sec = sec % 60;
+                return  Math.floor(min)+'min. '+Math.floor(sec)+'sec.' ;
+            } else {
+                var hou = sec/3600;
+                var rmin = sec % 3600;
+                var min = rmin/60;
+                sec = rmin % 60;
+                return  Math.floor(hou)+'h. '+Math.floor(min)+'min. '+Math.floor(sec)+'sec.' ;
+            }
+        }
+        
+        $('body').bind('dragenter', function(event) {
+            $('#hiddenDropArea').css('display', 'block');
+        });
+        
+        $('#hiddenDropArea .mask').bind('dragleave', function(event) {
+            $('#hiddenDropArea').css('display', 'none');
+        });
+    });

@@ -1,0 +1,69 @@
+
+/* @licstart  The following is the entire license notice for the
+ * JavaScript code in this page.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in this page.
+ */
+
+window.archive_setup=[]
+
+      {"@context":"http:\/\/schema.org","@type":"WebSite","name":"Internet Archive","alternateName":"Archive.org","url":"https:\/\/archive.org","potentialAction":{"@type":"SearchAction","target":"https:\/\/archive.org\/search.php?query={query}","query-input":"required name=query"}}    
+ if (typeof AJS!='undefined') AJS.lists_v_tiles_setup('top') 
+
+    archive_setup.push(function(){
+      AJS.lists_v_tiles_setup('top');
+
+              $('.navia-link.web').click(); // open wayback/web
+      
+      $('div.ikind').css({visibility:'visible'});
+
+      
+      AJS.tiler();
+
+      $(window).on('resize  orientationchange', function(evt){
+        clearTimeout(AJS.tiles_wrap_throttler)
+        AJS.tiles_wrap_throttler = setTimeout(AJS.tiler, 250)
+      });
+
+      // register for scroll updates (for infinite search results)
+      $(window).scroll(AJS.scrolled);
+    });
+  
+
+if (window.archive_analytics) {
+  window.archive_analytics.send_pageview_on_load(window.archive_analytics);
+  window.archive_analytics.process_url_events(window.location);
+  var vs = window.archive_analytics.get_data_packets();
+  for (var i in vs) {
+    vs[i]['cache_bust']=Math.random();
+    vs[i]['server_ms']=19;
+    vs[i]['server_name']="www13.us.archive.org";
+      }
+
+  if (document.querySelectorAll('.more_search').length) {
+    window.archive_analytics.send_scroll_fetch_base_event();
+  }
+}
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+          if (typeof AJS === 'undefined') {
+            return;
+          }
+          AJS.createTrackingImage('in_page_executes');
+        });
+      

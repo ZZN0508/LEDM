@@ -1,0 +1,160 @@
+
+     var _hmt = _hmt || [];
+     
+if($.client.os=='Mac'){$('body').addClass('mac');}
+
+			$(function(){
+				$('select.regularSelect').tzSelect();
+			});
+		
+
+	var cms_page_type = 'mamacn_index';
+	$(function(){
+		var orderdate = myGetCookie('orderdate');
+		if(orderdate !=''){
+			$("#datepicker").val(orderdate);
+		}
+	});
+
+
+    var system ={
+        win : false,
+        mac : false,
+        xll : false
+    };
+
+    var mobileScan = parseInt(myGetCookie('mobile_scan'),10);
+	if( !(mobileScan > 0)  ){
+		//检测平台
+	    var p = navigator.platform;
+	    system.win = p.indexOf("Win") == 0;
+	    system.mac = p.indexOf("Mac") == 0;
+	    //system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+
+	    var isPad = isPad();
+	    //跳转语句
+	    //if( isPad ||  !(system.win||system.mac||system.x11)){
+	    if(!(system.win||system.mac) ){
+			var tmpWapUrl = "http://m.mama.cn/";
+			var tmpProtocol = window.location.protocol;
+			if(tmpWapUrl.indexOf("http") >= 0 && tmpProtocol == 'https:'){
+				tmpWapUrl = tmpWapUrl.replace('http', 'https')
+			}
+			window.location.href=tmpWapUrl;
+	    }
+	}
+
+    function isPad(){
+    	equipmentInfo = navigator.userAgent;
+		equipmentInfo = equipmentInfo.substring(0,40);
+		equipmentInfo = equipmentInfo.toLowerCase();
+
+		if(equipmentInfo.indexOf("pad") > 0){
+			return true;
+		}else{
+			return false;
+		}
+    }
+
+
+		function gotomyorder(){
+			forward(79, 100, '//www.mama.cn/');
+			var q= $("#datepicker").val();
+			//SetCookie('orderdate',q);
+	        var inurl= '//www.mama.cn/index.php?g=Home&a=Qrqm&d=skip&orderdate='+q;
+	        window.open(inurl,"_blank");
+		}
+		function SetCookie(name,value,domain){ //两个参数，一个是cookie的名子，一个是值
+		    var Days = 1; //此 cookie 将被保存 1 天
+		    var exp = new Date();    //new Date("December 31, 9998");
+			exp.setTime(exp.getTime() + Days*24*60*60*1000);
+
+			document.cookie = name + "="+ escape (value) +";expires=" + exp.toGMTString();
+		}
+	
+
+				$('.askTab_one').click(function(){
+					$('.askTab_item1').show();
+					$('.askTab_item2').hide();
+					$('.askTab_one a').addClass('current');
+					$('.askTab_two a').removeClass('current');
+				});
+
+				$('.askTab_two').click(function(){
+					$('.askTab_item2').show();
+					$('.askTab_item1').hide();
+					$('.askTab_two a').addClass('current');
+					$('.askTab_one a').removeClass('current');
+				});
+			
+
+				function chgFollowallList(){
+				       var ul = document.getElementById("userlist").getElementsByTagName("ul");
+				       for (var i=0; i < ul.length; i++){
+				          ul[i].style.display = ul[i].style.display == "block" ? "none" : "block";
+				       };
+				}
+			
+
+			$('.fashion1').click(function(){
+				$('.fashionItem1').show();
+				$('.fashionItem2').hide();
+				$('.fashion1 a').addClass('current');
+				$('.fashion2 a').removeClass('current');
+			});
+
+			$('.fashion2').click(function(){
+				$('.fashionItem2').show();
+				$('.fashionItem1').hide();
+				$('.fashion2 a').addClass('current');
+				$('.fashion1 a').removeClass('current');
+			});
+		
+
+	$(window).scroll(function(){
+        if($(window).scrollTop() > 300){
+            $(".goTop").show();
+        }else{
+            $(".goTop").hide();
+        }
+    });
+    //返回顶部
+    $(".goTop .topArrow").on("click",function(){
+        $('html,body').animate({scrollTop: '0px'}, 600);
+    });
+
+var OA_source = "0"; var OA_type = "1";var OA_wid = "74"; 
+
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+
+vlstatInitLE(); 
+
+	var _hmt = _hmt || [];
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?f2babe867b10ece0ff53079ad6c04981";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+
+
+new MaMaScrollPic({
+	id:"scrollList"
+})
+jQuery(".laxiu li").on("mouseover",function(){
+	jQuery(this).addClass("hover").siblings("li").removeClass("hover");
+})
+show_sidebar('#scrollPic3');
+show_sidebar('#scrollPic4');
+show_sidebar('#scrollPic5');

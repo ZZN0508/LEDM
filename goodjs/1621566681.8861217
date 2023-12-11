@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "type": "pageConfig",
+    "namespace": "gnxwu75za7s",
+    "id": "ughatagb76q",
+    "version": "2.1.0"
+  },
+  "template": {
+    "parseAssets": true,
+    "cacheFirst": true,
+    "type": "html",
+    "url": "https://www.alibaba.com/newarrivals/ggs"
+  },
+  "apis": [],
+  "assets": []
+}

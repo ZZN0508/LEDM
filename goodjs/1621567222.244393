@@ -1,0 +1,269 @@
+
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Zoho",
+    "url": "https://www.zoho.com",
+    "description": "Run your entire business with Zoho's suite of online productivity tools and SaaS applications. Over 45 million users trust us worldwide.",
+"potentialAction":
+{
+        "@type": "SearchAction",
+        "target": "https://www.zoho.com/search-results.html?query={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    "sameAs": [
+        "https://en.wikipedia.org/wiki/Zoho_Office_Suite",
+        "https://www.youtube.com/user/zoho",
+        "https://twitter.com/zoho",
+        "https://www.facebook.com/zoho"
+    ],
+    "sourceOrganization": {
+        "@type": "Organization",
+        "name": "Zoho Corporation",
+        "description": "Zoho Corporation offers web-based business apps, network and IT infrastructure management applications",
+        "url": "https://www.zohocorp.com",
+        "founder": {
+            "@type": "Person",
+            "name": "Sridhar Vembu"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/zohocorp/",
+            "https://en.wikipedia.org/wiki/Zoho_Corporation"
+        ]
+    }
+}
+
+ 
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+";SameSite=None; Secure; domain=.zoho.com; path=/";
+}
+var p_URL = "https\x3A\x2F\x2Fwww.zoho.com\x2F".substring(0,300); 
+createCookie("ZohoMarkRef",'"'+ p_URL +'"')
+
+ 
+ dt_stat ="";
+  var ref = "", cookie = "", firstdat = [], bcookie, finalVal, lastdat = [], prdt = "zoho" ;
+  function extractDomain(url) {
+    var domain;
+    if (url.indexOf("://") > -1){
+      if (url.indexOf("://www") > -1) { domain = url.split('.')[1]; }
+      else { domain = url.split('/')[2]; }
+    }
+    else { domain = url.split('/')[0]; }
+    domain = domain.split(':')[0];
+    return domain;
+  } ref = extractDomain(ref);
+
+  var exists = function(value) {
+    return value != "" && value != "null" && value != "undefined";
+  };
+
+  if(exists("null")){ 
+    cookie = "null";
+    if(cookie.length > 3000){
+      cookie = cookie.split('|');
+      first = cookie[0];
+      var c = cookie.length
+      cookie = first + "|" + cookie[c-1]; 
+    }
+    var checkQu = cookie.indexOf('"')
+    if(cookie.indexOf('"') > -1) {
+      var getnewStr = cookie.replace('"','');
+      getnewStr = getnewStr.replace('"','');
+      bcookie = getnewStr;
+      cookie = getnewStr + "|" ;
+    }else{ bcookie = "null"; cookie = "null" + "|" ; }
+    var last = cookie.split('|');
+    var l = last.length;
+    last = last[l-2];
+    lastdat = last.split(':');
+  }else{
+    if(ref){ lastdat[0]= ref; }
+    else{ lastdat[0]= "direct"; }
+    lastdat[1] = "zoho";
+    bcookie = lastdat[0]+":"+lastdat[1];
+  }
+  
+  if(exists("direct") && (lastdat[0].startsWith('direct') == true && lastdat[1].indexOf(prdt) === -1)){  //direct & diff prod
+    dt_stat = "direct"+":"+"zoho"; 
+    finalVal = cookie+dt_stat;
+  }else if(exists("direct") && (lastdat[0].startsWith('direct') == true && lastdat[1].indexOf(prdt) > -1)){  //direct & same prod
+    finalVal = bcookie;
+  }else if(exists("direct") && lastdat[0].startsWith('direct') == false){  //prev not direct
+    if(cookie == ""){ //blank cookie
+      dt_stat = ((cookie == "") ? "direct": lastdat[0])+":"+"zoho"; 
+    } else {  //no blank cookie
+      dt_stat = "direct:"+"zoho";
+    } finalVal = cookie+dt_stat;
+  }else if(exists("undefined")){
+    dt_stat = "_"+"undefined"+":"+"zoho";
+    finalVal = cookie+dt_stat;
+  }else if(exists("undefined")){
+    dt_stat = "undefined"+":"+"zoho";
+    finalVal = cookie+dt_stat;
+  }else if(exists("undefined")){
+    dt_stat = "adwords:"+"zoho";
+    finalVal = cookie+dt_stat;
+  }else{ 
+    dt_stat = ref+":"+"zoho";
+    finalVal = cookie+dt_stat;
+  }
+  
+  firstdat = dt_stat.split(':');
+if ((exists("null") && (lastdat[0] != firstdat[0] || lastdat[1] != firstdat[1])) || exists("null") == false) {
+    localStorage.setItem('gtm_zoho_source', finalVal);
+  }
+
+ 
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+";SameSite=None; Secure; domain=.zoho.com; path=/";
+}
+var p_URL = "https\x3A\x2F\x2Fwww.zoho.com\x2F".substring(0,300); 
+createCookie("ZohoMarkRef",'"'+ p_URL +'"')
+
+ 
+ dt_stat ="";
+  var ref = "", cookie = "", firstdat = [], bcookie, finalVal, lastdat = [], prdt = "zoho" ;
+  function extractDomain(url) {
+    var domain;
+    if (url.indexOf("://") > -1){
+      if (url.indexOf("://www") > -1) { domain = url.split('.')[1]; }
+      else { domain = url.split('/')[2]; }
+    }
+    else { domain = url.split('/')[0]; }
+    domain = domain.split(':')[0];
+    return domain;
+  } ref = extractDomain(ref);
+
+  var exists = function(value) {
+    return value != "" && value != "null" && value != "undefined";
+  };
+
+  if(exists("direct\x3Azoho")){ 
+    cookie = "direct\x3Azoho";
+    if(cookie.length > 3000){
+      cookie = cookie.split('|');
+      first = cookie[0];
+      var c = cookie.length
+      cookie = first + "|" + cookie[c-1]; 
+    }
+    var checkQu = cookie.indexOf('"')
+    if(cookie.indexOf('"') > -1) {
+      var getnewStr = cookie.replace('"','');
+      getnewStr = getnewStr.replace('"','');
+      bcookie = getnewStr;
+      cookie = getnewStr + "|" ;
+    }else{ bcookie = "direct\x3Azoho"; cookie = "direct\x3Azoho" + "|" ; }
+    var last = cookie.split('|');
+    var l = last.length;
+    last = last[l-2];
+    lastdat = last.split(':');
+  }else{
+    if(ref){ lastdat[0]= ref; }
+    else{ lastdat[0]= "direct"; }
+    lastdat[1] = "zoho";
+    bcookie = lastdat[0]+":"+lastdat[1];
+  }
+  
+  if(exists("direct") && (lastdat[0].startsWith('direct') == true && lastdat[1].indexOf(prdt) === -1)){  //direct & diff prod
+    dt_stat = "direct"+":"+"zoho"; 
+    finalVal = cookie+dt_stat;
+  }else if(exists("direct") && (lastdat[0].startsWith('direct') == true && lastdat[1].indexOf(prdt) > -1)){  //direct & same prod
+    finalVal = bcookie;
+  }else if(exists("direct") && lastdat[0].startsWith('direct') == false){  //prev not direct
+    if(cookie == ""){ //blank cookie
+      dt_stat = ((cookie == "") ? "direct": lastdat[0])+":"+"zoho"; 
+    } else {  //no blank cookie
+      dt_stat = "direct:"+"zoho";
+    } finalVal = cookie+dt_stat;
+  }else if(exists("undefined")){
+    dt_stat = "_"+"undefined"+":"+"zoho";
+    finalVal = cookie+dt_stat;
+  }else if(exists("undefined")){
+    dt_stat = "undefined"+":"+"zoho";
+    finalVal = cookie+dt_stat;
+  }else if(exists("undefined")){
+    dt_stat = "adwords:"+"zoho";
+    finalVal = cookie+dt_stat;
+  }else{ 
+    dt_stat = ref+":"+"zoho";
+    finalVal = cookie+dt_stat;
+  }
+  
+  firstdat = dt_stat.split(':');
+if ((exists("direct\x3Azoho") && (lastdat[0] != firstdat[0] || lastdat[1] != firstdat[1])) || exists("direct\x3Azoho") == false) {
+    localStorage.setItem('gtm_zoho_source', finalVal);
+  }
+
+ 
+  function createCookie(name,value,days) {
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime()+(days*24*60*60*1000));
+      var expires = "; expires="+date.toGMTString();
+    } 
+    else var expires = "";
+      document.cookie = name+"="+value+expires+";SameSite=None; Secure; domain=.zoho.com; path=/";
+  }
+  
+  if("www.zoho.com".indexOf('www.zoho.') > -1 || "www.zoho.com".indexOf('workplace.zoho.') > -1 || "www.zoho.com".indexOf('mail.zoho.') > -1)
+    createCookie("ZohoMarkSrc",'"'+"direct\x3Azoho\x7Cdirect\x3Azoho\x7Cdirect\x3Azoho"+'"');
+
+
+function zohoGASignupEvent() {
+	try {
+	  	window.ZTMData = window.ZTMData || [];
+	  	window.ZTMData.push({'event' : 'eventSignup'});
+	  	$zoho.salesiq.visitor.customaction('{"eventCategory":"Signup","eventAction":"zoho","eventLabel":"\x2F"}');
+		window.pagesense = window.pagesense || [];
+		window.pagesense.push(['trackEvent', 'Signup']); 
+	} catch (e) {}
+}
+function zohoFedClickEvent(socialicon) {
+	try {
+		var eAction = "Button Click: "+socialicon;
+		window.ZTMData = window.ZTMData || [];
+	  	window.ZTMData.push({'event' : 'eventFedButtonClick'});
+      	//$zoho.salesiq.visitor.customaction('{"eventCategory":"FedClick","eventAction":eAction,"eventLabel":"zoho"}');
+      //$zoho.salesiq.visitor.customaction('{"eventCategory":"FedClick","eventAction":'"'+eAction+'"',"eventLabel":"zoho"}');
+	} catch (e) {}
+}
+function zcTrackClick(eCat,eAct,eLab) {
+	//try {
+		//dataLayer.push({'event' : 'eventCustomClick'});
+	  	//$zoho.salesiq.visitor.customaction('{"eventCategory":eCat,"eventAction":eLab,"eventLabel":eAct}');
+	//} catch (e) {}
+}
+function zMeetingCustomClick() {
+	try {
+		window.ZTMData = window.ZTMData || [];
+	  	window.ZTMData.push({'event' : 'eventButtonClick'});
+	  	$zoho.salesiq.visitor.customaction('{"eventCategory":"post-session","eventAction":"zoho","eventLabel":"\x2F"}');
+	} catch (e) {}
+}
+function zohoDCChangeEvent() {
+	try {
+		window.ZTMData = window.ZTMData || [];
+	  	window.ZTMData.push({'event' : 'eventDCChange'});
+	  	$zoho.salesiq.visitor.customaction('{"eventCategory":"DC Change","eventAction":"zoho","eventLabel":"\x2F"}'); 
+	} catch (e) {}
+}
+function zohoFAQClickEvent(que) {
+	try {
+	  	window.ZTMData = window.ZTMData || [];
+	  	window.ZTMData.push({'event' : 'eventGDPRFAQ'});
+	  	$zoho.salesiq.visitor.customaction('{"eventCategory":"faq-click","eventAction":"que","eventLabel":"\x2F"}'); 
+	} catch (e) {}
+}

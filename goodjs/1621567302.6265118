@@ -1,0 +1,157 @@
+$(document).ready(function(){ 
+ //var resultJSON=[];
+ $(".find-right-product-nudge").css("display","none");
+  var resultss = [];
+  var categoryArrs = [];
+  var subCategoryArrs = [];
+  var linkArrs = [];
+  var productFilterJson = $("#productFilterJson").val();
+ $.getJSON(productFilterJson, function (resultJSON) {
+  console.log(resultJSON.ProductList.length);
+  //var stateSelected = [];
+  /* Start of Onload - Main Category dropdown */
+  if(resultJSON.ProductList.length > 0){
+   for(var i = 0; i < resultJSON.ProductList.length; i++){
+    categoryArrs.push( resultJSON.ProductList[i].MainCategory );
+   }
+  }
+  var categoryVals = distinctVals(categoryArrs);
+  var categoryData = categoryVals.sort();
+  for(var i = 0;i < categoryData.length; i++){
+   if(typeof(categoryData[i])!='undefined'){
+    if(categoryData[i] !=""){
+    $(".intSelectOne").append("<option value='"+categoryData[i].replace(/\s+/g, '-').toLowerCase()+"'>"+categoryData[i]+"</option>");
+    }
+   }
+  }
+  /* End of Onload - Main Category dropdown */
+  /* Start of onchange  - Product categories dropdown */
+  for(var i = 0; i < resultJSON.ProductList.length; i++){
+  if(document.location.pathname == "/html/en/index.html"){
+   var htmlLink,finalHtmlLink;
+   htmlLink = resultJSON.ProductList[i].Link.replace("/find-right-product","/html/en/find-right-product");
+   finalHtmlLink = htmlLink.replace(".page",".html");
+   resultss.push({ 
+     category:resultJSON.ProductList[i].MainCategory, subCategory:resultJSON.ProductList[i].SubCategory, link:finalHtmlLink 
+   });
+  }else{
+   resultss.push({ 
+     category:resultJSON.ProductList[i].MainCategory, subCategory:resultJSON.ProductList[i].SubCategory, link:resultJSON.ProductList[i].Link 
+   });
+  }
+  }
+  var iframesrc = $('.findProductIframe').attr("src");
+  var defaultiframe = iframesrc;
+  var defaultCategory,defaultSubcategory;
+  console.log("defaultiframe: " + defaultiframe);
+  if(defaultiframe != ''){
+   if(resultss.length > 0){
+    for (var i = 0; i < resultss.length; i++) {
+       if (defaultiframe == resultss[i].link) {
+         defaultCategory = resultss[i].category;
+         defaultSubcategory = resultss[i].subCategory;
+       }
+       //Code change 31/08/2020
+       if (defaultCategory === resultss[i].category) {
+         $('.intSelectTwo').append(
+          "<option value='" + resultss[i].subCategory.replace(/\s+/g, '-').toLowerCase() + "'>" + resultss[i].subCategory + '</option>'
+         );
+       }
+      //Code change end
+    }
+   }
+  }
+  console.log("defaultCategory: " + defaultCategory);
+  console.log("defaultSubcategory: " + defaultSubcategory);
+  $("#intSelectOne-button .ui-selectmenu-text").text(defaultCategory);
+  $("#intSelectTwo-button .ui-selectmenu-text").text(defaultSubcategory);
+  //$(".intSelectOne").change(function() {
+   $('.intSelectOne').selectmenu({
+   change: function( event, ui ) {
+   var categoryArrs = [];
+   var subCategoryArrs = [];
+   var productCategory = $(".intSelectOne option:selected").val();
+   //console.log("BillerState selected::: " +billerState+" "+billerCategories+" " +billers);
+   //$(".intSelectTwo").empty().append("<option value>Select</option>");
+    let setOption = '<option value="">Select</option>';
+    /* $('.intSelectTwo').selectmenu('destroy'); */
+    $('.intSelectTwo').html(setOption);
+   if(productCategory != ''){
+    if(resultss.length > 0){
+     for(var i = 0; i < resultss.length; i++){
+      if(productCategory == resultss[i].category.replace(/\s+/g, '-').toLowerCase()){
+       subCategoryArrs.push(resultss[i].subCategory);
+      }
+     }
+     if(subCategoryArrs.length < 2){
+      console.log("subCategoryArrs length: " + subCategoryArrs.length);
+      console.log("subCategoryArrs: " + subCategoryArrs);
+      for(var j = 0; j < resultss.length; j++){
+       if(productCategory == resultss[j].category.replace(/\s+/g, '-').toLowerCase()){
+        //subCategoryArrs.push( resultss[j].subCategory );
+        $(".intSelectTwo").append("<option value='"+resultss[j].subCategory.replace(/\s+/g, '-').toLowerCase()+"'>"+resultss[j].subCategory+"</option>");
+        var linkSrc = resultss[j].link;
+        console.log(linkSrc);
+        $('.findProductIframe').attr('src',linkSrc);
+                                $(".iframe-container .loader").show();
+        $(".find-right-product-nudge").css("display","none");
+       }
+      }
+     }
+     if(subCategoryArrs.length > 1){
+      console.log("subCategoryArrs length: " + subCategoryArrs.length);
+      for(var k = 0; k < resultss.length; k++){
+       if(productCategory == resultss[k].category.replace(/\s+/g, '-').toLowerCase()){
+        //subCategoryArrs.push( resultss[k].subCategory );
+        $(".intSelectTwo").append("<option value='"+resultss[k].subCategory.replace(/\s+/g, '-').toLowerCase()+"'>"+resultss[k].subCategory+"</option>");
+       }
+      }
+     }
+    }
+   }
+   $('.intSelectTwo').selectmenu("refresh");
+   if(subCategoryArrs.length < 2){
+    $("#intSelectTwo-button .ui-selectmenu-text").text(subCategoryArrs);
+   }
+   }   
+  });
+  //$(".intSelectTwo").change(function() {
+  $('.intSelectTwo').selectmenu({
+  change: function( event, ui ) {
+   var categoryArrs = [];
+   var subCategoryArrs = [];
+   var linkArrs = [];
+   var productCategory = $('.intSelectOne option:selected').val();
+   var firstselectMenu = $('#intSelectOne-button .ui-selectmenu-text').text()
+   productCategory = productCategory == "Select" && productCategory != firstselectMenu ? firstselectMenu.toLowerCase() : productCategory;
+   var productSubCategory = $(".intSelectTwo option:selected").val();
+   if(productCategory && productSubCategory != ''){
+    if(resultss.length > 0){
+     for(var i = 0; i < resultss.length; i++){
+      if((productCategory.replace(/\s+/g, '-').toLowerCase() == resultss[i].category.replace(/\s+/g, '-').toLowerCase()) && (productSubCategory == resultss[i].subCategory.replace(/\s+/g, '-').toLowerCase())){
+       var linkSrc = resultss[i].link;
+       console.log(linkSrc);
+       $('.findProductIframe').attr('src',linkSrc);
+       $(".iframe-container .loader").show();
+       $(".find-right-product-nudge").css("display","none");
+       $(".iframeloader").css("display","block");
+      }
+     }
+    }
+   }
+   }
+  });
+  
+  /* End of onchange  - billers categories and billers dropdown */
+  
+  function distinctVals(arr){
+   var newArray = [];
+   for(var i=0, j=arr.length; i<j; i++){
+    if(newArray.indexOf(arr[i]) == -1)
+       newArray.push(arr[i]);  
+   }
+   return newArray;
+  }
+  
+ });
+});

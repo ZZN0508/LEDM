@@ -1,0 +1,11 @@
+﻿<head>
+<bgcolor=FFFFFF>
+</head>
+<body>
+<align=1>
+<text bgcolor=DDDDDD><image=/img/err.png><color=FF0000|000000 time=500>Произошла ошибка</color></text><br>
+<align=0>
+<text>
+<color=000000>Для успешной активации приложения необходимо разрешить обмен текстовыми данными.</color>
+</text>
+</body>

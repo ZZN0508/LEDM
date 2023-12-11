@@ -1,0 +1,288 @@
+
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-153469-3']);
+    _gaq.push(['_setDomainName', 'babytree.com']);
+    _gaq.push(['_setAllowHash', 'false']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push(['_trackPageLoadTime']);
+
+    (function() {
+     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+     //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+     ga.src = 'http://static01.babytreeimg.com/img/js/google/ga.js';
+     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+     })();
+
+
+
+    var hpi = 6,
+        hpTimer = null,
+        homepage_guide_2019_show = getCookie('homepage_guide_2019_show');
+
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + '=' + escape(value) + ((expiredays==null) ? '' : ';expires=' + exdate.toGMTString()) + ';path=/';
+    }
+
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + '=');
+            if (c_start != -1) { 
+                c_start = c_start + c_name.length + 1; 
+                c_end = document.cookie.indexOf(';',c_start);
+                if (c_end == -1) {
+                    c_end = document.cookie.length;
+                }
+                return unescape(document.cookie.substring(c_start, c_end));
+            } 
+        }
+        return '';
+    }
+
+    function hpStart() {
+        document.querySelector('html').style.overflow = 'hidden';
+        document.querySelector('body').style.overflow = 'hidden';
+        document.querySelector('#hp-guide-2019').style.display = 'block';
+        hpTimer = window.setInterval(function() {
+              hpi--;
+              document.querySelector('#hp-item').innerHTML = hpi + 'S';
+              if (hpi === 0) {
+                  setCookie('homepage_guide_2019_show', 'true', 1);
+                  document.querySelector('html').style.overflow = 'visible';
+                  document.querySelector('body').style.overflow = 'visible';
+                  document.querySelector('#hp-guide-2019').className += ' hp-guide-2019-fadeInUp';
+                  window.clearInterval(hpTimer);
+              } 
+        }, 1000);
+    }
+
+    if (homepage_guide_2019_show !== 'true') {
+        hpStart();
+    }
+
+document.write('试用');
+document.write('活动');
+if (typeof bui === "undefined") bui = {};bui.webSite = bui.webSite || {};bui.webSite.isLogin = false;bui.webSite.userData = [];bui.webSite.getRootDomain = function() {return 'babytree.com';};bui.webSite.getWebDomain = function() {return 'www.babytree.com';};bui.webSite.getMobileDomain = function() {return 'm.babytree.com';};bui.webSite.getApiDomain = function() {return 'api.babytree.com';};bui.webSite.getHomeDomain = function() {return 'home.babytree.com';};bui.webSite.getUploadDomain = function() {return 'upload.babytree.com';};bui.webSite.getRdDomain = function() {return 'log.babytree.com';};bui.webSite.getSsoDomain = function() {return 'sso.babytree.com';};bui.webSite.getPromoDomain = function() {return 'promo.babytree.com';};bui.webSite.getPromoUploadDomain = function() {return 'promo.upload.babytree.com';};bui.webSite.getCDNDomain = function() {return 'static01.babytreeimg.com';};
+
+function check_user_login(type, callback_func, redirect_url, action, speTitle,  options){
+    if (login==true) {
+        callback_func();
+    }
+    else {
+        if (!redirect_url) {
+            redirect_url = window.location.href; 
+        }
+        reg_show_popup(type, callback_func, (action || 'login'), speTitle, redirect_url, options);
+    }
+}
+
+
+var login=false;
+var ok_icon="http://pic01.babytreeimg.com/img/reg_v3/v.gif";
+var error_icon="http://pic01.babytreeimg.com/img/reg_v3/x.gif";
+var maxyear=2022;
+var dropdown_limit=8;
+
+
+bui.global.header.init('http://www.babytree.com/home/message/header.php?jsoncallback=?');
+
+babyshow_var='nut&dataserver=www.babytree.com&picserver=pic01.babytreeimg.com';rand_js_var='4';
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2643,"srv":"BBAD"});
+
+
+		$(function(){
+			var today=new Date();
+            var d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 300);
+			var homeDateSelector = new DateSelector(d.getFullYear()-8,d.getFullYear(),false);
+			homeDateSelector.inityear($("#homeYears"),today.getFullYear());
+			homeDateSelector.initmonth($("#homeMonths"),today.getMonth()+1);
+			homeDateSelector.initday($("#homeDays"),31,today.getDate());
+			$("#homeYears,#homeMonths").change(function(){
+				homeDateSelector.changedate('homeYears','homeMonths','homeDays');
+			});
+		});
+		
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2899,"srv":"BBAD"});
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2900,"srv":"BBAD"});
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2901,"srv":"BBAD"});
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2902,"srv":"BBAD"});
+
+
+        var userLinkCountMax = 15;
+        var userLinkCount = 0;
+        $(function(){
+                        $("#mynav_yunyu").click(function(){
+                $("#bb-head-yunyu").show();
+                var height_tp = $("#mynav_yunyu").height();
+                var top_tp = $("#mynav_yunyu").offset().top;
+                var left_tp = $("#mynav_yunyu").offset().left;
+                $("#bb-head-yunyu").css("left",left_tp);
+                $("#bb-head-yunyu").css("top",height_tp + top_tp);
+            });
+        });
+        
+
+            loginUid = "";
+        
+
+    var query = new QueryBabyTreeAds();
+      query.queryRandomAd({"rgid":[2648,2649],"srv":"BBAD"});
+
+
+    var query = new QueryBabyTreeAds();
+      query.queryRandomAd({"rgid":[2646,2647],"srv":"BBAD"});
+
+
+	$(document).ready(function(){
+		window.mods_direction_init(641);
+		//extra
+        $('#bb-home-spotlight a').each(function() {
+            var href = $(this).attr("href");
+            if (href  !== undefined && href.match(/javascript:.*void.*/i)) {
+                $(this).attr('target', '_self');
+            }
+		});
+
+		$("#ask_content").focus(function(){if($(this).val()=="在这里输入您的问题,10分钟内有问必答")$(this).val("");});
+        $("#ask_content").blur(function(){if($(this).val()=="")$(this).val("在这里输入您的问题,10分钟内有问必答");});
+        $("#ask_content").keyup(function(){
+            var l = $.trim($(this).val()).length;
+            if(l<50){
+                if ($.trim($(this).val())=="在这里输入您的问题,10分钟内有问必答") {
+                    l = 0;
+                }
+                $("#ask_counter").html('<div class="counter" id="ask_counter">您还可以输入<em>'+(50-l)+'</em>字</div>');
+            }else{
+                $("#ask_counter").html('<div class="counter" id="ask_counter">您已经超出<em>'+(l-50)+'</em>字</div>');
+            }
+        }).keyup();
+
+	});
+
+	function check_ask_form(){
+            var title = $.trim($("#ask_content").val());
+            var len = title.length;
+            if(len == 0||title=="在这里输入您的问题,10分钟内有问必答"){
+                alert("请填写问题标题！");
+                return false;
+            }else if(len<5){
+                alert("问题标题得在5个字以上!");
+                return false;
+            }
+            if(len>50){
+                alert("问题标题不能超过50个字！");
+                return false;
+            }
+            if(typeof(check_user_login)=="function" && typeof(login)=="boolean"){
+                check_user_login("ask",function(){
+                        document.ask_form.submit()
+                        });
+                return false;
+            }
+            else
+                return false;
+            return true;
+        }
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2651,"srv":"BBAD"});
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2650,"srv":"BBAD"});
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2969,"srv":"BBAD"});
+
+
+$(document).ready(function(){
+      $('#slides').slidesjs({
+            width: 300,
+            height: 235,
+            play: {
+              active: true,
+              auto: true,
+              interval: 3000,
+              swap: true
+            }
+      });
+});    
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2653,"srv":"BBAD"});
+
+
+    var query = new QueryBabyTreeAds();
+      query.querySingleAd({"rgid":2652,"srv":"BBAD"});
+
+
+switchKnowTab(2);
+
+
+//footer 标签切换
+function SwitchNewsTag_1(id, num, count) {
+    ClearTagClass_1(id, count);
+    document.getElementById("tab_" + id + num).className = "current";
+    document.getElementById(id + num).style.display = "";
+}
+function ClearTagClass_1(id, count) {
+    for (i = 1; i <= count; i++) {
+        document.getElementById("tab_" + id + i).className = "";
+        document.getElementById(id + i).style.display = "none";
+    }
+} 
+
+
+    var homepage_guideFloat_2019_show = getCookie('homepage_guideFloat_2019_show');
+
+    function closeFloat() {
+        setCookie('homepage_guideFloat_2019_show', 'true', 1);
+        document.querySelector('#global_float_2019').style.display = 'none';
+    }
+
+    function setCookie(c_name, value, expiredays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + expiredays);
+        document.cookie = c_name + '=' + escape(value) + ((expiredays==null) ? '' : ';expires=' + exdate.toGMTString()) + ';path=/';
+    }
+
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + '=');
+            if (c_start != -1) { 
+                c_start = c_start + c_name.length + 1; 
+                c_end = document.cookie.indexOf(';',c_start);
+                if (c_end == -1) {
+                    c_end = document.cookie.length;
+                }
+                return unescape(document.cookie.substring(c_start, c_end));
+            } 
+        }
+        return '';
+    }
+
+    if (homepage_guideFloat_2019_show !== 'true') {
+        document.querySelector('#global_float_2019').style.display = 'block';
+    }
+
+
+ _myuacct = "UA-430199-5";
+     myurchinTracker();

@@ -1,0 +1,1 @@
+import{a as i}from"https://cdn.shopify.com/shopifycloud/brochure-iii/production/_shared/chunk-XO5B3XFW.js";import{c as n}from"https://cdn.shopify.com/shopifycloud/brochure-iii/production/_shared/chunk-G4JDLQHK.js";var a=n(t=>{"use strict";var e=i();t.createRoot=e.createRoot,t.hydrateRoot=e.hydrateRoot;var s});export{a};

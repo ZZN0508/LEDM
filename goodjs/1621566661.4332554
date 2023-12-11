@@ -1,0 +1,182 @@
+define(["require", "exports", "OK/utils/dom"], function (require, exports, dom) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var CSS_FULL = '__full';
+    var CSS_INVISIBLE = 'invisible';
+    var CSS_COMPACT = '__compact';
+    var LINE_HEIGHT = 21;
+    var THRESHOLD_5 = LINE_HEIGHT * 5;
+    var THRESHOLD_3 = LINE_HEIGHT * 3;
+    function calcThreshold(el, limit) {
+        var elStyle = window.getComputedStyle(el);
+        var lineHeight = parseInt(elStyle.lineHeight, 10);
+        return lineHeight * limit;
+    }
+    var ProcessMoreInfo = function ProcessMoreInfo() {
+        this.linesLimit = null;
+    };
+
+    var prototypeAccessors = { textCnt: { configurable: true } };
+    ProcessMoreInfo.prototype.activate = function activate (el) {
+        var textBlockContent = dom.firstByClass(el, 'media-text_cnt_tx');
+        if (!textBlockContent) {
+            return;
+        }
+        this.onlyCrop = el.getAttribute('data-only-crop') === '1';
+        var moreInfo = el.nextSibling;
+        if (!moreInfo || !moreInfo.classList.contains('media_more')) {
+            return;
+        }
+        this.moreInfo = moreInfo;
+        if (this.onlyCrop && moreInfo) {
+            moreInfo.classList.remove(CSS_INVISIBLE);
+        }
+        this.el = el;
+        this.expandable = el.getAttribute('data-expandable') === '1';
+        this.hasStyleTokens = el.getAttribute('data-has-style-tokens') === '1';
+        if (this.expandable && this.moreInfo) {
+            this.moreInfo.addEventListener('click', this);
+        }
+        var linesLimit = el.getAttribute('data-lines-limit');
+        if (linesLimit !== null) {
+            this.linesLimit = +linesLimit;
+            this.threshold = calcThreshold(this.textCnt, this.linesLimit);
+        }
+        else {
+            this.threshold = el.classList.contains(CSS_COMPACT) ? THRESHOLD_3 : THRESHOLD_5;
+        }
+        if (textBlockContent.clientHeight > this.threshold) {
+            this.collapse();
+        }
+        else {
+            this.expand();
+        }
+    };
+    ProcessMoreInfo.prototype.handleEvent = function handleEvent (e) {
+        this.onClick(e);
+    };
+    ProcessMoreInfo.prototype.deactivate = function deactivate () {
+        if (this.expandable && this.moreInfo) {
+            this.moreInfo.removeEventListener('click', this);
+        }
+        this.el = null;
+        this.moreInfo = null;
+        this.onClick = null;
+    };
+    ProcessMoreInfo.prototype.isFull = function isFull () {
+        return this.el.classList.contains(CSS_FULL);
+    };
+    ProcessMoreInfo.prototype.expand = function expand () {
+        this.el.classList.add(CSS_FULL);
+        if (!this.onlyCrop) {
+            if (this.moreInfo) {
+                this.moreInfo.classList.add(CSS_INVISIBLE);
+            }
+        }
+        if (!this.hasStyleTokens) {
+            return;
+        }
+        this.textCnt.style.maxHeight = "none";
+    };
+    prototypeAccessors.textCnt.get = function () {
+        if (!this._textCnt) {
+            this._textCnt = dom.firstByClass(this.el, 'media-text_cnt');
+        }
+        return this._textCnt;
+    };
+    ProcessMoreInfo.prototype.collapse = function collapse () {
+        this.el.classList.remove(CSS_FULL);
+        if (this.moreInfo) {
+            this.moreInfo.classList.remove(CSS_INVISIBLE);
+        }
+        if (!this.hasStyleTokens && (this.linesLimit === null)) {
+            return;
+        }
+        // внутри есть заголовки, цитаты или ещё что-то нестандартное
+        // пытаемся на основе геометрических расмеров понять, до какого размера
+        // схлопывать текстовый блок
+        var textCnt = this.textCnt;
+        var cntStyle = window.getComputedStyle(this.textCnt);
+        var cntLineHeight = parseInt(cntStyle.lineHeight, 10);
+        var tokens = dom.byClass(textCnt, 'media-text-token');
+        var baseRect = textCnt.getBoundingClientRect();
+        var threshold = this.threshold;
+        for (var i = 0; i < tokens.length; i++) {
+            var token = tokens[i];
+            var tokenRect = token.getBoundingClientRect();
+            if (tokenRect.bottom - baseRect.top <= threshold) {
+                continue;
+            }
+            var tokenStyle = window.getComputedStyle(token);
+            var topHeight = tokenRect.top - baseRect.top;
+            var tokenMarginTop = parseInt(tokenStyle.marginTop, 10);
+            if (topHeight - tokenMarginTop > threshold) {
+                // оказалось, что сверху слишком много текста,
+                // надо его обрезать
+                var maxTextHeight = topHeight - tokenMarginTop;
+                while (maxTextHeight > 0) {
+                    var candidateMaxHeight = maxTextHeight;
+                    if (candidateMaxHeight <= this.threshold) {
+                        textCnt.style.maxHeight = candidateMaxHeight + "px";
+                        return;
+                    }
+                    maxTextHeight -= cntLineHeight;
+                }
+                return;
+            }
+            // получаем размеры токена
+            var paddingTop = parseInt(tokenStyle.paddingTop, 10);
+            var paddingBottom = parseInt(tokenStyle.paddingBottom, 10);
+            var lineHeight = parseInt(tokenStyle.lineHeight, 10);
+            var innerHeight = token.clientHeight - paddingTop - paddingBottom;
+            if (!lineHeight) {
+                // на всякий случай, чтобы не уйти дальше в бесконечный цикл
+                return;
+            }
+            // расчитываем, какая часть от токена вообще сможет
+            // нормально уместиться
+            var maxTokenHeight = innerHeight;
+            while (maxTokenHeight > 0) {
+                var candidateMaxHeight$1 = topHeight + maxTokenHeight + paddingTop;
+                if (candidateMaxHeight$1 <= threshold) {
+                    textCnt.style.maxHeight = candidateMaxHeight$1 + "px";
+                    return;
+                }
+                maxTokenHeight -= lineHeight;
+            }
+            // не влезли, берем за основу высоту до токена
+            var maxHeight = topHeight - tokenMarginTop;
+            textCnt.style.maxHeight = maxHeight + "px";
+            return;
+        }
+        // если попали сюда, то это значит, что либо нет токенов, либо все токены уместились.
+        // Надо подсчитать, какая часть текста ещё может быть видна
+        if (tokens.length) {
+            var lastToken = tokens[tokens.length - 1];
+            var lastTokenRect = lastToken.getBoundingClientRect();
+            var lastTokenStyle = window.getComputedStyle(lastToken);
+            var lastTokenMarginBottom = parseInt(lastTokenStyle.marginBottom, 10);
+            var topPlace = lastTokenRect.bottom - baseRect.top + lastTokenMarginBottom;
+            var availablePlace = this.threshold - topPlace;
+            if (availablePlace <= 0) {
+                // места не осталось
+                return;
+            }
+            var availableLines = Math.floor(availablePlace / cntLineHeight);
+            var maxHeight$1 = topPlace + availableLines * cntLineHeight;
+            textCnt.style.maxHeight = maxHeight$1 + "px";
+        }
+        else {
+            textCnt.style.maxHeight = threshold + "px";
+        }
+    };
+    ProcessMoreInfo.prototype.onClick = function onClick (e) {
+        if (!this.isFull()) {
+            this.expand();
+            e.preventDefault();
+        }
+    };
+
+    Object.defineProperties( ProcessMoreInfo.prototype, prototypeAccessors );
+    exports.default = ProcessMoreInfo;
+});

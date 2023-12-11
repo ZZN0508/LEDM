@@ -1,0 +1,19 @@
+
+var referrerURL = document.domain;
+if (referrerURL == 'tianya.cn'){
+	window.location.href="//www.tianya.cn";}
+var tyHost="www.tianya.cn";
+if(tyHost!=window.top.location.host){
+    window.top.location="http://"+tyHost;
+}
+
+document.write((new Date()).getFullYear())
+
+var adsGlobal = {
+	itemId : "311",//分类或板块ID
+	pageType : "13"//页面类型
+};
+
+
+_atrk_opts = { atrk_acct:"WCmTk1a4eFf2mh", domain:"tianya.cn",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();

@@ -1,0 +1,98 @@
+
+(function () {
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/_hcms/perf', true /*async*/);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.onreadystatechange = function () {
+                // do nothing.
+            };
+            var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            function populateNetworkInfo(name, connection, info) {
+                if (name in connection) {
+                    info[name] = connection[name];
+                }
+            }
+            var networkInfo = {};
+            if (connection) {
+                ['type', 'effectiveType', 'downlink', 'rtt'].forEach(function(name) {
+                    populateNetworkInfo(name, connection, networkInfo);
+                });
+            }
+            var perfData = {
+                url: location.href,
+                portal: 53,
+                content: 5787921598,
+                group: -1,
+                connection: networkInfo,
+                timing: performance.timing
+            };
+            xhr.send(JSON.stringify(perfData));
+        }, 3000);  // Execute this 3 seconds after onload.
+    });
+})();
+
+
+(function() {
+  document.cookie = 'hs_ab_test=5787921594:5787921598';
+})();
+
+
+if (typeof hsVars !== 'undefined') { hsVars['language'] = 'en'; }
+
+
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "landing-page"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/www.hubspot.com"]);
+_hsq.push(["setPageId", "5787921598"]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": 5787921598,
+    "legacyPageId": "5787921598",
+    "contentFolderId": null,
+    "contentGroupId": null,
+    "abTestId": 5787921594,
+    "languageVariantId": 5787921598,
+    "languageCode": "en",
+    
+}]);
+
+
+var hsVars = {
+    ticks: 1621567549493,
+    page_id: 5787921598,
+
+    content_group_id: 0,
+    portal_id: 53,
+    app_hs_base_url: "https://app.hubspot.com",
+    cp_hs_base_url: "https://cp.hubspot.com",
+    language: "en",
+    analytics_page_type: "landing-page",
+    category_id: 1,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+
+
+  {"options":[{"rate":0.5,"value":"BOT137_VarA"},{"rate":0.5,"value":"BOT137_VarB"}],"type":"module"}
+
+
+  {
+    "deferredScripts": [{
+        "id": "gtm",
+        "src": "https://www.hubspot.com/wt-assets/static-files/compliance/index.js",
+        "data": {
+          "key": "gtmId",
+          "value": "GTM-N5LT88"
+        }
+      },
+      {
+        "id": "hs-script-loader",
+        "src": "/hs/scriptloader/53.js"
+      },
+      {
+        "id": "messaging-functions",
+        "src": "//www.hubspot.com/wt-assets/static-files/2383/messaging-functions/scripts.js"
+      }
+    ]
+  }

@@ -1,0 +1,106 @@
+if (/*@cc_on!@*/false) {
+			window.browserVersion = 'IE10';
+			document.documentElement.className += ' ie10';
+		}
+{}
+!function(){if("PerformancePaintTiming" in window){var e=window.__perf={e:[]};e.o=new PerformanceObserver(function(n){e.e=e.e.concat(n.getEntries())});try{e.o.observe({entryTypes:["paint"]})}catch(e){}}}();
+if (requestAnimationFrame && performance && performance.mark) {
+			requestAnimationFrame(function () {
+				window.first_paint = performance.now();
+				performance.mark("first_paint");
+			});
+		}
+// web-vitals polyfill for FID
+        !function(n,e){var t,o,i,c=[],f={passive:!0,capture:!0},r=new Date,a="pointerup",u="pointercancel";function p(n,c){t||(t=c,o=n,i=new Date,w(e),s())}function s(){o>=0&&o<i-r&&(c.forEach(function(n){n(o,t)}),c=[])}function l(t){if(t.cancelable){var o=(t.timeStamp>1e12?new Date:performance.now())-t.timeStamp;"pointerdown"==t.type?function(t,o){function i(){p(t,o),r()}function c(){r()}function r(){e(a,i,f),e(u,c,f)}n(a,i,f),n(u,c,f)}(o,t):p(o,t)}}function w(n){["click","mousedown","keydown","touchstart","pointerdown"].forEach(function(e){n(e,l,f)})}w(n),self.perfMetrics=self.perfMetrics||{},self.perfMetrics.onFirstInputDelay=function(n){c.push(n),s()}}(addEventListener,removeEventListener);
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "http://www.flipkart.com/",
+    "potentialAction": [{
+        "@type": "SearchAction",
+        "target": "http://www.flipkart.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+        },{
+        "@type": "SearchAction",
+        "target": "android-app://com.flipkart.android/flipkart/de_sq_seg_-search.flipkart.com-_{search_term_string}",
+        "query-input": "required name=search_term_string"
+    }]
+}
+window.__BUNDLE_IDS__ = {};
+window.omniture={tpv:[],tl:[]};window.omniture.trackPageView=function(){window.omniture.tpv.push(arguments)};window.omniture.trackLink=function(){window.omniture.tl.push(arguments)}
+
+    if(window.location.host === 'www.flipkart.com' || /\.store\.flipkart\.com/i.test(window.location.host)){
+        window.s_account = "flipkart-prd"; //omniture account id
+    }else{
+        window.s_account = "flipkart-prd-test";
+    }
+    window.s_isDesktop = true;
+if ('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") === -1) {
+		navigator.serviceWorker.register('/sw.js').then(function(registration) {
+			console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			navigator.onLine && navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage('BANDWIDTH_COMPUTE');
+			navigator.serviceWorker.addEventListener('message', function (event) {
+				try {
+					const bandwidthData = JSON.parse(event.data);
+					if (bandwidthData && bandwidthData.data) {
+						window.bandwidth = bandwidthData.data.downlink + '_' + bandwidthData.data.computeMethod + '_' + bandwidthData.data.effectiveType + '_' + bandwidthData.data.type;
+					}
+				}catch(err) {
+					console.error('JSON.parse failed:', err);
+				}
+			});
+		})
+		.catch(function(err) {
+			console.error('ServiceWorker registration failed: ', err);
+		});
+	} else if('serviceWorker' in navigator && navigator.userAgent.indexOf("Mobile") > -1){
+        navigator.serviceWorker.getRegistration().then(function(registration) {
+            var serviceWorkerUnregistered=false;
+            if(registration) {
+                registration.unregister();
+                serviceWorkerUnregistered=true;
+            }
+            serviceWorkerUnregistered && window.location.reload();
+        });
+    }
+
+
+window.Raven && window.Raven.config('https://b2fe488e344a47eda53b8d306edec9b7@sentry.flipkart.com/2',{
+		release: '4.36.0',
+		whitelistUrls: [
+			/flipkart\.com/,
+			/flixcart\.com/
+		],
+		ignoreErrors: [
+			// Random plugins/extensions
+			'top.GLOBALS',
+			// See: http://blog.errorception.com/2012/03/tale-of-unfindable-js-error.html
+			'originalCreateNotification',
+			'canvas.contentDocument',
+			'MyApp_RemoveAllHighlights',
+			'atomicFindClose',
+			// Facebook borked
+			'fb_xd_fragment',
+			// ISP "optimizing" proxy - `Cache-Control: no-transform` seems to reduce this. (thanks @acdha)
+			// See http://stackoverflow.com/questions/4113268/how-to-stop-javascript-injection-from-vodafone-proxy
+			'bmi_SafeAddOnload',
+			'EBCallBackMessageReceived',
+			'failed to fetch'
+		],
+		ignoreUrls: [
+			// Facebook flakiness
+			/graph\.facebook\.com/i,
+			// Facebook blocked
+			/connect\.facebook\.net\/en_US\/all\.js/i,
+			// Chrome extensions
+			/extensions\//i,
+			/^chrome:\/\//i
+		],
+		sanitizeKeys: ['nsid', 'secureToken', 'SN'],
+		environment: 'production',
+		sampleRate: 0.5
+	}).install();
+	window.Raven && window.Raven.setUserContext({
+		accountId: ''
+	});
+window._pxAppId = 'PXgNtTli3A';

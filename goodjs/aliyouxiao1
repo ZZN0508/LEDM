@@ -1,0 +1,59 @@
+/*$('body').append('<div class="video_popF" style="position:fixed;width:100%;height:100%;top:0;left:0;z-index:99999;"><a href="javascript:;" title="跳过" class="tg_close" style="width:90px;height:89px;background:url(//pbmp.ali213.net/Pics/jumpgo.png) no-repeat center center;background-size:100%;position:absolute;top:150px;left:50%;margin-left:520px;z-index:100000;-webkit-animation:free_download 1s linear alternate infinite;animation:free_download 1s linear alternate infinite;"></a><div style="width:1920px;height:1080px;position:absolute;top:0;left:50%;margin-left:-960px;"><a href="//click.ali213.net/ALiClick-384.html" target="_blank" style="display:block;"><video id="videoF" src="" preload="auto" autoplay="autoplay" muted="muted" style="width:100%;height:100%;"></video></a></div></div>');
+var videoF=$('#videoF')[0];
+videoF.src='https://img1.ali213.net/bmp/index_full384_1920c1080.mp4';
+videoF.play();
+videoF.addEventListener('ended',function () {
+	$('.video_popF').remove();
+});
+$('.tg_close').on('click',function(){
+	$('.video_popF').remove();
+});*/
+/*var cookie_alifull = {
+	ad0:5,
+	ad_num : 1,
+	get_cookie : function(Name){var search = Name + "=";	var returnvalue = "";if (document.cookie.length > 0) {offset = document.cookie.indexOf(search);if (offset != -1) {offset += search.length;end = document.cookie.indexOf(";", offset);if (end == -1)end = document.cookie.length;returnvalue=unescape(document.cookie.substring(offset, end));}}return returnvalue;},
+	init : function(){
+		for(var i=0; i<cookie_alifull.ad_num; i++){
+			if(cookie_alifull.get_cookie('alifull_cookie_'+i)){
+				continue;
+			}else{
+				var Then = new Date();current_time = eval('cookie_alifull.ad'+i);Then.setTime(Then.getTime() + current_time*60*1000);document.cookie='alifull_cookie_'+i+'=1;expires='+ Then.toGMTString()+';path=/;';
+				switch(i){
+					case 0:
+						$('body').append('<style>.fsgray{width:100%;height:100%;position:fixed;left:0;top:0;z-index: 999999;background:#000;opacity:.7;}.gg-container{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.57);overflow:hidden;z-index: 9999999;}.gg-container.gg1{position:absolute;left:0;top:0;width:100%;height:100%;z-index:3}.gg-container.gg1 .gg1-water{width:100%;height:30%;position:absolute;left:0;bottom:0;background:url(https:background-size:100%100%;transition:all 0.5s;z-index:3}.gg-container.water.gg1 .gg1-water{height:100%}.gg-container.gg1 .gg1-snake-bg{width:100%;height:100%;overflow:hidden;bottom:0;position:absolute;left:0}.gg-container.gg1 .gg1-snake{width:100%;height:100%;position:absolute;bottom:-100%;left:0;background:url(https:z-index:2;transition:all 0.8s}.gg-container.snake.gg1 .gg1-snake{bottom:10%}.gg-container.gg1 div{width:100%;height:100%}.gg-container.gg2{width:287px;height:360px;background:url(https:position:absolute;top:-100%;right:-100%;z-index:2;transition:all 0.8s}.gg-container.p1 .gg2{top:6%;right:21%}.gg-container.gg2:before{content:"";width:467px;height:391px;background:url(https:position:absolute;left:-44%;top:9%}.gg-container.gg3{width:559px;height:479px;background:url(https:position:absolute;bottom:-100%;right:-100%;z-index:4;transition:all 0.8s}.gg-container.p2 .gg3{bottom:2%;right:13%}.gg-container.gg3:before{content:"";width:978px;height:584px;background:url(https:position:absolute;left:-30%;bottom:8%}.gg-container.gg4{width:594px;height:413px;background:url(https:position:absolute;bottom:-100%;left:-100%;z-index:4;transition:all 0.8s}.gg-container.p3 .gg4{bottom:12%;left:13%}.gg-container.gg4:before{content:"";width:259px;height:266px;background:url(https:position:absolute;left:53%;bottom:37%}.gg-container.gg5{width:563px;height:507px;background:url(https:position:absolute;bottom:0;left:0;right:0;top:0;margin:auto;z-index:6;transform:scale(0);transition:all 1s}.gg-container.text.gg5{transform:scale(1)}.gg-container.gg6{width:100%;height:100%;background:rgba(0,0,0,0.7);position:absolute;left:0;top:0;opacity:0;z-index:5;transition:all 1s}.gg-container.text.gg6{opacity:1}.gg-container{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(0,0,0,0.57);overflow:hidden}.gg-container .gg1{position:absolute;left:0;top:0;width:100%;height:100%;z-index:3}.gg-container .gg1 .gg1-water{width:100%;height:30%;position:absolute;left:0;bottom:0;background:url(https://pbmp.ali213.net/specialimg/rydts/shui.png) no-repeat center bottom;background-size:100% 100%;transition:all 0.5s;z-index:3}.gg-container.water .gg1 .gg1-water{height:100%}.gg-container .gg1 .gg1-snake-bg{width:100%;height:100%;overflow:hidden;bottom:0;position:absolute;left:0}.gg-container .gg1 .gg1-snake{width:100%;height:100%;position:absolute;bottom:-100%;left:0;background:url(https://pbmp.ali213.net/specialimg/rydts/s.png) no-repeat center bottom;z-index:2;transition:all 0.8s}.gg-container.snake .gg1 .gg1-snake{bottom:10%}.gg-container .gg1 div{width:100%;height:100%}.gg-container .gg2{width:287px;height:360px;background:url(https://pbmp.ali213.net/specialimg/rydts/rw1.png) no-repeat center;position:absolute;top:-100%;right:-100%;z-index:2;transition:all 0.8s}.gg-container.p1 .gg2{top:6%;right:21%}.gg-container .gg2:before{content:"";width:467px;height:391px;background:url(https://pbmp.ali213.net/specialimg/rydts/gx1.png) no-repeat;position:absolute;left:-44%;top:9%}.gg-container .gg3{width:559px;height:479px;background:url(https://pbmp.ali213.net/specialimg/rydts/rw2.png) no-repeat center;position:absolute;bottom:-100%;right:-100%;z-index:4;transition:all 0.8s}.gg-container.p2 .gg3{bottom:2%;right:13%}.gg-container .gg3:before{content:"";width:978px;height:584px;background:url(https://pbmp.ali213.net/specialimg/rydts/gx2.png) no-repeat;position:absolute;left:-30%;bottom:8%}.gg-container .gg4{width:594px;height:413px;background:url(https://pbmp.ali213.net/specialimg/rydts/rw3.png) no-repeat center;position:absolute;bottom:-100%;left:-100%;z-index:4;transition:all 0.8s}.gg-container.p3 .gg4{bottom:12%;left:13%}.gg-container .gg4:before{content:"";width:259px;height:266px;background:url(https://pbmp.ali213.net/specialimg/rydts/gx3.png) no-repeat;position:absolute;left:53%;bottom:37%}.gg-container .gg5{width:563px;height:507px;background:url(https://pbmp.ali213.net/specialimg/rydts/t.png) no-repeat center;position:absolute;bottom:0;left:0;right:0;top:0;margin:auto;z-index:6;transform:scale(0);transition:all 1s}.gg-container.text .gg5{transform:scale(1)}.gg-container .gg6{width:100%;height:100%;background:rgba(0,0,0,0.7);position:absolute;left:0;top:0;opacity:0;z-index:5;transition:all 1s}.gg-container.text .gg6{opacity:1}.fsbox-close{width:21px;height:21px;position:fixed;right:2px;top:2px;background:url(//www.ali213.net/images/close.png) no-repeat;cursor:pointer;z-index:99999999;}</style><div class="fsgray"></div><a href="//click.ali213.net/ALiClick-384.html" target="_blank" class="gg-container"><div class="gg1"><div class="gg1-water"></div><div class="gg1-snake-bg"><div class="gg1-snake"></div></div></div><div class="gg2"></div><div class="gg3"></div><div class="gg4"></div><div class="gg5"></div><div class="gg6"></div></a><div class="fsbox-close"></div>');
+						setTimeout(function () {
+							$('.gg-container').addClass('water');
+						}, 300);
+						setTimeout(function () {
+							$('.gg-container').addClass('snake');
+						}, 800);
+						setTimeout(function () {
+							$('.gg-container').addClass('p1');
+						}, 1300);
+						setTimeout(function () {
+							$('.gg-container').addClass('p2');
+						}, 2000);
+						setTimeout(function () {
+							$('.gg-container').addClass('p3');
+						}, 2300);
+						setTimeout(function () {
+							$('.gg-container').addClass('text');
+						}, 3000);
+						setTimeout(function () {
+							$('.fsgray').remove();
+							$('.gg-container').remove();
+							$('.fsbox-close').remove();
+						}, 8000);
+						$('.fsbox-close').on('click',function(){
+							$('.fsgray').remove();
+							$('.gg-container').remove();
+							$(this).remove();
+						});
+					break;
+				}				
+				break;
+			}
+		}
+	}
+}
+cookie_alifull.init();*/

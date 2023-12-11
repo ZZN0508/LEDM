@@ -1,0 +1,42 @@
+<!--杞挱鍥�-->
+$(function(){
+    var sWidth = $("#focus_ph").width();
+    var len = $("#focus_ph ul li").length;
+    var index = 0;
+    var picTimer;
+    $("#focus_ph ol li").mouseenter(function() {
+        index = $("#focus_ph ol li").index(this);
+        showPics(index);
+    }).eq(0).trigger("mouseenter");
+
+    $("#focus_ph ul").css("width",sWidth * (len + 1));
+
+    $("#focus_ph").hover(function() {
+        clearInterval(picTimer);
+    },function() {
+        picTimer = setInterval(function() {
+            if(index == len) {
+                showFirPic();
+                index = 0;
+            } else {
+                showPics(index);
+            }
+            index++;
+        },5000);
+    }).trigger("mouseleave");
+    function showPics(index) {
+        var nowLeft = -index*sWidth;
+        $("#focus_ph ul").stop(true,false).animate({"left":nowLeft},500);
+        $("#focus_ph ol li").removeClass("current").eq(index).addClass("current");
+        $("#focus_ph .btn span").stop(true, false).animate({ "opacity": "0.4" }, 300).eq(index).stop(true, false).animate({ "opacity": "1" }, 300);
+    }
+    function showFirPic() {
+        $("#focus_ph ul").append($("#focus_ph ul li:first").clone());
+        var nowLeft = -len*sWidth;
+        $("#focus_ph ul").stop(true,false).animate({"left":nowLeft},500,function() {
+            $("#focus_ph ul").css("left","0");
+            $("#focus_ph ul li:last").remove();
+        });
+        $("#focus_ph ol li").removeClass("current").eq(0).addClass("current");
+    }
+});

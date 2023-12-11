@@ -1,0 +1,46 @@
+$(document).ready(function() {
+    $(".mail-link").colorbox({inline:true, width:"500"});
+
+    $(".mail-link").click(function() {
+        $('.input-large').val('');
+        $('.controls').removeClass('error');
+    })
+    var myForm = $("#my-form");
+
+    myForm.validation();
+
+    // We can check if the form is valid on
+    // demand, using our validate function.
+    $(".btn-contact").click(function() {
+
+        if(!myForm.validate()) {
+            //alert("oh noes.. error!");
+        } else {
+            myForm.validate();
+            //console.log(myForm.validate());
+            if(myForm.validate()){
+    //send();
+    localSend();
+                $.colorbox.close();
+            }
+        }
+    });
+
+});
+function send() {
+    var pd = new PayDayObject();
+    pd.sendEmail(new PayDayEmail( "AdSupply " + $("#typeofrequest").val(), $("#name").val() + " (" + $("#email").val() + ")", $("#company").val(), "info@sparkstudios.com", $("#message").val()));
+};
+
+function localSend() {
+
+ var data = {};
+ data.typeofrequest = $('#typeofrequest').val();
+ data.name = $('#name').val();
+ data.email = $('#email').val();
+ data.company = $('#company').val();
+ data.message = $('#message').val();
+ 
+ $.post('/mailer.php', data);
+ 
+}

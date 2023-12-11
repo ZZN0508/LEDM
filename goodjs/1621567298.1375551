@@ -1,0 +1,77 @@
+function iframeHeight() {
+    $(".banner-slider .video-media iframe").height($(".image-media").height()), $(".banner-slider .video-media video").height($(".image-media").height());
+}
+$(document).ready(function () {
+    iframeHeight();
+    setClassTagline();
+    var a = "https://asia-east2-quantum-flood-755.cloudfunctions.net/perV2";
+    $.ajax({
+        dataType: "json",
+        url: a,
+        type: "POST",
+        success: function (b) {
+            var c = b;
+            $(".banner-list .media #bannertype").each(function () {
+                var d = $(this).val();
+                var f = d.replace(/\s+/g, "-").toLowerCase();
+                for (var e in c) {
+                    var g = e.replace(/\s+/g, "-").toLowerCase();
+                    if (typeof f != "undefined" && typeof g != "undefined") {
+                        if (f != null && f != "" && g != null && g != "") {
+                            if (f == g) {
+                                console.log("Matched bannertype: " + f);
+                                var i = c[e].message;
+                                $(".banner-list .media .tagline." + g + " .anchornudge").append("<p>" + i + "</p>");
+                                $(".banner-list .media .tagline." + g + " .anchornudge").css("color", "#FFFFFF");
+                                $(".banner-list .media .tagline." + g).css("display", "block");
+                            }
+                        }
+                    }
+                }
+            });
+        },
+        error: function () {
+            console.log("defaultnudgeapi calling unsuccessful");
+        },
+    });
+});
+function setClassTagline() {
+    setTimeout(function () {
+        $(".banner-list .tagline").addClass("banner-nudge-active");
+    }, 1e3);
+}
+$(".banner-slider").slick({ dots: !0, infinite: !0, autoplay: !0, autoplaySpeed: 5000, speed: 500, slidesToShow: 1, slidesToScroll: 1, responsive: [{ breakpoint: 991, settings: { adaptiveHeight: !0 } }] }),
+    $(".banner-slider").on("beforeChange", function (event, slick, currentSlide, nextSlide) {
+        $(".banner-list .tagline").removeClass("banner-nudge-active"), setClassTagline();
+    }),
+    $(document).ready(function () {
+        iframeHeight(), setClassTagline();
+    });
+var timeout = 0;
+$(window).resize(function () {
+    clearInterval(timeout),
+        (timeout = setTimeout(function () {
+            iframeHeight();
+        }, 100));
+});
+var vidClip = $("#myVideo");
+function playVid() {
+    myVideo.play();
+}
+function pauseVid() {
+    myVideo.pause();
+}
+$.each(vidClip, function () {
+    this.controls = !1;
+}),
+    $(".btn-control").on("click", function () {
+        $(".play-btn, .pause-btn").toggle();
+    }),
+    (vidClip.onended = function (e) {
+        $(".play-btn, .pause-btn").toggle();
+    });
+var lazyLoadInstance = new LazyLoad({ elements_selector: ".lazy" });
+new WOW().init();
+if ($("#myVideo").length > 0) {
+    $("#myVideo")[0].play();
+}

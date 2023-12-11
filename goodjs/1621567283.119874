@@ -1,0 +1,193 @@
+
+    var app = {},
+        $ = function(selector) {
+            return bonzo(qwery(selector));
+        },
+        addthis_config = {
+            data_ga_property: 'UA-42296749-1',
+            data_ga_social: true
+        }
+    ;
+    app.options = {
+        translations: {
+            'copyButton': 'Copy',
+            'copiedButton': 'Copied'
+        },
+
+        captcha: {
+            'public_key': '6LeT9DEUAAAAAHSbpOoPCW9QnuWUwQ3FOFZh0Uu8'
+        },
+
+        routes: {
+            'facebookLogin':
+                '/oauth/facebook',
+            'fosUserSecurityLogout':
+                '/logout'
+        },
+
+        userInfo: {
+            'withdrawalEmailLabelTranslations' : {
+                0: 'Withdrawal email',
+                1: 'Withdrawal email',
+                2: 'Withdrawal email',
+                3: 'WebMoney USD purse id \x28e\x2eg\x2e Z0123456789012\x29'
+            },
+          'toBind': ['#sme_user_info_withdrawalMethods'],
+          'withdrawalEmailLabelSelector': '#js-withdrawal-email-label',
+          'withdrawalMethodsSelector': '#sme_user_info_withdrawalMethods'
+        },
+
+        shortener: {
+            'submitShortenPath': '/shortener/shorten',
+            'shortDomain' : 'clkmein.com',
+            'validateShortDomains' : ['sh.st', 'digg.to', 'clkme.in', 'clkmein.com', 'shorte.st', 'staging.shorte.st'],
+
+            'shortenButton': '#shorten',
+            'urlInputField': '#shortener_form_url',
+            'ninjaHead': '#logo-ninja-head',
+            'copyButton': '#copy',
+            'errorLabel': '#shorten_error',
+            'register': '#register-info',
+            'copyInfo': '#copy-info',
+            'shortenAnother' : '#shorten-another',
+            'earnMoney' : '#earn-money',
+            'shortenerContainer' : "#shortener-container",
+
+            'errorEmptyUrl': 'This field cannot be empty',
+            'errorInvalidUrl': 'It is not a valid URL',
+            'errorAlreadyShortened': 'You cannot shorten shortened url'
+        },
+
+
+        userCopyElements: {
+            'copyButtons': '.copyable-btn'
+        },
+
+        hider: {
+            selector: '.js-hide-by-click'
+        },
+        facebook: {
+            toBind: [], //'#facebook-login-top', '#fb-btn', '#facebook-login', '#connect-with-fb', '#fb-mobile-login'],
+            scope: "email, public_profile"
+        },
+
+        statistics: {
+            monthName: '.js-monthName',
+            totalViewsNode: '.js-totalViews',
+            totalIncomeNode: '.js-totalIncome strong',
+            totalEcpmNode: '.js-totalEcpm strong',
+            monthsLookup: []
+        },
+
+                gaTracker: {
+            setters: {
+                gaReferredDimensionSetter: 'setDimension',
+                gaServiceVersionDimensionSetter: 'setDimension',
+                gaServiceUserIdSetter: 'setUserId'
+            },
+            referredSetter: {
+                isRoleReferred: false,
+                referredCookieName: 'referral_id'
+            },
+            serviceVersionSetter: {
+                version: '2020-02-19.0'
+            },
+            serviceUserIdSetter: {
+                userId: 0            }
+        },
+
+        hittogle: {
+
+        },
+
+        customizer: {
+
+        },
+
+        elementToggle: {
+
+        },
+
+        layerHider: {
+
+        },
+
+        textareaselect: {
+
+        },
+
+        initializeModules: {
+            'shortener': true,
+            'userCopyElements': true,
+            'slider': false,
+            'hittoggle': false,
+            'errors': true,
+            'hider': true,
+            'facebook': true,
+            'sitescoutRetargeting': false,
+            'perfectAudience': false,
+            'gaPageviewTracker': true,
+            'customizer': false,
+            'statistics': false,
+            'elementToggle': false,
+            'layerHider': false,
+            'textareaselect': false,
+            'userInfo': true
+        }
+    };
+
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '569416546450463',
+            xfbml      : false,
+            version    : 'v2.1',
+            status     : true
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+          var addthis_config =
+          {
+            ui_use_css: false
+          }
+        
+
+                    // hack for showing testimonials 
+                    var slide = document.getElementById('testimonialSkinWallet');
+                    var slide2 = document.getElementById('testimonialGamivo');
+                    var showSlide1 = function () {
+                        slide.setAttribute("style", "display: block");
+                        slide2.setAttribute("style", "display: none");
+                    };
+                    var showSlide2 = function () {
+                        slide.setAttribute("style", "display: none");
+                        slide2.setAttribute("style", "display: block");
+                    }
+                    setInterval(showSlide1, 3000);
+                    setInterval(showSlide2, 6000);
+                
+
+    var addthis_share = {
+                        title: "I started to earn money on short links. It’s easy - make the shorte.st links and earn the biggest money."
+            }
+    ;
+
+    domready(function () {
+        addthis.init();
+    });
+
+
+            //dimensions6: Logged?
+            ga('set', 'dimension6', '0');
+        
+var ssaUrl = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'pixel.sitescout.com/iap/da8c48308fa2e0fb';new Image().src = ssaUrl;
+window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","licenseKey":"28e0508023","applicationID":"9451013","transactionName":"NFRQZUVRChECVxINXA0ec1JDWQsMTGcLAWQGU3BEWVQIB1l4BwpUFlBVVA1DDA0UeAcKVBZQVVRnWQcJBkY=","queueTime":0,"applicationTime":38,"atts":"GBNTEw1LGR8=","errorBeacon":"bam-cell.nr-data.net","agent":""}

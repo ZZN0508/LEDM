@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Master Style Test Page</title>
+<link href="styles/master_style.css" rel="stylesheet" type="text/css" />
+
+<script language="JScript">
+
+  function ForceHardSpace(ss)
+  {
+     var r, re;                    //Declare variables.
+     re = / /g;                    //Create regular expression pattern.
+     r = ss.replace(re, "&nbsp;"); //Replace " " with "&nbsp;".
+     return(r);                    //Return string with replacement made.
+  }
+
+  function SetupStrings()
+  {
+    var button_text = ForceHardSpace(window.external.GetString(6));
+    document.getElementById("launch_button").innerHTML = external.GetExitButtonText();
+    document.getElementById("PoweredBy").innerText = window.external.GetString(9);
+  }
+
+  function EnableLaunchButton()
+  {
+    document.getElementById("enabled_button").className = 'button_color';
+    document.getElementById("enabled_button").disabled = false;
+  }
+
+  function PIP_SetProgress(p)
+  {
+    // make the general progress and "launch" button visible
+    var progress_container = document.getElementById("ProgressBarContainer");
+    progress_container.style.display = "block";
+      
+    // the magic way to show the progress bar.
+    if (p >= 0)
+    {
+       document.getElementById("enabled_button").disabled = true;
+    }
+
+	//16.3 Progress Bar
+	if (p > 70) 
+	{
+		max_actual = 100;
+		min_actual = 70;
+		max_fake = 100;
+		min_fake = 90;
+	}
+	else if (p > 15) 
+	{
+		max_actual = 70;
+		min_actual = 15;
+		max_fake = 90;
+		min_fake = 45;
+	}
+	else if (p > 1)
+	{
+		max_actual = 15;
+		min_actual = 1;
+		max_fake = 45;
+		min_fake = 5;
+	}
+	else
+	{
+		max_actual = 1;
+		min_actual = 0;
+		max_fake = 5;
+		min_fake = 0;
+	}
+
+	ratio = (max_fake - min_fake) / (max_actual - min_actual);
+	displayPercent = ratio * (p - min_actual) + min_fake;
+
+	//var intPercent = Math.round(finalProgress);
+	//work out which string id to use
+	var stringID = 0;
+	var poker_offset = window.external.getStringOffset();
+	if( external.IsInstall() )
+	{
+		if(p>=0 && p<=1)
+		{
+			stringID = 58;// + poker_offset;
+		}
+		else if(p>=2 && p<=15)
+		{
+			stringID =59 + poker_offset;
+		}
+		else if(p>=16 && p<=70)
+		{
+			stringID = 61 + poker_offset;
+		}
+		else if(p>=71 && p<=99)
+		{
+			stringID = 63 + poker_offset;
+		}
+		else if(p>99)
+		{
+			stringID = 65;// + poker_offset;
+		}
+	}
+	else
+	{
+		if(p>=0 && p<=99)
+		{
+			stringID = 66 + poker_offset;
+		}
+		else if(p > 99)
+		{
+			stringID = 48 + poker_offset;
+		}
+	}
+	
+	var displayPercentInt = parseInt(displayPercent.toFixed());
+    var ProgressTextString = window.external.GetProgressText(displayPercentInt);
+	if(stringID > 0)
+	{
+		ProgressTextString = window.external.GetString(stringID);
+	}
+  if( p<0)
+  {
+    stringID = 3;
+    displayPercent = 0;
+    ProgressTextString = window.external.GetString(stringID);
+  }
+	
+    document.getElementById("ProgressText").innerText = ProgressTextString;
+    document.getElementById("ProgressBar").style.width = '' + displayPercent + '%';
+
+    // as soon as the progress exceeds 0%, then display the left end cap as full.
+    if (displayPercent >= 100)
+    {
+      EnableLaunchButton();
+    }
+	return displayPercent;
+  }
+
+</script>
+
+
+</head>
+
+<body scroll=no onload="javascript:SetupStrings()" style="background-image:none;">
+
+
+<div id="ProgressBarContainer" style="display:none;">
+  <div class="bar_container">
+    <div class="bar_progress" id="ProgressBar"></div>
+  </div>    
+
+  <div class="bar_left"></div>
+  <div class="bar_right"></div>
+  <div class="bar_tile"></div>
+
+  <div class="bar_percent_complete" id="ProgressText">&nbsp;</div>
+</div>
+
+<div class="poweredby" id="PoweredBy"></div>
+
+<div class="launch_button">
+  <a href="javascript:window.external.LaunchSoftware();" class="button_disabled" disabled=true id="enabled_button">
+	<span id="launch_button"></span>
+  </a>
+</div>
+
+
+
+
+</body>
+</html>

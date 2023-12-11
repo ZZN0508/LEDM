@@ -1,0 +1,154 @@
+var _cpName;
+var _mID;
+var _isFluid;
+var prerollShown = false;
+function InstallGrindPlayer(player, streamUri,cp_Name,width,height,isFluid,mautoplay,loop) {
+ _cpName=cp_Name;
+ var player_all;
+    _isFluid=isFluid;
+    var flashvars = {
+        verbose: "true"
+  , muted: false
+  , autoPlay:mautoplay
+  , loop:loop
+        , controlBarAutoHide: "false"
+        , controlBarPosition: "bottom"
+        , src:  escape(streamUri).replace(/\+/g,"%2B")
+  , plugin_hls: "./swf/OSMFHLSPlugin.swf"
+  , streamType: "dvr"
+     , javascriptCallbackFunction: "onJSBridge"   
+    };
+ 
+    var wmodeValue = "direct";
+    var wmodeOptions = ["direct", "opaque", "transparent", "window"];
+    if (flashvars.hasOwnProperty("wmode")) {
+        if (wmodeOptions.indexOf(flashvars.wmode) >= 0) {
+            wmodeValue = flashvars.wmode;
+        }
+        delete flashvars.wmode;
+    }
+
+    // Embed the player SWF:
+    swfobject.embedSWF(
+        "./swf/GrindPlayer.swf"
+        ,player
+        ,width
+        ,height
+        ,"10.2.0"
+        ,null
+        ,flashvars
+        ,{ allowScriptAccess: "always", allowFullScreen: "true", wmode: wmodeValue }
+        ,{ name: player }
+ );    
+}
+
+
+
+function onJSBridge(playerId, event, data) {
+ try{
+  //var player = document.getElementById(playerId);
+  switch(event) {
+   // player state change
+   case "onJavaScriptBridgeCreated":
+     player_all = document.getElementById(playerId);
+     _mID=playerId;
+     if(_isFluid){
+      player_all.width=window.innerWidth; 
+      player_all.height=window.innerHeight;
+     }
+     // player_all.addEventListener("bufferingChange", "onBufferingChange"); // ad
+     player_all.addEventListener("mediaError", "onMediaError");
+    break;
+   case "ready":
+    var player = document.getElementById(playerId);
+    //player.setMuted(true);
+    player.setAutoDynamicStreamSwitch(false);
+    //player.switchDynamicStreamIndex(0);
+    break;
+   case "loading":
+//    highlightChannel(playerId, "orange");
+//
+    var player = document.getElementById(playerId);
+    player.switchDynamicStreamIndex(0);
+
+    break;
+   case "playing":
+//    highlightChannel(playerId, "green");
+    break;
+   case "paused":
+//    highlightChannel(playerId, "orange");
+    break;
+   case "buffering":
+    highlightChannel(playerId, "orange");
+    //console.log("%s player is buffering!", playerId);
+    
+    var player = document.getElementById(playerId);
+    player.switchDynamicStreamIndex(0);
+    break;
+   // other events
+   case "mediaSize":
+    break;
+   case "seeking":
+    break;
+   case "seeked":
+    break;
+   case "volumeChange":
+    break;
+   case "durationChange":
+    break;
+   case "timeChange":
+    break;
+   case "progress": // for progressive download only
+    break;
+   case "complete":
+    break;
+   case "advertisement":
+    break;
+
+   default:
+    // console.log(event, data);
+    break;
+  }
+ }catch(e){
+  console.log(e);
+  
+ }
+}
+
+function onBufferingChange(buffering) {
+ if (buffering && !prerollShown) {
+        prerollShown = true;
+        player_all.displayAd({
+            id: "showVideoPrerollAd"
+            , url: "https://dotsub.com/static/players/beta/player-logo.png"
+            , hideScrubBarWhilePlayingAd: true
+            , pauseMainMediaWhilePlayingAd: true
+            , resumePlaybackAfterAd: true
+            , clickUrl: "http://osmfhls.kutu.ru"
+            , closable: true
+        });
+    }
+}
+
+function onMediaError(){
+ var id = arguments[3];
+  if(_cpName=="tpex"){
+      //var mPosterCard = document.getElementById("playVodeo");
+      document.getElementById("playVodeo").style.display = "block";
+      //mPosterCard.style.display = "block";
+      document.getElementById("mPlayer").style.visibility = "hidden";
+      console.log('tpex onMediaError');
+     }
+ 
+ 
+ //console.log(id, arguments);
+ //highlightChannel(id, "red");
+}
+
+function highlightChannel(name, color) {
+    var prevRow = $("#" + name).parent().parent().prev(); // 第一層parent到cell 第二層才到row，因為selector是div
+    var index = $("#" + name).parent().index();
+    var cell = prevRow.find("td").eq(index);
+    cell.css("background-color", color);
+    cell.css("color", "white");
+}

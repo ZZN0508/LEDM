@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sk-sk" lang="sk-sk" dir="ltr">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="keywords" content="revízie, revízny technik, revízie elektro, revízie elektrických zariadení, revízia elektrických zariadení, revízie elektrických spotrebičov, elektrorevízie, revízie bleskozvodov, revízia elektroinštalácie, revízie" />
+  <meta name="description" content="Odborné prehliadky a skúšky, revízie elektrických zariadení. Revízie elektroinštalácií, bleskozvodov, elektrospotrebičov, ručného náradia, strojov, rozvádzačov." />
+  <meta name="generator" content="Joomla! - Open Source Content Management + SEOSimple (http://daobydesign.com)" />
+  <title>Hlavná stránka</title>
+  <link rel="stylesheet" href="/plugins/system/jcemediabox/css/jcemediabox.css?version=112" type="text/css" />
+  <link rel="stylesheet" href="/plugins/system/jcemediabox/themes/standard/css/style.css?version=112" type="text/css" />
+  <link rel="stylesheet" href="/modules/mod_vvisit_counter/mvc.css" type="text/css" />
+  <script src="/media/system/js/mootools-core.js" type="text/javascript"></script>
+  <script src="/media/system/js/core.js" type="text/javascript"></script>
+  <script src="/media/system/js/caption.js" type="text/javascript"></script>
+  <script src="/plugins/system/jcemediabox/js/jcemediabox.js?version=112" type="text/javascript"></script>
+  <script type="text/javascript">
+window.addEvent('load', function() {
+				new JCaption('img.caption');
+			});
+JCEMediaObject.init('/', {flash:"10,0,22,87",windowmedia:"5,1,52,701",quicktime:"6,0,2,0",realmedia:"7,0,0,0",shockwave:"8,5,1,0"});JCEMediaBox.init({popup:{width:"",height:"",legacy:0,lightbox:0,shadowbox:0,resize:1,icons:1,overlay:1,overlayopacity:0.8,overlaycolor:"#000000",fadespeed:500,scalespeed:500,hideobjects:0,scrolling:"fixed",close:2,labels:{'close':'Close','next':'Next','previous':'Previous','cancel':'Cancel','numbers':'{$current} of {$total}'}},tooltip:{className:"tooltip",opacity:0.8,speed:150,position:"br",offsets:{x: 16, y: 16}},base:"/",imgpath:"plugins/system/jcemediabox/img",theme:"standard",themecustom:"",themepath:"plugins/system/jcemediabox/themes"});
+  </script>
+
+ <link rel="stylesheet" href="/templates/system/css/system.css" type="text/css" />
+ <link rel="stylesheet" href="/templates/system/css/general.css" type="text/css" />
+ <link rel="stylesheet" type="text/css" href="/templates/vladi1/css/template.css" media="screen" />
+ <!--[if IE 6]><link rel="stylesheet" href="/templates/vladi1/css/template.ie6.css" type="text/css" media="screen" /><![endif]-->
+ <!--[if IE 7]><link rel="stylesheet" href="/templates/vladi1/css/template.ie7.css" type="text/css" media="screen" /><![endif]-->
+ <script type="text/javascript">if ('undefined' != typeof jQuery) document._artxJQueryBackup = jQuery;</script>
+ <script type="text/javascript" src="/templates/vladi1/jquery.js"></script>
+ <script type="text/javascript">jQuery.noConflict();</script>
+ <script type="text/javascript" src="/templates/vladi1/script.js"></script>
+ <script type="text/javascript">if (document._artxJQueryBackup) jQuery = document._artxJQueryBackup;</script>
+
+
+<!-- GOOOGLE  -->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29606333-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+
+</head>
+<body>
+<div id="art-page-background-middle-texture">
+<div id="art-main">
+    <div class="cleared reset-box"></div>
+<div class="art-box art-sheet">
+    <div class="art-box-body art-sheet-body">
+<div class="art-header">
+<div class="art-logo">
+ <h1 class="art-logo-name"><a href="/"></a></h1>
+ <h2 class="art-logo-text"></h2>
+</div>
+
+</div>
+<div class="cleared reset-box"></div>
+<div class="art-layout-wrapper">
+    <div class="art-content-layout">
+        <div class="art-content-layout-row">
+<div class="art-layout-cell art-sidebar1">
+        <div class="art-box art-block">
+            <div class="art-box-body art-block-body">
+        
+                        <div class="art-box art-blockcontent">
+            <div class="art-box-body art-blockcontent-body">
+        
+        <ul class="menu"><li class="item-101 current active"><a href="/index.php?option=com_content&amp;view=article&amp;id=1&amp;Itemid=101">Hlavná stránka</a></li><li class="item-102"><a href="/index.php?option=com_content&amp;view=article&amp;id=2&amp;Itemid=102">O nás</a></li><li class="item-103 parent"><a href="/index.php?option=com_content&amp;view=article&amp;id=3&amp;Itemid=103">Revízie</a></li><li class="item-119"><a href="/index.php?option=com_content&amp;view=article&amp;id=12&amp;Itemid=119">Projektovanie</a></li><li class="item-122"><a href="/index.php?option=com_content&amp;view=article&amp;id=15&amp;Itemid=122">Výroba, prenos, dodávka, distribúcia elektriny</a></li><li class="item-110"><a href="/index.php?option=com_content&amp;view=article&amp;id=10&amp;Itemid=110">Cenník</a></li><li class="item-118"><a href="/index.php?option=com_content&amp;view=article&amp;id=11&amp;Itemid=118">Oprávnenia a osvedčenia</a></li><li class="item-111"><a href="/index.php?option=com_content&amp;view=article&amp;id=13&amp;Itemid=111">Kontakt</a></li><li class="item-123"><a href="/index.php?option=com_content&amp;view=article&amp;id=16&amp;Itemid=123">Fakturačné údaje</a></li><li class="item-124"><a href="/index.php?option=com_content&amp;view=article&amp;id=17&amp;Itemid=124">Partneri</a></li><li class="item-121"><a href="/index.php?option=com_content&amp;view=article&amp;id=14&amp;Itemid=121">Mapa</a></li></ul>
+        
+        		<div class="cleared"></div>
+            </div>
+        </div>
+        
+        
+        		<div class="cleared"></div>
+            </div>
+        </div>
+        
+
+  <div class="cleared"></div>
+</div>
+<div class="art-layout-cell art-content">
+
+<div class="item-page"><div class="art-box art-post">
+    <div class="art-box-body art-post-body">
+<div class="art-post-inner">
+<div class="art-postcontent">
+<div class="art-article"><h1 style="text-align: center;">Revízna činnost v rámci Slovenska</h1>
+<p>Pre firmy aj jednotlivcov <strong>overujeme bezpečnosť elektrických zariadení</strong> podľa vyhlášky 508/2009 Z.z. SR a príslušných slovenských a európskych technických noriem o bezpečnosti a ochrane zdravia pri práci.</p>
+<ul>
+<li><strong>Východiskové revízie elektrických zariadení</strong> v zmysle STN 33 1500, STN 33 2000-6</li>
+<li><strong>Periodické revízie elektrických zariadení</strong> v zmysle STN 33 1500, STN 33 2000-6</li>
+<li><strong>Revízie bleskozvodov</strong> v zmysle STN EN 62305</li>
+<li><strong>Revízie a kontroly elektrického ručného náradia počas používania</strong> v zmysle STN 33 1600</li>
+<li><strong>Revízie a kontrola elektrických spotrebičov počas používania</strong> v zmysle STN 33 1610</li>
+<li><strong>Revízie elektrických zariadení strojov</strong> v zmysle STN EN 60204-1</li>
+</ul>
+<p>K zákazníkom pristupujeme vždy individuálne, <strong>čas a spôsob vykonania revízie prispôsobujeme</strong>konkrétnym podmienkam. Preferujeme <strong>dlhodobú spoluprácu</strong> na projektoch a svojim zákazníkom vieme poskytnúť <strong>kvalifikované technické poradenstvo</strong>.</p>
+<p><br />Pôsobíme na celom území Slovenskej republiky.</p></div>
+</div>
+<div class="cleared"></div>
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+</div>
+  <div class="cleared"></div>
+</div>
+
+        </div>
+    </div>
+</div>
+<div class="cleared"></div>
+
+
+<div class="art-content-layout"><div class="art-content-layout-row"><div class="art-layout-cell art-layout-sidebar-bg" style="width: 100%;">        <div class="art-box art-block">
+            <div class="art-box-body art-block-body">
+        
+                        <div class="art-box art-blockcontent">
+            <div class="art-box-body art-blockcontent-body">
+        
+        <div class="mvc_main"><div style="text-align: center;" class="mvc_digitCounter"><img class="mvc_digitCounterImg" src="/modules/mod_vvisit_counter/images/blackold/1.gif" alt="1" title="1"/><img class="mvc_digitCounterImg" src="/modules/mod_vvisit_counter/images/blackold/5.gif" alt="5" title="5"/><img class="mvc_digitCounterImg" src="/modules/mod_vvisit_counter/images/blackold/9.gif" alt="9" title="9"/><img class="mvc_digitCounterImg" src="/modules/mod_vvisit_counter/images/blackold/2.gif" alt="2" title="2"/><img class="mvc_digitCounterImg" src="/modules/mod_vvisit_counter/images/blackold/5.gif" alt="5" title="5"/><img class="mvc_digitCounterImg" src="/modules/mod_vvisit_counter/images/blackold/1.gif" alt="1" title="1"/></div></div><!-- Mod_VVisit_Counter :  http://www.mmajunke.de/ -->
+        
+        		<div class="cleared"></div>
+            </div>
+        </div>
+        
+        
+        		<div class="cleared"></div>
+            </div>
+        </div>
+        
+</div></div></div><div class="art-footer">
+    <div class="art-footer-body">
+                        <div class="art-footer-text">
+                                        <p><br /></p><p>Copyright © 2012. All Rights Reserved.</p> 
+
+                                                        </div>
+        <div class="cleared"></div>
+    </div>
+</div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+<div class="cleared"></div>
+<p class="art-page-footer"></p>
+
+    <div class="cleared"></div>
+</div>
+</div>
+
+</body>
+</html>

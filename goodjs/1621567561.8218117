@@ -1,0 +1,425 @@
+
+	/*Live Person Starts Here*/
+      var lpSectionMobile = "";
+      var lpSectionDesktop = "";
+	/*Live Person Ends Here*/
+
+	/* App Dynamic key */
+	var appd_appkey = "AD-AAB-AAP-NJD";
+
+	/* Salesforce Constants Starts here*/
+	var Intuit = window.Intuit || {};
+	Intuit.Utils = Intuit.Utils || {};
+        Intuit.Utils.Constants = Intuit.Utils.Constants || {};
+        Intuit.Utils.Constants.SBGMServiceUrl = "https://sbgmarketing.api.intuit.com";
+        Intuit.Utils.Constants.SBGMAuthKey = "Intuit_APIKey intuit_apikey=prdakyresPssbUgTk0rlcx3K9v9Q6tFvxIDs0i67";
+	Intuit.SBGMAuthKeyMktg = "Intuit_APIKey intuit_apikey=prdakyresPssbUgTk0rlcx3K9v9Q6tFvxIDs0i67";
+	Intuit.SBGMAuthKey = "Intuit_APIKey intuit_apikey=prdakyresPssbUgTk0rlcx3K9v9Q6tFvxIDs0i67";
+        Intuit.Utils.Constants.SBGMktgServiceEndpoint = "https://marketingplatform.api.intuit.com";
+    	/* Salesforce Constants Ends here*/
+	
+
+				// number 1
+				if (typeof wa === 'undefined') {
+				   wa={}
+				}
+
+				// QBKS-21110
+				wa.pageLoadStart = new Date();
+
+				wa.siteName = "icom";
+				wa.siteGroup = "mktg";
+				wa.siteHost = "www";
+				var aryProd = "Ary Prod";
+				if (aryProd != "" && aryProd != "Ary Prod") {
+            		wa.aryProducts = JSON.parse(aryProd);
+				    wa.eventList = "prodView";
+				}
+
+				
+			
+
+        function canHandleSameSiteAttribute(e){for(var t=[/\(iP.+; CPU .*OS 12[_\d]*.*\) AppleWebKit\//,/^.*Macintosh;.*Mac OS X 10_14.*Version.*Safari.*$/,/(Chromium|Chrome)\/(5[1-9]|6[0-6])\.(\d+)(?:\.(\d+)|)(?:\.(\d+)|)/,/UCBrowser\/[0-9][0-1]?.(\d+)\.(\d+)[\.\d]*!/,/UCBrowser\/12.[0-9][0-2]?.(\d+)[\.\d]*!/,/UCBrowser\/12.13.[0-2][\.\d]*/,/(?:\b(MS)?IE\s+|\bTrident\/7\.0;.*\s+rv:)(\d+)/,/\bMSIE\s+7\.0;.*\bTrident\/(\d+)\.0/],i=0;i<t.length;i++){var n=t[i];if(null!==e.match(n))return!1}return!0}!function(e){var t=e.Intuit||{};if(t.Client=t.Client||{},t.Client.ivid=function(){var e,t,i,n,o,a=[],d="undefined"!=typeof crypto&&crypto.getRandomValues.bind(crypto)||"undefined"!=typeof msCrypto&&msCrypto.getRandomValues.bind(msCrypto);for(n=0;n<256;++n)a[n]=(n+256).toString(16).substr(1);return(i=(d?(e=new Uint8Array(16),function(){return d(e),e}):(t=new Array(16),function(){for(n=0,r;n<16;n++)0==(3&n)&&(r=4294967296*Math.random()),t[n]=r>>>((3&n)<<3)&255;return t}))())[6]=15&i[6]|64,i[8]=63&i[8]|128,o=0,a[i[o++]]+a[i[o++]]+a[i[o++]]+a[i[o++]]+"-"+a[i[o++]]+a[i[o++]]+"-"+a[i[o++]]+a[i[o++]]+"-"+a[i[o++]]+a[i[o++]]+"-"+a[i[o++]]+a[i[o++]]+a[i[o++]]+a[i[o++]]+a[i[o++]]+a[i[o++]]}(),e.Intuit=t,canHandleSameSiteAttribute(navigator.userAgent))if(""===document.cookie.replace(/(?:(?:^|.*;\s*)ivid\s*\=\s*([^;]*).*$)|^.*$/,"$1").trim())(i=new Date).setDate(i.getDate()+1+1825),document.cookie=["ivid="+t.Client.ivid,"domain="+(e.location.hostname.match(/([^.]+)\.\w{2,3}(?:\.\w{2})?$/)||[])[0],"expires="+i.toGMTString(),"path=/","SameSite=None;Secure"].join("; ");else{var i,n=document.cookie.replace(/(?:(?:^|.*;\s*)ivid\s*\=\s*([^;]*).*$)|^.*$/,"$1").trim();(i=new Date).setDate(i.getDate()+1+1825),document.cookie=["ivid="+n,"domain="+(e.location.hostname.match(/([^.]+)\.\w{2,3}(?:\.\w{2})?$/)||[])[0],"expires="+i.toGMTString(),"path=/","SameSite=None;Secure"].join("; ")}else""===document.cookie.replace(/(?:(?:^|.*;\s*)ivid\s*\=\s*([^;]*).*$)|^.*$/,"$1").trim()&&((i=new Date).setDate(i.getDate()+1+1825),document.cookie=["ivid="+t.Client.ivid,"domain="+(e.location.hostname.match(/([^.]+)\.\w{2,3}(?:\.\w{2})?$/)||[])[0],"expires="+i.toGMTString(),"path=/"].join("; "))}(window);
+	  
+
+  (function () {
+    try {
+      var constants = window.intuit.tracking.ecs.webAnalytics.constants;
+      var countryCodes = ["ca", "fr-ca", "in"];
+      /***************************
+       ***  Helper Functions ***
+       ***************************/
+      /**
+       * Get any Cookie value
+       * @param {string} CookieName to get the value
+       * @returns {string} Cookie value
+       */
+      var _getCookieValue = function _getCookieValue(name) {
+        if (!name) {
+          return null;
+        }
+        var matches = document.cookie.match(new RegExp("(?:^|; )".concat(name.replace(/([.$?*|{}()[\]\\/+^])/g,
+          '\\$1'), "=([^;]*)")));
+        return matches ? matches[1] : null;
+      };
+      /**
+       * Sets Cookie with name, value and options provided
+       * @param {String} name Cookie Name
+       * @param {String} value Cookie Value
+       * @param {Object} options Options Object
+       */
+      var _setCookie = function _setCookie(name, value) {
+        var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+        var cookieOptions = Object.assign({}, {
+          path: '/'
+        }, options);
+        if (options.expires && cookieOptions.expires.toUTCString) {
+          cookieOptions.expires = cookieOptions.expires.toUTCString();
+        }
+        var updatedCookie = "".concat(name, "=").concat(value);
+        Object.keys(cookieOptions).forEach(function (optionKey) {
+          updatedCookie += "; ".concat(optionKey);
+          var optionValue = cookieOptions[optionKey];
+          if (optionValue !== true) {
+            updatedCookie += "=".concat(optionValue);
+          }
+        });
+        document.cookie = updatedCookie;
+      };
+      /**
+       * queryParams - function to parse queryString
+       * @param {string} pv_searchString 
+       */
+      var queryParamsValue = function(key) {
+        var value = null;
+        if (key && window.location) {
+          var uriQueryString = window.location.search;
+          var match = uriQueryString.match(new RegExp(`[?&]${key}=([^&]+)(&|$)`, 'i'));
+          if (match && match[1]) {
+            value = decodeURIComponent(match[1].replace(/\+/gi, ' '));
+          }
+          return value;
+        }
+      }
+
+      var internalCampaigns;
+      var scid = queryParamsValue('scid');
+      var xcid = queryParamsValue('xcid');
+      internalCampaigns = scid ? scid : xcid ? xcid : null;
+      var fetchSiteContentProperties = function (pathname) {
+        var obj = {
+          screen: 'homepage',
+          scopeArea: 'icom', // Default to icom - other values to check are careers, blog and partners per wiki
+          pageGeography: 'us'
+        };
+        var pathnameArr = pathname.replace(/\/+$/, '').split('/');
+        if (pathnameArr && pathnameArr.length > 1) {
+          // Checks whether the country code is present in the URL
+          if (countryCodes.indexOf(pathnameArr[1]) != -1) {
+            // If the first level of URL path is present in the given list of 
+            // country codes then pass the same first level of URL path
+            obj.pageGeography = pathnameArr[1];
+            if (pathnameArr.length > 2) {
+              // If the first level of URL path is  present in the given list of
+              // country codes then pass the next level of URL path
+              if (pathnameArr[2] == 'careers' || pathnameArr[2] == 'blog' || pathnameArr[2] == 'partners') {
+                obj.scopeArea = pathnameArr[2];
+              }
+              // If the first level of URL path is  present in the given list of 
+              // country codes then pass the remaining full URL path
+              obj.screen = pathnameArr.splice(2).join('/');
+            }
+          } else if (pathnameArr[1] == 'careers' || pathnameArr[1] == 'blog' || pathnameArr[1] == 'partners') {
+            // If the first level of URL path is not present in the given list of 
+            // country codes then pass the same first level of URL path
+            obj.scopeArea = pathnameArr[1];
+            // If the first level of URL path is not present in the given list of
+            // country codes then pass the same full URL path
+            obj.screen = pathnameArr.splice(1).join('/');
+          } else {
+            // Default to using icom as scope_area if not one of the above paths
+            // If the first level of URL path is not present in the given list of
+            // country codes then pass the same full URL path
+            obj.screen = pathnameArr.splice(1).join('/');
+          }
+        }
+        return obj;
+      }
+      //pathname = /online/how-it-works/
+      var pathname = window.location.pathname;
+      var siteContentProperties = fetchSiteContentProperties(pathname);
+      var screen = siteContentProperties.screen;
+      var scopeArea = siteContentProperties.scopeArea;
+      var pageGeography = siteContentProperties.pageGeography;
+      var pageHierarchyExtended = (constants.org.CMO ? constants.org.CMO : '') +
+        '|' + (constants.purpose.MKTG ? constants.purpose.MKTG : '') +
+        '|' + (constants.scope.CORP ? constants.scope.CORP : '') +
+        '|' + (scopeArea ? scopeArea : '') +
+        '|' + (pageGeography ? pageGeography : '') +
+        '|' + (screen ? screen : '');
+      window.intuit.tracking.ecs.webAnalytics.initConfig = {
+        org: constants.org.CMO,
+        purpose: constants.purpose.MKTG,
+        scope: constants.scope.CORP,
+        ecs_version: "4.0"
+      };
+      /* 
+    Sets a cookie for page_hierarchy_extended property and will pass onto 
+    the next page call payload as a page_hierarchy_extended_previous property 
+    */
+      var page_hierarchy_extended_previous = '';
+      var existingPageCookie = _getCookieValue('pageProperties');
+      if (!existingPageCookie) {
+        _setCookie('pageProperties', "$$$$$".concat(pageHierarchyExtended), {
+          domain: 'intuit.com'
+        });
+      } else {
+        page_hierarchy_extended_previous = existingPageCookie.split('$')[5];
+        _setCookie('pageProperties', "".concat(existingPageCookie.split('$').slice(0, -1).join('$'), "$").concat(
+          pageHierarchyExtended), {
+          domain: 'intuit.com'
+        });
+      }
+      /**
+       * Evol addon
+       */
+      var siteSection = (constants.org.CMO ? constants.org.CMO : '') +
+        '|' + (constants.purpose.MKTG ? constants.purpose.MKTG : '') +
+        '|' + (constants.scope.CORP ? constants.scope.CORP : '')
+      var pagePayload = {
+        "url": window.location.href,
+        "scope_area": scopeArea,
+        "screen": screen,
+        "page_geography": pageGeography,
+        "page_hierarchy_extended": pageHierarchyExtended,
+        "page_name_parameter": pageHierarchyExtended,
+        "action": 'viewed',
+        "object": "screen",
+        "ui_action": 'viewed',
+        "ui_object": "screen",
+        "site_section": siteSection,
+        "page_hierarchy_extended_previous": page_hierarchy_extended_previous
+      };
+      var dataLayer = window.mktg_datalayer;
+      if (dataLayer && dataLayer.properties) {
+        var dataLayerProperties = dataLayer.properties;
+        pagePayload.content_industry = dataLayerProperties.content_industry;
+        pagePayload.content_audience = dataLayerProperties.content_audience;
+        pagePayload.content_job = dataLayerProperties.content_job;
+        pagePayload.page_category_parameter = dataLayerProperties.content_category;
+      }
+      // Custom Properties
+      if (internalCampaigns) pagePayload.internal_campaigns = internalCampaigns
+      window.intuit.tracking.ecs.webAnalytics.setApplicationTrackingContext('OICMS', '1.0', pagePayload.scope_area,
+        pagePayload.screen);
+      /***************************
+       * Eloqua Form Tracking
+       ***************************/
+      // Lead Category Storage Patch
+      var pathList = ['/careers/programs/intuit-again/','/careers/talent-community/','/careers/programs/tech-women-at-intuit/'];
+      if (pathList.indexOf(pathname) > -1) {
+        try {
+          var subBtn = document.querySelector('button[type="Submit"]');
+          subBtn.onclick = storeJobCat;
+          function storeJobCat(e) {
+            var selectedJobCat = '';
+            var select;
+            var links = document.querySelectorAll('select[name="tech_experience"], select[name="dropdownMenu"]');
+            for (var i = 0, max = links.length; i < max; i++) {
+              select = links[i].value;
+            }
+            if (select) {
+              select = select.toLowerCase().replace(/\-/g, '').replace(/\s/g, '-');
+              if (select.indexOf('software') > -1) {
+                select = 'software-engineering';
+              }
+              if (select.indexOf('student') > -1) {
+                select = 'students-and-grads';
+              }
+              selectedJobCat = select;
+            }
+            sessionStorage.setItem('car_jobcat', selectedJobCat);
+          }
+        } catch (err) {}
+      }
+      // Lead Form Submit Page - Adobe Events
+      if (pathname === '/careers/form-complete/') {
+        var leadCat = '',
+          prevPage = '',
+          refDom = '',
+          addEvent = [];
+        // Check if referrer is redirect from Eloqua, if not bail
+        refDom = document.referrer;
+        if (refDom.indexOf('t.eloqua.com') > -1) {
+          addEvent.push('event30');
+          prevPage = page_hierarchy_extended_previous || '';
+          if (prevPage.indexOf('software-engineering') > -1) {
+            leadCat = 'software-engineering';
+            addEvent.push('event41');
+          }
+          if (prevPage.indexOf('data-science') > -1) {
+            leadCat = 'data-science';
+            addEvent.push('event34');
+          }
+          if (prevPage.indexOf('students-and-grads') > -1) {
+            leadCat = 'students-and-grads';
+            addEvent.push('event39');
+          }
+          if (prevPage.indexOf('live-experts') > -1) {
+            leadCat = 'live-experts';
+          }
+          // Check session storage to see if lead cat is stored from women in tech page
+          if (leadCat == '') {
+            var sessionCat = sessionStorage.getItem('car_jobcat');
+            if (sessionCat !== null) {
+              leadCat = sessionCat;
+              if (leadCat == 'software-engineering') {
+                addEvent.push('event41');
+              }
+              if (leadCat == 'data-science') {
+                addEvent.push('event34');
+              }
+              if (leadCat == 'students-and-grads') {
+                addEvent.push('event39');
+              }
+              sessionStorage.removeItem('car_jobcat');
+            }
+          }
+        }
+        if (leadCat) pagePayload.lead_category = leadCat;
+        if (addEvent && addEvent.length > 0) {
+          pagePayload.options = {
+            integrations: {
+              'Adobe Analytics': {
+                events: addEvent
+              }
+            }
+          }
+        }
+      } // End Eloqua Lead Form Tracking
+      window.intuit.tracking.ecs.webAnalytics.trackPage(pagePayload);
+      /**
+       * Traverses up the DOM path looking for HTML elements with attributes provided.
+       * If any targetAttribute is found the particular element is returned.
+       * @param {Object} startElement Element where traversing starts.
+       * @param {number} levelsToTraverse Max levels to traverse up after which traversing aborts.
+       * @param {Array} targetAttributes Array of attributes to look for.
+       * @returns {Object} Returns object if targetAttributes are matched else returns null.
+       */
+      var traverseUp = function (startElement, levelsToTraverse, targetAttributes) {
+        if (!startElement || (levelsToTraverse <= 0) || startElement.nodeName === 'BODY') {
+          return null;
+        }
+        if (startElement.dataset && Object.keys(startElement.dataset).length > 0) {
+          for (let i = 0; i < targetAttributes.length; i++) {
+            if (startElement.dataset[targetAttributes[i]]) {
+              return startElement;
+            }
+          }
+        }
+        return traverseUp(startElement.parentNode, levelsToTraverse - 1, targetAttributes);
+      };
+      /**
+       * Tracks events via Track Star Api.
+       * @param event Event triggered.
+       */
+      var trackEvent = function (event) {
+        var eventElement = traverseUp(event.target, 5, ['object', 'waLink']);
+        if (eventElement && eventElement.dataset) {
+          var customProps = {},
+            trackProps = {},
+            dataSet = eventElement.dataset;
+          // <a href="" data-object="product" data-object-detail="QB Live" data-action="product selected" data-ui-object="tab" data-ui-object-detail="Partner with a live bookkeeper" data-ui-action="clicked" data-ui-access-point="hero" data-custom-properties="key1|value1,key2|value2">
+          // customProps = {key1: value1, key2:value2} deriverd from values in <a href=""...data-custom-properties="key1|value1,key2|value2">
+          if (dataSet.customProperties) {
+            var customPropPipeArray = dataSet.customProperties.split(",");
+            customPropPipeArray.forEach(function (customPropElement) {
+              if (customPropElement) {
+                var customPropArray = customPropElement.split("|");
+                if (customPropArray.length == 2) {
+                  customProps[customPropArray[0]] = customPropArray[1];
+                }
+              }
+            });
+          }
+          if (dataSet.waLink) customProps["data-wa-link"] = dataSet.waLink;
+          /**
+           * Evo Link Tracking addon
+           */
+          if (dataSet.waLink) {
+            var userAction = dataSet.waLink + ' [' + pageHierarchyExtended + ']';
+          }
+          if (eventElement.href) {
+            var linkHref = eventElement.href;
+            var linkDomain = linkHref.split('/')[2];
+          }
+          trackProps = {
+            "url": window.location.href,
+            "scope_area": scopeArea,
+            "screen": screen,
+            "page_geography": pageGeography,
+            "page_hierarchy_extended": pageHierarchyExtended,
+            "page_name_parameter": pageHierarchyExtended,
+            "object": dataSet.object ? dataSet.object : "content",
+            "object_detail": dataSet.objectDetail ? dataSet.objectDetail : null,
+            "action": dataSet.action ? dataSet.action : "engaged",
+            "ui_object": dataSet.uiObject ? dataSet.uiObject : "link",
+            "ui_object_detail": dataSet.uiObjectDetail ? dataSet.uiObjectDetail : null,
+            "ui_action": dataSet.uiAction ? dataSet.uiAction : "clicked",
+            "ui_access_point": dataSet.uiAccessPoint ? dataSet.uiAccessPoint : null,
+            "custom_properties": customProps,
+            // new properties
+            "site_section": siteSection,
+            "link_href": linkHref ? linkHref : null,
+            "link_href_domain": linkDomain ? linkDomain : null,
+            "icom_user_action": userAction ? userAction : null,
+          };
+          // track API from track-star => track(trackProps, eventProps)
+          // eventProps = {"targetElement": eventElement, "clickEvent": event}
+          // - eventElement: Anchor element object
+          // - event: MouseEvent from clicking
+          intuit.tracking.ecs.webAnalytics.track(trackProps, {
+            "targetElement": eventElement,
+            "clickEvent": event
+          });
+        }
+      };
+      window.addEventListener('DOMContentLoaded', function (event) {
+        document.addEventListener("click", trackEvent);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  })();
+
+window.addEventListener("click", function(e) {  try{    var privLink = 'icom-manage-cookies';    if(e.target.id == privLink){      e.preventDefault();      window.intuit_gdpr.showCookiePreference();    }  }catch(err){}});
+    var callback = function(){        var x = document.getElementsByClassName("col-sm-12 col-md-8 col-12 paragraph")[0];        x.getElementsByTagName("P")[1].innerHTML = "<br>Photographs ©2018 Jeremy Bittermann Photography<br><br>By accessing and using this page you agree to the Terms and Conditions.<br><br>";        setTimeout(function(){            var footerIntuitLogo = document.querySelector('.logo-footer span svg');            var footerLogoSpan = document.querySelectorAll('.logo-footer span')[0];            if (footerIntuitLogo) {                footerIntuitLogo.remove();            }            var img = document.createElement('img');            img.src = 'https://quickbooks.intuit.com/cas/dam/IMAGE/A2T6NMEQp/Intuit-Blue.Intuit-RGB-Blue.svg';            img.alt = 'Intuit';            img.classList.add('theIntuitLogo');            footerLogoSpan.appendChild(img);        }, 1200);    };    if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {        callback();    } else {        document.addEventListener("DOMContentLoaded", callback);    }
+
+    window.addEventListener('load',
+        function () {
+            var addStylesNodes = document.getElementsByClassName("deferred-styles");
+            for (var i = 0; i < addStylesNodes.length; i++) {
+                var replacement = document.createElement("div");
+                replacement.innerHTML = addStylesNodes[i].textContent;
+                document.body.appendChild(replacement);
+            }
+            for (var i = 0; i < addStylesNodes.length; i++) {
+                addStylesNodes[i].parentElement.removeChild(addStylesNodes[i]);
+            }
+        }
+    );
+    
+
+// The function actually applying the offset
+function offsetAnchor() {
+    if(location.hash.length !== 0) {
+        window.scrollTo(window.scrollX, window.scrollY - 220);
+    }
+}
+// This will capture hash changes while on the page
+window.addEventListener("hashchange", offsetAnchor);
+// This is here so that when you enter the page with a hash,
+// it can provide the offset in that case too. Having a timeout
+// seems necessary to allow the browser to jump to the anchor first.
+window.setTimeout(offsetAnchor, 1);
+    

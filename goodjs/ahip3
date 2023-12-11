@@ -1,0 +1,350 @@
+;(function() {
+    // 添加下拉框样式
+    addStyle();
+    var addEvent = (function() {
+        if (document.addEventListener) {
+            return function(element, event, handler) {
+                if (element && event && handler) {
+                    element.addEventListener(event, handler, false);
+                }
+            };
+        } else {
+            return function(element, event, handler) {
+                if (element && event && handler) {
+                    element.attachEvent('on' + event, handler);
+                }
+            };
+        }
+    })();
+
+    var removeEvent = (function() {
+        if (document.removeEventListener) {
+            return function(element, event, handler) {
+                if (element && event) {
+                    element.removeEventListener(event, handler, false);
+                }
+            };
+        } else {
+            return function(element, event, handler) {
+                if (element && event) {
+                    element.detachEvent('on' + event, handler);
+                }
+            };
+        }
+    })();
+    // http 请求相关
+    var HTTP = {
+        /**
+         * @param {*} options
+         * @param timeout 超时时间
+         * @param type 请求方式
+         * @param dataType 数据格式
+         * @param async 异步/同步
+         * @param success 成功回掉
+         * @param fail 失败回掉
+         * @param beforeSend 请求前回掉
+         */
+        ajax: function (options) {
+            options = options || {};
+            options.timeout = options.timeout || 5000;
+            options.type = (options.type || "GET").toUpperCase();
+            options.dataType = options.dataType || 'json';
+            if(options.async === false || options.async === true){
+                options.async = options.async;
+            }else{
+                options.async = true;
+            }
+            options.data = options.data || {}
+            var params = getParams(options.data);
+            var xhr;
+            if (window.XMLHttpRequest){
+                xhr = new XMLHttpRequest();
+            }else{
+                xhr = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4){
+                    clearTimeout(options.timer);
+                    var status = xhr.status;
+                    if (status >= 200 && status < 300 ){
+                        if(typeof(xhr.responseText) == 'string'){
+                            try{
+                                options.success && options.success(JSON.parse(xhr.responseText), xhr.responseXML);
+                            }catch(err){
+                                options.success && options.success(xhr.responseText, xhr.responseXML);
+                            }
+                        }else{
+                            options.success && options.success(xhr.responseText, xhr.responseXML);
+                        }
+                    } else{
+                        options.fail && options.fail(status);
+                    }
+                }
+            };
+            if (options.type == 'GET'){
+                xhr.open("GET",options.url + '?' + params ,options.async);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                if(typeof options.beforeSend === 'function'){
+                    options.beforeSend();
+                }
+                try {
+                    xhr.send(null);
+                } catch (err) {
+                    clearTimeout(options.timer);
+                    options.fail && options.fail(err.message);
+                }
+            }else if (options.type == 'POST'){
+                xhr.open('POST',options.url,options.async);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                if(options.dataType === 'json'){
+                    xhr.setRequestHeader('Content-Type','application/json');
+                }else{
+                    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                }
+                if(typeof options.beforeSend === 'function'){
+                    options.beforeSend();
+                }
+                try {
+                    xhr.send(params);
+                } catch (err) {
+                    clearTimeout(options.timer);
+                    options.fail && options.fail(err.message);
+                }
+            } else if (options.type == 'PUT'){
+                xhr.open('PUT',options.url,options.async);
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                if(options.dataType === 'json'){
+                    xhr.setRequestHeader('Content-Type','application/json');
+                }else{
+                    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                }
+                if(typeof options.beforeSend === 'function'){
+                    options.beforeSend();
+                }
+                try {
+                    xhr.send(options.data);
+                } catch (err) {
+                    clearTimeout(options.timer);
+                    options.fail && options.fail(err.message);
+                }
+            }
+            options.timer = setTimeout(function(){
+                options.fail && options.fail('timeOut');
+                xhr.abort();
+            }, options.timeout);
+            /**
+             * 对象参数的处理
+             * @param data
+             * @returns {string}
+             */
+            function getParams(data) {
+                var arr = [];
+                for (var param in data){
+                    arr.push(encodeURIComponent(param) + '=' +encodeURIComponent(data[param]));
+                }
+                return arr.join('&');
+            }
+        }
+    }
+
+    // html字符串转dom
+    function strTranslateDom(htmlStr) {
+        var div = document.createElement('div')
+        div.innerHTML = htmlStr
+        return div.childNodes[0]
+    }
+    // 头部下拉框，添加vip入口样式
+    function addStyle(){
+        var blackList = ['login.zhipin.com']
+        if(blackList.indexOf(window.location.host) > -1) return
+        var head = document.getElementsByTagName('head')[0],
+            cssURL = '/web/common/header-tools.css',
+            linkTag = document.createElement('link');
+        linkTag.href = cssURL;
+        linkTag.setAttribute('type','text/css');
+        linkTag.setAttribute('rel','stylesheet');
+        head.appendChild(linkTag);
+    }
+    // 头部下拉框，添加vip入口
+    function addVipCard() {
+        var container = document.querySelector('#header .user-nav ul .nav-figure .dropdown');
+        if(!container) return;
+        // 获取vip信息
+        var btnText,title,desc;
+        HTTP.ajax({
+            url: '/wapi/zpitem/geek/vip/info',
+            type: 'GET',
+            success: function(result) {
+                if(result.code == 0 && result.zpData && result.zpData.geekVipInfo) {
+                    var data = result.zpData.geekVipInfo;
+                    if(data.vipStatus){
+                        title = 'VIP已开通';
+                        desc = '有效期至' + data.endDate;
+                        btnText = '去查看';
+                    }else{
+                        title = '升级VIP';
+                        desc = '尊享'+ data.privilegeCount +'大求职权益';
+                        btnText = '去升级';
+                    }
+                    var newDom = strTranslateDom(
+                        '<a href="/web/geek/mall?pcSource=header" class="vip-info"><img class="vip-card-bg" src="https://img.bosszhipin.com/static/file/2021/nlqoyjpgok1634714031765.png" alt=""><span class="status">'
+                        + title +'</span>' + '<span class="desc">'+ desc+'</span><span class="link">'+ btnText +'<img src="https://img.bosszhipin.com/static/file/2021/wjs8nyjn4a1634714117134.png " alt=""></span></a>');
+                    container.insertBefore(newDom,container.childNodes[0]);
+                }
+            }
+        })
+    }
+    function updateVipCard(){
+        var oDom = document.querySelector('#header .user-nav ul .nav-figure .dropdown .vip-info');
+        if(oDom){
+            // 先移除再添加
+            // oDom.remove();
+            var parentNode = oDom.parentNode;
+            if( parentNode && parentNode.children.length > 0 ){
+                parentNode.removeChild(oDom);
+            }
+            addVipCard();
+        }
+    };
+    // 增加项目外包入口
+    function appendHezuoEntry() {
+        try {
+            // 存在_PAGE变量 且uid并且userId不存在 视为非登录态 不增加外包入口
+            if(window._PAGE && !window._PAGE.uid && !window._PAGE.userId) return
+            var container = document.querySelector('#header .nav ul');
+            // 无障碍专区
+            var barrierFree = document.querySelector('#header .nav-barrier-free');
+            if(!container) return;
+            HTTP.ajax({
+                url: '/wapi/zpwukong/web/employer/task/showGeekEntry',
+                type: 'GET',
+                success: function(result) {
+                    if(result.code == 0 && result.zpData) {
+                        // 项目外包展示时不展示无障碍专区
+                        barrierFree && barrierFree.parentNode && container.removeChild(barrierFree.parentNode)
+                        var url = '/web/geek/hezuo/employer-list';
+                        var isCur = window.location.pathname == url
+                        container.appendChild(strTranslateDom('<li class="' + (isCur ? 'cur' : '') + '"><a class="nav-hezuo" ka="header-hezuo" href="' + url + '">项目外包</a></li>'))
+                    } else {
+                    }
+                },
+                error: function() {
+                }
+            })
+        } catch (e) {}
+    };
+    // 增加直课堂入口
+    function appendCourseEntry() {
+        var container = document.querySelector('#header .nav ul')
+        if(!container) return
+        HTTP.ajax({
+            url: '/wapi/zpke/geek/course/pc/entry',
+            type: 'GET',
+            success: function(result) {
+                if(result.code == 0 && result.zpData && result.zpData.show) {
+                    container.appendChild(strTranslateDom('<li class=""><a class="nav-ke" ka="header-ke" href="' + result.zpData.url + '" target="_blank">直课堂</a></li>'))
+                } else {
+                }
+            },
+            error: function() {
+            }
+        })
+    };
+    // 账号与安全中心增加待优化标签
+    function accountSafeTag() {
+        try {
+            var container = document.querySelector('#header .nav-figure .account-set')
+            if(!container) return
+            HTTP.ajax({
+                url: '/wapi/zpuser/h5/account/getStatus',
+                type: 'GET',
+                dataType: 'json',
+                success: function(result) {
+                    var zpData = result.zpData;
+                    if(result.code == 0 && zpData && (!zpData.bindEmail || !zpData.securityProblem)) {
+                        var tagDom = strTranslateDom('<span class="wait-optimize-tag">待优化</span>')
+                        setStyle(tagDom, {
+                            color: '#ED7E07',
+                            fontSize: '12px',
+                            lineHeight: '17px',
+                            padding: '0 4px',
+                            borderRadius: '4px',
+                            background: 'rgba(255,148,28, 0.1)',
+                            float: 'right',
+                            display: 'flex',
+                            alignItems: 'center'
+                        })
+                        container.appendChild(tagDom)
+                    }
+                }
+            })
+        } catch(err) {}
+    };
+    function camelCase(name) {
+        var SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
+        var MOZ_HACK_REGEXP = /^moz([A-Z])/;
+        return name.replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
+            return offset ? letter.toUpperCase() : letter;
+        }).replace(MOZ_HACK_REGEXP, 'Moz$1');
+    };
+    // 为dom设置样式
+    function setStyle(element, styleName, value) {
+        if (!element || !styleName) return;
+        if (typeof styleName === 'object') {
+            for (var prop in styleName) {
+                if (styleName.hasOwnProperty(prop)) {
+                    setStyle(element, prop, styleName[prop]);
+                }
+            }
+        } else {
+            styleName = camelCase(styleName);
+            if (styleName === 'opacity' && ieVersion < 9) {
+                element.style.filter = isNaN(value) ? '' : 'alpha(opacity=' + value * 100 + ')';
+            } else {
+                element.style[styleName] = value;
+            }
+        }
+    };
+    // dom是否有类名
+    function hasClass(el, cls) {
+        if (!el || !cls) return false;
+        if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.');
+        if (el.classList) {
+            return el.classList.contains(cls);
+        } else {
+            return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
+        }
+    };
+    function addClass(el, cls) {
+        if (!el) return;
+        var curClass = el.className;
+        var classes = (cls || '').split(' ');
+        for (var i = 0, j = classes.length; i < j; i++) {
+            var clsName = classes[i];
+            if (!clsName) continue;
+            if (el.classList) {
+                el.classList.add(clsName);
+            } else if (!hasClass(el, clsName)) {
+                curClass += ' ' + clsName;
+            }
+        }
+        if (!el.classList) {
+            el.className = curClass;
+        }
+    };
+    window.headerTools = {
+        appendCourseEntry: appendCourseEntry,
+        addVipCard: addVipCard,
+        updateVipCard: updateVipCard
+    }
+    addVipCard();
+    accountSafeTag();
+    appendHezuoEntry();
+    // pc-active埋点 延迟1s后上报
+    var reportTimer = setTimeout(function() {
+        try {
+            _T.sendEvent('pc-active');
+        } catch(e) {}
+        clearTimeout(reportTimer);
+    }, 1000);
+})();

@@ -1,0 +1,156 @@
+
+_atrk_opts = { atrk_acct:"r+FMm1a4KM+2uW", domain:"youth.cn",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+
+
+
+  $(".select_one").mouseover(function(){
+           $(".one_list").show()       
+            $(".one_value b").removeClass("down_sj").addClass("active")
+      })
+    
+      $(".select_one").mouseout(function(){
+        $(this).find("ul").hide()
+        $(".one_value b").removeClass("active").addClass("down_sj")
+
+      })
+      $(".select_two").mouseover(function(){
+        $(".two_list").show()
+        $(".two_value b").removeClass("down_sj").addClass("active")
+
+      })
+      $(".select_two").mouseout(function(){
+    
+        $(this).find("ul").hide()
+        $(".two_value b").removeClass("active").addClass("down_sj")
+      })
+
+      $(".one_list li").mouseover(function(){
+          $(this).addClass("skyblue").siblings().removeClass("skyblue")
+         
+      })
+      $(".two_list li ").mouseout(function(){
+          $(this).addClass("skyblue").siblings().removeClass("skyblue")
+        
+         
+      })
+
+
+
+$(".add_part_div").mouseover(function(){
+$(".add_part").css("display","block");
+$(".dh_more").addClass("dh_more_rotate");
+})
+
+
+
+
+$(".add_part_div").mouseout(function(){
+$(".add_part").css("display","none");
+$(".dh_more").removeClass("dh_more_rotate");
+ })
+
+ $(".add_part li").mouseover(function(){
+          $(this).addClass("add_part_blue").siblings().removeClass("add_part_blue");     
+      })
+ $(".add_part li ").mouseout(function(){
+          $(this).addClass("add_part_blue").siblings().removeClass("add_part_blue")      
+      })
+
+
+            var demo = document.getElementById("demo");
+            var demo1 = document.getElementById("demo1");
+            var demo2 = document.getElementById("demo2");
+            demo2.innerHTML=document.getElementById("demo1").innerHTML;
+            function Marquee(){
+            if(demo.scrollLeft-demo2.offsetWidth>=0){
+             demo.scrollLeft-=demo1.offsetWidth;
+            }
+            else{
+             demo.scrollLeft++;
+            }
+            }
+            var myvar=setInterval(Marquee,30);
+            $("#demo").mouseout(function(){
+                myvar=setInterval(Marquee,30);
+                })
+            $("#demo").mouseover(function(){
+                clearInterval(myvar);
+                })
+            
+
+ $('.silder-box-3').mySilder({
+        width:200,
+        height:210,
+        direction:'x',
+        few:1,
+        showFew:4,
+        clearance:18,
+        silderMode:'swing' ,
+        timeGap:700,
+        auto:true,
+        autoTime:7,
+        buttonPre:'.silder-button3.btl',//上一个，按钮
+        buttonNext:'.silder-button3.btr',//下一个，按钮
+        jz:true
+    });
+
+
+
+            function selectTag(showContent,sl,clj,cljxg){
+                for(i=1; j=document.getElementById(sl+i); i++){
+                    j.style.display = "none";
+                }
+                document.getElementById(showContent).style.display = "block";
+                for(i=1; j=document.getElementById(clj+i); i++){
+                    j.className="cljys";
+                }
+                document.getElementById(cljxg).className="cljysxz";
+            }
+          
+
+     document.write('<a style="display:none!important" id="tanx-a-mm_34618856_4222645_29136679"></a>');
+     tanx_s = document.createElement("script");
+     tanx_s.type = "text/javascript";
+     tanx_s.charset = "gbk";
+     tanx_s.id = "tanx-s-mm_34618856_4222645_29136679";
+     tanx_s.async = true;
+     tanx_s.src = "https://p.tanx.com/ex?i=mm_34618856_4222645_29136679";
+     tanx_h = document.getElementsByTagName("head")[0];
+     if(tanx_h)tanx_h.insertBefore(tanx_s,tanx_h.firstChild);
+
+
+window.onload=function(){ 
+ 
+  var hm = document.createElement("script");
+  hm.src = "https://kxlogo.knet.cn/seallogo.dll?sn=e20010811010180800igwe000000&h=47";
+  hm.id="kXScript";
+  var s = document.getElementById('qw_rz_dll'); 
+ s.appendChild(hm);
+} 
+
+
+var _hmt = _hmt || [];
+
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?969516094b342230ceaf065c844d82f3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+
+
+
+
+    var swiper = new Swiper('.swiper-container', {
+        autoplay: {
+                delay: 3000,//3秒切换一次
+            },
+        direction: 'vertical',
+        noSwiping: true,
+        loop: true
+    });
+   
+  
+
+    

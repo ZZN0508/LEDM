@@ -1,0 +1,315 @@
+
+/*
+
+          ++++      :::::                                   LLLLL                                          KKKKK
+         ++++++    :::::::                                  LLLLL                                          KKKKK
+          +++++    :::::::                                  LLLLL                                          KKKKK
+                   :::::::                                  LLLLL                                          KKKKK
+    ++++++++++++   :::::::   ::::            sSSSSSSSSs     LLLLL       aAAAAaa AAAAA        ccccccc       KKKKK     KKKKK
+   ++++++++++++++  :::::::  ::::::         SSSSSSSSSSSSSs   LLLLL     aAAAAAAAAAAAAAA      CCCCCCCCCCCc    KKKKK    KKKKK
+    ++++++++++++    :::::   :::::         SSSSSS    SSSSs   LLLLL    aAAAAAAAAAAAAAAA    cCCCCCCCCCCCCCC   KKKKK  KKKKK
+                                          SSSSSs            LLLLL   aAAAAa     AAAAAA    CCCCC     cCCCc   KKKKKKKKKK
+   :::::   :::::    +++++++++++++          sSSSSSSSSSs      LLLLL   aAAAA       AAAAA   CCCCC              KKKKKKKKKK
+  ::::::  :::::::  +++++++++++++++               sSSSSSs    LLLLL   aAAAAa     aAAAAA   CCCCCC     cCCCc   KKKKKkKKKKK
+   ::::   :::::::   +++++++++++++         SSSS     SSSSSs   LLLLL    aAAAAAAAAAAAAAAA    CCCCCcccccCCCCC   KKKKK  KKKKK
+          :::::::                         SSSSSSSSSSSSSs    LLLLL     aAAAAAAAAAAAAAA     cCCCCCCCCCCCC    KKKKK    KKKKK
+          :::::::  +++++                    sSSSSSSSSSs     LLLLL       aAAAAaa AAAAA       CCCCCCCCc      KKKKK     KKKKK
+          :::::::  ++++++
+           :::::    ++++
+
+
+Thanks for taking a peek! Maybe a job is what you seek?
+https://slack.com/careers
+
+*/
+
+var safe_hosts = ['app.optimizely.com', 'tinyspeck.dev.slack.com'];
+
+if (self !== top && safe_hosts.indexOf(top.location.host) === -1) {
+	window.document.write(
+		'\u003Cstyle>body * {display:none !important;}\u003C/style>\u003Ca href="#" onclick=' +
+			'"top.location.href=window.location.href" style="display:block !important;padding:10px">Go to Slack.com\u003C/a>'
+	);
+}
+
+(function() {
+	var timer;
+	if (self !== top && safe_hosts.indexOf(top.location.host) === -1) {
+		timer = window.setInterval(function() {
+			if (window) {
+				try {
+					var pageEl = document.getElementById('page');
+					var clientEl = document.getElementById('client-ui');
+					var sectionEls = document.querySelectorAll('nav, header, section');
+
+					pageEl.parentNode.removeChild(pageEl);
+					clientEl.parentNode.removeChild(clientEl);
+					for (var i = 0; i < sectionEls.length; i++) {
+						sectionEls[i].parentNode.removeChild(sectionEls[i]);
+					}
+					window.TS = null;
+					window.TD = null;
+					window.clearInterval(timer);
+				} catch (e) {}	
+			}
+		}, 200);
+	}
+})();
+
+function getScrollPercent() {
+	var h = document.documentElement, b = document.body, st = 'scrollTop', sh = 'scrollHeight';
+	return Math.round((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
+}
+
+function initDrift() {
+	if (window.drift_loaded) return;
+	if (0 > 0 && 0 > getScrollPercent()) {
+		document.addEventListener('scroll', function() {
+			var p = getScrollPercent();
+			if (p >= 0) { bootDrift(); }
+		});
+	} else { bootDrift(); }
+}
+
+function bootDrift() {
+	if (window.drift_loaded) return;
+	if (window.drift && window.OnetrustActiveGroups && window.OnetrustActiveGroups.includes('C0003')) {
+		window.drift_loaded = true;
+		setTimeout(function() { drift.load('a6yri4b82zv7'); }, 0);
+	}
+}
+
+function OptanonWrapper() {
+	window.dataLayer.push({event:'OneTrustGroupsUpdated'});
+	
+	Optanon.OnConsentChanged(function() {
+		initDrift();
+		if (window.TD && window.TD.clog) {
+			window.TD.clog.track('WEBSITE_CLICK', {
+				'trigger': window.OnetrustActiveGroups,
+				'step':'consent_changed',
+				'contexts': {
+					'ui_context': {
+						'step': TD.boot_data.clog_ui_step,
+						'action': 'settings',
+						'ui_component': 'inc_cookie_banner_v2'
+					}
+				}
+			});
+		}
+	});
+}
+
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({
+	'gtm.start': Date.now(),
+	'event' : 'gtm.js',
+	'secure_page' : false,
+});
+var firstScript = document.getElementsByTagName('script')[0];
+var thisScript = document.createElement('script');
+thisScript.async = true;
+thisScript.src = '//www.googletagmanager.com/gtm.js?id=GTM-KH2LPK';
+firstScript.parentNode.insertBefore(thisScript, firstScript);
+
+
+!function() {
+var t;
+if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0,
+t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+t.factory = function(e) {
+return function() {
+var n;
+return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
+};
+}, t.methods.forEach(function(e) {
+t[e] = t.factory(e);
+}), t.load = function(t) {
+var e, n, o, i;
+e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"),
+o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js",
+n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
+});
+}();
+drift.SNIPPET_VERSION = '0.3.1';
+if (!window.OnetrustActiveGroups) {
+drift.load('a6yri4b82zv7');
+}
+
+
+if (window.reveal && window.reveal.company) {
+	var r = window.reveal;
+	window.clearbit_fmt = {
+		cb_traffic_type: r.type,
+		cb_company_name: r.company.name,
+		cb_industry_tags: r.company.tags.join(', '),
+		cb_industry_sector: r.company.category.sector,
+		cb_industry_group:  r.company.category.industryGroup,
+		cb_industry_name: r.company.category.industry,
+		cb_industry_sub: r.company.category.subIndustry,
+		cb_company_city: r.company.geo.city,
+		cb_company_state:r.company.geo.state,
+		cb_company_country: r.company.geo.country,
+		cb_alexa_us: r.company.metrics.alexaUsRank,
+		cb_alexa_global: r.company.metrics.alexaGlobalRank,
+		cb_size_employees: r.company.metrics.employees,
+		cb_size_range: r.company.metrics.employeesRange,
+		cb_size_annual_revenue: r.company.metrics.annualRevenue,
+		cb_size_est_revenue: r.company.metrics.estimatedAnnualRevenue,
+	}
+}
+
+window.optimizely_fmt = {
+	"type": "user",
+	"attributes": {
+		"visitor_uid" : "482f39bce6yg6llia0my1lxmz",
+		"visitor_type": "prospect",
+		"is_first_visit": false,
+		"traffic_type": "logged_out",	}
+}
+window.drift_fmt = {
+	"visitor_type": "prospect",
+	"is_first_visit": false,
+	"traffic_type": "logged_out",
+	"is_paid_plan": false,
+	"is_free_plan": false,
+	"is_ent_plan": false,
+}
+if (window.drift) {
+	window.drift.on('ready', function() {
+		window.drift.api.setUserAttributes(window.drift_fmt);
+	});
+}
+if (window.reveal && window.reveal.company) {
+	window.dataLayer = window.dataLayer || [];
+	window.dataLayer.push(window.clearbit_fmt);
+	window.dataLayer.push({event: 'Clearbit'});
+}
+if (window.reveal && window.reveal.company) {
+	for (var p in window.clearbit_fmt) {
+		if (window.clearbit_fmt.hasOwnProperty(p)) {
+			window.optimizely_fmt.attributes[p] = window.clearbit_fmt[p];
+		}
+	}
+}
+window.optimizely = window.optimizely || [];
+if (!window.OnetrustActiveGroups || window.OnetrustActiveGroups.includes('C0003')) {
+window.optimizely.push({'type':'optOut','isOptOut':false});
+window.optimizely.push(window.optimizely_fmt);
+} else {
+window.optimizely.push({'type':'optOut','isOptOut':true});
+}
+
+{
+	"@context": "http://schema.org",
+	"@type": "Organization",
+	"id": "https://slack.com/",
+	"name": "Slack",
+	"description": "Slack is where work flows. It's where the people you need, the information you share, and the tools you use come together to get things done.",
+	"url": "https://slack.com/",
+	"logo": "https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png",
+	"sameAs": [
+		"https://twitter.com/slackhq",
+		"https://facebook.com/slackhq",
+		"https://www.youtube.com/channel/UCY3YECgeBcLCzIrFLP4gblw",
+		"https://www.instagram.com/slackhq/",
+		"https://www.linkedin.com/company/tiny-spec-inc/"
+		]
+}
+			(function (){
+				const lazyImages = document.querySelectorAll('img.lazyload');
+				if ('loading' in HTMLImageElement.prototype) {
+					lazyImages.forEach(img => {
+						img.src = img.dataset.src;
+						img.srcset = img.dataset.srcset;
+					});
+				} else if (lazyImages != null && lazyImages.length){
+					// Dynamically load the lazyload library if we have deferred images
+					let script = document.createElement('script');
+					script.src = "https:\/\/a.slack-edge.com\/bv1-9\/marketing-lazyload.5dba9b0ae07ea23d2d87.marketing.min.js";
+					script.async = true;
+					document.body.appendChild(script);
+				}
+			})();
+TD.boot_data.xhp = true;
+TD.boot_data.version_uid = "4ca4598aaae157acc97a35ad3d39549279f29289";
+TD.boot_data.environment = "prod";
+TD.boot_data.abs_root_url = "https:\/\/slack.com\/";
+
+TD.boot_data.anonymous_visitor = false;
+TD.boot_data.beacon_timing_url = "https:\/\/slack.com\/beacon\/timing";
+TD.boot_data.referral_code = "";
+TD.boot_data.auth_cookie_domain = ".slack.com";
+
+TD.boot_data.geo = {"country":"JP","region":"13","city":"Tokyo","zip":"102-0082","lat":35.6887,"lon":139.745,"metro":null,"area":null,"isp":"Amazon.com","org":null,"country_label":"Japan","region_label":"Hyogo","country3":"JPN","continent":"AS","ok":true};
+TD.boot_data.geocode = "zh-cn";
+TD.boot_data.intl_prefix = "\/intl\/zh-cn";
+TD.boot_data.request_uri = "\/intl\/zh-cn\/";
+TD.boot_data.canonical_web_url = "https:\/\/slack.com\/intl\/zh-cn\/";
+TD.boot_data.i18n_locale = "zh-CN";
+TD.boot_data.geo_root_url = "https:\/\/slack.com\/intl\/zh-cn\/";
+
+TD.boot_data.is_usa = false;
+TD.boot_data.is_spain = false;
+TD.boot_data.is_germany = false;
+TD.boot_data.is_france = false;
+TD.boot_data.is_japan = false;
+TD.boot_data.is_europe = false;
+
+TD.boot_data.is_latam = false;
+TD.boot_data.is_brazil = false;
+TD.boot_data.is_india = false;
+TD.boot_data.is_uk = false;
+
+TD.boot_data.is_english = false;
+TD.boot_data.is_spanish = false;
+TD.boot_data.is_german = false;
+TD.boot_data.is_french = false;
+TD.boot_data.is_japanese = false;
+TD.boot_data.is_portuguese = false;
+
+TD.boot_data.job_board_token = "slack";
+TD.boot_data.zd_locale = "";
+
+
+TS.boot_data = {};
+_.extend(TD.boot_data, TS.boot_data);
+TD.model.user_id = TD.boot_data.user_id;
+
+TD.model.user_realname  = TD.boot_data.user_realname;
+TD.model.user_email = TD.boot_data.user_email;
+
+TD.model.team_id = TD.boot_data.team_id;
+TD.model.team_url = TD.boot_data.team_url;
+TD.model.team_domain = TD.boot_data.team_domain;
+TD.model.visitor_uid = "482f39bce6yg6llia0my1lxmz";
+TD.model.enterprise_id = TD.boot_data.enterprise_id;
+
+TD.model.session_id = "482f39bce6yg6llia0my1lxmz.1621566796";
+TD.model.session_is_fresh = true;
+
+TD.model.is_first_visit = false;
+TD.model.is_customer =  (TD.model.visitor_uid.indexOf('.') == 0);
+TD.model.is_prospect = !TD.model.is_customer;
+TD.model.is_signed_in = !!(TD.model.user_id);
+
+TD.model.num_signed_in_users = 0;
+TD.model.is_enterprise = !!(TD.boot_data.enterprise_id);
+TD.cms = {};
+TD.cms.is_cms = false;
+TD.cms.is_preview = false;
+TD.model.curr_plan = '';
+TD.boot_data.clog_ui_step = "page_home";
+if(TD.boot_data.team_id) TD.clog.setTeam(TD.boot_data.team_id);
+if(TD.boot_data.user_id) TD.clog.setUser(TD.boot_data.user_id);
+TD.boot_data.feature_ce_eng_search_demo = false;
+TD.boot_data.is_ls_eligible = false;
+TD.boot_data.should_ls_load = false;
+TD.boot_data.feature_engage_users_lp_v2 = true;
+
+
+
+TD.clog.track("WEBSITE_IMPRESSION", {
+	trigger: "",
+	contexts: { ui_context: { step: "page_home", action: 'impression' } }
+});

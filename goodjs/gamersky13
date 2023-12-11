@@ -1,0 +1,103 @@
+// Cps曝光统计
+$(document).ready(function () {
+  function IntermodalExposureStatistics(url) {
+    function isDomain(url, expectedDomain, callback) {
+      try {
+        var match = url.match(/^(\w+:)\/\/([^\/]+)\/(.*)\?(.*)$/);
+        var hostname = match[2];
+        var params = {};
+        match[4].split("&").forEach(function (pair) {
+          var kv = pair.split("=");
+          params[kv[0]] = kv[1];
+        });
+        var key = params["key"];
+        if (hostname === expectedDomain && key !== undefined) {
+          callback(key);
+          return true;
+        } else {
+          return false;
+        }
+      } catch (error) {
+        return false;
+      }
+    }
+    var expectedDomain = "web-cps.gamersky.com";
+    isDomain(url, expectedDomain, function (key) {
+      $.ajax({
+        type: "GET",
+        url:
+          "//web-cps.gamersky.com/GamerSky.GameUnionOperationPlatform.InstationCPSX/MonthImprs/Impr?Key=" +
+          key,
+        success: function (data) {},
+      });
+    });
+  }
+
+  function elementInViewport(domid, callback) {
+    var $window = $(window);
+    var $element = $(domid);
+    var called = false;
+
+    if (!$element.html()) {
+      return;
+    }
+
+    function checkViewport() {
+      if (called) {
+        return;
+      }
+
+      var viewportTop = $window.scrollTop();
+      var viewportBottom = viewportTop + $window.height();
+      var viewportLeft = $window.scrollLeft();
+      var viewportRight = viewportLeft + $window.width();
+
+      var elementOffset = $element.offset();
+      var elementTop = elementOffset.top;
+      var elementBottom = elementTop + $element.outerHeight();
+      var elementLeft = elementOffset.left;
+      var elementRight = elementLeft + $element.outerWidth();
+
+      var isInViewport =
+        elementTop >= viewportTop &&
+        elementBottom <= viewportBottom &&
+        elementLeft >= viewportLeft &&
+        elementRight <= viewportRight;
+
+      if (isInViewport) {
+        called = true;
+        callback();
+        $window.off("scroll", checkViewport); // 移除滚动事件监听器
+      }
+    }
+
+    $window.on("scroll", checkViewport);
+    checkViewport(); // 在方法调用时立即检查一次
+  }
+
+  // 内容页 九宫格
+  //   elementInViewport(".yyimg", function () {
+  //     $(".yyimg a").each(function (item, index) {
+  //       IntermodalExposureStatistics($(this).attr("href"));
+  //     });
+  //   });
+  // 首页 图片链接
+  //   elementInViewport(".Mid0pic1", function () {
+  //     $(".Mid0pic1 a").each(function (item, index) {
+  //       IntermodalExposureStatistics($(this).attr("href"));
+  //     });
+  //   });
+  // 首页 文字链接
+  //   elementInViewport(".Mid0New-Gamelist", function () {
+  //     $(".Mid0New-Gamelist a").each(function (item, index) {
+  //       IntermodalExposureStatistics($(this).attr("href"));
+  //     });
+  //   });
+
+  // wap内容页 在线玩推荐
+  elementInViewport(".ymw-h5-game-list", function () {
+    $(".ymw-h5-game-list a").each(function (item, index) {
+      IntermodalExposureStatistics($(this).attr("href"));
+    });
+  });
+});

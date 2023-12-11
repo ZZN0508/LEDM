@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "type": "pageConfig",
+    "namespace": "gtwhcr4vuz",
+    "id": "n9qr0dpto",
+    "version": "2.1.0"
+  },
+  "template": {
+    "parseAssets": true,
+    "cacheFirst": true,
+    "type": "html",
+    "url": "https://sale.alibaba.com/march-expo/original_product/home/index.html"
+  },
+  "apis": [],
+  "assets": [],
+  "apiData": {}
+}

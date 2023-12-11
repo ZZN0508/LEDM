@@ -1,0 +1,801 @@
+var bds = window.bds || {};
+bds.se = bds.se || {};
+bds.se.message = (function(g) {
+    var y = true, l = false, j, v = ['<div id="bds-message-wrapper" class="s-mod-msg" style="display:none;">', '<div class="msg-arrow">', "<em></em>", "</div>", '<div class="s-mod-msg-bg">', '<div class="msg-area" id="s_msg_content"></div>', "</div>", "</div>"].join(""), e = {
+        msg: ['<div id="s_base_nomsg" class="s-base-nomsg">', '<p class="no-msg-tip">您目前没有新消息</p>', '<div class="no-msg-btns">', '<div class="msg-btn msg-clear-btn no-use">', '<span class="bg"></span><span class="title">清空消息</span>', "</div>", '<div class="msg-btn msg-setting-btn" id="s_msg_setting">', '<a href="http://www.baidu.com/home/page/show/pagesetting#home_setting" target="_blank" hidefocus class="title">消息设置</a><span class="bg"></span>', "</div>", "</div>", "</div>"].join(""),
+        noset: ['<div class="noset-msg-tip" id="s_base_noset">', "<span>您尚未订制提醒消息，立即</span>", '<div class="msg-btn msg-setting-btn" id="s_msg_add">', '<span class="bg"></span><span class="title">订制消息</span>', "</div>", "</div>"].join("")
+    }, z = {
+        ie: /msie (\d+\.\d+)|Trident/i.test(navigator.userAgent) ? (document.documentMode || +RegExp["\x241"]) : undefined
+    }, n = z.ie === 6, m = z.ie === 7, i = z.ie === 8, a;
+    function s(C) {
+        if (!l) {
+            C = g.extend({
+                button: g("#imsg"),
+                refer: g("#u")
+            }, C);
+            a = C.button;
+            refer = C.refer;
+            refer.after(v);
+            j = g("#bds-message-wrapper");
+            g.ajax("/home/msg/data/personalcontent", {
+                type: "GET",
+                dataType: "jsonp",
+                data: {
+                    num: 8,
+                    _req_seqid: bds.comm.qid,
+                    sid: bds.comm.sid
+                }
+            }).done(function(E) {
+                if (E.errNo === "0") {
+                    var D = E.content;
+                    if (D && D.length) {
+                        g("#lm").css("visibility", "hidden");
+                        D = D.slice(0, 8);
+                        g(".msg-area", j).append('<div id="s_msg_tips" class="s-msg-tips"></div>');
+                        a.append("<span id='s_msg_count' class='s-msg-count'>(" + D.length + ")</span>");
+                        d.init(D)
+                    } else {
+                        g("#lm").css("visibility", "visible")
+                    }
+                }
+                a.on("click", function(F) {
+                    F.preventDefault()
+                });
+                q()
+            });
+            l = true
+        }
+    }
+    function r() {
+        var C = document.createElement("link");
+        C.setAttribute("rel", "stylesheet");
+        C.setAttribute("type", "text/css");
+        C.setAttribute("href", bds.su.urStatic + "/static/message/css/message_041c3208.css");
+        document.getElementsByTagName("head")[0].appendChild(C)
+    }
+    function q() {
+        a.on("click", function() {
+            b(true);
+            B.send({
+                clickType: "button",
+                title: "消息",
+                url: ""
+            })
+        });
+        g("#s_msg_clear").on("click", function() {
+            B.send({
+                clickType: "clear",
+                title: "清空消息",
+                url: ""
+            })
+        });
+        g("#s_hasmsg_setting").on("click", function(C) {
+            B.send({
+                clickType: "setting",
+                title: "消息设置",
+                url: ""
+            })
+        })
+    }
+    function b(C) {
+        if (!j[0] || !j.is(":visible")) {
+            k(C, false)
+        } else {
+            u()
+        }
+        y = false
+    }
+    function k(C, D) {
+        if (C && y) {
+            g("body").on("mousedown", function(F) {
+                var E = g(F.target);
+                if (E[0].id === "s_msg_count" || E[0].id === "imsg" || E.parents(".s-msg")[0]) {
+                    return
+                }
+                u()
+            });
+            j.on("mousedown", function(E) {
+                E.stopPropagation()
+            })
+        }
+        w(C, D)
+    }
+    function w(E, G) {
+        if (g(".s-msg-tips", j)[0]) {
+            x(g(".s-msg-base", j));
+            o(g(".s-msg-tips", j))
+        } else {
+            if (!g(".s-msg-base", j)[0]) {
+                g(".msg-area", j).append("<div id='s_msg_base' class='s-msg-base'></div>")
+            }
+            if (g(".s-base-nomsg", j)[0]) {
+                o(g(".s-base-nomsg", j))
+            } else {
+                g(".s-msg-base", j).append(e.msg);
+                g(".msg-setting-btn", j).on("click", function() {
+                    p()
+                })
+            }
+            g(".s-msg-base", j).addClass("no-msgs").removeClass("no-set-msg");
+            x(g(".noset-msg-tip", j));
+            o(g(".s-msg-base", j));
+            x(g(".s-msg-tips", j))
+        }
+        var C = a;
+        var D = g(document.body).width() - C[0].offsetWidth - C.offset().left - 169;
+        if (n) {
+            D = D - 1
+        } else {
+            if (i) {
+                D = D + 2
+            }
+        }
+        if (D < 20) {
+            D = 20
+        }
+        j.css("right", D).show();
+        var F = C.offset().left - j.offset().left;
+        if (n && g(".iebrowser_banner")[0]) {
+            j.css({
+                top: 65
+            })
+        }
+        g(".msg-arrow", j).css("left", F + "px")
+    }
+    function x(C) {
+        C.hide();
+        if (n || m) {
+            C.css({
+                visibility: "hidden"
+            })
+        }
+    }
+    function o(C) {
+        C.show();
+        if (n || m) {
+            C.css({
+                visibility: "visible"
+            })
+        }
+    }
+    function A() {
+        var C = "";
+        if (g(".s-msg-tips", j).is(":visible")) {
+            C = "msg"
+        } else {
+            if (g(".s-msg-base", j).is(":visible")) {
+                C = g(".noset-msg-tip", j).is(":visible") ? "nosetting" : "nomsg"
+            }
+        }
+        return C
+    }
+    function u() {
+        j.hide()
+    }
+    function p() {
+        var C = A();
+        u()
+    }
+    var f = (function(E) {
+        var D = 0
+          , C = "中"
+          , G = "visibility:hidden;position:absolute;bottom:0;left:0;"
+          , F = "s_strpx_span";
+        return function(N) {
+            D++;
+            var K = 0
+              , M = {}
+              , J = '<span id="' + F + D + '" style="' + G + (N || "") + '"></span>'
+              , L = g(J)[0];
+            document.getElementsByTagName("body")[0].appendChild(L);
+            L.innerHTML = C;
+            K = L.offsetWidth;
+            var I = function(T) {
+                var S = 0;
+                for (var R = 0, P = T.length; R < P; R++) {
+                    var Q = T.charCodeAt(R);
+                    S += Q > 255 ? K : O.call(this, T.charAt(R))
+                }
+                return S
+            };
+            var O = function(Q) {
+                if (M[Q]) {
+                    return M[Q]
+                } else {
+                    L.innerHTML = (Q == " " ? "&nbsp;" : Q);
+                    var P = L.offsetWidth;
+                    M[Q] = P;
+                    return P
+                }
+            };
+            var H = function(V, S, W) {
+                if (!V) {
+                    return V
+                }
+                if (V.length * K < S) {
+                    return V
+                }
+                if (I(V) <= S) {
+                    return V
+                }
+                if (W) {
+                    S = S - I(W)
+                }
+                if (S < 0) {
+                    S = 0
+                }
+                var U = 0;
+                for (var R = 0, P = V.length; R < P; R++) {
+                    var Q = V.charCodeAt(R)
+                      , T = Q > 255 ? K : O.call(this, V.charAt(R));
+                    if (U <= S && U + T > S) {
+                        return V.substring(0, R) + (W || "")
+                    } else {
+                        U += T
+                    }
+                }
+                return V
+            };
+            return {
+                substringByPx: H,
+                getLengthPx: I
+            }
+        }
+    }
+    )();
+    var d = (function() {
+        function D(E) {
+            x(g(".s-msg-base", j));
+            C(E);
+            h.bindEvents(E)
+        }
+        function C(F) {
+            var E = g(".s-msg-tips", j);
+            j.addClass("extend");
+            E.append(c.renderAll(F));
+            E.append(c.renderBtn());
+            p();
+            g(".msg-clear-btn", j).on("click", function() {
+                g("#imsg .s-msg-count").html("");
+                g(".s-msg-tips", j).remove();
+                var H = []
+                  , G = ""
+                  , I = "";
+                g.each(F, function(K, J) {
+                    if (J.isSns && J.webid && J.webid != "") {
+                        H.push(J.webid)
+                    } else {
+                        if (J.type == "yaohao") {
+                            G = "tipsexpired"
+                        } else {
+                            if (J.type == "weather") {
+                                I = J.msgId
+                            }
+                        }
+                    }
+                });
+                g.ajax("/home/msg/submit/msgclearall", {
+                    type: "POST",
+                    data: {
+                        sns: H.length > 0 ? H.join("_") : "",
+                        yaohao: G,
+                        saw: I,
+                        _req_seqid: bds.comm.qid,
+                        sid: bds.comm.sid,
+                        bsToken: bdstoken
+                    }
+                });
+                u()
+            })
+        }
+        return {
+            init: D
+        }
+    }
+    )();
+    var c = (function() {
+        var I = new f("font-weight:bold;font-size:12px;font-family:'arial';");
+        var G = "http://i.baidu.com/msg/messages/list/";
+        var F = {
+            weather: "http://www.baidu.com/s?ie=utf-8&bs=%E5%A4%A9%E6%B0%94&f=8&rsv_bp=1&wd=%E5%A4%A9%E6%B0%94&inputT=0",
+            lecaicard: "http://www.baidu.com/home/xman/show/worldcupindex?frm=lecaicard",
+            jdcard: "http://www.baidu.com/home/xman/show/worldcupindex?frm=jdcard",
+            lecaicaijin: "http://www.baidu.com/home/xman/show/worldcupindex?frm=lecaicaijin",
+            lecaibuchang: "http://www.baidu.com/home/xman/show/worldcupindex?frm=lecaibuchang&type=lecai50#rank",
+            mis: "http://www.baidu.com/s?ie=utf-8&bs=%E5%A4%A9%E6%B0%94&f=8&rsv_bp=1&wd=%E5%A4%A9%E6%B0%94&inputT=0",
+            sinawb: "http://weibo.com/",
+            txwb: "http://t.qq.com/",
+            bdtieba: "http://tieba.baidu.com/",
+            mail163: "http://mail.163.com/",
+            mail126: "http://www.126.com/",
+            mailyeah: "http://www.yeah.net/",
+            ssq: "http://www.zhcw.com/ssq/",
+            pl3: "http://www.lottery.gov.cn/lottery/pls/Default.aspx",
+            pl5: "http://www.lottery.gov.cn/lottery/pls/Default.aspx",
+            dlt: "http://www.lottery.gov.cn/lottery/dlt/Default.aspx",
+            fc3d: "http://www.zhcw.com/3d/",
+            qxc: "http://www.lottery.gov.cn/lottery/qxc/Default.aspx",
+            qlc: "http://www.zhcw.com/qlc/",
+            bdiknow: "http://zhidao.baidu.com/",
+            bdmsg: "http://msg.baidu.com",
+            bdzoom: "http://hi.baidu.com/",
+            bdpics: "http://xiangce.baidu.com/",
+            yaohao: "http://www.baidu.com/s?tn=monline_4_dg&ie=utf-8&bs=yaohao&f=8&rsv_bp=1&wd=%E6%91%87%E5%8F%B7&rsv_sug3=1&inputT=1683",
+            iqiyi: "http://www.iqiyi.com/",
+            gaojie: "http://www.gaojie.com/",
+            qunar: "http://www.qunar.com/",
+            yidongwb: "http://weibo.10086.cn/",
+            sinablog: "http://blog.sina.com.cn/",
+            bdHome: G,
+            bdIndem: G,
+            bdHongbao: G,
+            bdKoubei: G
+        };
+        var H = {
+            start: '<div id="s_msg_#{msgId}" class="s-msg-item" data-type="#{type}"><span class="item-name"><a href="#{nameUrl}" #{nameTitle} class="item-name-link" target="_blank" hidefocus>#{name}</a></span>',
+            line: '<span class="vertical-line"></span>',
+            content: '<span class="item-msg-content#{cell}" #{cellid}>',
+            end: "</span></div>",
+            weather: '<a class="item-title" href="#{url}" target="_blank" hidefocus><span class="item-orange item-bold">#{title}</span></a>',
+            lecaicard: '<a class="item-title" href="#{url}" target="_blank" hidefocus><span class="item-orange item-bold">#{title}</span></a>',
+            lecaibuchang: '<a class="item-title" href="#{url}" target="_blank" hidefocus><span class="item-orange item-bold">#{title}</span></a>',
+            jdcard: '<a class="item-title" href="#{url}" target="_blank" hidefocus><span class="item-orange item-bold">#{title}</span></a>',
+            lecaicaijin: '<a class="item-title" href="#{url}" target="_blank" hidefocus><span class="item-orange item-bold">#{title}</span></a>',
+            news: '<a class="item-title" href="#{url}" target="_blank" hidefocus>#{title}</a>',
+            navs: '<a class="item-title" href="#{url}" target="_blank" hidefocus>#{title}</a>',
+            comic: '<a class="item-title" href="#{curEpisodeUrl}" target="_blank" hidefocus>更新至&nbsp;#{curEpisode}集</a>#{reviewHtml}',
+            tv: '<a class="item-title" href="#{curEpisodeUrl}" target="_blank" hidefocus>更新至&nbsp;#{curEpisode}集</a>#{reviewHtml}',
+            show: '更新至#{curEpisode}期：<a class="item-title" href="#{curEpisodeUrl}" target="_blank" hidefocus>#{title}，立即观看</a>',
+            lottery: '<a class="item-title comma" href="#{curEpisodeUrl}" target="_blank" hidefocus>#{curEpisode}开奖结果：<span class="item-orange">#{orangeNumberHtml}</span><span class="item-blue">&nbsp;#{blueNumberHtml}</span></a>，查看<a class="item-title" href="#{trendUrl}" target="_blank" hidefocus>趋势图</a>，分析中奖规律',
+            txwb: "#{snsDetailHtml}",
+            bdzoom: "#{snsDetailHtml}",
+            bdmsg: "#{snsDetailHtml}",
+            bdiknow: "#{snsDetailHtml}",
+            bdpics: "#{snsDetailHtml}",
+            mail126: "#{snsDetailHtml}",
+            mail163: "#{snsDetailHtml}",
+            mailyeah: "#{snsDetailHtml}",
+            bdtieba: "#{snsDetailHtml}",
+            defaulttpl: "#{detailHtml}",
+            bdHome: "#{snsDetailHtml}",
+            bdIndem: "#{snsDetailHtml}",
+            bdHongbao: "#{snsDetailHtml}",
+            bdKoubei: "#{snsDetailHtml}",
+            sinawb: "#{snsDetailHtml}",
+            yidongwb: "#{snsDetailHtml}",
+            sinablog: "#{snsDetailHtml}",
+            commontpl: "#{snsDetailHtml}",
+            iqiyi: '<a href="#{snsUrl}" class="item-title title-sns" target="_blank" hidefocus>您有&nbsp;<span class="item-orange">#{snsNum}</span>&nbsp;#{snsName},快去查看吧',
+            gaojie: '<a href="#{snsUrl}" class="item-title title-sns" target="_blank" hidefocus>您有&nbsp;<span class="item-orange">#{snsNum}</span>&nbsp;#{snsName},快去查看吧',
+            qunar: '<a href="#{snsUrl}" class="item-title title-sns" target="_blank" hidefocus>您有&nbsp;<span class="item-orange">#{snsNum}</span>&nbsp;#{snsName},快去查看吧',
+            blank: '<div class="s-msg-blank">当前没有新消息</div>',
+            btn: '<div class="msg-btns"><div class="msg-btn msg-clear-btn" id="s_msg_clear"><span class="bg"></span><span class="title">清空消息</span></div><div class="msg-btn msg-setting-btn" id="s_hasmsg_setting"><a  href="http://www.baidu.com/home/page/show/pagesetting#home_setting" target="_blank" hidefocus class="title">消息设置</a><span class="bg"></span></div></div>'
+        };
+        var E = {
+            weather: "#{title}",
+            news: "#{title}",
+            navs: "#{title}",
+            lecaicard: "#{title}",
+            jdcard: "#{title}",
+            lecaicaijin: "#{title}",
+            lecaibuchang: "#{title}",
+            comic: "更新至&nbsp;#{curEpisode}集#{reviewHtml}",
+            tv: "更新至&nbsp;#{curEpisode}集#{reviewHtml}",
+            show: "更新至#{curEpisode}期：#{title}，立即观看",
+            lottery: "#{curEpisode}开奖结果：#{orangeNumberHtml}&nbsp;#{blueNumberHtml}，查看趋势图，分析中奖规律",
+            txwb: "#{snsDetailHtml}",
+            bdzoom: "#{snsDetailHtml}",
+            bdmsg: "#{snsDetailHtml}",
+            bdiknow: "#{snsDetailHtml}",
+            bdpics: "#{snsDetailHtml}",
+            mail126: "#{snsDetailHtml}",
+            mail163: "#{snsDetailHtml}",
+            mailyeah: "#{snsDetailHtml}",
+            bdtieba: "#{snsDetailHtml}",
+            bdHome: "#{snsDetailHtml}",
+            bdIndem: "#{snsDetailHtml}",
+            bdHongbao: "#{snsDetailHtml}",
+            bdKoubei: "#{snsDetailHtml}",
+            sinawb: "#{snsDetailHtml}",
+            yidongwb: "#{snsDetailHtml}",
+            sinablog: "#{snsDetailHtml}",
+            commontpl: "#{snsDetailHtml}",
+            iqiyi: "您有&nbsp;#{snsNum}&nbsp;#{snsName},快去查看吧",
+            gaojie: "您有&nbsp;#{snsNum}&nbsp;#{snsName},快去查看吧",
+            qunar: "您有&nbsp;#{snsNum}&nbsp;#{snsName},快去查看吧"
+        };
+        var D = function(N, L) {
+            if (L == 0) {
+                N.first = " first"
+            }
+            var M = J(N, L);
+            if (L == 0) {
+                M.cell = " cell";
+                M.cellid = "id='s_tip_cell'";
+                if (!E[M.tplType]) {
+                    M.tplType = "commontpl"
+                }
+                return g.format(H.start + H.line + H.content + E[M.tplType] + H.end, M)
+            } else {
+                M.cell = "";
+                M.cellid = "";
+                if (!H[M.tplType]) {
+                    M.tplType = "commontpl"
+                }
+                return g.format(H.start + H.content + H[M.tplType] + H.end, M)
+            }
+        };
+        var J = function(R, L) {
+            var S = R
+              , M = false
+              , N = false;
+            var Q = {
+                ssq: 1,
+                pl3: 1,
+                pl5: 1,
+                dlt: 1,
+                fc3d: 1,
+                qxc: 1,
+                qlc: 1
+            };
+            if (Q[S.type] == 1) {
+                S.tplType = "lottery"
+            } else {
+                S.tplType = S.type
+            }
+            if (S.tplType == "mis" || S.tplType == "yaohao") {
+                S.tplType = "news"
+            }
+            if (S.type === "defaulttpl") {
+                S.detailHtml = '<a class="default-msg-title" href="' + decodeURIComponent(S.snsDetail[0].snsUrl) + '" target="_blank">' + S.snsDetail[0].snsName + "</a>"
+            }
+            if (S.tplType == "lottery") {
+                S.orangeNumberHtml = S.orangeNumber.split(",").join("&nbsp;");
+                S.blueNumberHtml = S.blueNumber.split(",").join("&nbsp;")
+            }
+            S.url = decodeURIComponent(S.url);
+            S.curEpisodeUrl = decodeURIComponent(S.curEpisodeUrl);
+            if (S.tplType == "lottery") {
+                S.curEpisodeUrl = S.curEpisodeUrl + "?mtdate=" + encodeURIComponent(S.curEpisode);
+                S.trendUrl = decodeURIComponent(S.trendUrl) + "?mtdate=" + encodeURIComponent(S.createTime)
+            }
+            S.sourceUrl = decodeURIComponent(S.sourceUrl);
+            if (S.type == "tv" || S.type == "comic") {
+                var P = [];
+                if (S.review.length > 0) {
+                    for (var O = S.review.length - 1; O >= 0; O--) {
+                        if (L == 0) {
+                            P.push(S.review[O].episode + "集&nbsp;")
+                        } else {
+                            P.push('<a class="item-title" href="' + decodeURIComponent(S.review[O].episodeUrl) + '" target="_blank" hidefocus>' + S.review[O].episode + "集</a>&nbsp;")
+                        }
+                    }
+                    S.reviewHtml = "&nbsp;回顾&nbsp;" + P.join("")
+                } else {
+                    S.reviewHtml = ""
+                }
+            }
+            M = S.type == "txwb" || S.type == "bdzoom" || S.type == "bdmsg" || S.type == "bdiknow" || S.type == "bdpics" || S.type == "mail126" || S.type == "mail163" || S.type == "mailyeah" || S.type == "bdtieba" || S.type == "bdHome" || S.type == "bdIndem" || S.type == "bdHongbao" || S.type == "bdKoubei" || S.type == "sinawb" || S.type == "yidongwb" || S.type == "sinablog" || S.isSns == "1";
+            N = S.type == "mail126" || S.type == "mail163" || S.type == "mailyeah";
+            if (M && S.snsDetail) {
+                var P = [];
+                if (S.snsDetail.length > 1) {
+                    P.push((N ? "您收到了" : "您有") + "&nbsp;");
+                    for (var O = S.snsDetail.length - 1; O >= 0; O--) {
+                        if (L == 0) {
+                            P.push(S.snsDetail[O].snsNum + S.snsDetail[O].snsName + "，")
+                        } else {
+                            P.push('<a class="item-title title-sns" href="' + decodeURIComponent(S.snsDetail[O].snsUrl) + '" target="_blank" hidefocus><span class="item-orange">' + S.snsDetail[O].snsNum + "</span>" + S.snsDetail[O].snsName + "</a>，")
+                        }
+                    }
+                    P.push(N ? ("立即查收</a>") : "快去查看吧")
+                } else {
+                    if (S.snsDetail.length = 1) {
+                        if (L == 0) {
+                            P.push((N ? "您收到了" : "您有") + "&nbsp;");
+                            P.push(S.snsDetail[0].snsNum + "&nbsp;" + S.snsDetail[0].snsName + "，");
+                            P.push(N ? "立即查收" : "快去查看吧")
+                        } else {
+                            P.push('<a class="item-title title-sns" target="_blank" href="' + decodeURIComponent(S.snsDetail[0].snsUrl) + '" hidefocus>' + (N ? "您收到了" : "您有") + "&nbsp;");
+                            P.push('<span class="item-orange">' + S.snsDetail[0].snsNum + "</span>&nbsp;" + S.snsDetail[0].snsName + "，");
+                            P.push((N ? "立即查收" : "快去查看吧") + "</a>")
+                        }
+                    }
+                }
+                S.snsDetailHtml = P.join("");
+                M = false
+            }
+            if (S.type == "gaojie" || S.type == "qunar" || S.type == "iqiyi") {
+                S.snsUrl = decodeURIComponent(S.snsDetail[0].snsUrl);
+                S.snsNum = S.snsDetail[0].snsNum;
+                S.snsName = S.snsDetail[0].snsName
+            }
+            if (S.type == "nba") {
+                S.name = "NBA";
+                S.url = decodeURIComponent(S.url) + "&mtdate=" + encodeURIComponent(S.createTime);
+                S.nbaMoreUrl = "http://sports.sina.com.cn/nba/?mtdate=" + encodeURIComponent(S.createTime);
+                S.nbaTopVideoUrl = "http://sports.sina.com.cn/nba/video/?mtdate=" + encodeURIComponent(S.createTime)
+            }
+            if (S.type == "tv" || S.type == "show" || S.type == "comic") {
+                S.nameUrl = decodeURIComponent(S.titleUrl)
+            } else {
+                S.nameUrl = F[S.type]
+            }
+            if (!S.nameUrl) {
+                S.nameUrl = "#"
+            }
+            S.wholeName = S.name;
+            S.name = I.substringByPx(S.name, 52, "...");
+            S.nameTitle = S.name.indexOf("...") >= 0 ? 'title="' + S.wholeName + '"' : "";
+            return S
+        };
+        var K = function(M) {
+            var L = [];
+            if (M.length > 0) {
+                g.each(M, function(N, O) {
+                    L.push(D(O))
+                })
+            }
+            return L.join("")
+        };
+        var C = function() {
+            return H.btn
+        };
+        return {
+            renderAll: K,
+            renderBtn: C
+        }
+    }
+    )();
+    var h = (function() {
+        var M = []
+          , K = []
+          , I = {};
+        var C = function(R) {
+            var Q = g.inArray(R, K);
+            if (Q < 0) {
+                K.push(Q)
+            }
+        };
+        var L = function() {
+            var Q = K.length;
+            K = [];
+            return Q
+        };
+        var J = function(Q) {
+            if (jQuery.inArray(Q, M) >= 0) {
+                return true
+            } else {
+                return false
+            }
+        };
+        var G = function(R) {
+            var Q = jQuery.inArray(R, M);
+            if (Q >= 0) {
+                M.splice(Q, 1)
+            }
+        };
+        var E = function() {
+            return M.length
+        };
+        var N = function(T, R, Q, S) {
+            var U = g("#s_msg_" + T, j)[0]
+              , V = U.getElementsByTagName("a");
+            g.each(V, function(W, X) {
+                g(X).on("click", function(Y) {
+                    B.send({
+                        clickType: g(U).attr("data-type"),
+                        title: X.title,
+                        url: X.href
+                    });
+                    g(U).remove();
+                    if (Q) {
+                        O(T, S)
+                    } else {
+                        H(T)
+                    }
+                    t.updateLayout();
+                    if (!g(X).hasClass("source-link")) {
+                        var Z = g.extend({}, R);
+                        if (Z.type == "tv" || Z.type == "comic" || Z.type == "show") {
+                            Z.type = "video"
+                        }
+                    }
+                })
+            })
+        };
+        var P = function(Q, R) {
+            var S = g.extend({}, Q);
+            S.msgType = S.type;
+            delete S.type;
+            if (R) {
+                S.clickurl = R.href
+            }
+            if (R) {
+                if (g(R).hasClass("item-name-link")) {
+                    S.msgpos = "name"
+                } else {
+                    S.msgpos = "title"
+                }
+            }
+            return S
+        };
+        var H = function(Q) {
+            if (J(Q)) {
+                G(Q);
+                t.updateTipCount();
+                if (I[Q] && I[Q].type == "yaohao") {
+                    g.ajax("/home/msg/submit/yaohao", {
+                        type: "POST",
+                        data: {
+                            cmd: "tipsexpired",
+                            _req_seqid: bds.comm.qid,
+                            sid: bds.comm.sid,
+                            bsToken: bdstoken
+                        }
+                    })
+                } else {
+                    g.ajax("/home/msg/submit/msgsaw", {
+                        type: "POST",
+                        data: {
+                            msgid: Q,
+                            _req_seqid: bds.comm.qid,
+                            sid: bds.comm.sid,
+                            bsToken: bdstoken
+                        }
+                    })
+                }
+            }
+        };
+        var D = function(Q) {
+            if (J(Q)) {
+                G(Q);
+                C(Q);
+                t.updateTipCount()
+            }
+        };
+        var O = function(Q, R) {
+            if (J(Q)) {
+                G(Q);
+                t.updateTipCount();
+                g.ajax("/home/msg/submit/msgdel", {
+                    type: "POST",
+                    data: {
+                        wid: R,
+                        _req_seqid: bds.comm.qid,
+                        sid: bds.comm.sid,
+                        bsToken: bdstoken
+                    }
+                })
+            }
+        };
+        var F = function(Q) {
+            M = [];
+            g.each(Q, function(S, R) {
+                if (R.isSns && R.webid && R.webid != "") {
+                    N(R.msgId, R, true, R.webid)
+                } else {
+                    N(R.msgId, R, false)
+                }
+                M.push(R.msgId);
+                I[R.msgId] = R
+            })
+        };
+        return {
+            bindEvents: F,
+            getAndDistoryHasClickedSns: L,
+            getNoSawCount: E
+        }
+    }
+    )();
+    var t = (function() {
+        var D = g("#imsg .s-msg-count");
+        var C = function() {
+            var H = g(".s-msg-item", j)
+              , F = H[0]
+              , G = H.length;
+            if (H.length <= 0) {
+                g("#imsg .s-msg-count").remove();
+                g(".s-msg-tips", j).remove();
+                k()
+            } else {
+                g("#imsg .s-msg-count").html("(" + H.length + ")")
+            }
+            if (n) {
+                j.hide().show()
+            }
+        };
+        var E = function(G) {
+            var F = G || h.getNoSawCount();
+            if (!D[0]) {
+                return
+            }
+            if (F <= 1) {
+                D.addClass("unshown").html(F)
+            } else {
+                if (F > 1 && F <= 9) {
+                    D.removeClass("unshown").html(F)
+                } else {
+                    if (F > 9 && F <= 99) {
+                        D.removeClass("unshown").html(F)
+                    } else {
+                        if (F > 99) {
+                            D.removeClass("unshown").html("+99")
+                        }
+                    }
+                }
+            }
+        };
+        return {
+            updateLayout: C,
+            updateTipCount: E
+        }
+    }
+    )();
+    var B = (function() {
+        var E = 0;
+        function G(I) {
+            var H = "imglog__" + (new Date()).getTime(), J = window[H] = new Image(), K;
+            I = g.extend(I, {
+                mod: "message",
+                submod: "mt_show",
+                utype: "",
+                logactid: "1500000001",
+                superver: "superplus",
+                portrait: "",
+                glogid: "",
+                type: 2011,
+                pid: 315,
+                version: "PCHome",
+                terminal: "PC",
+                qid: "",
+                sid: bds.comm.sid,
+                super_frm: "",
+                from_login: "",
+                from_reg: "",
+                query: bds.comm.query,
+                _r: Math.random()
+            });
+            K = C() + F(I);
+            J.onload = (J.onerror = function() {
+                window[H] = null
+            }
+            );
+            J.src = K;
+            J = null
+        }
+        function C() {
+            return location.protocol + "//dj" + (++E % 3) + ".baidu.com/v.gif?"
+        }
+        function F(K) {
+            var H = [], J, I = function(L) {
+                return D(L)
+            };
+            g.each(K, function(L, M) {
+                if (g.isArray(M)) {
+                    J = M.length;
+                    while (J--) {
+                        H.push(L + "=" + encodeURIComponent(M[J]))
+                    }
+                } else {
+                    H.push(L + "=" + encodeURIComponent(M))
+                }
+            });
+            return H.join("&")
+        }
+        function D(H) {
+            return String(H).replace(/[#%&+=\/\\\ \　\f\r\n\t]/g, function(I) {
+                return "%" + (256 + I.charCodeAt()).toString(16).substring(1).toUpperCase()
+            })
+        }
+        return {
+            send: G
+        }
+    }
+    )();
+    return {
+        init: s,
+        addStyle: r
+    }
+}
+)(jQuery);

@@ -1,0 +1,1115 @@
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+        typeof define === 'function' && define.amd ? define(factory) : (global.Bitauto.Render = factory());
+}(this, (function () {
+    'use strict';
+
+    var render = {};
+    var cityId = typeof currentCityId != "undefined" && currentCityId ? currentCityId : "201";
+    var defaultCarId = typeof reCsIds != "undefined" && reCsIds ? reCsIds : "3152,1765,2608,2370,2871,4418,2593,2694";
+
+    var datareplace = function (content, data) {
+        var regex = /\{([\s\S]+?)}/g;
+        content.replace(regex, function (m, code) {
+            var d = data[code];
+            if (typeof d != "undefined") {
+                content = content.replace(m, d);
+            }
+        });
+        return content;
+    }
+    var Utils = {
+        format: function (datetime, format) {
+            datetime = datetime.replace(/-/g, "/");
+            datetime = new Date(datetime);
+            var o = {
+                "M+": datetime.getMonth() + 1, //month
+                "d+": datetime.getDate(), //day
+                "h+": datetime.getHours(), //hour
+                "m+": datetime.getMinutes(), //minute
+                "s+": datetime.getSeconds(), //second
+                "q+": Math.floor((datetime.getMonth() + 3) / 3), //quarter
+                "S": datetime.getMilliseconds() //millisecond
+            }
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (datetime.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        },
+        DateDiff: function diffDays(s1, s2) {
+            s1 = s1.replace(/-/g, "/");
+            s2 = s2.replace(/-/g, "/");
+            s1 = new Date(s1);
+            s2 = new Date(s2);
+            var days = s2.getTime() - s1.getTime();
+            var time = parseInt(days / (1000 * 60 * 60 * 24));
+            return time;
+        },
+        openwin: function (url) {
+            var a = document.createElement("a");
+            a.setAttribute("href", url);
+            a.setAttribute("target", "_blank");
+            document.body.appendChild(a);
+            a.click();
+        },
+        getCookie: function (name) {
+            var ck = document.cookie;
+            var exp1 = new RegExp(name + "=.*?(?=;|$)");
+            var mch = ck.match(exp1);
+            return mch ? unescape(mch[0].substring(name.length + 1)) : null;
+        }
+    };
+    render.Utils = Utils;
+
+    //å¯èƒ½è¦ä¹°
+    render.maybugRepeat = function (v) {
+        var opt = {
+            url: "//www.bitauto.com/indexWeb2/GetHotSellJsonData.aspx?v=1",
+            dataType: "jsonp",
+            cache: true,
+            jsonpCallback: "cbSell",
+            data: { cityId: cityId, viewCsIds: v, defCsIds: defaultCarId, top: 30 },
+            onSuccess: function (json) {
+                if (json && json.length > 0) {
+                    var html = [];
+                    var num = json.length;
+                    var ychArry = [], jxstmArry = [], jjArry = [], bwArry = [];
+                    for (var i = 0; i < num; i++) {
+                        var d = json[i];
+                        d.Title = d.Color + " " + d.Price;
+                        switch (d.BusinessId) {
+                            case "11":// æ˜“è½¦æƒ ï¼š11, 
+                                d.LinkUrl = "http://mai.bitauto.com/?rfpa_tracker=1_180&externalrfpa_tracker=17_28_1_451_3&cta_p=sy6_cu13_pc1_mt180";
+                                //"http://mai.bitauto.com/?ref=symb1&rfpa_tracker=1_180&leads_source=p001016";
+                                d.Url = d.Url + '?ref=symb2&rfpa_tracker=1_181&leads_source=p001016';
+                                ychArry.push(d);
+                                break;
+                            case "14"://ç»é”€å•†ç‰¹å–ï¼š14
+                                d.LinkUrl = "http://temai.yiche.com/?leads_source=p001017";
+                                d.Url = d.Url + '?leads_source=p001017';
+                                jxstmArry.push(d);
+                                break;
+                            case "jiangjia":// é™ä»·ï¼šjiangjia
+                                var price = d.Price.replace("æœ€å¤šç›´é™ ", "").replace("ä¸‡", "");
+                                d.LinkUrl = "http://jiangjia.bitauto.com/";
+                                if (price && price > 0) {
+                                    jjArry.push(d);
+                                }
+                                if (price && price == 0) {
+                                    d.Title = d.Color + "é™ä»·";
+                                    bwArry.push(d);
+                                }
+                                break;
+                        }
+                    }
+
+                    var htmlCount = 0;
+                    var totalCount = 6;//æ˜¾ç¤ºæ€»æ¡æ•°
+                    if (cityId == 201) {
+                        totalCount = 4;//åŒ—äº¬æ˜¾ç¤º4æ¡
+                        $("#yjpc_jl").show();
+                    }
+                    if (ychArry.length > 1) {
+                        var ychhtml = '';
+                        var zmCount = 0;
+                        for (var i = 0; i < ychArry.length; i++) {
+                            var d = ychArry[i];
+                            if ((i + 1) % 2 == 0) {
+                                var scount = 28 - zmCount;
+                                ychhtml += '<a target="_blank" title="' + d.Title + '" href="' + d.Url + '">' + d.Title.substr(0, scount) + '</a></li>';
+                                html.push(ychhtml);
+                                ychhtml = "";
+                                scount = 0;
+                                htmlCount++;
+                            } else {
+                                zmCount = d.ShortTitle.length + d.Title.length;
+                                ychhtml += '<li><a target="_blank" title="' + d.ShortTitle + '" href="' + d.LinkUrl + '">' + d.ShortTitle + '</a><a target="_blank" title="' + d.Title + '" href="' + d.Url + '">' + d.Title + '</a>';
+                            }
+                        }
+                    }
+
+                    if (jjArry.length > 1 && htmlCount < totalCount) {
+                        var jjhtml = '';
+                        var zmCount = 0;
+                        for (var i = 0; i < jjArry.length; i++) {
+                            var d = jjArry[i];
+                            if (htmlCount < totalCount) {
+                                if ((i + 1) % 2 == 0) {
+                                    var scount = 30 - zmCount;
+                                    jjhtml += '<a target="_blank" title="' + d.Title + '" href="' + d.Url + '">' + d.Title.substr(0, scount) + '</a></li>';
+                                    html.push(jjhtml);
+                                    jjhtml = "";
+                                    scount = 0;
+                                    htmlCount++;
+                                } else {
+                                    zmCount = d.ShortTitle.length + d.Title.length;
+                                    jjhtml += '<li><a target="_blank" title="' + d.ShortTitle + '" href="' + d.LinkUrl + '">' + d.ShortTitle + '</a><a target="_blank" title="' + d.Title + '" href="' + d.Url + '">' + d.Title + '</a>';
+                                }
+                            }
+                        }
+                    }
+                    if (ychArry.length == 0 && jxstmArry.length == 0 && jjArry.length == 0 && bwArry.length > 0) {
+                        var bwhtml = '';
+                        var zmCount = 0;
+                        for (var i = 0; i < bwArry.length && htmlCount < totalCount; i++) {
+                            if (htmlCount < totalCount) {
+                                var d = bwArry[i];
+
+                                if ((i + 1) % 2 == 0) {
+                                    var scount = 28 - zmCount;
+                                    bwhtml += '<a target="_blank" title="' + d.Title + '" href="' + d.Url + '">' + d.Title.substr(0, scount) + '</a></li>';
+                                    html.push(bwhtml);
+                                    bwhtml = "";
+                                    scount = 0;
+                                    htmlCount++;
+                                } else {
+                                    zmCount = d.ShortTitle.length + d.Title.length;
+                                    bwhtml += '<li><a target="_blank" title="' + d.ShortTitle + '" href="' + d.LinkUrl + '">' + d.ShortTitle + '</a><a target="_blank" title="' + d.Title + '" href="' + d.Url + '">' + d.Title + '</a>';
+                                }
+                            }
+                        }
+                    }
+                    if (html.length > 0) {
+                        $("#maybuy2").html(html.join(""));
+                    }
+                    Bglog_InitPostLog();
+                }
+            },
+            onError: function () {
+               // $("#maybuy2").html('');
+            }
+        };
+        $.ajax({
+            url: opt.url,
+            dataType: opt.dataType,
+            cache: opt.cache,
+            jsonpCallback: opt.jsonpCallback,
+            data: opt.data,
+            success: opt.onSuccess,
+            error: opt.onError
+        })
+    }
+
+    //é™æ—¶æŠ¢è´­
+    render.flashsale = function () {
+        var jk_u = "//mh5.yiche.com/temai2/GetAdGoosInfo.ashx?cid=" + cityId;
+        var u = [jk_u, "//api.mai.yiche.com/cargift/api/Interface/GetInfo?name=yichePCshouyetejiache&key=cbb11ed87dc8a95d81400c7f33c7c171"];
+        var opt = {
+            jk_success: function (d) {
+                if (d && d.ImagePath) {
+                    var tmpl = $("#xianshitmpl").html();
+                    var h = tmpl.replace("{Label}", d.TopicInfo).replace("{ImageSrc}", d.ImagePath).replace(/\{Url}/g, d.Url).replace(/\{CarName}/g, d.CSName);
+                    var jktmpl = $("#xianshi_jktmpl").html();
+                    var moreurl = typeof currentCityEName != "undefined" ? "http://temai.yiche.com/c-" + currentCityEName + "/" : "http://temai.yiche.com/";
+                    var jk_Content = jktmpl.replace(/\{CarName}/g, d.CSName).replace(/\{Url}/g, d.Url).replace("{PromotionPrice}", d.PromotionPrice).replace("{DealerName}", d.DealerName).replace("{MoreUrl}", moreurl);
+                    h = h.replace("{Discount}", "").replace("{Price}", d.MinPrice + "<i> ä¸‡èµ·</i>").replace("{Content}", jk_Content);
+                    var temphtml = $("#xianshi").html();
+                    if ($("#xianshi li:eq(0)").length > 0) {
+                        $("#xianshi li").last().before(h);
+                    } else {
+                        $("#xianshi").html(h + temphtml);
+                    }
+                }
+            },
+            ych_success: function (json, textStatus, req) {
+                if (json && json.length > 0) {
+                    var d = json[0];
+                    var tmpl = $("#xianshitmpl").html();
+                    var start = Utils.format(d.StartDate, "MMæœˆddæ—¥");
+                    var end = Utils.format(d.EndDate, "MMæœˆddæ—¥");
+                    var startArry = [];
+                    for (var i = 0; i < start.length; i++) {
+                        if (!isNaN(start[i])) {
+                            startArry.push('<i class="h">' + start[i] + '</i> ');
+                        } else {
+                            startArry.push('<i class="t2">' + start[i] + '</i> ');
+                        }
+                    }
+                    var endArry = [];
+                    for (var i = 0; i < end.length; i++) {
+                        if (!isNaN(end[i])) {
+                            endArry.push('<i class="h">' + end[i] + '</i> ');
+                        } else {
+                            endArry.push('<i class="t2">' + end[i] + '</i> ');
+                        }
+                    }
+                    var dayStr = '<i class="t1">æ´»åŠ¨æ—¶é—´ï¼š</i>' + startArry.join('') + "<i class='gap'>-</i> " + endArry.join('');
+                    var h = tmpl.replace("{Label}", dayStr).replace("{ImageSrc}", d.ImageUrl).replace(/\{Url}/g, d.CarUrl).replace(/\{CarName}/g, d.CarName);
+                    var price = d.AnniuWenan;
+                    var ychtmpl = $("#xianshi_ychtmpl").html();
+                    var ych_Content = ychtmpl.replace(/\{CarName}/g, d.CarName).replace(/\{Url}/g, d.CarUrl).replace("{Des}", d.BuchongWenan1).replace("{BuchongWenan2}", d.BuchongWenan2).replace("{MoreUrl}", d.gengduochexin);
+                    h = h.replace("{Discount}", d.YouhuiWenan).replace("{Price}", price).replace("{Content}", ych_Content);
+                    var temphtml = $("#xianshi").html();
+                    if ($("#xianshi li:eq(0)").length > 0) {
+                        $("#xianshi li:eq(0)").before(h);
+                    } else {
+                        $("#xianshi").html(temphtml + h);
+                    }
+                }
+            },
+            onError: function () { },
+            onComplete: function () {
+                $("#slideMeiriTeJia").yicheFoucs({
+                    fadeIn: true
+                });
+                Bglog_InitPostLog();
+            }
+        };
+        var s = [opt.jk_success, opt.ych_success];
+        var s = [opt.jk_success, opt.ych_success];
+        $.ajax({
+            url: u[0],
+            cache: false,
+            dataType: "jsonp",
+            success: s[0],
+            error: opt.onError,
+            complete: opt.onComplete
+        }).done(function () {
+            $.ajax({
+                url: u[1],
+                cache: false,
+                dataType: "jsonp",
+                success: s[1],
+                error: opt.onError,
+                complete: opt.onComplete
+            })
+        });
+    }
+
+    //çŒœä½ å–œæ¬¢
+    render.guess = function (opt) {
+        opt = $.extend(true, {
+            dataType: "jsonp",
+            cache: true,
+            url: "//www.bitauto.com/indexWeb2/GetJsonData.aspx",
+            data: { cityId: cityId, defCsIds: defaultCarId, top: 9, v: "news" },
+            jsonpCallback: "cbCars",
+            onSuccess: function (json) {
+                if (json && json.length > 0) {
+                    var html = {};
+                    var tmpl = $("#gusstmpl").html();
+                    var tagtmpl = $("#tagtmpl").html();
+                    var dn = json.length;
+                    for (var i = 0; i < dn; i++) {
+                        var d = json[i];
+                        d.CsSpell = "http://car.bitauto.com/" + d.CsSpell + "/";
+                        if (d.CsJiangJiaMaxPrice != "" && d.CsJiangJiaMaxPrice > 0) {
+                            var csJiangJiaMaxPrice = "http://jiangjia.bitauto.com/nb" + d.CsId + "/?leads_source=p001005";
+                            d.CsJiangJiaMaxPrice = '<a href="' + csJiangJiaMaxPrice + '" class="price-reduction">' + d.CsJiangJiaMaxPrice + "ä¸‡" + '</a>';
+                        } else {
+                            d.CsJiangJiaMaxPrice = "";
+                        }
+                        if (d.CsRefPrice == "æš‚æ— ") {
+                            d.CsRefPrice = "æš‚æ— æŠ¥ä»·";
+                        }
+                        var taghtml = [];
+                        if (d.Button && d.Button.length > 0) {
+                            for (var n = 0; n < d.Button.length; n++) {
+                                var tempdata = d.Button[n];
+                                if (tempdata.BusinessId != "3" && tempdata.BusinessId != "1") {
+                                    if (tempdata.BusinessId == "4") {
+                                        tempdata.Url = tempdata.Url + "?from=1686315&leads_source=p001004";
+                                    }
+                                    if (tempdata.BusinessId == "2") {
+                                        tempdata.Url = tempdata.Url + "&from=yc10&leads_source=p001003";
+                                    }
+                                    if (tempdata.BusinessId == "0") {
+                                        tempdata.Url = tempdata.Url + "?leads_source=p001001";
+                                    }
+                                    var tempStr = datareplace(tagtmpl, tempdata);
+                                    taghtml.push(tempStr);
+                                }
+                            }
+                        }
+                        d.Tag = taghtml.join("");
+                        var h = datareplace(tmpl, d);
+                        var num = parseInt(i / 3);
+                        if (!html["arry" + num]) {
+                            html["arry" + num] = [];
+                        }
+                        html["arry" + num].push(h);
+                    }
+
+                    for (var item in html) {
+                        if (item && html[item]) {
+                            var h = '<li style="width: 750px;"><div class="row">' + html[item].join(" ") + '</div></li>';
+                            $("#guess").append(h);
+                        }
+                    }
+                    $("#slideTest14").yicheFoucs();
+                    Bglog_InitPostLog();
+                }
+            },
+            onError: function () { }
+        }, opt || {});
+
+        $.ajax({
+            url: opt.url,
+            cache: opt.cache,
+            dataType: opt.dataType,
+            jsonpCallback: opt.jsonpCallback,
+            data: opt.data,
+            success: opt.onSuccess,
+            error: opt.onError
+        })
+    };
+
+
+    //ä¼˜æƒ è´­è½¦
+    var gc = function () {
+        var cityname = typeof currentCityShortName != "undefined" ? currentCityShortName : "";
+        $("#reducebuy").html(cityname + "<i class='gapdot'></i>ä¼˜æƒ è´­è½¦");
+        var ych_u = "//api.mai.yiche.com/cargift/api/Interface/GetInfo?name=yichePCshouyetejiache170104&key=cbb11ed87dc8a95d81400c7f33c7c171";
+        var yx_u = "//carapi.daikuan.com/api/YiChePreferentialPurchase/PreferentialPurchase?cityId=" + cityId + "&count=3";
+        var opt = {
+            onSuccess_ych: function (json) {
+                if (json) {
+                    var html = {};
+                    var tmpl = $("#ychtmpl").html();
+                    var n = json.length;
+                    for (var i = 0; i < n; i++) {
+                        var h = datareplace(tmpl, json[i]);
+                        switch (json[i].Category) {
+                            case "1":
+                                {
+                                    if (!html["ych" + json[i].Category]) {
+                                        html["ych" + json[i].Category] = [];
+                                    }
+                                    html["ych" + json[i].Category].push(h);
+                                }
+                                break;
+                            default:
+                                {
+                                    if (!html["ych" + json[i].Category]) {
+                                        html["ych" + json[i].Category] = [];
+                                    }
+                                    if (html["ych" + json[i].Category].length == 0) {
+                                        html["ych" + json[i].Category].push(h);
+                                    }
+                                }
+                        }
+                    }
+                    for (var item in html) {
+                        if (item && html[item]) {
+                            $("#" + item).html(html[item].join(" "));
+                        }
+                    }
+                    $(".slide-city-reducebuy").yicheFoucs();
+                    Bglog_InitPostLog();
+                }
+            },
+            onSuccess_yx: function (json) {
+                if (json && json.length > 0) {
+                    var html = {};
+                    var tmpl = $("#yxtmpl").html();
+                    var yxdata = json;
+                    var n = yxdata.length;
+                    for (var i = 0; i < n; i++) {
+                        var d = yxdata[i];
+                        var content = tmpl.replace("{MonthlyPayment}", d.MonthlyPayment).replace("{LoanPeriod}", d.LoanPeriod);
+                        var h = datareplace(content, d);
+                        if (!html["yx" + d.Category]) {
+                            html["yx" + d.Category] = [];
+                        }
+                        if (html["yx" + d.Category].length < 3) {
+                            html["yx" + d.Category].push(h);
+                        }
+                    }
+                    for (var item in html) {
+                        if (item && html[item]) {
+                            var d = html[item];
+                            for (var i = 0; i < d.length; i++) {
+                                $("#" + item + "> div:eq(" + i + ")").html(html[item][i]);
+                            }
+                        }
+                    }
+                    Bglog_InitPostLog();
+                }
+            },
+            onError_ych: function (xhr, type) {
+                console.info("ych:" + type);
+            },
+            onError_yx: function (xhr, type) {
+                console.info("yx:" + type);
+            }
+        };
+        var url = [yx_u, ych_u];
+        var callback = [opt.onSuccess_yx, opt.onSuccess_ych];
+        var onError = [opt.onError_yx, opt.onError_ych];
+        for (var i = 0; i < 2; i++) {
+            $.ajax({
+                url: url[i],
+                dataType: "jsonp",
+                cache: false,
+                jsonpCallback: "ych_yhgc" + i,
+                success: callback[i],
+                error: onError[i]
+            })
+        }
+    }
+    render.guwen = function (v) {
+        var u = '//cdn.partner.bitauto.com/SalesConsultantv2/getH5SalesConsultant.ashx?action=getepsclistbycscityV1&cityId=' + cityId + '&csIds=' + v;
+        var opt = {
+            onSuccess: function (data) {
+                if (data && data.EPSCList.length > 0) {
+                    if (data.HasMoreLink && data.HasMoreLink == 1) {
+                        $("#gwmoreurl").attr("href", data.MoreUrl);
+                    } else {
+                        $("#gwmoreurl").remove();
+                    }
+                    var tmpl = $("#jxsgwtmpl").html();
+                    var html = [];
+                    var count = data.EPSCList.length >= 4 ? 4 : data.EPSCList.length;
+                    for (var i = 0; i < count; i++) {
+                        var d = data.EPSCList[i];
+                        if (d.VendorBizMode == 2) {
+                            d.VendorBizMode = "4Såº—";
+                            d.VendorName = "-" + d.VendorName;
+                        } else {
+                            d.VendorBizMode = "";
+                        }
+                        d.MainBrand = d.MainBrand ? d.MainBrand.split(',')[0] : "";
+                        var h = datareplace(tmpl, d);
+                        html.push(h);
+                    }
+                    $("#gw").html(html.join(""));
+                } else {
+                    var h = $("#gwtbtmml").html();
+                    $(".buycar-adviser").html(h);
+                }
+                Bglog_InitPostLog();
+            },
+            onError: function (xhr, type) {
+                var h = $("#gwtbtmml").html();
+                $(".buycar-adviser").html(h);
+            }
+        };
+        $.ajax({
+            url: u,
+            dataType: "jsonp",
+            jsonpCallback: "guwen",
+            success: opt.onSuccess,
+            error: opt.onError
+        })
+    }
+    render.buycar = function () {
+        gc();
+        hmc_pxjk();//å¹³è¡Œè¿›å£è½¦
+    }
+    //æƒ ä¹°è½¦å¹³è¡Œè¿›å£è½¦
+    var hmc_pxjk = function () {
+        var hmc_u = "//api.mai.yiche.com/cargift/api/Interface/GetInfo?name=yichePCshouyeyouhuiPX170814&key=cbb11ed87dc8a95d81400c7f33c7c171";
+        $.ajax({
+            url: hmc_u,
+            dataType: "jsonp",
+            jsonpCallback: "pxjkc_callback",
+            cache: false,
+            success: function (data) {
+
+                if (data.length >= 4) {
+                    var tmpl = $("#hmcpxtmpl").html();
+                    $("#hmc_pxjk_li").show();
+                    $("#ych8").html(tmpl.replace("{ImageUrl}", data[0].Tupiandizhi)
+                        .replace(/{Url}/g, data[0].lianjie)
+                        .replace(/{CarName}/g, data[0].Carname)
+                        .replace("{Showyouhui}", data[0].Biaoti)
+                        .replace("{Anniu}", data[0].Anniu)
+                        .replace("{Buchong}", data[0].Wenan)
+                    );
+                    var content = "";
+                    for (var i = 1; i < data.length; i++) {
+                        var tmplItem = $("#hmctmpl").html();
+                        content += tmplItem.replace(/{ImageUrl}/g, data[i].Tupiandizhi)
+                            .replace(/{Url}/g, data[i].lianjie)
+                            .replace(/{CarName}/g, data[i].Carname)
+                            .replace("{Buchong}", data[i].Wenan);
+                    }
+                    $("#yx8").html(content);
+                }
+            }
+        });
+    }
+    //è½¦å¸‚
+    render.cheshi = function (viewId) {
+        //  $(".arrow-down:eq(1)").html("åŒºåŽ¿è½¦å¸‚").attr("href", "javascript:;").attr("target", "");
+        //  $(".arrow-down:eq(2)").html("é™„è¿‘è½¦å¸‚").attr("target", "");
+        var newcarIds;
+        if (typeof viewId != "undefined" && viewId) {
+            newcarIds = viewId + "," + defaultCarId;
+        } else {
+            newcarIds = defaultCarId;
+            viewId = defaultCarId;
+        }
+        if (newcarIds) {
+            $.ajax({
+                url: "//mh5.yiche.com/interested/Handler/GetCarRecommend.ashx",
+                data: { cityId: currentCityId, serialIds: newcarIds, getCount: 10 },
+                cache: true,
+                dataType: "jsonp",
+                scriptCharset: "utf-8",
+                success: function (data) {
+                    var tmpl = $('#cheshi_cnxh').html();
+                    var lazy = lazyT.tmpl(tmpl);
+                    var h = lazy(data);
+                    h = h.replace(/\/30\//ig, "/55/").replace(/_30.png/ig, "_55.png");
+                    $('#cheshiData_0').html(h);
+                    Bglog_InitPostLog();
+                }
+            });
+            $("#ep_union_141").attr("serialid", viewId);
+            $("#ep_union_142").attr("serialid", viewId);
+            $("#ep_union_143").attr("serialid", viewId);
+            bitLoadScript("//image.bitautoimg.com/dealer/union/script/ads4ycindex.js?v=201502121", null, "utf-8");
+            var callback = function () {
+                var priceHtml = "";
+                for (var i = 0; i < YicheEP_PriceData.length; i++) {
+                    var html = YicheEP_PriceData[i];
+                    priceHtml += html;
+                }
+                priceHtml = priceHtml.replace(/src="([^"]+)"/ig, "data-img-src=\"$1\" src=\"//image.bitautoimg.com/uimg/index120401/images/picholder.gif\"");
+                $("#cheshiPriceRangeData").html(priceHtml);
+                Bglog_InitPostLog();
+            }
+            bitLoadScript("//www.bitauto.com/include/debris/jiangjia/sort2014/price2016V1/" + currentCityId + ".js", callback, "utf-8");
+        }
+    }
+
+    //äºŒæ‰‹è½¦
+    render.taoche = function () {
+        var opt = {
+            u: "",
+            method: "get",
+            cache: false,
+            dataType: "jsonp",
+            data: { cityId: cityId, count: 6 },
+            onSuccess: function () { },
+            onComplete: function () { Bglog_InitPostLog(); },
+            onError: function () { }
+        }
+        var guessu = "//yicheapi.taoche.cn/CarSourceInterface/ForJson/CarListForYiCheIndexLiked.ashx?cityId=" + cityId + "&count=6";
+        var guessopt = $.extend({}, opt, {
+            u: guessu,
+            onSuccess: function (data) {
+                var tmpl = $('#taoche_cnxh').html();
+                var lazy = lazyT.tmpl(tmpl);
+                var h = lazy(data.CarSourceList);
+                $('#TaoCheData_0').html(h);
+                $("#TaoCheData_0").loadImages();
+                Bglog_InitPostLog();
+            }
+        });
+
+        var opts = [guessopt];
+        for (var i = 0; i < 1; i++) {
+            var d = opts[i];
+            $.ajax({
+                url: d.u,
+                dataType: d.dataType,
+                success: d.onSuccess,
+                complete: d.onComplete,
+                cache: true,
+                jsonpCallback: 'taoche_callback_' + i,
+                error: d.onError
+            })
+        }
+        $("#TaoCheData_2").html($("#TaoCheData_2_tmpl").html());
+        $("#TaoCheData_3").html($("#TaoCheData_3_tmpl").html());
+        $("#TaoCheData_4").html($("#TaoCheData_4_tmpl").html());
+        $("#TaoCheData_5").html($("#TaoCheData_5_tmpl").html());
+        Bglog_InitPostLog();
+
+        bitLoadScript("//ajax.taoche.cn/js/share_pc/ucarselectspell.2016.6.min.js", function () {
+            var options = {
+                clickElementId: '.brand-form > span[data-use="showucarselect"], .brand-form > a[data-use="showucarselect"]',
+                level: 2,
+                callback: {
+                    "mastercallback": function () {
+                        var masterSpell = arguments[0][0];
+                        var masterName = arguments[0][1];
+                        var currentCitySpell = currentCityEName;
+                        $('.brand-form > span[data-use="showucarselect"]').html(masterName);
+                        if (masterSpell != '') {
+                            $("#btn_findUcar").attr("href", "http://rewrite.daikuan.com/?returnurl=" + currentCitySpell + ".taoche.com/" + masterSpell + "/?from=1686343").attr("target", "_blank");
+                        }
+                        else {
+                            $("#btn_findUcar").attr("href", "http://rewrite.daikuan.com/?returnurl=" + currentCitySpell + ".taoche.com/all/?from=1686343").attr("target", "_blank");
+                        }
+                    },
+                    "serialcallback": function () {
+                        var serialSpell = arguments[0][0] || '';
+                        var serialName = arguments[0][1];
+                        var masterSpell = arguments[0][2] || '';
+                        var masterName = arguments[0][3];
+                        var currentCitySpell = currentCityEName;
+                        $('.brand-form > span[data-use="showucarselect"]').html(serialName);
+                        if (serialSpell != '')
+                            $("#btn_findUcar").attr("href", "http://rewrite.daikuan.com/?returnurl=" + currentCitySpell + ".taoche.com/" + serialSpell + "/?from=1686343").attr("target", "_blank");
+                        else if (masterSpell != '') {
+                            $("#btn_findUcar").attr("href", "http://rewrite.daikuan.com/?returnurl=" + currentCitySpell + ".taoche.com/" + masterSpell + "/?from=1686343").attr("target", "_blank");
+                        }
+                        else {
+                            $("#btn_findUcar").attr("href", "http://rewrite.daikuan.com/?returnurl=" + currentCitySpell + ".taoche.com/all/?from=1686343").attr("target", "_blank");
+                        }
+                    },
+                    "cartypecallback": function () {
+                        var carId = arguments[0][0];
+                        var carName = arguments[0][1];
+                        var masterName = arguments[0][2];
+                        var serialName = arguments[0][3];
+                        $('.brand-form > span[data-use="showucarselect"]').html(serialName + ' ' + carName);
+                    }
+                }
+            };
+            $('.brand-form[data-use="ucarselect"]').addUcarSelectSpell(options);
+        })
+    }
+
+    //æŽ¨èæ•°æ®
+    render.recommend = function () {
+        var userkey = Utils.getCookie("UserGuid");
+        var tmpl = '<li><a target="_blank" DataRid="{Rid}" DataEngine="{EngineType}" DataType="{DataType}" DataScore="{Score}" DataPosition="{Num}" cysRecommend="1" href="{Url}" title="{Title}" >{Title}</a></li>';
+        var defaultOpt = {
+            url: "",
+            dataType: "jsonp",
+            jsonpCallback: "recommendlist",
+            cache: true,
+            data: {},
+            onSuccess: null,
+            compositeData: function (data) {
+                var tempdata = {};
+                tempdata.Url = data.url;
+                tempdata.Title = data.title;
+                tempdata.Num = data.Num;
+                tempdata.Rid = data.newsId;
+                tempdata.EngineType = "";
+                tempdata.DataType = 1;
+                tempdata.Score = 0;
+                var tempStr = datareplace(tmpl, tempdata);
+                return tempStr;
+            },
+            onError: function () {
+                $.ajax({
+                    url: "//www.bitauto.com/include/debris/ranks/Top10HomePageHotNews.json?callback=",
+                    dataType: "jsonp",
+                    jsonpCallback: "callback",
+                    success: function (result) {
+                        if (result && result.data && result.total) {
+                            var html = [];
+                            var loopNum = result.data.length > 8 ? 8 : result.data.length;
+                            for (var i = 0; i < loopNum; i++) {
+                                var d = result.data[i];
+                                d.Num = (i + 1);
+                                var tempStr = defaultOpt.compositeData(d);
+                                html.push(tempStr);
+                            }
+                            $("#recommend").html(html.join(''));
+                            Bglog_InitPostLog();
+                        }
+                    }
+                });
+            }
+        };
+
+        if (userkey) {
+            var url_ids = "//api.cheyisou.com/Recommend/InfoRecom.ashx?userkey=" + userkey + "&type=1&n=8";
+            var url_data = "//api.admin.bitauto.com/news3/v1/news/get?newsids=";
+            var monitorData = {};
+            var newsOpt = $.extend({}, defaultOpt, {
+                url: url_ids, onSuccess: function (data) {
+                    if (data && data.length > 0) {
+                        var newsIds = [];
+                        var nLength = data.length;
+                        for (var i = 0; i < nLength; i++) {
+                            var nd = data[i];
+                            newsIds.push(nd.Rid);
+                            monitorData[nd.Rid] = nd;
+                        }
+                        var tempIds = newsIds.join(',');
+
+                        var dataOpt = $.extend({}, defaultOpt, {
+                            url: url_data + tempIds,
+                            onSuccess: function (result) {
+                                var html = [];
+                                if (result) {
+                                    for (var i = 0; i < result.RecordCount; i++) {
+                                        var d = result.News[i];
+                                        var tempdata = {};
+                                        tempdata.Url = d.url;
+                                        tempdata.Title = d.title;
+                                        tempdata.Date = Utils.format(d.publishTime, "MM-dd");
+                                        tempdata.Num = (i + 1);
+                                        tempdata = $.extend(tempdata, monitorData[d.newsId]);
+                                        var tempStr = datareplace(tmpl, tempdata);
+                                        html.push(tempStr);
+                                    }
+                                    if (html.length < 8) {
+                                        $.ajax({
+                                            url: "//www.bitauto.com/include/debris/ranks/Top10HomePageHotNews.json?callback=",
+                                            dataType: "jsonp",
+                                            jsonpCallback: "callback",
+                                            success: function (defaultData) {
+                                                if (defaultData && defaultData.data) {
+                                                    var h_Num = 8 - html.length;
+                                                    for (var i = 0; i < h_Num; i++) {
+                                                        var d = defaultData.data.shift();
+                                                        var tempStr = defaultOpt.compositeData(d);
+                                                        html.push(tempStr);
+                                                    }
+                                                }
+                                                $("#recommend").html(html.join(''));
+                                                Bglog_InitPostLog();
+                                            }
+                                        })
+                                    } else {
+                                        $("#recommend").html(html.join(''));
+                                        Bglog_InitPostLog();
+                                    }
+                                } else {
+                                    defaultOpt.onError();
+                                }
+                            }
+                        });
+                        $.ajax({
+                            url: dataOpt.url,
+                            cache: dataOpt.cache,
+                            dataType: dataOpt.dataType,
+                            jsonpCallback: dataOpt.jsonpCallback,
+                            success: dataOpt.onSuccess,
+                            error: dataOpt.onError
+                        })
+                    } else {
+                        defaultOpt.onError();
+                    }
+                }
+            });
+            $.ajax({
+                url: newsOpt.url,
+                cache: newsOpt.cache,
+                dataType: newsOpt.dataType,
+                jsonpCallback: newsOpt.jsonpCallback,
+                success: newsOpt.onSuccess,
+                error: newsOpt.onError
+            })
+        } else {
+            defaultOpt.onError();
+        }
+    }
+    render.video = function () {
+
+        var videoczUrl = "//api.admin.bitauto.com/videoforum/CustomVideo/GetVVFDatasByBlockUrl";
+
+        function loadVideoCZ() {
+            var deferred = $.Deferred();
+
+            return $.ajax({
+                url: videoczUrl + "?url=http://www.bitauto.com/include/pd/2016/index/00001/201804_sy_video_tj_json_Manual.shtml",
+                type: "get",
+                jsonpCallback: "initvideoCallback",
+                dataType: 'jsonp',
+                traditional: true,
+                data: {
+                    appKey: "02372b7852f44487b55467f121ed0251"
+                }
+            });
+        }
+        $.when(loadVideoCZ()).done(function (result) {
+            if (result.code == 0) {
+                initVideo(result);
+            }
+        });;
+        function initVideo(data) {
+
+            if (data.code == 0) {
+                var result = data.data;
+                if (result && result.length > 0) {
+                    var htmlStr = '<div class="slide-box-bg"> <ul class="slide-box-big">';
+                    var userids = '';
+                    var num = 0;
+                    for (var i = 0; i < result.length; i++) {
+                        if (num < 9) {
+                            var item = result[i];
+                            if (i == 0 || i == 3) {
+                                htmlStr += ' <li> <div class="row"  data-channelid="1.61.1556">';
+                            }
+                            htmlStr += '<div class="col-xs-4" >'
+                                + '<div class="img-layout img-layout-270152 ">'
+                                + '<a target="_blank" href="' + item.url + '" >'
+                                + ' <div class="img"><img src="' + item.coverImageUrl + '" alt="' + item.title + '">'
+                                + ' </div> <div class="txt">'
+                                + ' <p>' + item.title + '</p></div>'
+                                + ' </a> <a target="_blank" href="http://i.yiche.com/u' + item.userId + '/!video/publish/"  >'
+                                + '  <div class="who" data-userid="' + item.userId + '">'
+                                + '<img src="' + item.avatar.replace("_120_", "_30_").replace("/newavatar/120.jpg", "/newavatar/30.jpg") + '">' + item.userName + '</div>'
+                                + '</a>   </div> </div>';
+                            if (i == 2) {
+                                htmlStr += $("#div_shipin456_ad").html();
+                            }
+                            if (i == 2 || i == 8)
+                                htmlStr += '</div></li>';
+
+                            num++;
+                        } else {
+                            break;
+                        }
+                    }
+                    htmlStr += ' </ul></div> ';
+
+                    $("#slideVideo").html(htmlStr);
+                    $("#slideVideo").yicheFoucs();
+                    Bglog_InitPostLog();
+                }
+            }
+        }
+    }
+
+    //å£ç¢‘åæ§½
+    render.koubeiTucao = function (viewId) {
+
+
+        var serialIds = "";
+        if (viewId.length > 0)
+            serialIds = viewId + ",";
+        serialIds += reCsIds;
+        $.ajax({
+            url: "//koubeiapi.yiche.com/api/Topic/GetTopicBadContentBySerialIds",
+            data: { serialIds: serialIds },
+            cache: true,
+            dataType: "jsonp",
+            jsonpCallback: "initKoubei",
+            scriptCharset: "utf-8",
+            success: function (data) {
+
+                if (data != null) {
+                    var koubei_tc_html = "";
+                    var koubei_tc_list_html = "";
+                    var len = data.length;
+                    if (data.length > 6)
+                        len = 6
+                    for (var i = 0; i < len; i++) {
+                        if (i < 4)
+                            koubei_tc_html += "<a href=\"" + data[i].TopicList[0].PCUrl + "\" target=\"_blank\">" + data[i].SerialShowName + data[i].TopicCount + "åæ§½</a>";
+                        if (i == 0 || i == 2 || i == 4)
+                            koubei_tc_list_html += "<li>";
+
+                        koubei_tc_list_html += "<div class=\"complaintsList\">"
+                            + " <div class=\"complaintsList-tit\"><a href=\"" + data[i].TopicList[0].PCUrl + "\" target=\"_blank\">" + data[i].SerialShowName + "</a></div>"
+                            + "<div class=\"complaintsLis-text\"><a href=\"" + data[i].TopicList[0].PCDetailUrl + "\" target=\"_blank\">" + data[i].TopicList[0].Content + "</a></div>"
+                            + " <div class=\"complaintsLi-name\">"
+                            + " <a href=\"http://i.yiche.com/u" + data[i].TopicList[0].UserId + "/!koubei/topic/\" target=\"_blank\"><div class=\"complaintsLi-pic\">"
+                            + "<img src=\"" + data[i].TopicList[0].UserPic + "\" ></div>"
+                            + " <i>" + data[i].TopicList[0].UserShowName + "</i> </a>"
+                            + "</div> </div>";
+                        if (i == 1 || i == 3 || i == 5)
+                            koubei_tc_list_html += "</li>";
+                    }
+
+                    $("#koubei_tc").html(koubei_tc_html);
+                    $("#koubei_tc_list").html(koubei_tc_list_html);
+                    $("#makeComplaints").yicheFoucs();
+                    Bglog_InitPostLog();
+                }
+            }
+        });
+
+    }
+
+    //æ–°è½¦ä¸Šå¸‚
+    //æ–°è½¦ä¸Šå¸‚
+    render.newCar = function () {
+
+        var mydate = new Date();
+        var cYear = mydate.getFullYear();
+        var cMonth = (mydate.getMonth() + 1);
+        var cDay = mydate.getDate();
+
+        if (cMonth == 0) {
+            cMonth = 12;
+            cYear--;
+        }
+        var newCar_ssxc_json = [];//ä¸Šå¸‚æ–°è½¦
+        var newCar_jjss_json = [];//å³å°†ä¸Šå¸‚
+        var newCar_sscx_count = 0, newCar_jjss_count = 0;
+
+        function AjaxGetNewCarInto(year, month) {
+            $.ajax({
+                url: "//api.car.bitauto.com/CarInfo/GetNewCarIntoMarket.ashx",
+                data: { type: "cars", year: year, month: month, pageindex: 1, pagesize: 100 },
+                cache: true,
+                dataType: "jsonp",
+                jsonpCallback: 'GetNewCar_jjss_callback',
+                success: function (jsonData) {
+                    if (jsonData != null) {
+                        var json = jsonData.data.data;
+
+                        for (var i = 0; i < json.length; i++) {
+                            if ((json[i].MDay <= cDay && json[i].MMonth == cMonth && newCar_sscx_count == 0) || json[i].MMonth < cMonth || json[i].MYear > cYear) {
+                                if (newCar_ssxc_json.length < 6)
+                                    newCar_ssxc_json.push(json[i]);
+                                else
+                                    break;
+                            }
+                        }
+                        for (var i = json.length - 1; i >= 0; i--) {
+                            if ((json[i].MDay > cDay && json[i].MMonth == cMonth) || json[i].MMonth > cMonth || json[i].MYear > cYear) {
+                                if (newCar_jjss_json.length < 5) {
+                                    var isExist = false;
+                                    for (var j = 0; j < newCar_jjss_json.length; j++) {
+                                        if (newCar_jjss_json[j].CsId == json[i].CsId)
+                                            isExist = true;
+                                    }
+                                    if (!isExist) {
+                                        newCar_jjss_json.push(json[i]);
+                                    }
+                                }
+                                else
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }).done(function () {
+                var m = cMonth, y = cYear;
+                if (newCar_jjss_json.length >= 5 || newCar_jjss_count == 1)
+                    getJJSSHtml(newCar_jjss_json);
+                else {
+                    if (newCar_jjss_count == 0) {
+                        if (cMonth == 12) {
+                            y++;
+                            m = 1;
+                        }
+                        else
+                            m++;
+                        AjaxGetNewCarInto(y, m);
+                        newCar_jjss_count++;
+                    }
+                }
+
+                if (newCar_ssxc_json.length >= 6 || newCar_sscx_count == 1)
+                    getNewCarHtml(newCar_ssxc_json);
+                else {
+                    if (newCar_sscx_count == 0) {
+                        if (cMonth == 1) {
+                            y--;
+                            m = 12;
+                        }
+                        else
+                            m--;
+                        AjaxGetNewCarInto(y, m);
+                        newCar_sscx_count++;
+                    }
+                }
+            }).done(function () {
+                if (typeof (newCar_ychGcj) != 'undefined') {
+                    newCar_ychGcj();//è´­è½¦èŠ‚åˆå§‹åŒ–
+                }
+            });
+        }
+
+        function getNewCarHtml(json) {
+            var html1 = "", html2 = "";
+
+            for (var i = 0; i < (json.length > 6 ? 6 : json.length) ; i++) {
+                var newsUrl = '';
+                if (json[i].DateCompare >= 0) {
+                    newsUrl = json[i].WillSaleNewsUrl;
+                }
+                else {
+                    newsUrl = json[i].NewsUrl;
+                }
+                if (newsUrl == null) {
+                    newsUrl = json[i].NewsUrl;
+                }
+                if (i < 3) {
+                    html1 += "<div class=\"row\">"
+                        + "<div class=\"img-info-layout img-info-layout-210140\">"
+                        + "<div class=\"img\">"
+                        + "  <a target=\"_blank\" href=\"" + newsUrl + "\">"
+                        + " <img  src=\"" + json[i].CoverImage + "\" width=\"210\" height=\"140\">"
+                        + "    </a></div>"
+                        + " <ul class=\"p-list\" data-csId=\"" + json[i].CsId + "\">"
+                        + "  <li class=\"name\"><a target=\"_blank\" href=\"//car.bitauto.com/" + json[i].AllSpell + "/\">" + json[i].CsName + "</a></li>"
+                        + "    <li class=\"price\"><a target=\"_blank\" href=\"//car.bitauto.com/" + json[i].AllSpell + "/baojia/c201/\">" + json[i].RefPrice + "</a></li>"
+                        + "    <li class=\"date\"><a class=\"dom\">ä¸Šå¸‚æ—¶é—´ï¼š" + json[i].MMonth + 'æœˆ' + json[i].MDay + "æ—¥</a></li>"
+                        + "    <li class=\"info\"><a target=\"_blank\" href=\"//car.bitauto.com/" + json[i].AllSpell + "/jiangjia/c201/\">ç»é”€å•†æŠ¥ä»·"
+                        + "            &gt;&gt;</a></li>"
+                        + "</ul>  </div></div>";
+                }
+                else {
+                    html2 += "<div class=\"row\">"
+                   + "<div class=\"img-info-layout img-info-layout-210140\">"
+                   + "<div class=\"img\">"
+                   + "  <a target=\"_blank\" href=\"" + newsUrl + "\">"
+                   + " <img  src=\"" + json[i].CoverImage + "\" width=\"210\" height=\"140\">"
+                   + "    </a></div>"
+                   + " <ul class=\"p-list\" data-csId=\"" + json[i].CsId + "\">"
+                   + "  <li class=\"name\"><a target=\"_blank\" href=\"//car.bitauto.com/" + json[i].AllSpell + "/\">" + json[i].CsName + "</a></li>"
+                   + "    <li class=\"price\"><a target=\"_blank\" href=\"//car.bitauto.com/" + json[i].AllSpell + "/baojia/c201/\">" + json[i].RefPrice + "</a></li>"
+                   + "    <li class=\"date\"><a class=\"dom\">ä¸Šå¸‚æ—¶é—´ï¼š" + json[i].MMonth + 'æœˆ' + json[i].MDay + "æ—¥</a></li>"
+                   + "    <li class=\"info\"><a target=\"_blank\" href=\"//car.bitauto.com/" + json[i].AllSpell + "/jiangjia/c201/\">ç»é”€å•†æŠ¥ä»·"
+                   + "            &gt;&gt;</a></li>"
+                   + "</ul>  </div></div>";
+                }
+            }
+            if (json.length > 0) {
+                $("#newcar_list1").html('');
+                $("#newcar_list1").append(html1);
+                $("#newcar_list").html('');
+                $("#newcar_list").append(html2);
+            }
+
+        }
+        function getJJSSHtml(json) {
+            var html1 = "", html = "";
+            var newsUrl = '', newsTitle = '';
+            var count = 0;
+            if (json.length - 5 > 0) {
+                count = json.length - 5;
+            }
+
+            for (var i = 0; i < json.length; i++) {
+                if (json[i].DateCompare > 0) {
+                    newsUrl = json[i].WillSaleNewsUrl;
+                    newsTitle = json[i].WillSaleNewsShortTitle;
+                }
+                else {
+                    newsUrl = json[i].NewsUrl;
+                    newsTitle = json[i].NewsShortTitle;
+                }
+                if (i == 0) {
+                    html1 += "<div class=\"img-layout img-layout-240160\">"
+                        + " <a href=\"" + newsUrl + "\" target=\"_blank\""
+                        + " data_cyslogclickflag=\"1.61.306\" onclick=\"BglogPostLog('1.61.306',this);\">"
+                        + " <div class=\"img\">"
+                        + " <img src=\"" + json[i].CoverImage + "\" width=\" 240\" height=\"160\">"
+                        + "<span class=\"special-tag1\">" + json[i].MMonth + 'æœˆ' + json[i].MDay + "æ—¥</span>"
+                        + " </div> </a> <div class=\"txt\">"
+                        + " <h6 class=\"no-wrap\"><a href=\"" + newsUrl + "\" target=\"_blank\""
+                        + "data_cyslogclickflag=\"1.61.306\" onclick=\"BglogPostLog('1.61.306',this);\">" + json[i].CsName + "</a></h6>"
+                        + "<p>" + newsTitle + "</p></div> </div>"
+                }
+                else {
+                    html += " <li>"
+                        + " <span class=\"special-tag1\">" + json[i].MMonth + 'æœˆ' + json[i].MDay + "æ—¥</span>"
+                        + "  <span class=\"title\">"
+                        + "     <a href=\"" + newsUrl + "\" target=\"_blank\" "
+                        + " data_cyslogclickflag=\"1.61.306\" onclick=\"BglogPostLog('1.61.306',this);\">"
+                        + json[i].CsName + "</a>"
+                        + " </span> </li>";
+                }
+
+
+            } if (html1.length > 0) {
+                $("#jjss_car").html('');
+                $("#jjss_car").append(html1 + "<div class=\"list-block\"><ul class=\"list\">" + html + "</ul></div>");
+            }
+        }
+        AjaxGetNewCarInto(cYear, cMonth);
+
+    }
+    return render;
+})));

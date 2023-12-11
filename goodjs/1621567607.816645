@@ -1,0 +1,67 @@
+
+				!function(){var n,o,i,e="renderMode=ie11";n=window.navigator.userAgent,o=n.indexOf("MSIE "),i=n.indexOf("Trident/"),(o>0||i>0)&&-1===window.location.href.indexOf(e)&&(window.location=window.location.href+("?"===document.location.search[0]?"&":"?")+e)}();
+	
+
+		!function(){var n="//"+window.location.hostname+"/wp-json/tc/v1/users/check_login";fetch(n,{method:"POST",headers:{"Content-Type":"application/json; charset=utf-8"},credentials:"include"}).then(function(n){window.tc_profile={resp:n}})}();
+	
+
+		{"@context":"http:\/\/schema.org","@type":"WebPage","headline":"Mio, a social commerce startup focused on smaller cities and rural areas in Vietnam, raises $1M seed","url":"https:\/\/techcrunch.com","articleSection":"post","publisher":{"@type":"Organization","name":"TechCrunch","logo":{"@type":"imageObject","url":"https:\/\/techcrunch.com\/wp-content\/themes\/techcrunch-2017\/images\/logo-json-ld.png","width":"600","height":"60"}},"keywords":["@post-id:2155752","apps","fundings &amp; exits","startups","tc","group buying","mio","mio app","social commerce","southeast asia","vietnam"]}
+		
+var ajaxurl = "https://techcrunch.com/wp-admin/admin-ajax.php"
+
+	window.JAC_CONFIG = {
+		client: {
+			onReady: function() {
+				document.dispatchEvent( new Event( 'JACReady' ) );
+			},
+		}
+	};
+
+
+
+		function uuidProfileCall() {
+			var rootUrl = 'https://api.parsely.com/v2/profile?apikey=techcrunch.com';
+			var uuid = '&uuid=' + PARSELY.config.parsely_site_uuid;
+			var requestUrl = rootUrl + uuid + '&url=' + window.location.href;
+			jQuery.ajax({
+				url: requestUrl,
+				dataType: "jsonp"
+			});
+		}
+
+		if (typeof PARSELY == 'object') {
+			var oldonload = PARSELY.onload;
+			if (typeof PARSELY.onload != 'function') {
+				PARSELY.onload = uuidProfileCall
+			}
+			else {
+				PARSELY.onload = function () {
+					if (oldonload) {
+						oldonload();
+					}
+					uuidProfileCall();
+				};
+			}
+		}
+
+		else {
+			PARSELY = {
+				onload: uuidProfileCall
+			}
+		}
+	
+
+		// Configure the PARSELY window global to disable auto-tracking.
+		// Must load before the Parse.ly script itself.
+		window.PARSELY = {
+			autotrack: false,
+			onload:    this.onload,
+		};
+	
+
+try{Typekit.load({ async: true });}catch(e){}
+
+
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:9.7',blog:'136296444',post:'0',tz:'-7',srv:'techcrunch.com'} ]);
+	_stq.push([ 'clickTrackerInit', '136296444', '0' ]);

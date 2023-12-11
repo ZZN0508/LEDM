@@ -1,0 +1,1171 @@
+(function ($) {
+  $.fn.adSlide = function (A) {
+    return this.each(function () {
+      var t,
+        g = $(this),
+        c = $.extend(A),
+        u = c.effect,
+        k = c.delayTime,
+        v = c.autoPlay,
+        B = c.interTime,
+        r = c.prevCell,
+        n = c.nextCell,
+        b = c.bigPic,
+        h = c.smallPic;
+      c = "";
+      var p = g.find(r),
+        w = g.find(n),
+        e = g.find(b),
+        l = e.find("li"),
+        m = g.find(h),
+        f = l.outerWidth(!0),
+        d = l.length,
+        a = 0,
+        x = parseInt(p.css("left")),
+        y = parseInt(p.width());
+      for (b = 0; d > b; b++)
+        c +=
+          "<a href='javascript:;' class='" + (0 == b ? "cur" : "") + "'></a>";
+      0 < m.length && "" == m.html()
+        ? m.html(c)
+        : (a = m.find("a.cur").index());
+      switch (u) {
+        case "fold":
+          for (b = 0; d > b; b++)
+            0 == b && "" == l.eq(b).find(".text").text() && m.addClass("cur"),
+              l.eq(b).css({
+                display: 0 == b ? "list-item" : "none",
+                position: "absolute",
+                top: 0,
+                left: 0,
+              });
+          break;
+        case "leftLoop":
+          e.find("li:first").hasClass("clone") ||
+            ((b = e.find("li:first").clone().addClass("clone")),
+            (c = e.find("li:last-child").clone().addClass("clone")),
+            e
+              .css({
+                width: f * d + 2 * f,
+                position: "absolute",
+                top: 0,
+                left: -(f + f * a),
+              })
+              .append(b)
+              .prepend(c));
+      }
+      var q = function (b) {
+          switch (u) {
+            case "fold":
+              l.stop(!1, !0)
+                .fadeOut(k)
+                .eq(a)
+                .fadeIn(k, function () {
+                  $(this)
+                    .find("img")
+                    .attr("src", $(this).find("img").attr("data-src"));
+                  "" == $(this).find(".text").text()
+                    ? g.find(h).addClass("cur")
+                    : g.find(h).removeClass("cur");
+                });
+              g.find(h).find("a").removeClass("cur").eq(a).addClass("cur");
+              break;
+            case "leftLoop":
+              "" == b && e.stop(!1, !0).animate({ left: -(f + f * a) }, k),
+                ".prev" == b &&
+                  e
+                    .stop(!1, !0)
+                    .animate(
+                      { left: -(f * (a == d - 1 ? 0 : a + 1)) },
+                      k,
+                      function () {
+                        a == d - 1 && e.css({ left: -(f * d) });
+                      }
+                    ),
+                ".next" == b &&
+                  e
+                    .stop(!1, !0)
+                    .animate(
+                      { left: -(f + f * (a == d ? d : 0 == a ? d : a)) },
+                      k,
+                      function () {
+                        0 == a && e.css({ left: -f });
+                      }
+                    ),
+                g.find(h).find("a").removeClass("cur").eq(a).addClass("cur"),
+                e.find("img").each(function () {
+                  $(this).attr("src", $(this).attr("data-src"));
+                });
+          }
+        },
+        z = function () {
+          t = setInterval(function () {
+            a == d - 1 ? (a = 0) : a++;
+            q(n);
+          }, B);
+        };
+      1 == v && z();
+      g.on({
+        mouseenter: function () {
+          clearInterval(t);
+          0 > x &&
+            (p.stop().animate({ left: 0 }, 200),
+            w.stop().animate({ right: 0 }, 200));
+        },
+        mouseleave: function () {
+          1 == v && z();
+          0 > x &&
+            (p.stop().animate({ left: -y }, 200),
+            w.stop().animate({ right: -y }, 200));
+        },
+      })
+        .on("click", r, function () {
+          a = 0 == a ? d - 1 : a - 1;
+          q(r);
+        })
+        .on("click", n, function () {
+          a = a == d - 1 ? 0 : a + 1;
+          q(n);
+        })
+        .find(h)
+        .on("click", "a", function () {
+          0 == $(this).hasClass("cur") && ((a = $(this).index()), q(""));
+        });
+    });
+  };
+
+  //获取图片或htm后缀名
+  function backExt(tar) {
+    var backVal = "";
+    backVal = tar.replace(/(.+)[\\/]/, "").split(".")[1];
+    if (backVal) {
+      backVal = backVal.indexOf("?") !== -1 ? backVal.split("?")[0] : backVal;
+    }
+    return backVal;
+  }
+  //判断IE6
+  function isIE6() {
+    return !!window.ActiveXObject && !window.XMLHttpRequest;
+  }
+  //站外监测
+  function gsCountAnalysis(jcsrc) {
+    var gscaDom = '<div style="display:none"><img src="' + jcsrc + '"></div>';
+    return gscaDom;
+  }
+
+  function gsIncome() {}
+  gsIncome.prototype.gsCountSiteInner = function (gsid) {
+    $.ajax({
+      type: "GET",
+      dataType: "jsonp",
+      url: "//click.gamersky.com/Common/GetHits.aspx",
+      data: { id: gsid, script: "3" },
+      success: function (data) {},
+    });
+  };
+  //cps曝光统计
+  gsIncome.prototype.IntermodalExposureStatistics = function (url) {
+    function isDomain(url, expectedDomain, callback) {
+      try {
+        var match = url.match(/^(\w+:)\/\/([^\/]+)\/(.*)\?(.*)$/);
+        var hostname = match[2];
+        var params = {};
+        match[4].split("&").forEach(function (pair) {
+          var kv = pair.split("=");
+          params[kv[0]] = kv[1];
+        });
+        var key = params["key"];
+        if (hostname === expectedDomain && key !== undefined) {
+          callback(key);
+          return true;
+        } else {
+          return false;
+        }
+      } catch (error) {
+        return false;
+      }
+    }
+    var expectedDomain = "web-cps.gamersky.com";
+    isDomain(url, expectedDomain, function (key) {
+      $.ajax({
+        type: "GET",
+        url:
+          "//web-cps.gamersky.com/GamerSky.GameUnionOperationPlatform.InstationCPSX/MonthImprs/Impr?Key=" +
+          key,
+        success: function (data) {},
+      });
+    });
+  };
+  //有效曝光统计
+  gsIncome.prototype.elementInViewport = function (domid, callback) {
+    var $window = $(window);
+    var $element = $(domid);
+    var called = false;
+
+    function checkViewport() {
+      if (called) {
+        return;
+      }
+
+      var viewportTop = $window.scrollTop();
+      var viewportBottom = viewportTop + $window.height();
+      var viewportLeft = $window.scrollLeft();
+      var viewportRight = viewportLeft + $window.width();
+
+      var elementOffset = $element.offset();
+      var elementTop = elementOffset.top;
+      var elementBottom = elementTop + $element.outerHeight();
+      var elementLeft = elementOffset.left;
+      var elementRight = elementLeft + $element.outerWidth();
+
+      var isInViewport =
+        elementTop >= viewportTop &&
+        elementBottom <= viewportBottom &&
+        elementLeft >= viewportLeft &&
+        elementRight <= viewportRight;
+
+      if (isInViewport) {
+        called = true;
+        callback();
+        $window.off("scroll", checkViewport); // 移除滚动事件监听器
+      }
+    }
+
+    $window.on("scroll", checkViewport);
+    checkViewport(); // 在方法调用时立即检查一次
+  };
+  //基础广告 支持输出图或者swf
+  gsIncome.prototype.base = function (options) {
+    var config = {
+        tar: options.tar,
+        width: options.width,
+        height: options.height,
+        material: options.material,
+        isIcon: options.isIcon || "show",
+        url: options.url || "",
+        countId: options.countId,
+        isChange: options.isChange,
+        infos: options.infos,
+        vWidth: options.vWidth || 1500,
+        vHeight: options.vHeight || 1500,
+        margin: options.margin || "0 auto",
+        diyStart: options.diyStart || "",
+        diyEnd: options.diyEnd || "",
+      },
+      gsmExtension,
+      gsm = "",
+      gsu = "",
+      gsTips = "",
+      gsDom = "",
+      gsId,
+      tmpUrl,
+      tmpMal,
+      tmpId,
+      bnmin,
+      bnmax,
+      bnCookie,
+      bnCkie,
+      bnnum,
+      jcCode = "",
+      TopCss = "";
+
+    if (options.jcCode) {
+      jcCode = gsCountAnalysis(options.jcCode);
+    }
+
+    if (config.isChange) {
+      bnmin = 1;
+      bnmax = 2; //1~2之间的循环
+      bnCookie = config.tar.replace("#", ""); /*Cookie名称*/
+      bnCkie = cookie(bnCookie);
+      bnnum =
+        bnCkie !== null
+          ? Number(bnCkie) === bnmax
+            ? bnmin
+            : Number(bnCkie) + 1
+          : bnmin;
+      cookie(bnCookie, bnnum, { path: "/", expires: 1 });
+      switch (bnnum) {
+        case 1:
+          tmpMal = config.infos[0][0];
+          tmpUrl = config.infos[0][1] || "";
+          tmpId = config.infos[0][2];
+          Mp4ShowImg = config.infos[0][3];
+
+          break;
+        case 2:
+          tmpMal = config.infos[1][0];
+          tmpUrl = config.infos[1][1] || "";
+          tmpId = config.infos[1][2];
+          break;
+      }
+    } else {
+      tmpMal = config.infos[0][0];
+      tmpUrl = config.infos[0][1] || "";
+      tmpId = config.infos[0][2];
+      Mp4ShowImg = config.infos[0][3];
+    }
+
+    if (tmpUrl !== "") {
+      gsu =
+        "<a class='countHit' data-itemid='" +
+        tmpId +
+        "' style='display:block;width:100%;height:100%;background:url(#);position:absolute;left:0;top:0;' href='" +
+        tmpUrl +
+        "' target='_blank'></a>";
+    }
+    if (config.isIcon && config.isIcon === "show") {
+      gsTips =
+        '<div style="width:24px;height:13px;position:absolute;right:0;bottom:0;background:url(//image.gamersky.com/webimg15/adtag.png);opacity:0.5"></div>';
+    }
+
+    //获取图片或flash后缀名
+    gsmExtension = backExt(tmpMal);
+    if ($(config.tar).parents(".advert").length > 0) {
+      TopCss = "top:" + (86 - config.height) / 2 + "px;";
+    }
+    if (
+      gsmExtension === "jpg" ||
+      gsmExtension === "gif" ||
+      gsmExtension === "png"
+    ) {
+      gsm +=
+        '<div style="width:' +
+        config.width +
+        "px;height:" +
+        config.height +
+        'px;position:relative;">';
+      gsm +=
+        "<img src='" +
+        tmpMal +
+        "' width='" +
+        config.width +
+        "' height='" +
+        config.height +
+        "' border='0' />";
+      gsm += gsTips + gsu;
+      gsm += "</div>";
+    } else if (gsmExtension === "swf") {
+      gsId = "gsMaterialFlashId" + tmpId + ~(-new Date() / 36e5);
+      gsm +=
+        '<div id="' +
+        gsId +
+        '" style="width:' +
+        config.vWidth +
+        ";height:" +
+        config.vHeight +
+        ';opacity:0;position:fixed;">';
+      gsm +=
+        "<embed src='" +
+        tmpMal +
+        "' width='" +
+        config.vWidth +
+        "' height='" +
+        config.vHeight +
+        "' wmode='transparent' quality='high' type='application/x-shockwave-flash'></embed>";
+      gsm += gsTips + gsu;
+      gsm += "</div>";
+    } else if (gsmExtension === "htm" || gsmExtension === "html") {
+      gsm +=
+        '<iframe width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '" src="' +
+        tmpMal +
+        '" frameborder="0" scrolling="no"></iframe>' +
+        gsTips +
+        gsu;
+    } else if (gsmExtension == "mp4") {
+      gsm +=
+        '<video  muted="muted"  loop  width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '  controls="" autoplay="" name="media"  src="' +
+        tmpMal +
+        '">';
+      gsm +=
+        '<img src="' +
+        Mp4ShowImg +
+        '" width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '" border="0" />';
+      gsm += "</video>" + gsTips + gsu;
+    }
+    gsDom += config.diyStart;
+    gsDom +=
+      '<div style="margin:' +
+      config.margin +
+      ";width:" +
+      config.width +
+      "px;height:" +
+      config.height +
+      "px;position:relative;" +
+      TopCss +
+      '">';
+    gsDom += gsm;
+    gsDom += "</div>";
+    gsDom += config.diyEnd + jcCode;
+    $(config.tar).css("overflow", "visible").html(gsDom).slideDown();
+    if (gsmExtension === "swf") {
+      setTimeout(function () {
+        $("#" + gsId)
+          .css({
+            width: config.width,
+            height: config.height,
+            position: "relative",
+            opacity: 1,
+          })
+          .find("embed")
+          .attr({ height: config.height, width: config.width });
+      }, 800);
+    }
+  };
+  //幻灯广告
+  gsIncome.prototype.slide = function (options) {
+    var gsDom = "";
+    var tar = options.tar; //广告主ID
+    var width = options.width; //广告宽度
+    var height = options.height; //广告高度
+    var autoPlay = options.autoPlay || false; //true:自动播放 false:禁止自动播放
+    var effect = options.effect || "fold"; //fold:渐变 leftLoop:向左循环移动
+    var interTime = options.interTime || 3000; //自动播放时间:3秒
+    var infos = options.infos || []; //广告素材
+    var jcCode = options.jcCode || ""; //监测代码
+    var margin = options.margin || "0 auto"; //外边距
+
+    gsDom += "<style>";
+    gsDom +=
+      ".adSlide {margin:" +
+      margin +
+      ";width:" +
+      width +
+      "px;height:" +
+      height +
+      "px;overflow:hidden;position:relative;}";
+    gsDom +=
+      ".adSlide .Bimg {width:" +
+      width +
+      "px;height:" +
+      height +
+      "px;overflow:hidden;position:relative;}";
+    gsDom +=
+      ".adSlide .Bimg li {float:left;width:" +
+      width +
+      "px;height:" +
+      height +
+      "px;position:relative;}";
+    gsDom +=
+      ".adSlide .Bimg li div {position:absolute;left:0;bottom:0;overflow:hidden;}";
+    gsDom +=
+      ".adSlide .Bimg li .mask {width:100%;height:90px;background:url(//image.gamersky.com/webimg15/mk3.png) 0 bottom repeat-x;}";
+    gsDom +=
+      ".adSlide .Bimg li .text {padding:0 5px;width:auto;height:34px;line-height:34px;color:#f2f2f3;font-size:16px;font-weight:700;font-family:'Microsoft YaHei';}";
+    gsDom +=
+      ".adSlide .Bimg li a {display:block;width:100%;height:100%;background:url(#);position:absolute;left:0;top:0;}";
+    gsDom +=
+      ".adSlide .adtag {display:block;width:24px;height:13px;position:absolute;right:0;top:0;z-index:2;background:url(//image.gamersky.com/webimg15/adtag.png);}";
+    gsDom +=
+      ".adSlide .Simg {padding:5px 0;width:100%;height:auto;text-align:center;font-size:0;position:absolute;left:0;bottom:30px;transition:all .25s ease-out;}";
+    gsDom += ".adSlide .Simg.cur {bottom:5px;}";
+    gsDom +=
+      ".adSlide .Simg a {margin:0 4px;display:inline-block;width:6px;height:6px;border:1px solid #8b8b8b;border-radius:50%;}";
+    gsDom +=
+      ".adSlide .Simg a.cur {cursor:defat;background-color:#ff2005;border-color:#ff2005;}";
+    gsDom +=
+      ".adSlide .btn {display:block;width:34px;height:47px;background:url(//image.gamersky.com/webimg15/slide-btn.png) no-repeat;position:absolute;top:50%;margin-top:-23px;z-index:10;}";
+    gsDom +=
+      ".adSlide .btn.prev {left:-34px;background-position-x:0;border-radius:0 5px 5px 0;}";
+    gsDom +=
+      ".adSlide .btn.next {right:-34px;background-position-x:-34px;border-radius:5px 0 0 5px;}";
+    gsDom += "</style>";
+
+    gsDom += '<div class="adSlide">';
+    gsDom += '<ul class="Bimg">';
+    $.each(infos, function (index, value) {
+      var gsmExtension = backExt(value.imgUrl); //获取图片或html后缀名
+      gsDom += "<li>";
+      if (
+        gsmExtension === "jpg" ||
+        gsmExtension === "gif" ||
+        gsmExtension === "png"
+      ) {
+        gsDom +=
+          '<img src="' +
+          value.imgUrl +
+          '" width="100%" height="100%" border="0"/>';
+      } else if (gsmExtension == "mp4" || gsmExtension == "webm") {
+        gsDom +=
+          '<video  muted="muted"  loop  width="' +
+          width +
+          '" height="' +
+          height +
+          '  controls="" autoplay="" name="media"  src="' +
+          value.imgUrl +
+          '">';
+        gsDom +=
+          '<img src="' +
+          value.imgUrl +
+          '" width="' +
+          width +
+          '" height="' +
+          height +
+          '" border="0" />';
+        gsDom += "</video>";
+      } else {
+        gsDom +=
+          '<iframe width="' +
+          width +
+          '" height="' +
+          height +
+          '" src="' +
+          value.imgUrl +
+          '" frameborder="0" scrolling="no"></iframe>';
+      }
+      if (value.adText !== "") {
+        gsDom += '<div class="mask"></div>';
+      }
+      gsDom += '<div class="text">' + value.adText + "</div>";
+      if (value.likUrl !== "") {
+        if (value.itemid !== "") {
+          gsDom +=
+            '<a class="countHit" data-itemid="' +
+            value.itemid +
+            '" href="' +
+            value.likUrl +
+            '" target="_blank"></a>';
+        } else {
+          gsDom += '<a href="' + value.likUrl + '" target="_blank"></a>';
+        }
+      }
+      gsDom += "</li>";
+    });
+    gsDom += "</ul>";
+    gsDom += '<i class="adtag"></i>';
+    if (effect === "fold") {
+      gsDom += '<div class="Simg"></div>';
+    } else if (autoPlay) {
+      gsDom += '<a class="btn prev" href="javascript:;"></a>';
+      gsDom += '<a class="btn next" href="javascript:;"></a>';
+    }
+
+    gsDom += "</div>";
+    if (jcCode) {
+      gsDom += gsCountAnalysis(jcCode);
+    }
+    $(tar).css("overflow", "visible").html(gsDom).adSlide({
+      bigPic: ".Bimg", //大图
+      smallPic: ".Simg", //小图
+      autoPlay: autoPlay, //true:自动播放 false:停止自动播放
+      interTime: 3000, //自动播放时间
+      effect: effect, //fold:渐变 leftLoop:向左循环移动
+      delayTime: 300, //渐变或移动速度
+      prevCell: ".prev",
+      nextCell: ".next",
+    });
+  };
+  //TIPS广告 支持输出图或者swf
+  gsIncome.prototype.tips = function (options) {
+    var config = {
+        tar: options.tar,
+        width: options.width,
+        height: options.height,
+        material: options.material,
+        isIcon: options.isIcon || "show",
+        url: options.url || "",
+        countId: options.countId,
+        isChange: options.isChange,
+        infos: options.infos,
+        vWidth: options.vWidth || 1500,
+        vHeight: options.vHeight || 1500,
+        margin: options.margin || "0 auto",
+        diyStart: options.diyStart || "",
+        diyEnd: options.diyEnd || "",
+      },
+      gsmExtension,
+      gsm = "",
+      gsu = "",
+      gsTips = "",
+      gsDom = "",
+      gsId,
+      tmpUrl,
+      tmpMal,
+      tmpId,
+      bnmin,
+      bnmax,
+      bnCookie,
+      bnCkie,
+      bnnum,
+      jcCode = "",
+      TopCss = "";
+
+    if (options.jcCode) {
+      jcCode = gsCountAnalysis(options.jcCode);
+    }
+
+    if (config.isChange) {
+      bnmin = 1;
+      bnmax = 2; //1~2之间的循环
+      bnCookie = config.tar.replace("#", ""); /*Cookie名称*/
+      bnCkie = cookie(bnCookie);
+      bnnum =
+        bnCkie !== null
+          ? Number(bnCkie) === bnmax
+            ? bnmin
+            : Number(bnCkie) + 1
+          : bnmin;
+      cookie(bnCookie, bnnum, { path: "/", expires: 1 });
+      switch (bnnum) {
+        case 1:
+          tmpMal = config.infos[0][0];
+          tmpUrl = config.infos[0][1] || "";
+          tmpId = config.infos[0][2];
+          Mp4ShowImg = config.infos[0][3];
+          break;
+        case 2:
+          tmpMal = config.infos[1][0];
+          tmpUrl = config.infos[1][1] || "";
+          tmpId = config.infos[1][2];
+          break;
+      }
+    } else {
+      tmpMal = config.infos[0][0];
+      tmpUrl = config.infos[0][1] || "";
+      tmpId = config.infos[0][2];
+      Mp4ShowImg = config.infos[0][3];
+    }
+
+    if (tmpUrl !== "") {
+      gsu =
+        "<a class='countHit' data-itemid='" +
+        tmpId +
+        "' style='display:block;width:100%;height:100%;background:url(#);position:absolute;left:0;top:0;' href='" +
+        tmpUrl +
+        "' target='_blank'></a>";
+    }
+    if (config.isIcon && config.isIcon === "show") {
+      gsTips =
+        '<div style="width:24px;height:13px;position:absolute;left:0;bottom:0;background:url(//image.gamersky.com/webimg15/adtag.png);"></div>';
+    }
+
+    //获取图片或flash后缀名
+    gsmExtension = backExt(tmpMal);
+
+    if ($(config.tar).parents(".advert").length > 0) {
+      TopCss = "top:" + (86 - config.height) / 2 + "px;";
+    }
+    if (
+      gsmExtension === "jpg" ||
+      gsmExtension === "gif" ||
+      gsmExtension === "png"
+    ) {
+      gsm +=
+        '<div style="width:' +
+        config.width +
+        "px;height:" +
+        config.height +
+        'px;position:relative;">';
+      gsm +=
+        "<img src='" +
+        tmpMal +
+        "' width='" +
+        config.width +
+        "' height='" +
+        config.height +
+        "' border='0' />";
+      gsm += gsTips + gsu;
+      gsm += "</div>";
+    } else if (gsmExtension == "mp4" || gsmExtension == "webm") {
+      gsm +=
+        '<video  muted="muted"  loop  width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '  controls="" autoplay="" name="media"  src="' +
+        tmpMal +
+        '">';
+      gsm +=
+        '<img src="' +
+        Mp4ShowImg +
+        '" width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '" border="0" />';
+      gsm += "</video>" + gsTips + gsu;
+    } else if (gsmExtension === "swf") {
+      gsId = "gsMaterialFlashId" + tmpId + ~(-new Date() / 36e5);
+      gsm +=
+        '<div id="' +
+        gsId +
+        '" style="width:' +
+        config.vWidth +
+        ";height:" +
+        config.vHeight +
+        ';opacity:0;position:fixed;">';
+      gsm +=
+        "<embed src='" +
+        tmpMal +
+        "' width='" +
+        config.vWidth +
+        "' height='" +
+        config.vHeight +
+        "' wmode='transparent' quality='high' type='application/x-shockwave-flash'></embed>";
+      gsm += gsTips + gsu;
+      gsm += "</div>";
+    } else {
+      gsm +=
+        '<iframe width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '" src="' +
+        tmpMal +
+        '" frameborder="0" scrolling="no"></iframe>' +
+        gsTips +
+        gsu;
+    }
+    gsDom += config.diyStart;
+    gsDom +=
+      '<div style="margin:' +
+      config.margin +
+      ";width:" +
+      config.width +
+      "px;height:" +
+      config.height +
+      "px;position:relative;" +
+      TopCss +
+      '">';
+    gsDom += gsm;
+    gsDom += "</div>";
+    gsDom += config.diyEnd + jcCode;
+    gsDom +=
+      '<div class="close" style="width:66px;height:18px;cursor:pointer;position:absolute;right:0;top:0;z-index:2;background:#000 url(//image.gamersky.com/webimg15/tg/closetg.png) no-repeat;"></div>';
+    $(config.tar).html(gsDom).slideDown();
+    $(config.tar).attr(
+      "style",
+      "width:300px;height:250px;position:fixed;_position:absolute;right:0;bottom:0;z-index:2010000;"
+    );
+    if (gsmExtension === "swf") {
+      setTimeout(function () {
+        $("#" + gsId)
+          .css({
+            width: config.width,
+            height: config.height,
+            position: "relative",
+            opacity: 1,
+          })
+          .find("embed")
+          .attr({ height: config.height, width: config.width });
+      }, 800);
+    }
+    $(config.tar)
+      .find(".close")
+      .on("click", function () {
+        $(config.tar).remove();
+      });
+  };
+  //方块广告 支持输出图或者swf
+  gsIncome.prototype.baseBlock = function (options) {
+    var config = {
+        tar: options.tar,
+        isIcon: options.isIcon || false,
+        margin: options.margin || "margin-bottom:10px;",
+        width: options.width || 300,
+        height: options.height || 250,
+        vWidth: options.vWidth || 1500,
+        vHeight: options.vHeight || 1500,
+        tmpMal: options.src || "",
+        Mp4ShowImg: options.Mp4ShowImg || "",
+        tmpUrl: options.url || "",
+        itemid: options.timpId || "",
+        hitId: options.GetHitId || "",
+      },
+      gsTips = "",
+      gsu = "",
+      gsmExtension,
+      gsDom = "";
+    var tmpMal = config.tmpMal,
+      itemid = config.itemid;
+    var adID = config.tar,
+      hitId = config.hitId;
+    var tmpUrl = config.tmpUrl,
+      isIcon = config.isIcon;
+    var gsId = "#gsFlashId" + itemid + ~(-new Date() / 36e5);
+
+    if (tmpUrl !== "") {
+      gsu =
+        "<a class='countHit' data-itemid='" +
+        itemid +
+        "' style='display:block;width:100%;height:100%;background:url(#);position:absolute;left:0;top:0;' href='" +
+        tmpUrl +
+        "' target='_blank'></a>";
+    }
+    if (isIcon) {
+      gsTips =
+        '<div style="width:24px;height:13px;position:absolute;left:0;bottom:0;background:url(//image.gamersky.com/webimg15/adtag.png);"></div>';
+    }
+
+    //获取图片或flash后缀名
+    gsmExtension = backExt(tmpMal);
+    if (
+      gsmExtension === "jpg" ||
+      gsmExtension === "gif" ||
+      gsmExtension === "png"
+    ) {
+      gsDom +=
+        '<div style="width:' +
+        config.width +
+        "px;height:" +
+        config.height +
+        "px;position:relative;" +
+        config.margin +
+        '">';
+      gsDom +=
+        '<img src="' +
+        tmpMal +
+        '" width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '" border="0" />';
+      gsDom += gsTips + gsu;
+      gsDom += "</div>";
+    } else if (gsmExtension === "swf") {
+      gsDom +=
+        '<div id="' +
+        gsId +
+        '" style="width:' +
+        config.vWidth +
+        ";height:" +
+        config.vHeight +
+        ";opacity:0;position:fixed;" +
+        config.margin +
+        '">';
+      gsDom +=
+        '<embed src="' +
+        tmpMal +
+        '" width="' +
+        config.vWidth +
+        '" height="' +
+        config.vHeight +
+        '" wmode="transparent" quality="high" type="application/x-shockwave-flash"></embed>';
+      gsDom += gsTips + gsu;
+      gsDom += "</div>";
+    } else if (gsmExtension === "htm" || gsmExtension === "html") {
+      gsDom +=
+        '<div style="width:' +
+        config.width +
+        "px;height:" +
+        config.height +
+        "px;position:relative;" +
+        config.margin +
+        '">';
+      gsDom +=
+        '<iframe width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '" src="' +
+        tmpMal +
+        '" frameborder="0" scrolling="no"></iframe>';
+      gsDom += gsTips + gsu;
+      gsDom += "</div>";
+    } else if (gsmExtension == "mp4") {
+      gsDom +=
+        '<video  muted="muted"  loop  width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '  controls="" autoplay="" name="media"  src="' +
+        tmpMal +
+        '">';
+      gsDom +=
+        '<img src="' +
+        config.Mp4ShowImg +
+        '" width="' +
+        config.width +
+        '" height="' +
+        config.height +
+        '" border="0" />';
+      gsDom += "</video>" + gsTips + gsu;
+    }
+    $(adID).html(gsDom);
+    //设置固定宽高
+    $(adID).css({
+      width: config.width,
+      height: config.height,
+      position: "relative",
+      opacity: 1,
+    });
+
+    if (gsmExtension === "swf") {
+      setTimeout(function () {
+        $(gsId)
+          .css({
+            width: config.width,
+            height: config.height,
+            position: "relative",
+            opacity: 1,
+          })
+          .find("embed")
+          .attr({ width: config.width, height: config.height });
+      }, 800);
+    }
+
+    if (hitId !== "") {
+      var bgnum = 0,
+        iframeT = $(adID).offset().top;
+      $(window).scroll(function () {
+        var stop = $(window).scrollTop();
+        var seeH = $(window).height();
+        var HH = iframeT - stop;
+        if (bgnum == 0 && HH <= seeH) {
+          bgnum++;
+          gsTg.gsCountSiteInner(hitId);
+        }
+      });
+    }
+  };
+
+  //两侧背景广告
+  gsIncome.prototype.background = function (options) {
+    var config = {
+        width: options.width,
+        imgLeft: options.imgLeft,
+        imgRight: options.imgRight,
+        imgMiddle: options.imgMiddle,
+        url: options.url,
+        countId: options.countId,
+        shadowLeft: options.shadowLeft,
+        shadowRight: options.shadowRight,
+        repeatY: options.repeatY,
+        shadowSpec: options.shadowSpec,
+        shadowMid: options.shadowMid,
+        closeBtn: options.closeBtn,
+        tarHeight: options.tarHeight,
+      },
+      admid,
+      adClose,
+      adShadowSpec,
+      addh,
+      adwh,
+      addw,
+      adlr,
+      wt,
+      th,
+      tp,
+      pt,
+      bgimg_m,
+      bgimg_l,
+      bgimg_r,
+      htm,
+      gsId,
+      tmpId,
+      repeatL,
+      repeatR,
+      jcCode = "",
+      gsmExtensionL = "",
+      gsmExtensionR = "",
+      gsmExtensionM = "";
+
+    if (options.jcCode) {
+      jcCode = gsCountAnalysis(options.jcCode);
+    }
+
+    //获取图片或htm后缀名
+    gsmExtensionL = backExt(config.imgLeft);
+    gsmExtensionR = backExt(config.imgRight);
+    gsmExtensionM = backExt(config.imgMiddle);
+
+    admid = config.width;
+    adClose = config.closeBtn;
+    adShadowSpec = config.shadowSpec;
+
+    addh = $(document).height();
+    adwh = $(window).height();
+    addw = $(window).width();
+    adlr = (addw - admid) / 2;
+    th = config.tarHeight || 0;
+    tp = addh - adwh;
+    pt = isIE6() ? "absolute" : "fixed";
+    bgimg_m =
+      config.imgMiddle === ""
+        ? ""
+        : "background:url(" + config.imgMiddle + ") center 0 no-repeat;";
+    bgimg_l =
+      config.imgLeft === ""
+        ? ""
+        : "background:url(" + config.imgLeft + ") right 0 no-repeat;";
+    bgimg_r =
+      config.imgRight === ""
+        ? ""
+        : "background:url(" + config.imgRight + ") left 0 no-repeat;";
+
+    if (gsmExtensionL === "htm") {
+      bgimg_l = "";
+    }
+    if (gsmExtensionR === "htm") {
+      bgimg_r = "";
+    }
+    if (gsmExtensionM === "htm") {
+      bgimg_m = "";
+    }
+
+    tmpId = config.countId;
+    gsId = "gsBackgroundId" + tmpId + ~(-new Date() / 36e5);
+
+    repeatL = config.repeatY
+      ? "right 0 repeat-y"
+      : adShadowSpec
+      ? "right 0 no-repeat"
+      : "repeat-x";
+    repeatR = config.repeatY
+      ? "left 0 repeat-y"
+      : adShadowSpec
+      ? "left 0 no-repeat"
+      : "repeat-x";
+
+    var shadowL = config.shadowLeft;
+    var shadowR = config.shadowRight;
+    var bgroundL =
+      shadowL.indexOf("box-shadow") !== -1
+        ? shadowL
+        : "background:url(" + shadowL + ") " + repeatL + ";";
+    var bgroundR =
+      shadowR.indexOf("box-shadow") !== -1
+        ? shadowR
+        : "background:url(" + shadowR + ") " + repeatR + ";";
+
+    htm =
+      '<div id="' +
+      gsId +
+      '" style="width:' +
+      addw +
+      "px;height:" +
+      adwh +
+      "px;position:" +
+      pt +
+      ";left:0;top:" +
+      th +
+      "px;" +
+      bgimg_m +
+      '" class="onlyOneBgtgs">';
+    if (gsmExtensionM === "htm") {
+      htm +=
+        '<iframe width="100%" height="100%" src="' +
+        config.imgMiddle +
+        '" frameborder="0" scrolling="no"></iframe>';
+      htm +=
+        '<div style="width:100%;height:41px;position:absolute;left:0;top:0;background:url(//image.gamersky.com/webimg15/adtop.png) repeat-x;"></div>';
+      htm +=
+        '<div class="gsBackgroundClose" style="width:77px;height:24px;cursor:pointer;position:absolute;right:0;top:0;z-index:2;"><i style="background: #000;    width: 77px;    height: 24px;    display: block;    position: absolute;    z-index: 9;    opacity: 0.75;    filter: alpha(opacity=75);"></i><i style="background:url(' +
+        adClose +
+        ') no-repeat center;display: block;width: 77px;height: 24px; position: absolute;    z-index: 10;   "></i></div>';
+    } else {
+      htm +=
+        '<div class="gsBackgroundLeft" style="float:left;width:' +
+        adlr +
+        "px;height:100%;position:relative;" +
+        bgimg_l +
+        '">';
+      if (gsmExtensionL === "htm") {
+        htm +=
+          '<iframe width="100%" height="100%" src="' +
+          config.imgLeft +
+          '" frameborder="0" scrolling="no"></iframe>';
+        htm +=
+          '<div style="width:100%;height:112px;background:url(//image.gamersky.com/webimg15/yyl-n.png) right 0 no-repeat;position:absolute;right:0;top:0;"></div>';
+      } else {
+        htm +=
+          '<a style="display:block;width:100%;height:100%;' +
+          bgroundL +
+          '" target="_blank" href="' +
+          config.url +
+          '" data-itemid="' +
+          config.countId +
+          '" class="countHit countHitSql"></a>';
+      }
+      htm += "</div>";
+      htm +=
+        '<div style="float:left;width:' +
+        admid +
+        "px;height:100%;" +
+        config.shadowMid +
+        '"></div>';
+      htm +=
+        '<div class="gsBackgroundRight" style="float:left;width:' +
+        adlr +
+        "px;height:100%;position:relative;" +
+        bgimg_r +
+        '">';
+      if (gsmExtensionR === "htm") {
+        htm +=
+          '<iframe width="100%" height="100%" src="' +
+          config.imgRight +
+          '" frameborder="0" scrolling="no"></iframe>';
+        htm +=
+          '<div style="width:100%;height:112px;background:url(//image.gamersky.com/webimg15/yyr-n.png) left 0 no-repeat;position:absolute;left:0;top:0;"></div>';
+      } else {
+        htm +=
+          '<a style="display:block;width:100%;height:100%;' +
+          bgroundR +
+          '" target="_blank" href="' +
+          config.url +
+          '" data-itemid="' +
+          config.countId +
+          '" class="countHit countHitSql"></a>';
+      }
+      htm +=
+        '<div class="gsBackgroundClose" style="width:77px;height:24px;cursor:pointer;position:absolute;right:0;top:0;z-index:2;"><i style="background: #000;    width: 77px;    height: 24px;    display: block;    position: absolute;    z-index: 9;    opacity: 0.75;    filter: alpha(opacity=75);"></i><i style="background:url(' +
+        adClose +
+        ') no-repeat center;display: block;width: 77px;height: 24px; position: absolute;    z-index: 10;   "></i></div>';
+      htm += "</div>";
+    }
+    htm += "</div>" + jcCode;
+    if ($(".onlyOneBgtgs").length <= 0) {
+      $("body").prepend(htm);
+    }
+    var $ads = $("#" + gsId);
+
+    $ads.find(".gsBackgroundClose").on("click", function () {
+      $ads.remove();
+      $(".bgAdWrap").css("background", "");
+    });
+
+    function scrollEvent() {
+      var ttp;
+      if ($ads) {
+        wt = $(window).scrollTop();
+        if (isIE6() === true) {
+          var wtt = wt <= tp ? (wt > th ? wt : th) : tp;
+          $ads.css({ position: "absolute", top: wtt });
+        } else if ($.browser.msie) {
+          var ps = wt >= th ? "fixed" : "absolute";
+          ttp = wt >= th ? 0 : th;
+          $ads.css({ position: ps, top: ttp });
+        } else {
+          ttp = wt >= th ? 0 : th - wt;
+          $ads.css({ position: "fixed", top: ttp });
+        }
+      }
+    }
+
+    $(window)
+      .resize(function () {
+        var scww = $(window).width(),
+          scwh = $(window).height(),
+          scsw = (scww - admid) / 2;
+        tp = addh - scwh;
+        $ads.css({ width: scww, height: scwh });
+        $ads.find(".gsBackgroundLeft").css({ width: scsw });
+        $ads.find(".gsBackgroundRight").css({ width: scsw });
+      })
+      .scroll(scrollEvent)
+      .trigger("scroll");
+  };
+  window.gsTg = new gsIncome();
+})(jQuery);

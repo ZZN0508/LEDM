@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1" />
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title>网站中心 - 百度统计</title>
+    <link href="/web5/css/common.css?__v=@version@" rel="stylesheet" type="text/css" media="all" />
+    <link href="/web5/css/simple_layout.css?__v=@version@" rel="stylesheet" type="text/css" media="all" />
+    
+    <link href="/web5/css/error.css?__v=@version@" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+<body>
+
+    <div class="header-wrapper">
+    <div class="header">
+        <div class="logo">
+            <a href="/web5/overview/index?siteId="><img src="/web5/image/logo.svg?__v=@version@"   class="" alt="百度统计" /></a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="constent">
+        <!-- 内容区块开始 -->
+        
+<div class="main">
+    <div class="holmes-bear-wrap">&nbsp;</div>
+    <div class="error-wrap">
+        <div class="error-text-title-wrap clearfix"><div class="error-number">500，</div><div class="error-text-title"></div></div>
+        <p class="error-text-content"></p>
+        <ul class="handle-way-list">
+                        <li class="handle-way-item">您可以尝试以下操作：</li>
+            <li class="handle-way-item">1.您的访问超时，请<a href="/">返回首页</a>，重新登录</li>
+            <li class="handle-way-item">2.您访问的链接不存在，请<a href="javascript:history.go(-1);">返回上一个页面</a></li>
+            <li class="handle-way-item">3.您可以<a href="javascript:location.reload();">尝试刷新</a></li>
+                    </ul>
+    </div>
+</div>
+
+        <!-- 内容区块结束 -->
+    </div>
+</div>
+<footer class="cpu-footer cpu-footer-simple">
+    <div class="cpu-footer-copyright">
+        ©2023 Baidu <a
+            href="https://www.baidu.com/duty/" target="_blank"
+        >使用百度前必读</a> <a
+            target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002000001"
+        >京公网安备11000002000001号</a> 互联网信息服务许可 我已阅读并接受<a
+            href="http://e.baidu.com/accept.html" target="_blank"
+        >百度推广服务合同</a> 欢迎访问<a
+            href="http://rules.baidu.com/userpolicy?castk=71df4ab76c73cb563d267" target="_blank"
+        >百度推广政策中心</a>
+    </div>
+</footer>
+<script src="/web5/js/common.js?__v=@version@" type="text/javascript" ></script>
+<script type="text/javascript">
+    $.holmes = $.holmes || {};
+    $.holmes.config = $.holmes.config || {};
+
+    if (window.__POWERED_BY_QIANKUN__) {
+        $.holmes.configBak = $.holmes.configBak || {};
+
+        $.extend(true, $.holmes.configBak, {"systemConfig":{"domain":"hmcdn.baidu.com","protocol":"http:","webRoot":"\/web5","baseUri":"\/web5","mainBaseUriList":{"homepage":"\/main\/homepage","overview":"\/main\/overview","analytics":"\/main\/analytics","user":"\/main\/user","marketing":"\/main\/marketing","operate":"\/main\/operate","data":"\/main\/data","setting":"\/main\/setting"},"mainHomeUriList":{"homepage":"\/main\/homepage\/0\/homepage\/index","overview":"\/main\/overview\/0\/overview\/index","analytics":"\/main\/analytics\/0\/dashboard","user":"\/main\/user\/0\/visitorsegment","marketing":"\/main\/marketing\/0\/conversionback","operate":"\/main\/operate\/0\/abtest\/experiment","data":"\/main\/data\/0\/home\/analyticsprojects","setting":"\/main\/setting\/0\/home\/site\/index"},"ajaxUri":"\/web5\/ajax\/post","memoUri":"\/web5\/common\/memo","trackUri":"\/web5\/stat\/index","demoUri":"\/main\/overview\/demo","oldVersionUrl":"\/hm-web\/home\/welcome","now":1698822182000,"hmJsFootCode":"<script>\nvar _hmt = _hmt || [];\n(function() {\n  var hm = document.createElement(\"script\");\n  hm.src = \"https:\/\/hm.baidu.com\/hm.js?41fc030db57d5570dd22f78997dc4a7e\";\n  var s = document.getElementsByTagName(\"script\")[0]; \n  s.parentNode.insertBefore(hm, s);\n})();\n<\/script>","imageSaveUri":"\/web5\/amfphp\/gateway.php","imageSaveMethod":"ImageSaver.save","unionUrl":"http:\/\/union.baidu.com\/client\/#\/","ucApiUrl":"https:\/\/cas.baidu.com\/staticv2\/dep\/common-login\/api.js","analyticsBaseUri":"\/analytics5"},"pageInfo":{"title":"\u767e\u5ea6\u7edf\u8ba1","topicUri":"http:\/\/yingxiao.baidu.com\/zhuanti\/list\/23.html","helpUri":"\/web5\/home\/user\/help","logoutUri":"\/web5\/welcome\/logout","demoUri":"\/main\/overview\/demo","passport_domain":"https:\/\/passport.baidu.com","passport_reg_url":"https:\/\/passport.baidu.com\/v2\/?reg&tpl=holmes_maa&u=","passport_cdn":"https:\/\/ss0.bdstatic.com\/5LMZfyabBhJ3otebn9fN2DJv","passport_returnurl":"\/welcome\/psp","analyticsApplyUri":"\/web5\/welcome\/apply","hasMessage":true,"customRegister":"https:\/\/u.baidu.com\/ucweb\/?module=Reguser&controller=reg&action=index&appid=3"}});
+    }
+
+    $.extend($.holmes.config,{"systemConfig":{"domain":"hmcdn.baidu.com","protocol":"http:","webRoot":"\/web5","baseUri":"\/web5","mainBaseUriList":{"homepage":"\/main\/homepage","overview":"\/main\/overview","analytics":"\/main\/analytics","user":"\/main\/user","marketing":"\/main\/marketing","operate":"\/main\/operate","data":"\/main\/data","setting":"\/main\/setting"},"mainHomeUriList":{"homepage":"\/main\/homepage\/0\/homepage\/index","overview":"\/main\/overview\/0\/overview\/index","analytics":"\/main\/analytics\/0\/dashboard","user":"\/main\/user\/0\/visitorsegment","marketing":"\/main\/marketing\/0\/conversionback","operate":"\/main\/operate\/0\/abtest\/experiment","data":"\/main\/data\/0\/home\/analyticsprojects","setting":"\/main\/setting\/0\/home\/site\/index"},"ajaxUri":"\/web5\/ajax\/post","memoUri":"\/web5\/common\/memo","trackUri":"\/web5\/stat\/index","demoUri":"\/main\/overview\/demo","oldVersionUrl":"\/hm-web\/home\/welcome","now":1698822182000,"hmJsFootCode":"<script>\nvar _hmt = _hmt || [];\n(function() {\n  var hm = document.createElement(\"script\");\n  hm.src = \"https:\/\/hm.baidu.com\/hm.js?41fc030db57d5570dd22f78997dc4a7e\";\n  var s = document.getElementsByTagName(\"script\")[0]; \n  s.parentNode.insertBefore(hm, s);\n})();\n<\/script>","imageSaveUri":"\/web5\/amfphp\/gateway.php","imageSaveMethod":"ImageSaver.save","unionUrl":"http:\/\/union.baidu.com\/client\/#\/","ucApiUrl":"https:\/\/cas.baidu.com\/staticv2\/dep\/common-login\/api.js","analyticsBaseUri":"\/analytics5"},"pageInfo":{"title":"\u767e\u5ea6\u7edf\u8ba1","topicUri":"http:\/\/yingxiao.baidu.com\/zhuanti\/list\/23.html","helpUri":"\/web5\/home\/user\/help","logoutUri":"\/web5\/welcome\/logout","demoUri":"\/main\/overview\/demo","passport_domain":"https:\/\/passport.baidu.com","passport_reg_url":"https:\/\/passport.baidu.com\/v2\/?reg&tpl=holmes_maa&u=","passport_cdn":"https:\/\/ss0.bdstatic.com\/5LMZfyabBhJ3otebn9fN2DJv","passport_returnurl":"\/welcome\/psp","analyticsApplyUri":"\/web5\/welcome\/apply","hasMessage":true,"customRegister":"https:\/\/u.baidu.com\/ucweb\/?module=Reguser&controller=reg&action=index&appid=3"}}, true);
+</script>
+</body>
+</html>

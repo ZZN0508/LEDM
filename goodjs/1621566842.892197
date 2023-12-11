@@ -1,0 +1,706 @@
+{
+		"@context":"https://schema.org",
+		"@type":"Organization",
+		"name":"India Times",
+		"alternateName":"Indiatimes",
+		"description":"Indiatimes.com brings you the news, articles, stories and videos on entertainment, latest lifestyle, culture & new technologies emerging worldwide.",
+		"logo":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+		"url":"https://www.indiatimes.com",
+		"sameAs": [
+            "https://www.facebook.com/indiatimes",
+            "https://twitter.com/indiatimes"
+		],
+		"contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "email": "grievance.it@timesinternet.in",
+                "contactType": "customer service",
+                "url":"https://www.indiatimes.com/contactus/"
+            }
+        ],
+		"location":{
+			"@type":"Place",
+			"address":{
+				"@type":"PostalAddress",
+				"name":"Times Internet Limited, Plot Number 391, Udyog Vihar, Phase-III, Gurgaon - 122016 Haryana, India"}
+			}
+		}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"5G’s Future In India & How OnePlus 9 Is Prepped To Get Onboard India’s 5G Plans",
+		"name":"5G’s Future In India & How OnePlus 9 Is Prepped To Get Onboard India’s 5G Plans",
+		"datePublished":"2021-05-20T15:59:43+05:30",
+		"dateModified":"2021-05-20T16:24:52+05:30",
+		"articleSection":"Technology",
+		"author":{
+			"@type":"Person",
+			"name":"Nupur Khanna",
+			"url": "https://www.indiatimes.com/author/nupur-khanna/1368"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/OP800_60a63f3bab906.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/OP800_60a63f3bab906.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/OP800_60a63f3bab906.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":""
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Girl Tricks Her Parents Into Reading Her Acceptance Letter To Optometry School, Their Reaction Is Priceless ",
+		"name":"Girl Tricks Her Parents Into Reading Her Acceptance Letter To Optometry School, Their Reaction Is Priceless ",
+		"datePublished":"2021-05-20T15:25:03+05:30",
+		"dateModified":"2021-05-20T15:29:35+05:30",
+		"articleSection":"Human Interest",
+		"author":{
+			"@type":"Person",
+			"name":"Basit Aijaz",
+			"url": "https://www.indiatimes.com/author/basit-aijaz/3121"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/resize3_60a629987c77d.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/resize3_60a629987c77d.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/resize3_60a629987c77d.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"A Twitter user by the name of @jeeeverz, recorded her parents reaction after surprising them with her acceptance letter into an optometry school. "
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"ICMR Approves Home-Based Rapid Antigen Testing Kit For COVID-19: Should You Be Using It?",
+		"name":"ICMR Approves Home-Based Rapid Antigen Testing Kit For COVID-19: Should You Be Using It?",
+		"datePublished":"2021-05-20T13:50:51+05:30",
+		"dateModified":"2021-05-20T13:53:50+05:30",
+		"articleSection":"India",
+		"author":{
+			"@type":"Person",
+			"name":"Shweta Sengar",
+			"url": "https://www.indiatimes.com/author/shweta-sengar/2346"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/FBImage4-4_60a61539c86b7.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/FBImage4-4_60a61539c86b7.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/FBImage4-4_60a61539c86b7.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"The Indian Council of Medical Research (ICMR) has approved a home-based rapid antigen testing (RAT) kit for COVID-19. However, the approval comes with riders."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"World's Largest Iceberg, Bigger Than New York’s Long Island, Breaks Off Antarctica Coast",
+		"name":"World's Largest Iceberg, Bigger Than New York’s Long Island, Breaks Off Antarctica Coast",
+		"datePublished":"2021-05-20T13:25:33+05:30",
+		"dateModified":"2021-05-20T14:11:22+05:30",
+		"articleSection":"News",
+		"author":{
+			"@type":"Person",
+			"name":"Monit Khanna",
+			"url": "https://www.indiatimes.com/author/monit-khanna/2531"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/AMP-4_60a6181ae6a42.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/AMP-4_60a6181ae6a42.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/AMP-4_60a6181ae6a42.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"Just last year, we saw rising global temperatures break apart iceberg A-68, which at the time was the largest the world had seen."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Chilling Video Shows Attempted Kidnapping Of 11-YO Girl Who Put Up A Brave Fight & Sent The Man Running",
+		"name":"Chilling Video Shows Attempted Kidnapping Of 11-YO Girl Who Put Up A Brave Fight & Sent The Man Running",
+		"datePublished":"2021-05-20T19:00:34+05:30",
+		"dateModified":"2021-05-20T19:01:41+05:30",
+		"articleSection":"WTF",
+		"author":{
+			"@type":"Person",
+			"name":"Tanya Sirohi",
+			"url": "https://www.indiatimes.com/author/tanya-sirohi/1916"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/fbbbbbbbbb_60a65d5e311c7.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/fbbbbbbbbb_60a65d5e311c7.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/fbbbbbbbbb_60a65d5e311c7.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"In a heart-stopping video recently shared by Escambia County Sheriff's Office on Facebook, a man gets off from a white Dodge Journey and makes a beeline for a young girl playing near a bus stop. He then tries to grab her and as the girl struggles in his arms, they both fall to the ground. After a quick look around he rushes back to his vehicle and flees the scene while the kid grabs her bag and rushes in the opposite direction."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Gripping Drama Series “Runaway Lugai” Is Just The Comic Relief We Needed In These Testing Times! ",
+		"name":"Gripping Drama Series “Runaway Lugai” Is Just The Comic Relief We Needed In These Testing Times! ",
+		"datePublished":"2021-05-20T10:38:00+05:30",
+		"dateModified":"2021-05-20T10:45:23+05:30",
+		"articleSection":"Bollywood",
+		"author":{
+			"@type":"Person",
+			"name":"Yashita Vashishth Kohli",
+			"url": "https://www.indiatimes.com/author/yashita-vashishth/3106"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/R-social-_60a5e20e6cf31.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/R-social-_60a5e20e6cf31.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/R-social-_60a5e20e6cf31.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":""
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Based On The Epic Ramayana, \"Ramyug\" Brings Together Nostalgia, Life Lessons & Positivity",
+		"name":"Based On The Epic Ramayana, \"Ramyug\" Brings Together Nostalgia, Life Lessons & Positivity",
+		"datePublished":"2021-05-08T13:56:44+05:30",
+		"dateModified":"2021-05-08T14:09:59+05:30",
+		"articleSection":"Bollywood",
+		"author":{
+			"@type":"Person",
+			"name":"Yashita Vashishth Kohli",
+			"url": "https://www.indiatimes.com/author/yashita-vashishth/3106"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/R-social-_609631227c0cc.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/R-social-_609631227c0cc.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/R-social-_609631227c0cc.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":""
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Upcoming Series ‘Ramyug’ Is Just The Positive, Reassuring Binge-Watch We Need In These Testing Times ",
+		"name":"Upcoming Series ‘Ramyug’ Is Just The Positive, Reassuring Binge-Watch We Need In These Testing Times ",
+		"datePublished":"2021-05-05T12:04:42+05:30",
+		"dateModified":"2021-05-06T20:47:57+05:30",
+		"articleSection":"Bollywood",
+		"author":{
+			"@type":"Person",
+			"name":"Yashita Vashishth Kohli",
+			"url": "https://www.indiatimes.com/author/yashita-vashishth/3106"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/new-social_60940492aed8a.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/new-social_60940492aed8a.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/new-social_60940492aed8a.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":""
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Here’s How Entertainment Gets Better With India's Fastest 4G",
+		"name":"Here’s How Entertainment Gets Better With India's Fastest 4G",
+		"datePublished":"2021-05-04T20:13:21+05:30",
+		"dateModified":"2021-05-05T12:57:18+05:30",
+		"articleSection":"Who We Are",
+		"author":{
+			"@type":"Person",
+			"name":"Nupur Khanna",
+			"url": "https://www.indiatimes.com/author/nupur-khanna/1368"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/pexels-bruno-cervera-1125048_6091431e239ad.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/pexels-bruno-cervera-1125048_6091431e239ad.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/pexels-bruno-cervera-1125048_6091431e239ad.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":""
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"5 Wow Moments From MX Player’s ‘Hello Mini’ That Make It A Gripping Show! ",
+		"name":"5 Wow Moments From MX Player’s ‘Hello Mini’ That Make It A Gripping Show! ",
+		"datePublished":"2021-05-03T15:06:05+05:30",
+		"dateModified":"2021-05-03T15:43:48+05:30",
+		"articleSection":"Bollywood",
+		"author":{
+			"@type":"Person",
+			"name":"Yashita Vashishth Kohli",
+			"url": "https://www.indiatimes.com/author/yashita-vashishth/3106"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/HM-social_608fc422d9360.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/HM-social_608fc422d9360.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/HM-social_608fc422d9360.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":""
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Home Test Kits For COVID; Black Fungus Cases Surge + More Top News",
+		"name":"Home Test Kits For COVID; Black Fungus Cases Surge + More Top News",
+		"datePublished":"2021-05-20T18:36:23+05:30",
+		"dateModified":"2021-05-20T18:36:23+05:30",
+		"articleSection":"India",
+		"author":{
+			"@type":"Person",
+			"name":"Indiatimes",
+			"url": "https://www.indiatimes.com/author/indiatimes/563"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/wrap-81_60a651464b4b8.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/wrap-81_60a651464b4b8.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/wrap-81_60a651464b4b8.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"From the Indian Council of Medical Research (ICMR) approving a home-based rapid antigen testing (RAT) kit for COVID-19 to rising black fungus cases in India, here are the other top stories of the day."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Bids For Seat Aboard Jeff Bezos’s Blue Origin Commercial Spacecraft Goes As High As $2 Million",
+		"name":"Bids For Seat Aboard Jeff Bezos’s Blue Origin Commercial Spacecraft Goes As High As $2 Million",
+		"datePublished":"2021-05-20T18:30:47+05:30",
+		"dateModified":"2021-05-20T18:51:42+05:30",
+		"articleSection":"News",
+		"author":{
+			"@type":"Person",
+			"name":"Monit Khanna",
+			"url": "https://www.indiatimes.com/author/monit-khanna/2531"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/AMP-6_60a65de473cd4.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/AMP-6_60a65de473cd4.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/AMP-6_60a65de473cd4.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"Blue Origin is expected to blast off its first suborbital sightseeing trip on its spacecraft on July 20 this year"
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"These Countries Have Gone Nearly Mask Free",
+		"name":"These Countries Have Gone Nearly Mask Free",
+		"datePublished":"2021-05-20T17:30:20+05:30",
+		"dateModified":"2021-05-21T01:08:28+05:30",
+		"articleSection":"Human Interest",
+		"author":{
+			"@type":"Person",
+			"name":"Anuj Tiwari",
+			"url": "https://www.indiatimes.com/author/anuj-tiwari/1538"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/Article-Body---2021-05-03T163817073_608fdb0cccf4c.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/Article-Body---2021-05-03T163817073_608fdb0cccf4c.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/Article-Body---2021-05-03T163817073_608fdb0cccf4c.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"While India is still struggling with the deadly second wave of the pandemic, there are some countries that have already won the war against the novel coronavirus and have eased the mandatory wearing of masks in public. "
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Meet The Faceless Heroes Of NDRF Who Go To War Against Disasters",
+		"name":"Meet The Faceless Heroes Of NDRF Who Go To War Against Disasters",
+		"datePublished":"2021-05-20T17:20:20+05:30",
+		"dateModified":"2021-05-20T19:16:59+05:30",
+		"articleSection":"Social Relevance",
+		"author":{
+			"@type":"Person",
+			"name":"Anuj Tiwari",
+			"url": "https://www.indiatimes.com/author/anuj-tiwari/1538"
+		},
+		"image":[
+			"https://im.indiatimes.in/photogallery/2021/May/ndrf-ap_60a656fea520b.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/photogallery/2021/May/ndrf-ap_60a656fea520b.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/photogallery/2021/May/ndrf-ap_60a656fea520b.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"Probably all of us have seen the ‘orange army’ during any natural calamity that occurs across the country. The men of the ‘orange army’ are the personnel of the NDRF that works tirelessly day and night to save the precious lives of citizens by risking their own. "
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Meet The Real Life Heroes Who Are Keeping Things Moving In Mumbai During Cyclone Tauktae",
+		"name":"Meet The Real Life Heroes Who Are Keeping Things Moving In Mumbai During Cyclone Tauktae",
+		"datePublished":"2021-05-19T17:46:33+05:30",
+		"dateModified":"2021-05-19T17:54:09+05:30",
+		"articleSection":"Social Relevance",
+		"author":{
+			"@type":"Person",
+			"name":"Anuj Tiwari",
+			"url": "https://www.indiatimes.com/author/anuj-tiwari/1538"
+		},
+		"image":[
+			"https://im.indiatimes.in/photogallery/2021/May/cyclone-heroes1_60a4f52f299ef.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/photogallery/2021/May/cyclone-heroes1_60a4f52f299ef.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/photogallery/2021/May/cyclone-heroes1_60a4f52f299ef.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"Cyclone Tauktae cast a destructive shadow on the country’s financial capital and other coastal states like Kerala, Karnataka and Goa, that are now trying to survive through this extreme weather. The only respite from all the gloom is the honest work some good samaritans are doing. Meet the real life-heroes at work during the Cyclone Tauktae to keep things moving while risking their own life."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Billion-Dollar Divorces: 15 Of The Most Expensive Separation In The History",
+		"name":"Billion-Dollar Divorces: 15 Of The Most Expensive Separation In The History",
+		"datePublished":"2021-05-19T10:30:04+05:30",
+		"dateModified":"2021-05-19T10:56:04+05:30",
+		"articleSection":"Social Relevance",
+		"author":{
+			"@type":"Person",
+			"name":"Bhupinder Singh",
+			"url": "https://www.indiatimes.com/author/bhupinder-singh/1571"
+		},
+		"image":[
+			"https://im.indiatimes.in/photogallery/2021/May/big_60a3e673ee84f.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/photogallery/2021/May/big_60a3e673ee84f.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/photogallery/2021/May/big_60a3e673ee84f.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"In the beginning, everything is flowery but sometimes divorce is the only option left. When you turn your eyes to famous personalities, you tend to think that marriage is a very different concept from what ordinary people know. Indeed for celebrities, whether it is cinema, sports or even great businessmen, marriage looks more like an employment contract monitored by a team of lawyers. Here’s a list of the 15 most expensive divorces in history."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"From Iron Dome To Akash, Here Are Some Powerful Air Defense Systems In The World",
+		"name":"From Iron Dome To Akash, Here Are Some Powerful Air Defense Systems In The World",
+		"datePublished":"2021-05-18T18:30:02+05:30",
+		"dateModified":"2021-05-18T18:32:02+05:30",
+		"articleSection":"Social Relevance",
+		"author":{
+			"@type":"Person",
+			"name":"Anuj Tiwari",
+			"url": "https://www.indiatimes.com/author/anuj-tiwari/1538"
+		},
+		"image":[
+			"https://im.indiatimes.in/photogallery/2021/May/akash-missile_60a3ac62cccea.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/photogallery/2021/May/akash-missile_60a3ac62cccea.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/photogallery/2021/May/akash-missile_60a3ac62cccea.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"Israeli Defense Force and Hamas militants in Gaza continue to exchange rocket fire and airstrikes. Amidst all this what has attracted the world’s attention is the Iron Dome System of Israel. Here’s a  look at some of the most powerful air missile defense systems in the world."
+	}
+
+		var _comscore = _comscore || [];
+		_comscore.push({ c1: "2", c2: "6036484" });
+		(function() {
+		var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+		s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+		el.parentNode.insertBefore(s, el);
+		})();
+	
+
+			fbq('init', '853339751421540');
+			fbq('init', '303301150147552');
+			fbq('track', 'PageView');
+			fbq('track', 'ViewContent');
+		
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Salman Khan Procures 500 Oxygen Concentrators To Be Given For Free To COVID-19 Emergency Cases",
+		"name":"Salman Khan Procures 500 Oxygen Concentrators To Be Given For Free To COVID-19 Emergency Cases",
+		"datePublished":"2021-05-20T11:50:26+05:30",
+		"dateModified":"2021-05-20T12:02:22+05:30",
+		"articleSection":"Celebscoop",
+		"author":{
+			"@type":"Person",
+			"name":"Garima Satija",
+			"url": "https://www.indiatimes.com/author/garima-satija/2306"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/FBImage2-58_60a5ff713175a.jpg?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/FBImage2-58_60a5ff713175a.jpg?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/FBImage2-58_60a5ff713175a.jpg?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"His film might be getting bad reviews, but Salman Khan is busy doing philanthropic work, it seems. The Bhaijaan of Bollywood has collaborated with Congress MLA Baba Siddique and his son Zeeshan Siddique and arranged for 500 oxygen concentrators that will be given for free to patients who have emergency needs. "
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Rs 50 Lakh Vs Rs 7 Crore Per Year - BCCI Still Paying Women Less Than Men",
+		"name":"Rs 50 Lakh Vs Rs 7 Crore Per Year - BCCI Still Paying Women Less Than Men",
+		"datePublished":"2021-05-20T11:40:18+05:30",
+		"dateModified":"2021-05-20T11:44:51+05:30",
+		"articleSection":"Sports",
+		"author":{
+			"@type":"Person",
+			"name":"Somak Adhikari",
+			"url": "https://www.indiatimes.com/author/somak-adhikari/1434"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/1_60a5fda05ae31.JPG?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/1_60a5fda05ae31.JPG?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/1_60a5fda05ae31.JPG?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"The BCCI has just released the contracts for the Indian women's cricket team and when one compares those numbers with the ones for the male cricketers, the difference is there for all to see."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Actress Huma Qureshi To Set Up A 100-Bed Hospital And An Oxygen Plant In Delhi's Tilak Nagar",
+		"name":"Actress Huma Qureshi To Set Up A 100-Bed Hospital And An Oxygen Plant In Delhi's Tilak Nagar",
+		"datePublished":"2021-05-20T13:16:51+05:30",
+		"dateModified":"2021-05-20T13:55:53+05:30",
+		"articleSection":"Celebscoop",
+		"author":{
+			"@type":"Person",
+			"name":"Garima Satija",
+			"url": "https://www.indiatimes.com/author/garima-satija/2306"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/Untitled-design---2021-05-20T131534162_60a6139cd2ce6.png?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/Untitled-design---2021-05-20T131534162_60a6139cd2ce6.png?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/Untitled-design---2021-05-20T131534162_60a6139cd2ce6.png?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"All set for her Hollywood debut in Netflix Zombie movie Army of the Dead by Zack Snyder, the director behind Justice League starring Ben Affleck, Henry Cavill and Gal Gadot among others, Huma Qureshi has joined hands with global child rights organization called Save The Children to set up a 100-bed hospital with an oxygen plant in Tilak Nagar of Delhi."
+	}
+{
+		"@context":"https://schema.org",
+		"@type":"NewsArticle",
+		"headline":"Randeep Hooda Calls For An End To Animal Cruelty, Shares Heartbreaking Photos Of A Dead Tiger",
+		"name":"Randeep Hooda Calls For An End To Animal Cruelty, Shares Heartbreaking Photos Of A Dead Tiger",
+		"datePublished":"2021-05-19T13:17:29+05:30",
+		"dateModified":"2021-05-19T14:16:52+05:30",
+		"articleSection":"Celebscoop",
+		"author":{
+			"@type":"Person",
+			"name":"Vatsala Devki Vats",
+			"url": "https://www.indiatimes.com/author/vatsala-devki-vats/3113"
+		},
+		"image":[
+			"https://im.indiatimes.in/content/2021/May/Capture-7_60a4c50a218ff.JPG?width=1200&height=900&cc=1","https://im.indiatimes.in/content/2021/May/Capture-7_60a4c50a218ff.JPG?width=1200&height=675&cc=1","https://im.indiatimes.in/content/2021/May/Capture-7_60a4c50a218ff.JPG?width=1200&height=1200&cc=1"
+		],
+		"publisher":{
+			"@type":"Organization",
+			"name":"India Times",
+			"logo":{
+				"@type":"ImageObject",
+				"url":"https://www.indiatimes.com/images/indiatimes-600-60.png",
+				"width":600,
+				"height":60
+			},
+			"url":"https://www.indiatimes.com"
+		},
+		"description":"Taking to his Twitter handle and bringing attention to causes of animal cruelty and unwarranted animal deaths, Randeep Hooda has shared photos that will make you shiver. "
+	}
+var jsArray = "/dist/runtime.784390c9a8440b6c1cd9.js,/dist/vendor.d12064063bff56657759.chunk.js,/dist/main.0b65748be881c05a4d0f.chunk.js,/dist/Home.3d96064e328210aa45dc.chunk.js".split(',');function isallow(){return true}function loadcommonjs(){for (var i = 0; i < jsArray.length; i++) {let clientJs = jsArray[i];var script = document.createElement("script");script.src = jsArray[i];document.body.appendChild(script);}}if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistrations().then(function(registrations) {for(let registration of registrations) {registration.unregister()}})};if(isallow()){loadcommonjs();}
+(function(b,n,p){window.mt_custom_triggers=window.mt_custom_triggers||[];window.mt_custom_triggers_to_tags=window.mt_custom_triggers_to_tags||[];b.mt_process_tag_triggers=function(a,c){b.pb_lg(c,"Start process custom triggers",d,"ctrigger,bold","","show_logs_tg");if(b.mt_custom_triggers_to_tags&&b.mt_custom_triggers_to_tags[a]){for(var d=[],g=0;g<b.mt_custom_triggers_to_tags[a].length;g++){var e=b.mt_custom_triggers_to_tags[a][g];b.mt_custom_triggers[e]&&(e={filters:b.mt_custom_triggers[e]},d.push(e))}return b.mt_process_triggers(d,
+c)}return!0};b.mt_process_triggers=function(a,c){b.pb_lg(c,"Process triggers called",a,"ctrigger","","show_logs_tg");if(!a||0==a.length)return!0;for(var d=!1,g=0;g<a.length;g++){var e=b.mt_process_trigger(a[g],c);e&&(d=!0)}return d};b.mt_process_trigger=function(a,c){b.pb_lg(c,"Process trigger obj called",a,"ctrigger","","show_logs_tg");for(var d=[],g=[],e=[],k=null,h=null,l=null,m=!1,f=0;f<a.filters.length;f++)b.mt_process_filter(a.filters[f],c),1==a.filters[f].logic&&d.push(a.filters[f]),2==a.filters[f].logic&&
+g.push(a.filters[f]),3==a.filters[f].logic&&e.push(a.filters[f]);if(0<d.length)for(k=!1,f=0;f<d.length;f++)d[f].result&&(k=!0);if(0<g.length)for(h=!0,f=0;f<g.length;f++)g[f].result||(h=!1);if(0<e.length)for(h=!0,f=0;f<e.length;f++)e[f].result||(l=!1);b.pb_lg(c,"group_or_result \x3d ",k,"ctrigger","","show_logs_tg");b.pb_lg(c,"group_and_result \x3d ",h,"ctrigger","","show_logs_tg");b.pb_lg(c,"group_required_result \x3d ",l,"ctrigger","","show_logs_tg");if(null!=l)l&&(k||h)&&(m=!0);else if(null==k&&
+(k=!1),null==h&&(h=!1),k||h)m=!0;b.pb_lg(c,"TRIGGER RESULT \x3d ",m,"ctrigger,bold","","show_logs_tg");return m};b.mt_process_filter=function(a,c){var d=document.location.pathname,g=document.location.origin;a.result=!1;var e=Math.abs(a.type);if(3>=e){if(0==a.param.length)return!1;"/"!=a.param[0]&&(a.param="/"+a.param)}1==e&&(b.pb_lg(c,"\x3e Check URL contains: "+a.param,d,"ctrigger","","show_logs_tg"),0<=d.indexOf(a.param)&&(a.result=!0));2==e&&(b.pb_lg(c,"\x3e Check URL starts with: "+a.param,d,
+"ctrigger","","show_logs_tg"),0==d.indexOf(a.param)&&(a.result=!0));3==e&&(b.pb_lg(c,"\x3e Check URL ends with: "+a.param,d,"ctrigger","","show_logs_tg"),a.result=d.endsWith(a.param));4==e&&(b.pb_lg(c,"\x3e Check is mainpage",d,"ctrigger","","show_logs_tg"),a.result=!0);if(5==e||6==e)b.pb_lg(c,"\x3e Search block",a.param,"ctrigger","","show_logs_tg"),d=b.mt_search_div(c,a.param,0),b.pb_lg(c,"block:",d),b.pb_l_result_found=!1,d?5==e?(b.pb_l(c,d),a.result=b.pb_l_result_found):a.result=!0:a.result=!1;
+7==e&&(b.pb_lg(c,"\x3e Check HOST contains: "+a.param,g,"ctrigger","","show_logs_tg"),0<=g.indexOf(a.param)&&(a.result=!0));8==e&&(b.pb_lg(c,"\x3e Check var "+a.param+" is "+(0<a.type?"true":"false"),b[a.param],"ctrigger","","show_logs_tg"),"undefined"!=typeof b[a.param]&&b[a.param]&&(a.result=!0));0>a.type&&(b.pb_lg(c,"invert result",null,"ctrigger","","show_logs_tg"),a.result=!a.result);b.pb_lg(c,"Result:",a.result,"ctrigger,bold","","show_logs_tg")}})(window,document,performance);
+(function(a,x,y){a.mt_spec_params_toggler=[{title:"LOGS:",params:[{param:"show_logs",label:"[SHOW]"},{param:"show_logs_all",label:"[ALL]"},{param:"show_logs_sub",label:"[SUB]"},{param:"show_logs_hb",label:"[HB]"},{param:"show_logs_pb",label:"[PB]"},{param:"show_logs_gp",label:"[GP]"},{param:"show_logs_rf",label:"[RF]"}]},{title:"PASSBACKS:",params:[{param:"pblooker_true_only",label:"[TRUE]"},{param:"pblooker_false_only",label:"[FALSE]"},{param:"pblooker_first_true_only",label:"[FIRST TRUE]"}]},{title:"TAGS:",
+params:[{param:"stop_refresh",label:"[NO REFRESH]"},{param:"stop_reinit",label:"[NO REINIT]"},{param:"stop_all_tags",label:"[STOP ALL]"},{param:"hightlight_blocks",label:"[HIGHTLIGHT]"}]},{title:"CONTAINERS:",params:[{param:"stop_all_containers",label:"[STOP ALL]"}]}];a.mt_update_debug_menu=function(){if(!a.pb_t)return 0;try{var b=document.getElementById("mt_debug_style");if(!b){b=document.createElement("style");b.type="text/css";b.setAttribute("id","mt_debug_style");var e=" #st_stat_service_block { font-size: 12px; z-index:999999999; left: 0px; top: 0px; background: #EEE; border:1px solid #DDD; font-family:arial; }";
+e=a.s_hsp("status_menu_fixed")?e+" #st_stat_service_block { position:fixed; } ":e+" #st_stat_service_block { position:absolute; } ";e+=" .st_stat_service_block_header {height:20px; cursor:pointer; background:#DDD;}  .st_stat_service_table_header {border-bottom:2px solid #FFF!important; font-weight:bold;}  .st_block_tag { height: 25px; line-height: 25px; border-bottom: 1px solid #DDD; display: flex; }  .st_block_tag \x3e div { display: flex; align-items: center; float: left; height: 25px; line-height: 25px; padding: 0px 3px; padding-left: 10px; padding-right: 10px; }  .st_block_tag \x3e div.right { float: right; }  .spacer { flex-grow:1; }  .st_tagstatus_block { height:15px; width:15px; border-radius:20px; margin-top:5px; }  .st_additional_param { height:22px; line-height:22px; padding-left:5px; }  .st_additional_param span { cursor:pointer;padding-left:2px; padding-right:2px; }  .st_active { color:#00a700; }  .st_extend { float:left;}  .st_block_hist { height: 20px; line-height: 20px; }  .st_block_hist \x3e div { transition:1s all; display: block; float: left; height:20px; line-height:20px; padding: 0px 3px; padding-left:10px; padding-right:10px; }  .st_visible\x3ediv { display: flex; align-items: center; justify-content: center; transition: 1s height; border:2px solid #000; width:10px; height:8px; border-radius:99px; background:#FFF; }  .st_visible.invisible\x3ediv { height:1px; }  .st_visible\x3ediv\x3ediv {border:1px solid #000; width:2px; height:2px; border-radius:99px; background:#000; }  .st_status_block { width:12px; height:12px; line-height:12px; text-align:center; font-size:10px; background:#9a9a9a; box-shadow: inset 1px 1px 5px 0px rgba(0,0,0,0.3); transition: 1s all; color:#FFF; }  .st_act .st_status_block {  background:#00d600;  }  .st_disact .st_status_block { background:#d60000; }  .st_warn .st_status_block { background:#ffa824; }  .st_tagstatus { width: 12px; }  .st_tagid { width: 70px; cursor: pointer; text-decoration: underline; }  .st_tagrefresh { width: 50px; }  .st_tagdiv {width: 150px;  cursor: pointer; text-decoration: underline;  text-overflow: ellipsis; overflow: hidden;  }  .st_tagdiv.not_found { color:#c3535e; }  .st_taglogs { cursor:pointer; }  .st_taglogs.act {color:#00a700; }  .st_block_history { background: #DDD; max-height:400px; overflow-y:scroll; clear:both; }  .st_hist_event_s { background: #FFF; }  .st_hist_event_p { background: #ccffff; }  .st_hist_event_e { background: #ffffcc; }  .st_hist_event_d { background: #ffcccc; }  .st_hist_event_st { background: #c8f7d6; }  .st_on \x3e div  { background: #0F0; }  .st_off \x3e div { background: #F00; }  .st_container_header {color:#666;}  .st_control_block { cursor:pointer; width:12px;height:12px; background:#AAA; }  .st_control_block.sleep { border-radius:10px; }  .act .st_control_block { background:#d60000; }  .act .st_control_block.sleep { background:#00d600; } ";
+b.innerHTML=e;document.getElementsByTagName("head")[0].appendChild(b)}a.block_stat=document.getElementById("st_stat_service_block");if(!a.block_stat){a.block_stat=a.mt_create_block_helper("st_stat_service_block","","",document.body);var g=a.mt_create_block_helper("","st_stat_service_block_header","",a.block_stat);a.s_hsp("status_menu_fixed")&&(g.onmousedown=function(h){a.mt_move_status_menu=!0;a.mt_move_status_menu_cursor_x=h.pageX;a.mt_move_status_menu_cursor_y=h.pageY;a.mt_move_status_menu_start_x=
+1*a.block_stat.style.marginLeft.replace("px","");a.mt_move_status_menu_start_y=1*a.block_stat.style.marginTop.replace("px","")},g.onmouseup=function(h){a.mt_move_status_menu=!1},a.addEventListener("mousemove",function(){a.mt_move_status_menu&&(a.block_stat.style.marginLeft=a.mt_move_status_menu_start_x+event.pageX-a.mt_move_status_menu_cursor_x,a.block_stat.style.marginTop=a.mt_move_status_menu_start_y+event.pageY-a.mt_move_status_menu_cursor_y)}));var m=a.mt_create_block_helper("","st_extend","[+]",
+g);m.onclick=function(){a.mt_toggle_display("st_extended_params")};var k=a.mt_create_block_helper("st_extended_params","","",a.block_stat);k.style.display="none";for(var f=0;f<a.mt_spec_params_toggler.length;f++){var q=a.mt_spec_params_toggler[f].title;for(b=0;b<a.mt_spec_params_toggler[f].params.length;b++)q+='\x3cspan id\x3d"spec_param_'+a.mt_spec_params_toggler[f].params[b].param+'"\x3e'+a.mt_spec_params_toggler[f].params[b].label+"\x3c/span\x3e";a.mt_create_block_helper("st_extended_params_"+
+f,"st_additional_param",q,k);for(b=0;b<a.mt_spec_params_toggler[f].params.length;b++)a.mt_spec_params_toggler[f].params[b].block=document.getElementById("spec_param_"+a.mt_spec_params_toggler[f].params[b].param),a.mt_spec_params_toggler[f].params[b].block.setAttribute("param",a.mt_spec_params_toggler[f].params[b].param),a.mt_spec_params_toggler[f].params[b].block.onclick=function(){a.mt_toggle_special_param(this.getAttribute("param"));a.mt_stat_update_special_params()}}a.table_header=a.mt_create_block_helper("",
+"st_stat_service_table_header st_block_tag","",a.block_stat)}a.mt_stat_update_special_params();for(k=0;k<a.pb_cl.length;k++){var d=a.pb_cl[k];if(!d.stat_block_container){d.stat_block_container=a.mt_create_block_helper("st_container_block_"+d.id,"st_container_block","",a.block_stat);d.stat_block_header=a.mt_create_block_helper("st_container_block_header_"+d.id,"st_container_header st_block_tag","",d.stat_block_container);d.stat_block_status=a.mt_create_block_helper("st_container_block_status_"+d.id,
+"st_tagstatus",'\x3cdiv class\x3d"st_status_block"\x3e\x3c/div\x3e',d.stat_block_header);var u=a.mt_create_block_helper("","",d.pub_id,d.stat_block_header);u.onclick=function(){};a.mt_create_block_helper("","",d.id,d.stat_block_header);a.mt_create_block_helper("","spacer","",d.stat_block_header);var n=Math.floor((new Date).getTime()/1E3)-d.time,v=24>Math.floor(n/3600)?Math.floor(n/3600)+"h "+Math.floor((n-3600*Math.floor(n/3600))/60)+"m":Math.floor(n/86400)+"d";a.mt_create_block_helper("","",v,d.stat_block_header);
+a.mt_create_block_helper("","",d.version,d.stat_block_header);var p="st_control_block";a.s_hsp("stop_all_containers")&&(p+=" sleep");d.stat_block_control=a.mt_create_block_helper("","st_tagcontrol",'\x3cdiv class\x3d"'+p+'"\x3e\x3c/div\x3e',d.stat_block_header);d.stat_block_control.setAttribute("cid",d.id);d.stat_block_control.onclick=function(){var h=this.getAttribute("cid");a.s_hsp("stop_all_containers")?a.mt_toggle_special_param("start_container_"+h):a.mt_toggle_special_param("stop_container_"+
+h);a.mt_update_debug_menu()};d.stat_block_content=a.mt_create_block_helper("st_container_block_content_"+d.id,"st_container_content","",d.stat_block_container)}a.s_hsp("stop_all_containers")?a.s_hsp("start_container_"+d.id)?d.stat_block_control.className="st_tagcontrol act":d.stat_block_control.className="st_tagcontrol":a.s_hsp("stop_container_"+d.id)?d.stat_block_control.className="st_tagcontrol act":d.stat_block_control.className="st_tagcontrol";!d.old&&d.started?a.mt_set_debugmenu_block_class(!1,
+d.stat_block_status,"st_tagstatus st_act"):(d.old&&a.mt_set_debugmenu_block_class(!1,d.stat_block_status,"st_tagstatus st_warn"),d.started||a.mt_set_debugmenu_block_class(!1,d.stat_block_status,"st_tagstatus st_disact"));for(f=0;f<a.pb_t.length;f++)if(a.pb_t[f].id.toString().includes("_"+d.id)){var c=a.pb_t[f],w=a.pb_t[f].id;if(!c.stat_block_tag){c.stat_block_tag=a.mt_create_block_helper("st_tag_block_"+c.id,"st_block_tag","",d.stat_block_content);b="";c.st&&(b="S");a.mt_create_debugmenu_block(c,
+"st_tagstatus","S",'\x3cdiv class\x3d"st_status_block"\x3e'+b+"\x3c/div\x3e",!1);a.mt_create_debugmenu_block(c,"st_tagid","ID",c.id,function(){a.mt_toggle_display("st_tag_blockhist_"+this.getAttribute("tid"))});a.mt_create_debugmenu_block(c,"st_tagdiv","DIV",c["do"],function(){for(var h=this.getAttribute("tid"),l=0;l<window.pb_t.length;l++)if(window.pb_t[l].id==h){var r=window.pb_t[l];r.d_parent&&(r.d_parent.style.border="3px solid #a832a0",r.d_parent.scrollIntoView())}});b="";this.rotation&&(b="\x3cdiv\x3e\x3cdiv\x3e\x3c/div\x3e\x3c/div\x3e");
+a.mt_create_debugmenu_block(c,"st_visible","",b,!1);a.mt_create_debugmenu_block(c,"st_tagrefresh","Ref","",!1);p="st_control_block";if(c.st||a.s_hsp("stop_all_tags"))p+=" sleep";a.mt_create_debugmenu_block(c,"st_taglogs","L","[L]",function(){var h=this.getAttribute("tid");a.mt_toggle_special_param("show_logs_"+h)});a.mt_create_debugmenu_block(c,"st_tagcontrol","C",'\x3cdiv class\x3d"'+p+'"\x3e\x3c/div\x3e',function(){for(var h=this.getAttribute("tid"),l=0;l<window.pb_t.length;l++)window.pb_t[l].id==
+h&&(c.st||a.s_hsp("stop_all_tags")?a.mt_toggle_special_param("start_tag_"+h):a.mt_toggle_special_param("stop_tag_"+h),a.mt_update_debug_menu())});c.stat_block_tag_history||(c.stat_block_tag_history=a.mt_create_block_helper("st_tag_blockhist_"+w,"st_block_history","",d.stat_block_content),c.stat_block_tag_history.style.display="none")}if(c.history)for(b=0;b<c.history.length;b++){var t=document.getElementById("st_tag_blockhist_"+c.id+"_"+b);t||(q="\x3cdiv\x3e"+c.history[b].t.getMinutes()+":"+c.history[b].t.getSeconds().toString().padStart(2,
+"0")+"\x3c/div\x3e\x3cdiv\x3e"+c.history[b].e+"\x3c/div\x3e\x3cdiv\x3e"+c.history[b].c+"\x3c/div\x3e",t=a.mt_create_block_helper("st_tag_blockhist_"+c.id+"_"+b,"st_block_hist st_hist_event_"+c.history[b].e,q,c.stat_block_tag_history))}c.a&&a.mt_set_debugmenu_block_class(c,"st_tagstatus","st_act");c.disactivated&&a.mt_set_debugmenu_block_class(c,"st_tagstatus","st_disact");c.block_no_found?a.mt_set_debugmenu_block_class(c,"st_tagdiv","not_found"):a.mt_set_debugmenu_block_class(c,"st_tagdiv","");c.rotation&&
+(c.visible?a.mt_set_debugmenu_block_class(c,"st_visible",""):a.mt_set_debugmenu_block_class(c,"st_visible","invisible"),a.mt_set_debugmenu_block_content(c,"st_tagrefresh",Math.round(a.pb_t[f].rt-a.pb_t[f].rs)));c.st||a.s_hsp("stop_all_tags")?a.s_hsp("start_tag_"+c.id)?a.mt_set_debugmenu_block_class(c,"st_tagcontrol","act"):a.mt_set_debugmenu_block_class(c,"st_tagcontrol",""):a.s_hsp("stop_tag_"+c.id)?a.mt_set_debugmenu_block_class(c,"st_tagcontrol","act"):a.mt_set_debugmenu_block_class(c,"st_tagcontrol",
+"");a.s_hsp("show_logs_"+c.id)?a.mt_set_debugmenu_block_class(c,"st_taglogs","act"):a.mt_set_debugmenu_block_class(c,"st_taglogs","")}}}catch(h){console.log(h)}};a.mt_create_debugmenu_block=function(b,e,g,m,k){var f=document.getElementById("title_"+e);f||a.mt_create_block_helper("title_"+e,e,g,a.table_header);g=a.mt_create_block_helper("st_tag_"+e+"_"+b.id,e,m);g.setAttribute("tid",b.id);k&&(g.onclick=k);b.stat_block_tag.appendChild(g);b.stat_blocks||(b.stat_blocks=[]);return b.stat_blocks[e]=g};
+a.mt_set_debugmenu_block_class=function(b,e,g){b&&(g=e+" "+g,e=b.stat_blocks[e]);e.className.trim()!=g&&(e.className=g)};a.mt_set_debugmenu_block_content=function(b,e,g){b.stat_blocks[e].innerHTML!=g&&(b.stat_blocks[e].innerHTML=g)};a.mt_create_block_helper=function(b,e,g,m){var k=document.createElement("div");k.setAttribute("id",b);e&&(k.className=e);g&&(k.innerHTML=g);m&&m.appendChild(k);return k};a.mt_toggle_display=function(b){b=document.getElementById(b);if("block"==b.style.display)return b.style.display=
+"none",!1;b.style.display="block";return!0};a.mt_stat_update_special_params=function(){for(var b=0;b<a.mt_spec_params_toggler.length;b++)for(var e=0;e<a.mt_spec_params_toggler[b].params.length;e++)a.s_hsp(a.mt_spec_params_toggler[b].params[e].param)?a.mt_spec_params_toggler[b].params[e].block.className="st_active":a.mt_spec_params_toggler[b].params[e].block.className=""};window.setInterval(function(){a.s_hsp("status_menu","status_menu_fixed")&&a.mt_update_debug_menu()},1E3);a.mt_show_tag_menu=function(){}})(window,
+document,performance);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c7_1148%c COMPILE 2020-07-07 08:17:19 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"7_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"7_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3569,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("7_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_PPD_AL\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_PPD_NWS_AL","do":"#IT_ROS_PPD_NWS_AL",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c8_1148%c COMPILE 2020-07-07 08:17:25 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"8_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"8_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3570,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("8_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG1_AL-0\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG1_NWS_AL-0","do":"#IT_ROS_BIG1_NWS_AL-0",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c9_1148%c COMPILE 2020-07-07 08:17:41 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"9_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"9_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3571,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("9_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG2_AL-0\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG2_NWS_AL-0","do":"#IT_ROS_BIG2_NWS_AL-0",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c10_1148%c COMPILE 2020-07-07 08:17:58 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"10_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"10_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3572,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("10_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG3_AL-0\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG3_NWS_AL-0","do":"#IT_ROS_BIG3_NWS_AL-0",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c11_1148%c COMPILE 2020-07-07 08:17:36 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"11_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"11_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3573,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("11_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG1_AL-1\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG1_NWS_AL-1","do":"#IT_ROS_BIG1_NWS_AL-1",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c12_1148%c COMPILE 2020-07-07 08:17:47 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"12_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"12_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3574,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("12_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG2_AL-1\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG2_NWS_AL-1","do":"#IT_ROS_BIG2_NWS_AL-1",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c13_1148%c COMPILE 2020-07-07 08:17:30 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"13_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"13_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3575,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("13_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG3_AL-1\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG3_NWS_AL-1","do":"#IT_ROS_BIG3_NWS_AL-1",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c14_1148%c COMPILE 2020-07-07 08:17:52 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"14_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"14_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3576,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("14_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG1_AL-2\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG1_NWS_AL-2","do":"#IT_ROS_BIG1_NWS_AL-2",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
+"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log('TAG %c15_1148%c COMPILE 2020-07-07 08:18:06 (BS) "."',"color:#00661d; text-decoration:underline","color:#000");window.pb_t=window.pb_t||[];var p=!0;window.pb_t.forEach(function(a){"15_1148"==a.id&&(p=!1)});"function"==typeof window.pb_lg_cond&&window.pb_lg_cond(!1)&&console.log("Activate \x3d "+p);
+p&&window.setTimeout(function(){window.pb_t.push({id:"15_1148",app:"BS",ls:0,a:!0,ch:!1,append_type:0,s:[],p:[{id:3577,pid:0,fr:1,di:"#",sp:"",h:0,_w:728,_h:90,fn:function(a){window.pb_i("15_1148","","728px","90px",'\x3c!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"\x3e\x3chtml\x3e\x3chead\x3e\x3cscript src\x3d"https://securepubads.g.doubleclick.net/tag/js/gpt.js"\x3e\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3cdiv id\x3d"gpt-passback"\x3e  \x3cscript\x3e    window.googletag \x3d window.googletag || {cmd: []};    googletag.cmd.push(function() {    googletag.defineSlot(\'/21751243814/Indiatimes_BREC_728x90_BIG2_AL-2\', [728, 90], \'gpt-passback\').addService(googletag.pubads());    googletag.enableServices();    googletag.display(\'gpt-passback\');    });  \x3c/script\x3e\x3c/div\x3e\x3c/body\x3e\x3c/html\x3e')}}],
+pa:!1,pf:!0,pb:!0,di:"#IT_ROS_BIG2_NWS_AL-2","do":"#IT_ROS_BIG2_NWS_AL-2",n:0,css:"",nt:"",d:null,div_sub:null,div_parent:null,g:!1,gi:!1,c:[],sh:[!0,!1,!1],f:!0,rt:0,rs:0,db:0,ll:0,rm:!1,pd:4E3,headerbidding_delay:3E3,ca:0,pc:1,ou:0,rg:0,dont_fix_height:0,gs:0,clb:0,rl:1,es:0,st:0,mlt:0,dtc:[],dtg:0,dtgi:0,dto:0,dt:"undefined-undefined",rnd:0,rnl:10});window.pb_a()},0);
