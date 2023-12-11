@@ -1,0 +1,9 @@
+ 
+
+  function getVersion(){
+	var versionName = window.MicroMsg.keep_getVersionName();	
+	var versionCode = window.MicroMsg.keep_getVersionCode();
+	window.MicroMsg.keep_log(versionName);
+	window.MicroMsg.keep_log(versionCode);
+  }
+  

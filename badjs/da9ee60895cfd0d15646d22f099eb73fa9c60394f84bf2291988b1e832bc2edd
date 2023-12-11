@@ -1,0 +1,26 @@
+
+   //<!-- @_d_rekt@ <- Muss unbedingt im Quelltext erhalten bleiben
+   
+   if(top.frames.length < 1)
+    top.location.href = "index.htm";
+   
+   function show(layer)
+   {
+    document.getElementById(layer).style.visibility="visible";
+   }
+  
+   function hide(layer)
+   {
+    document.getElementById(layer).style.visibility="hidden"; 
+   }
+  
+   function f(ckform, ckobj, ckval)
+   {
+    if (document.forms[ckform])
+    {
+     if (document.forms[ckform].elements[ckobj].value == ckval)
+      document.forms[ckform].elements[ckobj].focus();
+    }
+   }
+ //-->
+  

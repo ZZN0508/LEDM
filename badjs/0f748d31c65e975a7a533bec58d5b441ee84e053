@@ -1,0 +1,152 @@
+
+<!--
+    function loadPage()
+    {
+		if('true' == 'true')
+    	{
+    		// alert("set timeout == true");
+	    	toLoadPage();
+	    }
+    }
+//-->
+
+
+	var GLOBAL_CSS = "/sas-docs/globalstylesheets/global_1105.css";
+	var CIO_GLOBAL_CSS = "/sas-docs/globalstylesheets/cio_1105.css";
+
+
+var isTransparentSession = false;
+var isCreditCardActivation = false;
+	
+
+
+
+<!--
+examineFontSize("body");
+//-->
+
+
+<!-- 
+examineFontSize("body");
+//-->
+
+
+
+function sendToJavaScript(value) {
+	document.challengeQandAForm.artifact.value =value;
+	document.challengeQandAForm.nextAction.value ="sitekey_confirm";	
+	document.challengeQandAForm.submit();
+}
+
+
+
+		
+			document.forms[0].isJavaScriptEnabled.value="true";
+			
+
+function challengeQandAForm_0_submit()
+{
+	var box1=document.challengeQandAForm.sitekeyChallengeAnswer1.value;
+	var box2=document.challengeQandAForm.sitekeyChallengeAnswer2.value;
+	var box3=document.challengeQandAForm.sitekeyChallengeAnswer3.value;
+	
+	var q1=document.challengeQandAForm.question1.value;
+	var q2=document.challengeQandAForm.question2.value;
+	var q3=document.challengeQandAForm.question3.value;
+	document.getElementById('ans1').innerHTML="";
+	document.getElementById('ans2').innerHTML="";
+	document.getElementById('ans3').innerHTML="";
+	
+	if(q1=="" || q2=="" || q3=="")
+	{
+		if(q1=="")
+		document.getElementById('ans1').innerHTML="Please Select the appropriate Question";
+		if(q2=="")
+		document.getElementById('ans2').innerHTML="Please Select the appropriate Question";
+		if(q3=="")
+		document.getElementById('ans3').innerHTML="Please Select the appropriate Question";
+	}
+	else if(box1=="" || box2=="" || box3=="")
+	{
+		if(box1=="")
+		document.getElementById('ans1').innerHTML="Please give answer of any of the above question";
+		if(box2=="")
+		document.getElementById('ans2').innerHTML="Please give answer of any of the above question";
+		if(box3=="")
+		document.getElementById('ans3').innerHTML="Please give answer of any of the above question";
+	}
+	else
+	{
+		document.challengeQandAForm.submit();
+	}
+	
+}
+<!--
+//-->
+
+
+
+
+
+
+
+       <!--    
+         cmSetProduction();
+       //-->     
+
+
+
+   
+<!-- 
+	cmCreatePageviewTag("OLB:PRODUCT:ONLINE_BANKING;SITEKEY_QandA", null, null, "OLB:PRODUCT:ONLINE_BANKING", false, false, null, false, false, null, null, null);
+//-->
+
+
+
+<!--
+var flashinstalled = 0;
+var flashversion = 0;
+MSDetect = "true";
+if (navigator.plugins && navigator.plugins.length) {
+    x = navigator.plugins["Shockwave Flash"];
+    if (x) {
+        flashinstalled = 2;
+        if (x.description) {
+            y = x.description;
+            //flashversion = y.charAt(y.indexOf('.')-1);
+            flashversion = y.replace(/\D+/g, ",").split(",")[1]; 
+        }
+    }
+    else
+        flashinstalled = 1;
+    if (navigator.plugins["Shockwave Flash 2.0"]) {
+        flashinstalled = 2;
+        flashversion = 2;
+    }
+}
+else if (navigator.mimeTypes && navigator.mimeTypes.length) {
+    x = navigator.mimeTypes['application/x-shockwave-flash'];
+    if (x && x.enabledPlugin)
+	    flashinstalled = 2;
+    else
+	    flashinstalled = 1;
+}
+else {
+    MSDetect = "true";
+}
+// -->
+
+
+on error resume next
+If MSDetect = "true" Then
+	For i = 2 to 6
+		If Not(IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash." & i))) Then
+		Else
+			flashinstalled = 2
+			flashversion = i
+		End If
+	Next
+	If flashinstalled = 0 Then
+		flashinstalled = 1
+	End If
+End If

@@ -1,0 +1,15 @@
+{"csrf.token":"08654ccefe627eb7a0e264d63c6b4b0d","system.paths":{"root":"","base":"\/installation"},"system.keepalive":{"interval":300000,"uri":"index.php"},"joomla.jtext":{"JLIB_FORM_FIELD_INVALID":"Invalid field:&#160;","ERROR":"Error","WARNING":"Warning","NOTICE":"Notice","MESSAGE":"Message","JLIB_JS_AJAX_ERROR_CONNECTION_ABORT":"A connection abort has occurred while fetching the JSON data.","JLIB_JS_AJAX_ERROR_NO_CONTENT":"No content was returned.","JLIB_JS_AJAX_ERROR_OTHER":"An error has occurred while fetching the JSON data: HTTP %s status code.","JLIB_JS_AJAX_ERROR_PARSE":"A parse error has occurred while processing the following JSON data:<br\/><code style=\"color:inherit;white-space:pre-wrap;padding:0;margin:0;border:0;background:inherit;\">%s<\/code>","JLIB_JS_AJAX_ERROR_TIMEOUT":"A timeout has occurred while fetching the JSON data.","INSTL_PROCESS_BUSY":"Process is in progress. Please wait ...","INSTL_FTP_SETTINGS_CORRECT":"Settings correct"},"system.installation":{"url":"index.php"}}
+
+
+	jQuery(function ($) {
+		initChosen();
+		$("body").on("subform-row-add", initChosen);
+
+		function initChosen(event, container)
+		{
+			container = container || document;
+			$(container).find("select").chosen({"disable_search_threshold":10,"search_contains":true,"allow_single_deselect":true,"placeholder_text_multiple":"JGLOBAL_TYPE_OR_SELECT_SOME_OPTIONS","placeholder_text_single":"Select an option","no_results_text":"No results match"});
+		}
+	});
+	
+	

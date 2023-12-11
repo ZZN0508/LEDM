@@ -1,0 +1,30 @@
+
+
+  function SetupStrings()
+  {
+    document.getElementById( 'title' ).innerText = external.GetString(32);
+    document.getElementById( 'heading' ).innerText = external.GetString(12);
+    document.getElementById( 'confirm_question' ).innerText = external.GetString(13);
+    document.getElementById( 'button_ok' ).innerText = external.GetString(12);
+    document.getElementById( 'button_cancel' ).innerText = external.GetString(33);
+  }
+
+  window.onload = function(event)
+  {
+      settings = {
+          tl: { radius: 5 },
+          tr: { radius: 5 },
+          bl: { radius: 5 },
+          br: { radius: 5 },
+          antiAlias: true,
+          validTags: ["div"]
+      }
+  
+      var content = new curvyCorners(settings, "content");
+      content.applyCornersToAll();	
+      var infoblock = new curvyCorners(settings, "info_block");
+      infoblock.applyCornersToAll();  
+
+    SetupStrings();
+
+  }

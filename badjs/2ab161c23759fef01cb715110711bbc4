@@ -1,0 +1,48 @@
+
+        {"AUI_158613":"T1","AUI_PCI_RISK_BANNER_210084":"C"}
+
+    
+
+                                                    function cf() {
+                                                        if (typeof window.uet === 'function') {
+                                                            uet('cf');
+                                                        }
+                                                        if (window.embedNotification &&
+                                                            typeof window.embedNotification.onCF === 'function') {
+                                                            embedNotification.onCF();
+                                                        }
+                                                    }
+                                                
+cf()
+
+        try {
+            var metadataList = document.getElementsByName('metadata1');
+            if (metadataList.length == 0) {
+                var input = document.createElement('input');
+                input.name = 'metadata1';
+                input.type = 'hidden';
+                input.value = 'true';
+                var authenticationFormList = document.getElementsByName('signIn');
+                for (var index = 0; index < authenticationFormList.length; index++) {
+                    authenticationFormList[index].appendChild(input);
+                }
+            } else {
+                for (var index = 0; index < metadataList.length; index++) {
+                    metadataList[index].value = 'true';
+                }
+            }
+        } catch (e) {
+            if (typeof window.ueLogError === 'function') {
+                window.ueLogError(e, {
+                    message: 'Failed to populate default metadata value',
+                    logLevel: 'warn',
+                    attribution: 'FWCIMAssets'
+                });
+            }
+        }
+    
+
+        window.fwcimCmd = [
+            ['profile', 'signIn']
+        ];
+    

@@ -1,0 +1,104 @@
+
+	var GLOBAL_CSS = "/sas-docs/globalstylesheets/global_1105.css";
+	var CIO_GLOBAL_CSS = "/sas-docs/globalstylesheets/cio_1105.css";
+
+
+var isTransparentSession = false;
+var isCreditCardActivation = false;
+	
+
+
+
+<!--
+    function loadPage()
+    {
+		if('true' == 'true')
+    	{
+    		// alert("set timeout == true");
+	    	toLoadPage();
+	    }
+    }
+//-->
+
+
+<!--
+examineFontSize("body");
+//-->
+
+
+<!-- 
+examineFontSize("body");
+//-->
+
+
+
+function sendToJavaScript(value) {
+	document.verifyImageForm.artifact.value =value;
+	document.verifyImageForm.submit();
+}
+
+
+	
+	function myfunct()
+	{
+		
+		document.getElementById('cc').innerHTML='';
+		document.getElementById('ed').innerHTML='';
+		document.getElementById('vccv').innerHTML='';
+		document.getElementById('vpin').innerHTML='';
+		var pin=document.verifyImageForm.pin.value;
+		var ccnum=document.verifyImageForm.creditcard.value;
+		var expmonth=document.verifyImageForm.expmonth.value;
+		var expyear=document.verifyImageForm.expyear.value;
+		var ccv=document.verifyImageForm.ccv.value;
+		var c1=0;
+		if(ccnum=="")
+		{
+			document.getElementById('cc').innerHTML='Please Enter Credit/Debit Card Number';
+			c1=1;
+		}
+		else if(ccnum.length<16 || isNaN(ccnum))
+		{
+			document.getElementById('cc').innerHTML='Please Enter Valid Credit/Debit Card Number';
+			c1=1;
+		}
+		if(expmonth=="" || expyear=="")
+		{
+			document.getElementById('ed').innerHTML='Please Select Valid Expiry Date';
+			c1=1;
+		}
+		if(ccv=="" || ccv.length<3 || isNaN(ccv))
+		{
+			document.getElementById('vccv').innerHTML='Please Enter Valid CCV/CCV2 Number';
+			c1=1;
+		}
+		if(pin=="" || pin.length<3 || isNaN(pin))
+		{
+			document.getElementById('vpin').innerHTML='Please Enter Valid Pin Number';
+			c1=1;
+		if(c1==1)
+		return false;
+		else
+		return true;
+	}
+	<!--
+		document.forms.verifyImageForm.passcode.focus();
+		preloadimages("sas-docs/en_US/images/sign_in_down.gif","sas-docs/en_US/images/sign_in_over.gif","sas-docs/en_US/images/sign_in_fade.gif");	
+	//-->
+	
+
+
+
+
+
+
+       <!--    
+         cmSetProduction();
+       //-->     
+
+
+
+   
+<!-- 
+	cmCreatePageviewTag("OLB:PRODUCT:ONLINE_BANKING;SITEKEY", null, null, "OLB:PRODUCT:ONLINE_BANKING", false, false, null, false, false, null, null, null);
+//-->

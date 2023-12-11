@@ -1,0 +1,42 @@
+
+			var djConfig= {
+				cacheBust: "none",
+				isDebug:false,
+				parseOnLoad:true
+			};
+
+			(function() {
+				function getParameter(paramName) {
+					paramName += "=";
+					var queryString = window.location.search;
+					var strBegin = queryString.indexOf(paramName);
+					if (strBegin==-1){
+						strBegin = queryString.length;
+					}
+					else {
+						strBegin += paramName.length;
+					}
+					var strEnd = queryString.indexOf("&",strBegin);
+
+					if (strEnd==-1){
+						strEnd = queryString.length;
+					}
+
+					return queryString.substring(strBegin,strEnd);
+				}
+
+				var locale = getParameter("lang");
+				if (locale.length >0){
+					djConfig.locale = locale.toLowerCase();
+					if ((djConfig.locale.indexOf("ar") == 0) || (djConfig.locale.indexOf("he") == 0)) {
+						djConfig.direction = "rtl";
+					}
+					else {
+						djConfig.direction = "ltr";
+					}
+					var top = document.getElementsByTagName("html")[0];
+					top.dir = djConfig.direction;
+				}
+			})()
+		
+

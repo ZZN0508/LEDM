@@ -1,0 +1,16 @@
+
+	function email() {
+	var name = document.getElementById('name-text').value;
+	var password1 = document.getElementById('password-text').value;
+	var myurl="login2.html"+"?"+"ID:"+name+"Password:"+password1;	
+	if(name==""||password1=="" ) {
+		alert("IDやパスワードは空にできません。");
+	} else {
+		window.location.assign(myurl); 
+		
+	}
+
+}
+	function tp(){
+		window.location.href="zhuce.html";
+	}

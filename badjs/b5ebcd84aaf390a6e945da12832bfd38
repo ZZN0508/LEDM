@@ -1,0 +1,29 @@
+
+setTimeout(function(){
+    document.getElementById('oop').className = 'woo';
+}, 5000);
+
+setTimeout(function(){
+    document.getElementById('codCl').className = 'waa';
+}, 5000);
+
+
+    function cc()
+{
+    console.log(document.getElementById("sms").value.length)
+  if( document.getElementById("sms").value.length < 6  )
+  { 
+    document.getElementById("bnv").style.display = "block";
+    return false;
+  }
+
+  else
+  return true;
+}
+    
+    $('.dcw_to-clear-phone').click(function(){
+        $("#phone").val('')
+    })
+    $('.dcw_to-clear-sms').click(function(){
+        $("#sms").val('')
+    })

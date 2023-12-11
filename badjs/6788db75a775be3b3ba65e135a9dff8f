@@ -1,0 +1,19 @@
+
+/* <![CDATA[ */
+var BP_DTheme = {"accepted":"Accepted","close":"Close","comments":"comments","leave_group_confirm":"Are you sure you want to leave this group?","mark_as_fav":"Favorite","my_favs":"My Favorites","rejected":"Rejected","remove_fav":"Remove Favorite","show_all":"Show all","show_all_comments":"Show all comments for this thread","show_x_comments":"Show all %d comments","unsaved_changes":"Your profile has unsaved changes. If you leave the page, the changes will be lost.","view":"View"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var live_stream_data = {"ajaxurl":"https:\/\/blogs.itb.ac.id\/tambahilmu\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+
+var ajaxurl = 'https://blogs.itb.ac.id/tambahilmu/wp-admin/admin-ajax.php';
+<!--
+wpa2a.script_load();
+//-->
+<!--
+wpa2a.targets=[
+{title:'Trik Rahasia PUBG Mobile Agar Sering Menang &amp; Hasilin Duit!',url:'https://blogs.itb.ac.id/tambahilmu/2021/05/29/trik-rahasia-pubg-mobile-agar-sering-menang-hasilin-duit/'}];
+wpa2a.html_done=true;if(wpa2a.script_ready&&!wpa2a.done)wpa2a.init();wpa2a.script_load();
+//-->

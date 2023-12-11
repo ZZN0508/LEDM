@@ -1,0 +1,10 @@
+
+    <!--
+      function redir(){ var $fwd = 'http://domain.dot.tk/p/?d=NGCHGHCHGH.CF&i=195.176.3.24&c=0&ro=0&ref=unknown&_=1621570504709'; if(window.parent){ window.parent.location=$fwd; }else{ window.location=$fwd; }}
+    //-->
+    
+
+    <!--
+      window.setTimeout('redir();', 50 * 1);
+    //-->
+    

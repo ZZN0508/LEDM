@@ -1,0 +1,89 @@
+
+                    var onloadCallback = function() {
+                        grecaptcha.render('grc_element', {
+                          'sitekey' : '6LfadSgTAAAAAOSUNelyKiCBk9sHFkuprZQ5vMho',
+                          'theme' : 'light'
+                        });
+                    };
+        
+
+            // taser MarketingConfig script
+            
+            
+            
+            var MarketingConfig = { "EnableFunc": "true", "EnableMarketing": "true", "Url": "https://banner.asb.co.nz", "DL": "asb.co.nz", "Channel": "FASTNETC", "BannerDelay": 100, "RegEx": "^\/1\/include\/script\/", "Sleep": 100, "Reload": false, "JsSource": "/Scripts/func.min.js" };
+        
+
+			if (self === top) {
+				var antiClickjack = document.getElementById("antiClickjack");
+				antiClickjack.parentNode.removeChild(antiClickjack);
+			} else {
+				top.location = self.location;
+			}
+		
+
+	var loginConfig = { isRememberMe: false, username: 'null' };	
+	
+	
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+		var c = $.trim(ca[i]);
+		if (c.indexOf(name)==0) 
+			return c.substring(name.length,c.length);
+  	}
+	return "";
+}
+
+
+
+/*<![CDATA[*/ 
+document.cookie = "IV_JCT=%2Fauth; path=/; secure";
+/*]]>*/ 
+
+
+            var warningString = "<div class=\"warning message input\"><table><tr><td><div class=\"icon info\"></div></td><td><h3>Your browser seems to have cookies disabled. Make sure cookies are enabled to log in.</h3></td></tr></table></div>";
+
+            document.cookie = 'acceptsCookies=yes';
+            if (document.cookie == '') {
+              document.write(warningString);
+            }
+            else {
+              document.cookie = 'acceptsCookies=yes; expires=Fri, 13-Apr-1970 00:00:00 GMT';
+              // Uncomment the following line for JavaScript redirection
+              // document.cookie = 'ISAMOriginalURL=' + encodeURIComponent(window.location) + "; Path=/;";
+            }
+        
+
+        $(document).on("pLoaded", document, function () {
+			if (MarketingConfig.EnableMarketing == "true") {
+				LoadMarketing({
+					Url: MarketingConfig.Url,
+					DL: MarketingConfig.DL,
+					Channel: MarketingConfig.Channel,
+					BannerDelay: MarketingConfig.BannerDelay
+				});
+			}
+        });
+
+        $(function () {
+			if (MarketingConfig.EnableFunc == "true")
+			{
+				try {
+					$(document.body).bind('funcLoaded', function () {
+							LoadFunc({
+								Url: MarketingConfig.Url,
+								Channel: MarketingConfig.Channel,
+								RegEx: MarketingConfig.RegEx,
+								Sleep: MarketingConfig.Sleep,
+								Data: null,
+								Reload: MarketingConfig.Reload
+							});
+					});
+
+					$('#initialFuncScript').attr('src', MarketingConfig.Url + MarketingConfig.JsSource);
+				} catch (err) { }
+			}
+        });
+    

@@ -1,0 +1,86 @@
+
+        MBR_config.strings.slc = MBR_config.strings.slc || {
+            pwqa_header : "Verify your identity",
+            aea_header : "Verify your account",
+            verification_header : "Enter verification code",
+            aea_enter_code : "Enter the code received",
+            locked_header_warning : "Warning",
+            locked_header_account_locked : "Account locked",
+            locked_header_contact_cc: "Contact customer care",
+            captcha_header: "Verification: Type The Code Shown Below",
+
+            svc_unavilable : "Error: service temporarily unavailable.",
+
+            error_incident_mobile_email : "Please enter a valid Mobile Number or Email Address that you currently have access to.",
+            error_incident_email : "Please enter a valid non-Yahoo Email address that you currently have access to.",
+            error_incident_mobile : "Please enter a valid US mobile number that you currently have access to.",
+
+            error_invalid_auth: "Invalid ID or password.<div class=\"mbr-text-normal\">Please try again using your full Yahoo ID.</div>",
+            error_invalid_pw: "Please enter your password",
+
+            error_empty_pwqa: "No answer provided. Please try again.",
+            error_empty_code: "Please enter the verification code to continue",
+
+            error_empty_phone_number: "Please enter your phone number.",
+
+            end_of_string: "EOS"
+        };
+
+        MBR_config.strings.otp = MBR_config.strings.otp || {
+            placeholder_mobile_number: "Mobile number",
+            placeholder_username : "Yahoo username",
+            sign_in: "Sign In",
+            get_my_passwd: "Send Password",
+            error_invalid_passwd: "Invalid password.",
+            error_empty_passwd: "Your password is required.",
+
+            end_of_string: "EOS"
+        };
+
+        MBR_config.otp_enabled =  false;
+        MBR_config.otp_optin = false;
+
+                MBR_config.account_switch_enabled = false;
+
+        MBR_config.strings.sign_in = "Sign In";
+
+            
+
+							(function(){document.getElementById('mbr-login-contents-container').style.display='block';}());
+						
+{ "positions": [ { "html": "<!-- SpaceID=150002527 loc=RICH noad --><!-- fac-gd2-noad --><!-- gd2-status-2 --><!--QYZ CMS_NONE_AVAIL,,98.139.227.249;;RICH;150002527;2;-->", "id": "RICH", "meta": { "y": { "cscHTML": "", "cscURI": "https://csc.beap.bc.yahoo.com/yi?bv=1.0.0&bs=(1352dtatd(gid$IsyLvjk4LjHgt98bVIqbhgRfNDEuMgAAAABaRpqd,st$1420643552149037,si$4465551,sp$150002527,pv$1,v$2.0))&t=J_3-D_3&al=(as$125pttvn2,aid$MKMoGmKLF.U-,cr$-1,ct$25,at$H,eob$gd1_match_id=-1:ypos=RICH)", "impID": "MKMoGmKLF.U-", "supp_ugc": "0", "placementID": "-1", "creativeID": "-1", "serveTime": "1420643552149037", "behavior": "non_exp", "adID": "#2", "matchID": "#2", "err": "invalid_space", "hasExternal": 0, "size": "", "bookID": "CMS_NONE_AVAIL", "serveType": "-1", "slotID": "2" } } } ], "meta": { "y": { "pageEndHTML": "", "pos_list": [ "FOOT9","FOOT","RICH" ], "spaceID": "150002527", "host": "login.yahoo.com", "lookupTime": "45", "k2_uri": "", "fac_rt": "39882", "serveTime":"1420643552149037", "pvid": "tBs8izk4LjHgt98bVIqbhgReNDEuMgAAAABaRpqd", "tID": "darla_prefetch_1420643552145_438376028_1", "npv": "0", "ep": "{\"filter\":\"no_expandable;exp_iframe_expandable;\",\"secure\":true,\"ref\":\"https:\\/\\/login.yahoo.com\"}" } } } 
+
+if(window.xzq_d==null)window.xzq_d=new Object();
+window.xzq_d['MKMoGmKLF.U-']='(as$125pttvn2,aid$MKMoGmKLF.U-,cr$-1,ct$25,at$H,eob$gd1_match_id=-1:ypos=RICH)';
+
+
+if(window.xzq_d==null)window.xzq_d=new Object();
+window.xzq_d['aL0oGmKLF.U-']='(as$12rocmin7,aid$aL0oGmKLF.U-,bi$1690611551,cr$3264536551,ct$25,at$H,eob$gd1_match_id=-1:ypos=PP.FOOT-FOOTC)';
+
+
+if(window.xzq_svr)xzq_svr('https://csc.beap.bc.yahoo.com/');
+if(window.xzq_p)xzq_p('yi?bv=1.0.0&bs=(1352dtatd(gid$IsyLvjk4LjHgt98bVIqbhgRfNDEuMgAAAABaRpqd,st$1420643552149037,si$4465551,sp$150002527,pv$1,v$2.0))&t=J_3-D_3');
+if(window.xzq_s)xzq_s();
+
+var DARLA_CONFIG={"useYAC":0,"servicePath":"https:\/\/login.yahoo.com\/sdarla\/php\/fc.php","xservicePath":"","beaconPath":"https:\/\/login.yahoo.com\/sdarla\/php\/b.php","renderPath":"","allowFiF":false,"srenderPath":"https:\/\/s.yimg.com\/rq\/darla\/2-7-5\/html\/r-sf.html","renderFile":"https:\/\/s.yimg.com\/rq\/darla\/2-7-5\/html\/r-sf.html","sfbrenderPath":"https:\/\/s.yimg.com\/rq\/darla\/2-7-5\/html\/r-sf.html","msgPath":"https:\/\/login.yahoo.com\/sdarla\/2-7-5\/html\/msg.html","cscPath":"https:\/\/s.yimg.com\/rq\/darla\/2-7-5\/html\/r-csc.html","root":"sdarla","edgeRoot":"http:\/\/l.yimg.com\/rq\/darla\/2-7-5","sedgeRoot":"https:\/\/s.yimg.com\/rq\/darla\/2-7-5","version":"2-7-5","tpbURI":"","hostFile":"https:\/\/s.yimg.com\/rq\/darla\/2-7-5\/js\/g-r-min.js","beaconsDisabled":true,"rotationTimingDisabled":true,"positions":{"FOOT9":[],"FOOT":{"w":1,"h":1},"RICH":[]}};
+
+(function(){
+MBR_config.ad_timeout = 4000;MBR_config.ad_type = 6;MBR_config.ad_type2 = 6;
+var contents = document.getElementById('mbr-login-contents-container'), ads_contents = document.getElementById('mbr-login-ad_rich');
+if ((typeof contents == 'object') && (typeof ads_contents == 'object') && window.DARLA && DARLA_CONFIG) { contents.style.display = 'none'; }
+}());
+
+YUI().use('node','node-focusmanager','oop','node','event-custom','cookie','substitute','classnamemanager','querystring-stringify', function(Y) {});
+
+    YUI().use('node', 'event', function (Y) {
+        Y.on("domready", function() {
+            MBR_config.comscore_config = [{
+                c1: "2",
+                c2: "7241469",
+                c5: "150002527",
+                c7: "https%3A%2F%2Flogin.yahoo.com%2F%3F.src%3Dym%26.intl%3Dus%26.lang%3Den-US%26.done%3Dhttps%253a%2F%2Fmail.yahoo.com",
+                c14: "1010"
+            }];
+            MBR_config.comscore_beacon();
+        });
+    });

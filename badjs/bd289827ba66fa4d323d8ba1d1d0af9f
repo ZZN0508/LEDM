@@ -1,0 +1,13 @@
+var ue_t0=ue_t0||+new Date();
+
+  function cf() {
+    if (typeof window.uet === 'function') {
+      uet('cf');
+    }
+    if (window.embedNotification &&
+      typeof window.embedNotification.onCF === 'function') {
+      embedNotification.onCF();
+    }
+  }
+
+cf()

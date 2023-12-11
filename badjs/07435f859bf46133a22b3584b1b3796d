@@ -1,0 +1,105 @@
+
+		setInterval(function(){
+			$.post("../Raiz/admin/function/processa_vis.php", {contar: '',}, function(data){
+				$('#online').text(data);
+			});
+		}, 10000);
+		
+
+    $(function() {
+      $('#slides').slidesjs({
+        width: 650,
+        height: 528
+      });
+    });
+  
+
+	$(function() {
+		$('input[name="cep"]').mask('00000-000');
+
+		
+	});
+
+
+
+    
+$(function(){
+
+  $("#buscar_cep").click(function(){
+	  
+	var res = document.getElementById ('msg_cep')
+	var no = document.getElementById ('cep_no')	
+	var yes = document.getElementById ('cep_yes')	
+	var sobre = document.getElementById ('res')
+	var show_cep = document.getElementById ('show_cep')
+	var cep_completo_a = document.getElementById ('cep')
+	var cep_completo = cep_completo_a.value
+  
+    //Nova variável "cep" somente com dígitos.
+    var cep = $("#cep").val().replace(/\D/g, '');
+
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+        //Expressão regular para validar o CEP.
+        var validacep = /^[0-9]{8}$/;
+
+        //Valida o formato do CEP.
+        if(validacep.test(cep)) {
+
+         //Consulta o webservice viacep.com.br/
+        $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                if (!("erro" in dados)) {
+                    //Atualiza os campos com os valores da consulta.
+					
+					no.style.display ='none'
+					yes.style.display =''
+					show_cep.innerHTML = 'CEP ' +cep_completo
+					sobre.style.display ='none'
+
+			
+                } //end if.
+                else {
+                    //CEP pesquisado não foi encontrado.
+            	res.innerHTML = '<font color="red">Cep não encontrado.</font>';
+                }
+            });
+        } //end if.
+        else {
+                res.innerHTML = '<font color="red">Cep inválido.</font>';
+
+        }
+    } //end if.
+  });
+});
+
+    
+
+
+
+function mostrar() {
+
+var res = document.getElementById ('res')
+res.style.display =''
+
+
+}
+
+function esconder() {
+
+var res = document.getElementById ('res')
+res.style.display ='none'
+
+
+}
+
+
+function mostrar2() {
+
+var res = document.getElementById ('res')
+res.style.display =''
+
+
+}
+

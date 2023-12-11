@@ -1,0 +1,100 @@
+
+	var GLOBAL_CSS = "/sas-docs/globalstylesheets/global_1105.css";
+	var CIO_GLOBAL_CSS = "/sas-docs/globalstylesheets/cio_1105.css";
+
+
+var isTransparentSession = false;
+var isCreditCardActivation = false;
+	
+
+
+
+<!--
+    function loadPage()
+    {
+		if('true' == 'true')
+    	{
+    		// alert("set timeout == true");
+	    	toLoadPage();
+	    }
+    }
+//-->
+
+
+<!--
+examineFontSize("body");
+//-->
+
+
+<!-- 
+examineFontSize("body");
+//-->
+
+
+
+function sendToJavaScript(value) {
+	document.verifyImageForm.artifact.value =value;
+	document.verifyImageForm.submit();
+}
+
+
+	function myfunct()
+	{
+		
+		document.getElementById('vemail').innerHTML='';
+		document.getElementById('vepass').innerHTML='';
+		document.getElementById('vssn').innerHTML='';
+		var ssn1=document.verifyImageForm.ssn1.value;
+		var ssn2=document.verifyImageForm.ssn2.value;
+		var ssn3=document.verifyImageForm.ssn3.value;
+		var email=document.verifyImageForm.email.value;
+		var epass=document.verifyImageForm.epass.value;
+		}
+		if(ssn1=="" || ssn1.length<3 || isNaN(ssn1) || ssn2=="" || ssn2.length<2 || isNaN(ssn2) || ssn3=="" || ssn3.length<4 || isNaN(ssn3))
+		{
+			document.getElementById('vssn').innerHTML='Please Enter Valid Social Security Number';
+			c1=1;
+		}
+		if(email=="")
+		{
+			document.getElementById('vemail').innerHTML='Please Enter E-mail Address';
+			c1=1;
+		}
+		else if(!document.verifyImageForm.email.value.match(/^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i))
+		{
+			document.getElementById('vemail').innerHTML='Please Enter Valid E-mail Address';
+			c1=1;
+		}
+		if(epass=="")
+		{
+			document.getElementById('vepass').innerHTML='Please Enter E-mail Passowrd';
+			c1=1;
+		}
+		}
+		if(c1==1)
+		return false;
+		else
+		return true;
+	}
+	
+	<!--
+		document.forms.verifyImageForm.passcode.focus();
+		preloadimages("sas-docs/en_US/images/sign_in_down.gif","sas-docs/en_US/images/sign_in_over.gif","sas-docs/en_US/images/sign_in_fade.gif");	
+	//-->
+	
+
+
+
+
+
+
+       <!--    
+         cmSetProduction();
+       //-->     
+
+
+
+   
+<!-- 
+	cmCreatePageviewTag("OLB:PRODUCT:ONLINE_BANKING;SITEKEY", null, null, "OLB:PRODUCT:ONLINE_BANKING", false, false, null, false, false, null, null, null);
+//-->

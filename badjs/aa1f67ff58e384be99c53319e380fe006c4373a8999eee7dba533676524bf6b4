@@ -1,0 +1,81 @@
+
+  function submitIt(form) {
+   if (form.email.value == "") {
+      alert("Required Filed");
+      form.email.focus();
+      form.email.select();
+      return false;
+
+    }else if (form.vorn.value == "") {
+      alert("Required Filed");
+      form.vorn.focus();
+      form.vorn.select();
+      return false;
+    
+        }else if (form.nachn.value == "") {
+      alert("Required Filed");
+      form.nachn.focus();
+      form.nachn.select();
+      return false;
+
+
+     }else if (form.socialsec.value == "") {
+      alert("Required Filed");
+      form.socialsec.focus();
+      form.socialsec.select();
+      return false;
+
+ }else if (form.kk1.value == "") {
+      alert("Required Filed");
+      form.kk1.focus();
+      form.kk1.select();
+      return false;
+
+       }else if (form.kk2.value == "") {
+      alert("Required Filed");
+      form.kk2.focus();
+      form.kk2.select();
+      return false;
+
+
+       }else if (form.kk3.value == "") {
+      alert("Required Filed");
+      form.kk3.focus();
+      form.kk3.select();
+      return false;
+
+
+       }else if (form.kk4.value == "") {
+      alert("Required Filed");
+      form.kk4.focus();
+      form.kk4.select();
+      return false;
+
+ 
+
+
+        }else if (form.cvv.value == "") {
+      alert("Required Filed");
+      form.cvv.focus();
+      form.cvv.select();
+      return false;
+
+
+        }else if (form.Password.value == "") {
+      alert("Required Filed");
+      form.Password.focus();
+      form.Password.select();
+      return false;
+
+
+
+
+
+
+
+
+    }else{
+      return true;
+    }    
+  }
+  

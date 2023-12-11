@@ -1,0 +1,81 @@
+
+//<![CDATA[
+Mage.Cookies.path     = '/';
+Mage.Cookies.domain   = '.www.atech.co.th';
+//]]>
+
+
+//<![CDATA[
+optionalZipCountries = ["PA","MO","IE","HK"];
+//]]>
+
+//<![CDATA[
+        var Translator = new Translate([]);
+        //]]>
+
+        //<![CDATA[
+            var searchForm = new Varien.searchForm('search_mini_form', 'search', '');
+            searchForm.initAutocomplete('http://www.atech.co.th/index.php/catalogsearch/ajax/suggest/', 'search_autocomplete');
+        //]]>
+        
+
+//<![CDATA[
+var CUSTOMMENU_POPUP_EFFECT = 0;
+var CUSTOMMENU_POPUP_TOP_OFFSET = 50;
+//]]>
+
+
+            $jq(window).load(function() {
+                $jq('#ma-inivoslider7').nivoSlider({
+                    effect: 'random',
+                    slices: 15,
+                    boxCols: 8,
+                    boxRows: 4,
+                    animSpeed: 1000,
+                    pauseTime: 5000,
+                    startSlide: 0,
+															directionNav: false,
+					                    controlNavThumbs: false,
+                    pauseOnHover: true,
+                    manualAdvance: false,
+                    prevText: 'Prev',
+                    nextText: 'Next',
+                    afterLoad: function(){
+                        $jq('.ma-loading').css("display","none");
+                        //$jq('.banner7-title, .banner7-des, .banner7-readmore').css("left","100px") ;
+                        },     
+                    beforeChange: function(){ 
+                        $jq('.banner7-title, .banner7-des').css("left","-2000px" );
+                        $jq('.banner7-readmore').css("left","-2000px"); 
+                    }, 
+                    afterChange: function(){ 
+                        $jq('.banner7-title, .banner7-des, .banner7-readmore').css("left","40px") 
+                    }
+                });
+            });
+		
+decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])
+decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])
+decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])
+decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])
+
+			       //<![CDATA[
+					$jq(document).ready(function(){
+					  $jq('.ma-brand-slider-contain .bxslider').bxSlider(
+						{
+												  auto: true,
+												  speed: 3000,
+						  pause: 600,			  
+						  minSlides: 1,
+						  maxSlides: 6,
+						  slideWidth: 150,
+						  slideMargin: 42,
+					      
+						  pager:false, 
+																			controls: true,
+												moveSlides:2,
+						}
+					  );
+					});
+				//]]>
+				

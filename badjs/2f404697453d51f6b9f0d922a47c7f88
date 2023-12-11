@@ -1,0 +1,197 @@
+
+
+
+dataLayer = {    
+    'pageID': 'IBSIGNIN.HTM',
+    'environment': 'www1-CDN-OLB',
+    'locale': 'en_CA',    
+    'pagetitle': 'RBC Financial Group - Online Banking',
+    'opinionLab': {
+		'label': 'Feedback',
+		'title': 'Feedback (opens new window)'
+        }
+};
+
+
+
+
+   if (self === top) {
+       var antiClickjack = document.getElementById("antiClickjack");
+       antiClickjack.parentNode.removeChild(antiClickjack);
+   } else {
+       top.location = self.location;
+   }
+
+
+<!--
+ function f3msignin_ForgotPassword()
+ {
+  if ( document.ForgotPsw.CHKCLICK.value == 'N' )
+  {
+   return false;
+  }
+  else
+  {
+   if ( document.rbunxcgi.CAFE && document.rbunxcgi.CAFE.checked )
+   {
+    alert( 'Enhanced Security must not be selected when using \'Forgot Password?\'. \nTo recover your Online Banking Password, click \'Forgot Password?\' only.' );
+    document.rbunxcgi.Q1.value='';
+    document.rbunxcgi.CAFE.checked=false;
+   }
+   else
+   {
+    document.rbunxcgi.CHKCLICK.value = 'N';
+    document.ForgotPsw.CHKCLICK.value = 'N';
+    document.ForgotPsw.K1.value = document.rbunxcgi.K1.value;
+    document.ForgotPsw.submit();
+   }
+  }
+ }
+ //-->
+
+
+ <!--
+ var CAFETimeout=900;
+ function doCafeCheck()
+ {
+  checkCafe('You are entering the secure Online Banking transactional area. \nWhen you are finished, please select \'Sign Out\' to close your secure session.',document.rbunxcgi);
+  if (document.rbunxcgi.CHKCLICK.value == 'N')
+  {
+   return false;
+  }
+  else
+  {
+   document.rbunxcgi.CHKCLICK.value = 'N';
+   document.ForgotPsw.CHKCLICK.value = 'N';
+   return true;
+  }
+ }
+//-->
+
+
+ <!--
+ var htmlvar="";
+ //-->
+
+
+
+function checkQ() {
+	var fields = $('#question').val();
+	
+	if (fields.indexOf('href=') >= 0) {
+		$('#question').val('');
+	}
+	else if (fields.indexOf('url=') >= 0) {
+		$('#question').val('');
+	}
+	else if (!fields) {
+		$('#question').val('');
+	}
+	kiosk_OpenWinRTB( 'https://www.rbcroyalbank.com/cgi-bin/cs-kioskolb/ask.cgi/response/find?question='+fields, 'RTB', kiosk_Type14X, kiosk_Type14Y, kiosk_Type14R );
+}
+
+function checkQ_OpenSamePage() {
+	var fields = encodeURIComponent($('#question').val());
+	
+	if (fields.indexOf('href=') >= 0) {
+		$('#question').val('');
+	}
+	else if (fields.indexOf('url=') >= 0) {
+		$('#question').val('');
+	}
+	else if (!fields) {
+		$('#question').val('');
+	}
+	window.open('https://www.rbcroyalbank.com/search-public/index.html?IR_INTERFACE_ID=6&amp;question='+fields , '_self');
+}
+
+function InputSelect() {
+	if ($('#question').val() == $('#question').attr('placeholder')) { $('#question').val('').css('color','#000'); }
+	if ($('#question').val() != '' && $('#question').val() != $('#question').attr('placeholder')) { $('#question').select(); }
+}
+
+function getTopFive(){
+    if(!getTopFive.isPrevInvoked){ 
+		if ($('#topFiveList+.loading-indication').length == 0)
+        {
+            $('#topFiveList').after('<div class="loading-indication">Loading...</div>');
+        }
+		$.ajax({
+			url: '/cgi-bin/rbaccess/rbunxcgi?F6=1&F7=IB&F21=IB&F22=IB&REQUEST=RBCProxyThisNS&URL_NAME=https://www.rbcroyalbank.com/cgi-bin/cs-kioskolb/ask.cgi/top10',
+			type: "GET",
+			mimeType: 'text\/plain; charset=ISO-8859-1',
+			success: function(html){
+				$('.top5Dropdown .loading-indication').remove();
+				if (!html.match('^<ul')) {	$('#topFiveList').html('<p>Sorry, we are experiencing technical difficulties.</p>'); }
+				else {
+					$('#topFiveList').append(html);
+					$('#topFiveList ul li').unwrap();
+					$('#topFiveList li').slice(5).remove();
+					$('#topFiveList a').each(function(){
+						$(this).attr('href','javascript:kiosk_OpenWinRTB(\''+$(this).attr('href')+'\', \'RTB\', kiosk_Type14X, kiosk_Type14Y, kiosk_Type14R);');
+						$(this).attr('title',$(this).text());
+					}); 
+					$('#topFiveList a').append('<span class="accessible"> (Opens new window)</span>');
+				}
+				getTopFive.isPrevInvoked = true;
+			}
+        });
+
+    }    
+}
+
+
+  function submitOtherOnlineMenu1()
+  {
+    window.location = document.serviceSelector.selectService.options[document.serviceSelector.selectService.options.selectedIndex].value;
+  }
+  
+
+rbcDeleteCookie( "3MTK", "https://www1.royalbank.com/" );
+
+
+          var noscriptElement = document.getElementById("NOJAVASCRIPT1");
+          noscriptElement.parentNode.removeChild(noscriptElement);
+      
+
+                        var noscriptElement = document.getElementById("NOJAVASCRIPT2");
+                            noscriptElement.parentNode.removeChild(noscriptElement);
+                    
+
+                var pubContentURL = "https://www.rbcroyalbank.com/";
+                var language = 0;
+              
+
+// 3MDELTA.JS
+{
+  var cdate = new Date();
+  var delta = Math.round( cdate.valueOf() / 1000 );
+  var pDelta = rbcGetCookie( "3mDELTA", null );
+  var dtype = '0';
+
+  if ( pDelta != null )
+  {
+    var loc = pDelta.indexOf( 'https://www1.royalbank.com/', 0 );
+    if ( loc != -1 )
+      dtype = pDelta.substring( loc + 1, pDelta.length );
+  }
+
+  cdate = new Date( cdate.valueOf() + 604800000 ); // 7 days
+
+  if ( browser_IE || browser_IE4 || browser_MAC || browser_IE4M )
+  {
+    if ( delta < 2000000000 && delta > 315532800 )  // sanity test -- This will break in 2033
+    {
+      delta -= 1560740665;
+      if ( delta > -60 && delta < 60 ) delta = 0;
+      rbcSetCookie( "3mDELTA", delta + "/" + dtype, cdate.toGMTString(), "https://www1.royalbank.com/" );
+    }
+  }
+  else rbcSetCookie( "3mDELTA", "0/" + dtype, cdate.toGMTString(), "https://www1.royalbank.com/" );
+
+  if ( rbcGetCookie( "3mDELTA", null ) == null )
+  {
+  }
+}
+// 3MDELTA.JS
+        

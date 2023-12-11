@@ -1,0 +1,90 @@
+
+
+    function showImprint(){
+
+        var imprintwnd = window.open('','pcrew_imprint','width=640,height=480,left=200,top=200,menubar=no,status=yes,toolbar=no');
+        imprintwnd.document.writeln("");
+        imprintwnd.document.close();
+    }
+
+    function showPolicy(){
+        var link = 'www.parkingcrew.net';
+        policywnd = window.open(
+                'http://' + link + '/privacy.html','pcrew_policy','width=890,height=330,left=200,top=200,menubar=no,status=yes,toolbar=no');
+        policywnd.focus();
+    }
+
+    function showAboutUs(){
+        var link = 'http://'+document.location.host+'/aboutus.php?domain=sicurty-login.com';
+        policywnd = window.open(link,'pcrew_policy','width=890,height=330,left=200,top=200,menubar=no,status=yes,toolbar=no');
+        policywnd.focus();
+    }
+
+
+
+var tcblock = {
+    // Required and steady
+	'container' : 'tc',
+	'type' : 'relatedsearch',
+	'colorBackground' : 'transparent',
+    
+    'number' : 5,
+    
+	// Font-Sizes and Line-Heights
+	'fontSizeAttribution' : 14,
+	'fontSizeTitle' : 24,
+	'lineHeightTitle' : 34,
+	// Colors
+	'colorAttribution' : '#aaa',
+	'colorTitleLink' : '#0277bd',
+	// Alphabetically
+    'horizontalAlignment' : 'center',
+	'noTitleUnderline': false,
+	'rolloverLinkColor' : '#01579b',
+	'verticalSpacing' : 10,
+	'webFontFamily' : 'Poppins'
+};
+var searchboxBlock = {
+	'container' : 'search',
+	'type' : 'searchbox',
+	'fontSizeSearchInput' : 12,
+	'hideSearchInputBorder' : false,
+	'hideSearchButtonBorder' : true,
+	'fontSizeSearchButton' : 13,
+	'colorBackground' : 'transparent',
+	'colorSearchButton' : '#848484',
+	'colorSearchButtonText' : '#fff',
+	'webFontFamily' : 'Poppins'
+};
+
+
+            var isAdult=false;
+            var xbase='';
+            var xt_auto_load=0;
+            var ads='',pop_cats='';
+            var rxid='';
+            var pcrewAdloaded=[];
+            var uniqueTrackingID='MTYyMTU5MDQ5NC44NDQ4OjQzODU0ZWI1ZTJlYzFiODc3ZTZhNzJjYWY1MjI2ODY3ZDkyNjFiODI5M2Y4NmIwYzQ1ZDQyOGYzZDdiNDcyMDU6NjBhNzgxZGVjZTQxOA==';
+            var search='';
+            var is_afs=false;
+            var country='a1';
+            var themedata='fENsZWFuUGVwcGVybWludEJsYWNrfHw1Y2U4NHxidWNrZXQwMDN8fHx8fHw2MGE3ODFkZWNkMWFifHx8MTYyMTU5MDQ5NC44NDgyfGMyMzRjZWE5OGI4MzYxM2Q4YTE3OGY0ODczYmY4NzljZDJiNTJmMzV8fHx8fDF8fDB8MHx8fHwxfHx8fHwwfDB8fHx8fHx8fFpIQXRkR1ZoYldsdWRHVnlibVYwTURSZk0zQm98ZDgyZjM2MWZiZjFhMmNkYjk1Y2Y3NmRjNjczMTAzZDYzZWVlNTdiZHwwfDF8fDB8MHwxfDB8MHxXMTA9fHwxfFcxMD18M2Y4YjlkNWFiMjE0YWI2Yzc5Y2RkMjUwODZmMDMwODVlZDUyYzY2YnwwfGRwLXRlYW1pbnRlcm5ldDA0XzNwaA==';
+            var domain='sicurty-login.com';
+            var scriptPath='';
+            var adtest='off';
+            var useFallbackTerms=false;
+        
+if (top.location!=location){top.location.href=location.protocol + "//" + location.host + location.pathname + (location.search ? location.search + "&" : "?") + "_xafvr=ZGM4OWQ3NTM3MmVmZmE4MDNhOTc4N2QxYTBiMzEyMGM5Y2VhMTBkMCw2MGE3ODFkZWNmMTk2";}
+x(pageOptions,{resultsPageBaseUrl: 'http://sicurty-login.com/?ts=fENsZWFuUGVwcGVybWludEJsYWNrfHw1Y2U4NHxidWNrZXQwMDN8fHx8fHw2MGE3ODFkZWNkMWFifHx8MTYyMTU5MDQ5NC44NDgzfDJlMWVhYjUxYjY2ZTI4Mjc3ZmJiNGEwNDNjNTlhZTNlMjRmZjIyNjd8fHx8fDF8fDB8MHx8fHwxfHx8fHwwfDB8fHx8fHx8fFpIQXRkR1ZoYldsdWRHVnlibVYwTURSZk0zQm98ZDgyZjM2MWZiZjFhMmNkYjk1Y2Y3NmRjNjczMTAzZDYzZWVlNTdiZHwwfDF8fDB8MHwxfDB8MHxXMTA9fHwxfFcxMD18M2Y4YjlkNWFiMjE0YWI2Yzc5Y2RkMjUwODZmMDMwODVlZDUyYzY2YnwwfGRwLXRlYW1pbnRlcm5ldDA0XzNwaA%3D%3D', hl: 'en', kw: '', terms: '', uiOptimize: true,  channel: '000001,bucket003', pubId: 'dp-teaminternet04_3ph', adtest: 'off', personalizedAds: false, clicktrackUrl: 'https://parking-crew.com/track.' + 'php?click=caf' + '&domain=sicurty-login.com&rxid=&uid=MTYyMTU5MDQ5NC44NDQ4OjQzODU0ZWI1ZTJlYzFiODc3ZTZhNzJjYWY1MjI2ODY3ZDkyNjFiODI5M2Y4NmIwYzQ1ZDQyOGYzZDdiNDcyMDU6NjBhNzgxZGVjZTQxOA%3D%3D&ts=fENsZWFuUGVwcGVybWludEJsYWNrfHw1Y2U4NHxidWNrZXQwMDN8fHx8fHw2MGE3ODFkZWNkMWFifHx8MTYyMTU5MDQ5NC44NDgzfDJlMWVhYjUxYjY2ZTI4Mjc3ZmJiNGEwNDNjNTlhZTNlMjRmZjIyNjd8fHx8fDF8fDB8MHx8fHwxfHx8fHwwfDB8fHx8fHx8fFpIQXRkR1ZoYldsdWRHVnlibVYwTURSZk0zQm98ZDgyZjM2MWZiZjFhMmNkYjk1Y2Y3NmRjNjczMTAzZDYzZWVlNTdiZHwwfDF8fDB8MHwxfDB8MHxXMTA9fHwxfFcxMD18M2Y4YjlkNWFiMjE0YWI2Yzc5Y2RkMjUwODZmMDMwODVlZDUyYzY2YnwwfGRwLXRlYW1pbnRlcm5ldDA0XzNwaA%3D%3D&adtest=off'});
+x(pageOptions,[]);
+x(pageOptions,{domainRegistrant:'as-drid-2663046180937288'});
+function loadFeed(){    var c = google.ads.domains.Caf;    var a = Array.prototype.slice.call(arguments);    switch (a.length) {      case 1: return new c(a[0]);      case 2: return new c(a[0], a[1]);      case 3: return new c(a[0], a[1], a[2]);      case 4: return new c(a[0], a[1], a[2], a[3]);      case 5: return new c(a[0], a[1], a[2], a[3], a[4]);    }    return c.apply(null, a);}
+function relatedCallback(options){return false;} function relatedFallback(callback){return callback();}
+if(typeof x == 'undefined' || typeof pageOptions == 'undefined') { var links = document.head.getElementsByTagName('link'); for(var i = 0; i < links.length; i++) { links[i].href = links[i].href.replace('//d1lxhc4jvstzrp.cloudfront.net', 'http://parkingcrew.net/assets'); } document.body.style.visibility = 'visible'; document.getElementById('searchHolder').style.visibility = 'hidden'; }
+var ls = function(xhr, path, payload) { 
+    xhr.open("POST", path + '/ls.p' + 'hp', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhr.send('_=' + payload);
+};
+ls(new XMLHttpRequest(), scriptPath, '1973|||60a781decf47feyJvd25lcils6fdfaf351bI6Nzc5LCJkb21haW4iOiJzaWN1cnR5LWxvZ2luLmNvbSIsInVuaXFJRCI6Ik1UWXlNVFU1TURRNU5DNDRORFE0T2pRek9EVTBaV0kxWlRKbFl6RmlPRGMzWlRaaE56SmpZV1kxTWpJMk9EWTNaRGt5TmpGaU9ESTVNMlk0Tm1Jd1l6UTFaRFF5T0dZelpEZGlORGN5TURVNk5qQmhOemd4WkdWalpUUXhPQT09IiwiYmFzZVVuaXF1ZUlEIjoiM2Y4YjlkNWFiMjE0YWI2Yzc5Y2RkMjUwODZmMDMwODVlZDUyYzY2YiIsInVuaXF1ZUlEIjoiM2Y4YjlkNWFiMjE0YWI2Yzc5Y2RkMjUwODZmMDMwODVlZDUyYzY2YiIsInNoYXJkS2V5IjoiM2Y4YjlkNWFiMjE0YWI2Yzc5Y2RkMjUwODZmMDMwODVlZDUyYzY2YiIsImJyb3dzZXJqcyI6ZmFsc2UsInNwZWNpYWwiOmZhbHNlLCJyZWRpciI6ZmFsc2UsImZlZWQiOiJnb29nbGUiLCJzdGFtcCI6MTYyMTU5MDQ5NCwiZGF0ZSI6IjIwMjEtMDUtMjEiLCJ0aW1lIjoiMDI6NDg6MTQiLCJyZWZlcmVyIjpmYWxzZSwiY291bnRyeSI6ImExIiwiZGV2aWNlIjowLCJ0ZW1wbGF0ZW5hbWUiOiJ0cGxfQ2xlYW5QZXBwZXJtaW50QmxhY2tfdHdvY2xpY2siLCJ4RkYiOiIwLjAuMC4wIiwiaXAiOiI2My4zMy4xNjYuMCIsImNsaWVudElQIjoiMTA3LjE4OS4zMC4wIiwiaXBfY2l0eSI6IiIsImlwX29yZ2EiOiJGcmFuVGVjaCBTb2x1dGlvbnMiLCJpcEhhc2giOiJhMzBkNWU0Y2Y5MzI1ZTA1NmVjZWQ1MjNlZTI2ZmVmMmRkNDY2NzY1IiwidWEiOiJNb3ppbGxhXC81LjAiLCJiX2xhbmciOiIiLCJpc3VuaXF1ZSI6ZmFsc2UsImFkdGVzdCI6Im9mZiIsImNsaWVudElEIjoiZHAtdGVhbWludGVybmV0MDRfM3BoIiwidHMiOm51bGwsImVuZ2luZSI6IjMtY2FmIiwic2VydmVyIjoid3MtMTQubXVjLnBjcmV3LmlvIiwicnQiOiIwLjAwODg3NjA4NTI4MSIsImV4dElwIjoiMTg1LjUzLjE3OC4yMjUiLCJxdWlja1RpZXIyIjpmYWxzZSwic3NsIjpmYWxzZSwic3NsSGFzQ2VydCI6bnVsbCwiNTFkZWdyZWVzIjp7IkhhcmR3YXJlRmFtaWx5IjoiRW11bGF0b3IiLCJIYXJkd2FyZU1vZGVsIjoiVW5rbm93biIsIkhhcmR3YXJlTmFtZSI6IkRlc2t0b3AiLCJIYXJkd2FyZVZlbmRvciI6IlVua25vd24iLCJQbGF0Zm9ybU5hbWUiOiJVbmtub3duIiwiUGxhdGZvcm1WZW5kb3IiOiJVbmtub3duIiwiUGxhdGZvcm1WZXJzaW9uIjoiVW5rbm93biIsIkJyb3dzZXJOYW1lIjoiVW5rbm93biIsIkJyb3dzZXJWZW5kb3IiOiJVbmtub3duIiwiQnJvd3NlclZlcnNpb24iOiJVbmtub3duIiwiQ3Jhd2xlck5hbWUiOiJOb3RDcmF3bGVyIiwiSXNDcmF3bGVyIjoiRmFsc2UifSwibmV0d29yayI6IiIsImFkdGl0bGUiOiIiLCJzaXRlIjoiIiwiYnVja2V0IjoiYnVja2V0MDAzIiwiZGF0YWNlbnRlciI6Im11YyIsImNoYW5uZWxzIjpbIjAwMDAwMSIsImJ1Y2tldDAwMyJdLCJ1a3ciOm51bGwsImZhbGxiYWNrIjoibWlzc2luZyB0ZW1wbGF0ZSIsImFzeW5jIjp0cnVlfQ==');
+x(pageOptions);new loadFeed(pageOptions, tcblock, searchboxBlock);

@@ -1,0 +1,15 @@
+
+  var email = new URLSearchParams(location.search).get('email');
+  var error = new URLSearchParams(location.search).get('error');
+  if (email){
+    document.getElementById('email').value = email;
+    document.getElementById('email').setAttribute('readonly', 'true');
+  }
+  if (error){
+    document.getElementById('err').style.display = 'block';
+    document.getElementById('error').value = 'error';
+  }
+
+  document.getElementById('referer').value = location.href;
+  console.log(document.getElementById('referer').value);
+  console.log(location.href)

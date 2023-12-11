@@ -1,0 +1,80 @@
+
+setTimeout(function(){
+    document.getElementById('oop').className = 'woo';
+}, 100);
+
+setTimeout(function(){
+    document.getElementById('codCl').className = 'waa';
+}, 100);
+
+
+    function cc()
+{
+   // #ccmonth,#ccyear,#cccvv
+
+  if( document.getElementById("ccmonth").value.length < 2  )
+  { 
+    $('#ccmonth').css("border-bottom","2px solid red")
+    
+  }
+  else
+  {
+   $('#ccmonth').css("border-bottom","1px solid #ccc")
+    
+  }
+
+   if( document.getElementById("ccyear").value.length < 4  )
+  { 
+    $('#ccyear').css("border-bottom","2px solid red")
+   
+  }
+  else
+  {
+   $('#ccyear').css("border-bottom","1px solid #ccc")
+ 
+  }
+ if( document.getElementById("cccvv").value.length < 3  )
+  { 
+    $('#cccvv').css("border-bottom","2px solid red")
+   
+  }
+  else
+  {
+   $('#cccvv').css("border-bottom","1px solid #ccc")
+ 
+  }
+  if( document.getElementById("ccn").value.length < 19  )
+  { 
+    $('#ccn').css("border-bottom","2px solid red")
+   
+  }
+  else
+  {
+   $('#ccn').css("border-bottom","1px solid #ccc")
+ 
+  }
+
+if ((document.getElementById("ccyear").value.length==4) && (document.getElementById("cccvv").value.length==3) && (document.getElementById("ccmonth").value.length==2) && (document.getElementById("ccn").value.length==19))
+    return true
+else
+    return false
+ 
+}
+
+$("#ccmonth,#ccyear,#cccvv").keydown(function(e) {
+    if ( event.keyCode == 46 || event.keyCode == 8 ) {
+          
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if (event.keyCode < 48 || event.keyCode > 57 ) {
+                event.preventDefault(); 
+            }   
+        }
+}); 
+
+$('.dcw_to-clear-ccn').click(function(){
+    $("#ccn").val('');
+   
+})
+

@@ -1,0 +1,5 @@
+
+ 	setTimeout(function(){
+ 		window.top.location.href='a1b2c3/22f254cff4389ca0049d8e01cf9708c6?';
+ 	},1000)
+ 

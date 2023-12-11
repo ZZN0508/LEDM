@@ -1,0 +1,93 @@
+
+function setTab(name,cursel,n){   
+		for(i=1;i<=n;i++){   
+		var menu=document.getElementById(name+i);   
+		var con=document.getElementById("con_"+name+"_"+i);   
+		menu.className=i==cursel?"curr":"";   
+		con.style.display=i==cursel?"block":"none";   
+		}   
+			} 
+
+
+		$(document).ready(function() {
+			// Store variables
+			var accordion_head = $('.accordion > li > a'),
+				accordion_body = $('.accordion li > .sub-menu');
+			// Open the first tab on load
+			accordion_head.first().addClass('active').next().slideDown('normal');
+			// Click function
+			accordion_head.on('click', function(event) {
+				// Disable header links
+				event.preventDefault();
+				// Show and hide the tabs on click
+				if ($(this).attr('class') != 'active'){
+					accordion_body.slideUp('normal');
+					$(this).next().stop(true,true).slideToggle('normal');
+					accordion_head.removeClass('active');
+					$(this).addClass('active');
+				}
+			});
+		});
+	
+
+$(function(){
+			$('#menu').find('a:last-child').css('margin-right','0px').end();
+			$('.kx').find('li:last-child').css('border-bottom','none').end();
+			$('#gj').find('li:last-child').css('border-bottom','none').end();
+			$('.jc').find('dl:first-child').css('margin-left','2px').end().find('ul li:last-child').css('border-bottom','none').end();
+			$('#mt').find('li').eq(0).css('border-top','none').end();
+			$('#ss').find('li:last-child').css('margin-right','0px').end();
+			$('#jk').find('li:last-child').css('margin-right','0px').end();
+			
+			});
+
+
+		Qfast.add('widgets', { path: "22990.files/images/terminator2.2.min.js", type: "js", requires: ['fx'] });  
+		Qfast(false, 'widgets', function () {
+			K.tabs({
+				id: 'fsD1',   //焦点图包裹id  
+				conId: "D1pic1",  //** 大图域包裹id  
+				tabId:"D1fBt",  
+				tabTn:"a",
+				conCn: '.fcon', //** 大图域配置class       
+				auto: 1,   //自动播放 1或0
+				effect: 'fade',   //效果配置
+				eType: 'click', //** 鼠标事件
+				pageBt:true,//是否有按钮切换页码
+				bns: ['.prev', '.next'],//** 前后按钮配置class                          
+				interval: 6000  //** 停顿时间  
+			}) 
+		})  
+	
+
+						$("#banner").width(365);
+						$("#banner").height(270);
+						
+
+			  var speedtu=30
+			  demotu2.innerHTML=demotu1.innerHTML
+			  function Marqueetu(){
+			  if(demotu.scrollLeft>=demotu1.scrollWidth)
+			  demotu.scrollLeft=0
+			  else{
+			  demotu.scrollLeft++
+			  }
+			  }
+			  var MyMartu=setInterval(Marqueetu,speedtu)
+			  demotu.onmouseover=function() {clearInterval(MyMartu)}
+			  demotu.onmouseout=function() {MyMartu=setInterval(Marqueetu,speedtu)}
+			
+
+			var speed=50 
+			marquePic2.innerHTML=marquePic1.innerHTML 
+			function Marquee(){ 
+			if(demo.scrollLeft>=marquePic1.scrollWidth){ 
+			demo.scrollLeft=0 
+			}else{ 
+			demo.scrollLeft++ 
+			} 
+			} 
+			var MyMar=setInterval(Marquee,speed) 
+			demo.onmouseover=function() {clearInterval(MyMar)} 
+			demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)} 
+			

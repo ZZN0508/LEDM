@@ -1,0 +1,12 @@
+
+    RndMimeCtl();
+
+
+
+        var mainLogonDiv = window.document.getElementById("mainLogonDiv");
+        mainLogonDiv.className = mainLogonDivClassName;
+    
+
+    if (showPlaceholderText) {
+        setPlaceholderText();
+    }

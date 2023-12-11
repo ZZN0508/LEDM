@@ -1,0 +1,502 @@
+
+var siteConf = {
+        BOOLEAN_VALUES: {
+        0 : ['False', 'no', '0', 'false', 'off'],
+        1 : ['True', 'yes', '1', 'true', 'on']
+    },
+    absoluteUrl: false,
+    baseUrlSite: 'https://www.magazineluiza.com.br',
+    cookieDomain:  'magazineluiza.com.br',
+    ajaxLoading: 'https://site-content.magazineluiza.com.br/static/img/default/ajax_loader_01-9f907c17.gif',
+    bobbyHomeLogged: true,
+    teddyActive:  false,
+    teddyCategories:  'tf,bb,cm,ea,re',
+    teddyHome:  false,
+    buyboxActive:  true,
+    btnSacMktPlaceActive:  true,
+    exchangeableStatusCodes:  [2,4,5,6,12,13,14,15,16,21,22,23,24,25,28,29,38,39,40,44,48,57],
+    dfpOnAbTestMenu:  false,
+    buildingCampaignActive: true,
+    calculateProbabilty: function (percentage) {
+                return Math.random() <= (percentage / 100);
+    },
+    theme : 'inativo',
+    maximumProductQuantityInBasket : '9',
+    isChatWidget: false,
+    imageBasePath : 'https://c.mlcdn.com.br/',
+    imageBasePathSsl : 'https://site-content.magazineluiza.com.br/',
+    googlePlusClientId : '501289460576-mtgfaaa1gpp6tbt0q17k7pbkm25j9hs0.apps.googleusercontent.com',
+    facebookAppId : '417512728394294',
+    productBuyPopup : false,
+        expressCheckout : function() {
+        var confValue = 'True';
+                if (siteConf.BOOLEAN_VALUES[1].indexOf(confValue) != -1)
+            return true;
+        else if (siteConf.BOOLEAN_VALUES[0].indexOf(confValue) != -1)
+            return false;
+                else if (!isNaN(confValue)) {
+                        if ($.cookie('ml2_new') == 1)                 return true;
+            else if ($.cookie('ml2_new') == 0)                 return false;
+            else {
+                                var chance = siteConf.calculateProbabilty(parseInt(confValue));
+                $.cookie('ml2_new', chance ? 1 : 0);
+                return chance;
+            }
+        }
+    },
+    redirectNeemuCookieName:  'ml2_redirect_8020',
+    redirectSearchNeemu : function() {
+        var confValue = '5';
+        var cookieName = 'ml2_redirect_8020';
+                if (siteConf.BOOLEAN_VALUES[1].indexOf(confValue) != -1)
+            return true;
+        else if (siteConf.BOOLEAN_VALUES[0].indexOf(confValue) != -1)
+            return false;
+                else if (!isNaN(confValue)) {
+                        if ($.cookie(cookieName) == 1)                 return true;
+            else if ($.cookie(cookieName) == 0)                 return false;
+            else {
+                                var chance = siteConf.calculateProbabilty(parseInt(confValue));
+                $.cookie(cookieName, chance ? 1 : 0, {expires : 30, domain: siteConf.cookieDomain});
+                return chance;
+            }
+        }
+    },
+    hideCampaignParnter: '10199',
+    partenrStoreSale: 13468,
+    whatsapp_phone: true
+}
+
+    $(function(){
+                    });
+
+
+    $(function(){
+        // Menu do topo
+        headerMenuAllProducts.init();
+
+        // Valida links do menu esquerdo para as configurações de perpage
+        productShowcaseConfig.validateLinks();
+
+        // Preload de imagens
+        preloadedImg.init();
+
+        //links do footer
+        newsletter.init();
+
+        // Buscar por clicks que devem ser abertos em dialog box
+        mlDialogBox.init();
+
+        // social
+                social.init();
+        
+        // Carrinho de compras no topo.
+                headerBasket.init();
+            });
+
+
+        window.googletag = window.googletag || {cmd: []};
+        googletag.cmd.push(function() {
+            // hypertop
+            googletag.defineSlot('/21908074511/Desktop/discovery_padrao/home/outros_banners/hypertop', [[1365, 44], [1365, 88]], 'ads-hypertop')
+                .addService(googletag.pubads());
+
+            // eddy
+            // googletag.defineSlot('/21908074511/Desktop/discovery_padrao/home/outros_banners/Eddy', [1365, 150], 'ads-eddy')
+            //     .addService(googletag.pubads());
+
+            // destacao
+            const destacaoPositions = 10;
+            const destacaoAdsPath = '/21908074511/Desktop/discovery_padrao/home/destacao/frame_{position}';
+            for (let adsIndex = 1; adsIndex <= destacaoPositions; adsIndex++) {
+                const position = `${adsIndex < 10 ? '0' : ''}${adsIndex}`
+                googletag.defineSlot(destacaoAdsPath.replace('{position}', position), [[1365, 410], [1365, 300], [1365, 515]], `ads-destacao-${position}`)
+                    .addService(googletag.pubads());
+            }
+
+            // especial
+            // googletag.defineSlot('/21908074511/Desktop/discovery_padrao/home/outros_banners/especial', [1365, 222], 'ads-especial')
+            //     .addService(googletag.pubads());
+
+            // fernandos
+            const fernandosPositions = 3
+            const fernandosPath = '/21908074511/Desktop/discovery_padrao/home/fernandos/Fernandos_{position}';
+            for (let adsIndex = 1; adsIndex <= fernandosPositions; adsIndex++) {
+                const position = `${adsIndex < 10 ? '0' : ''}${adsIndex}`
+                    googletag.defineSlot(fernandosPath.replace('{position}', position), [455, 223], `ads-fernandos-${position}`)
+                        .addService(googletag.pubads());
+            }
+
+            // full_middle
+            // googletag.defineSlot('/21908074511/Desktop/discovery_padrao/home/outros_banners/full_middle', [1365, 180], 'ads-full_middle')
+            //     .addService(googletag.pubads());
+
+            // bottom ads
+            googletag.defineSlot('/21908074511/Desktop/discovery_padrao/home/footer/banner_direito', [657, 254], 'ads-bottom-direito')
+                .addService(googletag.pubads());
+
+            googletag.defineSlot('/21908074511/Desktop/discovery_padrao/home/footer/banner_esquerdo', [657, 254], 'ads-bottom-esquerdo')
+                .addService(googletag.pubads());
+
+            googletag.pubads().collapseEmptyDivs();
+
+            // remove itens do destacao
+            const removeEmptySlots = () => {
+                $('#home-ads-carousel').carousel('remove', '.rs-carousel-item[style*="display: none"]');
+
+                window.setTimeout(function () {
+                    const carouselItens = $('#home-ads-carousel').carousel('getNoOfPages');
+                    const emptyItems = $('#home-ads-carousel .rs-carousel-item[style*="display: none"]').size();
+                    if (emptyItems && carouselItens > destacaoPositions - emptyItems) {
+                        removeEmptySlots()
+                    }
+                }, 200);
+            }
+
+            // fallback ms edge
+            window.setTimeout(removeEmptySlots, 500)
+
+            // verificar fim do render do destacao
+            var countDestacao = 0;
+            googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+                if (event.slot.getSlotId().getDomId().includes('ads-destacao')) {
+                    countDestacao++
+                    if (countDestacao === destacaoPositions) {
+                        removeEmptySlots();
+                    }
+                }
+            });
+
+            // Integração com GA
+            const GA_USER_ID = getCookieByName('_ga');
+            if (GA_USER_ID) {
+                googletag.pubads().setTargeting('GA_USER_ID', GA_USER_ID);
+            }
+
+            googletag.enableServices();
+        });
+    
+
+  bobbyLogged.init();
+
+
+        var digitalData = {
+            "site": {
+                "name": "Magazine Luiza", 
+                "domain": "154.30.211.130.bc.googleusercontent.com"
+            },
+            "page": {
+                                "templateName": "HOME",
+                "protocol": window.location.protocol,
+                "pathname": window.location.pathname,
+                "referrer": document.referrer
+            },
+            "tms": {
+                "version": { "digitalData":"1.0" }
+            }
+        };
+        updateGtmClient.update();
+    
+
+  OAS_listpos =
+    "BottomLeft,BottomRight,Left1,Left2,Left3,Left4,Left5,Middle,Middle1,Middle2,Middle3,Position2,Position3,Top,Top2,TopLeft,x160,x30,x31,x35,x100,x64,x61,x62,x63,x65,x66,x67,x68,x69,x70,x71,x72,x73";
+  OAS_sitepage = "magazine/home";
+  OAS_query = "";
+
+
+  function OAS_AD(position, keyword) {
+    var dictPage = {
+      HOME: "home",
+      DEPARTMENT: "categoria",
+      LINE: "subcategoria",
+      SEARCH: "busca",
+      LANDINGPAGE: "selecao",
+    };
+    var channel = "magazine";
+    var homePositions = ["hypertop"];
+    var menuPositions = ["x50", "x51", "x52", "x53", "x54", "x55", "x56", "x58", "x60"];
+    
+    var selectedPage = dictPage[digitalData.page.templateName];
+
+    if (homePositions.includes(position)) {
+      selectedPage = "home";
+    } else if (menuPositions.includes(position)) {
+      selectedPage = "menu";
+    }
+    var CDN_BUCKET = "//juarez-assets.magazineluiza.com.br/juarez-assets";
+    var url = `${CDN_BUCKET}/${channel}/${selectedPage}/${position}/${
+      keyword ? `${keyword}/` : ""
+    }default/target.html`;
+    fetch(url)
+      .then(res => {
+        if (res.status === 200) return res.text();
+        return "";
+      })
+      .then(data => {
+        if (data && document.getElementById(position)) {
+          document.getElementById(position).innerHTML = data;
+        } else {
+          console.log(position);
+        }
+      });
+  }
+
+
+            $(function(){
+                                 headerScroll.init();  getUrlNewsletter.init();              });
+        
+
+    googletag.cmd.push(function() {
+      googletag.display('ads-hypertop');
+    });
+  
+
+                            var headerAutoComplete = new mainAutoComplete('.header-search-container', 'inpHeaderSearch', 'btnHeaderSearch', '-15px 13px', undefined, undefined, 'busca-fixa');
+                            headerAutoComplete.init();
+                        
+
+                                var headerAutoComplete = new mainAutoComplete('.floatable', 'inpHeaderSearch-floatable', 'btnHeaderSearch-floatable', '-15px 8px', undefined, undefined, 'busca-scroll');
+                                headerAutoComplete.init();
+                            
+
+    $(document).ready(function(){
+
+        $( ".close-scroll, .active-scroll" ).click(function(e) {
+            var activeScroll = $(".active-scroll");
+            if(activeScroll.hasClass('hide'))
+            {
+                headerScroll.openMenu(false);
+                e.stopPropagation();
+            }
+            else
+            {
+                headerScroll.openMenu(true);
+            }
+
+            headerScroll.enableScroll = false;
+            headerScroll.scrolledCall();
+
+            return false;
+        });
+
+    });
+    
+
+                          OAS_AD('x60')
+                        
+
+                          OAS_AD('x50')
+                        
+
+                          OAS_AD('x51')
+                        
+
+                          OAS_AD('x52')
+                        
+
+                          OAS_AD('x53')
+                        
+
+                          OAS_AD('x54')
+                        
+
+                          OAS_AD('x55')
+                        
+
+                          OAS_AD('x56')
+                        
+
+                          OAS_AD('x57')
+                        
+
+                          OAS_AD('x58')
+                        
+
+    googletag.cmd.push(function() { googletag.display(
+      'ads-eddy'
+    ); });
+  
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-01'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-02'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-03'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-04'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-05'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-06'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-07'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-08'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-09'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-10'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-11'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-12'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-13'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-14'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-15'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-16'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-17'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-18'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-19'
+              ); });
+          
+
+              googletag.cmd.push(function() { googletag.display(
+                'ads-destacao-20'
+              ); });
+          
+
+  $(function() {
+    $('#home-ads-carousel').mlResizableCarousel({
+      pagination: true,
+      autoScroll: true,
+      itemsPerTransition: 1,
+      itemsPerPage: 1,
+      margin: 0,
+      speed: '70',
+      pause: '7000',
+    });
+  });
+
+
+                        googletag.cmd.push(function() { googletag.display(
+                        'ads-especial'
+                        ); });
+                    
+
+        googletag.cmd.push(function() { googletag.display(
+          'ads-fernandos-01'
+        ); });
+      
+
+        googletag.cmd.push(function() { googletag.display(
+          'ads-fernandos-02'
+        ); });
+      
+
+        googletag.cmd.push(function() { googletag.display(
+          'ads-fernandos-03'
+        ); });
+      
+
+    googletag.cmd.push(function() { googletag.display(
+      'ads-full_middle'
+    ); });
+  
+
+    OAS_AD("full_inferior");
+  
+
+            $(document).ready(function() {
+                // Este nome tem que ser igual o nome do carousel
+                $('#service-slide').mlResizableCarousel();
+            })
+        
+
+          googletag.cmd.push(function() { googletag.display('ads-bottom-esquerdo'); });
+      
+
+            googletag.cmd.push(function() { googletag.display('ads-bottom-direito'); });
+        
+
+    $(document).ready(function() {
+        portalDaLu.init();
+    });
+
+
+    viewed.init();
+
+
+        var google_tag_params = {
+        prodid: '',
+        pagetype: 'home',
+        pname: '',
+        pcat: '',
+        value: ''
+        };
+    
+
+  {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "url": "http://www.magazineluiza.com.br/",
+      "potentialAction":
+      {
+          "@type": "SearchAction",
+          "target": "http://www.magazineluiza.com.br/busca/{search_term_string}/",
+          "query-input": "required name=search_term_string"
+      }
+  }
+
+window.NREUM||(NREUM={});NREUM.info={"beacon":"bam-cell.nr-data.net","queueTime":1,"licenseKey":"4cacecc8c0","agent":"","transactionName":"NgFXY0pSWENUUkdZCg9Lc0JWUEJZWl8cXQQGBU9eVlZaRVxLUh4WCBBQGVtcWERHXl9cABNKXVhVVgxZW1VWSA==","applicationID":"10233144","errorBeacon":"bam-cell.nr-data.net","applicationTime":89}

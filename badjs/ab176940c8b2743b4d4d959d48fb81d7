@@ -1,0 +1,94 @@
+
+//<![CDATA[
+var theForm = document.forms['Form'];
+if (!theForm) {
+    theForm = document.Form;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+
+
+//<![CDATA[
+var __cultureInfo = {"name":"es-ES","numberFormat":{"CurrencyDecimalDigits":2,"CurrencyDecimalSeparator":",","IsReadOnly":false,"CurrencyGroupSizes":[3],"NumberGroupSizes":[3],"PercentGroupSizes":[3],"CurrencyGroupSeparator":".","CurrencySymbol":"€","NaNSymbol":"NaN","CurrencyNegativePattern":8,"NumberNegativePattern":1,"PercentPositivePattern":0,"PercentNegativePattern":0,"NegativeInfinitySymbol":"-∞","NegativeSign":"-","NumberDecimalDigits":2,"NumberDecimalSeparator":",","NumberGroupSeparator":".","CurrencyPositivePattern":3,"PositiveInfinitySymbol":"∞","PositiveSign":"+","PercentDecimalDigits":2,"PercentDecimalSeparator":",","PercentGroupSeparator":".","PercentSymbol":"%","PerMilleSymbol":"‰","NativeDigits":["0","1","2","3","4","5","6","7","8","9"],"DigitSubstitution":1},"dateTimeFormat":{"AMDesignator":"","Calendar":{"MinSupportedDateTime":"\/Date(-62135578800000)\/","MaxSupportedDateTime":"\/Date(253402300799999)\/","AlgorithmType":1,"CalendarType":1,"Eras":[1],"TwoDigitYearMax":2029,"IsReadOnly":false},"DateSeparator":"/","FirstDayOfWeek":1,"CalendarWeekRule":2,"FullDateTimePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss","LongDatePattern":"dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy","LongTimePattern":"H:mm:ss","MonthDayPattern":"d \u0027de\u0027 MMMM","PMDesignator":"","RFC1123Pattern":"ddd, dd MMM yyyy HH\u0027:\u0027mm\u0027:\u0027ss \u0027GMT\u0027","ShortDatePattern":"dd/MM/yyyy","ShortTimePattern":"H:mm","SortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss","TimeSeparator":":","UniversalSortableDateTimePattern":"yyyy\u0027-\u0027MM\u0027-\u0027dd HH\u0027:\u0027mm\u0027:\u0027ss\u0027Z\u0027","YearMonthPattern":"MMMM\u0027 de \u0027yyyy","AbbreviatedDayNames":["do.","lu.","ma.","mi.","ju.","vi.","sá."],"ShortestDayNames":["D","L","M","X","J","V","S"],"DayNames":["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],"AbbreviatedMonthNames":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"MonthNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],"IsReadOnly":false,"NativeCalendarName":"calendario gregoriano","AbbreviatedMonthGenitiveNames":["ene.","feb.","mar.","abr.","may.","jun.","jul.","ago.","sep.","oct.","nov.","dic.",""],"MonthGenitiveNames":["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""]},"eras":[1,"d. C.",null,0]};//]]>
+
+
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ScriptManager', 'Form', ['tdnn$ctr405$Login_UP','dnn_ctr405_Login_UP'], [], [], 90, '');
+//]]>
+
+
+        /*globals jQuery, window, Sys */
+        (function ($, Sys) {
+            const disabledActionClass = "dnnDisabledAction";
+            const actionLinks = $('a[id^="dnn_ctr405_Login_Login_DNN"]');
+            function isActionDisabled($el) {
+                return $el && $el.hasClass(disabledActionClass);
+            }
+            function disableAction($el) {
+                if ($el == null || $el.hasClass(disabledActionClass)) {
+                    return;
+                }
+                $el.addClass(disabledActionClass);
+            }
+            function enableAction($el) {
+                if ($el == null) {
+                    return;
+                }
+                $el.removeClass(disabledActionClass);
+            }
+            function setUpLogin() {                
+                $.each(actionLinks || [], function (index, action) {
+                    var $action = $(action);
+                    $action.click(function () {
+                        var $el = $(this);
+                        if (isActionDisabled($el)) {
+                            return false;
+                        }
+                        disableAction($el);
+                    });
+                });
+            }
+		
+            $(document).ready(function () {
+                $(document).on('keydown', '.dnnLoginService', function (e) {
+                    if ($(e.target).is('input:text,input:password') && e.keyCode === 13) {
+                        var $loginButton = $('#dnn_ctr405_Login_Login_DNN_cmdLogin');
+                        if (isActionDisabled($loginButton)) {
+                            return false;
+                        }
+                        disableAction($loginButton);
+                        window.setTimeout(function () { eval($loginButton.attr('href')); }, 100);
+                        e.preventDefault();
+                        return false;
+                    }
+                });
+
+                setUpLogin();
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                    $.each(actionLinks || [], function (index, item) {
+                        enableAction($(item));
+                    });
+                    setUpLogin();
+                });
+            });
+        }(jQuery, window.Sys));
+    
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-151587749-1');
+
+
+//<![CDATA[
+__dnn_SetInitialFocus('dnn_ctr405_Login_Login_DNN_txtUsername');Sys.Application.add_init(function() {
+    $create(Sys.UI._UpdateProgress, {"associatedUpdatePanelId":"dnn_ctr405_Login_UP","displayAfter":500,"dynamicLayout":true}, null, null, $get("dnn_ctr405_Login_UP_Prog"));
+});
+//]]>

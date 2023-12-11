@@ -1,0 +1,24 @@
+
+		window.addEvent('domready', function () {
+			$$('.pageLink').each( function ( link ) {
+				link.addEvent('click', function (e) {
+					e.stop();
+					var linkTo = link.getProperty('href');
+					var propertyDiv = $('featuredProperties');
+					
+					var propertyRequest = new Request.HTML({
+						method : 'get',
+						url : linkTo ,
+						update : propertyDiv
+					});
+					propertyRequest.send();
+				});
+			});
+			
+				new FormValidator.Inline('loginForm', {
+					evaluateFieldsOnBlur: false,
+					evaluateFieldsOnChange: false				
+				});
+			
+		});
+	

@@ -1,0 +1,1 @@
+localStorage && localStorage.setItem('lemlist', '');window.location.replace(document.querySelector('a').href)

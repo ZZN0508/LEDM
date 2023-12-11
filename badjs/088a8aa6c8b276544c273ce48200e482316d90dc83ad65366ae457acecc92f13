@@ -1,0 +1,35 @@
+
+
+  function SetupStrings()
+  { 
+    document.getElementById('app_title').innerText = external.GetString(35);
+    document.getElementById('page_title').innerText = external.GetString(21);
+    document.getElementById('body_copy').innerText = external.GetString(22);
+    document.getElementById('continue_button').innerText = external.GetString(23);
+  }
+  
+  function SetCDKey()
+  {
+    var key = document.getElementById('cd_key').value;
+    external.SetCDKey(key);
+  }
+  
+  window.onload = function(event)
+  {
+	settings = {
+	  tl: { radius: 5 },
+	  tr: { radius: 5 },
+	  bl: { radius: 5 },
+	  br: { radius: 5 },
+	  antiAlias: true,
+	  validTags: ["div"]
+	}
+
+	var content = new curvyCorners(settings, "eula_content");
+	content.applyCornersToAll();	
+
+	var infoblock = new curvyCorners(settings, "info_block");
+	infoblock.applyCornersToAll();  
+	SetupStrings();
+	
+  }

@@ -1,0 +1,35 @@
+
+jQuery(function ($){
+
+$(".enamad a").removeAttr('rel');
+
+
+});
+
+
+
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	
+
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"\u0645\u0634\u0627\u0647\u062f\u0647 \u0633\u0628\u062f \u062e\u0631\u06cc\u062f","cart_url":"https:\/\/harika.ir\/cart\/","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_2afc1ba32ee0a61a27f5cf0a53f2c29e","fragment_name":"wc_fragments_2afc1ba32ee0a61a27f5cf0a53f2c29e","request_timeout":"5000"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var IRK_DATA = {"ajax_url":"https:\/\/harika.ir\/wp-admin\/admin-ajax.php","main_slider_autoplay":null,"main_slider_loop":null,"main_slider_animation":null,"amazing_slider_autoplay":null,"amazing_slider_loop":null,"amazing_slider_items":"4","products_slider_autoplay":null,"products_slider_loop":null,"products_slider_items":"5","brands_slider_autoplay":null,"brands_slider_loop":null,"brands_slider_items":"5","posts_slider_autoplay":null,"posts_slider_loop":null,"posts_slider_items":"5","sticky_sidebar_home":"1","sticky_sidebar_shop":"1","sticky_sidebar_product":"1","sticky_sidebar_post":"1","sticky_header":"1","tabs_panel":"collapsed","show_more":"\u0646\u0645\u0627\u06cc\u0634 \u0628\u06cc\u0634\u062a\u0631","show_less":"\u0646\u0645\u0627\u06cc\u0634 \u06a9\u0645\u062a\u0631","gallery_thumb_slider":null,"reviews_title":null,"empty_compare":"\u062c\u062f\u0648\u0644 \u0645\u0642\u0627\u06cc\u0633\u0647 \u062e\u0627\u0644\u06cc \u0645\u06cc\u200c\u0628\u0627\u0634\u062f!","compare_page":"https:\/\/harika.ir\/page-3055\/","order_not_found":"\u0633\u0641\u0627\u0631\u0634\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f!","added_to_cart":"\u0628\u0647 \u0633\u0628\u062f \u062e\u0631\u06cc\u062f \u0627\u0636\u0627\u0641\u0647 \u0634\u062f","added_to_cart_toast":null};
+/* ]]> */

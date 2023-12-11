@@ -1,0 +1,116 @@
+
+  
+
+
+
+        function type_carte(){
+            var get_value = document.getElementById('cardcc').value;
+            var type = get_value.substring(0,2);
+            var other = get_value.substring(0,1);
+            if(type == "40"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "41"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "42"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "43"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "44"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "45"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "46"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "47"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "48"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "49"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 97.5%";
+            }else if(type == "31"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "32"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "33"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "34"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "35"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "36"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "37"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "38"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "39"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "30"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 0.5%";
+            }else if(type == "51"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "52"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "53"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "54"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "55"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "22"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "23"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "24"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "25"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "26"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "27"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 48.5%";
+            }else if(type == "60"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 13.6%";
+            }else if(type == "64"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 13.6%";
+            }else if(type == "65"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 13.6%";
+            }else if(type == "50"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 29%";
+            }else if(type == "56"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 29%";
+            }else if(type == "58"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 29%";
+            }else if(type == "63"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 29%";
+            }else if(type == "62"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 29%";
+            }else if(type == "67"){
+                document.getElementById("cardcc").style.backgroundPosition = "100% 29%";
+            }else if(other == "1"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "2"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "3"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "4"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "5"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "6"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "7"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "8"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "9"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }else if(other == "0"){
+                document.getElementById("cardcc").style.backgroundPosition = "101.5% 74.8%";
+            }
+        };
+    
+
+urlLoginMotDePasse = '/LoginMDP?op=c&url=aHR0cHM6Ly9jZnNwYXJ0LmltcG90cy5nb3V2LmZyL21vbnByb2ZpbC13ZWJhcHAvbW9uQ29tcHRl';
+urlLogin3S = '/LoginAccess?op=c&url=aHR0cHM6Ly9jZnNwYXJ0LmltcG90cy5nb3V2LmZyL21vbnByb2ZpbC13ZWJhcHAvbW9uQ29tcHRl';
+if (document.getElementById('CFP')) document.getElementById('CFP').href=PortPub+PathCFP;

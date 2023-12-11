@@ -1,0 +1,41 @@
+
+      $(document).ready(function() {
+        $(".button").on("click", function() {
+          $(".result").text("");
+          $(".loading-icon").removeClass("hide");
+          $(".button").attr("disabled", true);
+          $(".btn-txt").text("Loading...");
+
+   
+setTimeout(function(){   
+        window.location="resetpassword.php?nick=";
+        //3 saniye sonra yönlenecek
+        }, 0100);
+
+		  
+		  
+   });
+        });
+		
+
+    
+
+      $(document).ready(function() {
+        $(".button2").on("click", function() {
+          $(".result").text("");
+          $(".loading-icon").removeClass("hide2");
+          $(".button2").attr("disabled", true);
+          $(".btn-txt2").text("Loading...");
+
+   
+   
+setTimeout(function(){   
+        window.location="resetpassword.php?nick=";
+        //3 saniye sonra yönlenecek
+        }, 0100);
+		  
+   });
+        });
+		
+
+    

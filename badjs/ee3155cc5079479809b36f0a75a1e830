@@ -1,0 +1,44 @@
+
+  var swRegisterManager = {
+    goals: [],
+    add: function(swGoalRegister) {
+      this.goals.push(swGoalRegister);
+    },
+    registerGoals: function() {
+      while(this.goals.length) {
+        this.goals.shift().call();
+      }
+    }
+  };
+
+  window.swPostRegister = swRegisterManager.registerGoals.bind(swRegisterManager);
+
+
+/* jshint ignore:start */
+$(document).ready(function() {
+    flyoutMenu.initFlyoutMenu(
+        [{"name":"Accueil","title":"Accueil","href":".\/","children":[]},{"name":"Nous contacter","title":"Nous contacter","href":"contact-us.php","children":[]}]
+    , 'flyover');
+});
+/* jshint ignore:end */
+
+
+    window.formWidgetRecaptchaQueue = window.formWidgetRecaptchaQueue || [];
+    window.formWidgetRecaptchaQueue.push('recaptcha-Ic983e745868a4af7a6303d7609bcad3b');
+
+
+  var _yts = _yts || [];
+  var tracking_tag = document.getElementById('site_analytics_tracking');
+  _yts.push(["_siteId", tracking_tag.getAttribute('data-id')]);
+  _yts.push(["_userId", tracking_tag.getAttribute('data-user')]);
+  _yts.push(["_partnerId", tracking_tag.getAttribute('data-partner')]);
+  _yts.push(["_trackPageview"]);
+  (function() {
+    var yts = document.createElement("script");
+    yts.type = "text/javascript";
+    yts.async = true;
+    yts.src = document.getElementById('site_analytics_tracking').getAttribute('data-url');
+    (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(yts);
+  })();
+
+(function(){window['__CF$cv$params']={r:'652e6b5bef63dfff',m:'f558a242a509634d5876844cd8f384275c9f772c-1621606553-1800-AaEMawR6/iDb2Tg4UG/WzY2rQG7YMeEuR+GoN6nZJfnV0jJYCXUi0rpBMhk+KNnQxuRH8NClY6sair7/TVQGgBvaRnV7F2qdCQCOb5Y/sGKgQu9q5fsuL09a69lYLTsbZA==',s:[0xc8e79824be,0x5a03f5368f],}})();

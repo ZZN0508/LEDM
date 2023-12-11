@@ -1,0 +1,10 @@
+
+	// <![CDATA[
+	
+    var so = new SWFObject("javascripts/preloader.swf?path=greer.swf", "Greer St", "100%", "100%", "9", "#000000");
+    so.useExpressInstall("javascripts/expressinstall.swf");
+    so.addParam("allowFullScreen", "true");   
+    // DO NOT EDIT THE FOLLOWING 2 LINES
+  so.write("container");
+	
+	// ]]>

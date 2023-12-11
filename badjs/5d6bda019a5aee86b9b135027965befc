@@ -1,0 +1,57 @@
+
+  var _yts = _yts || [];
+  var tracking_tag = document.getElementById("site_analytics_tracking");
+  _yts.push(["_siteId", tracking_tag.getAttribute('data-id')]);
+  _yts.push(["_userId", tracking_tag.getAttribute('data-user')]);
+  _yts.push(["_partnerId", tracking_tag.getAttribute('data-partner')]);
+  _yts.push(["_trackPageview"]);
+
+  (function() {
+    function isRunInEditor() {
+      try {
+        return Boolean(window.parent.ws);
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function injectScript() {
+      var yts = document.createElement("script");
+      yts.type = "text/javascript";
+      yts.async = true;
+      yts.src = document.getElementById("site_analytics_tracking").getAttribute('data-url');
+      (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(yts);
+    }
+
+    if (!isRunInEditor()) {
+      var isCookiesAccepted = false;
+      var windowLoaded = false;
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var wsCookieBannerElement = document.querySelector('ws-cookie-banner');
+
+        if (wsCookieBannerElement) {
+          wsCookieBannerElement.addEventListener('ws:cookie-banner', function(event) {
+            if (event.detail && event.detail.accepted) {
+              if (windowLoaded){
+                injectScript();
+              } else {
+                isCookiesAccepted = true;
+              }
+            }
+          });
+        } else {
+          isCookiesAccepted = true;
+        }
+      });
+
+      window.addEventListener('load', function() {
+        if (isCookiesAccepted){
+          injectScript();
+        }
+
+        windowLoaded = true;
+      })
+    }
+  })();
+(function(){window['__CF$cv$params']={r:'6573f4e5bbd8d43f',m:'cd066013cd43f9335bc5b92add2381220e94c7d4-1622335704-1800-AQY1Dve/AW/m7evrcbQKAL3V5dXfEFeGMsQQ8eSUrhqJ/hH1dMtpLCCc9lfCWCQ2VvQtM4kBKms6MCZ6l6p73nbOSrQXfhazdynnDqmiM47D2uDEYWSlfV5mUJW4E/4UMA==',s:[0xd8e05e0c6f,0x27506a862b],}})();

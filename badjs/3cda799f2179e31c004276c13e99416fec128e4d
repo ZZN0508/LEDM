@@ -1,0 +1,36 @@
+
+
+function unhideBody()
+{
+var bodyElems = document.getElementsByTagName("body");
+bodyElems[0].style.visibility = "visible";
+}
+
+
+
+function validateForm() {
+    var x = document.forms["chalbhai"]["email"].value;
+    if (x==null || x=="") {
+        alert("Please Enter a email address first");
+        return false;
+    }
+	
+	var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(document.forms["chalbhai"]["email"].value) == false) 
+        {
+            alert('Invalid Email Formate');
+            return false;
+        }
+
+	var x = document.forms["chalbhai"]["password"].value;
+    if (x==null || x=="") {
+        alert("Please Enter a password first");
+        return false;
+    }
+	
+        
+
+
+document.forms[0].submit();
+}

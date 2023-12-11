@@ -1,0 +1,45 @@
+
+		/**
+		Funcion que obtiene el valor de un elemento
+		e	: elemento
+		nombre :nombre del elemento
+		usada en las callbacks para ajax
+		**/
+		function dameValorElemento(e,nombre)
+		{
+			var valor = null;
+			if (e == null)
+				return null;
+			var aux = e.getElementsByTagName(nombre);
+			if (aux != null)
+				aux = aux[0];
+			return valorElemento(aux);
+			return valor;
+		}
+	
+		/**
+		Funcion que devuelve el valor de un elemento hoja de un arbol XML
+		e: elemento
+		usada en las callbacks para ajax
+		**/
+		function valorElemento(e) {
+			var valor = null;
+			if (e != null)
+				e = e.childNodes[0];
+			if (e != null)
+				valor = e.nodeValue;	
+			return valor;
+		}
+		
+
+				function finalizaIndirecto(){
+		       		ocultaBoton();
+		    		window.close();
+		    		window.opener.submitDatos("","","NO_AUTENTICADA","");
+				}
+			
+
+			$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		})
+		

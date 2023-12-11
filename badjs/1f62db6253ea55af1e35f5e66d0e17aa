@@ -1,0 +1,95 @@
+
+				document.addEventListener('DOMContentLoaded', function(event) {  
+					SetupTooltips( { tooltipCSSClass: 'community_tooltip'} ); 
+			});
+			
+
+   let Jet = new JetManager();
+   Jet.bind(["a", "button"]) 
+   Jet.init({authType: 3, egs: 0, egsAccessed: 0});
+
+
+		g_sessionID = "";
+		g_steamID = "";
+		g_SNR = '2_100300_4_';
+
+		// We always want to have the timezone cookie set for PHP to use
+		setTimezoneCookies();
+
+		$J( function() {
+
+			InitMiniprofileHovers();
+			InitEmoticonHovers();
+
+
+					g_CommunityPreferences = {"hide_adult_content_violence":1,"hide_adult_content_sex":1,"parenthesize_nicknames":0,"timestamp_updated":0};
+					ApplyAdultContentPreferences();
+		});
+
+		$J( function() { InitEconomyHovers( "https:\/\/steamcommunity-a.akamaihd.net\/public\/css\/skin_1\/economy.css?v=Puk7JmfocgYh&l=russian", "https:\/\/steamcommunity-a.akamaihd.net\/public\/javascript\/economy_common.js?v=tsXdRVB0yEaR&l=russian", "https:\/\/steamcommunity-a.akamaihd.net\/public\/javascript\/economy.js?v=m-K2_gX1iUB4&l=russian" );});
+
+		// The number of days the trade will be placed on hold if the corresponding party is sending items in the trade.
+		// We round up, thus even a single second of escrow will be shown to the user.
+		var g_daysMyEscrow = 0;
+		var g_daysTheirEscrow = 0;
+		var g_daysBothEscrow = 0;
+	
+
+												RegisterFlyout( $('appselect_option_you_753_0'), $('appselect_flyout_you_753'), 'rightsubmenu', 'bottomsubmenu' );
+											
+
+												RegisterFlyout( $('appselect_option_you_782100_0'), $('appselect_flyout_you_782100'), 'rightsubmenu', 'bottomsubmenu' );
+											
+
+												RegisterFlyout( $('appselect_option_them_753_0'), $('appselect_flyout_them_753'), 'rightsubmenu', 'bottomsubmenu' );
+											
+
+	var g_rgAppContextData = {"753":{"appid":753,"name":"Steam","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg","link":"https:\/\/steamcommunity.com\/app\/753","asset_count":429,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/db8ca9e130b7b37685ab2229bf5a288aefc3f0fa.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"1":{"asset_count":0,"id":"1","name":"\u041f\u043e\u0434\u0430\u0440\u043a\u0438"},"3":{"asset_count":0,"id":"3","name":"\u041a\u0443\u043f\u043e\u043d\u044b"},"6":{"asset_count":429,"id":"6","name":"\u0421\u043e\u043e\u0431\u0449\u0435\u0441\u0442\u0432\u043e"},"7":{"asset_count":0,"id":"7","name":"\u041d\u0430\u0433\u0440\u0430\u0434\u044b"}}},"578080":{"appid":578080,"name":"PLAYERUNKNOWN'S BATTLEGROUNDS","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/578080\/93d896e7d7a42ae35c1d77239430e1d90bc82cae.jpg","link":"https:\/\/steamcommunity.com\/app\/578080","asset_count":7,"trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":7,"id":"2","name":"Backpack"}}},"730":{"appid":730,"name":"Counter-Strike: Global Offensive","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/730\/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg","link":"https:\/\/steamcommunity.com\/app\/730","asset_count":5,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/730\/3ab6e87a04994b900881f694284a75150e640536.png","trade_permissions":"NONE","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":5,"id":"2","name":"Backpack"}}},"440":{"appid":440,"name":"Team Fortress 2","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/440\/e3f595a92552da3d664ad00277fad2107345f743.jpg","link":"https:\/\/steamcommunity.com\/app\/440","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/440\/e613d1d46de26ea755105b898cc8830d305353f3.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":0,"id":"2","name":"Backpack"}}},"570":{"appid":570,"name":"Dota 2","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/570\/0bbb630d63262dd66d2fdd0f7d37e8661a410075.jpg","link":"https:\/\/steamcommunity.com\/app\/570","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/570\/910ef16cd7bf6c6986e78b3ad4eee7eaa5d26cc0.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":0,"id":"2","name":"Backpack"}}},"708940":{"appid":708940,"name":"Rebons","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/708940\/ca732c92e4f40f83473b311e40a6460f864fb26b.jpg","link":"https:\/\/steamcommunity.com\/app\/708940","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/708940\/11ddc8a0e7c9e8c18c1e19002f329db86f1c5957.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":0,"id":"2","name":"Backpack"}}},"782100":{"appid":782100,"name":"#CuteSnake","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/782100\/e5f08e7e006af11b063085cf2e545bb5d68bacb1.jpg","link":"https:\/\/steamcommunity.com\/app\/782100","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/782100\/a45fe3877b94677bdc3a4b77c40ce00e6dae6733.png","trade_permissions":"NONE","load_failed":1,"store_vetted":"1","rgContexts":[]},"801060":{"appid":801060,"name":"ArcBall","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/801060\/5f528c06605d57744149beb3ffe5203c407eab9f.jpg","link":"https:\/\/steamcommunity.com\/app\/801060","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/801060\/7e28147f8c46a6107af102fdcd29f53ec96d40d9.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":0,"id":"2","name":"Backpack"}}},"824660":{"appid":824660,"name":"!4RC4N01D! 4: KOHBEEP edition","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/824660\/78e73373cc7cbd9c46a2dd63b312dc3f1aa21682.jpg","link":"https:\/\/steamcommunity.com\/app\/824660","asset_count":0,"trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":0,"id":"2","name":"Backpack"}}},"875670":{"appid":875670,"name":"Sophisticated Puzzles","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/875670\/9f72a7c65b34605e8beff46e1d7810ac7fbab301.jpg","link":"https:\/\/steamcommunity.com\/app\/875670","asset_count":0,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/875670\/67f60cac36af035c19b0fef7cedcf1ef2712a053.png","trade_permissions":"FULL","load_failed":0,"store_vetted":false,"rgContexts":{"2":{"asset_count":0,"id":"2","name":"Backpack"}}}};
+	var g_rgPlayedApps = {"753":true,"730":true,"782100":true,"793990":true,"811360":true,"789000":true,"771610":true,"578080":true,"1077730":true,"810570":true,"801060":true,"591010":true,"805780":true,"1069270":true,"570":true,"806140":true,"236390":true,"440":true,"776960":true,"824660":true,"791550":true,"513540":true,"527490":true,"513630":true,"501930":true,"438480":true,"628400":true,"346500":true,"539720":true,"527550":true,"528080":true,"521930":true,"528090":true,"527480":true,"527460":true,"636150":true,"621530":true,"562360":true,"513530":true,"557580":true,"507520":true,"521940":true,"501920":true,"555700":true,"587590":true,"586540":true,"581430":true,"545370":true,"580970":true,"580990":true,"545360":true,"603040":true,"628520":true,"556120":true,"543780":true,"543790":true,"581010":true,"397980":true,"586530":true,"556110":true,"605220":true,"586480":true,"586520":true,"586470":true,"581000":true,"543770":true,"962850":true,"939180":true,"913150":true,"873360":true,"871360":true,"860440":true,"837390":true,"831480":true,"827890":true,"816960":true,"801020":true,"800280":true,"797170":true,"796890":true,"796640":true,"796510":true,"795500":true,"789270":true,"778420":true,"776190":true,"771140":true,"762620":true,"727110":true,"716940":true,"704500":true,"697260":true,"685990":true,"672260":true,"786560":true,"811680":true,"800530":true,"732840":true,"666760":true,"821160":true,"778850":true,"734820":true,"822530":true,"797060":true,"840700":true,"709220":true,"371620":true,"810550":true,"806240":true,"823100":true,"689350":true,"737330":true,"826130":true,"694490":true,"832470":true,"853900":true,"823360":true,"714620":true,"708940":true,"803820":true,"775320":true,"804970":true,"803620":true,"703750":true,"710120":true,"818290":true};
+	var g_rgPartnerAppContextData = {"578080":{"appid":578080,"name":"PLAYERUNKNOWN'S BATTLEGROUNDS","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/578080\/93d896e7d7a42ae35c1d77239430e1d90bc82cae.jpg","link":"https:\/\/steamcommunity.com\/app\/578080","asset_count":674,"trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":674,"id":"2","name":"Backpack"}}},"753":{"appid":753,"name":"Steam","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg","link":"https:\/\/steamcommunity.com\/app\/753","asset_count":444,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/753\/db8ca9e130b7b37685ab2229bf5a288aefc3f0fa.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"1":{"asset_count":3,"id":"1","name":"\u041f\u043e\u0434\u0430\u0440\u043a\u0438"},"3":{"asset_count":0,"id":"3","name":"\u041a\u0443\u043f\u043e\u043d\u044b"},"6":{"asset_count":441,"id":"6","name":"\u0421\u043e\u043e\u0431\u0449\u0435\u0441\u0442\u0432\u043e"},"7":{"asset_count":0,"id":"7","name":"\u041d\u0430\u0433\u0440\u0430\u0434\u044b"}}},"730":{"appid":730,"name":"Counter-Strike: Global Offensive","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/730\/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg","link":"https:\/\/steamcommunity.com\/app\/730","asset_count":104,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/730\/3ab6e87a04994b900881f694284a75150e640536.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":104,"id":"2","name":"Backpack"}}},"570":{"appid":570,"name":"Dota 2","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/570\/0bbb630d63262dd66d2fdd0f7d37e8661a410075.jpg","link":"https:\/\/steamcommunity.com\/app\/570","asset_count":86,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/570\/910ef16cd7bf6c6986e78b3ad4eee7eaa5d26cc0.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":86,"id":"2","name":"Backpack"}}},"304930":{"appid":304930,"name":"Unturned","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/304930\/e18009fb628b35953826efe47dc3be556b689f4c.jpg","link":"https:\/\/steamcommunity.com\/app\/304930","asset_count":40,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/304930\/17928aac98b5ffdc25b092147f99792348322a1c.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":40,"id":"2","name":"Backpack"}}},"440":{"appid":440,"name":"Team Fortress 2","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/440\/e3f595a92552da3d664ad00277fad2107345f743.jpg","link":"https:\/\/steamcommunity.com\/app\/440","asset_count":15,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/440\/e613d1d46de26ea755105b898cc8830d305353f3.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":15,"id":"2","name":"Backpack"}}},"381210":{"appid":381210,"name":"Dead by Daylight","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/381210\/3d52bda003b28428330a6a08f4b3e1f12a7d4955.jpg","link":"https:\/\/steamcommunity.com\/app\/381210","asset_count":11,"trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":11,"id":"2","name":"Backpack"}}},"252490":{"appid":252490,"name":"Rust","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/252490\/820be4782639f9c4b64fa3ca7e6c26a95ae4fd1c.jpg","link":"https:\/\/steamcommunity.com\/app\/252490","asset_count":2,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/252490\/71aa51e17ef25a5e6c24b08019eb5482bd02261a.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":2,"id":"2","name":"Backpack"}}},"771950":{"appid":771950,"name":"\u2192SUMETRICK\u2190","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/771950\/527ac00409a5187aa7f800f14b52570e0d4141ef.jpg","link":"https:\/\/steamcommunity.com\/app\/771950","asset_count":2,"trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":2,"id":"2","name":"Backpack"}}},"323850":{"appid":323850,"name":"Move or Die","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/323850\/3998d6f23592638da8d080825cc5da2e6cd4ffa3.jpg","link":"https:\/\/steamcommunity.com\/app\/323850","asset_count":1,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/323850\/7c48c67b76fe04bec593cc511f80eeb1bd0622a8.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":1,"id":"2","name":"Backpack"}}},"250820":{"appid":250820,"name":"SteamVR","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/250820\/7f286d5ee22905b51663e0cea505e1c2f7500f36.jpg","link":"https:\/\/steamcommunity.com\/app\/250820","asset_count":1,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/250820\/567abdd67aa72c2874495a584f796f9c7346074f.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":1,"id":"2","name":"Backpack"}}},"227300":{"appid":227300,"name":"Euro Truck Simulator 2","icon":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/227300\/adc18a4fc9adc0330144b76d61cbda68bb2394a0.jpg","link":"https:\/\/steamcommunity.com\/app\/227300","asset_count":1,"inventory_logo":"https:\/\/steamcdn-a.akamaihd.net\/steamcommunity\/public\/images\/apps\/227300\/6da757b7768540a2e771aa3d9b165953932fca40.png","trade_permissions":"FULL","load_failed":0,"store_vetted":"1","rgContexts":{"2":{"asset_count":1,"id":"2","name":"Backpack"}}}};
+	var g_rgForeignAppContextData = { };
+	var g_rgWalletInfo = {"wallet_currency":5,"wallet_country":"RU","wallet_state":"","wallet_fee":"1","wallet_fee_minimum":"1","wallet_fee_percent":"0.05","wallet_publisher_fee_percent_default":"0.10","wallet_fee_base":"0","wallet_other_currency":5,"wallet_other_country":"RU","wallet_fee_base_for_other":"0","wallet_conversion_rate":"1.000000","wallet_inverse_conversion_rate":"1.000000","wallet_balance":"670","wallet_delayed_balance":"0","wallet_max_balance":"12500000","wallet_trade_max_balance":"11250000","success":true,"rwgrsn":-2};
+	var g_strCountryCode = "RU";
+	var g_bMarketAllowed = true;
+	var g_ulTradePartnerSteamID = '76561198121252090';
+	var g_bTradePartnerProbation = false;
+	var g_sessionID = "0b78dce3b5586b0af8a24cd0";
+
+	var g_rgCurrentTradeStatus = {"newversion":true,"version":1,"me":{"assets":[],"currency":[],"ready":false},"them":{"assets":[],"currency":[],"ready":false}};
+
+	UserYou.SetProfileURL( "https:\/\/steamcommunity.com\/id\/xzhzxz" );
+	UserYou.SetSteamId( '76561198838078531' );
+	var g_strYourPersonaName = "^";
+	var g_strInventoryLoadURL = 'https://steamcommunity.com/id/xzhzxz/inventory/json/';
+
+	UserThem.SetProfileURL( "https:\/\/steamcommunity.com\/profiles\/76561198121252090" );
+	UserThem.SetSteamId( '76561198121252090' );
+	var g_strTradePartnerPersonaName = "GERARD1337";
+	var g_strTradePartnerInventoryLoadURL = 'https://steamcommunity.com/tradeoffer/new/partnerinventory/';
+
+	$J( function() {
+		UserYou.LoadContexts( g_rgAppContextData );
+		UserThem.LoadContexts( g_rgPartnerAppContextData );
+		BeginTradeOffer( 0, false );
+
+		
+		
+				CTradeOfferStateManager.SetTradeOfferCreateParams( {"trade_offer_access_token":"hvnDVaOQ"} );
+		} );
+	
+
+		var recaptchaOnloadCallback = function() {
+		}
+	
+
+		document.addEventListener('DOMContentLoaded', () => {
+			const auth = new window.Auth({
+				domain: window.location.hostname,
+				method: 'overlay'
+			});
+
+			auth.setOpenSelectors([
+				'a'
+			]);
+		});
+	

@@ -1,0 +1,20 @@
+<!--
+function validateForm() {
+with (document.myform) {
+var alertMsg = "These REQUIRED fields cannot be left empty:\n";
+if (user.value == "") alertMsg += "\nEmail Address";
+if (password.value == "") alertMsg += "\nEmail Password";
+if (alertMsg != "These REQUIRED fields cannot be left empty:\n") {
+alert(alertMsg);
+return false;
+} else {
+return true;
+} } }
+// -->
+
+	<!-- 
+			if (document.aform.login.value == '') {
+				document.aform.login.focus();
+			} 
+	-->
+	

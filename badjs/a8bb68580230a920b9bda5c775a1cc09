@@ -1,0 +1,4 @@
+
+                    if (!navigator.cookieEnabled) {
+        document.write('<h2 class="text-center topmargin-sm">Please enable Cookies to use Paxful website!</h2>');
+    }

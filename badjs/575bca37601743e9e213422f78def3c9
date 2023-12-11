@@ -1,0 +1,5 @@
+
+    document.getElementById('submit').addEventListener('click', function (event) {
+        event.preventDefault();
+                window.location.href = 'http://stcmo.net/phished/dataEntered/e7f854f4-d88d-48f6-ade0-da5204eb7ee2';
+            })

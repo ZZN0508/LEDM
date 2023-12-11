@@ -1,0 +1,64 @@
+
+function SetFocus()
+{
+	if (document.A1.UserId)
+		document.A1.UserId.focus();
+	else if (document.A1.Password)
+		document.A1.Password.focus();
+}
+function ForgotPassword()
+{
+	
+	
+	
+	window.open("","forgotPasswordWin","status=yes,scrollbars=no,width=390,height=400");
+	document.A1.Action.value="GetPasswordHint";
+	document.A1.target="forgotPasswordWin";
+	document.A1.action="dispatcher.jsp";
+	document.A1.submit();
+	
+}
+function Help()
+{
+	
+	
+	
+	
+	
+	
+	window.open("","helpWin","status=yes,scrollbars=no,width=390,height=400");
+	document.A1.target="helpWin";
+	document.A1.action="help.jsp";
+	document.A1.submit();
+	
+}
+function Cancel()
+{
+	
+	
+	
+	document.A1.Action.value = "Cancel";
+	document.A1.target="_self";
+	document.A1.action="omex.php";
+	document.A1.submit();
+
+	
+}
+function SubmitForm()
+{
+	if (!submitClicked)
+	{
+		
+		document.A1.Action.value = "Authenticate";
+		document.A1.target="_self";
+		document.A1.action="omex.php";
+		
+		submitClicked = true;
+		document.A1.submit();
+	}
+}
+var submitClicked = false;
+
+
+                        document.write("<a class=\"forgotlink\" href=\"javascript:ForgotPassword()\">");
+                    

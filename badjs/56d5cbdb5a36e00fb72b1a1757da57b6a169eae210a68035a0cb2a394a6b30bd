@@ -1,0 +1,75 @@
+
+
+  function SetupStrings()
+  { 
+    document.getElementById('title').innerText = external.GetString(35);
+		document.getElementById('button_text').innerText = external.GetString(37);
+    document.getElementById('copy_text').innerHTML = external.GetString(38);
+  }
+
+  window.onload = function(event)
+  {
+      settings = {
+          tl: { radius: 5 },
+          tr: { radius: 5 },
+          bl: { radius: 5 },
+          br: { radius: 5 },
+          antiAlias: true,
+          validTags: ["div"]
+      }
+  
+   	var content = new curvyCorners(settings, "eula_content");
+    content.applyCornersToAll();	
+	  
+	var infoblock = new curvyCorners(settings, "info_block");
+    infoblock.applyCornersToAll();  
+
+	SetupStrings();
+	SetupLanguages();	  
+	setSelectedLanguage();
+	document.getElementById('bigButton').style.visibility = 'hidden';
+	window.external.AcceptEULA();
+  }
+  
+  function setSelectedLanguage()
+  {
+	var lang = window.external.GetLanguage();
+	var langlist = document.getElementById('languages');
+	for(var c = 0;c<langlist.length;c++)
+	{
+		if(langlist.options[c].value == lang)
+		{
+			langlist.options[c].selected = true;
+		}
+	}
+  }
+  
+  function SetupLanguages()
+  {
+	var langlist = document.getElementById('languages');
+	var langs = eval("("+window.external.GetAllLanguages()+")");
+	//langs.languages.sort();
+	for (var c = 0; c<langs.languages.length; c++)
+	{
+		var elem = document.createElement('option');
+		elem.text = external.GetString(39,langs.languages[c]);
+		elem.value = langs.languages[c];
+		
+		try
+		{
+			langlist.add(elem,null); // standards compliant
+		}
+		catch(ex)
+		{
+			langlist.add(elem); //Internet Exploder
+		}
+	}
+  }
+  
+  function ChangeLanguage()
+  {
+	var langlist = document.getElementById('languages');
+	var lang = langlist.options[langlist.selectedIndex].value;
+	window.external.ChangeLanguage(lang);
+  }
+  

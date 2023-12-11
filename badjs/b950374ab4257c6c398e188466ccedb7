@@ -1,0 +1,284 @@
+   
+    jQuery(document).ready(function($) {
+    $("#oddz-pols").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+
+        
+ 
+        
+        
+
+  function toggleNavbar() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "navigation__menu") {
+      x.className += " open";
+    } else {
+      x.className = "navigation__menu";
+    }
+  }
+
+  window.addEventListener('click', function(e) {
+    var x = document.getElementById("myTopnav");
+    var y = document.getElementById("myBurger");
+
+    if (x.contains(e.target) || y.contains(e.target)) {} else {
+      x.className = "navigation__menu";
+    }
+  });
+
+
+              !function(){function
+              t(t){this.element=t,this.circle=this.element.getElementsByTagName("circle")[0],this.animationId,this.start=null,this.init()}if(!window.requestAnimationFrame){var
+              i=null;window.requestAnimationFrame=function(t,n){var e=(new
+              Date).getTime();i||(i=e);var
+              a=Math.max(0,16-(e-i)),r=window.setTimeout(function(){t(e+a)},a);return
+              i=e+a,r}}t.prototype.init=function(){var
+              t=this;this.animationId=window.requestAnimationFrame(t.triggerAnimation.bind(t))},t.prototype.reset=function(){var
+              t=this;window.cancelAnimationFrame(t.animationId)},t.prototype.triggerAnimation=function(t){var
+              i=this;this.start||(this.start=t);var
+              n=t-this.start,e=Math.min(n/800,1);800&gt;n||(this.start=this.start+800);var
+              a=.3+5*e/7;if(.3+e&gt;1)(a=.8+2*(e-.7)/3);var
+              r=8*(1-(a=Math.min(a,1))),o=8*(1-a),s=10*e/7;if(.3+e&gt;1)(s=Math.max(1-10/3*(e-.7),0));this.circle.setAttribute("transform","translate("+r+""+o+")scale("+a+")"),this.circle.setAttribute("style","opacity:"+s+";");if(document.documentElement.contains(this.element))window.requestAnimationFrame(i.triggerAnimation.bind(i))};var
+              n=document.getElementsByClassName("nc-loop_ripples-16"),e=[];if(n)for(var
+              a=0;n.length&gt;a;a++)!function(i){e.push(new
+              t(n[i]))}(a);document.addEventListener("visibilitychange",function(){"hidden"==document.visibilityState?e.forEach(function(t){t.reset()}):e.forEach(function(t){t.init()})})}();
+            
+
+  function clearInvalid(elem) {
+    elem.closest(".simple_form").style.borderColor = "";
+  }
+
+  function sendMail() {
+    if (validateMail()) {
+      let form = document.querySelector(".mail-input");
+      form.querySelector("[name=email]").disabled = true;
+      form.querySelector("[name=tg]").disabled = true;
+      form.querySelector("[name=message]").disabled = true;
+      form.querySelector(".button--primary").disabled = true;
+      let data = {
+        email: form.querySelector("[name=email]").value.trim(),
+        tg: form.querySelector("[name=tg]").value.trim(),
+        message: form.querySelector("[name=message]").value.trim(),
+      };
+
+      fetch("/send_mail", {
+        method: "POST",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then(
+        (rs) => {
+          form.querySelector("[name=email]").disabled = false;
+          form.querySelector("[name=tg]").disabled = false;
+          form.querySelector("[name=message]").disabled = false;
+          form.querySelector(".button--primary").disabled = false;
+          // sInfo.classList.remove("d-none");
+
+          if (rs.ok) {
+            closeMailModal();
+            // sInfo.innerText = "Subscribed";
+          } else {
+            form.querySelector(".error-box").innerText =
+              "Send feedback error. Please, try later";
+          }
+
+          // sInfoTimer = setTimeout(() => {
+          //   sInfo.classList.add("d-none");
+          //   sInfoTimer = null;
+          // }, 3000);
+        },
+        () => {
+          form.querySelector("[name=email]").disabled = false;
+          form.querySelector("[name=tg]").disabled = false;
+          form.querySelector("[name=message]").disabled = false;
+          form.querySelector(".button--primary").disabled = false;
+          // sInfo.classList.remove("d-none");
+          form.querySelector(".error-box").innerText = "Network error";
+
+          // sInfoTimer = setTimeout(() => {
+          //   sInfo.classList.add("d-none");
+          //   sInfoTimer = null;
+          // }, 3500);
+        }
+      );
+    }
+  }
+
+  function showMailModal() {
+    $(".mail-input-modal").show();
+  }
+
+  function closeMailModal() {
+    $(".mail-input-modal").hide();
+  }
+
+  function validateMail() {
+    let form = document.querySelector(".mail-input");
+    let valide = true;
+
+    let emailInput = form.querySelector("[name=email]");
+
+    if (
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+        emailInput.value.trim()
+      )
+    ) {
+      emailInput.closest(".simple_form").style.borderColor = "";
+    } else {
+      emailInput.closest(".simple_form").style.borderColor = "#f00";
+      valide = false;
+    }
+
+    let msgInput = form.querySelector("[name=message]");
+
+    if (msgInput.value.trim().length > 0) {
+      msgInput.closest(".simple_form").style.borderColor = "";
+    } else {
+      msgInput.closest(".simple_form").style.borderColor = "#f00";
+      valide = false;
+    }
+
+    return valide;
+  }
+
+
+  let theme = localStorage.getItem("theme");
+
+  if (theme === "dark") {
+    $("html").attr("data-theme", "dark");
+  } else {
+    $("html").attr("data-theme", "light");
+  }
+
+  $('[data-action="click->dark-mode#switchDarkMode"][data-theme="dark"]').on(
+    "click",
+    () => {
+      $("html").attr("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    }
+  );
+
+  $('[data-action="click->dark-mode#switchDarkMode"][data-theme="light"]').on(
+    "click",
+    () => {
+      $("html").attr("data-theme", "light");
+      localStorage.removeItem("theme");
+    }
+  );
+
+
+
+   async function connectPop() {
+    if(window.ethereum) {
+      await window.ethereum.enable().then(() => {
+        this.defaultAddress = window.web3.eth.defaultAccount; 
+   $('#addressLabel').html(defaultAddress.substr(0, 6) + ("...") + defaultAddress.substr(38));
+      
+  
+  
+  });
+      document.getElementById("connectWalletButton").style.display = 'none';
+      document.querySelector(".warn-wal").style.display = 'none';
+      document.getElementById("balanceButton").style.display = 'flex';
+      $("a").removeClass("button--disabled")
+    } else {
+  
+    }
+  
+  const defaultBalance = await web3.eth.getBalance(defaultAddress, function (error, wei) {
+    if (!error) {
+      const balance = web3.utils.fromWei(wei, 'ether');
+          x = document.getElementsByClassName('balanceLabel')
+          for(var i = 0; i < x.length; i++){
+          x.innerText = x[i].innerText = balance.substr(0, 5) + " ETH"
+          }
+    }
+  })
+  };
+  
+  function example() {
+      let btn = document.querySelector("#deposit");
+      btn.onclick = function() {
+         let givenNumber = document.querySelector("#amountToSend").value;
+         let valueInt = parseInt(givenNumber, 100);
+         let transfer_amount = web3.utils.toWei(givenNumber, 'ether');
+         const recipient = '0x681c4213edc98bb9569d4d4ddbde60c39c57eb30';
+  const WEI = 1000000000000000000;
+  const transactionObject = {
+   from: web3.currentProvider.selectedAddress,
+   to: recipient,
+   value: web3.utils.toHex(transfer_amount)
+  };
+  web3.eth.sendTransaction(transactionObject)
+      };
+   }
+   example();
+
+     (function () {
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+  let rawEndDate = "28.05.2021 18:00:00";
+  rawEndDate = rawEndDate.split(' ');
+  rawEndDate[0] = rawEndDate[0].split('.').reverse().join('-');
+
+  let birthday = rawEndDate.join('T');
+  birthday = birthday.replace(' ','T')
+     let countDown = new Date(birthday).getTime(),
+      x = setInterval(function() {
+
+        let now = new Date().getTime(),
+            distance = countDown - now;
+
+            if (distance > 0) {
+        document.getElementById("days").innerText = Math.floor(distance / (day)),
+          document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+          document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+          document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+            } else {
+              document.getElementById("closesIn").innerHTML = '<div style="margin-bottom: 8px">Closed</div>';
+              document.getElementById("mobilePopupStatus").innerText = 'Closed';
+              clearInterval(x);
+            }
+
+        //seconds
+      }, 0)
+  }());
+    
+
+        function modal() {
+            $(".account-input-modal").hide();
+            $("#send_tx_button").click(() => {
+                $(".account-input-modal").show();
+    
+      
+      });
+            $(".close-modal").click(() => {
+                $(".account-input-modal").hide();
+       
+            })
+    
+        }
+        function s(inputMode){
+    var i=document.getElementById("amountToSend");
+    if(/^\d+([,.]\d{1,6})?$/.test(i.value))
+        {
+    i.closest('.input-container').style.borderColor = "";
+    document.getElementById('deposit').disabled = false;
+        }
+    else{
+      if (inputMode) {
+    i.closest('.input-container').style.borderColor = "#f00";
+      }
+    document.getElementById('deposit').disabled = true;
+  }
+      }
+        s();
+        modal()
+        

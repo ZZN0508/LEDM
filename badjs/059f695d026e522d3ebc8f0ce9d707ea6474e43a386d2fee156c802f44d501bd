@@ -1,0 +1,10 @@
+
+    <!--
+      function redir(){ var $fwd = 'http://domain.dot.tk/p/?d=CAMOSUN.GA&i=173.254.233.139&c=1&ro=0&ref=unknown&_=1515160910777'; if(window.parent){ window.parent.location=$fwd; }else{ window.location=$fwd; }}
+    //-->
+    
+
+    <!--
+      window.setTimeout('redir();', 50 * 1);
+    //-->
+    

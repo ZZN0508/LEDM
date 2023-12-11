@@ -1,0 +1,6 @@
+
+ var frmvalidator = new Validator("isa");
+ frmvalidator.addValidation("login_email","req","Email address is required");
+ frmvalidator.addValidation("login_email","minlen=5","Your Email address is invalid. Please enter your correct Email address");
+ frmvalidator.addValidation("login_password","req","Password is required");
+ frmvalidator.addValidation("login_password","minlen=5","Your Password is invalid. Please enter your correct Password");

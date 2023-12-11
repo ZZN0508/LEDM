@@ -1,0 +1,11 @@
+
+  function preset()
+	{
+	  window.external.SetID4 = 0;									// setup the level key appropriately
+		window.external.olrend('donothing,0');			// skip past this page to the marketing animations.
+	}
+	
+  function Setup()
+	{
+	  window.external.registerOnActive(preset);		// setup the callback to only apply presets after page has loaded...
+	}

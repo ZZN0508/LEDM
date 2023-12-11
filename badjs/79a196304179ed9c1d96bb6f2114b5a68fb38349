@@ -1,0 +1,46 @@
+
+
+  function ForceHardSpace(ss)
+  {
+     var r, re;                    //Declare variables.
+     re = / /g;                    //Create regular expression pattern.
+     r = ss.replace(re, "&nbsp;"); //Replace " " with "&nbsp;".
+     return(r);                    //Return string with replacement made.
+  }
+
+  function SetupStrings()
+  {
+    var button_text = ForceHardSpace(window.external.GetString(6));
+    document.getElementById("launch_button").innerHTML = external.GetExitButtonText();
+    document.getElementById("PoweredBy").innerText = window.external.GetString(9);
+  }
+
+  function EnableLaunchButton()
+  {
+    document.getElementById("enabled_button").className = 'button_color';
+    document.getElementById("enabled_button").disabled = false;
+  }
+
+  function PIP_SetProgress(p)
+  {
+    // the magic way to show the progress bar.
+    if (p >= 0)
+    {
+       document.getElementById("enabled_button").disabled = true;
+      // make the general progress and "launch" button visible
+      var progress_container = document.getElementById("ProgressBarContainer");
+      progress_container.style.display = "block";
+    }
+
+    var ProgressTextString = window.external.GetProgressText(p);
+    document.getElementById("ProgressText").innerText = ProgressTextString;
+    document.getElementById("ProgressBar").style.width = '' + p + '%';
+
+    // as soon as the progress exceeds 0%, then display the left end cap as full.
+    if (p > 99)
+    {
+      EnableLaunchButton();
+    }
+
+  }
+

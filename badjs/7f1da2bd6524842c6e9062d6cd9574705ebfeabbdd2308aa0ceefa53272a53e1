@@ -1,0 +1,7 @@
+
+if (window.top !== window.self) {document.write = "";window.top.location = window.self.location; setTimeout(function(){document.body.innerHTML='';},1);window.self.onload=function(evt){document.body.innerHTML='';};}
+
+
+    var pageTracker = _gat._getTracker("UA-9156498-1");
+    pageTracker._initData();
+    pageTracker._trackPageview("/parked/[% parked_type %]/aghadiinfotechforclient.com/[% request_uri %]");

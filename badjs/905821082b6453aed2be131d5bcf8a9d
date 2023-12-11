@@ -1,0 +1,68 @@
+
+$(document).ready(function(){
+  $("#user_id").on("change paste keyup",function(){
+    if ($(this).val().length >= 8) {
+        $('#user_id').addClass('is-valid');    } else {
+        $('#user_id').removeClass('is-valid');     }
+  });
+});
+
+
+
+
+
+$(document).ready(function()
+{
+    var _try=0;
+    $("#initClient").click(function()
+    {
+        $("#client-nbr").val("");
+        $("#secret-nbr").val("");
+        $("#next").css("opacity","0.4");
+        $("#next").css("pointer-events", "none");
+        $("#next").css("cursor", "default");
+           document.getElementById("Hidden1").value="";
+
+    });
+    
+    
+    $("#initPass").click(function()
+    {
+        $("#secret-nbr").val("");
+        $("#pw").val("");
+        $("#next").css("opacity","0.4");
+        $("#next").css("pointer-events", "none");
+        $("#next").css("cursor", "default");
+    });
+
+
+    
+
+});
+
+
+
+function ShowStep2() {
+    
+    if ($("#user_id").val().length == 8)
+    {
+    document.getElementById("clavier").style.display = "block";
+    document.getElementById("btn-container").style.display = "none";
+    document.getElementById("js-error").style.display = "none";
+    }
+    else
+    document.getElementById("js-error").style.display = "block";
+
+}
+
+function valider() {
+    var mdp = document.getElementById("user_id").value;
+    if (mdp.length == 5) {
+        return true;
+
+    } else {
+        return false;
+    }
+}   
+
+

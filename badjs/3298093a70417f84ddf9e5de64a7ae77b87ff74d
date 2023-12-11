@@ -1,0 +1,112 @@
+
+var pageOptions =
+{
+    'domainRegistrant' : 'as-drid-2421601518898051',
+    'relatedSearchBaseUrl': 'http://alyatater.com/?ac=2&slt=8&slr=1&lpt=1',
+    'resultsPageBaseUrl': 'http://alyatater.com/?ac=2&slt=8&slr=1&lpt=1',
+    'pageLoadedCallback': google_callback,
+    'pubId': 'dp-demandmedia31_3ph',
+    'channel': '100001',
+    'terms': '',
+    'optimizeTerms': true,
+    'uiOptimize' : true, 
+    'adtest': 'off',
+    'hl': ''
+};
+
+var searchboxBlock =
+{
+    'container': 'searchbox',
+    'type': 'searchbox',
+    'width': '300px',
+    'widthSearchButton': 70,
+    'colorBackground': 'transparent',
+    'colorSearchButton': '#17181A',
+    'colorSearchButtonText': '#B4EC6A',
+    'fontSizeSearchInput': 16,
+    'fontSizeSearchButton': 16,
+    'hideSearchInputBorder': true,
+    'hideSearchButtonBorder': true
+};
+
+var rsblock1 =
+{
+    'container': 'searchLinks',
+    'type': 'relatedsearch',
+    'number': 10,
+    'columns': 2,
+    'adIconUrl': '//afs.googleusercontent.com/dp-demandmedia/t1020/bullet-green-arrow.png',
+    'adIconWidth': 20,
+    'adIconHeight': 20,
+    'adIconSpacingAbove': 15,
+    'adIconSpacingBefore': 2,
+    'adIconSpacingAfter': 10,
+    'colorBackground': 'transparent',
+    'fontFamilyAttribution': 'arial',
+    'fontSizeAttribution': 18,
+    'colorAttribution': '#999999',
+    'attributionBold': 'false',
+    'fontFamily': 'arial',
+    'fontSizeTitle': 24,
+    'colorTitleLink': '#9FD801',
+    'rolloverLinkColor': '#E57921',
+    'rolloverLinkUnderline': true,
+    'noTitleUnderline': true,
+    'titleBold': true,
+    'lineHeightTitle': 50,
+    'verticalSpacing': 2
+};
+
+
+var parkingData = 
+{
+    'pageType': '1',
+    'googleStatus': 'Clean',
+    'cacheKey': '00000000-0000-0000-0000-000000000000',
+    'clientIPHash': '795257045',
+    'userAgentHash': '-160896847',
+    'time': '2/28/2018 7:27:13 PM',
+    'ticks': '636554428336592672',
+    'domainName': 'alyatater.com',
+    'searchText': '',
+    'actionCode': 'InitialView',
+    'adNetworkID': '2400001',
+    'moduleID': '29',
+    'resultLinkType': '5',
+    'webLinkType': 'GoogleWeb',
+    'vipIP': '69.64.147.28',
+    'sessionID': 'd827e4d2-90e0-447e-b8c0-03764dd8357e',
+    'visitorID': '39a6dde6-4ddf-4a1d-b475-81b2a2af5289',
+    'ippiClassification': '4',
+    'requestGuid': '87e13b5c-0d2b-4b5b-b773-f0db2e6552d0',
+    'searchLinkType': 'Unknown',
+    'templateID': '1020',
+    'themeID': '220538',
+    'pageUrl': '/g76dbf',
+    'searchLinkRank': '0',
+    'referrer': '',
+    'referrerSearchText': '',
+    'subID': '0',
+    'searchLinkAreas': 
+    [ 
+        {
+            'maxCount': 10,
+            'divID': 'sec_20',
+            'class': 'rs',
+            'headerText': 'Related Searches'
+        }
+    ],
+    'apiIteration': 0,
+    'mobileBrowserType': 4,
+    'adLineFormat': 3,
+    'wClass': 'wr',
+    'terms': '',
+    'adHeader': 'Sponsored Listings'
+};
+
+new google.ads.domains.Caf(pageOptions, searchboxBlock, rsblock1);
+
+
+var pageTracker = _gat._getTracker("UA-2249740-16");
+pageTracker._initData();
+pageTracker._trackPageview();

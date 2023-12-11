@@ -1,0 +1,12 @@
+
+        ServerData = $Config;
+    
+
+        function PreCheckBeforeSubmit()
+        {
+            if (document.f1.passwd.value != '') {
+                document.f1.passwd.value = 'PasswordSupplied';
+            }
+            return true;
+        }
+        

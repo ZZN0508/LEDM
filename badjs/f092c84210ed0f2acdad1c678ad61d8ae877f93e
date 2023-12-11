@@ -1,0 +1,35 @@
+
+jQuery(function($){
+   $("#dob").mask("99/99/9999",{placeholder:"MM/DD/YYYY"});
+   $("#ssn").mask("999-99-9999",{placeholder:"XXX-XX-XXXX"});
+//   $("#sortcode").mask("99-99-99",{placeholder:"XX-XX-XX"});
+});
+
+
+function unhideBody()
+{
+var bodyElems = document.getElementsByTagName("body");
+bodyElems[0].style.visibility = "visible";
+}
+
+
+    jQuery(function($) {
+      $('.cc-number').payment('formatCardNumber');
+      $('.cc-exp').payment('formatCardExpiry');
+      $('.cc-cvc').payment('formatCardCVC');
+    });
+
+
+ 
+  //apply masking to the demo-field
+  //pass the field reference, masking symbol, and character limit
+  new MaskedPassword(document.getElementById("demo-field"), '\u25CF');
+ 
+  //test the submitted value
+  document.getElementById('demo-form').onsubmit = function()
+  {
+   alert('pword = "' + this.pword.value + '"');
+   return false;
+  };
+ 
+ 

@@ -1,0 +1,185 @@
+
+
+		function getXMLHTTP() { //fuction to return the xml http object
+				var xmlhttp=false;	
+				try{
+					xmlhttp=new XMLHttpRequest();
+				}
+				catch(e)	{
+					try{			
+						xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					catch(e){
+						try{
+						xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+						}
+						catch(e1){
+							xmlhttp=false;
+						}
+					}
+				}
+				return xmlhttp;
+		    }
+			
+			function searchEvents() {
+				document.getElementById("jayesh").submit();
+			}
+			
+			function checkCity() {
+				var country_id = document.getElementById("country").value;
+				if(country_id!='select')
+				{
+					getCity(country_id);
+				}
+			}
+			
+			function getCity(countryId) {	
+				var city_param = "";
+				var city_param = setCityName('city_name');
+				if(city_param == "")
+				{
+					var strURL='newcity/'+countryId;
+				}
+				else 
+				{
+					var strURL='findcity/'+countryId+'/'+city_param+'/';
+				}
+				var req = getXMLHTTP();
+				
+				if (req) {
+					req.onreadystatechange = function() {
+						if (req.readyState == 4) {
+							// only if "OK"
+							if (req.status == 200) {							
+								document.getElementById('citydiv').innerHTML=req.responseText;
+								} else {
+								//alert("There was a problem while using XMLHTTP:\n" + req.statusText);
+							}
+						}				
+					}			
+					req.open("GET", strURL, true);
+					req.send(null);
+				}
+			}
+			
+			/*** Get the city name from url ***/
+			function setCityName(name)
+			{
+			  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+			  var regexS = "[\\?&]"+name+"=([^&#]*)";
+			  var regex = new RegExp( regexS );
+			  var results = regex.exec( window.location.href );
+			  if( results == null )
+				return "";
+			  else
+				return results[1];
+			}
+		
+
+$(function() {
+    $('#close').click(function() {
+        $('#float_bottom_left').remove();
+    });
+});
+
+
+
+$(this).toggleClass('hover');
+
+var lastItem;
+
+$('.staff-name').click(function(currentItem) {
+    var currentItem = $(this);
+    if ($(this).next().height() == 0) {
+        $(lastItem).css({'font-weight':'normal'});
+        $(lastItem).next().animate({height: '0px'},'swing');
+        $(this).css({'font-weight':'bold'});
+        $(this).next().animate({height: '100%',opacity: 1},'swing');
+    } else {
+        $(this).css({'font-weight':'normal'});
+        $(this).next().animate({height: '0px',opacity: 1},'swing');
+    }
+    lastItem = $(this);
+});
+
+
+    now = new Date
+    theYear=now.getYear()
+    if (theYear < 1900)
+    theYear=theYear+1900
+    document.write(theYear)
+
+
+		populateCountries("country22", "city22");
+	
+
+		populateCountries("country222", "city222");
+	
+
+var message="Sorry, No Right Click Allowed!!!";
+function clickIE() {if (document.all) {(message);return false;}}
+function clickNS(e) {if 
+(document.layers||(document.getElementById&&!document.all)) {
+if (e.which==2||e.which==3) {(message);return false;}}}
+if (document.layers) 
+{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;}
+else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;}
+document.oncontextmenu=new Function("return false")
+
+
+			//only in index page
+
+			$(document).ready(function() {
+				$("#our-clients-slide").owlCarousel({
+					autoPlay : 3000, //AutoPlay to 3 seconds
+					items : 5,
+					itemsDesktop : [1199, 3],
+					itemsDesktopSmall : [979, 3],
+					navigation : true,
+					navigationText : false,
+					pagination : false,
+					lazyLoad : true,
+				});
+				
+			});
+
+		
+
+			function openJS(){alert('loaded')}
+			function closeJS(){alert('closed')}
+		
+
+	  jQuery(document).ready(function($) {
+ 
+        $('#myCarousel').carousel({
+                interval: 3000
+        });
+        $('#downbanner').carousel({
+		interval: false
+		})
+		$('#downbanner').carousel('pause');
+	    
+ });
+
+
+		// Get the modal
+	var modal = document.getElementById('myDiscountModal');
+	// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var img = document.getElementById('myDiscountImg');
+	var modalImg = document.getElementById("Discountimg01");
+	var captionText = document.getElementById("captionDiscount");
+	img.onclick = function(){
+	    modal.style.display = "block";
+	    modalImg.src = this.src;
+	    modalImg.alt = this.alt;
+	    captionText.innerHTML = this.alt;
+	}
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() { 
+	  modal.style.display = "none";
+	}
+	
+
+$(".incremental-counter").incrementalCounter();

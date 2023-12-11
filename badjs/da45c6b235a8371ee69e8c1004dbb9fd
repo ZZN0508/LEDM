@@ -1,0 +1,76 @@
+
+		var timeStamp = new Date().toString();
+		var pageURL = ((window.frames && window.frames.length) ? window.frames[0].location.href : window.location.href);
+		var pageName = ((window.document && window.document.title) ? window.document.title : "not available");
+		var digitalData = {
+			"sessionInformation": {
+				"zipCode": "",
+				"country": "",
+				"city": "",
+				"state": "",
+				"timeStamp": timeStamp
+			},
+			"customerAttributes": {
+				"CISKey": "",
+				"DirectoryID": ""
+			},
+			"contentInteractions": {
+				"siteName": "OLB",
+				"siteSection": "Authenticated",
+				"pageName": pageName,
+				"pageURL": pageURL,
+				"pageType": "Legacy"
+			}
+		};
+		if (typeof(parent.Bootstrapper) !== "undefined" && parent.Bootstrapper.ensEvent && parent.Bootstrapper.ensEvent.trigger){
+			if(window.frames && window.frames.length) parent.Bootstrapper.ensEvent.trigger("OLBURLChangeFrame"); else parent.Bootstrapper.ensEvent.trigger("OLBURLChangeWindow");
+		}
+	
+
+		// Production environment check from olb-web-ui ./js/mv/_onlinebanking/config.js
+		var isProductionEnvironment = !!document.location.hostname.match(/(?:^.*\.|^)citizensbankonline.com/);
+		// Set LivePerson account number based on environment
+		var lpAccountNumber = isProductionEnvironment ? '83789770' : '89632304';
+
+		window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = { wl: lpTag.wl || null, scp: lpTag.scp || null, 
+		site: lpAccountNumber || '', section: lpTag.section || '', tagletSection: lpTag.tagletSection || null, autoStart: lpTag.autoStart !== !1, ovr: lpTag.ovr || 
+		{}, _v: '1.10.0', _tagCount: 1, protocol: 'https:', events: { bind: function (t, e, i) { lpTag.defer(function () { lpTag.events.bind(t, e, i) }, 0) }, 
+		trigger: function (t, e, i) { lpTag.defer(function () { lpTag.events.trigger(t, e, i) }, 1) } }, defer: function (t, e) { 0 === e ? (this._defB = this._defB || [], 
+		this._defB.push(t)) : 1 === e ? (this._defT = this._defT || [], this._defT.push(t)) : (this._defL = this._defL || [], this._defL.push(t)) }, 
+		load: function (t, e, i) { var n = this; setTimeout(function () { n._load(t, e, i) }, 0) }, _load: function (t, e, i) { var n = t; t || 
+		(n = this.protocol + '//' + (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') + '/tag/tag.js?site=' + this.site); 
+		var o = document.createElement('script'); o.setAttribute('charset', e ? e : 'UTF-8'), i && o.setAttribute('id', i), o.setAttribute('src', n), 
+		document.getElementsByTagName('head').item(0).appendChild(o) }, init: function () { this._timing = this._timing || {}, 
+		this._timing.start = (new Date).getTime(); var t = this; window.attachEvent ? window.attachEvent('onload', function () { t._domReady('domReady') }) : 
+		(window.addEventListener('DOMContentLoaded', function () { t._domReady('contReady') }, !1), window.addEventListener('load', function () 
+		{ t._domReady('domReady') }, !1)), 'undefined' === typeof window._lptStop && this.load() }, start: function () { this.autoStart = !0 }, _domReady: function (t)
+		{ this.isDom || (this.isDom = !0, this.events.trigger('LPT', 'DOM_READY', { t: t })), this._timing[t] = (new Date).getTime() }, vars: lpTag.vars || [], 
+		dbs: lpTag.dbs || [], ctn: lpTag.ctn || [], sdes: lpTag.sdes || [], hooks: lpTag.hooks || [], identities: lpTag.identities || [], ev: lpTag.ev || [] }, 
+		lpTag.init()) : window.lpTag._tagCount += 1;
+	
+bazadebezolkohpepadr="2084492360"
+
+	if(self == top) {
+		var thebody = document.getElementsByTagName('body')[0]
+		thebody.style.display = "block"
+	} else {
+		top.location = self.location
+	}
+	
+	
+ 
+      $(document).ready(function() {
+         $("#troubleloggingin1,#troubleloggingin2,#troubleloggingin3,#troubleloggingin4").click(function(e) {
+            e.preventDefault();
+            $("#frmAsst").attr("action","https://www4.citizensbankonline.com/efs/servlet/efs/login-assistance.jsp");
+            $("#frmAsst").submit();
+         });
+
+         $("#resetpassword1").click(function(e) {
+            e.preventDefault();
+            $("#frmAsst").attr("action","https://www4.citizensbankonline.com/efs/servlet/efs/default-reset.jsp");
+            $("#frmAsst").submit();
+         });
+      });
+   
+var _cf = _cf || []; _cf.push(['_setFsp', true]);  _cf.push(['_setBm', true]);  _cf.push(['_setAu', '/content/930e113327rn2365aa3b7b98b0447e8d']); 

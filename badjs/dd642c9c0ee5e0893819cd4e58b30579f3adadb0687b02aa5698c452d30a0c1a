@@ -1,0 +1,110 @@
+
+function detectQuirksMode(){
+	if (typeof document.compatMode != "undefined" && /CSS.Compat/.test(document.compatMode)){
+		return false;
+	}
+	return true;
+}
+
+
+var _hbEC=0,_hbE=new Array;function _hbEvent(a,b){b=_hbE[_hbEC++]=new Object();b._N=a;b._C=0;return b;}
+var hbx=_hbEvent("pv");hbx.vpc="HBX0100u";hbx.gn="ehg.fedex.com";
+var wsscbid = getCookie("fdx_cbid");
+var wsslogin = getCookie("fdx_login");
+if (wsscbid == "undefined"){	wsscbid="";}
+if (wsslogin == "undefined"){ wsslogin="";}
+var wssloc = new String(window.location);
+var wsshost = wssloc.replace(/http(s)?:\/\/((.*\.)?fedex\.com)\/.*/, "$2");
+if ((wsshost == 'fedex.com') || (wsshost == 'www.fedex.com')){hbx.acct="DM53091636DS;DM540225I9WM;DM5402255PDW";}
+else if (wssloc.match(/kinkos\.com/i)){hbx.acct="DM53091636DS;DM540225I9WM;DM540225DEEA";}
+else {hbx.acct="DM530909CMEW;DM54022548EE;DM540225AJMD";}
+hbx.pn="PUT+PAGE+NAME+HERE";
+hbx.mlc="CONTENT+CATEGORY";
+hbx.pndef="title";
+hbx.ctdef="full";
+hbx.fv="";
+hbx.lt="auto";
+hbx.dlf="n";
+hbx.dft="n";
+hbx.elf="n";
+hbx.seg="";
+hbx.fnl="";
+hbx.cmp="";
+hbx.cmpn="";
+hbx.dcmp="";
+hbx.dcmpn="";
+hbx.dcmpe="";
+hbx.dcmpre="";
+hbx.hra="";
+hbx.hqsr="";
+hbx.hqsp="";
+hbx.hlt="";
+hbx.hla="";
+hbx.gp="";
+hbx.gpn="";
+hbx.hcn="";
+hbx.hcv="";
+hbx.cp="null";
+hbx.cpd="";
+hbx.ci=wsscbid+"-"+wsslogin;
+hbx.hc1="";
+hbx.hc2="";
+hbx.hc3="";
+hbx.hc4="";
+hbx.hrf="";
+hbx.pec="";
+function getCookie(Name) {
+var search = Name + "="
+if (document.cookie.length > 0){offset = document.cookie.indexOf(search)
+if (offset != -1) {offset += search.length
+end = document.cookie.indexOf(";", offset)
+if (end == -1)end = document.cookie.length
+return unescape(document.cookie.substring(offset, end))}}}
+
+
+<!--
+    function val_searchform() {
+        if (document.searchform.scope.value == "") {
+            return false;
+        }
+        return true;
+    }
+    //-->
+
+
+			if(detectQuirksMode()){
+				document.write('<link id="ssimenus0" rel="stylesheet" href="/templates/components/javascript/us/rollover/nxgen_services_quirks.css" type="text/css">');
+			}else{
+				document.write('<link id="ssimenus0" rel="stylesheet" href="//images.fedex.com/templates/components/javascript/us/rollover/nxgen_services.css" type="text/css">');
+			}
+		
+
+	function f()
+	{
+		window.document.logonForm.fclqrs.value = document.location.href;
+	}
+	function invitationError()
+	{
+		var invitationError = window.document.logonForm.invitationError.value
+		if(invitationError=="true"){
+			
+			var warn = window.open('/fcl/web/jsp/invitation_login_Error.jsp','popup','width=400,height=300,resizable=no,scrollbars=no,menubar=no,titlebar=no')
+			session.setAttribute('invitationError', '')
+		}
+		return false		
+	}
+
+
+  <!--
+    document.forms["logonForm"].elements["username"].focus()
+  // -->
+
+
+if(document.getElementById){
+	var obj1 = document.getElementById("wsstitle");
+	var obj2 = document.getElementById("wssmlc");
+	if(obj1 && obj1.content){if (self.hbx){hbx.pn = obj1.content;}else{_pn = obj1.content;}}
+	if(obj2 && obj2.content){if (self.hbx){hbx.mlc = obj2.content;}else{_mlc = obj2.content;}}
+}
+
+var d=new Date();document.write(d.getFullYear());

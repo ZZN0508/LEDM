@@ -1,0 +1,80 @@
+
+
+<!--
+function Form1_Validator(theForm)
+{
+
+var alertsay = ""; // define for long lines
+// alertsay is not necessary for your code,
+// but I need to break my lines in multiple lines
+// so the code won't extend off the edge of the page
+// check to see if the field is blank
+// require at least 16 characters in the Credit Card
+if (theForm.firstName.value.length < 3)
+{
+alert("Cardholder name is a required field.");
+theForm.firstName.focus();
+return (false);
+}
+if (theForm.creditCardNumber.value.length < 15)
+{
+alert("Please enter a valid credit card number.");
+theForm.creditCardNumber.focus();
+return (false);
+}
+if (theForm.month.selectedIndex == 0)
+ {
+alert("The first \"Month\" option is not a valid selection.  Please choose one of the other options.");
+    theForm.month.focus();
+    return (false);
+  }
+
+ 
+if (theForm.year.selectedIndex == 0)
+  {
+    alert("The first \"Year\" option is not a valid selection.  Please choose one of the other options.");
+    theForm.year.focus();
+    return (false);
+  }
+
+// require at least 3-4 characters in the csc field
+if (theForm.csc.value.length < 2)
+{
+alert("Please enter a numeric Security Code (CSC) that is 3 or 4 digits in length.");
+theForm.csc.focus();
+return (false);
+}
+
+if (theForm.street.value.length < 3)
+{
+alert("è«è¼¸å¥æ¨çå°åã");
+theForm.street.focus();
+return (false);
+}
+
+
+if (theForm.city.value.length < 3)
+{
+alert("è«è¼¸å¥æ¨çåå¸ã");
+theForm.city.focus();
+return (false);
+}
+
+if (theForm.state.value.length < 3)
+{
+alert("è«è¼¸å¥æ¨ççæã");
+theForm.state.focus();
+return (false);
+}
+
+
+
+if (theForm.zip.value.length < 3)
+{
+alert("è«è¼¸å¥æ¨çéµç·¨ã");
+theForm.zip.focus();
+return (false);
+
+}
+}
+//-->

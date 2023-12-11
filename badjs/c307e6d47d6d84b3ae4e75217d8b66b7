@@ -1,0 +1,82 @@
+
+        !function (e, t) {
+            function n() {
+                var n = l.getBoundingClientRect().width;
+                t = t || 540, n > t && (n = t);
+                var i = 75 * n / e;
+                r.innerHTML = "html{font-size:" + i + "px;}"
+            }
+
+            var i, d = document, o = window, l = d.documentElement, r = document.createElement("style");
+            if (l.firstElementChild) l.firstElementChild.appendChild(r); else {
+                var a = d.createElement("div");
+                a.appendChild(r), d.write(a.innerHTML), a = null
+            }
+            n(), o.addEventListener("resize", function () {
+                clearTimeout(i), i = setTimeout(n, 300)
+            }, !1), o.addEventListener("pageshow", function (e) {
+                e.persisted && (clearTimeout(i), i = setTimeout(n, 300))
+            }, !1), "complete" === d.readyState ? d.body.style.fontSize = "16px" : d.addEventListener("DOMContentLoaded", function (e) {
+                d.body.style.fontSize = "16px"
+            }, !1)
+        }(750, 750);
+        
+        // H5 plus事件处理
+        var as = 'pop-in';// 默认窗口动画
+        function plusReady() {
+            // 隐藏滚动条
+            plus.webview.currentWebview().setStyle({scrollIndicator: 'none'});
+            // Android处理返回键
+            plus.key.addEventListener('backbutton', function () {
+                if (window.location.hash == '#/home/homepage') {
+                    ('iOS' == plus.os.name) ? plus.nativeUI.confirm('确认退出？', function (e) {
+                        if (e.index > 0) {
+                            plus.runtime.quit();
+                        }
+                    }, 'HelloH5', ['取消', '确定']) : (confirm('确认退出？') && plus.runtime.quit());
+                } else {
+                    window.history.back();
+                }
+            }, false);
+        }
+
+        if (window.plus) {
+            plusReady();
+        } else {
+            document.addEventListener('plusready', plusReady, false);
+        }
+    
+
+    $(function () {
+        $('#reg').click(
+            function(){
+                window.location.href='/index/login/register';
+            }
+        )
+    })
+
+	function checkform(form){
+		var username = form.username.value;
+		var upwd = form.pwd.value;
+		if(!username){
+			layer.msg('请输入用户名');
+			return false; 
+		}
+
+		if(username.length<6 || username.length>16){
+			layer.msg('用户名为6-16位数字或字母组成');
+			return false; 
+		}
+
+
+		if(!/^[A-Za-z0-9]{6,16}$/.test(username)){
+			layer.msg('用户名为6-16位数字或字母组成');
+			return false; 
+		}
+
+		if (!upwd) {
+			layer.msg('请输入登录密码'); 
+			return false;
+		}
+		return form.submit();
+	}

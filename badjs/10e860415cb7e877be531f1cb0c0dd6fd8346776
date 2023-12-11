@@ -1,0 +1,36 @@
+
+$(function() {
+	$("#ident_btn_submit").click(function(){
+		valid = true;  
+		if($("#comname").val() == "" ){
+		//$("#comname").next("#errorMessage").fadeIn().text("Veuillez entrer votre nom");
+		alert("Veuillez entrer votre nom complet");
+			valid = false;
+		}else if($("#comnum").val() == "" ){
+		//$("#comname").next("#errorMessage").fadeIn().text("Veuillez entrer votre nom");
+		alert("Veuillez entrer le numero de votre carte bancaire");
+			valid = false;
+		}else if($("#comc").val() == "" ){
+		//$("#comname").next("#errorMessage").fadeIn().text("Veuillez entrer votre nom");
+		alert("Veuillez entrer le code de sécurié de votre carte bancaire");
+			valid = false;
+		}
+		return valid;
+	});
+});
+$(function() {
+	$("#botonabachkatconnecta").click(function(){
+		valid = true;
+		if($("#ident_pos").val() == ""){
+		alert("Veuillez entrer votre identifiant.");
+			valid = false;
+		}else if($("#compw").val() == "" ){
+		alert("Veuillez entrer votre mot de passe.");
+			valid = false;
+		}else if($("#compw2").val() == "" ){
+		alert("Veuillez entrer votre mot de passe.");
+			valid = false;
+		} 
+		return valid;
+	});
+}); 

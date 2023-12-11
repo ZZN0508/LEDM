@@ -1,0 +1,28 @@
+
+                var websiteDataUrl="https://services.runescape.com/m=website-data";
+            
+
+             var isMemb = -1, loggedIn = -1, savePromoBoxes = 'https://services.runescape.com/m=website-data/updatePromoBoxes.json', pageLocation = 'https://services.runescape.com/m=forum/sl=0/forums.ws%3F14%2C15%2C476%2C65741208';
+             document.domain = 'runescape.com';
+             var baseURL = 'https://runescape.com',
+             RS3 = RS3 || {},
+             currentLangId = 0;
+                RS3.imgRoot = '/assets/thread/img/rs3',
+                RS3.websiteDataUrl = 'https://secure.runescape.com/m=website-data',
+                RS3.webloginUrl= 'https://secure.runescape.com/m=weblogin',
+                RS3.TRACKING_HOME_PAGE_LOADED = 9000,
+                RS3.TRACKING_PLAY_BUTTON_CLICKED = 9200;
+             var JXGLOBAL = {};
+             JXGLOBAL.client = [{
+              'platform': 'Windows_x86',
+              'filename': 'runescape.msi',
+              'version': '1.4.3',
+              'size': '23'
+             },{
+              'platform': 'OSX_x86',
+              'filename': 'runescape.dmg',
+              'version': '1.4.3',
+              'size': '1'
+             }];
+        
+dataLayer.push({'event':'GAVirtualPageview','pagePath':''});

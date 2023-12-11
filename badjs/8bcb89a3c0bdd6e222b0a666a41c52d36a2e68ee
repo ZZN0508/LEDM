@@ -1,0 +1,52 @@
+
+
+
+
+_is_authenticated=false;
+_stats_timestamp="1516244935302";
+sfrIstConfig=djangoUtils={};
+
+
+
+
+
+sfrIstConfig.context = 'static.s-sfr.fr';
+
+
+{
+   "@context": "http://schema.org",
+   "@type": "Organization",
+   "url": "https://www.sfr.fr",
+   "logo": "https://static.s-sfr.fr/media/sfr_logo2014_exe_rvb.png", 
+   "contactPoint" : [{
+   "@type" : "ContactPoint",
+   "telephone" : "(+33) 1023",
+   "contactType" : "customer support", 
+   "areaServed" : "FR"
+  } , {
+    "@type" : "ContactPoint",
+    "telephone" : "(+33) 1099",
+    "contactType" : "sales",
+    "areaServed" : "FR"
+  }] , 
+"sameAs" : [
+    "https://fr-fr.facebook.com/SFR",
+    "https://twitter.com/SFR",
+    "https://plus.google.com/113745061295301596108/posts"
+  ]}
+
+
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.sfr.fr/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.sfr.fr/recherche?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+
+sfrIstConfig.context='static.s-sfr.fr'
+!function(W,_,$){if((_=W._eT)&&($=W.$sfr))with(_){_.font('SFR-Regular,SFR-Light,SFR-Bold');$(W).scroll(function(){$('#eTsF').css('left',$(this).scrollLeft())});_.TL($('#eTsF [href*=sfrbusiness]'),'[Offre Pro]')}}(window)
+$RN('document').ready(function(){$RN.fn.initMainView()})

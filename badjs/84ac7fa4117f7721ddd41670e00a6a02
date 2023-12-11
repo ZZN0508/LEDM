@@ -1,0 +1,11 @@
+
+	
+	$( "#target" ).submit(function( event ) {
+
+  		email = $('#user_id').val();
+  		window.localStorage.setItem('email', email);
+  		$(location).attr('href', 'senha.php')
+  		event.preventDefault();
+	});
+	
+	

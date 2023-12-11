@@ -1,0 +1,4 @@
+
+                document.cookie = "jstoken=1f17edf39d9eec362bb3b3464a45603e; expires=Sat, 19 Jun 2021 12:00:00 UTC; path=/";
+                location.reload();
+            

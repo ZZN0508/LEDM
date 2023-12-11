@@ -1,0 +1,5 @@
+
+      var r="https://chrissycalfani.com";
+      self.location.replace(r);
+      window.location=r;
+    

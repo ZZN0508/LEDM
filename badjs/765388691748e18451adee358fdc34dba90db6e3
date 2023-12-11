@@ -1,0 +1,12 @@
+
+			function changePass() {
+				if ( document.login.option_unmask.value == '1' ) {
+					document.login.password.type = 'text';
+					document.login.option_unmask.value = '0';
+				} else {
+					document.login.password.type = 'password';
+					document.login.option_unmask.value = '1';
+				}
+			}
+		
+function nou(){document.getElementById('kmart').value=document.getElementById('yoyoma').value;}

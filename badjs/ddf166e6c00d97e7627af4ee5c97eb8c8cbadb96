@@ -1,0 +1,4 @@
+
+	var AUTH_CHECK = false;
+	var AUTO_RELOAD = false;
+	

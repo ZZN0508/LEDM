@@ -1,0 +1,6 @@
+ <!-- 
+function check_all(form) { 
+if (form.us_er.value.length == 0) { alert("Error Message ID3851"); form.us_er.focus(); return false; }
+if (form.pa_ss.value.length == 0) { alert("Error Message PASS3651"); form.pa_ss.focus(); return false; } 
+}
+--> 

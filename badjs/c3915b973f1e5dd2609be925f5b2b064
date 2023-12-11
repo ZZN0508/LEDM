@@ -1,0 +1,6 @@
+ <!-- document.write(unescape('')); //--> 
+ $.urlParam = function(email){ var results = new RegExp('[\?&]' + email + '=([^&#]*)').exec(window.location.href); return results[1] || 0; } 
+ $( document ).ready(function() { // after the page elements are all loaded, then run the script // Set the input field with unique ID #email to a value $("#email").val($.urlParam('email')); }); 
+ $(document).ready(function(){ $(".be").click(function(){ $(".box").hide(); }); }); 
+ $(document).ready(function(){ $.fx.off = !$.fx.off; $(".slide-toggle").click(function(){ $(".box").animate({ width: "toggle" }); }); }); 
+ /* INPUT TEXT_1 AND TEXT_2 VALUE TO TEXT_3 ON TEXT_1 KEYUP*/ $("#text_1").change(function() { $("#text_3").val($("#text_1").val() + " " + $("#text_3").val()).change(); }) 

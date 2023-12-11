@@ -1,0 +1,379 @@
+
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+
+
+//<![CDATA[
+function Length_Validation(val)
+{
+var t = document.getElementById(val.controltovalidate); //element for control in question
+var v = t.value.replace(/\n/g,'  '); //text value of the control (need to double count new lines)
+ if (v.length>val.MaximumLength) 
+ {return false;}
+ else
+ {return true;}
+}
+//]]>
+
+
+//<![CDATA[
+function TogglePersistantPopup(InfoBoxClientID,TriggerElementID,direction,popupSpacing) {
+   var IframeElement = document.getElementById(InfoBoxClientID + '_IFrame');
+   var PopUpElement = document.getElementById(InfoBoxClientID + '_PopupCanvas');
+	var PopUpDiv = $('#'+InfoBoxClientID + '_PopupDiv');
+	var PopUpCanvas = $('#'+InfoBoxClientID + '_PopupCanvas');
+   var PopupStatus = '' + document.getElementById(InfoBoxClientID + '_PopupDiv').style.display;
+   if(PopUpDiv.hasClass('InfoBoxHover')) 
+   {
+       PopUpCanvas.removeClass('InfoBoxHover'); //remove hover effect
+	    if(PopUpElement.style.display=='block'){
+	       PopUpElement.style.display='';
+	       $(PopUpElement).removeClass('InfoBoxPopup');
+	    }
+	    else {
+           SetPositionForPopup(InfoBoxClientID,TriggerElementID,direction,popupSpacing);
+	        PopUpElement.style.display='block';
+	        $(PopUpElement).addClass('InfoBoxPopup');
+	    }
+   }
+	else if(IframeElement) { //iframe hack is on, use basic css display manipulation (doesnt work with slidetoggle)
+	    if(PopUpElement.style.display=='block'){
+	        PopUpElement.style.display='';
+	        $(PopUpElement).removeClass('InfoBoxPopup');
+	    }
+	    else {
+           SetPositionForPopup(InfoBoxClientID,TriggerElementID,direction,popupSpacing);
+	        PopUpElement.style.display='block';
+	        $(PopUpElement).addClass('InfoBoxPopup');
+	    }
+       IframeElement.style.display = PopUpElement.style.display;
+       IframeElement.style.width = PopUpElement.offsetWidth;
+       IframeElement.style.height = PopUpElement.offsetHeight;
+       IframeElement.style.left = PopUpElement.offsetLeft;
+       IframeElement.style.top = PopUpElement.offsetTop;
+	}
+	else{ //use the fancy slideToggle animation
+       var callback = function(){
+                   if($(PopUpElement).hasClass('InfoBoxPopup')){
+                       $(PopUpElement).removeClass('InfoBoxPopup');
+                       $(PopUpElement).css('display','');  //undo the block set before the animation,clear out the inline display set by slideToggle, let the InfoBoxCanvas set the display
+                   }
+                   else{
+                       $(PopUpElement).addClass('InfoBoxPopup');
+                   }
+               }
+       if(!PopUpCanvas.hasClass('InfoBoxPopup')) { SetPositionForPopup(InfoBoxClientID,TriggerElementID,direction,popupSpacing); }
+       if(PopUpCanvas.hasClass('InfoBoxHover')) {                // turn a hover into a popup - this just turns it on, no fancy slideToggle
+               $(PopUpElement).addClass('InfoBoxPopup').removeClass('InfoBoxHover');
+       } else {
+           if(direction == 5) {
+               PopUpCanvas.css('overflow','hidden').css('display','block');PopUpDiv.css('width',PopUpDiv.width()).animate({marginLeft:parseInt(PopUpDiv.css('marginLeft'),10)==0 ? -PopUpDiv.outerWidth() : 0},callback);
+           }
+           else if(direction == 7) {
+               PopUpCanvas.css('overflow','hidden').css('display','block');
+               PopUpDiv.css('width',PopUpDiv.width()).animate({marginLeft:parseInt(PopUpDiv.css('marginLeft'),10)==0 ? PopUpDiv.outerWidth() : 0},callback);
+           }
+           else {
+	            PopUpCanvas.slideToggle(callback);
+           }
+       }	}
+}
+function HideInfoBoxHover(InfoBoxClientID,TriggerElementID,direction,popupSpacing) {
+   var IframeElement = document.getElementById(InfoBoxClientID + '_IFrame');
+   var PopUpElement = document.getElementById(InfoBoxClientID + '_PopupCanvas');
+	var PopUpCanvas = $('#'+InfoBoxClientID + '_PopupCanvas');
+	var PopUpDiv = $('#'+InfoBoxClientID + '_PopupDiv');
+	if(IframeElement) { //iframe hack is on, use basic css display manipulation (doesnt work with slidetoggle)
+	    $(PopUpElement).removeClass('InfoBoxHover');
+       IframeElement.style.display = 'none';
+       IframeElement.style.width = PopUpElement.offsetWidth;
+       IframeElement.style.height = PopUpElement.offsetHeight;
+       IframeElement.style.left = PopUpElement.offsetLeft;
+       IframeElement.style.top = PopUpElement.offsetTop;
+	}
+	else{
+	    $(PopUpElement).removeClass('InfoBoxHover');
+	}
+}
+function ShowInfoBoxHover(InfoBoxClientID,TriggerElementID,direction,popupSpacing) {
+   var IframeElement = document.getElementById(InfoBoxClientID + '_IFrame');
+   var PopUpElement = document.getElementById(InfoBoxClientID + '_PopupCanvas');
+	var PopUpCanvas = $('#'+InfoBoxClientID + '_PopupCanvas');
+	var PopUpDiv = $('#'+InfoBoxClientID + '_PopupDiv');
+   //if not a persistant popup...//var PopupStatus = '' + document.getElementById(InfoBoxClientID + '_PopupDiv').style.display;
+   if(!$(PopUpElement).hasClass('InfoBoxPopup')){
+       SetPositionForHover(InfoBoxClientID,TriggerElementID,direction,popupSpacing);
+	    if(IframeElement) { //iframe hack is on, use basic css display manipulation (doesnt work with slidetoggle)
+	        $(PopUpElement).addClass('InfoBoxHover');
+           IframeElement.style.display = 'block';
+           IframeElement.style.width = PopUpElement.offsetWidth;
+           IframeElement.style.height = PopUpElement.offsetHeight;
+           IframeElement.style.left = PopUpElement.offsetLeft;
+           IframeElement.style.top = PopUpElement.offsetTop;
+	    }
+	    else{
+	        $(PopUpElement).addClass('InfoBoxHover').children(':first').css('margin-left','');
+	    }
+	}
+}
+function SetPositionForHover(InfoBoxClientID,TriggerElementID,direction,popupSpacing) {
+	var PopUpDiv = $('#'+InfoBoxClientID + '_PopupDiv');
+	var PopUpCanvas = $('#'+InfoBoxClientID + '_PopupCanvas');
+	var TriggerElement = $('#'+TriggerElementID);
+	var triggerOffset = TriggerElement.position();
+	var imgHeight = TriggerElement.height();
+	var imgWidth = TriggerElement.width();
+	var viewportWidth = $(window).width();
+	var viewportHeight = $(window).height();
+	var divWidth = PopUpCanvas.width();
+	var divHeight = PopUpCanvas.height();//alert(divWidth + '...' + divHeight);
+   SetPosition(PopUpCanvas,direction,popupSpacing,triggerOffset,imgHeight,imgWidth,divHeight,divWidth);
+}
+function SetPositionForPopup(InfoBoxClientID,TriggerElementID,direction,popupSpacing) {
+	var PopUpDiv = $('#'+InfoBoxClientID + '_PopupDiv');
+	var PopUpCanvas = $('#'+InfoBoxClientID + '_PopupCanvas');
+	var TriggerElement = $('#'+TriggerElementID);
+	var triggerOffset = TriggerElement.position();
+	var imgHeight = TriggerElement.height();
+	var imgWidth = TriggerElement.width();
+	var viewportWidth = $(window).width();
+	var viewportHeight = $(window).height();
+   PopUpCanvas.addClass('InfoBoxTemp'); //turn in on, but keep it hidden so height,width exist
+   PopUpDiv.addClass('InfoBoxTemp'); //turn in on, but keep it hidden so height,width exist
+	var divWidth = PopUpCanvas.width();
+	var divHeight = PopUpCanvas.height();
+   //check if the infobox is bigger than the viewport, if so shrink it
+   if(viewportWidth<divWidth){
+       PopUpCanvas.width(viewportWidth);
+       divWidth = PopUpCanvas.width();
+   }
+   PopUpCanvas.removeClass('InfoBoxTemp'); //back to what they started at
+   PopUpDiv.removeClass('InfoBoxTemp'); //back to what they started at
+   SetPosition(PopUpCanvas,direction,popupSpacing,triggerOffset,imgHeight,imgWidth,divHeight,divWidth);
+   RePosition(PopUpCanvas,PopUpDiv,divHeight,divWidth);
+}
+function SetPosition(PopUpCanvas,direction,popupSpacing,triggerOffset,imgHeight,imgWidth,divHeight,divWidth) {
+	var viewportWidth = $(window).width();
+	var viewportHeight = $(window).height();
+	if(direction == 4) {
+		PopUpCanvas.css('top',triggerOffset.top).css('left',triggerOffset.left+imgWidth+popupSpacing)
+	}
+	else if(direction == 5) {
+		PopUpCanvas.css('top',triggerOffset.top+(imgHeight/2)-(divHeight/2)).css('left',triggerOffset.left+imgWidth+popupSpacing)
+	}
+	else if(direction == 6) {
+       //use bottom to slide up for slideToggle, clear out top that RePosition may set=
+		PopUpCanvas.css('top','').css('left',triggerOffset.left+imgWidth+popupSpacing).css('bottom',viewportHeight-triggerOffset.top-imgHeight-popupSpacing);
+	}
+	else if(direction == 7) {
+		PopUpCanvas.css('top',triggerOffset.top+(imgHeight/2)-(divHeight/2)).css('left',triggerOffset.left-divWidth-popupSpacing)
+	}
+	else if(direction == 8) {
+       //use bottom to slide up for slideToggle, clear out top that RePosition may set=
+		PopUpCanvas.css('top','').css('left',triggerOffset.left+(imgWidth/2)-(divWidth/2)).css('bottom',viewportHeight-triggerOffset.top+popupSpacing); 
+	}
+	else if(direction == 1) {
+		PopUpCanvas.css('top',triggerOffset.top+imgHeight+popupSpacing).css('left',(triggerOffset.left+imgWidth)-divWidth)
+	}
+	else if(direction == 3) {
+		PopUpCanvas.css('top',triggerOffset.top+imgHeight+popupSpacing).css('left',triggerOffset.left+(imgWidth/2)-(divWidth/2))
+	}
+	else {
+	    // this is BottomRight
+		PopUpCanvas.css('top',triggerOffset.top+imgHeight+popupSpacing).css('left',triggerOffset.left)
+	}
+}
+function RePosition(PopUpCanvas,PopUpDiv,divHeight,divWidth) {
+	var viewportWidth = $(window).width();
+	var viewportHeight = $(window).height();
+	var viewportScrollTop = $(window).scrollTop();
+	var viewportScrollLeft = $(window).scrollLeft();
+   //here we check if the infobox is popping up off the screen.   Reposition it so it is within the viewport
+   PopUpCanvas.addClass('InfoBoxTemp'); //turn in on, but keep it hidden so height,width exist
+   PopUpDiv.addClass('InfoBoxTemp'); //turn in on, but keep it hidden so height,width exist
+   var divPosition = PopUpCanvas.position();
+   var divTop = parseInt(divPosition.top); var divLeft = parseInt(divPosition.left);   PopUpCanvas.removeClass('InfoBoxTemp'); //back to what they started at
+   PopUpDiv.removeClass('InfoBoxTemp'); //back to what they started at
+   //too far down
+   if((viewportScrollTop+viewportHeight)<(divTop+divHeight)){
+       //alert('TOO FAR DOWN: viewportscrolltop=' + viewportScrollTop + ',viewportheight=' + viewportHeight+ ',divcsstop=' + parseInt(divPosition.top) + ',divheight=' + divHeight);alert('setting top to: ' + (viewportScrollTop+viewportHeight-divHeight));
+       PopUpCanvas.css('bottom','').css('top',(viewportScrollTop+viewportHeight-divHeight));
+   }
+   //too far right
+   if((viewportScrollLeft+viewportWidth)<(divLeft+divWidth)){
+       //alert('too far right!');
+       PopUpCanvas.css('left',viewportScrollLeft+viewportWidth-divWidth);
+   }
+   //too far up
+   if(viewportScrollTop>divTop){
+       //alert('too far up!');
+       //alert('BEFORE   viewporttop:' + viewportScrollTop + ',popuptop:' + divPosition.top);
+       PopUpCanvas.css('bottom','').css('top',viewportScrollTop);
+       //alert('AFTER    viewporttop:' + viewportScrollTop + ',popuptop:' + divPosition.top);
+   }
+   //too far left
+   if(viewportScrollLeft>divLeft){
+       //alert('too far left!');
+       PopUpCanvas.css('left',viewportScrollLeft);
+   }
+}
+//]]>
+
+
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+
+
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+
+
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl00$ScriptManager1', 'aspnetForm', ['tctl00$ctl00$PageBody$PageContent$ctl12','','tctl00$ctl00$PageBody$PageContent$enrollmentFormUpdatePanel',''], [], [], 90, 'ctl00$ctl00');
+//]]>
+
+
+							function validate_hasVisa(sender, args) {
+								args.IsValid = $("$(input[name$='$hasVisa']:checked").length > 0;
+							}
+							function clickVisa() {
+								$("#hasVisa_hidden").val("clicked");
+								ControlValidate("hasVisa_hidden");
+							}
+							function clickAutoLoan() {
+								$("#hasAutoLoan_hidden").val("clicked");
+								ControlValidate("hasAutoLoan_hidden");
+							}
+							function clickPaidAutoLoan() {
+								$("#hasPaidAutoLoan_hidden").val("clicked");
+								ControlValidate("hasPaidAutoLoan_hidden");
+							}
+							function ControlValidate(id) {
+								var c = document.getElementById(id);
+								if (typeof (c.Validators) != "undefined") {
+									for (var i = 0; i < c.Validators.length; i++) {
+										ValidatorValidate(c.Validators[i]);
+									}
+								}
+							}
+							function isPageValid() {
+								if (typeof (Page_Validators) != "undefined") {
+									for (var i = 0; i < Page_Validators.length; i++) {
+										var validator = Page_Validators[i];
+										ValidatorValidate(validator);//make sure it's been checked
+										//console.log(validator.id + ":" + validator.isvalid);
+										if (!validator.isvalid) { return false; }
+									}
+								}
+								return true;
+							}
+							function setupMessage() {
+								if (isPageValid()) {
+									//when the postback returns, all of this will be undone -- hopefully the postback turns other stuff on
+									$("#SubmitButton").css('disabled', true);
+									ShowLoading();	//in DotNetScripts_v4
+									$(".message", "#LoadingContainer").css("background", "none").css("padding-left","1px").css("padding-right","28px");	//remove the spinner, it doesn't spin in IE
+									$(".inner", "#LoadingContainer").prepend("<div class=\"small progress\"><div>Loading</div></div>");	//add in the css spinner
+									setTimeout(function () {
+										$(".inner", "#LoadingContainer").css("width", "300px").css("padding-top", "10px");
+										$(".message:first", "#LoadingContainer").html("Validating");
+										$(".inner", "#LoadingContainer").append("<div class=\"message\" style=\"margin-top:5px;font-size:1em;background:none;padding-left:inherit;\"><div>This may take a minute.</div><div>Please do not refresh this page.</div></div>");
+										$(".message", "#LoadingContainer").css("line-height", "inherit");
+									}, 300);
+									//setTimeout(function () { if ($("#returnedResults").val() != "true") { $("#loadingMsg").hide(); $("#loadingSection").show(); $("#warningSection_timeout").show(); } }, 89 * 1000);
+									return true;
+								}
+								else {
+									return false;
+								}
+							}
+							//function testPost() {
+							//	$.post("http://akusaappsdev/ubenrollment/api/decision/enroll", { "enroll_firstName": "test" },
+							//		function (result) { alert(result); });
+							//}
+							function setConsentName() {
+								var first = $.trim($("#firstName").val());
+								var last = $.trim($("#lastName").val());
+								var suffix = $.trim($("#suffix").val());
+								if (first != "" && last != "") {
+									$("#consent_applicantName").text(", " + $.trim(first + " " + last + " " + suffix).toUpperCase() + ",");
+								}
+								else {
+									$("#consent_applicantName").text("");
+								}
+							}
+						
+
+						$(document).ready(function () {
+							//$('a[class*=leanModal]').leanModal({ top: 200, closeButton: ".modal_close" });
+							initializeMasks();
+							$(document).on("click", ".dataForm input:radio", function () { selectRadio(this); });
+							//$("#firstName").focus();
+						});
+						function initializeMasks() {
+							//$(".ssnField").prop('placeholder', 'xxx-__-____').mask("xxx-99-9999", { autoclear: false });
+							//$(".dateField").prop('placeholder', '__/__/____').mask("99/99/9999", { autoclear: false });
+							$(".ssnField").prop('placeholder', 'xxx-__-____').mask("xxx-99-9999", { placeholder: "xxx-__-____", autoclear: false });
+							$(".dateField").prop('placeholder', '__/__/____').mask("99/99/9999", { placeholder: '__/__/____', autoclear: false });
+							initializeVisaMask();
+
+							//in IE11 .mask steals focus.  This left the cursor in the visa debit card question.  Moving focus fired the validators.  So we move focus and clear the error
+							setTimeout(function () { $("#firstName").focus(); }, 500);
+							setTimeout(function () { Page_ClientValidateReset() }, 550);
+						}
+						function initializeVisaMask() {
+							//in a separate function so it can be re-initialized separate from the others
+							$("#visaDebitCardNumber").prop('placeholder', '__  ____  ____').mask("99  9999  9999", { placeholder: '__  ____  ____', autoclear: false });
+						}
+						function selectRadio(elem) {
+							$(elem).closest("div[role=radiogroup]").find("input:radio").each(function () { $(this).closest("label").removeClass("radioSelected"); });
+							$(elem).closest("label").addClass("radioSelected");
+						}
+						function reselectAllRadios() {
+							$(".dataForm input:radio:checked").each(function () { selectRadio(this); });
+						}
+						function Page_ClientValidateReset() {
+							if (typeof (Page_Validators) != "undefined") {
+								for (var i = 0; i < Page_Validators.length; i++) {
+									var validator = Page_Validators[i];
+									validator.isvalid = true;
+									ValidatorUpdateDisplay(validator);
+									//console.log(validator.id + "<br>");
+								}
+							}
+						}
+					
+
+      //<![CDATA[
+  		agf.pageview();
+      //]]>
+	
+
+//<![CDATA[
+var ctl00_ctl00_PageBody_PageContent_ctl10 = document.all ? document.all["ctl00_ctl00_PageBody_PageContent_ctl10"] : document.getElementById("ctl00_ctl00_PageBody_PageContent_ctl10");
+ctl00_ctl00_PageBody_PageContent_ctl10.evaluationfunction = "Length_Validation";
+ctl00_ctl00_PageBody_PageContent_ctl10.MaximumLength = "20";
+var ctl00_ctl00_PageBody_PageContent_ctl11 = document.all ? document.all["ctl00_ctl00_PageBody_PageContent_ctl11"] : document.getElementById("ctl00_ctl00_PageBody_PageContent_ctl11");
+ctl00_ctl00_PageBody_PageContent_ctl11.evaluationfunction = "Length_Validation";
+ctl00_ctl00_PageBody_PageContent_ctl11.MaximumLength = "40";
+//]]>
+
+
+//<![CDATA[
+$(document).ready(function() { console.log('ready');SetAriaLabels_FormRows();SetAriaLabels_FormColumns();AriaFixWrappedElements();setTimeout(SetAriaForValidators,1000); });AjaxFix();PrefsFormsLib.ApplicationRoot = '/enroll/';//]]>

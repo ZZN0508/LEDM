@@ -1,0 +1,2 @@
+TBaseUrl='/';
+TWeb.init();

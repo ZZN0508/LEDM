@@ -1,0 +1,16 @@
+
+  //<![CDATA[
+
+  //]]>
+  
+
+    $(document).ready(function(){
+      $('input.text').focus(function(){$(this).addClass('focus');});
+      $('input.text').blur(function(){$(this).removeClass('focus');});
+    });
+  
+
+            //<![CDATA[
+            if (typeof oan_displayAd=='function'){oan_displayAd('ora_2_728x90_identification');} 
+            //]]>
+          

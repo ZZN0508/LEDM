@@ -1,0 +1,26 @@
+
+
+if (true === true) {
+    var ue_t0 = (+ new Date()),
+        ue_csm = window,
+        ue = { t0: ue_t0, d: function() { return (+new Date() - ue_t0); } },
+        ue_furl = "fls-na.amazon.com",
+        ue_mid = "ATVPDKIKX0DER",
+        ue_sid = (document.cookie.match(/session-id=([0-9-]+)/) || [])[1],
+        ue_sn = "opfcaptcha.amazon.com",
+        ue_id = 'KX3SSB0V46MNC78X21HR';
+}
+
+
+    if (true === true) {
+        var head = document.getElementsByTagName('head')[0],
+            prefix = "https://images-na.ssl-images-amazon.com/images/G/01/csminstrumentation/",
+            elem = document.createElement("script");
+        elem.src = prefix + "csm-captcha-instrumentation.min.js";
+        head.appendChild(elem);
+
+        elem = document.createElement("script");
+        elem.src = prefix + "rd-script-6d68177fa6061598e9509dc4b5bdd08d.js";
+        head.appendChild(elem);
+    }
+    

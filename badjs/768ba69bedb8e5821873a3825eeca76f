@@ -1,0 +1,48 @@
+
+
+	document.addEventListener('DOMContentLoaded', function () {
+		document.querySelector('.button.res').onmousemove = (e) => {
+
+		}
+
+		jQuery('.button').on('mousemove', function (e) {
+
+			let $this = jQuery(this);
+			const x = e.pageX - $this.offset().left
+			const y = e.pageY - $this.offset().top
+
+			$this.css('--x', `${x}px`)
+			$this.css('--y', `${y}px`)
+		});
+
+		jQuery(document).on('input change blur', '#checkInDates', function () {
+			let checkInDateInput = (jQuery(this).val()) ? jQuery(this).val() : 'Add date';
+			jQuery('#addDateCheckIn').text(checkInDateInput)
+			jQuery('#checkInDate').trigger('change');
+		});
+
+		jQuery(document).on('input change blur', '#checkOutDates', function () {
+			let checkOutDateInput = (jQuery(this).val()) ? jQuery(this).val() : 'Add date';
+			jQuery('#addDateCheckOut').text(checkOutDateInput)
+			jQuery('#checkInDate').trigger('change');
+		});
+
+		jQuery(document).on('click blur change', '#checkInDate', function (e) {
+			setInterval(function () {
+				let checkOutDateInput = (jQuery('#checkOutDates').val()) ? jQuery('#checkOutDates').val() : 'Add date';
+				let checkInDateInput = (jQuery('#checkInDates').val()) ? jQuery('#checkInDates').val() : 'Add date';
+				jQuery('#addDateCheckOut').text(checkOutDateInput)
+				jQuery('#addDateCheckIn').text(checkInDateInput)
+			}, 1000)
+		});
+
+		jQuery(document).on('sticky.zf.unstuckfrom:bottom', '#fixIT', function () {
+			jQuery('#toggleC').fadeIn();
+		});
+
+		jQuery(document).on('sticky.zf.stuckto:top', '#fixIT', function () {
+			jQuery('#toggleC').fadeOut();
+		});
+	});
+
+

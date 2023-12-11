@@ -1,0 +1,160 @@
+
+var currentSeconds = 4;
+var exit_no_button;
+var exit_no_timer_button;
+var poker_offset = window.external.getStringOffset();
+
+  function SetupStrings()
+  {
+    document.getElementById('instant_play_casino').innerHTML = external.GetString(54 + poker_offset); //"Try our <a href="javascript:window.external.LaunchLiveCasinoURL()">Instant Play Casino</a>"
+	exit_no_button_text = external.GetString(51);
+	exit_no_timer_button = external.GetString(52);
+	//document.getElementById('button1_Text').innerText =  external.GetString(50);
+	document.getElementById('exit_dialog_body').innerText =  external.IsInstall()?external.GetString(71):external.GetString(7); //external.GetString(72); //commented out string 72 for now, missing translation
+	document.getElementById('exit_dialog_title').innerText =  external.GetString(83);
+  }
+  
+  function SetupiFrame()
+  {
+	//url's
+	var iFrame = document.getElementById('promoIframe');
+	iFrame.src = external.GetPromoMarketingURL();
+	iFrame.width = external.GetIFrameWidth();
+	iFrame.height = external.GetIFrameHeight();
+	
+	if(!external.IsInstall())
+	{
+		iFrame.src = "";
+		iFrame.width = 0;
+		iFrame.height = 0;
+	}
+	
+	if( (iFrame.width != 0) && (iFrame.height != 0) )
+	{
+		iFrame.style.paddingTop = '0px';
+		iFrame.style.paddingBottom = '10px';
+	}
+  }
+
+  function SetupWindowSize()
+  {
+    // if we need to resize the exit dialog window, use this function with valid x and y co ordinates
+    //external.SetParentWindowSize(int x, int y);
+    var x = 500;
+    var y = 180;
+    var liveCasinoEnabled = external.LiveCasinoURLisEnabled();
+    var liveCasinoDiv = document.getElementById('instant_play_casino_div');
+    liveCasinoDiv.style.visibility = 'hidden';
+    if(liveCasinoEnabled)
+    {
+      liveCasinoDiv.style.visibility = 'visible';
+      y+=60;
+    }
+    else
+    {
+      liveCasinoDiv.style.display="none";
+    }
+    if(!external.IsInstall())
+    {
+      external.SetParentWindowSize(x, y);
+    }
+  }
+  
+  function SetupButtons()
+  {
+	var button1_Link = document.getElementById('button1_Link');
+	var button1_Text = document.getElementById('button1_Text');
+	
+	var button2_Link = document.getElementById('button2_Link');
+	var button2_Text = document.getElementById('button2_Text');
+	
+	if( external.IsInstall() )
+	{
+		button1_Link.href="javascript:window.external.ContinueInstall()";
+		button1_Link.className="button_yes";
+		button1_Link.disabled=false;
+		button1_Text.innerText =  external.GetString(50);
+	
+		button2_Link.href="javascript:window.external.QuitInstall()";
+		button2_Link.className = "button_no_disabled";
+		button2_Link.disabled=true;
+	}
+	else
+	{
+		button1_Link.href="javascript:window.external.QuitInstall()";
+		button1_Link.className="button_yes";
+		button1_Link.disabled=false;
+		button1_Text.innerText =  external.GetString(50);
+	
+		button2_Link.href="javascript:window.external.ContinueInstall()";
+		button2_Link.className = "button_no";
+		button2_Link.disabled=false;
+		button2_Text.innerText =  external.GetString(51);
+	}
+  }
+  
+window.onload = function(event)
+{
+    settings = 
+	{
+        tl: { radius: 5 },
+        tr: { radius: 5 },
+        bl: { radius: 5 },
+        br: { radius: 5 },
+        antiAlias: true,
+        validTags: ["div","span"]
+    }
+	  
+    var infobox = new curvyCorners(settings, "infobox");
+    infobox.applyCornersToAll(); 
+    SetupStrings();
+	SetupWindowSize();
+	SetupiFrame();
+	SetupButtons();
+	  
+	if( external.IsInstall() )
+	{
+		if(external.TimerEnabled())
+		{
+			document.getElementById('button2_Text').innerText = external.GetModifiedString(52,"5");
+			setTimeout("timeOut()", 1000);
+		}
+		else
+		{
+			currentSeconds = 0;
+			timeOut();
+		}
+	}
+	  
+}
+ 
+	function timeOut() 
+	{
+		var button_Link;
+		var button_Text;
+
+		if( external.IsInstall() )
+		{
+			button_Link = document.getElementById('button2_Link');
+			button_Text = document.getElementById('button2_Text');
+		}
+		else
+		{
+			button_Link = document.getElementById('button1_Link');
+			button_Text = document.getElementById('button1_Text');
+		}
+		
+		if (currentSeconds > 0) 
+		{
+			button_Text.innerText = external.GetModifiedString(52,currentSeconds+'');
+			currentSeconds--;
+			setTimeout("timeOut()", 1000);
+		}
+		else
+		{
+			button_Text.innerText = exit_no_button_text;
+			
+			button_Link.className = "button_no";
+			button_Link.disabled=false;
+		}
+	}

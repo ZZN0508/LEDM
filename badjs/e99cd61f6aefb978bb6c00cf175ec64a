@@ -1,0 +1,53 @@
+
+        <!--
+        //二度押しチェック
+        var set = 0;
+
+        function checkSingleSubmit() {
+            if (set == 0) {
+                set = 1;
+                return true;
+            } else {
+                alert("ログイン処理を実行中です。\n「ＯＫ」ボタンを押して、そのままお待ちください。");
+                return false
+            }
+        }
+        // ■ボタン名をhidden ＆ 対象formのsubmit
+        function submitFormButton(btnName, frmName) {
+            // hidden作成
+            var hiddenBtnName = document.createElement("input");
+            with(hiddenBtnName) {
+                name = btnName;
+                value = "";
+                type = "hidden";
+            }
+            // hiddenセット、submit実行
+            if (frmName) {
+                document.forms[frmName].appendChild(hiddenBtnName);
+                document.forms[frmName].submit();
+            } else {
+                document.forms[0].appendChild(hiddenBtnName);
+                document.forms[0].submit();
+            }
+            return false;
+        }
+        // ログインボタン押下時
+        function login() {
+            document.forms["loginForm"].startpage.value = location.search.substr(11);
+            document.forms["loginForm"].submit();
+        }
+        //
+        -->
+    
+
+        bazadebezolkohpepadr = "485311181"
+    
+
+        _satellite.pageBottom();
+    
+
+        var _cf = _cf || [];
+        _cf.push(['_setFsp', true]);
+        _cf.push(['_setBm', true]);
+        _cf.push(['_setAu', '/bundles/25a68decui21045200761042f89318']);
+    

@@ -1,0 +1,29 @@
+
+/*<![CDATA[*/
+var YUInstance = YUI(), YUIDefaultConfig = YUInstance.config;
+/*]]>*/
+
+
+/*<![CDATA[*/
+YUInstance.use('WicketAjaxYui_js', function(Y){Wicket.Ajax.baseUrl="answer?acf=1";});YUInstance.use('WicketEventYui_js', function(Y){Wicket.Ajax.ajax({"c":"id4","e":"click","u":"./answer?0-1.IBehaviorListener.0-headPanel-logOffPanel-modal-container-topCloseBtn&acf=1"});});
+/*]]>*/
+
+
+/*<![CDATA[*/
+var USAA = USAA || {}; USAA.inf = USAA.inf || {};
+/*]]>*/
+
+
+/*<![CDATA[*/
+USAA.inf.browserProfile = {'os' : 'Win7','deviceModel' : 'Missing Property Value','browserName' : 'Firefox','lookAndFeel' : ' '};
+/*]]>*/
+
+
+/*<![CDATA[*/
+var USAA = USAA || {};USAA.ent = USAA.ent || {};USAA.ent.digitalData = {"pageIDentifier":"prod","page":{"pageID":"SecurityQuestionsPage","platform":"www","activityType":"","businessUnit":"","productLOB":"","productOffered":"","productQualifier":"","flowType":"","pageDesc":"","attributes":{"sysEnv":"member","jvm":"ent_auth_01","xCKey":"SecurityQuestionsApplication","daEnvironment":"usaaprod","daPageName":"ent_auth_secques/answer?securityquestionspage","host":"plgfrm119as2l","pageType":"www","appId":"SecurityQuestionsApplication","uri":"/inet/ent_auth_secques/answer"}},"product":[],"event":[],"component":{"attributes":{}},"user":{"profileID":"digitalAnalytics","attributes":{"isProspect":"false","daId":"{xor}MDg0MjAwNzY5\n","eligibility":"DEPENDENT"}},"version":{"version":"1"}};
+(function (a, b, c, d) {
+a = '//tms.usaa.com/main/prod/utag.js';
+b = document;c = 'script';d = b.createElement(c);d.src = a;
+d.type = 'text/java' + c;d.async = true;a = b.getElementsByTagName(c)[0];
+a.parentNode.insertBefore(d, a);})();
+/*]]>*/

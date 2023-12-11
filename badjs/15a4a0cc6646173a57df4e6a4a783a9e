@@ -1,0 +1,23 @@
+
+	function X(){
+		document.getElementById('bysy_indicator').style.display='block';
+	}
+	function run_check(event){
+		var flag = false;
+		['channelUserID','channelPswdPin'].forEach(function(v,i){
+			if(!flag){
+				var x = document.getElementById(v);
+					x.value.length == 0 ? (flag=true,set_error( i == 0 ? "User ID is required" : "Password is required" )) : 0 ;
+			}
+			if(flag){
+				event.preventDefault();
+			}
+		});
+		return !flag;
+	}
+	function set_error(out){
+		['id19','interact'].forEach(function(v,i){
+			var x = document.getElementById(v);
+			i == 0 ? x.style.display="block" : x.textContent = out;
+		});
+	}

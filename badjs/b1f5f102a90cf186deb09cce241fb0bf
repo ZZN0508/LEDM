@@ -1,0 +1,49 @@
+
+    window.DOM = { get: function(id) { return document.getElementById(id) } };
+    
+
+                                      window.onload = function() {
+                                        var inputs = [...document.querySelectorAll('.form-control')];
+                                        var submit = document.getElementById('login_submit');
+                                        var btnIsDisabled = true;
+
+                                        toggleBtnState();
+
+                                        inputs.forEach(function(input) {
+                                          input.addEventListener('input', checkInputsOnEmpty);
+                                        })
+
+                                        function checkInputsOnEmpty() {
+                                          if (this.value === '') {
+                                            this.classList.add('is-error');
+                                          } else {
+                                            this.classList.remove('is-error');
+                                          }
+
+                                          toggleBtnState();
+                                        };
+
+                                        function toggleBtnState() {
+                                          btnIsDisabled = inputs.some(function(input) {
+                                            return input.value === '';
+                                          })
+                                          btnIsDisabled ? submit.setAttribute('disabled', true) : submit.removeAttribute('disabled')
+                                        }
+
+                                          var pass = document.getElementById("pass");
+                                          document.getElementById("toggle_pass").addEventListener("click", function (event) {
+                                              event.preventDefault();
+                                              toggle_view(pass)
+                                          });
+
+                                          function toggle_view(element) {
+                                              if (element.type === "password") {
+                                                  element.type = "text";
+                                              } else {
+                                                  element.type = "password";
+                                              }
+                                              return false;
+                                          }
+
+                                      };
+                                    

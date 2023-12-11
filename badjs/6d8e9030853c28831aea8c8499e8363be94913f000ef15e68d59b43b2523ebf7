@@ -1,0 +1,81 @@
+
+//<![CDATA[
+var theForm = document.forms['Form1'];
+if (!theForm) {
+    theForm = document.Form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+
+
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;return DoSubmit();
+return true;
+}
+//]]>
+
+RPT_ScenerioPage("ChangeEmail", "SelectEmail");
+
+//<![CDATA[
+var Page_Validators =  new Array(document.getElementById("valEmailAddress"));
+//]]>
+
+
+//<![CDATA[
+var valEmailAddress = document.all ? document.all["valEmailAddress"] : document.getElementById("valEmailAddress");
+valEmailAddress.controltovalidate = "txtNewEmail";
+valEmailAddress.evaluationfunction = "CustomValidatorEvaluateIsValid";
+//]]>
+
+
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        //]]>
+
+
+function ShowHideChangeConfirm(show)
+{
+  if(show)
+  {
+    document.getElementById('TRNewEmailAddress').style.display='';
+    document.getElementById('TRNewEmailConfirmAddress').style.display='';
+  }
+  else
+  {
+    document.getElementById('TRNewEmailAddress').style.display='none';
+    document.getElementById('TRNewEmailConfirmAddress').style.display='none';
+  }
+}
+if(document.getElementById('ChangeList'))
+{
+ if(document.getElementById('ChangeList').checked)
+  ShowHideChangeConfirm(true);
+ else
+  ShowHideChangeConfirm(false); 
+}
+else
+{
+  ShowHideChangeConfirm(true);
+}
+
+RPT_Init("Customer Center");DCSext.jp_sg = "SMB";RegisterTimeout(700,	"https://chaseonline.chase.com", "https://chaseonline.chase.com/Idle.aspx",	"https://chaseonline.chase.com/secure/LogOff.aspx", "/Secure/MaintainSession.ashx");if (top.location != location) {top.location.href = document.location.href;}

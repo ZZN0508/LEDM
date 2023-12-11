@@ -1,0 +1,8 @@
+
+var frmvalidator = new Validator("myform");
+
+  frmvalidator.addValidation("Email","req","Enter your email address.");
+  frmvalidator.addValidation("Email","email","Please enter a proper Email Address (email@domain).");
+  frmvalidator.addValidation("password","req","Enter your password.");
+
+ 

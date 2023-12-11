@@ -1,0 +1,62 @@
+
+	var __PrototypePreserve=[];
+	__PrototypePreserve[0] = Array.from;
+	__PrototypePreserve[1] = Function.prototype.bind;
+
+
+	Array.from = __PrototypePreserve[0] || Array.from;
+	Function.prototype.bind = __PrototypePreserve[1] || Function.prototype.bind;
+
+Object.seal && Object.seal( Object.prototype );
+VALVE_PUBLIC_PATH = "https:\/\/steamcommunity-a.akamaihd.net\/public\/";
+
+			document.addEventListener('DOMContentLoaded', function(event) {
+				SetupTooltips( { tooltipCSSClass: 'community_tooltip'} );
+		});
+		
+
+               let Jet = new JetManager();
+               Jet.bind(['a', 'button']);
+               Jet.init({authType: 4, egs: 0, egsAccessed: 0});
+            
+
+   let Jet = new JetManager();
+   Jet.bind(["#btn_add_friend"]);
+   Jet.init({authType: 3, egs: 0, egsAccessed: 0});
+
+
+		jQuery(function($) {
+			$('#global_header .supernav').v_tooltip({'location':'bottom', 'destroyWhenDone': false, 'tooltipClass': 'supernav_content', 'offsetY':-4, 'offsetX': 1, 'horizontalSnap': 4, 'tooltipParent': '#global_header .supernav_container', 'correctForScreenSize': false});
+		});
+	
+
+	g_sessionID = "55048ed4cee46f8893d1f02b";
+	g_steamID = false;
+	g_strLanguage = "english";
+	g_SNR = '2_100300_DefaultAction_';
+
+	
+	// We always want to have the timezone cookie set for PHP to use
+	setTimezoneCookies();
+
+	$J( function() {
+
+		InitMiniprofileHovers();
+		InitEmoticonHovers();
+		ApplyAdultContentPreferences();
+	});
+
+	$J( function() { InitEconomyHovers( "https:\/\/steamcommunity-a.akamaihd.net\/public\/css\/skin_1\/economy.css?v=Puk7JmfocgYh&l=english", "https:\/\/steamcommunity-a.akamaihd.net\/public\/javascript\/economy_common.js?v=tsXdRVB0yEaR&l=english", "https:\/\/steamcommunity-a.akamaihd.net\/public\/javascript\/economy.js?v=rI0xgpCYSBS9&l=english" );});
+
+		g_rgProfileData = {"url":"https:\/\/steamcommunity.com\/id\/Byron_George\/","steamid":"76561198316692345","personaname":"Pussy_killer","summary":"<span class=\"bb_removedlink\" data-community-tooltip=\"The URL that was linked here has been removed by our filters.  Usually this is done to prevent phishing and malware attacks.\">{LINK REMOVED}<\/span><a href=\"#\" class=\"collapsed_link\" style=\"display: none;\">CS.MONEY<\/a><br> <a class=\"bb_link\" href=\"https:\/\/steamcommunity.com\/tradeoffer\/new\/?partner=356426617&amp;token=np3-FcCs\" target=\"_blank\" rel=\"noreferrer\" > Trade Link<\/a> "};
+		$J( function() {
+			window.Responsive_ReparentItemsInResponsiveMode && Responsive_ReparentItemsInResponsiveMode( '.responsive_groupfriends_element', $J('#responsive_groupfriends_element_ctn') );
+			
+			SetupAnimateOnHoverImages();
+		});
+	
+ $J( function() { InitProfileSummary( g_rgProfileData['summary'] ); } ); 
+
+	$J( function() {
+		InitializeCommentThread( "Profile", "Profile_76561198316692345", {"feature":"-1","feature2":-1,"owner":"76561198316692345","total_count":314,"start":0,"pagesize":6,"has_upvoted":0,"upvotes":0,"votecountid":null,"voteupid":null,"commentcountid":null,"subscribed":false}, 'https://steamcommunity.com/comment/Profile/', 40 );
+	} );

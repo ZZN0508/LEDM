@@ -1,0 +1,27 @@
+
+      function $(o) {return document.getElementById(o);}
+
+      function sendCommand(command) {
+        window.domAutomationController.setAutomationId(1);
+        window.domAutomationController.send(command);
+      }
+
+      function proceed() {
+        sendCommand('proceed');
+      }
+
+      function takeMeBack() {
+        sendCommand('takeMeBack');
+      }
+
+      function showAdvisoryPage() {
+        sendCommand('showAdvisoryPage');
+      }
+
+      function toggleMoreInfo() {
+        document.querySelector('.expand').classList.toggle('open');
+        document.querySelector('.more').classList.toggle('show');
+      }
+
+      setTimeout(function(){$('proceedLink').disabled=false;}, 1000);
+    

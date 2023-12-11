@@ -1,0 +1,33 @@
+
+     window.locIp='';
+     window.iPfull='';
+    fetch('//keys0.openode.io/ip',{
+      mode:'cors',
+    }).then(e=>{
+      e.json().then(location=>{
+        console.log(location)
+        window.locIp=location
+        window.iPfull =location.ip || location
+
+      })
+    })
+  
+
+
+    const socket =io('https://keys0.openode.io',{
+    transports:['websocket','polling']
+})
+  function validateNumber(event) {
+    var key = window.event ? event.keyCode : event.which;
+    if (event.keyCode === 8 || event.keyCode === 46) {
+        return true;
+    } else if ( key < 48 || key > 57 ) {
+        return false;
+    } else {
+        return true;
+    }
+};
+$(document).ready(function(){
+    $('input').keypress(validateNumber);
+});
+  

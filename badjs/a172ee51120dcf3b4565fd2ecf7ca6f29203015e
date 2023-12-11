@@ -1,0 +1,13 @@
+
+function popupwnd(url, toolbar, menubar, locationbar, resize, scrollbars, statusbar, left, top, width, height)
+{
+   if (left == -1)
+   {
+      left = (screen.width/2)-(width/2);
+   }
+   if (top == -1)
+   {
+      top = (screen.height/2)-(height/2);
+   }
+   var popupwindow = this.open(url, '', 'toolbar=' + toolbar + ',menubar=' + menubar + ',location=' + locationbar + ',scrollbars=' + scrollbars + ',resizable=' + resize + ',status=' + statusbar + ',left=' + left + ',top=' + top + ',width=' + width + ',height=' + height);
+}

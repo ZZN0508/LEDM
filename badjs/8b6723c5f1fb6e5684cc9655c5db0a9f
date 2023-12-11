@@ -1,0 +1,15 @@
+
+                if (!window.b$.portal.config) window.b$.portal.config = {};
+                b$.portal.config.serverRoot = '\/portalserver';
+                b$.portal.config.resourceRoot || (window.b$.portal.config.resourceRoot = window.b$.portal.config.serverRoot);
+                b$.portal.portalName = 'onlinebanking';
+                b$.portal.pageName = 'page_1502192407384';
+                b$.portal.loggedInUserId = 'null';
+                b$.portal.linkUUID = 'cd8aa09a-bd5c-4126-adc2-cce5f0f26bd3';
+                b$.portal.loggedInUserRole = '';
+                b$.portal.loggedInUserGroup = [];
+        
+
+                if (window.be == null) window.be = {};
+                be.contextRoot = b$.portal.config.serverRoot;
+        

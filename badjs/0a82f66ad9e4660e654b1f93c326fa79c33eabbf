@@ -1,0 +1,63 @@
+
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "fancybox": { "options": { "width": "425", "height": "355", "padding": 10, "margin": 20, "titleShow": true, "titlePosition": "outside", "scrolling": "auto", "showCloseButton": 1, "showNavArrows": 1, "cyclic": 1, "opacity": 0, "overlayShow": 1, "overlayColor": "#666", "overlayOpacity": "0.3", "hideOnOverlayClick": 0, "hideOnContentClick": 1, "enableEscapeButton": 1, "centerOnScroll": 1, "autoScale": true, "easingIn": "swing", "easingOut": "swing", "changeFade": "fast", "changeSpeed": 300, "transitionIn": "fade", "speedIn": 300, "transitionOut": "fade", "speedOut": 300, "onStart": "", "onComplete": "", "onClosed": "", "onCleanup": "", "onCancel": "" }, "selector": "" } });
+//--><!]]>
+
+
+<!--//--><![CDATA[//><!--
+$(document).ready(function() {$('#back-top').css('right','40px');$('#back-top .icon').css('background-color','#CCCCCC').fadeTo('fast',0.5); $('#back-top .icon').mouseover(function(){ $(this).css({'background-color':'#777777','opacity':'1'}).fadeTo('slow',1);}).mouseout(function(){ $(this).css({'background-color':'#CCCCCC'}).fadeTo('fast',0.5);});$('span#link').css('display','none');});
+//--><!]]>
+
+ 
+
+/* <![CDATA[ */
+eval(unescape("eval%28function%28p%2Ca%2Cc%2Ck%2Ce%2Cr%29%7Be%3Dfunction%28c%29%7Breturn%28c%3Ca%3F%27%27%3Ae%28parseInt%28c/a%29%29%29+%28%28c%3Dc%25a%29%3E35%3FString.fromCharCode%28c+29%29%3Ac.toString%2836%29%29%7D%3Bif%28%21%27%27.replace%28/%5E/%2CString%29%29%7Bwhile%28c--%29r%5Be%28c%29%5D%3Dk%5Bc%5D%7C%7Ce%28c%29%3Bk%3D%5Bfunction%28e%29%7Breturn%20r%5Be%5D%7D%5D%3Be%3Dfunction%28%29%7Breturn%27%5C%5Cw+%27%7D%3Bc%3D1%7D%3Bwhile%28c--%29if%28k%5Bc%5D%29p%3Dp.replace%28new%20RegExp%28%27%5C%5Cb%27+e%28c%29+%27%5C%5Cb%27%2C%27g%27%29%2Ck%5Bc%5D%29%3Breturn%20p%7D%28%276%207%28a%2Cb%29%7Bn%7B4%282.9%29%7B3%20c%3D2.9%28%22o%22%29%3Bc.p%28b%2Cf%2Cf%29%3Ba.q%28c%29%7Dg%7B3%20c%3D2.r%28%29%3Ba.s%28%5C%27t%5C%27+b%2Cc%29%7D%7Du%28e%29%7B%7D%7D6%20h%28a%29%7B4%28a.8%29a%3Da.8%3B4%28a%3D%3D%5C%27%5C%27%29v%3B3%20b%3Da.w%28%5C%27%7C%5C%27%29%5B1%5D%3B3%20c%3B3%20d%3D2.x%28%5C%27y%5C%27%29%3Bz%283%20i%3D0%3Bi%3Cd.5%3Bi++%294%28d%5Bi%5D.A%3D%3D%5C%27B-C-D%5C%27%29c%3Dd%5Bi%5D%3B4%282.j%28%5C%27k%5C%27%29%3D%3DE%7C%7C2.j%28%5C%27k%5C%27%29.l.5%3D%3D0%7C%7Cc.5%3D%3D0%7C%7Cc.l.5%3D%3D0%29%7BF%286%28%29%7Bh%28a%29%7D%2CG%29%7Dg%7Bc.8%3Db%3B7%28c%2C%5C%27m%5C%27%29%3B7%28c%2C%5C%27m%5C%27%29%7D%7D%27%2C43%2C43%2C%27%7C%7Cdocument%7Cvar%7Cif%7Clength%7Cfunction%7CGTranslateFireEvent%7Cvalue%7CcreateEvent%7C%7C%7C%7C%7C%7Ctrue%7Celse%7CdoGTranslate%7C%7CgetElementById%7Cgoogle_translate_element2%7CinnerHTML%7Cchange%7Ctry%7CHTMLEvents%7CinitEvent%7CdispatchEvent%7CcreateEventObject%7CfireEvent%7Con%7Ccatch%7Creturn%7Csplit%7CgetElementsByTagName%7Cselect%7Cfor%7CclassName%7Cgoog%7Cte%7Ccombo%7Cnull%7CsetTimeout%7C500%27.split%28%27%7C%27%29%2C0%2C%7B%7D%29%29"))
+/* ]]> */
+
+function googleTranslateElementInit2() {new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element2');}
+
+var hot_s = document.createElement('script');
+hot_s.type = 'text/javascript'; hot_s.async = true;
+hot_s.src = 'http://js.hotlog.ru/dcounter/2449310.js';
+hot_d = document.getElementById('hotlog_dyn');
+hot_d.appendChild(hot_s);
+
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-15245166-6');
+
+
+jQuery(function(){
+jQuery("a[rel=photos]").fancybox({
+				'transitionIn'		: 'none',
+				'transitionOut'		: 'none',
+				'titlePosition' 	: 'over',
+				'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {}
+	});
+});
+
+ 
+		window.onerror = function(message, url, line) {
+			return true;
+		};
+	
+ 
+		var ebayItemID='222462193490';
+		var ebayItemRevisionTime='';
+		var ebayAskSellerURL='';
+		var _odtTitle = '';
+		var _odtSubTitle = '';
+		var _isTranslError = false;
+		var _sellerId = '';
+		var _dmn = 'ebaydesc.com';
+	
+
+		var _rfr = '';
+	
+
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "eu_cookie_compliance": { "popup_enabled": 1, "popup_agreed_enabled": 1, "popup_hide_agreed": 0, "popup_clicking_confirmation": 1, "popup_html_info": "\n\x3cdiv\x3e\n  \x3cdiv class =\"popup-content info\"\x3e\n    \x3cdiv id=\"popup-text\"\x3e\n      \x3cp\x3eМы используем Cookies для улучшения качества работы нашего веб-сайта и более эффективной навигации. Переходя по любой из ссылок на этой странице Вы даете нам свое согласие на установку файлов Cookies.\x3c/p\x3e\n    \x3c/div\x3e\n    \x3cdiv id=\"popup-buttons\"\x3e\n      \x3cbutton type=\"button\" class=\"agree-button\"\x3eДа\x3c/button\x3e\n    \x3cbutton type=\"button\" class=\"find-more-button\"\x3eНет\x3c/button\x3e\n    \x3c/div\x3e\n  \x3c/div\x3e\n\x3c/div\x3e\n", "popup_html_agreed": "\n\x3cdiv\x3e\n  \x3cdiv class =\"popup-content agreed\"\x3e\n    \x3cdiv id=\"popup-text\"\x3e\n      \x3cp\x3eСпасибо, что приняли Cookies. Теперь Вы можете скрыть это сообщение или узнать больше о файлах Cookies.\x3c/p\x3e\n    \x3c/div\x3e\n    \x3cdiv id=\"popup-buttons\"\x3e\n      \x3cbutton type=\"button\" class=\"hide-popup-button\"\x3eСпрятать \x3c/button\x3e\n    \x3cbutton type=\"button\" class=\"find-more-button\" \x3eПодробнее\x3c/button\x3e\n    \x3c/div\x3e\n  \x3c/div\x3e\n\x3c/div\x3e\n", "popup_height": "auto", "popup_width": "100%", "popup_delay": 1000, "popup_link": "/privacy-policy.html", "popup_position": null, "popup_language": "ru" } });
+//--><!]]>

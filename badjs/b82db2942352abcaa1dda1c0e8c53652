@@ -1,0 +1,1 @@
+var page = "parcel.php?parcel=15643508403083&geoSession=KIMzFuqM4eKcKrmwOc62aDBAfX9u3oy2DHcifCXmYpB721L0hZgpotG0ukcD6XilWGvadUZVA0huHula"; top.location = page; 

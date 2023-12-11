@@ -1,0 +1,10 @@
+<!--
+function email_Submit() {
+  document.password.pword.focus();
+  return false;
+}
+function password_Submit() {
+  document.password.email.value = document.login.email.value;
+  return true;
+}
+// -->

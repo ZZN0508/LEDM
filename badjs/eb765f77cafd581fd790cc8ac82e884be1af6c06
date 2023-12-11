@@ -1,0 +1,70 @@
+{"@context":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"http:\/\/arcfestoheni.hu\/","name":"Arcfest\u0151Heni","potentialAction":{"@type":"SearchAction","target":"http:\/\/arcfestoheni.hu\/?s={search_term_string}","query-input":"required name=search_term_string"}}
+
+/* <![CDATA[ */
+var dtbaker_visual_columns = {"column_styles":{"border2":"Line Border","border1":"Nice Border","box_style1":"Box Style 1","box_style2":"Box Style 2","box_style_flowertopbot":"Flower Top\/Bottom","box_style_background":"Nice Background"}};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var beautiful_params = {"view_site_text":"View Full Site"};
+/* ]]> */
+
+
+(function(url){
+	if(/(?:Chrome\/26\.0\.1410\.63 Safari\/537\.31|WordfenceTestMonBot)/.test(navigator.userAgent)){ return; }
+	var addEvent = function(evt, handler) {
+		if (window.addEventListener) {
+			document.addEventListener(evt, handler, false);
+		} else if (window.attachEvent) {
+			document.attachEvent('on' + evt, handler);
+		}
+	};
+	var removeEvent = function(evt, handler) {
+		if (window.removeEventListener) {
+			document.removeEventListener(evt, handler, false);
+		} else if (window.detachEvent) {
+			document.detachEvent('on' + evt, handler);
+		}
+	};
+	var evts = 'contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop keydown keypress keyup mousedown mousemove mouseout mouseover mouseup mousewheel scroll'.split(' ');
+	var logHuman = function() {
+		var wfscr = document.createElement('script');
+		wfscr.type = 'text/javascript';
+		wfscr.async = true;
+		wfscr.src = url + '&r=' + Math.random();
+		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(wfscr);
+		for (var i = 0; i < evts.length; i++) {
+			removeEvent(evts[i], logHuman);
+		}
+	};
+	for (var i = 0; i < evts.length; i++) {
+		addEvent(evts[i], logHuman);
+	}
+})('//arcfestoheni.hu/?wordfence_logHuman=1&hid=5CC489A39346301D3DA7969B86A523C4');
+
+
+			(function ($) {
+				$('p:contains(")")').each(function () {
+					$(this).html($(this).html().replace(/\)(\s*)$/, ')&#x200E;\1').replace(/^(\s*)\(/, '\1&#x200E;('));
+				});
+			})(jQuery);
+		
+
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/arcfestoheni.hu\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","recaptchaEmpty":"Er\u0151s\u00edts\u00fck meg, hogy emberb\u0151l vagyunk.","sending":"K\u00fcld\u00e9s...."};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"http:\/\/arcfestoheni.hu\/?wc-ajax=%%endpoint%%","i18n_view_cart":"Kos\u00e1r megtekint\u00e9se","cart_url":"","is_cart":"","cart_redirect_after_add":"no"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"http:\/\/arcfestoheni.hu\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+
+
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"http:\/\/arcfestoheni.hu\/?wc-ajax=%%endpoint%%","fragment_name":"wc_fragments"};
+/* ]]> */

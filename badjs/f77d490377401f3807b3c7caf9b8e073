@@ -1,0 +1,370 @@
+
+	function OptanonWrapper() { }
+	
+// all ub-related js is collected in the ub object
+var ub={
+	fG : document.getElementById("SignInGlobal"),
+	fM : document.getElementById("SignInMobile"),
+	fH : document.getElementById("SignInHome"),
+	fU : document.getElementById("SignInUB"),
+	fW : document.getElementById("SignInWebpay"),
+	fO : document.getElementById("SignInOAO"),
+//	f : fH || fG || fM || fU ,//"either fG or fH depending on context"
+	/*invalidChars : " ,'`&?<>/\\\|[]:;~!*\"" */
+	invalidChars : String.fromCharCode(32,44,39,96,38,63,60,62,47,92,124,91,93,58,59,126,33,42,34),
+	Initialize : function(){ } ,
+	CheckEntries : function(event){
+		if (event.keyCode == 13){
+			if (ub.f.UserName.value.length === 0) {ub.f.UserName.focus();}
+		}
+	},
+	
+	DoSubmit : function (e){// Validate userid against nonsensical, invalid or empty submissions
+		e=e || window.event;
+		var f=e.target || e.srcElement;
+		var username = f.UserName.value.replace(/^\s+|\s+$/g, "");
+		if(username.length===0 || username.toLowerCase()=="user id"){
+			window.alert("Please enter your User ID");
+			f.UserName.focus();
+			return false;
+		}
+		if(ub.hasInvalidChar(username)){
+			window.alert("User ID contains an invalid character.");
+			f.UserName.focus();
+			return false;
+		}
+		f.Referrerfield.value = document.referrer;
+		f.UserName.value = username;
+		return true;
+	},
+	hasInvalidChar : function(str){
+		for(var c=0;c<ub.invalidChars.length;c++){
+			if(str.indexOf(ub.invalidChars.charAt(c)) > -1){ return true; }
+		}
+		return false;
+	}
+};
+if(ub.fG){
+	ub.fG.onsubmit=ub.DoSubmit;
+	ub.fG.setAttribute("autocomplete","off");
+}
+if(ub.fM){
+	ub.fM.onsubmit=ub.DoSubmit;
+	ub.fM.setAttribute("autocomplete","off");
+}
+if(ub.fH){
+	ub.fH.onsubmit=ub.DoSubmit;
+	ub.fH.setAttribute("autocomplete","off");
+//	ub.fH.UserNameHome.focus();
+}
+if(ub.fU){
+	ub.fU.onsubmit=ub.DoSubmit;
+	ub.fU.setAttribute("autocomplete","off");
+}
+if(ub.fW){
+	ub.fW.onsubmit=ub.DoSubmit;
+	ub.fW.setAttribute("autocomplete","off");
+}
+if(ub.fO){
+	ub.fO.onsubmit=ub.DoSubmit;
+	ub.fO.setAttribute("autocomplete","off");
+}
+
+
+
+function lmMini(e){
+	e=e || window.event;
+	var t=(e.target || e.srcElement);
+	var $lm=$(t).closest(".learnMore");
+	$lm.toggleClass("active");
+	//return false;
+}
+// Toggle controls
+function loadToggle (){
+	var h=location.hash.replace("#","");
+	if(h !== ""){
+		$("#" + h).addClass("show");
+	}
+}
+function toggleContent (e){
+	e = e || window.event;
+	var tgtEl=e.target || e.srcElement;
+	$(tgtEl).closest(".toggle").toggleClass("show");
+	return false;
+}
+function toggleList (e){
+	e = e || window.event;
+	var tgtEl=e.target || e.srcElement;
+//	alert($(tgtEl).closest("dt")[0]);
+	$(tgtEl).closest("dt").toggleClass("show");
+	return false;
+}
+
+var resizePreviousView = "";
+function handleResize() {
+	var resizeCurrentView = window.innerWidth < 768 ? "m" : "d";
+	if (resizeCurrentView == resizePreviousView) { return true; }	//only trigger this event when we switch modes, chrome fires resize on keyboard pop which breaks superfish
+	else { resizePreviousView = resizeCurrentView; }
+
+	if (window.innerWidth < 768) {
+		$(".shortcuts").addClass("hide");
+		$("ul.tools").appendTo($(".flyin"));
+		$("ul.sections").appendTo($(".flyin"));
+		$(".globalNav").appendTo($(".flyin"));
+		$(".flyin .tools #ubMenu div.menu").prependTo($("#persistentLogin"));
+		$("#navBar").hide();	//do this here so non-js browsers still see it.  need to hide because it is over the top of the mobileMenu
+		if ($(".globalNav .menu > li .close").length == 0) {
+			$(".globalNav .menu").prepend("<a class='close'><span class='AkusaIcon-cancel-x'><span class='visuallyhidden'>Close<\/span><\/span><\/a>")
+			$(".globalNav .menu .close")
+				.off('click')
+				.on('click', function () {
+					$(this).closest((".globalNav > li")).superfish('hide');
+					return false;
+				});
+		}
+		//always unbind before binding so we don't have multiple events
+		$('#homeAccBtn').show().off('click').on('click', function () {
+			//$(".accordion").toggleClass("hide");
+			$(".menu", "#persistentLogin").fadeToggle('fast');
+			$('#homeAccBtn').toggleClass('active');
+			//$('#persistentLogin').slideToggle(); //toggleClass('hide');
+			return false;
+		});
+		$('#persistentLogin .close').off('click').on('click', function () {
+			$(".menu", "#persistentLogin").fadeToggle('fast');
+			$('#homeAccBtn').toggleClass('active');
+			return false;
+		});
+	}
+	else {
+		//undo the things we moved around in the phone-only section
+		$(".shortcuts").removeClass("hide");
+		$("ul.sections").appendTo($(".siteHeader > div")[0]);
+		$("div.menu", "#persistentLogin").appendTo("ul.tools #ubMenu");	//put the login back;
+		if($("#ubMenu").is(".sfHover")){
+			$("#ubMenu > .menu").css("display","block");
+		} else {
+			$("#ubMenu > .menu").css("display","none");
+		}
+		$("ul.tools").appendTo($(".siteHeader > div")[0]);
+		$(".globalNav").prependTo($("#navBar"));
+		$("#navBar").show();
+		$('#homeAccBtn').hide();
+		$(".globalNav .menu > li a.close").remove();
+		//$(".shortcuts").toggleClass("hide");
+
+		//desktop only
+		//$('a[class*=leanModal]').lnModalExt({ top: "center" });
+
+	}
+}
+
+$(document).ready(function() {
+	handleResize();
+	$(window).on("resize",handleResize);
+	$(".main_overlay").on("click",toggleSideMenu);
+	$('ul.tools').superfish({ delay: 0, speed: 'fast', animation: { opacity: 'show' }, autoArrows: false }).sfAria();
+	$("ul.globalNav").superfish({ delay: 0, speed: 'normal', animation: { opacity: 'show' }, autoArrows: false, onShow: slideMenuIntoView }).sfAria();
+	$(".learnMore h2").on("click", lmMini);
+	$(".toggleTitle a").on("click", toggleContent);
+	$("#fsm").accAccordion({allowAllClosed : true,allowMultipleOpen : false});
+
+	$(".tabSet").tabSet();
+	// bind a click event to the 'skip' link to enable proper behaviof in IE
+	$(".skipLinks a").on("click",function(event){
+	    var skipTo="#"+this.href.split('#')[1];
+	    $(skipTo).attr('tabindex', -1).on('blur focusout', function () {
+	        $(this).removeAttr('tabindex');
+	    }).trigger("focus"); // focus on the content container
+	});
+	$('.flyin').sideMenuAria({btnContainer:'#navMenuBtn',menuContainer:'.flyin'});
+	$('a[class*=leanModal]').lnModalExt();
+	addDisclosureToExternalLinks();
+});
+
+
+function toggleSideMenu(){
+	$("#pgBody").toggleClass("active");
+	if($('#pgBody').hasClass('active')){
+		$(".flyin").height(document.body.clientHeight);
+		$(".main_overlay").height(document.body.clientHeight);
+		$(".flyin .tools li>a").first().trigger("focus");
+	}
+	return false;
+}
+
+// used for superfish menu attached to .globalNav.  For onShow, "this" is the opened ul
+function slideMenuIntoView() {
+	if($(this).offset().top < window.scrollY) {
+		var menuItem = $(this).closest("li");
+		var newTop = $(menuItem).offset().top + $(menuItem).height() - window.innerHeight;
+		if($(menuItem).attr("id") == "search") { newTop = $(menuItem).offset().top; } //they'll probably pop the keyboard. give them lots of room
+		if(newTop < 0) { newTop = 0; }
+		$("html, body").animate({
+			scrollTop: newTop
+		},500);
+	}
+}
+
+function addDisclosureToExternalLinks(){
+	var AkusaDomains = [
+		"alaskausa.org","alaskausamortgage.com","procuramortgage.com","alaskausatitle.com",
+		"akusaapps","purchaseone.org","alaskausafoundation.org"
+	];
+	var AffiliateDomains = [
+		"public.isillc.com","tools.safeco.com","careers-alaskausa.icims.com","scorecardrewards.com","iraservicecenter.com"
+	];
+	// Test absoluteURL links in main:
+	//		header doesn't contain external links, and those in footer are already marked as .ext
+	//		Also don't text links that have been manually tagged ".ext, .aff, .akusa" (external,affiliate,akusa)
+	$("main a[href^='http']").not(".ext, .aff, .akusa").each(function(){
+		// tag links .akusa,.aff, or .ext (the rest)
+		var i,len,cls="ext";
+		for(i=0,len=AkusaDomains.length; i<len ; i++){
+			if(this.href.toLowerCase().indexOf(AkusaDomains[i])>-1){
+				cls="akusa";
+				break;
+			}
+		}
+		if(cls=="ext"){
+			for(i=0,len=AffiliateDomains.length; i<len ; i++){
+				if(this.href.toLowerCase().indexOf(AffiliateDomains[i])>-1){
+					cls="aff";
+					break;
+				}
+			}
+		}
+		$(this).addClass(cls);
+	});
+	// now activate lnModalExt on all external links
+	$("a.ext").attr("data-modal-alert","true").lnModalExt().on("click",function(e){
+		$("#continue")[0].href=$(this)[0].href;
+		$("#continue").closest(".modal").find(".modal_close").trigger("focus");
+		$("#continue").trigger("focus");
+	});
+}
+
+
+$(document).ready(function() {
+	agf.pageview();
+	AddTracker();
+});
+function FlagUB() { agf.pageview({ page: "/external-ub-login/" }); }
+function AddTracker() {
+	var a = document.getElementsByTagName('a');
+	var AdId;
+	for(i = 0; i < a.length; i++){
+		// Automatically tag and track ad clicks if the link has an associated AdId
+		if(a[i].search.indexOf("aid=") > 0){
+			AdId = a[i].search.match(/aid\=([\w\d\-\_\+]*)/i)[1];
+			a[i].onclick = function () {
+				var link = this.href, pg="/actions/promo/" + AdId + "/action:adclick";
+				agf.pageview({ page: pg, title:"Promo link - AdId:" + AdId });
+				setTimeout(function () { location.href = link; }, 50);
+				return false;
+			};
+		}
+
+		if ( a[i].href.indexOf(location.host) == -1 ) {
+			// External links - href doesn't contain location.host
+			if (!(a[i].getAttribute("target")) || (a[i].getAttribute("target") == "") ){
+				// If no target specified in link (pop-up window), set tracker, pause, then navigate
+//				a[i].onclick = function () {
+//					var link = this.href, pg="/external/" + link.replace("://",":");
+//					agf.pageview({ page: pg });
+//					setTimeout(function () { location.href = link; }, 50);
+//					return false;
+//				};
+			} else {
+				// Target specified in link (pop-up window), set tracker, pause, then allow navigation to continue
+//				a[i].onclick = function(){
+//					var link = this.href, pg="/external/" + link.replace("://",":");
+//					agf.pageview({ page: "/external/" + pg });
+//					return true;
+//				};
+			}
+		} else if ( a[i].href.indexOf("pageUnavailable35f8.html") > 0 && a[i].className.indexOf("ext")<0) {
+			// Internal links (exit to external links not tracked because of site exit dialog)
+			a[i].onclick = function () {
+				var link = this.href;
+				agf.pageview({ page: link.replace(location.host, "").replace(location.protocol + "///", "index.html") });
+				setTimeout(function () { location.href = link; }, 50);
+				return false;
+			}
+		};
+	}
+}
+
+
+function acMini(hIn){
+	var $h=$(hIn);
+	var $ac=$h.closest(".linkList");
+	$ac.toggleClass("active");
+	return false;
+}
+
+var resizePreviousView_default = "";
+function handleResize_default() {
+	var resizeCurrentView = window.innerWidth < 768 ? "m" : "d";
+	if (resizeCurrentView == resizePreviousView_default) { return true; }
+	else { resizePreviousView_default = resizeCurrentView; }
+
+	if ($(window).width() < 768) {
+		$("#acPayments + dd .container").appendTo($("#makepayment .menu", ".mobileMenu"));
+		$("#acApply + dd .container").appendTo($("#openaccount .menu", ".mobileMenu"));
+		$("#acQuotes + dd .container").appendTo($("#applyquote .menu", ".mobileMenu"));
+
+		var sf = $("ul.mobileMenu").superfish({ delay: 0, speed: 'normal', animation: { opacity: 'show' }, autoArrows: false });
+		$(".AkusaIcon-cancel-x", ".mobileMenu #makepayment").off('click').on('click', function () { sf.children('li#makepayment').superfish('hide'); });
+		$(".AkusaIcon-cancel-x", ".mobileMenu #openaccount").off('click').on('click', function () { sf.children('li#openaccount').superfish('hide'); });
+		$(".AkusaIcon-cancel-x", ".mobileMenu #applyquote").off('click').on('click', function () { sf.children('li#applyquote').superfish('hide'); });
+	} else {
+		$("#makepayment .menu .container", ".mobileMenu").appendTo($("#acPayments + dd"));
+		$("#openaccount .menu .container", ".mobileMenu").appendTo($("#acApply + dd"));
+		$("#applyquote .menu .container", ".mobileMenu").appendTo($("#acQuotes + dd"));
+	}
+}
+// Use jquery to perform page init activities
+$(document).ready(function () {
+	handleResize_default();
+	$(window).on("resize",handleResize_default);
+	$(".accordion").accAccordion()
+	$("#UserNameHome").trigger("focus");
+
+	$('.hero').slick({
+		mobileFirst:true,
+
+		<!--initialSlide:Math.floor(Math.random() * $(".hero > div").length),-->
+
+		slidesToShow:1,
+		slidesToScroll:1,
+		swipe:true,
+		autoplay:true,
+		autoplaySpeed:10000,
+		arrows:false,
+		dots:true,
+		fade:true,
+		pauseOnDotsHover:true,
+		respondTo:'min'
+	});
+
+
+	$('.slick').slick({
+		mobileFirst: true, slidesToShow: 1, slidesToScroll: 1, infinite: true, swipe: true,
+		initialSlide:Math.floor(Math.random() * $(".slider .slide").length),
+		responsive:[
+			{
+				breakpoint: 768,
+				settings: { slidesToShow: 2, slidesToScroll: 1, infinite: true, swipe: true }
+			}
+		]
+	});
+	if(window.location.hash=="" && window.location.search==""){
+		var header=document.getElementsByClassName("siteHeader")[0];
+		if(header){
+			setTimeout("if(window.scrollY != 0)document.getElementsByClassName('siteHeader')[0].scrollIntoView();",150);
+		}
+	}
+
+});
+

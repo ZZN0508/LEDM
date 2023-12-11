@@ -1,0 +1,93 @@
+
+	$(document).ready(function(){
+		$('.hosting-ul').hide();
+		$('.hosting1-ul').hide();
+		$('#mobileNav').click(function() {
+			$('.hosting-ul').hide();
+			$('.hosting1-ul').hide();
+			$('#mobileNav').toggleClass('close');
+			$('#secondaryNav').fadeToggle();
+		});
+		$('#secondaryNav').click(function() {
+			$(this).fadeOut();
+			$('#mobileNav').removeClass('close');
+		});
+		/*$('#hosting-dropdown').click(function() {
+			$('.hosting-ul').fadeToggle();
+		});*/
+		/*$('#hosting1-dropdown').click(function() {
+			$('.hosting1-ul').fadeToggle();
+		});*/
+		$(".dropNav ul li").hover(function(){
+		
+			$(this).find('>ul').stop(true, false).slideToggle(200);     
+			}, function(){
+			
+			$(this).find('>ul').stop(true, false).slideToggle(200);   
+		});
+		
+var dark = document.getElementById("mobileNav");
+ if(window.location.pathname == '/dns.php') {
+       $( dark ).removeClass( "dark" );
+    }
+    if(window.location.pathname == '/index.php') {
+       $( dark ).removeClass( "dark" );
+    }
+	if(window.location.pathname == '/') {
+       $( dark ).removeClass( "dark" );
+    }
+	if(window.location.pathname == '/ssd-cloud-servers.php') {
+       $( dark ).removeClass( "dark" );
+    }
+	if(window.location.pathname == '/ssd-web-hosting.php') {
+       $( dark ).removeClass( "dark" );
+    }
+	if(window.location.pathname == '/ssd-web-hosting-windows.php') {
+       $( dark ).removeClass( "dark" );
+    }
+
+	if(window.location.pathname == '/dynamic-dns-managed.php') {
+       $( dark ).removeClass( "dark" );
+    }
+
+	if(window.location.pathname == '/vpn.php') {
+       $( dark ).removeClass( "dark" );
+    }
+if(window.location.pathname == '/domains.php') {
+       $( dark ).removeClass( "dark" );
+    }
+
+		
+	 });
+	 
+
+
+  window.intercomSettings = {
+    app_id: "aeh7d16f",
+    name: "", // Full name
+    email: "", // Email address
+    created_at:  // Signup date as a Unix timestamp
+  };
+
+
+  window.intercomSettings = {
+    app_id: "aeh7d16f"
+  };
+
+
+	    jQuery(document).ready(function(jQuery) {
+	        jQuery(".royalSlider").royalSlider({
+	            keyboardNavEnabled: false,
+	            autoScaleSlider: false,
+	            navigateByClick: false,
+	            sliderDrag: false,
+	            arrowsNav: false,
+	            autoPlay: {
+					enabled: true,
+					pauseOnHover: false,
+					delay: 4000
+    			}
+	            
+	        });  
+	    });
+	
